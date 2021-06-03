@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -31,7 +31,7 @@ if(!$temptype||!$gid||!$tempid)
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-//æ“ä½œæƒé™
+//²Ù×÷È¨ÏŞ
 if($temptype=='tempvar')
 {
 	CheckLevel($logininid,$loginin,$classid,"tempvar");
@@ -44,162 +44,162 @@ $gname=CheckTempGroup($gid);
 $sql=$empire->query("select bid,tempname,baktime,lastuser from {$dbtbpre}enewstempbak where temptype='$temptype' and gid='$gid' and tempid='$tempid' order by bid desc");
 $url='';
 $urlgname=$gname."&nbsp;>&nbsp;";
-//æ¨¡æ¿åç§°
-if($temptype=='bqtemp')//æ ‡ç­¾æ¨¡æ¿
+//Ä£°åÃû³Æ
+if($temptype=='bqtemp')//±êÇ©Ä£°å
 {
 	$tr=$empire->fetch1("select tempname from ".GetDoTemptb("enewsbqtemp",$gid)." where tempid='$tempid'");
-	$tname='æ ‡ç­¾æ¨¡æ¿';
-	$url=$urlgname."<a href='ListBqtemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†æ ‡ç­¾æ¨¡æ¿</a>&nbsp;>&nbsp;æ¨¡æ¿ <b>$tr[tempname]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='±êÇ©Ä£°å';
+	$url=$urlgname."<a href='ListBqtemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀí±êÇ©Ä£°å</a>&nbsp;>&nbsp;Ä£°å <b>$tr[tempname]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='classtemp')//å°é¢æ¨¡æ¿
+elseif($temptype=='classtemp')//·âÃæÄ£°å
 {
 	$tr=$empire->fetch1("select tempname from ".GetDoTemptb("enewsclasstemp",$gid)." where tempid='$tempid'");
-	$tname='å°é¢æ¨¡æ¿';
-	$url=$urlgname."<a href='ListClasstemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†å°é¢æ¨¡æ¿</a>&nbsp;>&nbsp;æ¨¡æ¿ <b>$tr[tempname]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='·âÃæÄ£°å';
+	$url=$urlgname."<a href='ListClasstemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀí·âÃæÄ£°å</a>&nbsp;>&nbsp;Ä£°å <b>$tr[tempname]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='jstemp')//JSæ¨¡æ¿
+elseif($temptype=='jstemp')//JSÄ£°å
 {
 	$tr=$empire->fetch1("select tempname from ".GetDoTemptb("enewsjstemp",$gid)." where tempid='$tempid'");
-	$tname='JSæ¨¡æ¿';
-	$url=$urlgname."<a href='ListJstemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†JSæ¨¡æ¿</a>&nbsp;>&nbsp;æ¨¡æ¿ <b>$tr[tempname]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='JSÄ£°å';
+	$url=$urlgname."<a href='ListJstemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀíJSÄ£°å</a>&nbsp;>&nbsp;Ä£°å <b>$tr[tempname]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='listtemp')//åˆ—è¡¨æ¨¡æ¿
+elseif($temptype=='listtemp')//ÁĞ±íÄ£°å
 {
 	$tr=$empire->fetch1("select tempname from ".GetDoTemptb("enewslisttemp",$gid)." where tempid='$tempid'");
-	$tname='åˆ—è¡¨æ¨¡æ¿';
-	$url=$urlgname."<a href='ListListtemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†åˆ—è¡¨æ¨¡æ¿</a>&nbsp;>&nbsp;æ¨¡æ¿ <b>$tr[tempname]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='ÁĞ±íÄ£°å';
+	$url=$urlgname."<a href='ListListtemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀíÁĞ±íÄ£°å</a>&nbsp;>&nbsp;Ä£°å <b>$tr[tempname]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='newstemp')//å†…å®¹æ¨¡æ¿
+elseif($temptype=='newstemp')//ÄÚÈİÄ£°å
 {
 	$tr=$empire->fetch1("select tempname from ".GetDoTemptb("enewsnewstemp",$gid)." where tempid='$tempid'");
-	$tname='å†…å®¹æ¨¡æ¿';
-	$url=$urlgname."<a href='ListNewstemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†å†…å®¹æ¨¡æ¿</a>&nbsp;>&nbsp;æ¨¡æ¿ <b>$tr[tempname]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='ÄÚÈİÄ£°å';
+	$url=$urlgname."<a href='ListNewstemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀíÄÚÈİÄ£°å</a>&nbsp;>&nbsp;Ä£°å <b>$tr[tempname]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pltemp')//è¯„è®ºæ¨¡æ¿
+elseif($temptype=='pltemp')//ÆÀÂÛÄ£°å
 {
 	$tr=$empire->fetch1("select tempname from ".GetDoTemptb("enewspltemp",$gid)." where tempid='$tempid'");
-	$tname='è¯„è®ºæ¨¡æ¿';
-	$url=$urlgname."<a href='ListPltemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†è¯„è®ºæ¨¡æ¿</a>&nbsp;>&nbsp;æ¨¡æ¿ <b>$tr[tempname]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='ÆÀÂÛÄ£°å';
+	$url=$urlgname."<a href='ListPltemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀíÆÀÂÛÄ£°å</a>&nbsp;>&nbsp;Ä£°å <b>$tr[tempname]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='printtemp')//æ‰“å°æ¨¡æ¿
+elseif($temptype=='printtemp')//´òÓ¡Ä£°å
 {
 	$tr=$empire->fetch1("select tempname from ".GetDoTemptb("enewsprinttemp",$gid)." where tempid='$tempid'");
-	$tname='æ‰“å°æ¨¡æ¿';
-	$url=$urlgname."<a href='ListPrinttemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†æ‰“å°æ¨¡æ¿</a>&nbsp;>&nbsp;æ¨¡æ¿ <b>$tr[tempname]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='´òÓ¡Ä£°å';
+	$url=$urlgname."<a href='ListPrinttemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀí´òÓ¡Ä£°å</a>&nbsp;>&nbsp;Ä£°å <b>$tr[tempname]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='searchtemp')//æœç´¢æ¨¡æ¿
+elseif($temptype=='searchtemp')//ËÑË÷Ä£°å
 {
 	$tr=$empire->fetch1("select tempname from ".GetDoTemptb("enewssearchtemp",$gid)." where tempid='$tempid'");
-	$tname='æœç´¢æ¨¡æ¿';
-	$url=$urlgname."<a href='ListSearchtemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†æœç´¢æ¨¡æ¿</a>&nbsp;>&nbsp;æ¨¡æ¿ <b>$tr[tempname]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='ËÑË÷Ä£°å';
+	$url=$urlgname."<a href='ListSearchtemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀíËÑË÷Ä£°å</a>&nbsp;>&nbsp;Ä£°å <b>$tr[tempname]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='tempvar')//å…¬å…±æ¨¡æ¿å˜é‡
+elseif($temptype=='tempvar')//¹«¹²Ä£°å±äÁ¿
 {
 	$tr=$empire->fetch1("select myvar,varname from ".GetDoTemptb("enewstempvar",$gid)." where varid='$tempid'");
-	$tname='å…¬å…±æ¨¡æ¿å˜é‡';
-	$url=$urlgname."<a href='ListTempvar.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†å…¬å…±æ¨¡æ¿å˜é‡</a>&nbsp;>&nbsp;å˜é‡ <b>".$tr[myvar]." (".$tr[varname].")</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='¹«¹²Ä£°å±äÁ¿';
+	$url=$urlgname."<a href='ListTempvar.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀí¹«¹²Ä£°å±äÁ¿</a>&nbsp;>&nbsp;±äÁ¿ <b>".$tr[myvar]." (".$tr[varname].")</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='votetemp')//æŠ•ç¥¨æ¨¡æ¿
+elseif($temptype=='votetemp')//Í¶Æ±Ä£°å
 {
 	$tr=$empire->fetch1("select tempname from ".GetDoTemptb("enewsvotetemp",$gid)." where tempid='$tempid'");
-	$tname='æŠ•ç¥¨æ¨¡æ¿';
-	$url=$urlgname."<a href='ListVotetemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†æŠ•ç¥¨æ¨¡æ¿</a>&nbsp;>&nbsp;æ¨¡æ¿ <b>$tr[tempname]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='Í¶Æ±Ä£°å';
+	$url=$urlgname."<a href='ListVotetemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀíÍ¶Æ±Ä£°å</a>&nbsp;>&nbsp;Ä£°å <b>$tr[tempname]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pagetemp')//è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿
+elseif($temptype=='pagetemp')//×Ô¶¨ÒåÒ³ÃæÄ£°å
 {
 	$tr=$empire->fetch1("select tempname from ".GetDoTemptb("enewspagetemp",$gid)." where tempid='$tempid'");
-	$tname='è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿';
-	$url=$urlgname."<a href='ListPagetemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿</a>&nbsp;>&nbsp;æ¨¡æ¿ <b>$tr[tempname]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='×Ô¶¨ÒåÒ³ÃæÄ£°å';
+	$url=$urlgname."<a href='ListPagetemp.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀí×Ô¶¨ÒåÒ³ÃæÄ£°å</a>&nbsp;>&nbsp;Ä£°å <b>$tr[tempname]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='indexpage')//é¦–é¡µæ–¹æ¡ˆæ¨¡æ¿
+elseif($temptype=='indexpage')//Ê×Ò³·½°¸Ä£°å
 {
 	$tr=$empire->fetch1("select tempname from {$dbtbpre}enewsindexpage where tempid='$tempid'");
-	$tname='é¦–é¡µæ–¹æ¡ˆ';
-	$url=$urlgname."<a href='ListIndexpage.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>ç®¡ç†é¦–é¡µæ–¹æ¡ˆ</a>&nbsp;>&nbsp;æ¨¡æ¿ <b>$tr[tempname]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='Ê×Ò³·½°¸';
+	$url=$urlgname."<a href='ListIndexpage.php?gid=$gid".$ecms_hashur['ehref']."' target='_blank'>¹ÜÀíÊ×Ò³·½°¸</a>&nbsp;>&nbsp;Ä£°å <b>$tr[tempname]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-//å…¬å…±æ¨¡æ¿
-elseif($temptype=='pubindextemp')//é¦–é¡µæ¨¡æ¿
+//¹«¹²Ä£°å
+elseif($temptype=='pubindextemp')//Ê×Ò³Ä£°å
 {
-	$tname='é¦–é¡µæ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>é¦–é¡µæ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='Ê×Ò³Ä£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>Ê×Ò³Ä£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pubcptemp')//æ§åˆ¶é¢æ¿æ¨¡æ¿
+elseif($temptype=='pubcptemp')//¿ØÖÆÃæ°åÄ£°å
 {
-	$tname='æ§åˆ¶é¢æ¿æ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>æ§åˆ¶é¢æ¿æ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='¿ØÖÆÃæ°åÄ£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>¿ØÖÆÃæ°åÄ£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pubsearchtemp')//é«˜çº§æœç´¢è¡¨å•æ¨¡æ¿
+elseif($temptype=='pubsearchtemp')//¸ß¼¶ËÑË÷±íµ¥Ä£°å
 {
-	$tname='é«˜çº§æœç´¢è¡¨å•æ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>é«˜çº§æœç´¢è¡¨å•æ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='¸ß¼¶ËÑË÷±íµ¥Ä£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>¸ß¼¶ËÑË÷±íµ¥Ä£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pubsearchjstemp')//æœç´¢JSæ¨¡æ¿[æ¨ªå‘]
+elseif($temptype=='pubsearchjstemp')//ËÑË÷JSÄ£°å[ºáÏò]
 {
-	$tname='æœç´¢JSæ¨¡æ¿[æ¨ªå‘]';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>æœç´¢JSæ¨¡æ¿[æ¨ªå‘]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='ËÑË÷JSÄ£°å[ºáÏò]';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>ËÑË÷JSÄ£°å[ºáÏò]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pubsearchjstemp1')//æœç´¢JSæ¨¡æ¿[çºµå‘]
+elseif($temptype=='pubsearchjstemp1')//ËÑË÷JSÄ£°å[×İÏò]
 {
-	$tname='æœç´¢JSæ¨¡æ¿[çºµå‘]';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>æœç´¢JSæ¨¡æ¿[çºµå‘]</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='ËÑË÷JSÄ£°å[×İÏò]';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>ËÑË÷JSÄ£°å[×İÏò]</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pubotherlinktemp')//ç›¸å…³é“¾æ¥æ¨¡æ¿
+elseif($temptype=='pubotherlinktemp')//Ïà¹ØÁ´½ÓÄ£°å
 {
-	$tname='ç›¸å…³é“¾æ¥æ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>ç›¸å…³é“¾æ¥æ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='Ïà¹ØÁ´½ÓÄ£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>Ïà¹ØÁ´½ÓÄ£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pubdownsofttemp')//ä¸‹è½½åœ°å€æ¨¡æ¿
+elseif($temptype=='pubdownsofttemp')//ÏÂÔØµØÖ·Ä£°å
 {
-	$tname='ä¸‹è½½åœ°å€æ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>ä¸‹è½½åœ°å€æ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='ÏÂÔØµØÖ·Ä£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>ÏÂÔØµØÖ·Ä£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pubonlinemovietemp')//åœ¨çº¿æ’­æ”¾åœ°å€æ¨¡æ¿
+elseif($temptype=='pubonlinemovietemp')//ÔÚÏß²¥·ÅµØÖ·Ä£°å
 {
-	$tname='åœ¨çº¿æ’­æ”¾åœ°å€æ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>åœ¨çº¿æ’­æ”¾åœ°å€æ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='ÔÚÏß²¥·ÅµØÖ·Ä£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>ÔÚÏß²¥·ÅµØÖ·Ä£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='publistpagetemp')//åˆ—è¡¨åˆ†é¡µæ¨¡æ¿
+elseif($temptype=='publistpagetemp')//ÁĞ±í·ÖÒ³Ä£°å
 {
-	$tname='åˆ—è¡¨åˆ†é¡µæ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>åˆ—è¡¨åˆ†é¡µæ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='ÁĞ±í·ÖÒ³Ä£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>ÁĞ±í·ÖÒ³Ä£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pubpljstemp')//è¯„è®ºJSè°ƒç”¨æ¨¡æ¿
+elseif($temptype=='pubpljstemp')//ÆÀÂÛJSµ÷ÓÃÄ£°å
 {
-	$tname='è¯„è®ºJSè°ƒç”¨æ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>è¯„è®ºJSè°ƒç”¨æ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='ÆÀÂÛJSµ÷ÓÃÄ£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>ÆÀÂÛJSµ÷ÓÃÄ£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pubdownpagetemp')//æœ€ç»ˆä¸‹è½½é¡µæ¨¡æ¿
+elseif($temptype=='pubdownpagetemp')//×îÖÕÏÂÔØÒ³Ä£°å
 {
-	$tname='æœ€ç»ˆä¸‹è½½é¡µæ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>æœ€ç»ˆä¸‹è½½é¡µæ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='×îÖÕÏÂÔØÒ³Ä£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>×îÖÕÏÂÔØÒ³Ä£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pubgbooktemp')//ç•™è¨€æ¿æ¨¡æ¿
+elseif($temptype=='pubgbooktemp')//ÁôÑÔ°åÄ£°å
 {
-	$tname='ç•™è¨€æ¿æ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>ç•™è¨€æ¿æ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='ÁôÑÔ°åÄ£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>ÁôÑÔ°åÄ£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='publoginiframe')//ç™»é™†çŠ¶æ€æ¨¡æ¿
+elseif($temptype=='publoginiframe')//µÇÂ½×´Ì¬Ä£°å
 {
-	$tname='ç™»é™†çŠ¶æ€æ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>ç™»é™†çŠ¶æ€æ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='µÇÂ½×´Ì¬Ä£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>µÇÂ½×´Ì¬Ä£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='publoginjstemp')//JSè°ƒç”¨ç™»é™†çŠ¶æ€æ¨¡æ¿
+elseif($temptype=='publoginjstemp')//JSµ÷ÓÃµÇÂ½×´Ì¬Ä£°å
 {
-	$tname='JSè°ƒç”¨ç™»é™†çŠ¶æ€æ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>JSè°ƒç”¨ç™»é™†çŠ¶æ€æ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='JSµ÷ÓÃµÇÂ½×´Ì¬Ä£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>JSµ÷ÓÃµÇÂ½×´Ì¬Ä£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
-elseif($temptype=='pubschalltemp')//å…¨ç«™æœç´¢æ¨¡æ¿
+elseif($temptype=='pubschalltemp')//È«Õ¾ËÑË÷Ä£°å
 {
-	$tname='å…¨ç«™æœç´¢æ¨¡æ¿';
-	$url=$urlgname."å…¬å…±æ¨¡æ¿&nbsp;>&nbsp;<b>å…¨ç«™æœç´¢æ¨¡æ¿</b> çš„ä¿®æ”¹è®°å½•";
+	$tname='È«Õ¾ËÑË÷Ä£°å';
+	$url=$urlgname."¹«¹²Ä£°å&nbsp;>&nbsp;<b>È«Õ¾ËÑË÷Ä£°å</b> µÄĞŞ¸Ä¼ÇÂ¼";
 }
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title><?=$tname?> çš„ä¿®æ”¹è®°å½•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title><?=$tname?> µÄĞŞ¸Ä¼ÇÂ¼</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script language="javascript">
 window.resizeTo(550,600);
@@ -210,15 +210,15 @@ window.focus();
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
     <tr> 
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
     </tr>
 </table>
 
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td width="52%" height="25"> <div align="center">ä¿®æ”¹æ—¶é—´</div></td>
-    <td width="29%" height="25"> <div align="center">ä¿®æ”¹è€…</div></td>
-    <td width="19%"><div align="center">è¿˜åŸ</div></td>
+    <td width="52%" height="25"> <div align="center">ĞŞ¸ÄÊ±¼ä</div></td>
+    <td width="29%" height="25"> <div align="center">ĞŞ¸ÄÕß</div></td>
+    <td width="19%"><div align="center">»¹Ô­</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
@@ -231,7 +231,7 @@ window.focus();
     <td height="25"><div align="center"> 
         <?=$r['lastuser']?>
       </div></td>
-    <td><div align="center">[<a href="../ecmstemp.php?enews=ReEBakTemp&bid=<?=$r['bid']?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦è¿˜åŸ?');">è¿˜åŸ</a>]</div></td>
+    <td><div align="center">[<a href="../ecmstemp.php?enews=ReEBakTemp&bid=<?=$r['bid']?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒª»¹Ô­?');">»¹Ô­</a>]</div></td>
   </tr>
   <?php
   }

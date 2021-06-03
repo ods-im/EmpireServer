@@ -1,10 +1,10 @@
-//鍓嶅彴淇℃伅鎶曠ǹ闄勫姞JS鍑芥暟
+//前台信息投稿附加JS函数
 function EmpireCMSQInfoPostFun(obj,mid){
 	return true;
 }
 
 
-//鍚庡彴鍙戝竷淇℃伅闄勫姞JS鍑芥暟
+//后台发布信息附加JS函数
 function EmpireCMSInfoPostFun(obj,mid){
 	return true;
 }

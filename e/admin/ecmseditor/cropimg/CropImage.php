@@ -7,7 +7,7 @@ require("../../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=2;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -26,7 +26,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//è£å‰ªå›¾ç‰‡
+//²Ã¼ôÍ¼Æ¬
 if($enews=='DoCropImage')
 {
 	if($public_r['phpmode'])
@@ -65,7 +65,7 @@ if(!file_exists($big_image_name))
 {
 	printerror('NotCropImage','history.go(-1)');
 }
-$filetype=GetFiletype($filer['filename']);//å–å¾—æ–‡ä»¶ç±»å‹
+$filetype=GetFiletype($filer['filename']);//È¡µÃÎÄ¼şÀàĞÍ
 if(!strstr($ecms_config['sets']['tranpicturetype'],','.$filetype.','))
 {
 	printerror('CropImageFiletypeFail','history.go(-1)');
@@ -76,8 +76,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>è£å‰ªå›¾ç‰‡ï¼š<?=$filer['no']?> (<?=$filer['filename']?>)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²Ã¼ôÍ¼Æ¬£º<?=$filer['no']?> (<?=$filer['filename']?>)</title>
 <link href="../../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 
 <script src="js/jquery.min.js"></script>
@@ -118,12 +118,12 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr> 
-      <td height="30">è£å‰ªå›¾ç‰‡å¤§å°ï¼šå®½ 
+      <td height="30">²Ã¼ôÍ¼Æ¬´óĞ¡£º¿í 
         <input name="pic_w" type="text" id="pic_w" value="0" size="6">
-        Ã—é«˜ <input name="pic_h" type="text" id="pic_h" value="0" size="6">
-        ï¼Œ 
+        ¡Á¸ß <input name="pic_h" type="text" id="pic_h" value="0" size="6">
+        £¬ 
         <input name="doing" type="checkbox" id="doing" value="1" checked>
-        ä¿ç•™åŸå›¾ <input type="submit" name="Submit" value="è£å‰ªå›¾ç‰‡">
+        ±£ÁôÔ­Í¼ <input type="submit" name="Submit" value="²Ã¼ôÍ¼Æ¬">
         <input name="enews" type="hidden" id="enews" value="DoCropImage">
         <input name="pic_x" type="hidden" id="pic_x" value="0">
         <input name="pic_y" type="hidden" id="pic_y" value="0">

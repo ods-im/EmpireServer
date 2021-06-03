@@ -6,7 +6,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('error');//鍏抽棴妯″潡
+eCheckCloseMods('error');//关闭模块
 $id=(int)$_GET['id'];
 $classid=(int)$_GET['classid'];
 if(!$id||!$classid||!$class_r[$classid][tbname]||InfoIsInTable($class_r[$classid][tbname]))
@@ -18,10 +18,10 @@ if(empty($r['id'])||$r['classid']!=$classid)
 {
 	printerror("ErrorUrl","history.go(-1)",1);
 }
-//鍒嗙被
+//分类
 $cid=(int)$_GET['cid'];
 $titleurl=sys_ReturnBqTitleLink($r);
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/public/report.php');
 db_close();
 $empire=null;

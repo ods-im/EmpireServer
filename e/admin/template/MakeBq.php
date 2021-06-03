@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -24,26 +24,26 @@ $parentclass=(int)$_GET['parentclass'];
 $addparentclass='';
 if($parentclass)
 {
-	$addparentclass='çˆ¶';
+	$addparentclass='¸¸';
 }
-//æ“ä½œå¯¹è±¡
-if($doobject==2)//æŒ‰æ ç›®
+//²Ù×÷¶ÔÏó
+if($doobject==2)//°´À¸Ä¿
 {
-	//æ“ä½œç±»åž‹
+	//²Ù×÷ÀàÐÍ
 	$dotype='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select">
-			  <option value="0">æ ç›®æœ€æ–°ä¿¡æ¯</option>
-			  <option value="1">æ ç›®ç‚¹å‡»æŽ’è¡Œ</option>
-			  <option value="2">æ ç›®æŽ¨èä¿¡æ¯</option>
-			  <option value="9">æ ç›®è¯„è®ºæŽ’è¡Œ</option>
-			  <option value="12">æ ç›®å¤´æ¡ä¿¡æ¯</option>
-			  <option value="15">æ ç›®ä¸‹è½½æŽ’è¡Œ</option>
+			  <option value="0">À¸Ä¿×îÐÂÐÅÏ¢</option>
+			  <option value="1">À¸Ä¿µã»÷ÅÅÐÐ</option>
+			  <option value="2">À¸Ä¿ÍÆ¼öÐÅÏ¢</option>
+			  <option value="9">À¸Ä¿ÆÀÂÛÅÅÐÐ</option>
+			  <option value="12">À¸Ä¿Í·ÌõÐÅÏ¢</option>
+			  <option value="15">À¸Ä¿ÏÂÔØÅÅÐÐ</option>
               </select></td>
           </tr>
         </table>';
-	//é€‰æ‹©æ ç›®
+	//Ñ¡ÔñÀ¸Ä¿
 	$fcfile='../../data/fc/ListEnews.php';
 	$class="<script src=../../data/fc/cmsclass.js></script>";
 	if(!file_exists($fcfile))
@@ -51,25 +51,25 @@ if($doobject==2)//æŒ‰æ ç›®
 	if($addselfinfo==1)
 	{
 	}
-	elseif($addselfinfo==2)//ä¸€çº§æ ç›®+å½“å‰æ ç›®
+	elseif($addselfinfo==2)//Ò»¼¶À¸Ä¿+µ±Ç°À¸Ä¿
 	{
-		$selfinfooption='<option value="\'selfinfo\'">å½“å‰æ ç›®</option><option value="\'0\'">ä¸€çº§æ ç›®</option>';
+		$selfinfooption='<option value="\'selfinfo\'">µ±Ç°À¸Ä¿</option><option value="\'0\'">Ò»¼¶À¸Ä¿</option>';
 	}
-	elseif($addselfinfo==3)//ä¸€çº§æ ç›®
+	elseif($addselfinfo==3)//Ò»¼¶À¸Ä¿
 	{
-		$selfinfooption='<option value="\'0\'">ä¸€çº§æ ç›®</option>';
+		$selfinfooption='<option value="\'0\'">Ò»¼¶À¸Ä¿</option>';
 	}
-	elseif($addselfinfo==4)//ä¸é™æ ç›®
+	elseif($addselfinfo==4)//²»ÏÞÀ¸Ä¿
 	{
-		$selfinfooption='<option value="0">ä¸é™æ ç›®</option>';
+		$selfinfooption='<option value="0">²»ÏÞÀ¸Ä¿</option>';
 	}
 	else
 	{
-		$selfinfooption='<option value="\'selfinfo\'">å½“å‰æ ç›®</option>';
+		$selfinfooption='<option value="\'selfinfo\'">µ±Ç°À¸Ä¿</option>';
 	}
 	$changeobject='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">é€‰æ‹©'.$addparentclass.'æ ç›®ï¼š</td>
+            <td width="24%">Ñ¡Ôñ'.$addparentclass.'À¸Ä¿£º</td>
             <td width="76%"><select name="classid" id="select2">
 			  '.$selfinfooption.'
 			  '.$class.'
@@ -77,23 +77,23 @@ if($doobject==2)//æŒ‰æ ç›®
           </tr>
         </table>';
 }
-elseif($doobject==3)//æŒ‰ä¸“é¢˜
+elseif($doobject==3)//°´×¨Ìâ
 {
-	//æ“ä½œç±»åž‹
+	//²Ù×÷ÀàÐÍ
 	$dotype='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select">
-			  <option value="6">ä¸“é¢˜æœ€æ–°ä¿¡æ¯</option>
-			  <option value="7">ä¸“é¢˜ç‚¹å‡»æŽ’è¡Œ</option>
-			  <option value="8">ä¸“é¢˜æŽ¨èä¿¡æ¯</option>
-			  <option value="11">ä¸“é¢˜è¯„è®ºæŽ’è¡Œ</option>
-			  <option value="14">ä¸“é¢˜å¤´æ¡ä¿¡æ¯</option>
-			  <option value="17">ä¸“é¢˜ä¸‹è½½æŽ’è¡Œ</option>
+			  <option value="6">×¨Ìâ×îÐÂÐÅÏ¢</option>
+			  <option value="7">×¨Ìâµã»÷ÅÅÐÐ</option>
+			  <option value="8">×¨ÌâÍÆ¼öÐÅÏ¢</option>
+			  <option value="11">×¨ÌâÆÀÂÛÅÅÐÐ</option>
+			  <option value="14">×¨ÌâÍ·ÌõÐÅÏ¢</option>
+			  <option value="17">×¨ÌâÏÂÔØÅÅÐÐ</option>
               </select></td>
           </tr>
         </table>';
-	//é€‰æ‹©ä¸“é¢˜
+	//Ñ¡Ôñ×¨Ìâ
 	$ztclass='';
 	$ztsql=$empire->query("select ztid,ztname from {$dbtbpre}enewszt order by ztid desc");
 	while($ztr=$empire->fetch($ztsql))
@@ -105,11 +105,11 @@ elseif($doobject==3)//æŒ‰ä¸“é¢˜
 	}
 	else
 	{
-		$selfinfooption='<option value="\'selfinfo\'">å½“å‰ä¸“é¢˜</option>';
+		$selfinfooption='<option value="\'selfinfo\'">µ±Ç°×¨Ìâ</option>';
 	}
 	$changeobject='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">é€‰æ‹©ä¸“é¢˜ï¼š</td>
+            <td width="24%">Ñ¡Ôñ×¨Ìâ£º</td>
             <td width="76%"><select name="classid" id="select2">
 			  '.$selfinfooption.'
 			  '.$ztclass.'
@@ -117,23 +117,23 @@ elseif($doobject==3)//æŒ‰ä¸“é¢˜
           </tr>
         </table>';
 }
-elseif($doobject==4)//æŒ‰æ•°æ®è¡¨
+elseif($doobject==4)//°´Êý¾Ý±í
 {
-	//æ“ä½œç±»åž‹
+	//²Ù×÷ÀàÐÍ
 	$dotype='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select">
-			  <option value="18">è¡¨æœ€æ–°ä¿¡æ¯</option>
-			  <option value="19">è¡¨ç‚¹å‡»æŽ’è¡Œ</option>
-			  <option value="20">è¡¨æŽ¨èä¿¡æ¯</option>
-			  <option value="21">è¡¨è¯„è®ºæŽ’è¡Œ</option>
-			  <option value="22">è¡¨å¤´æ¡ä¿¡æ¯</option>
-			  <option value="23">è¡¨ä¸‹è½½æŽ’è¡Œ</option>
+			  <option value="18">±í×îÐÂÐÅÏ¢</option>
+			  <option value="19">±íµã»÷ÅÅÐÐ</option>
+			  <option value="20">±íÍÆ¼öÐÅÏ¢</option>
+			  <option value="21">±íÆÀÂÛÅÅÐÐ</option>
+			  <option value="22">±íÍ·ÌõÐÅÏ¢</option>
+			  <option value="23">±íÏÂÔØÅÅÐÐ</option>
               </select></td>
           </tr>
         </table>';
-	//é€‰æ‹©æ•°æ®è¡¨
+	//Ñ¡ÔñÊý¾Ý±í
 	$tb='';
 	$tbsql=$empire->query("select tbname,tname from {$dbtbpre}enewstable order by tid");
 	while($tbr=$empire->fetch($tbsql))
@@ -142,30 +142,30 @@ elseif($doobject==4)//æŒ‰æ•°æ®è¡¨
 	}
 	$changeobject='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">é€‰æ‹©æ•°æ®è¡¨ï¼š</td>
+            <td width="24%">Ñ¡ÔñÊý¾Ý±í£º</td>
             <td width="76%"><select name="classid" id="select2">
 			  '.$tb.'
               </select></td>
           </tr>
         </table>';
 }
-elseif($doobject==5)//æŒ‰æ ‡é¢˜åˆ†ç±»
+elseif($doobject==5)//°´±êÌâ·ÖÀà
 {
-	//æ“ä½œç±»åž‹
+	//²Ù×÷ÀàÐÍ
 	$dotype='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select">
-			  <option value="25">æ ‡é¢˜åˆ†ç±»æœ€æ–°ä¿¡æ¯</option>
-			  <option value="26">æ ‡é¢˜åˆ†ç±»ç‚¹å‡»æŽ’è¡Œ</option>
-			  <option value="27">æ ‡é¢˜åˆ†ç±»æŽ¨èä¿¡æ¯</option>
-			  <option value="28">æ ‡é¢˜åˆ†ç±»è¯„è®ºæŽ’è¡Œ</option>
-			  <option value="29">æ ‡é¢˜åˆ†ç±»å¤´æ¡ä¿¡æ¯</option>
-			  <option value="30">æ ‡é¢˜åˆ†ç±»ä¸‹è½½æŽ’è¡Œ</option>
+			  <option value="25">±êÌâ·ÖÀà×îÐÂÐÅÏ¢</option>
+			  <option value="26">±êÌâ·ÖÀàµã»÷ÅÅÐÐ</option>
+			  <option value="27">±êÌâ·ÖÀàÍÆ¼öÐÅÏ¢</option>
+			  <option value="28">±êÌâ·ÖÀàÆÀÂÛÅÅÐÐ</option>
+			  <option value="29">±êÌâ·ÖÀàÍ·ÌõÐÅÏ¢</option>
+			  <option value="30">±êÌâ·ÖÀàÏÂÔØÅÅÐÐ</option>
               </select></td>
           </tr>
         </table>';
-	//é€‰æ‹©æ ‡é¢˜åˆ†ç±»
+	//Ñ¡Ôñ±êÌâ·ÖÀà
 	$tts='';
 	$ttsql=$empire->query("select typeid,tname from {$dbtbpre}enewsinfotype order by typeid");
 	while($ttr=$empire->fetch($ttsql))
@@ -174,62 +174,62 @@ elseif($doobject==5)//æŒ‰æ ‡é¢˜åˆ†ç±»
 	}
 	$changeobject='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">é€‰æ‹©æ ‡é¢˜åˆ†ç±»ï¼š</td>
+            <td width="24%">Ñ¡Ôñ±êÌâ·ÖÀà£º</td>
             <td width="76%"><select name="classid" id="select2">
 			  '.$tts.'
               </select></td>
           </tr>
         </table>';
 }
-elseif($doobject==6)//æŒ‰SQL
+elseif($doobject==6)//°´SQL
 {
-	//æ“ä½œç±»åž‹
+	//²Ù×÷ÀàÐÍ
 	$dotype='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select">
-			  <option value="24">SQLæŸ¥è¯¢</option>
+			  <option value="24">SQL²éÑ¯</option>
               </select></td>
           </tr>
         </table>';
-	//é€‰æ‹©SQL
+	//Ñ¡ÔñSQL
 	$changeobject='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">é€‰æ‹©ï¼š</td>
+            <td width="24%">Ñ¡Ôñ£º</td>
             <td width="76%"><select name="classid" id="select2">
-			  <option value="\'sqlè¯­å¥\'">SQLæŸ¥è¯¢</option>
+			  <option value="\'sqlÓï¾ä\'">SQL²éÑ¯</option>
               </select></td>
           </tr>
         </table>';
 }
-else//æŒ‰é»˜è®¤è¡¨
+else//°´Ä¬ÈÏ±í
 {
-	//æ“ä½œç±»åž‹
+	//²Ù×÷ÀàÐÍ
 	$dotype='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select">
-			  <option value="3">é»˜è®¤è¡¨æœ€æ–°ä¿¡æ¯</option>
-			  <option value="4">é»˜è®¤è¡¨ç‚¹å‡»æŽ’è¡Œ</option>
-			  <option value="5">é»˜è®¤è¡¨æŽ¨èä¿¡æ¯</option>
-			  <option value="10">é»˜è®¤è¡¨è¯„è®ºæŽ’è¡Œ</option>
-			  <option value="13">é»˜è®¤è¡¨å¤´æ¡ä¿¡æ¯</option>
-			  <option value="16">é»˜è®¤è¡¨ä¸‹è½½æŽ’è¡Œ</option>
+			  <option value="3">Ä¬ÈÏ±í×îÐÂÐÅÏ¢</option>
+			  <option value="4">Ä¬ÈÏ±íµã»÷ÅÅÐÐ</option>
+			  <option value="5">Ä¬ÈÏ±íÍÆ¼öÐÅÏ¢</option>
+			  <option value="10">Ä¬ÈÏ±íÆÀÂÛÅÅÐÐ</option>
+			  <option value="13">Ä¬ÈÏ±íÍ·ÌõÐÅÏ¢</option>
+			  <option value="16">Ä¬ÈÏ±íÏÂÔØÅÅÐÐ</option>
               </select></td>
           </tr>
         </table>';
-	//é€‰æ‹©SQL
+	//Ñ¡ÔñSQL
 	$changeobject='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">é€‰æ‹©ï¼š</td>
+            <td width="24%">Ñ¡Ôñ£º</td>
             <td width="76%"><select name="classid" id="select2">
-			  <option value="0">é»˜è®¤è¡¨('.$public_r[tbname].')</option>
+			  <option value="0">Ä¬ÈÏ±í('.$public_r[tbname].')</option>
               </select></td>
           </tr>
         </table>';
 }
 
-//æ ‡ç­¾æ¨¡æ¿
+//±êÇ©Ä£°å
 $bqname=RepPostStr($_GET['bqname'],1);
 if(empty($bqname))
 {
@@ -241,9 +241,9 @@ if($defchangeobject==1)
 {
 	$changeobject='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">é€‰æ‹©ï¼š</td>
+            <td width="24%">Ñ¡Ôñ£º</td>
             <td width="76%"><select name="classid" id="select2">
-			  <option value="\'\'">é»˜è®¤</option>
+			  <option value="\'\'">Ä¬ÈÏ</option>
               </select></td>
           </tr>
         </table>';
@@ -257,21 +257,21 @@ if($bqname=='ecmsinfo'||$bqname=='listsonclass'||$bqname=='otherlink'||$bqname==
 		$bqtemp.="<option value='".$bqtempr[tempid]."'>".$bqtempr[tempname]."</option>";
 	}
 }
-//å½“å‰ä½¿ç”¨çš„æ¨¡æ¿ç»„
+//µ±Ç°Ê¹ÓÃµÄÄ£°å×é
 $thegid=GetDoTempGid();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ--æ ‡ç­¾ç”Ÿæˆ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>µÛ¹úÍøÕ¾¹ÜÀíÏµÍ³--±êÇ©Éú³É</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script language="javascript">
 window.resizeTo(800,600);
 window.focus();
 </script>
 <script>
-//è¿”å›žé™„åŠ SQL
+//·µ»Ø¸½¼ÓSQL
 function ReturnAddSql(addsql,orderby){
 	var addstr='';
 	var r;
@@ -299,7 +299,7 @@ function ReturnAddSql(addsql,orderby){
 	return addstr;
 }
 
-//è¿”å›žæ˜¯å¦åŠ å•å¼•å·
+//·µ»ØÊÇ·ñ¼Óµ¥ÒýºÅ
 function ReturnAddYh(tids){
 	var r;
 	if(tids=='')
@@ -318,41 +318,41 @@ function ReturnAddYh(tids){
 <body>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr> 
-    <td height="25">é€‰æ‹©æ ‡ç­¾ï¼š 
+    <td height="25">Ñ¡Ôñ±êÇ©£º 
       <select name="bq" id="bq" style= "font-size:16px;" onchange="if(this.options[this.selectedIndex].value!=''){self.location.href='MakeBq.php?<?=$ecms_hashur['ehref']?>&bqname='+this.options[this.selectedIndex].value}">
-        <option value="" style="background-color:#AFCFF3">ä¿¡æ¯è°ƒç”¨æ ‡ç­¾</option>
-        <option value="ecmsinfo"<?=$bqname=='ecmsinfo'?' selected':''?>>&nbsp; &gt; ä¸‡èƒ½æ ‡ç­¾è°ƒç”¨ (ecmsinfo)</option>
-		<option value="eloop"<?=$bqname=='eloop'?' selected':''?>>&nbsp; &gt; çµåŠ¨æ ‡ç­¾ (e:loop)</option>
-		<option value="eindexloop"<?=$bqname=='eindexloop'?' selected':''?>>&nbsp; &gt; ç´¢å¼•çµåŠ¨æ ‡ç­¾ (e:indexloop)</option>
-        <option value="phomenews"<?=$bqname=='phomenews'?' selected':''?>>&nbsp; &gt; æ–‡å­—è°ƒç”¨æ ‡ç­¾ (phomenews)</option>
-        <option value="phomenewspic"<?=$bqname=='phomenewspic'?' selected':''?>>&nbsp; &gt; å›¾æ–‡ä¿¡æ¯è°ƒç”¨[æ ‡é¢˜å›¾ç‰‡çš„ä¿¡æ¯] (phomenewspic)</option>
-        <option value="phomeflashpic"<?=$bqname=='phomeflashpic'?' selected':''?>>&nbsp; &gt; FLASHå¹»ç¯ä¿¡æ¯è°ƒç”¨ (phomeflashpic)</option>
-		<option value="listsonclass&doobject=2&addselfinfo=2"<?=$bqname=='listsonclass'?' selected':''?>>&nbsp; &gt; å¾ªçŽ¯å­æ ç›®æ•°æ®æ ‡ç­¾ (listsonclass)</option>
-		<option value="otherlink&defchangeobject=1"<?=$bqname=='otherlink'?' selected':''?>>&nbsp; &gt; ç›¸å…³é“¾æŽ¥æ ‡ç­¾ (otherlink)</option>
-		<option value="tagsinfo"<?=$bqname=='tagsinfo'?' selected':''?>>&nbsp; &gt; è°ƒç”¨TAGSçš„ä¿¡æ¯æ ‡ç­¾ (tagsinfo)</option>
-		<option value="spinfo"<?=$bqname=='spinfo'?' selected':''?>>&nbsp; &gt; è°ƒç”¨ç¢Žç‰‡çš„ä¿¡æ¯æ ‡ç­¾ (spinfo)</option>
-		<option value="showtags"<?=$bqname=='showtags'?' selected':''?>>&nbsp; &gt; è°ƒç”¨TAGSæ ‡ç­¾ (showtags)</option>
-        <option value="totaldata&doobject=2&addselfinfo=1"<?=$bqname=='totaldata'?' selected':''?>>&nbsp; &gt; ç½‘ç«™ä¿¡æ¯ç»Ÿè®¡ (totaldata)</option>
-        <option value="eshowphoto"<?=$bqname=='eshowphoto'?' selected':''?>>&nbsp; &gt; å›¾åº“æ¨¡åž‹åˆ†é¡µæ ‡ç­¾ (eshowphoto)</option>
-        <option value="showsearch&doobject=2&addselfinfo=4"<?=$bqname=='showsearch'?' selected':''?>>&nbsp; &gt; æœç´¢å…³é”®å­—è°ƒç”¨æ ‡ç­¾ (showsearch)</option>
-        <option value="" style="background-color:#AFCFF3">æ ç›®è°ƒç”¨æ ‡ç­¾</option>
-        <option value="showclasstemp&doobject=2&addselfinfo=2&parentclass=1"<?=$bqname=='showclasstemp'?' selected':''?>>&nbsp; &gt; å¸¦æ¨¡æ¿çš„æ ç›®å¯¼èˆªæ ‡ç­¾ (showclasstemp)</option>
-        <option value="eshowzt"<?=$bqname=='eshowzt'?' selected':''?>>&nbsp; &gt; ä¸“é¢˜è°ƒç”¨æ ‡ç­¾ (eshowzt)</option>
-        <option value='listshowclass&doobject=2&addselfinfo=2&parentclass=1'<?=$bqname=='listshowclass'?' selected':''?>>&nbsp; &gt; å¾ªçŽ¯æ ç›®å¯¼èˆªæ ‡ç­¾ (listshowclass)</option>
-        <option value="" style="background-color:#AFCFF3">éžä¿¡æ¯è°ƒç”¨æ ‡ç­¾</option>
-        <option value="phomead"<?=$bqname=='phomead'?' selected':''?>>&nbsp; &gt; å¹¿å‘Šè°ƒç”¨æ ‡ç­¾ (phomead)</option>
-        <option value="phomevote"<?=$bqname=='phomevote'?' selected':''?>>&nbsp; &gt; æŠ•ç¥¨è°ƒç”¨æ ‡ç­¾ (phomevote)</option>
-        <option value="phomelink"<?=$bqname=='phomelink'?' selected':''?>>&nbsp; &gt; å‹æƒ…é“¾æŽ¥è°ƒç”¨æ ‡ç­¾ (phomelink)</option>
-        <option value="gbookinfo"<?=$bqname=='gbookinfo'?' selected':''?>>&nbsp; &gt; ç•™è¨€æ¿è°ƒç”¨æ ‡ç­¾ (gbookinfo)</option>
-        <option value="showplinfo"<?=$bqname=='showplinfo'?' selected':''?>>&nbsp; &gt; è¯„è®ºè°ƒç”¨æ ‡ç­¾ (showplinfo)</option>
-        <option value="echocheckbox"<?=$bqname=='echocheckbox'?' selected':''?>>&nbsp; &gt; å¤é€‰å­—æ®µè¾“å‡ºå†…å®¹æ ‡ç­¾ (echocheckbox)</option>
-		<option value="" style="background-color:#AFCFF3">ä¼šå‘˜ç›¸å…³è°ƒç”¨</option>
-		<option value="ShowMemberInfo"<?=$bqname=='ShowMemberInfo'?' selected':''?>>ä¼šå‘˜ä¿¡æ¯è°ƒç”¨å‡½æ•° (ShowMemberInfo)</option>
-		<option value="ListMemberInfo"<?=$bqname=='ListMemberInfo'?' selected':''?>>ä¼šå‘˜åˆ—è¡¨è°ƒç”¨å‡½æ•° (ListMemberInfo)</option>
-		<option value="spaceeloop"<?=$bqname=='spaceeloop'?' selected':''?>>ä¼šå‘˜ç©ºé—´ä¿¡æ¯æ ‡ç­¾è°ƒç”¨ (spaceeloop)</option>
-        <option value="" style="background-color:#AFCFF3">å…¶å®ƒæ ‡ç­¾</option>
-        <option value="includefile"<?=$bqname=='includefile'?' selected':''?>>&nbsp; &gt; å¼•ç”¨æ–‡ä»¶æ ‡ç­¾ (includefile)</option>
-        <option value="readhttp"<?=$bqname=='readhttp'?' selected':''?>>&nbsp; &gt; è¯»å–è¿œç¨‹é¡µé¢ (readhttp)</option>
+        <option value="" style="background-color:#AFCFF3">ÐÅÏ¢µ÷ÓÃ±êÇ©</option>
+        <option value="ecmsinfo"<?=$bqname=='ecmsinfo'?' selected':''?>>&nbsp; &gt; ÍòÄÜ±êÇ©µ÷ÓÃ (ecmsinfo)</option>
+		<option value="eloop"<?=$bqname=='eloop'?' selected':''?>>&nbsp; &gt; Áé¶¯±êÇ© (e:loop)</option>
+		<option value="eindexloop"<?=$bqname=='eindexloop'?' selected':''?>>&nbsp; &gt; Ë÷ÒýÁé¶¯±êÇ© (e:indexloop)</option>
+        <option value="phomenews"<?=$bqname=='phomenews'?' selected':''?>>&nbsp; &gt; ÎÄ×Öµ÷ÓÃ±êÇ© (phomenews)</option>
+        <option value="phomenewspic"<?=$bqname=='phomenewspic'?' selected':''?>>&nbsp; &gt; Í¼ÎÄÐÅÏ¢µ÷ÓÃ[±êÌâÍ¼Æ¬µÄÐÅÏ¢] (phomenewspic)</option>
+        <option value="phomeflashpic"<?=$bqname=='phomeflashpic'?' selected':''?>>&nbsp; &gt; FLASH»ÃµÆÐÅÏ¢µ÷ÓÃ (phomeflashpic)</option>
+		<option value="listsonclass&doobject=2&addselfinfo=2"<?=$bqname=='listsonclass'?' selected':''?>>&nbsp; &gt; Ñ­»·×ÓÀ¸Ä¿Êý¾Ý±êÇ© (listsonclass)</option>
+		<option value="otherlink&defchangeobject=1"<?=$bqname=='otherlink'?' selected':''?>>&nbsp; &gt; Ïà¹ØÁ´½Ó±êÇ© (otherlink)</option>
+		<option value="tagsinfo"<?=$bqname=='tagsinfo'?' selected':''?>>&nbsp; &gt; µ÷ÓÃTAGSµÄÐÅÏ¢±êÇ© (tagsinfo)</option>
+		<option value="spinfo"<?=$bqname=='spinfo'?' selected':''?>>&nbsp; &gt; µ÷ÓÃËéÆ¬µÄÐÅÏ¢±êÇ© (spinfo)</option>
+		<option value="showtags"<?=$bqname=='showtags'?' selected':''?>>&nbsp; &gt; µ÷ÓÃTAGS±êÇ© (showtags)</option>
+        <option value="totaldata&doobject=2&addselfinfo=1"<?=$bqname=='totaldata'?' selected':''?>>&nbsp; &gt; ÍøÕ¾ÐÅÏ¢Í³¼Æ (totaldata)</option>
+        <option value="eshowphoto"<?=$bqname=='eshowphoto'?' selected':''?>>&nbsp; &gt; Í¼¿âÄ£ÐÍ·ÖÒ³±êÇ© (eshowphoto)</option>
+        <option value="showsearch&doobject=2&addselfinfo=4"<?=$bqname=='showsearch'?' selected':''?>>&nbsp; &gt; ËÑË÷¹Ø¼ü×Öµ÷ÓÃ±êÇ© (showsearch)</option>
+        <option value="" style="background-color:#AFCFF3">À¸Ä¿µ÷ÓÃ±êÇ©</option>
+        <option value="showclasstemp&doobject=2&addselfinfo=2&parentclass=1"<?=$bqname=='showclasstemp'?' selected':''?>>&nbsp; &gt; ´øÄ£°åµÄÀ¸Ä¿µ¼º½±êÇ© (showclasstemp)</option>
+        <option value="eshowzt"<?=$bqname=='eshowzt'?' selected':''?>>&nbsp; &gt; ×¨Ìâµ÷ÓÃ±êÇ© (eshowzt)</option>
+        <option value='listshowclass&doobject=2&addselfinfo=2&parentclass=1'<?=$bqname=='listshowclass'?' selected':''?>>&nbsp; &gt; Ñ­»·À¸Ä¿µ¼º½±êÇ© (listshowclass)</option>
+        <option value="" style="background-color:#AFCFF3">·ÇÐÅÏ¢µ÷ÓÃ±êÇ©</option>
+        <option value="phomead"<?=$bqname=='phomead'?' selected':''?>>&nbsp; &gt; ¹ã¸æµ÷ÓÃ±êÇ© (phomead)</option>
+        <option value="phomevote"<?=$bqname=='phomevote'?' selected':''?>>&nbsp; &gt; Í¶Æ±µ÷ÓÃ±êÇ© (phomevote)</option>
+        <option value="phomelink"<?=$bqname=='phomelink'?' selected':''?>>&nbsp; &gt; ÓÑÇéÁ´½Óµ÷ÓÃ±êÇ© (phomelink)</option>
+        <option value="gbookinfo"<?=$bqname=='gbookinfo'?' selected':''?>>&nbsp; &gt; ÁôÑÔ°åµ÷ÓÃ±êÇ© (gbookinfo)</option>
+        <option value="showplinfo"<?=$bqname=='showplinfo'?' selected':''?>>&nbsp; &gt; ÆÀÂÛµ÷ÓÃ±êÇ© (showplinfo)</option>
+        <option value="echocheckbox"<?=$bqname=='echocheckbox'?' selected':''?>>&nbsp; &gt; ¸´Ñ¡×Ö¶ÎÊä³öÄÚÈÝ±êÇ© (echocheckbox)</option>
+		<option value="" style="background-color:#AFCFF3">»áÔ±Ïà¹Øµ÷ÓÃ</option>
+		<option value="ShowMemberInfo"<?=$bqname=='ShowMemberInfo'?' selected':''?>>»áÔ±ÐÅÏ¢µ÷ÓÃº¯Êý (ShowMemberInfo)</option>
+		<option value="ListMemberInfo"<?=$bqname=='ListMemberInfo'?' selected':''?>>»áÔ±ÁÐ±íµ÷ÓÃº¯Êý (ListMemberInfo)</option>
+		<option value="spaceeloop"<?=$bqname=='spaceeloop'?' selected':''?>>»áÔ±¿Õ¼äÐÅÏ¢±êÇ©µ÷ÓÃ (spaceeloop)</option>
+        <option value="" style="background-color:#AFCFF3">ÆäËü±êÇ©</option>
+        <option value="includefile"<?=$bqname=='includefile'?' selected':''?>>&nbsp; &gt; ÒýÓÃÎÄ¼þ±êÇ© (includefile)</option>
+        <option value="readhttp"<?=$bqname=='readhttp'?' selected':''?>>&nbsp; &gt; ¶ÁÈ¡Ô¶³ÌÒ³Ãæ (readhttp)</option>
       </select></td>
   </tr>
 </table>
@@ -362,7 +362,7 @@ if($bqname=='ecmsinfo')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -385,19 +385,19 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">ecmsinfoæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">ecmsinfo±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰æ‹©è°ƒç”¨å¯¹è±¡ï¼š 
+      <td height="25" colspan="2">Ñ¡Ôñµ÷ÓÃ¶ÔÏó£º 
         <select name="doobject" id="doobject" onchange="self.location.href='MakeBq.php?<?=$ecms_hashur['ehref']?>&bqname=<?=$bqname?>&doobject='+this.options[this.selectedIndex].value">
-          <option value="1"<?=$doobject==1?' selected':''?>>æŒ‰é»˜è®¤è¡¨(
+          <option value="1"<?=$doobject==1?' selected':''?>>°´Ä¬ÈÏ±í(
           <?=$public_r['tbname']?>
           )</option>
-          <option value="2"<?=$doobject==2?' selected':''?>>æ ç›®</option>
-          <option value="4"<?=$doobject==4?' selected':''?>>æ•°æ®è¡¨</option>
-          <option value="5"<?=$doobject==5?' selected':''?>>æ ‡é¢˜åˆ†ç±»</option>
-          <option value="6"<?=$doobject==6?' selected':''?>>æŒ‰SQLè°ƒç”¨</option>
+          <option value="2"<?=$doobject==2?' selected':''?>>À¸Ä¿</option>
+          <option value="4"<?=$doobject==4?' selected':''?>>Êý¾Ý±í</option>
+          <option value="5"<?=$doobject==5?' selected':''?>>±êÌâ·ÖÀà</option>
+          <option value="6"<?=$doobject==6?' selected':''?>>°´SQLµ÷ÓÃ</option>
         </select> </td>
     </tr>
     <tr> 
@@ -411,84 +411,84 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line3" value="10"></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡ç­¾æ¨¡æ¿ï¼š</td>
+            <td width="24%">±êÇ©Ä£°å£º</td>
             <td width="76%"><select name="tempid" id="select3">
                 <?=$bqtemp?>
               </select>
-              <input type="button" name="Submit6222323" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+              <input type="button" name="Submit6222323" value="¹ÜÀí±êÇ©Ä£°å" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡é¢˜æˆªå–å­—æ•°ï¼š</td>
+            <td width="24%">±êÌâ½ØÈ¡×ÖÊý£º</td>
             <td width="76%"><input name="titlelen" type="text" id="titlelen2" value="32"> 
             </td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæ ç›®åï¼š</td>
+            <td width="24%">ÏÔÊ¾À¸Ä¿Ãû£º</td>
             <td width="76%"><select name="showclass" id="showclass">
-                <option value="0">å¦</option>
-                <option value="1">æ˜¯</option>
-              </select> <font color="#666666">(æ ‡ç­¾æ¨¡æ¿è¦åŠ [!--class.name--])</font> 
+                <option value="0">·ñ</option>
+                <option value="1">ÊÇ</option>
+              </select> <font color="#666666">(±êÇ©Ä£°åÒª¼Ó[!--class.name--])</font> 
             </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åªè°ƒç”¨æœ‰æ ‡é¢˜å›¾ç‰‡çš„ä¿¡æ¯ï¼š 
+      <td height="25" bgcolor="#FFFFFF">Ö»µ÷ÓÃÓÐ±êÌâÍ¼Æ¬µÄÐÅÏ¢£º 
         <select name="ispic" id="ispic">
-          <option value="0">ä¸é™</option>
-          <option value="1">æ˜¯</option>
+          <option value="0">²»ÏÞ</option>
+          <option value="1">ÊÇ</option>
         </select></td>
       <td bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰é¡¹è®¾ç½®</td>
+      <td height="25" colspan="2">Ñ¡ÏîÉèÖÃ</td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™„åŠ SQLæ¡ä»¶ï¼š</td>
+            <td width="24%">¸½¼ÓSQLÌõ¼þ£º</td>
             <td width="76%"><input name="addsql" type="text" id="addsql2"> <select name="addsqlselect" onchange="document.bqform.addsql.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="isgood=1">1çº§æŽ¨è</option>
-<option value="firsttitle=1">1çº§å¤´æ¡</option>
-<option value="field='å€¼'">å­—æ®µç­‰äºŽæŸå€¼</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="isgood=1">1¼¶ÍÆ¼ö</option>
+<option value="firsttitle=1">1¼¶Í·Ìõ</option>
+<option value="field='Öµ'">×Ö¶ÎµÈÓÚÄ³Öµ</option>
 </select></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæŽ’åºï¼š</td>
+            <td width="24%">ÏÔÊ¾ÅÅÐò£º</td>
             <td width="76%"><input name="orderby" type="text" id="orderby2"> <select name="orderbyselect" onchange="document.bqform.orderby.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="newstime DESC">æŒ‰å‘å¸ƒæ—¶é—´é™åºæŽ’åº</option>
-<option value="newstime ASC">æŒ‰å‘å¸ƒæ—¶é—´å‡åºæŽ’åº</option>
-<option value="id DESC">æŒ‰IDé™åºæŽ’åº</option>
-<option value="onclick DESC">æŒ‰ç‚¹å‡»çŽ‡é™åºæŽ’åº</option>
-<option value="totaldown DESC">æŒ‰ä¸‹è½½æ•°é™åºæŽ’åº</option>
-<option value="plnum DESC">æŒ‰è¯„è®ºæ•°é™åºæŽ’åº</option>
-<option value="diggtop DESC">æŒ‰é¡¶æ•°(digg)é™åºæŽ’åº</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="newstime DESC">°´·¢²¼Ê±¼ä½µÐòÅÅÐò</option>
+<option value="newstime ASC">°´·¢²¼Ê±¼äÉýÐòÅÅÐò</option>
+<option value="id DESC">°´ID½µÐòÅÅÐò</option>
+<option value="onclick DESC">°´µã»÷ÂÊ½µÐòÅÅÐò</option>
+<option value="totaldown DESC">°´ÏÂÔØÊý½µÐòÅÅÐò</option>
+<option value="plnum DESC">°´ÆÀÂÛÊý½µÐòÅÅÐò</option>
+<option value="diggtop DESC">°´¶¥Êý(digg)½µÐòÅÅÐò</option>
 </select></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();">
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();">
       </td>
     </tr>
     <tr>
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#ecmsinfo" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[ecmsinfo]æ ç›®ID/æ ‡é¢˜åˆ†ç±»ID,æ˜¾ç¤ºæ¡æ•°,æ ‡é¢˜æˆªå–æ•°,æ˜¯å¦æ˜¾ç¤ºæ ç›®å,æ“ä½œç±»åž‹,æ¨¡æ¿ID,åªæ˜¾ç¤ºæœ‰æ ‡é¢˜å›¾ç‰‡,é™„åŠ SQLæ¡ä»¶,æ˜¾ç¤ºæŽ’åº[/ecmsinfo]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#ecmsinfo" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[ecmsinfo]À¸Ä¿ID/±êÌâ·ÖÀàID,ÏÔÊ¾ÌõÊý,±êÌâ½ØÈ¡Êý,ÊÇ·ñÏÔÊ¾À¸Ä¿Ãû,²Ù×÷ÀàÐÍ,Ä£°åID,Ö»ÏÔÊ¾ÓÐ±êÌâÍ¼Æ¬,¸½¼ÓSQLÌõ¼þ,ÏÔÊ¾ÅÅÐò[/ecmsinfo]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -496,7 +496,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -508,7 +508,7 @@ elseif($bqname=='eloop')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -528,19 +528,19 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="eloop">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">çµåŠ¨æ ‡ç­¾(e:loop)ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">Áé¶¯±êÇ©(e:loop)Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰æ‹©è°ƒç”¨å¯¹è±¡ï¼š 
+      <td height="25" colspan="2">Ñ¡Ôñµ÷ÓÃ¶ÔÏó£º 
         <select name="doobject" id="doobject" onchange="self.location.href='MakeBq.php?<?=$ecms_hashur['ehref']?>&bqname=<?=$bqname?>&doobject='+this.options[this.selectedIndex].value">
-          <option value="1"<?=$doobject==1?' selected':''?>>æŒ‰é»˜è®¤è¡¨( 
+          <option value="1"<?=$doobject==1?' selected':''?>>°´Ä¬ÈÏ±í( 
           <?=$public_r['tbname']?>
           )</option>
-          <option value="2"<?=$doobject==2?' selected':''?>>æ ç›®</option>
-          <option value="4"<?=$doobject==4?' selected':''?>>æ•°æ®è¡¨</option>
-          <option value="5"<?=$doobject==5?' selected':''?>>æ ‡é¢˜åˆ†ç±»</option>
-          <option value="6"<?=$doobject==6?' selected':''?>>æŒ‰SQLè°ƒç”¨</option>
+          <option value="2"<?=$doobject==2?' selected':''?>>À¸Ä¿</option>
+          <option value="4"<?=$doobject==4?' selected':''?>>Êý¾Ý±í</option>
+          <option value="5"<?=$doobject==5?' selected':''?>>±êÌâ·ÖÀà</option>
+          <option value="6"<?=$doobject==6?' selected':''?>>°´SQLµ÷ÓÃ</option>
         </select> </td>
     </tr>
     <tr> 
@@ -554,54 +554,54 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line" value="10"></td>
           </tr>
         </table></td>
-      <td bgcolor="#FFFFFF">åªè°ƒç”¨æœ‰æ ‡é¢˜å›¾ç‰‡çš„ä¿¡æ¯ï¼š 
+      <td bgcolor="#FFFFFF">Ö»µ÷ÓÃÓÐ±êÌâÍ¼Æ¬µÄÐÅÏ¢£º 
         <select name="ispic" id="select6">
-          <option value="0">ä¸é™</option>
-          <option value="1">æ˜¯</option>
+          <option value="0">²»ÏÞ</option>
+          <option value="1">ÊÇ</option>
         </select> </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰é¡¹è®¾ç½®</td>
+      <td height="25" colspan="2">Ñ¡ÏîÉèÖÃ</td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™„åŠ SQLæ¡ä»¶ï¼š</td>
+            <td width="24%">¸½¼ÓSQLÌõ¼þ£º</td>
             <td width="76%"><input name="addsql" type="text" id="addsql"> <select name="addsqlselect" onchange="document.bqform.addsql.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="isgood=1">1çº§æŽ¨è</option>
-<option value="firsttitle=1">1çº§å¤´æ¡</option>
-<option value="field='å€¼'">å­—æ®µç­‰äºŽæŸå€¼</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="isgood=1">1¼¶ÍÆ¼ö</option>
+<option value="firsttitle=1">1¼¶Í·Ìõ</option>
+<option value="field='Öµ'">×Ö¶ÎµÈÓÚÄ³Öµ</option>
 </select></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæŽ’åºï¼š</td>
+            <td width="24%">ÏÔÊ¾ÅÅÐò£º</td>
             <td width="76%"><input name="orderby" type="text" id="orderby"> <select name="orderbyselect" onchange="document.bqform.orderby.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="newstime DESC">æŒ‰å‘å¸ƒæ—¶é—´é™åºæŽ’åº</option>
-<option value="newstime ASC">æŒ‰å‘å¸ƒæ—¶é—´å‡åºæŽ’åº</option>
-<option value="id DESC">æŒ‰IDé™åºæŽ’åº</option>
-<option value="onclick DESC">æŒ‰ç‚¹å‡»çŽ‡é™åºæŽ’åº</option>
-<option value="totaldown DESC">æŒ‰ä¸‹è½½æ•°é™åºæŽ’åº</option>
-<option value="plnum DESC">æŒ‰è¯„è®ºæ•°é™åºæŽ’åº</option>
-<option value="diggtop DESC">æŒ‰é¡¶æ•°(digg)é™åºæŽ’åº</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="newstime DESC">°´·¢²¼Ê±¼ä½µÐòÅÅÐò</option>
+<option value="newstime ASC">°´·¢²¼Ê±¼äÉýÐòÅÅÐò</option>
+<option value="id DESC">°´ID½µÐòÅÅÐò</option>
+<option value="onclick DESC">°´µã»÷ÂÊ½µÐòÅÅÐò</option>
+<option value="totaldown DESC">°´ÏÂÔØÊý½µÐòÅÅÐò</option>
+<option value="plnum DESC">°´ÆÀÂÛÊý½µÐòÅÅÐò</option>
+<option value="diggtop DESC">°´¶¥Êý(digg)½µÐòÅÅÐò</option>
 </select></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit3" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit3" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr>
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#eloop" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[e:loop={æ ç›®ID/æ ‡é¢˜åˆ†ç±»ID,æ˜¾ç¤ºæ¡æ•°,æ“ä½œç±»åž‹,åªæ˜¾ç¤ºæœ‰æ ‡é¢˜å›¾ç‰‡,é™„åŠ SQLæ¡ä»¶,æ˜¾ç¤ºæŽ’åº}]<br>
-        æ¨¡æ¿ä»£ç å†…å®¹<br>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#eloop" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[e:loop={À¸Ä¿ID/±êÌâ·ÖÀàID,ÏÔÊ¾ÌõÊý,²Ù×÷ÀàÐÍ,Ö»ÏÔÊ¾ÓÐ±êÌâÍ¼Æ¬,¸½¼ÓSQLÌõ¼þ,ÏÔÊ¾ÅÅÐò}]<br>
+        Ä£°å´úÂëÄÚÈÝ<br>
       [/e:loop]</a></td>
     </tr>
     <tr> 
@@ -610,7 +610,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="12" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit22" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit22" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -620,85 +620,85 @@ function ShowBqFun(){
 }
 elseif($bqname=='eindexloop')
 {
-	if($selfdoobject==9)//ä¸“é¢˜å­ç±»
+	if($selfdoobject==9)//×¨Ìâ×ÓÀà
 	{
 		$dotype='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select">
-			  <option value="4">ä¸“é¢˜å­ç±»æœ€æ–°ä¿¡æ¯</option>
-			  <option value="5">ä¸“é¢˜å­ç±»æœ€æ—©ä¿¡æ¯</option>
-			  <option value="6">ä¸“é¢˜å­ç±»æŽ¨èä¿¡æ¯</option>
+			  <option value="4">×¨Ìâ×ÓÀà×îÐÂÐÅÏ¢</option>
+			  <option value="5">×¨Ìâ×ÓÀà×îÔçÐÅÏ¢</option>
+			  <option value="6">×¨Ìâ×ÓÀàÍÆ¼öÐÅÏ¢</option>
               </select></td>
           </tr>
         </table>';
-		$changeobject='<input name="classid" type="text" id="classid" value="0"><input type="button" name="Submit42" value="æŸ¥çœ‹ä¸“é¢˜ID" onclick="window.open(\'../special/ListZt.php'.$ecms_hashur['whehref'].'\');"><font color="#666666">(å½“å‰ä¸“é¢˜IDç”¨ï¼š\'selfinfo\'ï¼Œå¤šä¸ªIDç”¨â€œ,â€å·éš”å¼€)</font>';
+		$changeobject='<input name="classid" type="text" id="classid" value="0"><input type="button" name="Submit42" value="²é¿´×¨ÌâID" onclick="window.open(\'../special/ListZt.php'.$ecms_hashur['whehref'].'\');"><font color="#666666">(µ±Ç°×¨ÌâIDÓÃ£º\'selfinfo\'£¬¶à¸öIDÓÃ¡°,¡±ºÅ¸ô¿ª)</font>';
 	}
 	elseif($selfdoobject==7)//TAGS
 	{
 		$dotype='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select">
-			  <option value="9">TAGSæœ€æ–°ä¿¡æ¯</option>
-			  <option value="10">TAGSæœ€æ—©ä¿¡æ¯</option>
+			  <option value="9">TAGS×îÐÂÐÅÏ¢</option>
+			  <option value="10">TAGS×îÔçÐÅÏ¢</option>
               </select></td>
           </tr>
         </table>';
-		$changeobject='<input name="classid" type="text" id="classid" value="0"><input type="button" name="Submit42" value="æŸ¥çœ‹TAGSçš„ID" onclick="window.open(\'../tags/ListTags.php'.$ecms_hashur['whehref'].'\');"><font color="#666666">(å¤šä¸ªIDç”¨â€œ,â€å·éš”å¼€)</font>';
+		$changeobject='<input name="classid" type="text" id="classid" value="0"><input type="button" name="Submit42" value="²é¿´TAGSµÄID" onclick="window.open(\'../tags/ListTags.php'.$ecms_hashur['whehref'].'\');"><font color="#666666">(¶à¸öIDÓÃ¡°,¡±ºÅ¸ô¿ª)</font>';
 	}
-	elseif($selfdoobject==8)//ç¢Žç‰‡
+	elseif($selfdoobject==8)//ËéÆ¬
 	{
 		$dotype='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select">
-			  <option value="7">ç¢Žç‰‡æœ€æ–°ä¿¡æ¯</option>
-			  <option value="8">ç¢Žç‰‡æœ€æ—©ä¿¡æ¯</option>
+			  <option value="7">ËéÆ¬×îÐÂÐÅÏ¢</option>
+			  <option value="8">ËéÆ¬×îÔçÐÅÏ¢</option>
               </select></td>
           </tr>
         </table>';
-		$changeobject='<input name="classid" type="text" id="classid" value="0"><input type="button" name="Submit42" value="æŸ¥çœ‹ç¢Žç‰‡ID" onclick="window.open(\'../sp/ListSp.php'.$ecms_hashur['whehref'].'\');"><font color="#666666">(å¤šä¸ªIDç”¨â€œ,â€å·éš”å¼€)</font>';
+		$changeobject='<input name="classid" type="text" id="classid" value="0"><input type="button" name="Submit42" value="²é¿´ËéÆ¬ID" onclick="window.open(\'../sp/ListSp.php'.$ecms_hashur['whehref'].'\');"><font color="#666666">(¶à¸öIDÓÃ¡°,¡±ºÅ¸ô¿ª)</font>';
 	}
-	elseif($selfdoobject==6)//æŒ‰SQL
+	elseif($selfdoobject==6)//°´SQL
 	{
-		//æ“ä½œç±»åž‹
+		//²Ù×÷ÀàÐÍ
 		$dotype='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select">
-			  <option value="11">SQLæŸ¥è¯¢</option>
+			  <option value="11">SQL²éÑ¯</option>
               </select></td>
           </tr>
         </table>';
-		//é€‰æ‹©SQL
+		//Ñ¡ÔñSQL
 		$changeobject='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">é€‰æ‹©ï¼š</td>
+            <td width="24%">Ñ¡Ôñ£º</td>
             <td width="76%"><select name="classid" id="select2">
-			  <option value="\'sqlè¯­å¥\'">SQLæŸ¥è¯¢</option>
+			  <option value="\'sqlÓï¾ä\'">SQL²éÑ¯</option>
               </select></td>
           </tr>
         </table>';
 	}
-	else//ä¸“é¢˜
+	else//×¨Ìâ
 	{
 		$dotype='<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select">
-			  <option value="1">ä¸“é¢˜æœ€æ–°ä¿¡æ¯</option>
-			  <option value="2">ä¸“é¢˜æœ€æ—©ä¿¡æ¯</option>
-			  <option value="3">ä¸“é¢˜æŽ¨èä¿¡æ¯</option>
+			  <option value="1">×¨Ìâ×îÐÂÐÅÏ¢</option>
+			  <option value="2">×¨Ìâ×îÔçÐÅÏ¢</option>
+			  <option value="3">×¨ÌâÍÆ¼öÐÅÏ¢</option>
               </select></td>
           </tr>
         </table>';
-		$changeobject='<input name="classid" type="text" id="classid" value="0"><input type="button" name="Submit42" value="æŸ¥çœ‹ä¸“é¢˜ID" onclick="window.open(\'../special/ListZt.php'.$ecms_hashur['whehref'].'\');"><font color="#666666">(å½“å‰ä¸“é¢˜IDç”¨ï¼š\'selfinfo\'ï¼Œå¤šä¸ªIDç”¨â€œ,â€å·éš”å¼€)</font>';
+		$changeobject='<input name="classid" type="text" id="classid" value="0"><input type="button" name="Submit42" value="²é¿´×¨ÌâID" onclick="window.open(\'../special/ListZt.php'.$ecms_hashur['whehref'].'\');"><font color="#666666">(µ±Ç°×¨ÌâIDÓÃ£º\'selfinfo\'£¬¶à¸öIDÓÃ¡°,¡±ºÅ¸ô¿ª)</font>';
 	}
 	
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -719,17 +719,17 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="eindexloop">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">ç´¢å¼•çµåŠ¨æ ‡ç­¾(e:indexloop)ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">Ë÷ÒýÁé¶¯±êÇ©(e:indexloop)Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰æ‹©è°ƒç”¨å¯¹è±¡ï¼š 
+      <td height="25" colspan="2">Ñ¡Ôñµ÷ÓÃ¶ÔÏó£º 
         <select name="selfdoobject" id="selfdoobject" onchange="self.location.href='MakeBq.php?<?=$ecms_hashur['ehref']?>&bqname=<?=$bqname?>&selfdoobject='+this.options[this.selectedIndex].value">
-          <option value="3"<?=$selfdoobject==3?' selected':''?>>ä¸“é¢˜</option>
-		  <option value="9"<?=$selfdoobject==9?' selected':''?>>ä¸“é¢˜å­ç±»</option>
+          <option value="3"<?=$selfdoobject==3?' selected':''?>>×¨Ìâ</option>
+		  <option value="9"<?=$selfdoobject==9?' selected':''?>>×¨Ìâ×ÓÀà</option>
           <option value="7"<?=$selfdoobject==7?' selected':''?>>TAGS</option>
-          <option value="8"<?=$selfdoobject==8?' selected':''?>>ç¢Žç‰‡</option>
-		  <option value="6"<?=$selfdoobject==6?' selected':''?>>æŒ‰SQLè°ƒç”¨</option>
+          <option value="8"<?=$selfdoobject==8?' selected':''?>>ËéÆ¬</option>
+		  <option value="6"<?=$selfdoobject==6?' selected':''?>>°´SQLµ÷ÓÃ</option>
         </select> </td>
     </tr>
     <tr> 
@@ -742,44 +742,44 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line" value="10"></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td width="24%">æ‰€å±žæ ç›®IDï¼š</td>
-          <td width="76%"><input name="useclassid" type="text" id="useclassid"> <font color="#666666">(å¤šä¸ªIDç”¨,å·éš”å¼€)</font></td>
+          <td width="24%">ËùÊôÀ¸Ä¿ID£º</td>
+          <td width="76%"><input name="useclassid" type="text" id="useclassid"> <font color="#666666">(¶à¸öIDÓÃ,ºÅ¸ô¿ª)</font></td>
         </tr>
       </table></td>
     </tr>
     <tr>
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td width="24%">æ‰€å±žç³»ç»Ÿæ¨¡åž‹IDï¼š</td>
-          <td width="76%"><input name="modid" type="text" id="line6"> <font color="#666666">(å¤šä¸ªIDç”¨,å·éš”å¼€)</font></td>
+          <td width="24%">ËùÊôÏµÍ³Ä£ÐÍID£º</td>
+          <td width="76%"><input name="modid" type="text" id="line6"> <font color="#666666">(¶à¸öIDÓÃ,ºÅ¸ô¿ª)</font></td>
         </tr>
       </table></td>
       <td bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰é¡¹è®¾ç½®</td>
+      <td height="25" colspan="2">Ñ¡ÏîÉèÖÃ</td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™„åŠ SQLæ¡ä»¶ï¼š</td>
+            <td width="24%">¸½¼ÓSQLÌõ¼þ£º</td>
             <td width="76%"><input name="addsql" type="text" id="addsql"></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit3" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();">      </td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit3" value="Êä³ö±êÇ©" onclick="ShowBqFun();">      </td>
     </tr>
     <tr>
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#eindexloop" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[e:indexloop={ç´¢å¼•åˆ†ç±»ID,æ˜¾ç¤ºæ¡æ•°,æ“ä½œç±»åž‹,æ ç›®ID,ç³»ç»Ÿæ¨¡åž‹ID,é™„åŠ SQLæ¡ä»¶}]<br>
-        æ¨¡æ¿ä»£ç å†…å®¹<br>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#eindexloop" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[e:indexloop={Ë÷Òý·ÖÀàID,ÏÔÊ¾ÌõÊý,²Ù×÷ÀàÐÍ,À¸Ä¿ID,ÏµÍ³Ä£ÐÍID,¸½¼ÓSQLÌõ¼þ}]<br>
+        Ä£°å´úÂëÄÚÈÝ<br>
       [/e:indexloop]</a></td>
     </tr>
     <tr> 
@@ -788,7 +788,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="12" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit22" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit22" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -800,7 +800,7 @@ elseif($bqname=='phomenews')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -823,19 +823,19 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">phomenewsæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">phomenews±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰æ‹©è°ƒç”¨å¯¹è±¡ï¼š 
+      <td height="25" colspan="2">Ñ¡Ôñµ÷ÓÃ¶ÔÏó£º 
         <select name="doobject" id="doobject" onchange="self.location.href='MakeBq.php?<?=$ecms_hashur['ehref']?>&bqname=<?=$bqname?>&doobject='+this.options[this.selectedIndex].value">
-          <option value="1"<?=$doobject==1?' selected':''?>>æŒ‰é»˜è®¤è¡¨( 
+          <option value="1"<?=$doobject==1?' selected':''?>>°´Ä¬ÈÏ±í( 
           <?=$public_r['tbname']?>
           )</option>
-          <option value="2"<?=$doobject==2?' selected':''?>>æ ç›®</option>
-          <option value="4"<?=$doobject==4?' selected':''?>>æ•°æ®è¡¨</option>
-          <option value="5"<?=$doobject==5?' selected':''?>>æ ‡é¢˜åˆ†ç±»</option>
-          <option value="6"<?=$doobject==6?' selected':''?>>æŒ‰SQLè°ƒç”¨</option>
+          <option value="2"<?=$doobject==2?' selected':''?>>À¸Ä¿</option>
+          <option value="4"<?=$doobject==4?' selected':''?>>Êý¾Ý±í</option>
+          <option value="5"<?=$doobject==5?' selected':''?>>±êÌâ·ÖÀà</option>
+          <option value="6"<?=$doobject==6?' selected':''?>>°´SQLµ÷ÓÃ</option>
         </select> </td>
     </tr>
     <tr> 
@@ -849,16 +849,16 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line3" value="10"></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæ ç›®åï¼š</td>
+            <td width="24%">ÏÔÊ¾À¸Ä¿Ãû£º</td>
             <td width="76%"><select name="showclass" id="select2">
-                <option value="0">å¦</option>
-                <option value="1">æ˜¯</option>
+                <option value="0">·ñ</option>
+                <option value="1">ÊÇ</option>
               </select> </td>
           </tr>
         </table></td>
@@ -866,17 +866,17 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡é¢˜æˆªå–å­—æ•°ï¼š</td>
+            <td width="24%">±êÌâ½ØÈ¡×ÖÊý£º</td>
             <td width="76%"><input name="titlelen" type="text" id="titlelen2" value="32"> 
             </td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¯å¦æ˜¾ç¤ºæ—¶é—´ï¼š</td>
+            <td width="24%">ÊÇ·ñÏÔÊ¾Ê±¼ä£º</td>
             <td width="76%"><select name="showtime" id="select4">
-                <option value="0">å¦</option>
-                <option value="1">æ˜¯</option>
+                <option value="0">·ñ</option>
+                <option value="1">ÊÇ</option>
               </select></td>
           </tr>
         </table></td>
@@ -884,7 +884,7 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ—¶é—´æ ¼å¼ï¼š</td>
+            <td width="24%">Ê±¼ä¸ñÊ½£º</td>
             <td width="76%"><input name="formattime" type="text" id="formattime" value="(m-d)"> 
             </td>
           </tr>
@@ -892,42 +892,42 @@ function ShowBqFun(){
       <td bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰é¡¹è®¾ç½®</td>
+      <td height="25" colspan="2">Ñ¡ÏîÉèÖÃ</td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™„åŠ SQLæ¡ä»¶ï¼š</td>
+            <td width="24%">¸½¼ÓSQLÌõ¼þ£º</td>
             <td width="76%"><input name="addsql" type="text" id="addsql2"> <select name="addsqlselect" onchange="document.bqform.addsql.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="isgood=1">1çº§æŽ¨è</option>
-<option value="firsttitle=1">1çº§å¤´æ¡</option>
-<option value="field='å€¼'">å­—æ®µç­‰äºŽæŸå€¼</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="isgood=1">1¼¶ÍÆ¼ö</option>
+<option value="firsttitle=1">1¼¶Í·Ìõ</option>
+<option value="field='Öµ'">×Ö¶ÎµÈÓÚÄ³Öµ</option>
 </select></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæŽ’åºï¼š</td>
+            <td width="24%">ÏÔÊ¾ÅÅÐò£º</td>
             <td width="76%"><input name="orderby" type="text" id="orderby2"> <select name="orderbyselect" onchange="document.bqform.orderby.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="newstime DESC">æŒ‰å‘å¸ƒæ—¶é—´é™åºæŽ’åº</option>
-<option value="newstime ASC">æŒ‰å‘å¸ƒæ—¶é—´å‡åºæŽ’åº</option>
-<option value="id DESC">æŒ‰IDé™åºæŽ’åº</option>
-<option value="onclick DESC">æŒ‰ç‚¹å‡»çŽ‡é™åºæŽ’åº</option>
-<option value="totaldown DESC">æŒ‰ä¸‹è½½æ•°é™åºæŽ’åº</option>
-<option value="plnum DESC">æŒ‰è¯„è®ºæ•°é™åºæŽ’åº</option>
-<option value="diggtop DESC">æŒ‰é¡¶æ•°(digg)é™åºæŽ’åº</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="newstime DESC">°´·¢²¼Ê±¼ä½µÐòÅÅÐò</option>
+<option value="newstime ASC">°´·¢²¼Ê±¼äÉýÐòÅÅÐò</option>
+<option value="id DESC">°´ID½µÐòÅÅÐò</option>
+<option value="onclick DESC">°´µã»÷ÂÊ½µÐòÅÅÐò</option>
+<option value="totaldown DESC">°´ÏÂÔØÊý½µÐòÅÅÐò</option>
+<option value="plnum DESC">°´ÆÀÂÛÊý½µÐòÅÅÐò</option>
+<option value="diggtop DESC">°´¶¥Êý(digg)½µÐòÅÅÐò</option>
 </select></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr>
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomenews" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[phomenews]æ ç›®ID/æ ‡é¢˜åˆ†ç±»ID,æ˜¾ç¤ºæ¡æ•°,æ ‡é¢˜æˆªå–æ•°,æ˜¯å¦æ˜¾ç¤ºæ—¶é—´,æ“ä½œç±»åž‹,æ˜¯å¦æ˜¾ç¤ºæ ç›®å,'æ—¶é—´æ ¼å¼åŒ–',é™„åŠ SQLæ¡ä»¶,æ˜¾ç¤ºæŽ’åº[/phomenews]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomenews" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[phomenews]À¸Ä¿ID/±êÌâ·ÖÀàID,ÏÔÊ¾ÌõÊý,±êÌâ½ØÈ¡Êý,ÊÇ·ñÏÔÊ¾Ê±¼ä,²Ù×÷ÀàÐÍ,ÊÇ·ñÏÔÊ¾À¸Ä¿Ãû,'Ê±¼ä¸ñÊ½»¯',¸½¼ÓSQLÌõ¼þ,ÏÔÊ¾ÅÅÐò[/phomenews]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -935,7 +935,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -947,7 +947,7 @@ elseif($bqname=='phomenewspic')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -971,19 +971,19 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">phomenewspicæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">phomenewspic±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰æ‹©è°ƒç”¨å¯¹è±¡ï¼š 
+      <td height="25" colspan="2">Ñ¡Ôñµ÷ÓÃ¶ÔÏó£º 
         <select name="doobject" id="doobject" onchange="self.location.href='MakeBq.php?<?=$ecms_hashur['ehref']?>&bqname=<?=$bqname?>&doobject='+this.options[this.selectedIndex].value">
-          <option value="1"<?=$doobject==1?' selected':''?>>æŒ‰é»˜è®¤è¡¨( 
+          <option value="1"<?=$doobject==1?' selected':''?>>°´Ä¬ÈÏ±í( 
           <?=$public_r['tbname']?>
           )</option>
-          <option value="2"<?=$doobject==2?' selected':''?>>æ ç›®</option>
-          <option value="4"<?=$doobject==4?' selected':''?>>æ•°æ®è¡¨</option>
-          <option value="5"<?=$doobject==5?' selected':''?>>æ ‡é¢˜åˆ†ç±»</option>
-          <option value="6"<?=$doobject==6?' selected':''?>>æŒ‰SQLè°ƒç”¨</option>
+          <option value="2"<?=$doobject==2?' selected':''?>>À¸Ä¿</option>
+          <option value="4"<?=$doobject==4?' selected':''?>>Êý¾Ý±í</option>
+          <option value="5"<?=$doobject==5?' selected':''?>>±êÌâ·ÖÀà</option>
+          <option value="6"<?=$doobject==6?' selected':''?>>°´SQLµ÷ÓÃ</option>
         </select> </td>
     </tr>
     <tr> 
@@ -997,13 +997,13 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ€»æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃ×ÜÊýÁ¿£º</td>
             <td width="76%"><input name="lnum" type="text" id="line3" value="8"></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ¯è¡Œæ˜¾ç¤ºæ•°é‡ï¼š</td>
+            <td width="24%">Ã¿ÐÐÏÔÊ¾ÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="num" value="4"> 
             </td>
           </tr>
@@ -1012,19 +1012,19 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">å›¾ç‰‡å¤§å°ï¼š</td>
-            <td width="76%">å®½
+            <td width="24%">Í¼Æ¬´óÐ¡£º</td>
+            <td width="76%">¿í
 <input name="picwidth" type="text" id="picwidth" value="170" size="6">
-              Ã—é«˜ 
+              ¡Á¸ß 
               <input name="picheight" type="text" id="picheight" value="120" size="6"> </td>
           </tr>
         </table> </td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¯å¦æ˜¾ç¤ºæ ‡é¢˜ï¼š</td>
+            <td width="24%">ÊÇ·ñÏÔÊ¾±êÌâ£º</td>
             <td width="76%"><select name="showtitle" id="select5">
-                <option value="0">å¦</option>
-                <option value="1">æ˜¯</option>
+                <option value="0">·ñ</option>
+                <option value="1">ÊÇ</option>
               </select></td>
           </tr>
         </table></td>
@@ -1032,7 +1032,7 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡é¢˜æˆªå–å­—æ•°ï¼š</td>
+            <td width="24%">±êÌâ½ØÈ¡×ÖÊý£º</td>
             <td width="76%"><input name="titlelen" type="text" id="titlelen" value="26"> 
             </td>
           </tr>
@@ -1040,42 +1040,42 @@ function ShowBqFun(){
       <td bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰é¡¹è®¾ç½®</td>
+      <td height="25" colspan="2">Ñ¡ÏîÉèÖÃ</td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™„åŠ SQLæ¡ä»¶ï¼š</td>
+            <td width="24%">¸½¼ÓSQLÌõ¼þ£º</td>
             <td width="76%"><input name="addsql" type="text" id="addsql2"> <select name="addsqlselect" onchange="document.bqform.addsql.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="isgood=1">1çº§æŽ¨è</option>
-<option value="firsttitle=1">1çº§å¤´æ¡</option>
-<option value="field='å€¼'">å­—æ®µç­‰äºŽæŸå€¼</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="isgood=1">1¼¶ÍÆ¼ö</option>
+<option value="firsttitle=1">1¼¶Í·Ìõ</option>
+<option value="field='Öµ'">×Ö¶ÎµÈÓÚÄ³Öµ</option>
 </select></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæŽ’åºï¼š</td>
+            <td width="24%">ÏÔÊ¾ÅÅÐò£º</td>
             <td width="76%"><input name="orderby" type="text" id="orderby2"> <select name="orderbyselect" onchange="document.bqform.orderby.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="newstime DESC">æŒ‰å‘å¸ƒæ—¶é—´é™åºæŽ’åº</option>
-<option value="newstime ASC">æŒ‰å‘å¸ƒæ—¶é—´å‡åºæŽ’åº</option>
-<option value="id DESC">æŒ‰IDé™åºæŽ’åº</option>
-<option value="onclick DESC">æŒ‰ç‚¹å‡»çŽ‡é™åºæŽ’åº</option>
-<option value="totaldown DESC">æŒ‰ä¸‹è½½æ•°é™åºæŽ’åº</option>
-<option value="plnum DESC">æŒ‰è¯„è®ºæ•°é™åºæŽ’åº</option>
-<option value="diggtop DESC">æŒ‰é¡¶æ•°(digg)é™åºæŽ’åº</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="newstime DESC">°´·¢²¼Ê±¼ä½µÐòÅÅÐò</option>
+<option value="newstime ASC">°´·¢²¼Ê±¼äÉýÐòÅÅÐò</option>
+<option value="id DESC">°´ID½µÐòÅÅÐò</option>
+<option value="onclick DESC">°´µã»÷ÂÊ½µÐòÅÅÐò</option>
+<option value="totaldown DESC">°´ÏÂÔØÊý½µÐòÅÅÐò</option>
+<option value="plnum DESC">°´ÆÀÂÛÊý½µÐòÅÅÐò</option>
+<option value="diggtop DESC">°´¶¥Êý(digg)½µÐòÅÅÐò</option>
 </select></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr>
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomenewspic" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[phomenewspic]æ ç›®ID/æ ‡é¢˜åˆ†ç±»ID,æ¯è¡Œæ˜¾ç¤ºæ¡æ•°,æ˜¾ç¤ºæ€»ä¿¡æ¯æ•°,å›¾ç‰‡å®½åº¦,å›¾ç‰‡é«˜åº¦,æ˜¯å¦æ˜¾ç¤ºæ ‡é¢˜,æ ‡é¢˜æˆªå–æ•°,æ“ä½œç±»åž‹,é™„åŠ SQLæ¡ä»¶,æ˜¾ç¤ºæŽ’åº[/phomenewspic]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomenewspic" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[phomenewspic]À¸Ä¿ID/±êÌâ·ÖÀàID,Ã¿ÐÐÏÔÊ¾ÌõÊý,ÏÔÊ¾×ÜÐÅÏ¢Êý,Í¼Æ¬¿í¶È,Í¼Æ¬¸ß¶È,ÊÇ·ñÏÔÊ¾±êÌâ,±êÌâ½ØÈ¡Êý,²Ù×÷ÀàÐÍ,¸½¼ÓSQLÌõ¼þ,ÏÔÊ¾ÅÅÐò[/phomenewspic]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -1083,7 +1083,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -1095,7 +1095,7 @@ elseif($bqname=='phomeflashpic')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -1119,19 +1119,19 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">phomeflashpicæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">phomeflashpic±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰æ‹©è°ƒç”¨å¯¹è±¡ï¼š 
+      <td height="25" colspan="2">Ñ¡Ôñµ÷ÓÃ¶ÔÏó£º 
         <select name="doobject" id="doobject" onchange="self.location.href='MakeBq.php?<?=$ecms_hashur['ehref']?>&bqname=<?=$bqname?>&doobject='+this.options[this.selectedIndex].value">
-          <option value="1"<?=$doobject==1?' selected':''?>>æŒ‰é»˜è®¤è¡¨( 
+          <option value="1"<?=$doobject==1?' selected':''?>>°´Ä¬ÈÏ±í( 
           <?=$public_r['tbname']?>
           )</option>
-          <option value="2"<?=$doobject==2?' selected':''?>>æ ç›®</option>
-          <option value="4"<?=$doobject==4?' selected':''?>>æ•°æ®è¡¨</option>
-          <option value="5"<?=$doobject==5?' selected':''?>>æ ‡é¢˜åˆ†ç±»</option>
-          <option value="6"<?=$doobject==6?' selected':''?>>æŒ‰SQLè°ƒç”¨</option>
+          <option value="2"<?=$doobject==2?' selected':''?>>À¸Ä¿</option>
+          <option value="4"<?=$doobject==4?' selected':''?>>Êý¾Ý±í</option>
+          <option value="5"<?=$doobject==5?' selected':''?>>±êÌâ·ÖÀà</option>
+          <option value="6"<?=$doobject==6?' selected':''?>>°´SQLµ÷ÓÃ</option>
         </select> </td>
     </tr>
     <tr> 
@@ -1145,34 +1145,34 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line3" value="5"></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">åœé¡¿ç§’æ•°ï¼š</td>
+            <td width="24%">Í£¶ÙÃëÊý£º</td>
             <td width="76%"><input name="keeptime" type="text" id="num" value="0">
-              <font color="#666666">(0ä¸ºé»˜è®¤)</font></td>
+              <font color="#666666">(0ÎªÄ¬ÈÏ)</font></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">å›¾ç‰‡å¤§å°ï¼š</td>
-            <td width="76%">å®½
+            <td width="24%">Í¼Æ¬´óÐ¡£º</td>
+            <td width="76%">¿í
 <input name="picwidth" type="text" id="picwidth" value="170" size="6">
-              Ã—é«˜ 
+              ¡Á¸ß 
               <input name="picheight" type="text" id="picheight" value="120" size="6"> </td>
           </tr>
         </table> </td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¯å¦æ˜¾ç¤ºæ ‡é¢˜ï¼š</td>
+            <td width="24%">ÊÇ·ñÏÔÊ¾±êÌâ£º</td>
             <td width="76%"><select name="showtitle" id="select5">
-                <option value="0">å¦</option>
-                <option value="1">æ˜¯</option>
+                <option value="0">·ñ</option>
+                <option value="1">ÊÇ</option>
               </select></td>
           </tr>
         </table></td>
@@ -1180,7 +1180,7 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡é¢˜æˆªå–å­—æ•°ï¼š</td>
+            <td width="24%">±êÌâ½ØÈ¡×ÖÊý£º</td>
             <td width="76%"><input name="titlelen" type="text" id="titlelen" value="26"> 
             </td>
           </tr>
@@ -1188,42 +1188,42 @@ function ShowBqFun(){
       <td bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰é¡¹è®¾ç½®</td>
+      <td height="25" colspan="2">Ñ¡ÏîÉèÖÃ</td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™„åŠ SQLæ¡ä»¶ï¼š</td>
+            <td width="24%">¸½¼ÓSQLÌõ¼þ£º</td>
             <td width="76%"><input name="addsql" type="text" id="addsql2"> <select name="addsqlselect" onchange="document.bqform.addsql.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="isgood=1">1çº§æŽ¨è</option>
-<option value="firsttitle=1">1çº§å¤´æ¡</option>
-<option value="field='å€¼'">å­—æ®µç­‰äºŽæŸå€¼</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="isgood=1">1¼¶ÍÆ¼ö</option>
+<option value="firsttitle=1">1¼¶Í·Ìõ</option>
+<option value="field='Öµ'">×Ö¶ÎµÈÓÚÄ³Öµ</option>
 </select></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæŽ’åºï¼š</td>
+            <td width="24%">ÏÔÊ¾ÅÅÐò£º</td>
             <td width="76%"><input name="orderby" type="text" id="orderby2"> <select name="orderbyselect" onchange="document.bqform.orderby.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="newstime DESC">æŒ‰å‘å¸ƒæ—¶é—´é™åºæŽ’åº</option>
-<option value="newstime ASC">æŒ‰å‘å¸ƒæ—¶é—´å‡åºæŽ’åº</option>
-<option value="id DESC">æŒ‰IDé™åºæŽ’åº</option>
-<option value="onclick DESC">æŒ‰ç‚¹å‡»çŽ‡é™åºæŽ’åº</option>
-<option value="totaldown DESC">æŒ‰ä¸‹è½½æ•°é™åºæŽ’åº</option>
-<option value="plnum DESC">æŒ‰è¯„è®ºæ•°é™åºæŽ’åº</option>
-<option value="diggtop DESC">æŒ‰é¡¶æ•°(digg)é™åºæŽ’åº</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="newstime DESC">°´·¢²¼Ê±¼ä½µÐòÅÅÐò</option>
+<option value="newstime ASC">°´·¢²¼Ê±¼äÉýÐòÅÅÐò</option>
+<option value="id DESC">°´ID½µÐòÅÅÐò</option>
+<option value="onclick DESC">°´µã»÷ÂÊ½µÐòÅÅÐò</option>
+<option value="totaldown DESC">°´ÏÂÔØÊý½µÐòÅÅÐò</option>
+<option value="plnum DESC">°´ÆÀÂÛÊý½µÐòÅÅÐò</option>
+<option value="diggtop DESC">°´¶¥Êý(digg)½µÐòÅÅÐò</option>
 </select></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr>
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomeflashpic" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[phomeflashpic]æ ç›®ID/æ ‡é¢˜åˆ†ç±»ID,æ˜¾ç¤ºæ€»æ•°,å›¾ç‰‡å®½åº¦,å›¾ç‰‡é«˜åº¦,æ˜¯å¦æ˜¾ç¤ºæ ‡é¢˜,æ ‡é¢˜æˆªå–æ•°,æ“ä½œç±»åž‹,åœé¡¿ç§’æ•°,é™„åŠ SQLæ¡ä»¶,æ˜¾ç¤ºæŽ’åº[/phomeflashpic]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomeflashpic" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[phomeflashpic]À¸Ä¿ID/±êÌâ·ÖÀàID,ÏÔÊ¾×ÜÊý,Í¼Æ¬¿í¶È,Í¼Æ¬¸ß¶È,ÊÇ·ñÏÔÊ¾±êÌâ,±êÌâ½ØÈ¡Êý,²Ù×÷ÀàÐÍ,Í£¶ÙÃëÊý,¸½¼ÓSQLÌõ¼þ,ÏÔÊ¾ÅÅÐò[/phomeflashpic]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -1231,7 +1231,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -1243,7 +1243,7 @@ elseif($bqname=='listsonclass')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -1271,23 +1271,23 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">listsonclassæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">listsonclass±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•°</td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý</td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="dotype">
-                <option value="0">æ ç›®æœ€æ–°</option>
-                <option value="1">æ ç›®çƒ­é—¨</option>
-                <option value="2">æ ç›®æŽ¨è</option>
-                <option value="3">æ ç›®è¯„è®ºæŽ’è¡Œ</option>
-                <option value="4">æ ç›®å¤´æ¡</option>
-                <option value="5">æ ç›®ä¸‹è½½æŽ’è¡Œ</option>
+                <option value="0">À¸Ä¿×îÐÂ</option>
+                <option value="1">À¸Ä¿ÈÈÃÅ</option>
+                <option value="2">À¸Ä¿ÍÆ¼ö</option>
+                <option value="3">À¸Ä¿ÆÀÂÛÅÅÐÐ</option>
+                <option value="4">À¸Ä¿Í·Ìõ</option>
+                <option value="5">À¸Ä¿ÏÂÔØÅÅÐÐ</option>
               </select></td>
           </tr>
         </table></td>
@@ -1298,68 +1298,68 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨ä¿¡æ¯æ•°ï¼š</td>
+            <td width="24%">µ÷ÓÃÐÅÏ¢Êý£º</td>
             <td width="76%"><input name="line" type="text" id="line3" value="10"></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡ç­¾æ¨¡æ¿ï¼š</td>
+            <td width="24%">±êÇ©Ä£°å£º</td>
             <td width="76%"><select name="tempid" id="select7">
                 <?=$bqtemp?>
-              </select> <input type="button" name="Submit62223232" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+              </select> <input type="button" name="Submit62223232" value="¹ÜÀí±êÇ©Ä£°å" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡é¢˜æˆªå–å­—æ•°ï¼š</td>
+            <td width="24%">±êÌâ½ØÈ¡×ÖÊý£º</td>
             <td width="76%"><input name="titlelen" type="text" id="titlelen3" value="32"> 
             </td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæ ç›®åï¼š</td>
+            <td width="24%">ÏÔÊ¾À¸Ä¿Ãû£º</td>
             <td width="76%"><select name="showclass" id="select8">
-                <option value="0">å¦</option>
-                <option value="1">æ˜¯</option>
-              </select> <font color="#666666">(æ ‡ç­¾æ¨¡æ¿è¦åŠ [!--class.name--])</font> 
+                <option value="0">·ñ</option>
+                <option value="1">ÊÇ</option>
+              </select> <font color="#666666">(±êÇ©Ä£°åÒª¼Ó[!--class.name--])</font> 
             </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åªè°ƒç”¨æœ‰æ ‡é¢˜å›¾ç‰‡çš„ä¿¡æ¯ï¼š 
+      <td height="25" bgcolor="#FFFFFF">Ö»µ÷ÓÃÓÐ±êÌâÍ¼Æ¬µÄÐÅÏ¢£º 
         <select name="ispic" id="select9">
-          <option value="0">ä¸é™</option>
-          <option value="1">æ˜¯</option>
+          <option value="0">²»ÏÞ</option>
+          <option value="1">ÊÇ</option>
         </select></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶æ ç›®æ•°é‡ï¼š</td>
+            <td width="24%">ÏÞÖÆÀ¸Ä¿ÊýÁ¿£º</td>
             <td width="76%"><input name="classnum" type="text" id="titlelen4" value="0"> 
-              <font color="#666666">(0ä¸ºä¸é™åˆ¶)</font></td>
+              <font color="#666666">(0Îª²»ÏÞÖÆ)</font></td>
           </tr>
         </table></td>
     </tr>
     <tr>
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">å¤´æ¡æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">Í·Ìõ²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="firstdotype" id="select10">
-                <option value="0">ä¸æ˜¾ç¤ºæ ç›®å¤´æ¡</option>
-                <option value="1">æ ç›®å†…å®¹ç®€ä»‹</option>
-                <option value="2">æ ç›®æŽ¨èä¿¡æ¯</option>
-                <option value="3">æ ç›®å¤´æ¡ä¿¡æ¯</option>
-                <option value="4">æ ç›®æœ€æ–°ä¿¡æ¯</option>
+                <option value="0">²»ÏÔÊ¾À¸Ä¿Í·Ìõ</option>
+                <option value="1">À¸Ä¿ÄÚÈÝ¼ò½é</option>
+                <option value="2">À¸Ä¿ÍÆ¼öÐÅÏ¢</option>
+                <option value="3">À¸Ä¿Í·ÌõÐÅÏ¢</option>
+                <option value="4">À¸Ä¿×îÐÂÐÅÏ¢</option>
               </select></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">å¤´æ¡æ ‡é¢˜æˆªå–å­—æ•°ï¼š</td>
+            <td width="24%">Í·Ìõ±êÌâ½ØÈ¡×ÖÊý£º</td>
             <td width="76%"><input name="firsttitlelen" type="text" id="firsttitlelen" value="32"> 
             </td>
           </tr>
@@ -1368,54 +1368,54 @@ function ShowBqFun(){
     <tr>
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">å¤´æ¡ç®€ä»‹æˆªå–å­—æ•°ï¼š</td>
+            <td width="24%">Í·Ìõ¼ò½é½ØÈ¡×ÖÊý£º</td>
             <td width="76%"><input name="firstsmalltextlen" type="text" id="firstsmalltextlen" value="0"> 
             </td>
           </tr>
         </table></td>
-      <td bgcolor="#FFFFFF">å¤´æ¡åªè°ƒç”¨æœ‰æ ‡é¢˜å›¾ç‰‡çš„ä¿¡æ¯ï¼š 
+      <td bgcolor="#FFFFFF">Í·ÌõÖ»µ÷ÓÃÓÐ±êÌâÍ¼Æ¬µÄÐÅÏ¢£º 
         <select name="firstispic" id="select11">
-          <option value="0">ä¸é™</option>
-          <option value="1">æ˜¯</option>
+          <option value="0">²»ÏÞ</option>
+          <option value="1">ÊÇ</option>
         </select></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰é¡¹è®¾ç½®</td>
+      <td height="25" colspan="2">Ñ¡ÏîÉèÖÃ</td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™„åŠ SQLæ¡ä»¶ï¼š</td>
+            <td width="24%">¸½¼ÓSQLÌõ¼þ£º</td>
             <td width="76%"><input name="addsql" type="text" id="addsql2"> <select name="addsqlselect" onchange="document.bqform.addsql.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="isgood=1">1çº§æŽ¨è</option>
-<option value="firsttitle=1">1çº§å¤´æ¡</option>
-<option value="field='å€¼'">å­—æ®µç­‰äºŽæŸå€¼</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="isgood=1">1¼¶ÍÆ¼ö</option>
+<option value="firsttitle=1">1¼¶Í·Ìõ</option>
+<option value="field='Öµ'">×Ö¶ÎµÈÓÚÄ³Öµ</option>
 </select></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæŽ’åºï¼š</td>
+            <td width="24%">ÏÔÊ¾ÅÅÐò£º</td>
             <td width="76%"><input name="orderby" type="text" id="orderby2"> <select name="orderbyselect" onchange="document.bqform.orderby.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="newstime DESC">æŒ‰å‘å¸ƒæ—¶é—´é™åºæŽ’åº</option>
-<option value="newstime ASC">æŒ‰å‘å¸ƒæ—¶é—´å‡åºæŽ’åº</option>
-<option value="id DESC">æŒ‰IDé™åºæŽ’åº</option>
-<option value="onclick DESC">æŒ‰ç‚¹å‡»çŽ‡é™åºæŽ’åº</option>
-<option value="totaldown DESC">æŒ‰ä¸‹è½½æ•°é™åºæŽ’åº</option>
-<option value="plnum DESC">æŒ‰è¯„è®ºæ•°é™åºæŽ’åº</option>
-<option value="diggtop DESC">æŒ‰é¡¶æ•°(digg)é™åºæŽ’åº</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="newstime DESC">°´·¢²¼Ê±¼ä½µÐòÅÅÐò</option>
+<option value="newstime ASC">°´·¢²¼Ê±¼äÉýÐòÅÅÐò</option>
+<option value="id DESC">°´ID½µÐòÅÅÐò</option>
+<option value="onclick DESC">°´µã»÷ÂÊ½µÐòÅÅÐò</option>
+<option value="totaldown DESC">°´ÏÂÔØÊý½µÐòÅÅÐò</option>
+<option value="plnum DESC">°´ÆÀÂÛÊý½µÐòÅÅÐò</option>
+<option value="diggtop DESC">°´¶¥Êý(digg)½µÐòÅÅÐò</option>
 </select></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#listsonclass" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[listsonclass]æ ç›®ID,æ˜¾ç¤ºæ¡æ•°,æ ‡é¢˜æˆªå–æ•°,æ˜¯å¦æ˜¾ç¤ºæ ç›®å,æ“ä½œç±»åž‹,æ¨¡æ¿ID,åªæ˜¾ç¤ºæœ‰æ ‡é¢˜å›¾ç‰‡,æ˜¾ç¤ºæ ç›®æ•°,æ˜¾ç¤ºå¤´æ¡æ“ä½œç±»åž‹,å¤´æ¡æ ‡é¢˜æˆªå–æ•°,å¤´æ¡ç®€ä»‹æˆªå–æ•°,å¤´æ¡åªæ˜¾ç¤ºæœ‰æ ‡é¢˜å›¾ç‰‡,é™„åŠ SQLæ¡ä»¶,æ˜¾ç¤ºæŽ’åº[/listsonclass]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#listsonclass" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[listsonclass]À¸Ä¿ID,ÏÔÊ¾ÌõÊý,±êÌâ½ØÈ¡Êý,ÊÇ·ñÏÔÊ¾À¸Ä¿Ãû,²Ù×÷ÀàÐÍ,Ä£°åID,Ö»ÏÔÊ¾ÓÐ±êÌâÍ¼Æ¬,ÏÔÊ¾À¸Ä¿Êý,ÏÔÊ¾Í·Ìõ²Ù×÷ÀàÐÍ,Í·Ìõ±êÌâ½ØÈ¡Êý,Í·Ìõ¼ò½é½ØÈ¡Êý,Í·ÌõÖ»ÏÔÊ¾ÓÐ±êÌâÍ¼Æ¬,¸½¼ÓSQLÌõ¼þ,ÏÔÊ¾ÅÅÐò[/listsonclass]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -1423,7 +1423,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -1435,7 +1435,7 @@ elseif($bqname=='totaldata')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -1451,20 +1451,20 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="eloop">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">totaldataæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">totaldata±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•°</td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý</td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select12" onchange="var addurl='';if(this.options[this.selectedIndex].value==0){addurl='&doobject=2';}else if(this.options[this.selectedIndex].value==1){addurl='&doobject=5';}else if(this.options[this.selectedIndex].value==2){addurl='&doobject=4';}self.location.href='MakeBq.php?<?=$ecms_hashur['ehref']?>&bqname=<?=$bqname?>&addselfinfo=1&mydotype='+this.options[this.selectedIndex].value+addurl;">
-                <option value="0"<?=$mydotype==0?' selected':''?>>ç»Ÿè®¡æ ç›®æ•°æ®</option>
-                <option value="1"<?=$mydotype==1?' selected':''?>>ç»Ÿè®¡æ ‡é¢˜åˆ†ç±»</option>
-                <option value="2"<?=$mydotype==2?' selected':''?>>ç»Ÿè®¡æ•°æ®è¡¨</option>
+                <option value="0"<?=$mydotype==0?' selected':''?>>Í³¼ÆÀ¸Ä¿Êý¾Ý</option>
+                <option value="1"<?=$mydotype==1?' selected':''?>>Í³¼Æ±êÌâ·ÖÀà</option>
+                <option value="2"<?=$mydotype==2?' selected':''?>>Í³¼ÆÊý¾Ý±í</option>
               </select></td>
           </tr>
         </table></td>
@@ -1475,33 +1475,33 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ—¶é—´èŒƒå›´ï¼š</td>
+            <td width="24%">Ê±¼ä·¶Î§£º</td>
             <td width="76%"><select name="limittime" id="select13">
-                <option value="0">ä¸é™</option>
-                <option value="1">ä»Šæ—¥</option>
-                <option value="2">æœ¬æœˆ</option>
-                <option value="3">æœ¬å¹´</option>
+                <option value="0">²»ÏÞ</option>
+                <option value="1">½ñÈÕ</option>
+                <option value="2">±¾ÔÂ</option>
+                <option value="3">±¾Äê</option>
               </select></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td width="24%">ç»Ÿè®¡ç±»åž‹ï¼š</td>
+          <td width="24%">Í³¼ÆÀàÐÍ£º</td>
           <td width="76%"><select name="totaltype" id="select29">
-            <option value="0">ç»Ÿè®¡ä¿¡æ¯æ•°</option>
-            <option value="1">ç»Ÿè®¡è¯„è®ºæ•°</option>
-            <option value="2">ç»Ÿè®¡ç‚¹å‡»æ•°</option>
-            <option value="3">ç»Ÿè®¡ä¸‹è½½æ•°</option>
+            <option value="0">Í³¼ÆÐÅÏ¢Êý</option>
+            <option value="1">Í³¼ÆÆÀÂÛÊý</option>
+            <option value="2">Í³¼Æµã»÷Êý</option>
+            <option value="3">Í³¼ÆÏÂÔØÊý</option>
                     </select></td>
         </tr>
       </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit3" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit3" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#totaldata" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[totaldata]æ ç›®ID,æ“ä½œç±»åž‹,æ—¶é—´èŒƒå›´,ç»Ÿè®¡ç±»åž‹[/totaldata]</a></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#totaldata" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[totaldata]À¸Ä¿ID,²Ù×÷ÀàÐÍ,Ê±¼ä·¶Î§,Í³¼ÆÀàÐÍ[/totaldata]</a></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -1509,7 +1509,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit22" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit22" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -1521,7 +1521,7 @@ elseif($bqname=='otherlink')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -1541,21 +1541,21 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">otherlinkæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">otherlink±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="dotype" onchange="var addurl='';if(this.options[this.selectedIndex].value==0){addurl='&defchangeobject=1';}else if(this.options[this.selectedIndex].value==1){addurl='&doobject=4';}else if(this.options[this.selectedIndex].value==2){addurl='&doobject=2';}else if(this.options[this.selectedIndex].value==3){addurl='&doobject=5';}self.location.href='MakeBq.php?<?=$ecms_hashur['ehref']?>&bqname=<?=$bqname?>&addselfinfo=1&mydotype='+this.options[this.selectedIndex].value+addurl;">
-                <option value="0"<?=$mydotype==0?' selected':''?>>é»˜è®¤</option>
-                <option value="1"<?=$mydotype==1?' selected':''?>>æŒ‰æ•°æ®è¡¨</option>
-                <option value="2"<?=$mydotype==2?' selected':''?>>æŒ‰æ ç›®</option>
-                <option value="3"<?=$mydotype==3?' selected':''?>>æŒ‰æ ‡é¢˜åˆ†ç±»</option>
+                <option value="0"<?=$mydotype==0?' selected':''?>>Ä¬ÈÏ</option>
+                <option value="1"<?=$mydotype==1?' selected':''?>>°´Êý¾Ý±í</option>
+                <option value="2"<?=$mydotype==2?' selected':''?>>°´À¸Ä¿</option>
+                <option value="3"<?=$mydotype==3?' selected':''?>>°´±êÌâ·ÖÀà</option>
               </select></td>
           </tr>
         </table></td>
@@ -1566,52 +1566,52 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line3" value="10"></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡ç­¾æ¨¡æ¿ï¼š</td>
+            <td width="24%">±êÇ©Ä£°å£º</td>
             <td width="76%"><select name="tempid" id="select3">
                 <?=$bqtemp?>
-              </select> <input type="button" name="Submit6222323" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+              </select> <input type="button" name="Submit6222323" value="¹ÜÀí±êÇ©Ä£°å" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡é¢˜æˆªå–å­—æ•°ï¼š</td>
+            <td width="24%">±êÌâ½ØÈ¡×ÖÊý£º</td>
             <td width="76%"><input name="titlelen" type="text" id="titlelen2" value="32"> 
             </td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæ ç›®åï¼š</td>
+            <td width="24%">ÏÔÊ¾À¸Ä¿Ãû£º</td>
             <td width="76%"><select name="showclass" id="showclass">
-                <option value="0">å¦</option>
-                <option value="1">æ˜¯</option>
-              </select> <font color="#666666">(æ ‡ç­¾æ¨¡æ¿è¦åŠ [!--class.name--])</font> 
+                <option value="0">·ñ</option>
+                <option value="1">ÊÇ</option>
+              </select> <font color="#666666">(±êÇ©Ä£°åÒª¼Ó[!--class.name--])</font> 
             </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åªè°ƒç”¨æœ‰æ ‡é¢˜å›¾ç‰‡çš„ä¿¡æ¯ï¼š 
+      <td height="25" bgcolor="#FFFFFF">Ö»µ÷ÓÃÓÐ±êÌâÍ¼Æ¬µÄÐÅÏ¢£º 
         <select name="ispic" id="ispic">
-          <option value="0">ä¸é™</option>
-          <option value="1">æ˜¯</option>
+          <option value="0">²»ÏÞ</option>
+          <option value="1">ÊÇ</option>
         </select></td>
       <td bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#otherlink" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[otherlink]æ ‡ç­¾æ¨¡æ¿ID,æ“ä½œå¯¹è±¡,è°ƒç”¨æ¡æ•°,æ ‡é¢˜æˆªå–å­—æ•°,æ˜¯å¦æ˜¾ç¤ºæ ç›®å,æ“ä½œç±»åž‹,åªæ˜¾ç¤ºæ ‡é¢˜å›¾ç‰‡çš„ä¿¡æ¯[/otherlink]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#otherlink" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[otherlink]±êÇ©Ä£°åID,²Ù×÷¶ÔÏó,µ÷ÓÃÌõÊý,±êÌâ½ØÈ¡×ÖÊý,ÊÇ·ñÏÔÊ¾À¸Ä¿Ãû,²Ù×÷ÀàÐÍ,Ö»ÏÔÊ¾±êÌâÍ¼Æ¬µÄÐÅÏ¢[/otherlink]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -1619,7 +1619,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -1631,7 +1631,7 @@ elseif($bqname=='eshowphoto')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -1647,38 +1647,38 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="eshowphoto">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">eshowphotoæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">eshowphoto±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•°</td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý</td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡ç­¾æ¨¡æ¿ï¼š</td>
+            <td width="24%">±êÇ©Ä£°å£º</td>
             <td width="76%"><select name="tempid" id="tempid">
                 <?=$bqtemp?>
-              </select> <input type="button" name="Submit62223233" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+              </select> <input type="button" name="Submit62223233" value="¹ÜÀí±êÇ©Ä£°å" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">å¯¼èˆªå›¾ç‰‡å¤§å°ï¼š</td>
-            <td width="76%">å®½
+            <td width="24%">µ¼º½Í¼Æ¬´óÐ¡£º</td>
+            <td width="76%">¿í
 <input name="picwidth" type="text" id="picwidth" value="170" size="6">
-              Ã—é«˜ 
+              ¡Á¸ß 
               <input name="picheight" type="text" id="picheight" value="120" size="6"> 
             </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#eshowphoto" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[eshowphoto]æ ‡ç­¾æ¨¡æ¿ID,å¯¼èˆªå›¾ç‰‡å®½åº¦,å¯¼èˆªå›¾ç‰‡é«˜åº¦[/eshowphoto]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#eshowphoto" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[eshowphoto]±êÇ©Ä£°åID,µ¼º½Í¼Æ¬¿í¶È,µ¼º½Í¼Æ¬¸ß¶È[/eshowphoto]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -1686,7 +1686,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -1698,7 +1698,7 @@ elseif($bqname=='showsearch')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -1714,19 +1714,19 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="showsearch">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">showsearchæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">showsearch±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•°</td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý</td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="dotype">
-                <option value="0">æœç´¢çƒ­é—¨æŽ’è¡Œ</option>
-                <option value="1">æœ€æ–°æœç´¢æŽ’è¡Œ</option>
+                <option value="0">ËÑË÷ÈÈÃÅÅÅÐÐ</option>
+                <option value="1">×îÐÂËÑË÷ÅÅÐÐ</option>
               </select></td>
           </tr>
         </table></td>
@@ -1737,24 +1737,24 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ€»æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃ×ÜÊýÁ¿£º</td>
             <td width="76%"><input name="lnum" type="text" id="lnum" value="8"></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ¯è¡Œæ˜¾ç¤ºæ•°é‡ï¼š</td>
+            <td width="24%">Ã¿ÐÐÏÔÊ¾ÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line" value="4"> 
             </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit3" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit3" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#showsearch" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[showsearch]æ¯è¡Œæ˜¾ç¤ºæ¡æ•°,æ€»æ¡æ•°,æ ç›®id,æ“ä½œç±»åž‹[/showsearch]</a></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#showsearch" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[showsearch]Ã¿ÐÐÏÔÊ¾ÌõÊý,×ÜÌõÊý,À¸Ä¿id,²Ù×÷ÀàÐÍ[/showsearch]</a></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -1762,7 +1762,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit22" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit22" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -1774,7 +1774,7 @@ elseif($bqname=='tagsinfo')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -1793,68 +1793,68 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="tagsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">tagsinfoæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">tagsinfo±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">TAGSçš„IDï¼š</td>
-            <td width="76%"><input name="tids" type="text" id="tids"> <input type="button" name="Submit4" value="æŸ¥çœ‹TAGS" onclick="window.open('../tags/ListTags.php<?=$ecms_hashur['whehref']?>');">
-              <font color="#666666">(å¤šä¸ªIDç”¨,å·éš”å¼€)</font></td>
+            <td width="24%">TAGSµÄID£º</td>
+            <td width="76%"><input name="tids" type="text" id="tids"> <input type="button" name="Submit4" value="²é¿´TAGS" onclick="window.open('../tags/ListTags.php<?=$ecms_hashur['whehref']?>');">
+              <font color="#666666">(¶à¸öIDÓÃ,ºÅ¸ô¿ª)</font></td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡ç­¾æ¨¡æ¿ï¼š</td>
+            <td width="24%">±êÇ©Ä£°å£º</td>
             <td width="76%"><select name="tempid" id="tempid">
                 <?=$bqtemp?>
-              </select> <input type="button" name="Submit62223234" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+              </select> <input type="button" name="Submit62223234" value="¹ÜÀí±êÇ©Ä£°å" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
           </tr>
         </table> </td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line3" value="10"></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶æ ç›®IDï¼š</td>
+            <td width="24%">ÏÞÖÆÀ¸Ä¿ID£º</td>
             <td width="76%"><input name="classid" type="text" id="classid" value="0">
               <font color="#666666">
-              <input type="button" name="Submit42" value="æŸ¥çœ‹æ ç›®ID" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>');">
-              (0ä¸ºä¸é™ï¼Œå¤šä¸ªIDç”¨,å·éš”å¼€)</font> </td>
+              <input type="button" name="Submit42" value="²é¿´À¸Ä¿ID" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>');">
+              (0Îª²»ÏÞ£¬¶à¸öIDÓÃ,ºÅ¸ô¿ª)</font> </td>
           </tr>
         </table> </td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡é¢˜æˆªå–å­—æ•°ï¼š</td>
+            <td width="24%">±êÌâ½ØÈ¡×ÖÊý£º</td>
             <td width="76%"><input name="titlelen" type="text" id="titlelen2" value="32"> 
             </td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶ç³»ç»Ÿæ¨¡åž‹IDï¼š</td>
+            <td width="24%">ÏÞÖÆÏµÍ³Ä£ÐÍID£º</td>
             <td width="76%"><input name="mids" type="text" id="mids" value="0">
-              <font color="#666666"> (0ä¸ºä¸é™ï¼Œå¤šä¸ªIDç”¨,å·éš”å¼€)</font> </td>
+              <font color="#666666"> (0Îª²»ÏÞ£¬¶à¸öIDÓÃ,ºÅ¸ô¿ª)</font> </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#tagsinfo" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[tagsinfo]TAGSçš„ID,æ˜¾ç¤ºæ¡æ•°,æ ‡é¢˜æˆªå–æ•°,æ ‡ç­¾æ¨¡æ¿ID,æ ç›®ID,ç³»ç»Ÿæ¨¡åž‹ID[/tagsinfo]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#tagsinfo" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[tagsinfo]TAGSµÄID,ÏÔÊ¾ÌõÊý,±êÌâ½ØÈ¡Êý,±êÇ©Ä£°åID,À¸Ä¿ID,ÏµÍ³Ä£ÐÍID[/tagsinfo]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -1862,7 +1862,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -1874,7 +1874,7 @@ elseif($bqname=='spinfo')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -1890,23 +1890,23 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="spinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">spinfoæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">spinfo±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">ç¢Žç‰‡å˜é‡åï¼š</td>
+            <td width="24%">ËéÆ¬±äÁ¿Ãû£º</td>
             <td width="76%"><input name="vname" type="text" id="vname">
-              <input type="button" name="Submit43" value="æŸ¥çœ‹ç¢Žç‰‡" onclick="window.open('../sp/ListSp.php<?=$ecms_hashur['whehref']?>');"></td>
+              <input type="button" name="Submit43" value="²é¿´ËéÆ¬" onclick="window.open('../sp/ListSp.php<?=$ecms_hashur['whehref']?>');"></td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line" value="10"></td>
           </tr>
         </table></td>
@@ -1914,7 +1914,7 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡é¢˜æˆªå–å­—æ•°ï¼š</td>
+            <td width="24%">±êÌâ½ØÈ¡×ÖÊý£º</td>
             <td width="76%"><input name="titlelen" type="text" id="titlelen2" value="32"> 
             </td>
           </tr>
@@ -1922,11 +1922,11 @@ function ShowBqFun(){
       <td bgcolor="#FFFFFF">&nbsp; </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#spinfo" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[spinfo]ç¢Žç‰‡å˜é‡å,æ˜¾ç¤ºæ¡æ•°,æ ‡é¢˜æˆªå–æ•°[/spinfo]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#spinfo" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[spinfo]ËéÆ¬±äÁ¿Ãû,ÏÔÊ¾ÌõÊý,±êÌâ½ØÈ¡Êý[/spinfo]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -1934,7 +1934,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -1952,7 +1952,7 @@ elseif($bqname=='showtags')
 	}
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -1968,7 +1968,7 @@ function ShowBqFun(){
 	var fshownum=obj.shownum.value;
 	var faddcs=obj.addcs.value;
 	var fvartype=obj.vartype.value;
-	//å±žæ€§
+	//ÊôÐÔ
 	if(obj.tfontb.checked==true)
 	{
 		tfont+='s';
@@ -1986,26 +1986,26 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="showtags">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">showtagsæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">showtags±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é€‰æ‹©TAGSåˆ†ç±»ï¼š</td>
+            <td width="24%">Ñ¡ÔñTAGS·ÖÀà£º</td>
             <td width="76%"><select name="tagsclassid" id="tagsclassid">
-                <option value="''">ä¸é™</option>
-                <option value="'selfinfo'">è°ƒç”¨å½“å‰ä¿¡æ¯TAGS</option>
+                <option value="''">²»ÏÞ</option>
+                <option value="'selfinfo'">µ÷ÓÃµ±Ç°ÐÅÏ¢TAGS</option>
                 <?=$tagsclass?>
               </select> </td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ€»æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃ×ÜÊýÁ¿£º</td>
             <td width="76%"><input name="lnum" type="text" id="lnum" value="10"></td>
           </tr>
         </table></td>
@@ -2013,87 +2013,87 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ¯è¡Œæ˜¾ç¤ºæ•°é‡ï¼š</td>
+            <td width="24%">Ã¿ÐÐÏÔÊ¾ÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="titlelen2" value="0">
-              <font color="#666666">(0ä¸ºä¸æ¢è¡Œ) </font></td>
+              <font color="#666666">(0Îª²»»»ÐÐ) </font></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæŽ’åºï¼š</td>
+            <td width="24%">ÏÔÊ¾ÅÅÐò£º</td>
             <td width="76%"><input name="orderby" type="text" id="orderby"> <select name="selectorderby" id="select" onchange="document.bqform.orderby.value=document.bqform.selectorderby.value">
-                <option value="">é»˜è®¤æŽ’åº</option>
-                <option value="tagid desc">æŒ‰TAGSIDé™åº</option>
-                <option value="num desc">æŒ‰ä¿¡æ¯æ•°é™åº</option>
+                <option value="">Ä¬ÈÏÅÅÐò</option>
+                <option value="tagid desc">°´TAGSID½µÐò</option>
+                <option value="num desc">°´ÐÅÏ¢Êý½µÐò</option>
               </select>
-              <font color="#666666">(è°ƒç”¨å½“å‰TAGSæœ¬è®¾ç½®æ— æ•ˆ)</font></td>
+              <font color="#666666">(µ÷ÓÃµ±Ç°TAGS±¾ÉèÖÃÎÞÐ§)</font></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">åªæ˜¾ç¤ºæŽ¨èçš„ï¼š</td>
+            <td width="24%">Ö»ÏÔÊ¾ÍÆ¼öµÄ£º</td>
             <td width="76%"><select name="isgood" id="select14">
-                <option value="0">ä¸é™</option>
-                <option value="1">æ˜¯</option>
+                <option value="0">²»ÏÞ</option>
+                <option value="1">ÊÇ</option>
               </select>
-              <font color="#666666">(è°ƒç”¨å½“å‰TAGSæœ¬è®¾ç½®æ— æ•ˆ)</font> </td>
+              <font color="#666666">(µ÷ÓÃµ±Ç°TAGS±¾ÉèÖÃÎÞÐ§)</font> </td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æŽ¨èTAGSå±žæ€§ï¼š</td>
+            <td width="24%">ÍÆ¼öTAGSÊôÐÔ£º</td>
             <td width="76%"><input name="tfontb" type="checkbox" id="tfontb" value="1">
-              åŠ ç²— <input name="tfontr" type="checkbox" id="tfontr" value="1">
-              åŠ çº¢<font color="#666666">(è°ƒç”¨å½“å‰TAGSæœ¬è®¾ç½®æ— æ•ˆ)</font></td>
+              ¼Ó´Ö <input name="tfontr" type="checkbox" id="tfontr" value="1">
+              ¼Óºì<font color="#666666">(µ÷ÓÃµ±Ç°TAGS±¾ÉèÖÃÎÞÐ§)</font></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºé—´éš”ç¬¦ï¼š</td>
+            <td width="24%">ÏÔÊ¾¼ä¸ô·û£º</td>
             <td width="76%"><input name="jg" type="text" id="line2" value="&amp;nbsp;"> 
             </td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºä¿¡æ¯æ•°é‡ï¼š</td>
+            <td width="24%">ÏÔÊ¾ÐÅÏ¢ÊýÁ¿£º</td>
             <td width="76%"><select name="shownum" id="select16">
-                <option value="0">ä¸æ˜¾ç¤º</option>
-                <option value="1">æ˜¾ç¤º</option>
+                <option value="0">²»ÏÔÊ¾</option>
+                <option value="1">ÏÔÊ¾</option>
               </select>
-              <font color="#666666">(è°ƒç”¨å½“å‰TAGSæœ¬è®¾ç½®æ— æ•ˆ)</font></td>
+              <font color="#666666">(µ÷ÓÃµ±Ç°TAGS±¾ÉèÖÃÎÞÐ§)</font></td>
           </tr>
         </table></td>
     </tr>
     <tr>
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é“¾æŽ¥é™„åŠ å‚æ•°ï¼š</td>
+            <td width="24%">Á´½Ó¸½¼Ó²ÎÊý£º</td>
             <td width="76%"><input name="addcs" type="text" id="line4">
-              <font color="#666666">(æ¯”å¦‚ï¼š&amp;tempid=æ¨¡æ¿ID) </font></td>
+              <font color="#666666">(±ÈÈç£º&amp;tempid=Ä£°åID) </font></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é“¾æŽ¥ä½¿ç”¨å˜é‡ï¼š</td>
+            <td width="24%">Á´½ÓÊ¹ÓÃ±äÁ¿£º</td>
             <td width="76%"><select name="vartype">
 				<option value="tagname">tagname</option>
                 <option value="tagid">tagid</option>
               </select>
-              <font color="#666666">(æ¯”å¦‚ï¼štagname=å¸å›½æˆ–tagid=1)</font></td>
+              <font color="#666666">(±ÈÈç£ºtagname=µÛ¹ú»òtagid=1)</font></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#showtags" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[showtags]åˆ†ç±»ID,æ˜¾ç¤ºæ•°é‡,æ¯è¡Œæ˜¾ç¤ºæ•°é‡,æ˜¾ç¤ºæŽ’åº,åªæ˜¾ç¤ºæŽ¨è,æŽ¨èTAGSå±žæ€§,æ˜¾ç¤ºé—´éš”ç¬¦,æ˜¯å¦æ˜¾ç¤ºä¿¡æ¯æ•°,é“¾æŽ¥é™„åŠ å‚æ•°,é“¾æŽ¥ä½¿ç”¨å˜é‡[/showtags]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#showtags" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[showtags]·ÖÀàID,ÏÔÊ¾ÊýÁ¿,Ã¿ÐÐÏÔÊ¾ÊýÁ¿,ÏÔÊ¾ÅÅÐò,Ö»ÏÔÊ¾ÍÆ¼ö,ÍÆ¼öTAGSÊôÐÔ,ÏÔÊ¾¼ä¸ô·û,ÊÇ·ñÏÔÊ¾ÐÅÏ¢Êý,Á´½Ó¸½¼Ó²ÎÊý,Á´½ÓÊ¹ÓÃ±äÁ¿[/showtags]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2101,7 +2101,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2113,7 +2113,7 @@ elseif($bqname=='showclasstemp')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2130,11 +2130,11 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">showclasstempæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">showclasstemp±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> 
@@ -2142,38 +2142,38 @@ function ShowBqFun(){
       </td>
       <td width="50%" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡ç­¾æ¨¡æ¿ï¼š</td>
+            <td width="24%">±êÇ©Ä£°å£º</td>
             <td width="76%"><select name="tempid" id="select15">
                 <?=$bqtemp?>
-              </select> <input type="button" name="Submit62223235" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+              </select> <input type="button" name="Submit62223235" value="¹ÜÀí±êÇ©Ä£°å" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæ ç›®ä¿¡æ¯æ•°ï¼š</td>
+            <td width="24%">ÏÔÊ¾À¸Ä¿ÐÅÏ¢Êý£º</td>
             <td width="76%"><select name="shownum" id="select17">
-                <option value="0">ä¸æ˜¾ç¤º</option>
-                <option value="1">æ˜¾ç¤º</option>
+                <option value="0">²»ÏÔÊ¾</option>
+                <option value="1">ÏÔÊ¾</option>
               </select>
-              <font color="#666666">(æ ‡ç­¾æ¨¡æ¿åŠ [!--num--])</font></td>
+              <font color="#666666">(±êÇ©Ä£°å¼Ó[!--num--])</font></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶æ˜¾ç¤ºæ ç›®æ•°ï¼š</td>
+            <td width="24%">ÏÞÖÆÏÔÊ¾À¸Ä¿Êý£º</td>
             <td width="76%"><input name="classnum" type="text" id="titlelen5" value="0">
-              <font color="#666666">(0ä¸ºä¸é™åˆ¶)</font> </td>
+              <font color="#666666">(0Îª²»ÏÞÖÆ)</font> </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#showclasstemp" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[showclasstemp]çˆ¶æ ç›®ID,æ ‡ç­¾æ¨¡æ¿ID,æ˜¯å¦æ˜¾ç¤ºæ ç›®ä¿¡æ¯æ•°,æ˜¾ç¤ºæ ç›®æ•°[/showclasstemp]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#showclasstemp" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[showclasstemp]¸¸À¸Ä¿ID,±êÇ©Ä£°åID,ÊÇ·ñÏÔÊ¾À¸Ä¿ÐÅÏ¢Êý,ÏÔÊ¾À¸Ä¿Êý[/showclasstemp]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2181,7 +2181,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2191,7 +2191,7 @@ function ShowBqFun(){
 }
 elseif($bqname=='eshowzt')
 {
-	//åˆ†ç±»
+	//·ÖÀà
 	$zcstr='';
 	$zcsql=$empire->query("select classid,classname from {$dbtbpre}enewsztclass order by classid");
 	while($zcr=$empire->fetch($zcsql))
@@ -2200,7 +2200,7 @@ elseif($bqname=='eshowzt')
 	}
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2217,56 +2217,56 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">eshowztæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">eshowzt±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•°</td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý</td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡ç­¾æ¨¡æ¿ï¼š</td>
+            <td width="24%">±êÇ©Ä£°å£º</td>
             <td width="76%"><select name="tempid" id="select20">
                 <?=$bqtemp?>
-              </select> <input type="button" name="Submit622232353" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+              </select> <input type="button" name="Submit622232353" value="¹ÜÀí±êÇ©Ä£°å" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF"> 
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶ä¸“é¢˜åˆ†ç±»ï¼š</td>
+            <td width="24%">ÏÞÖÆ×¨Ìâ·ÖÀà£º</td>
             <td width="76%"><select name="zcid" id="select19">
-                <option value="0">ä¸é™</option>
+                <option value="0">²»ÏÞ</option>
 				<?=$zcstr?>
-              </select> <input type="button" name="Submit622232352" value="ç®¡ç†ä¸“é¢˜åˆ†ç±»" onclick="window.open('../special/ListZtClass.php<?=$ecms_hashur['whehref']?>');"></td>
+              </select> <input type="button" name="Submit622232352" value="¹ÜÀí×¨Ìâ·ÖÀà" onclick="window.open('../special/ListZtClass.php<?=$ecms_hashur['whehref']?>');"></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶æ˜¾ç¤ºä¸“é¢˜æ•°ï¼š</td>
+            <td width="24%">ÏÞÖÆÏÔÊ¾×¨ÌâÊý£º</td>
             <td width="76%"><input name="classnum" type="text" id="classnum" value="0"> 
-              <font color="#666666">(0ä¸ºä¸é™åˆ¶)</font> </td>
+              <font color="#666666">(0Îª²»ÏÞÖÆ)</font> </td>
           </tr>
         </table> </td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶æ‰€å±žæ ç›®IDï¼š</td>
+            <td width="24%">ÏÞÖÆËùÊôÀ¸Ä¿ID£º</td>
             <td width="76%"><input name="classid" type="text" id="classid" value="0"> 
               <font color="#666666"> 
-              <input type="button" name="Submit422" value="æŸ¥çœ‹æ ç›®ID" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>');">
-              (0ä¸ºä¸é™ï¼Œå¤šä¸ªIDç”¨,å·éš”å¼€)</font> </td>
+              <input type="button" name="Submit422" value="²é¿´À¸Ä¿ID" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>');">
+              (0Îª²»ÏÞ£¬¶à¸öIDÓÃ,ºÅ¸ô¿ª)</font> </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#eshowzt" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[eshowzt]æ ‡ç­¾æ¨¡æ¿ID,ä¸“é¢˜ç±»åˆ«ID,æ˜¾ç¤ºä¸“é¢˜æ•°,æ‰€å±žæ ç›®ID[/eshowzt]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#eshowzt" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[eshowzt]±êÇ©Ä£°åID,×¨ÌâÀà±ðID,ÏÔÊ¾×¨ÌâÊý,ËùÊôÀ¸Ä¿ID[/eshowzt]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2274,7 +2274,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2286,7 +2286,7 @@ elseif($bqname=='listshowclass')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2303,11 +2303,11 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">listshowclassæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">listshowclass±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> 
@@ -2315,38 +2315,38 @@ function ShowBqFun(){
       </td>
       <td width="50%" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡ç­¾æ¨¡æ¿ï¼š</td>
+            <td width="24%">±êÇ©Ä£°å£º</td>
             <td width="76%"><select name="tempid" id="select15">
                 <?=$bqtemp?>
-              </select> <input type="button" name="Submit62223235" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+              </select> <input type="button" name="Submit62223235" value="¹ÜÀí±êÇ©Ä£°å" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæ ç›®ä¿¡æ¯æ•°ï¼š</td>
+            <td width="24%">ÏÔÊ¾À¸Ä¿ÐÅÏ¢Êý£º</td>
             <td width="76%"><select name="shownum" id="select17">
-                <option value="0">ä¸æ˜¾ç¤º</option>
-                <option value="1">æ˜¾ç¤º</option>
+                <option value="0">²»ÏÔÊ¾</option>
+                <option value="1">ÏÔÊ¾</option>
               </select>
-              <font color="#666666">(æ ‡ç­¾æ¨¡æ¿åŠ [!--num--])</font></td>
+              <font color="#666666">(±êÇ©Ä£°å¼Ó[!--num--])</font></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶æ˜¾ç¤ºæ ç›®æ•°ï¼š</td>
+            <td width="24%">ÏÞÖÆÏÔÊ¾À¸Ä¿Êý£º</td>
             <td width="76%"><input name="classnum" type="text" id="titlelen5" value="0">
-              <font color="#666666">(0ä¸ºä¸é™åˆ¶)</font> </td>
+              <font color="#666666">(0Îª²»ÏÞÖÆ)</font> </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#listshowclass" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[listshowclass]çˆ¶æ ç›®ID,æ ‡ç­¾æ¨¡æ¿ID,æ˜¯å¦æ˜¾ç¤ºæ ç›®ä¿¡æ¯æ•°,æ˜¾ç¤ºæ ç›®æ•°[/listshowclass]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#listshowclass" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[listshowclass]¸¸À¸Ä¿ID,±êÇ©Ä£°åID,ÊÇ·ñÏÔÊ¾À¸Ä¿ÐÅÏ¢Êý,ÏÔÊ¾À¸Ä¿Êý[/listshowclass]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2354,7 +2354,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2366,7 +2366,7 @@ elseif($bqname=='phomead')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2380,28 +2380,28 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">phomeadæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">phomead±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">å¹¿å‘ŠIDï¼š</td>
+            <td width="24%">¹ã¸æID£º</td>
             <td width="76%"><input name="classid" type="text" id="classid" value="0">
-              <input type="button" name="Submit622232354" value="æŸ¥çœ‹å¹¿å‘ŠID" onclick="window.open('../tool/ListAd.php<?=$ecms_hashur['whehref']?>');"></td>
+              <input type="button" name="Submit622232354" value="²é¿´¹ã¸æID" onclick="window.open('../tool/ListAd.php<?=$ecms_hashur['whehref']?>');"></td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomead" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[phomead]å¹¿å‘ŠID[/phomead]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomead" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[phomead]¹ã¸æID[/phomead]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2409,7 +2409,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2421,7 +2421,7 @@ elseif($bqname=='phomevote')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2435,28 +2435,28 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">phomevoteæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">phomevote±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æŠ•ç¥¨IDï¼š</td>
+            <td width="24%">Í¶Æ±ID£º</td>
             <td width="76%"><input name="classid" type="text" id="classid" value="0">
-              <input type="button" name="Submit622232354" value="æŸ¥çœ‹æŠ•ç¥¨ID" onclick="window.open('../tool/ListVote.php<?=$ecms_hashur['whehref']?>');"></td>
+              <input type="button" name="Submit622232354" value="²é¿´Í¶Æ±ID" onclick="window.open('../tool/ListVote.php<?=$ecms_hashur['whehref']?>');"></td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomevote" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[phomevote]æŠ•ç¥¨ID[/phomevote]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomevote" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[phomevote]Í¶Æ±ID[/phomevote]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2464,7 +2464,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2474,7 +2474,7 @@ function ShowBqFun(){
 }
 elseif($bqname=='phomelink')
 {
-	//ç±»åˆ«
+	//Àà±ð
 	$cstr='';
 	$csql=$empire->query("select classid,classname from {$dbtbpre}enewslinkclass order by classid");
 	while($cr=$empire->fetch($csql))
@@ -2483,7 +2483,7 @@ elseif($bqname=='phomelink')
 	}
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2501,43 +2501,43 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">phomelinkæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">phomelink±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•°</td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý</td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select20">
-                <option value="0">æ‰€æœ‰é“¾æŽ¥</option>
-                <option value="1">åªè°ƒç”¨å›¾ç‰‡é“¾æŽ¥</option>
-                <option value="2">åªè°ƒç”¨æ–‡å­—é“¾æŽ¥</option>
+                <option value="0">ËùÓÐÁ´½Ó</option>
+                <option value="1">Ö»µ÷ÓÃÍ¼Æ¬Á´½Ó</option>
+                <option value="2">Ö»µ÷ÓÃÎÄ×ÖÁ´½Ó</option>
               </select> </td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶åˆ†ç±»ï¼š</td>
+            <td width="24%">ÏÞÖÆ·ÖÀà£º</td>
             <td width="76%"><select name="cid" id="select19">
-                <option value="0">ä¸é™</option>
+                <option value="0">²»ÏÞ</option>
                 <?=$cstr?>
-              </select> <input type="button" name="Submit622232352" value="ç®¡ç†å‹æƒ…é“¾æŽ¥åˆ†ç±»" onclick="window.open('../tool/LinkClass.php<?=$ecms_hashur['whehref']?>');"></td>
+              </select> <input type="button" name="Submit622232352" value="¹ÜÀíÓÑÇéÁ´½Ó·ÖÀà" onclick="window.open('../tool/LinkClass.php<?=$ecms_hashur['whehref']?>');"></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ€»æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃ×ÜÊýÁ¿£º</td>
             <td width="76%"><input name="lnum" type="text" id="lnum" value="12"></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ¯è¡Œæ˜¾ç¤ºæ•°é‡ï¼š</td>
+            <td width="24%">Ã¿ÐÐÏÔÊ¾ÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line5" value="6">
             </td>
           </tr>
@@ -2546,21 +2546,21 @@ function ShowBqFun(){
     <tr>
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºåŽŸé“¾æŽ¥ï¼š</td>
+            <td width="24%">ÏÔÊ¾Ô­Á´½Ó£º</td>
             <td width="76%"><select name="showlink" id="select18">
-                <option value="0">ç»Ÿè®¡ç‚¹å‡»é“¾æŽ¥</option>
-                <option value="1">æ˜¾ç¤ºåŽŸé“¾æŽ¥</option>
+                <option value="0">Í³¼Æµã»÷Á´½Ó</option>
+                <option value="1">ÏÔÊ¾Ô­Á´½Ó</option>
               </select> </td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomelink" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[phomelink]æ¯è¡Œæ˜¾ç¤ºæ•°,æ˜¾ç¤ºæ€»æ•°,æ“ä½œç±»åž‹,åˆ†ç±»id,æ˜¯å¦æ˜¾ç¤ºåŽŸé“¾æŽ¥[/phomelink]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#phomelink" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[phomelink]Ã¿ÐÐÏÔÊ¾Êý,ÏÔÊ¾×ÜÊý,²Ù×÷ÀàÐÍ,·ÖÀàid,ÊÇ·ñÏÔÊ¾Ô­Á´½Ó[/phomelink]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2568,7 +2568,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2578,7 +2578,7 @@ function ShowBqFun(){
 }
 elseif($bqname=='gbookinfo')
 {
-	//åˆ†ç±»
+	//·ÖÀà
 	$cstr='';
 	$csql=$empire->query("select bid,bname from {$dbtbpre}enewsgbookclass order by bid");
 	while($cr=$empire->fetch($csql))
@@ -2587,7 +2587,7 @@ elseif($bqname=='gbookinfo')
 	}
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2603,36 +2603,36 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">gbookinfoæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">gbookinfo±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•°</td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý</td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡ç­¾æ¨¡æ¿ï¼š</td>
+            <td width="24%">±êÇ©Ä£°å£º</td>
             <td width="76%"><select name="tempid" id="select20">
                 <?=$bqtemp?>
-              </select> <input type="button" name="Submit622232353" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+              </select> <input type="button" name="Submit622232353" value="¹ÜÀí±êÇ©Ä£°å" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF"> 
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶ç•™è¨€åˆ†ç±»ï¼š</td>
+            <td width="24%">ÏÞÖÆÁôÑÔ·ÖÀà£º</td>
             <td width="76%"><select name="cid" id="select19">
-                <option value="0">ä¸é™</option>
+                <option value="0">²»ÏÞ</option>
 				<?=$cstr?>
-              </select> <input type="button" name="Submit622232352" value="ç®¡ç†ç•™è¨€åˆ†ç±»" onclick="window.open('../tool/GbookClass.php<?=$ecms_hashur['whehref']?>');"></td>
+              </select> <input type="button" name="Submit622232352" value="¹ÜÀíÁôÑÔ·ÖÀà" onclick="window.open('../tool/GbookClass.php<?=$ecms_hashur['whehref']?>');"></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line" value="5">
             </td>
           </tr>
@@ -2640,11 +2640,11 @@ function ShowBqFun(){
       <td bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#gbookinfo" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[gbookinfo]æ˜¾ç¤ºä¿¡æ¯æ•°,æ ‡ç­¾æ¨¡æ¿ID,ç•™è¨€åˆ†ç±»ID[/gbookinfo]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#gbookinfo" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[gbookinfo]ÏÔÊ¾ÐÅÏ¢Êý,±êÇ©Ä£°åID,ÁôÑÔ·ÖÀàID[/gbookinfo]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2652,7 +2652,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2664,7 +2664,7 @@ elseif($bqname=='showplinfo')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2683,75 +2683,75 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">showplinfoæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">showplinfo±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•°</td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý</td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="select22">
-                <option value="0">æŒ‰å‘å¸ƒæ—¶é—´æŽ’åˆ—</option>
-                <option value="1">æŒ‰æ”¯æŒæ•°æŽ’åˆ—</option>
-                <option value="2">æŒ‰åå¯¹æ•°æŽ’åˆ—</option>
+                <option value="0">°´·¢²¼Ê±¼äÅÅÁÐ</option>
+                <option value="1">°´Ö§³ÖÊýÅÅÁÐ</option>
+                <option value="2">°´·´¶ÔÊýÅÅÁÐ</option>
               </select> </td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ ‡ç­¾æ¨¡æ¿ï¼š</td>
+            <td width="24%">±êÇ©Ä£°å£º</td>
             <td width="76%"><select name="tempid" id="select21">
                 <?=$bqtemp?>
-              </select> <input type="button" name="Submit6222323532" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+              </select> <input type="button" name="Submit6222323532" value="¹ÜÀí±êÇ©Ä£°å" onclick="window.open('ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
           </tr>
         </table> </td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line" value="10"> 
             </td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶æ ç›®IDï¼š</td>
+            <td width="24%">ÏÞÖÆÀ¸Ä¿ID£º</td>
             <td width="76%"><input name="classid" type="text" id="classid" value="0">
-              [<a href="#empirecms" onclick="document.bqform.classid.value='$GLOBALS[navclassid]';">å½“å‰æ ç›®ID</a>] 
+              [<a href="#empirecms" onclick="document.bqform.classid.value='$GLOBALS[navclassid]';">µ±Ç°À¸Ä¿ID</a>] 
               <font color="#666666"> 
-              <input type="button" name="Submit4222" value="æŸ¥çœ‹æ ç›®ID" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>');">
-              (0ä¸ºä¸é™)</font> </td>
+              <input type="button" name="Submit4222" value="²é¿´À¸Ä¿ID" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>');">
+              (0Îª²»ÏÞ)</font> </td>
           </tr>
         </table></td>
     </tr>
     <tr>
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶ä¿¡æ¯IDï¼š</td>
+            <td width="24%">ÏÞÖÆÐÅÏ¢ID£º</td>
             <td width="76%"><input name="id" type="text" id="id" value="0">
-              [<a href="#empirecms" onclick="document.bqform.id.value='$navinfor[id]';">å½“å‰ä¿¡æ¯ID</a>] <font color="#666666"> (0ä¸ºä¸é™)</font></td>
+              [<a href="#empirecms" onclick="document.bqform.id.value='$navinfor[id]';">µ±Ç°ÐÅÏ¢ID</a>] <font color="#666666"> (0Îª²»ÏÞ)</font></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">åªè°ƒç”¨æŽ¨èè¯„è®ºï¼š</td>
+            <td width="24%">Ö»µ÷ÓÃÍÆ¼öÆÀÂÛ£º</td>
             <td width="76%"><select name="isgood" id="select23">
-                <option value="0">ä¸é™</option>
-                <option value="1">åªè°ƒç”¨æŽ¨èè¯„è®º</option>
+                <option value="0">²»ÏÞ</option>
+                <option value="1">Ö»µ÷ÓÃÍÆ¼öÆÀÂÛ</option>
               </select> </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#showplinfo" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[showplinfo]è°ƒç”¨æ¡æ•°,æ ‡ç­¾æ¨¡æ¿ID,æ ç›®ID,ä¿¡æ¯ID,æ˜¾ç¤ºæŽ¨èè¯„è®º,æ“ä½œç±»åž‹[/showplinfo]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#showplinfo" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[showplinfo]µ÷ÓÃÌõÊý,±êÇ©Ä£°åID,À¸Ä¿ID,ÐÅÏ¢ID,ÏÔÊ¾ÍÆ¼öÆÀÂÛ,²Ù×÷ÀàÐÍ[/showplinfo]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2759,7 +2759,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2771,7 +2771,7 @@ elseif($bqname=='echocheckbox')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2786,34 +2786,34 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">echocheckboxæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">echocheckbox±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">å¤é€‰å­—æ®µåï¼š</td>
+            <td width="24%">¸´Ñ¡×Ö¶ÎÃû£º</td>
             <td width="76%"><input name="lfield" type="text" id="lfield" value="title">
             </td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">åˆ†éš”ç¬¦ï¼š</td>
+            <td width="24%">·Ö¸ô·û£º</td>
             <td width="76%"><input name="expstr" type="text" id="expstr" value="&lt;br&gt;"> 
             </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#echocheckbox" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[echocheckbox]'å­—æ®µ','åˆ†éš”ç¬¦'[/echocheckbox]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#echocheckbox" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[echocheckbox]'×Ö¶Î','·Ö¸ô·û'[/echocheckbox]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2821,7 +2821,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2833,7 +2833,7 @@ elseif($bqname=='includefile')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2847,28 +2847,28 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">includefileæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">includefile±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">å¼•ç”¨æ–‡ä»¶åœ°å€ï¼š</td>
+            <td width="24%">ÒýÓÃÎÄ¼þµØÖ·£º</td>
             <td width="76%"><input name="lfile" type="text" id="lfile" value="../../header.html">
-              <font color="#666666">(ç›¸å¯¹äºŽåŽå°ç›®å½•)</font> </td>
+              <font color="#666666">(Ïà¶ÔÓÚºóÌ¨Ä¿Â¼)</font> </td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#includefile" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[includefile]'æ–‡ä»¶åœ°å€'[/includefile]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#includefile" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[includefile]'ÎÄ¼þµØÖ·'[/includefile]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2876,7 +2876,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2888,7 +2888,7 @@ elseif($bqname=='readhttp')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2902,16 +2902,16 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ecmsinfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">readhttpæ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">readhttp±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è¯»å–ç½‘é¡µåœ°å€ï¼š</td>
+            <td width="24%">¶ÁÈ¡ÍøÒ³µØÖ·£º</td>
             <td width="76%"><input name="lfile" type="text" id="lfile" value="http://">
             </td>
           </tr>
@@ -2919,11 +2919,11 @@ function ShowBqFun(){
       <td width="50%" bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#readhttp" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">[readhttp]'é¡µé¢åœ°å€'[/readhttp]</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#readhttp" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">[readhttp]'Ò³ÃæµØÖ·'[/readhttp]</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2931,7 +2931,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -2943,7 +2943,7 @@ elseif($bqname=='ShowMemberInfo')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -2958,36 +2958,36 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ShowMemberInfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">ShowMemberInfoå‡½æ•°è°ƒç”¨ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">ShowMemberInfoº¯Êýµ÷ÓÃÉú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">ä¼šå‘˜å¸å·IDï¼š</td>
+            <td width="24%">»áÔ±ÕÊºÅID£º</td>
             <td width="76%"><input name="muserid" type="text" id="muserid" value="0">
-              <input type="button" name="Submit62223235222" value="æŸ¥çœ‹ä¼šå‘˜ID" onclick="window.open('../member/ListMember.php<?=$ecms_hashur['whehref']?>');">
-              <font color="#666666">(0ä¸ºå‘å¸ƒè€…ID)</font></td>
+              <input type="button" name="Submit62223235222" value="²é¿´»áÔ±ID" onclick="window.open('../member/ListMember.php<?=$ecms_hashur['whehref']?>');">
+              <font color="#666666">(0Îª·¢²¼ÕßID)</font></td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æŸ¥è¯¢å­—æ®µï¼š</td>
+            <td width="24%">²éÑ¯×Ö¶Î£º</td>
             <td width="76%"> 
               <input name="lfield" type="text" id="lfield">
-              <font color="#666666">(ç©ºä¸ºæŸ¥è¯¢æ‰€æœ‰ä¼šå‘˜å­—æ®µ)</font> </td>
+              <font color="#666666">(¿ÕÎª²éÑ¯ËùÓÐ»áÔ±×Ö¶Î)</font> </td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#ShowMemberInfo" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">sys_ShowMemberInfo(ç”¨æˆ·ID,æŸ¥è¯¢å­—æ®µ)</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#ShowMemberInfo" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">sys_ShowMemberInfo(ÓÃ»§ID,²éÑ¯×Ö¶Î)</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -2995,7 +2995,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="5" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -3007,7 +3007,7 @@ elseif($bqname=='ListMemberInfo')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -3027,27 +3027,27 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ListMemberInfo">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">ListMemberInfoè°ƒç”¨å‡½æ•°ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">ListMemberInfoµ÷ÓÃº¯ÊýÉú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ ‡ç­¾åŸºæœ¬å‚æ•° </td>
+      <td height="25" colspan="2">±êÇ©»ù±¾²ÎÊý </td>
     </tr>
     <tr> 
       <td width="50%" height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ“ä½œç±»åž‹ï¼š</td>
+            <td width="24%">²Ù×÷ÀàÐÍ£º</td>
             <td width="76%"><select name="dotype" id="dotype">
-                <option value="0">æŒ‰æ³¨å†Œæ—¶é—´æŽ’åº</option>
-                <option value="1">æŒ‰ç§¯åˆ†æŽ’åºæŽ’åº</option>
-                <option value="2">æŒ‰èµ„é‡‘æŽ’è¡ŒæŽ’åº</option>
-                <option value="3">æŒ‰ä¼šå‘˜ç©ºé—´äººæ°”æŽ’è¡ŒæŽ’åº</option>
+                <option value="0">°´×¢²áÊ±¼äÅÅÐò</option>
+                <option value="1">°´»ý·ÖÅÅÐòÅÅÐò</option>
+                <option value="2">°´×Ê½ðÅÅÐÐÅÅÐò</option>
+                <option value="3">°´»áÔ±¿Õ¼äÈËÆøÅÅÐÐÅÅÐò</option>
               </select> </td>
           </tr>
         </table></td>
       <td width="50%" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line7" value="10"> 
             </td>
           </tr>
@@ -3056,37 +3056,37 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™åˆ¶ä¼šå‘˜ç»„IDï¼š</td>
+            <td width="24%">ÏÞÖÆ»áÔ±×éID£º</td>
             <td width="76%"><input name="mgroupid" type="text" id="mgroupid">
-              <input type="button" name="Submit622232352222" value="æŸ¥çœ‹ä¼šå‘˜ç»„ID" onclick="window.open('../member/ListMemberGroup.php<?=$ecms_hashur['whehref']?>');"> 
-              <font color="#666666">(ä¸è®¾ç½®ä¸ºä¸é™ï¼Œå¤šä¸ªä¼šå‘˜ç»„ç”¨é€—å·éš”å¼€ï¼Œå¦‚ï¼š'1,2') </font></td>
+              <input type="button" name="Submit622232352222" value="²é¿´»áÔ±×éID" onclick="window.open('../member/ListMemberGroup.php<?=$ecms_hashur['whehref']?>');"> 
+              <font color="#666666">(²»ÉèÖÃÎª²»ÏÞ£¬¶à¸ö»áÔ±×éÓÃ¶ººÅ¸ô¿ª£¬Èç£º'1,2') </font></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">ä¼šå‘˜å¸å·IDï¼š</td>
+            <td width="24%">»áÔ±ÕÊºÅID£º</td>
             <td width="76%"><input name="muserid" type="text" id="muserid"> 
-              <input type="button" name="Submit622232352223" value="æŸ¥çœ‹ä¼šå‘˜ID" onclick="window.open('../member/ListMember.php<?=$ecms_hashur['whehref']?>');">
-              <font color="#666666">(ä¸è®¾ç½®ä¸ºä¸é™ï¼Œå¤šä¸ªç”¨æˆ·IDç”¨é€—å·éš”å¼€ï¼Œå¦‚ï¼š'25,27')</font></td>
+              <input type="button" name="Submit622232352223" value="²é¿´»áÔ±ID" onclick="window.open('../member/ListMember.php<?=$ecms_hashur['whehref']?>');">
+              <font color="#666666">(²»ÉèÖÃÎª²»ÏÞ£¬¶à¸öÓÃ»§IDÓÃ¶ººÅ¸ô¿ª£¬Èç£º'25,27')</font></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æŸ¥è¯¢å­—æ®µï¼š</td>
-            <td width="76%"> <input name="lfield" type="text" id="lfield3"> <font color="#666666">(ç©ºä¸ºæŸ¥è¯¢æ‰€æœ‰ä¼šå‘˜å­—æ®µ)</font> 
+            <td width="24%">²éÑ¯×Ö¶Î£º</td>
+            <td width="76%"> <input name="lfield" type="text" id="lfield3"> <font color="#666666">(¿ÕÎª²éÑ¯ËùÓÐ»áÔ±×Ö¶Î)</font> 
             </td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#ListMemberInfo" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">sys_ListMemberInfo(è°ƒç”¨æ¡æ•°,æ“ä½œç±»åž‹,ä¼šå‘˜ç»„ID,ç”¨æˆ·ID,æŸ¥è¯¢å­—æ®µ)</a></font></td>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><font color="#333333"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#ListMemberInfo" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">sys_ListMemberInfo(µ÷ÓÃÌõÊý,²Ù×÷ÀàÐÍ,»áÔ±×éID,ÓÃ»§ID,²éÑ¯×Ö¶Î)</a></font></td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -3094,7 +3094,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="12" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit2" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit2" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>
@@ -3106,7 +3106,7 @@ elseif($bqname=='spaceeloop')
 {
 ?>
 <script>
-//è¿”å›žæ ‡ç­¾
+//·µ»Ø±êÇ©
 function ShowBqFun(){
 	var obj=document.bqform;
 	var bqstr;
@@ -3126,20 +3126,20 @@ function ShowBqFun(){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="spaceeloop">
 	<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" colspan="2" class="header">spaceeloopä¼šå‘˜ç©ºé—´çµåŠ¨æ ‡ç­¾ç”Ÿæˆ 
+      <td height="25" colspan="2" class="header">spaceeloop»áÔ±¿Õ¼äÁé¶¯±êÇ©Éú³É 
         <input name="bqname" type="hidden" id="bqname" value="<?=$bqname?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰æ‹©è°ƒç”¨å¯¹è±¡ï¼š 
+      <td height="25" colspan="2">Ñ¡Ôñµ÷ÓÃ¶ÔÏó£º 
         <select name="doobject" id="doobject" onchange="self.location.href='MakeBq.php?<?=$ecms_hashur['ehref']?>&bqname=<?=$bqname?>&addselfinfo=1&doobject='+this.options[this.selectedIndex].value">
-          <option value="1"<?=$doobject==1?' selected':''?>>æŒ‰é»˜è®¤è¡¨( 
+          <option value="1"<?=$doobject==1?' selected':''?>>°´Ä¬ÈÏ±í( 
           <?=$public_r['tbname']?>
           )</option>
-          <option value="2"<?=$doobject==2?' selected':''?>>æ ç›®</option>
-          <option value="5"<?=$doobject==5?' selected':''?>>æ ‡é¢˜åˆ†ç±»</option>
-          <option value="4"<?=$doobject==4?' selected':''?>>æ•°æ®è¡¨</option>
-          <option value="5"<?=$doobject==5?' selected':''?>>æ ‡é¢˜åˆ†ç±»</option>
-          <option value="6"<?=$doobject==6?' selected':''?>>æŒ‰SQLè°ƒç”¨</option>
+          <option value="2"<?=$doobject==2?' selected':''?>>À¸Ä¿</option>
+          <option value="5"<?=$doobject==5?' selected':''?>>±êÌâ·ÖÀà</option>
+          <option value="4"<?=$doobject==4?' selected':''?>>Êý¾Ý±í</option>
+          <option value="5"<?=$doobject==5?' selected':''?>>±êÌâ·ÖÀà</option>
+          <option value="6"<?=$doobject==6?' selected':''?>>°´SQLµ÷ÓÃ</option>
         </select> </td>
     </tr>
     <tr> 
@@ -3153,59 +3153,59 @@ function ShowBqFun(){
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">è°ƒç”¨æ•°é‡ï¼š</td>
+            <td width="24%">µ÷ÓÃÊýÁ¿£º</td>
             <td width="76%"><input name="line" type="text" id="line" value="10"></td>
           </tr>
         </table></td>
-      <td bgcolor="#FFFFFF">åªè°ƒç”¨æœ‰æ ‡é¢˜å›¾ç‰‡çš„ä¿¡æ¯ï¼š 
+      <td bgcolor="#FFFFFF">Ö»µ÷ÓÃÓÐ±êÌâÍ¼Æ¬µÄÐÅÏ¢£º 
         <select name="ispic" id="select6">
-          <option value="0">ä¸é™</option>
-          <option value="1">æ˜¯</option>
+          <option value="0">²»ÏÞ</option>
+          <option value="1">ÊÇ</option>
         </select> </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é€‰é¡¹è®¾ç½®</td>
+      <td height="25" colspan="2">Ñ¡ÏîÉèÖÃ</td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">é™„åŠ SQLæ¡ä»¶ï¼š</td>
+            <td width="24%">¸½¼ÓSQLÌõ¼þ£º</td>
             <td width="76%"><input name="addsql" type="text" id="addsql"> <select name="addsqlselect" onchange="document.bqform.addsql.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="isgood=1">1çº§æŽ¨è</option>
-<option value="firsttitle=1">1çº§å¤´æ¡</option>
-<option value="field='å€¼'">å­—æ®µç­‰äºŽæŸå€¼</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="isgood=1">1¼¶ÍÆ¼ö</option>
+<option value="firsttitle=1">1¼¶Í·Ìõ</option>
+<option value="field='Öµ'">×Ö¶ÎµÈÓÚÄ³Öµ</option>
 </select></td>
           </tr>
         </table></td>
       <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="24%">æ˜¾ç¤ºæŽ’åºï¼š</td>
+            <td width="24%">ÏÔÊ¾ÅÅÐò£º</td>
             <td width="76%"><input name="orderby" type="text" id="orderby"> <select name="orderbyselect" onchange="document.bqform.orderby.value=this.value">
-<option value=""> -- é¢„é€‰é¡¹ -- </option>
-<option value="newstime DESC">æŒ‰å‘å¸ƒæ—¶é—´é™åºæŽ’åº</option>
-<option value="newstime ASC">æŒ‰å‘å¸ƒæ—¶é—´å‡åºæŽ’åº</option>
-<option value="id DESC">æŒ‰IDé™åºæŽ’åº</option>
-<option value="onclick DESC">æŒ‰ç‚¹å‡»çŽ‡é™åºæŽ’åº</option>
-<option value="totaldown DESC">æŒ‰ä¸‹è½½æ•°é™åºæŽ’åº</option>
-<option value="plnum DESC">æŒ‰è¯„è®ºæ•°é™åºæŽ’åº</option>
-<option value="diggtop DESC">æŒ‰é¡¶æ•°(digg)é™åºæŽ’åº</option>
+<option value=""> -- Ô¤Ñ¡Ïî -- </option>
+<option value="newstime DESC">°´·¢²¼Ê±¼ä½µÐòÅÅÐò</option>
+<option value="newstime ASC">°´·¢²¼Ê±¼äÉýÐòÅÅÐò</option>
+<option value="id DESC">°´ID½µÐòÅÅÐò</option>
+<option value="onclick DESC">°´µã»÷ÂÊ½µÐòÅÅÐò</option>
+<option value="totaldown DESC">°´ÏÂÔØÊý½µÐòÅÅÐò</option>
+<option value="plnum DESC">°´ÆÀÂÛÊý½µÐòÅÅÐò</option>
+<option value="diggtop DESC">°´¶¥Êý(digg)½µÐòÅÅÐò</option>
 </select></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit3" value="è¾“å‡ºæ ‡ç­¾" onclick="ShowBqFun();"> 
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><input type="button" name="Submit3" value="Êä³ö±êÇ©" onclick="ShowBqFun();"> 
       </td>
     </tr>
     <tr>
-      <td height="25" colspan="2" bgcolor="#FFFFFF"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#spaceeloop" target="_blank" title="æŸ¥çœ‹è¯¦ç»†æ ‡ç­¾è¯­æ³•">&lt;?php<br>
-        $spacesql=espace_eloop(æ ç›®ID,æ˜¾ç¤ºæ¡æ•°,æ“ä½œç±»åž‹,åªæ˜¾ç¤ºæœ‰æ ‡é¢˜å›¾ç‰‡,é™„åŠ SQLæ¡ä»¶,æ˜¾ç¤ºæŽ’åº);<br>
+      <td height="25" colspan="2" bgcolor="#FFFFFF"><a href="EnewsBq.php<?=$ecms_hashur['whehref']?>#spaceeloop" target="_blank" title="²é¿´ÏêÏ¸±êÇ©Óï·¨">&lt;?php<br>
+        $spacesql=espace_eloop(À¸Ä¿ID,ÏÔÊ¾ÌõÊý,²Ù×÷ÀàÐÍ,Ö»ÏÔÊ¾ÓÐ±êÌâÍ¼Æ¬,¸½¼ÓSQLÌõ¼þ,ÏÔÊ¾ÅÅÐò);<br>
         while($spacer=$empire-&gt;fetch($spacesql))<br>
         {<br>
         $spacesr=espace_eloop_sp($spacer);<br>
         ?&gt;<br>
-        æ¨¡æ¿ä»£ç å†…å®¹<br>
+        Ä£°å´úÂëÄÚÈÝ<br>
         &lt;?php<br>
         }<br>
         ?&gt;</a></td>
@@ -3216,7 +3216,7 @@ function ShowBqFun(){
             <td><textarea name="bqshow" cols="65" rows="12" id="bqshow" style="width:100%"></textarea></td>
           </tr>
           <tr> 
-            <td height="25"><input type="button" name="Submit22" value="å¤åˆ¶ä¸Šé¢æ ‡ç­¾å†…å®¹" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
+            <td height="25"><input type="button" name="Submit22" value="¸´ÖÆÉÏÃæ±êÇ©ÄÚÈÝ" onclick="window.clipboardData.setData('Text',document.bqform.bqshow.value);document.bqform.bqshow.select()"></td>
           </tr>
         </table></td>
     </tr>

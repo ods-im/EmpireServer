@@ -1,5 +1,5 @@
-// 鍏ㄥ眬鍙橀噺鍦ㄦ瀹氫箟
-var BROD=0;		//鏄惁鏄洿鎾祦
+// 全局变量在此定义
+var BROD=0;		//是否是直播流
 var WM='wm';
 var RM='rm';
 var QT='qt';
@@ -54,7 +54,7 @@ var BAL_TRACE_TOP=250;
 
 
 var POP_HEIGHT=66;
-// 鎾斁鎺у埗鍙橀噺
+// 播放控制变量
 var player="document.Player.";
 var currentpos=0;
 var length=0;

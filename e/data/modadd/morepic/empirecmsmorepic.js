@@ -21,7 +21,7 @@ function yecmsShowSmallPics(){
 		}
 		str+='<td bgcolor="#cccccc" align="center" id="espicid'+i+'"'+cname+'><a href="#empirecms" onclick="ecmsShowPic('+i+');"><img src="'+ecmspicr[i][0]+'" width="'+epicswidth+'" height="'+epicsheight+'" border="0"></a><br>'+(i+1)+'/'+ecmspicnum+'</td>';
 
-		selectpages+='<option value="'+i+'"'+sname+'>ç¬¬ '+(i+1)+' é¡µ</option>';
+		selectpages+='<option value="'+i+'"'+sname+'>µÚ '+(i+1)+' Ò³</option>';
 
 		listpages+='<a href="#empirecms" id="epiclpid'+i+'" onclick="ecmsShowPic('+i+');"'+lname+'>'+(i+1)+'</a> ';
 	}

@@ -6,7 +6,7 @@ require("../class/db_sql.php");
 require("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//验证用户
+//��֤�û�
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//初使化
+//��ʹ��
 $from=ehtmlspecialchars($_GET['from']);
 if($_GET['first']==1)
 {
@@ -29,9 +29,9 @@ else
 if($recheckcjnum>=$_COOKIE['recjnum'])
 {
 	$enews="ReNewsHtml";
-	//操作日志
+	//������־
 	        insert_dolog("");
-	echo"<script>alert('所有节点采集完毕,请击相应的节点进入数据入库!');</script>";
+	echo"<script>alert('���нڵ�ɼ����,�����Ӧ�Ľڵ�����������!');</script>";
 }
 else
 {

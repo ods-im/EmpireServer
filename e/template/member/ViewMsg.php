@@ -5,8 +5,8 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='æŸ¥çœ‹æ¶ˆæ¯';
-$url="<a href=../../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;<a href=../../msg/>æ¶ˆæ¯åˆ—è¡¨</a>&nbsp;>&nbsp;æŸ¥çœ‹æ¶ˆæ¯";
+$public_diyr['pagetitle']='²é¿´ÏûÏ¢';
+$url="<a href=../../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;<a href=../../msg/>ÏûÏ¢ÁĞ±í</a>&nbsp;>&nbsp;²é¿´ÏûÏ¢";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
@@ -16,27 +16,27 @@ require(ECMS_PATH.'e/template/incfile/header.php');
                 <?=stripSlashes($r[title])?>              </td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
-              <td width="19%" height="25">å‘é€è€…ï¼š</td>
+              <td width="19%" height="25">·¢ËÍÕß£º</td>
               <td width="81%" height="25"><a href="../../ShowInfo/?userid=<?=$r[from_userid]?>"> 
                 <?=$r[from_username]?>
                 </a></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
-              <td height="25">å‘é€æ—¶é—´ï¼š</td>
+              <td height="25">·¢ËÍÊ±¼ä£º</td>
               <td height="25">
                 <?=$r[msgtime]?>              </td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
-              <td height="25" valign="top">å†…å®¹ï¼š</td>
+              <td height="25" valign="top">ÄÚÈİ£º</td>
               <td height="25"> 
                 <?=nl2br(stripSlashes($r[msgtext]))?>              </td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25" valign="top">&nbsp;</td>
-              <td height="25">[<a href="#ecms" onclick="javascript:history.go(-1);"><strong>è¿”å›</strong></a>] 
-                [<a href="../AddMsg/?enews=AddMsg&re=1&mid=<?=$mid?>"><strong>å›å¤</strong></a>] 
-                [<a href="../AddMsg/?enews=AddMsg&mid=<?=$mid?>"><strong>è½¬å‘</strong></a>] 
-                [<a href="../../doaction.php?enews=DelMsg&mid=<?=$mid?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');"><strong>åˆ é™¤</strong></a>]</td>
+              <td height="25">[<a href="#ecms" onclick="javascript:history.go(-1);"><strong>·µ»Ø</strong></a>] 
+                [<a href="../AddMsg/?enews=AddMsg&re=1&mid=<?=$mid?>"><strong>»Ø¸´</strong></a>] 
+                [<a href="../AddMsg/?enews=AddMsg&mid=<?=$mid?>"><strong>×ª·¢</strong></a>] 
+                [<a href="../../doaction.php?enews=DelMsg&mid=<?=$mid?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');"><strong>É¾³ı</strong></a>]</td>
             </tr>
           </form>
         </table>

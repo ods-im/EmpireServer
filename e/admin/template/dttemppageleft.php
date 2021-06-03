@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,12 +15,12 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"dttemp");
-//å…³é—­
+//¹Ø±Õ
 if(!$ecms_config['esafe']['openeditdttemp'])
 {
-	echo"æ²¡æœ‰å¼€å¯åœ¨çº¿ä¿®æ”¹åŠ¨æ€é¡µé¢æ¨¡æ¿";
+	echo"Ã»ÓĞ¿ªÆôÔÚÏßĞŞ¸Ä¶¯Ì¬Ò³ÃæÄ£°å";
 	exit();
 }
 
@@ -94,8 +94,8 @@ while($tempr=$empire->fetch($tempsql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>èœå•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²Ëµ¥</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <SCRIPT lanuage="JScript">
 function DisplayImg(ss,imgname,phome)
@@ -179,7 +179,7 @@ function turnit(ss,img)
 <br>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="incfileid">
   <tr>
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="incfileimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(incfile,"incfileimg"); style="CURSOR: hand">å…¬å…±å¼•ç”¨é¡µé¢</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="incfileimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(incfile,"incfileimg"); style="CURSOR: hand">¹«¹²ÒıÓÃÒ³Ãæ</a></td>
   </tr>
   <tbody id="incfile">
 	<?=$showtempr['incfile']?>
@@ -188,7 +188,7 @@ function turnit(ss,img)
 <br>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="memberid">
   <tr>
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="memberimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(member,"memberimg"); style="CURSOR: hand">ä¼šå‘˜åŸºæœ¬é¡µé¢</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="memberimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(member,"memberimg"); style="CURSOR: hand">»áÔ±»ù±¾Ò³Ãæ</a></td>
   </tr>
   <tbody id="member">
   	<?=$showtempr['member']?>
@@ -197,19 +197,19 @@ function turnit(ss,img)
 <br>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="memberfunid">
   <tr>
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="memberfunimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(memberfun,"memberfunimg"); style="CURSOR: hand">ä¼šå‘˜æ¨¡å—é¡µé¢</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="memberfunimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(memberfun,"memberfunimg"); style="CURSOR: hand">»áÔ±Ä£¿éÒ³Ãæ</a></td>
   </tr>
   <tbody id="memberfun">
     <tr>
-      <td height="25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;çŸ­æ¶ˆæ¯é¡µé¢</td>
+      <td height="25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¶ÌÏûÏ¢Ò³Ãæ</td>
     </tr>
 	<?=$showtempr['membermsg']?>
 	<tr>
-      <td height="25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;å¥½å‹é¡µé¢</td>
+      <td height="25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ºÃÓÑÒ³Ãæ</td>
     </tr>
 	<?=$showtempr['memberfriend']?>
 	<tr>
-      <td height="25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;æ”¶è—å¤¹é¡µé¢</td>
+      <td height="25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÊÕ²Ø¼ĞÒ³Ãæ</td>
     </tr>
 	<?=$showtempr['memberfav']?>
   </tbody>
@@ -217,7 +217,7 @@ function turnit(ss,img)
 <br>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="memberspaceid">
   <tr>
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="memberspaceimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(memberspace,"memberspaceimg"); style="CURSOR: hand">ä¼šå‘˜ç©ºé—´</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="memberspaceimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(memberspace,"memberspaceimg"); style="CURSOR: hand">»áÔ±¿Õ¼ä</a></td>
   </tr>
   <tbody id="memberspace">
 	<?=$showtempr['memberspace']?>
@@ -226,7 +226,7 @@ function turnit(ss,img)
 <br>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="memberconnectid">
   <tr>
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="memberconnectimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(memberconnect,"memberconnectimg"); style="CURSOR: hand">ä¼šå‘˜ç™»å½•ç»‘å®š</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="memberconnectimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(memberconnect,"memberconnectimg"); style="CURSOR: hand">»áÔ±µÇÂ¼°ó¶¨</a></td>
   </tr>
   <tbody id="memberconnect">
 	<?=$showtempr['memberconnect']?>
@@ -235,7 +235,7 @@ function turnit(ss,img)
 <br>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="memberotherid">
   <tr>
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="memberotherimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(memberother,"memberotherimg"); style="CURSOR: hand">ä¼šå‘˜å…¶ä»–é¡µé¢</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="memberotherimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(memberother,"memberotherimg"); style="CURSOR: hand">»áÔ±ÆäËûÒ³Ãæ</a></td>
   </tr>
   <tbody id="memberother">
 	<?=$showtempr['memberother']?>
@@ -244,7 +244,7 @@ function turnit(ss,img)
 <br>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="doinfoid">
   <tr> 
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="doinfoimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(doinfo,"doinfoimg"); style="CURSOR: hand">æŠ•ç¨¿</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="doinfoimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(doinfo,"doinfoimg"); style="CURSOR: hand">Í¶¸å</a></td>
   </tr>
   <tbody id="doinfo">
   	<?=$showtempr['doinfo']?>
@@ -253,7 +253,7 @@ function turnit(ss,img)
   <br>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="shopsysid">
   <tr> 
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="shopsysimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(shopsys,"shopsysimg"); style="CURSOR: hand">å•†åŸ</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="shopsysimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(shopsys,"shopsysimg"); style="CURSOR: hand">ÉÌ³Ç</a></td>
   </tr>
   <tbody id="shopsys">
   	<?=$showtempr['shopsys']?>
@@ -262,7 +262,7 @@ function turnit(ss,img)
   <br>
   <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="pubtempid">
     <tr>
-      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="pubtempimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(pubtemp,"pubtempimg"); style="CURSOR: hand">å…¶ä»–</a></td>
+      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="pubtempimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(pubtemp,"pubtempimg"); style="CURSOR: hand">ÆäËû</a></td>
     </tr>
     <tbody id="pubtemp">
       <?=$showtempr['pubtemp']?>
@@ -275,7 +275,7 @@ if($showtempr['diytemp'])
 ?>
   <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="diytempid">
     <tr>
-      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="diytempimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(diy,"diytempimg"); style="CURSOR: hand">è‡ªå®šä¹‰</a></td>
+      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="diytempimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(diy,"diytempimg"); style="CURSOR: hand">×Ô¶¨Òå</a></td>
     </tr>
     <tbody id="diy">
       <?=$showtempr['diytemp']?>

@@ -6,81 +6,81 @@ if(!defined('InEmpireCMS'))
 define('EmpireCMSConfig',TRUE);
 $ecms_config=array();
 
-//æ•°æ®åº“è®¾ç½®
-$ecms_config['db']['usedb']='mysql';	//æ•°æ®åº“ç±»å‹
-$ecms_config['db']['dbver']='5.0';	//æ•°æ®åº“ç‰ˆæœ¬
-$ecms_config['db']['dbserver']='localhost';	//æ•°æ®åº“ç™»å½•åœ°å€
-$ecms_config['db']['dbport']='';	//ç«¯å£ï¼Œä¸å¡«ä¸ºæŒ‰é»˜è®¤
-$ecms_config['db']['dbusername']='root';	//æ•°æ®åº“ç”¨æˆ·å
-$ecms_config['db']['dbpassword']='';	//æ•°æ®åº“å¯†ç 
-$ecms_config['db']['dbname']='ecms75';	//æ•°æ®åº“å
-$ecms_config['db']['setchar']='utf8';	//è®¾ç½®é»˜è®¤ç¼–ç 
-$ecms_config['db']['dbchar']='utf8';	//æ•°æ®åº“é»˜è®¤ç¼–ç 
-$ecms_config['db']['dbtbpre']='phome_';	//æ•°æ®è¡¨å‰ç¼€
-$dbtbpre=$ecms_config['db']['dbtbpre'];	//æ•°æ®è¡¨å‰ç¼€
-$ecms_config['db']['showerror']=1;	//æ˜¾ç¤ºSQLé”™è¯¯æç¤º(0ä¸ºä¸æ˜¾ç¤º,1ä¸ºæ˜¾ç¤º)
+//Êı¾İ¿âÉèÖÃ
+$ecms_config['db']['usedb']='mysql';	//Êı¾İ¿âÀàĞÍ
+$ecms_config['db']['dbver']='5.0';	//Êı¾İ¿â°æ±¾
+$ecms_config['db']['dbserver']='localhost';	//Êı¾İ¿âµÇÂ¼µØÖ·
+$ecms_config['db']['dbport']='';	//¶Ë¿Ú£¬²»ÌîÎª°´Ä¬ÈÏ
+$ecms_config['db']['dbusername']='root';	//Êı¾İ¿âÓÃ»§Ãû
+$ecms_config['db']['dbpassword']='';	//Êı¾İ¿âÃÜÂë
+$ecms_config['db']['dbname']='empirecms';	//Êı¾İ¿âÃû
+$ecms_config['db']['setchar']='gbk';	//ÉèÖÃÄ¬ÈÏ±àÂë
+$ecms_config['db']['dbchar']='gbk';	//Êı¾İ¿âÄ¬ÈÏ±àÂë
+$ecms_config['db']['dbtbpre']='phome_';	//Êı¾İ±íÇ°×º
+$dbtbpre=$ecms_config['db']['dbtbpre'];	//Êı¾İ±íÇ°×º
+$ecms_config['db']['showerror']=1;	//ÏÔÊ¾SQL´íÎóÌáÊ¾(0Îª²»ÏÔÊ¾,1ÎªÏÔÊ¾)
 
 
-//é¡µé¢ç¼–ç è®¾ç½®
-$ecms_config['sets']['pagechar']='utf-8';	//å®‰è£…å¸å›½CMSçš„ç¼–ç ç‰ˆæœ¬
-$ecms_config['sets']['setpagechar']=1;	//é¡µé¢é»˜è®¤å­—ç¬¦é›†,0=å…³é—­ 1=å¼€å¯
-$ecms_config['sets']['elang']='gb';	//è¯­è¨€åŒ…
+//Ò³Ãæ±àÂëÉèÖÃ
+$ecms_config['sets']['pagechar']='gb2312';	//°²×°µÛ¹úCMSµÄ±àÂë°æ±¾
+$ecms_config['sets']['setpagechar']=1;	//Ò³ÃæÄ¬ÈÏ×Ö·û¼¯,0=¹Ø±Õ 1=¿ªÆô
+$ecms_config['sets']['elang']='gb';	//ÓïÑÔ°ü
 
-//åå°ç›¸å…³é…ç½®
-$ecms_config['esafe']['openonlinesetting']=3;	//å¼€å¯åå°åœ¨çº¿é…ç½®å‚æ•°(0ä¸ºå…³é—­,1ä¸ºå¼€å¯é˜²ç«å¢™é…ç½®,2ä¸ºå¼€å¯å®‰å…¨é…ç½®,3ä¸ºå…¨å¼€å¯)
-$ecms_config['esafe']['openeditdttemp']=1;	//å¼€å¯åå°åœ¨çº¿ä¿®æ”¹åŠ¨æ€æ¨¡æ¿(0ä¸ºå…³é—­,1ä¸ºå¼€å¯)
+//ºóÌ¨Ïà¹ØÅäÖÃ
+$ecms_config['esafe']['openonlinesetting']=3;	//¿ªÆôºóÌ¨ÔÚÏßÅäÖÃ²ÎÊı(0Îª¹Ø±Õ,1Îª¿ªÆô·À»ğÇ½ÅäÖÃ,2Îª¿ªÆô°²È«ÅäÖÃ,3ÎªÈ«¿ªÆô)
+$ecms_config['esafe']['openeditdttemp']=1;	//¿ªÆôºóÌ¨ÔÚÏßĞŞ¸Ä¶¯Ì¬Ä£°å(0Îª¹Ø±Õ,1Îª¿ªÆô)
 
-//æ˜“é€šè¡Œç³»ç»Ÿé…ç½®
-$ecms_config['epassport']['open']=0;	//æ˜¯å¦å¼€å¯æ˜“é€šè¡Œç³»ç»Ÿ(1ä¸ºå¼€å¯ï¼Œ0ä¸ºå…³é—­)
+//Ò×Í¨ĞĞÏµÍ³ÅäÖÃ
+$ecms_config['epassport']['open']=0;	//ÊÇ·ñ¿ªÆôÒ×Í¨ĞĞÏµÍ³(1Îª¿ªÆô£¬0Îª¹Ø±Õ)
 
-//å…¶å®ƒé…ç½®
-$ecms_config['sets']['webdebug']=0;	//æ˜¯å¦æ˜¾ç¤ºPHPé”™è¯¯æç¤º(0ä¸ºä¸æ˜¾ç¤º,1ä¸ºæ˜¾ç¤º)
-$ecms_config['sets']['timezone']='PRC';	//æ—¶åŒº
-$ecms_config['sets']['getiptype']=0;	//è·å–IPåœ°å€ç±»å‹(0ä¸ºè‡ªåŠ¨,1ä¸ºREMOTE_ADDR,2ä¸ºHTTP_X_FORWARDED_FOR,3ä¸ºHTTP_CLIENT_IP)
-$ecms_config['sets']['ecmscachepath']=ECMS_PATH.'ecachefiles/';	//åŠ¨æ€é¡µé¢ç¼“å­˜æ–‡ä»¶å­˜æ”¾ç›®å½•
-$ecms_config['sets']['ecmscachefiletype']='.html';	//åŠ¨æ€é¡µé¢ç¼“å­˜æ–‡ä»¶æ‰©å±•å
-$ecms_config['sets']['txtpath']=ECMS_PATH.'d/txt/';	//æ–‡æœ¬å‹æ•°æ®å­˜æ”¾ç›®å½•
-$ecms_config['sets']['saveurlimgclearurl']=0;	//è¿œç¨‹ä¿å­˜å›¾ç‰‡è‡ªåŠ¨å»é™¤å›¾ç‰‡çš„é“¾æ¥(0ä¸ºä¿ç•™,1ä¸ºå»é™¤)
-$ecms_config['sets']['deftempid']=0;	//é»˜è®¤æ¨¡æ¿ç»„ID
-$ecms_config['sets']['selfmoreportid']=0;	//å½“å‰ç½‘ç«™è®¿é—®ç«¯ID,0ä¸ºä¸»è®¿é—®ç«¯
+//ÆäËüÅäÖÃ
+$ecms_config['sets']['webdebug']=0;	//ÊÇ·ñÏÔÊ¾PHP´íÎóÌáÊ¾(0Îª²»ÏÔÊ¾,1ÎªÏÔÊ¾)
+$ecms_config['sets']['timezone']='PRC';	//Ê±Çø
+$ecms_config['sets']['getiptype']=0;	//»ñÈ¡IPµØÖ·ÀàĞÍ(0Îª×Ô¶¯,1ÎªREMOTE_ADDR,2ÎªHTTP_X_FORWARDED_FOR,3ÎªHTTP_CLIENT_IP)
+$ecms_config['sets']['ecmscachepath']=ECMS_PATH.'ecachefiles/';	//¶¯Ì¬Ò³Ãæ»º´æÎÄ¼ş´æ·ÅÄ¿Â¼
+$ecms_config['sets']['ecmscachefiletype']='.html';	//¶¯Ì¬Ò³Ãæ»º´æÎÄ¼şÀ©Õ¹Ãû
+$ecms_config['sets']['txtpath']=ECMS_PATH.'d/txt/';	//ÎÄ±¾ĞÍÊı¾İ´æ·ÅÄ¿Â¼
+$ecms_config['sets']['saveurlimgclearurl']=0;	//Ô¶³Ì±£´æÍ¼Æ¬×Ô¶¯È¥³ıÍ¼Æ¬µÄÁ´½Ó(0Îª±£Áô,1ÎªÈ¥³ı)
+$ecms_config['sets']['deftempid']=0;	//Ä¬ÈÏÄ£°å×éID
+$ecms_config['sets']['selfmoreportid']=0;	//µ±Ç°ÍøÕ¾·ÃÎÊ¶ËID,0ÎªÖ÷·ÃÎÊ¶Ë
 
 
 
 //-------EmpireCMS.Seting.member-------
 
-//ä¼šå‘˜ç³»ç»Ÿç›¸å…³é…ç½®
-$ecms_config['member']['tablename']="{$dbtbpre}enewsmember";	//ä¼šå‘˜è¡¨
-$user_tablename=$ecms_config['member']['tablename'];	//ä¼šå‘˜è¡¨
-$ecms_config['member']['changeregisterurl']="ChangeRegister.php";    //å¤šä¼šå‘˜ç»„ä¸­è½¬æ³¨å†Œåœ°å€
-$ecms_config['member']['registerurl']="";							//ä¼šå‘˜æ³¨å†Œåœ°å€
-$ecms_config['member']['loginurl']="";								//ä¼šå‘˜ç™»å½•åœ°å€
-$ecms_config['member']['quiturl']="";								//ä¼šå‘˜é€€å‡ºåœ°å€
-$ecms_config['member']['chmember']=0;//æ˜¯å¦ä½¿ç”¨åŸç‰ˆä¼šå‘˜è¡¨ä¿¡æ¯,0ä¸ºåŸç‰ˆ,1ä¸ºéåŸç‰ˆ
-$ecms_config['member']['pwtype']=2;//å¯†ç ä¿å­˜å½¢å¼,0ä¸ºmd5,1ä¸ºæ˜ç ,2ä¸ºåŒé‡åŠ å¯†,3ä¸º16ä½md5
-$ecms_config['member']['regtimetype']=1;//æ³¨å†Œæ—¶é—´ä¿å­˜æ ¼å¼,0ä¸ºæ­£å¸¸æ—¶é—´,1ä¸ºæ•°å€¼å‹
-$ecms_config['member']['regcookietime']=0;//æ³¨å†Œåç™»å½•ä¿å­˜æ—¶é—´(ç§’)
-$ecms_config['member']['defgroupid']=0;//æ³¨å†Œæ—¶ä¼šå‘˜ç»„ID(ecmsçš„ä¼šå‘˜ç»„,0ä¸ºåå°é»˜è®¤)
-$ecms_config['member']['saltnum']=6;//SALTéšæœºç å­—ç¬¦æ•°
-$ecms_config['member']['utfdata']=0;//æ•°æ®æ˜¯å¦æ˜¯GBKç¼–ç ,0ä¸ºæ­£å¸¸æ•°æ®,1ä¸ºGBKç¼–ç 
+//»áÔ±ÏµÍ³Ïà¹ØÅäÖÃ
+$ecms_config['member']['tablename']="{$dbtbpre}enewsmember";	//»áÔ±±í
+$user_tablename=$ecms_config['member']['tablename'];	//»áÔ±±í
+$ecms_config['member']['changeregisterurl']="ChangeRegister.php";    //¶à»áÔ±×éÖĞ×ª×¢²áµØÖ·
+$ecms_config['member']['registerurl']="";							//»áÔ±×¢²áµØÖ·
+$ecms_config['member']['loginurl']="";								//»áÔ±µÇÂ¼µØÖ·
+$ecms_config['member']['quiturl']="";								//»áÔ±ÍË³öµØÖ·
+$ecms_config['member']['chmember']=0;//ÊÇ·ñÊ¹ÓÃÔ­°æ»áÔ±±íĞÅÏ¢,0ÎªÔ­°æ,1Îª·ÇÔ­°æ
+$ecms_config['member']['pwtype']=2;//ÃÜÂë±£´æĞÎÊ½,0Îªmd5,1ÎªÃ÷Âë,2ÎªË«ÖØ¼ÓÃÜ,3Îª16Î»md5
+$ecms_config['member']['regtimetype']=1;//×¢²áÊ±¼ä±£´æ¸ñÊ½,0ÎªÕı³£Ê±¼ä,1ÎªÊıÖµĞÍ
+$ecms_config['member']['regcookietime']=0;//×¢²áºóµÇÂ¼±£´æÊ±¼ä(Ãë)
+$ecms_config['member']['defgroupid']=0;//×¢²áÊ±»áÔ±×éID(ecmsµÄ»áÔ±×é,0ÎªºóÌ¨Ä¬ÈÏ)
+$ecms_config['member']['saltnum']=6;//SALTËæ»úÂë×Ö·ûÊı
+$ecms_config['member']['utfdata']=0;//Êı¾İÊÇ·ñÊÇUTF8±àÂë,0ÎªÕı³£Êı¾İ,1ÎªUTF8±àÂë
 
-$ecms_config['memberf']['userid']='userid';//ç”¨æˆ·IDå­—æ®µ
-$ecms_config['memberf']['username']='username';//ç”¨æˆ·åå­—æ®µ
-$ecms_config['memberf']['password']='password';//å¯†ç å­—æ®µ
-$ecms_config['memberf']['rnd']='rnd';//éšæœºå¯†ç å­—æ®µ
-$ecms_config['memberf']['email']='email';//é‚®ç®±å­—æ®µ
-$ecms_config['memberf']['registertime']='registertime';//æ³¨å†Œæ—¶é—´å­—æ®µ
-$ecms_config['memberf']['groupid']='groupid';//ä¼šå‘˜ç»„å­—æ®µ
-$ecms_config['memberf']['userfen']='userfen';//ç§¯åˆ†å­—æ®µ
-$ecms_config['memberf']['userdate']='userdate';//æœ‰æ•ˆæœŸå­—æ®µ
-$ecms_config['memberf']['money']='money';//å¸æˆ·ä½™é¢å­—æ®µ
-$ecms_config['memberf']['zgroupid']='zgroupid';//åˆ°æœŸè½¬å‘ä¼šå‘˜ç»„å­—æ®µ
-$ecms_config['memberf']['havemsg']='havemsg';//æç¤ºçŸ­æ¶ˆæ¯å­—æ®µ
-$ecms_config['memberf']['checked']='checked';//å®¡æ ¸çŠ¶æ€å­—æ®µ
-$ecms_config['memberf']['salt']='salt';//SALTåŠ å¯†å­—æ®µ
-$ecms_config['memberf']['userkey']='userkey';//ç”¨æˆ·å¯†é’¥å­—æ®µ
-$ecms_config['memberf']['ingid']='ingid';//å†…éƒ¨ä¼šå‘˜ç»„å­—æ®µ
-$ecms_config['memberf']['agid']='agid';//ä¼šå‘˜ç®¡ç†ç»„å­—æ®µ
-$ecms_config['memberf']['isern']='isern';//å®åå­—æ®µ
+$ecms_config['memberf']['userid']='userid';//ÓÃ»§ID×Ö¶Î
+$ecms_config['memberf']['username']='username';//ÓÃ»§Ãû×Ö¶Î
+$ecms_config['memberf']['password']='password';//ÃÜÂë×Ö¶Î
+$ecms_config['memberf']['rnd']='rnd';//Ëæ»úÃÜÂë×Ö¶Î
+$ecms_config['memberf']['email']='email';//ÓÊÏä×Ö¶Î
+$ecms_config['memberf']['registertime']='registertime';//×¢²áÊ±¼ä×Ö¶Î
+$ecms_config['memberf']['groupid']='groupid';//»áÔ±×é×Ö¶Î
+$ecms_config['memberf']['userfen']='userfen';//»ı·Ö×Ö¶Î
+$ecms_config['memberf']['userdate']='userdate';//ÓĞĞ§ÆÚ×Ö¶Î
+$ecms_config['memberf']['money']='money';//ÕÊ»§Óà¶î×Ö¶Î
+$ecms_config['memberf']['zgroupid']='zgroupid';//µ½ÆÚ×ªÏò»áÔ±×é×Ö¶Î
+$ecms_config['memberf']['havemsg']='havemsg';//ÌáÊ¾¶ÌÏûÏ¢×Ö¶Î
+$ecms_config['memberf']['checked']='checked';//ÉóºË×´Ì¬×Ö¶Î
+$ecms_config['memberf']['salt']='salt';//SALT¼ÓÃÜ×Ö¶Î
+$ecms_config['memberf']['userkey']='userkey';//ÓÃ»§ÃÜÔ¿×Ö¶Î
+$ecms_config['memberf']['ingid']='ingid';//ÄÚ²¿»áÔ±×é×Ö¶Î
+$ecms_config['memberf']['agid']='agid';//»áÔ±¹ÜÀí×é×Ö¶Î
+$ecms_config['memberf']['isern']='isern';//ÊµÃû×Ö¶Î
 
 //-------EmpireCMS.Seting.member-------
 
@@ -89,49 +89,49 @@ $ecms_config['memberf']['isern']='isern';//å®åå­—æ®µ
 
 //-------EmpireCMS.Seting.area-------
 
-//åå°å®‰å…¨è®¾ç½®
-$ecms_config['esafe']['loginauth']='';	//ç™»å½•è®¤è¯ç ,å¦‚æœè®¾ç½®ç™»å½•éœ€è¦è¾“å…¥æ­¤è®¤è¯ç æ‰èƒ½é€šè¿‡
-$ecms_config['esafe']['enloginauth']=0;	//ç™»å½•è®¤è¯ç åŠ å¯†éªŒè¯ä¸²æœ‰æ•ˆæ—¶é—´,å•ä½:ç§’(0ä¸ºä¸å¯ç”¨åŠ å¯†)
-$ecms_config['esafe']['ecookiernd']='www.phome.net';	//åå°ç™»å½•COOKIEè®¤è¯ç (å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['esafe']['ckhloginip']=0;	//åå°æ˜¯å¦éªŒè¯ç™»å½•IP,0ä¸ºä¸éªŒè¯,1ä¸ºéªŒè¯
-$ecms_config['esafe']['ckhsession']=0;	//åå°æ˜¯å¦å¯ç”¨SESSIONéªŒè¯,0ä¸ºä¸éªŒè¯,1ä¸ºéªŒè¯
-$ecms_config['esafe']['ckhanytime']=0;	//åå°éšæ—¶è®¤è¯ç å˜æ›´å‘¨æœŸ,å•ä½:ç§’(0ä¸ºä¸å¯ç”¨)
-$ecms_config['esafe']['theloginlog']=0;	//æ˜¯å¦è®°å½•ç™»é™†æ—¥å¿—(0ä¸ºè®°å½•,1ä¸ºä¸è®°å½•)
-$ecms_config['esafe']['thedolog']=0;		//æ˜¯å¦è®°å½•æ“ä½œæ—¥å¿—(0ä¸ºè®°å½•,1ä¸ºä¸è®°å½•)
-$ecms_config['esafe']['ckfromurl']=2;	//æ˜¯å¦å¯ç”¨æ¥æºåœ°å€éªŒè¯,0ä¸ºä¸éªŒè¯,1ä¸ºå…¨éƒ¨éªŒè¯,2ä¸ºåå°éªŒè¯,3ä¸ºå‰å°éªŒè¯,4ä¸ºå…¨éƒ¨éªŒè¯(ä¸¥æ ¼),5ä¸ºåå°éªŒè¯(ä¸¥æ ¼),6ä¸ºå‰å°éªŒè¯(ä¸¥æ ¼)
-$ecms_config['esafe']['ckhash']=0;	//å¯ç”¨åå°æ¥æºè®¤è¯ç ,0ä¸ºé‡‘åˆšæ¨¡å¼éªŒè¯,1ä¸ºåˆºçŒ¬æ¨¡å¼éªŒè¯,2ä¸ºå…³é—­éªŒè¯
-$ecms_config['esafe']['ckhashename']='ehash_';	//åå°æ¥æºè®¤è¯ç è®¿é—®å˜é‡å(å¿…é¡»å­—æ¯å¼€å¤´,å¹¶ä¸”åªèƒ½ç”±å­—æ¯ã€æ•°å­—ã€ä¸‹åˆ’çº¿ç»„æˆ)
-$ecms_config['esafe']['ckhashrname']='rhash_';	//åå°æ¥æºè®¤è¯ç æäº¤å˜é‡å(å¿…é¡»å­—æ¯å¼€å¤´,å¹¶ä¸”åªèƒ½ç”±å­—æ¯ã€æ•°å­—ã€ä¸‹åˆ’çº¿ç»„æˆ)
-$ecms_config['esafe']['ckhuseragent']='';	//å…è®¸åå°è®¿é—®çš„UserAgentä¿¡æ¯å¿…é¡»åŒ…å«å­—ç¬¦(åŒºåˆ†å¤§å°å†™),å¤šä¸ªç”¨â€œ||â€åŠè§’åŒç«–çº¿éš”å¼€
+//ºóÌ¨°²È«ÉèÖÃ
+$ecms_config['esafe']['loginauth']='admin';	//µÇÂ¼ÈÏÖ¤Âë,Èç¹ûÉèÖÃµÇÂ¼ĞèÒªÊäÈë´ËÈÏÖ¤Âë²ÅÄÜÍ¨¹ı
+$ecms_config['esafe']['enloginauth']=0;	//µÇÂ¼ÈÏÖ¤Âë¼ÓÃÜÑéÖ¤´®ÓĞĞ§Ê±¼ä,µ¥Î»:Ãë(0Îª²»ÆôÓÃ¼ÓÃÜ)
+$ecms_config['esafe']['ecookiernd']='UzAJPfiba82J9M4UJydNT5siHgCf9dmd0tVX';	//ºóÌ¨µÇÂ¼COOKIEÈÏÖ¤Âë(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['esafe']['ckhloginip']=0;	//ºóÌ¨ÊÇ·ñÑéÖ¤µÇÂ¼IP,0Îª²»ÑéÖ¤,1ÎªÑéÖ¤
+$ecms_config['esafe']['ckhsession']=0;	//ºóÌ¨ÊÇ·ñÆôÓÃSESSIONÑéÖ¤,0Îª²»ÑéÖ¤,1ÎªÑéÖ¤
+$ecms_config['esafe']['ckhanytime']=0;	//ºóÌ¨ËæÊ±ÈÏÖ¤Âë±ä¸üÖÜÆÚ,µ¥Î»:Ãë(0Îª²»ÆôÓÃ)
+$ecms_config['esafe']['theloginlog']=0;	//ÊÇ·ñ¼ÇÂ¼µÇÂ½ÈÕÖ¾(0Îª¼ÇÂ¼,1Îª²»¼ÇÂ¼)
+$ecms_config['esafe']['thedolog']=0;		//ÊÇ·ñ¼ÇÂ¼²Ù×÷ÈÕÖ¾(0Îª¼ÇÂ¼,1Îª²»¼ÇÂ¼)
+$ecms_config['esafe']['ckfromurl']=2;	//ÊÇ·ñÆôÓÃÀ´Ô´µØÖ·ÑéÖ¤,0Îª²»ÑéÖ¤,1ÎªÈ«²¿ÑéÖ¤,2ÎªºóÌ¨ÑéÖ¤,3ÎªÇ°Ì¨ÑéÖ¤,4ÎªÈ«²¿ÑéÖ¤(ÑÏ¸ñ),5ÎªºóÌ¨ÑéÖ¤(ÑÏ¸ñ),6ÎªÇ°Ì¨ÑéÖ¤(ÑÏ¸ñ)
+$ecms_config['esafe']['ckhash']=0;	//ÆôÓÃºóÌ¨À´Ô´ÈÏÖ¤Âë,0Îª½ğ¸ÕÄ£Ê½ÑéÖ¤,1Îª´Ìâ¬Ä£Ê½ÑéÖ¤,2Îª¹Ø±ÕÑéÖ¤
+$ecms_config['esafe']['ckhashename']='ehash_';	//ºóÌ¨À´Ô´ÈÏÖ¤Âë·ÃÎÊ±äÁ¿Ãû(±ØĞë×ÖÄ¸¿ªÍ·,²¢ÇÒÖ»ÄÜÓÉ×ÖÄ¸¡¢Êı×Ö¡¢ÏÂ»®Ïß×é³É)
+$ecms_config['esafe']['ckhashrname']='rhash_';	//ºóÌ¨À´Ô´ÈÏÖ¤ÂëÌá½»±äÁ¿Ãû(±ØĞë×ÖÄ¸¿ªÍ·,²¢ÇÒÖ»ÄÜÓÉ×ÖÄ¸¡¢Êı×Ö¡¢ÏÂ»®Ïß×é³É)
+$ecms_config['esafe']['ckhuseragent']='';	//ÔÊĞíºóÌ¨·ÃÎÊµÄUserAgentĞÅÏ¢±ØĞë°üº¬×Ö·û(Çø·Ö´óĞ¡Ğ´),¶à¸öÓÃ¡°||¡±°ë½ÇË«ÊúÏß¸ô¿ª
 
-//COOKIEè®¾ç½®
-$ecms_config['cks']['ckdomain']='';		//cookieä½œç”¨åŸŸ
-$ecms_config['cks']['ckpath']='/';		//cookieä½œç”¨è·¯å¾„
-$ecms_config['cks']['ckhttponly']=0;	//cookieçš„HttpOnlyå±æ€§(0å…³é—­,1å¼€å¯,2åªåå°å¼€å¯,3åªå‰å°å¼€å¯)
-$ecms_config['cks']['cksecure']=0;		//cookieçš„secureå±æ€§(0ä¸ºè‡ªåŠ¨è¯†åˆ«,1ä¸ºå…³é—­,2ä¸ºå¼€å¯,3åªåå°å¼€å¯,4åªå‰å°å¼€å¯)
-$ecms_config['cks']['ckvarpre']='ecms';		//å‰å°cookieå˜é‡å‰ç¼€
-$ecms_config['cks']['ckadminvarpre']='adminecms';		//åå°cookieå˜é‡å‰ç¼€
-$ecms_config['cks']['ckrnd']='www.phome.net';	//COOKIEéªŒè¯éšæœºç (å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['cks']['ckrndtwo']='www.phome.net';	//COOKIEéªŒè¯éšæœºç 2(å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['cks']['ckrndthree']='www.phome.net';	//COOKIEéªŒè¯éšæœºç 3(å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['cks']['ckrndfour']='www.phome.net';	//COOKIEéªŒè¯éšæœºç 4(å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['cks']['ckrndfive']='www.phome.net';	//COOKIEéªŒè¯éšæœºç 5(å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
+//COOKIEÉèÖÃ
+$ecms_config['cks']['ckdomain']='';		//cookie×÷ÓÃÓò
+$ecms_config['cks']['ckpath']='/';		//cookie×÷ÓÃÂ·¾¶
+$ecms_config['cks']['ckhttponly']=0;	//cookieµÄHttpOnlyÊôĞÔ(0¹Ø±Õ,1¿ªÆô,2Ö»ºóÌ¨¿ªÆô,3Ö»Ç°Ì¨¿ªÆô)
+$ecms_config['cks']['cksecure']=0;		//cookieµÄsecureÊôĞÔ(0Îª×Ô¶¯Ê¶±ğ,1Îª¹Ø±Õ,2Îª¿ªÆô,3Ö»ºóÌ¨¿ªÆô,4Ö»Ç°Ì¨¿ªÆô)
+$ecms_config['cks']['ckvarpre']='eqfku';		//Ç°Ì¨cookie±äÁ¿Ç°×º
+$ecms_config['cks']['ckadminvarpre']='eicds';		//ºóÌ¨cookie±äÁ¿Ç°×º
+$ecms_config['cks']['ckrnd']='oKMmUQgOkutPnuKVOcvD17KvGXNTYWdzY6U';	//COOKIEÑéÖ¤Ëæ»úÂë(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['cks']['ckrndtwo']='dsEIqM7ahUDIYABhPs1pUzMIRG64yH2RZ4';	//COOKIEÑéÖ¤Ëæ»úÂë2(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['cks']['ckrndthree']='bic7Sfgm4tkhm3ZJ7U3xzlibgdUnSe3o6';	//COOKIEÑéÖ¤Ëæ»úÂë3(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['cks']['ckrndfour']='e8xpokCJDMTS5bQWHPh6gkXyuy14OaOw';	//COOKIEÑéÖ¤Ëæ»úÂë4(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['cks']['ckrndfive']='tNIZGfTuCAC56W7dmEyLW0Btt14eSBM';	//COOKIEÑéÖ¤Ëæ»úÂë5(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
 
-//ç½‘ç«™é˜²ç«å¢™é…ç½®
-$ecms_config['fw']['eopen']=0;	//å¼€å¯é˜²ç«å¢™(0ä¸ºå…³é—­,1ä¸ºå¼€å¯)
-$ecms_config['fw']['epass']='';	//é˜²ç«å¢™åŠ å¯†å¯†é’¥(å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['fw']['adminloginurl']='';	//å…è®¸åå°ç™»é™†çš„åŸŸå,è®¾ç½®åå¿…é¡»é€šè¿‡è¿™ä¸ªåŸŸåæ‰èƒ½è®¿é—®åå°
-$ecms_config['fw']['adminhour']='';	//å…è®¸ç™»é™†åå°çš„æ—¶é—´ï¼š0~23å°æ—¶ï¼Œå¤šä¸ªæ—¶é—´ç‚¹ç”¨åŠè§’é€—å·æ ¼å¼€
-$ecms_config['fw']['adminweek']='';	//å…è®¸ç™»é™†åå°çš„æ˜ŸæœŸï¼šæ˜ŸæœŸ0~6ï¼Œå¤šä¸ªæ˜ŸæœŸç”¨åŠè§’é€—å·æ ¼å¼€
-$ecms_config['fw']['adminckpassvar']='';	//åå°é¢„ç™»é™†éªŒè¯å˜é‡å
-$ecms_config['fw']['adminckpassval']='';	//åå°é¢„ç™»é™†è®¤è¯ç 
-$ecms_config['fw']['cleargettext']='';	//å±è”½æäº¤æ•æ„Ÿå­—ç¬¦ï¼Œå¤šä¸ªç”¨åŠè§’é€—å·æ ¼å¼€
+//ÍøÕ¾·À»ğÇ½ÅäÖÃ
+$ecms_config['fw']['eopen']=0;	//¿ªÆô·À»ğÇ½(0Îª¹Ø±Õ,1Îª¿ªÆô)
+$ecms_config['fw']['epass']='';	//·À»ğÇ½¼ÓÃÜÃÜÔ¿(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['fw']['adminloginurl']='';	//ÔÊĞíºóÌ¨µÇÂ½µÄÓòÃû,ÉèÖÃºó±ØĞëÍ¨¹ıÕâ¸öÓòÃû²ÅÄÜ·ÃÎÊºóÌ¨
+$ecms_config['fw']['adminhour']='';	//ÔÊĞíµÇÂ½ºóÌ¨µÄÊ±¼ä£º0~23Ğ¡Ê±£¬¶à¸öÊ±¼äµãÓÃ°ë½Ç¶ººÅ¸ñ¿ª
+$ecms_config['fw']['adminweek']='';	//ÔÊĞíµÇÂ½ºóÌ¨µÄĞÇÆÚ£ºĞÇÆÚ0~6£¬¶à¸öĞÇÆÚÓÃ°ë½Ç¶ººÅ¸ñ¿ª
+$ecms_config['fw']['adminckpassvar']='';	//ºóÌ¨Ô¤µÇÂ½ÑéÖ¤±äÁ¿Ãû
+$ecms_config['fw']['adminckpassval']='';	//ºóÌ¨Ô¤µÇÂ½ÈÏÖ¤Âë
+$ecms_config['fw']['cleargettext']='';	//ÆÁ±ÎÌá½»Ãô¸Ğ×Ö·û£¬¶à¸öÓÃ°ë½Ç¶ººÅ¸ñ¿ª
 
 //-------EmpireCMS.Seting.area-------
 
 
-//æ–‡ä»¶ç±»å‹
-$ecms_config['sets']['tranpicturetype']=',.jpg,.gif,.png,.bmp,.jpeg,.webp,';	//å›¾ç‰‡
+//ÎÄ¼şÀàĞÍ
+$ecms_config['sets']['tranpicturetype']=',.jpg,.gif,.png,.bmp,.jpeg,.webp,';	//Í¼Æ¬
 $ecms_config['sets']['tranflashtype']=',.swf,.flv,.dcr,';	//FLASH
 $ecms_config['sets']['mediaplayertype']=',.wmv,.asf,.wma,.mp3,.asx,.mid,.midi,.swf,.flv,.dcr,.ogg,.webm,';	//mediaplayer
 $ecms_config['sets']['realplayertype']=',.rm,.ra,.rmvb,.mp4,.mov,.avi,.wav,.ram,.mpg,.mpeg,';	//realplayer
@@ -139,13 +139,13 @@ $ecms_config['sets']['realplayertype']=',.rm,.ra,.rmvb,.mp4,.mov,.avi,.wav,.ram,
 
 
 
-//***************** ä»¥ä¸‹éƒ¨åˆ†ä¸ºç¼“å­˜ï¼Œä¸ç”¨è®¾ç½® **************
+//***************** ÒÔÏÂ²¿·ÖÎª»º´æ£¬²»ÓÃÉèÖÃ **************
 
 //-------EmpireCMS.Public.Cache-------
 
 //------------e_public
-$public_r=array('sitename'=>'å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ',
-'newsurl'=>'/ecms75/',
+$public_r=array('sitename'=>'µÛ¹úÍøÕ¾¹ÜÀíÏµÍ³',
+'newsurl'=>'/',
 'filetype'=>'|.gif|.jpg|.swf|.rar|.zip|.mp3|.wmv|.txt|.doc|',
 'filesize'=>2048,
 'relistnum'=>8,
@@ -159,7 +159,7 @@ $public_r=array('sitename'=>'å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ',
 'searchtime'=>30,
 'loginnum'=>5,
 'logintime'=>60,
-'addnews_ok'=>0,
+'addnews_ok'=>1,
 'register_ok'=>0,
 'indextype'=>'.html',
 'goodlencord'=>0,
@@ -168,14 +168,14 @@ $public_r=array('sitename'=>'å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ',
 'exittime'=>40,
 'smalltextlen'=>160,
 'defaultgroupid'=>1,
-'fileurl'=>'/ecms75/d/file/',
+'fileurl'=>'/d/file/',
 'install'=>0,
 'phpmode'=>0,
 'dorepnum'=>300,
 'loadtempnum'=>50,
 'bakdbpath'=>'bdata',
 'bakdbzip'=>'zip',
-'downpass'=>'BEA0edeiQmotdkzjcA38',
+'downpass'=>'uBAeHypptsBrUyBfHBmR',
 'filechmod'=>1,
 'loginkey_ok'=>0,
 'tbname'=>'news',
@@ -186,7 +186,7 @@ $public_r=array('sitename'=>'å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ',
 'lctime'=>1222406370,
 'candocode'=>1,
 'opennotcj'=>0,
-'listpagetemp'=>'é¡µæ¬¡ï¼š[!--thispage--]/[!--pagenum--]&nbsp;æ¯é¡µ[!--lencord--]&nbsp;æ€»æ•°[!--num--]&nbsp;&nbsp;&nbsp;&nbsp;[!--pagelink--]&nbsp;&nbsp;&nbsp;&nbsp;è½¬åˆ°:[!--options--]',
+'listpagetemp'=>'Ò³´Î£º[!--thispage--]/[!--pagenum--]&nbsp;Ã¿Ò³[!--lencord--]&nbsp;×ÜÊı[!--num--]&nbsp;&nbsp;&nbsp;&nbsp;[!--pagelink--]&nbsp;&nbsp;&nbsp;&nbsp;×ªµ½:[!--options--]',
 'reuserpagenum'=>50,
 'revotejsnum'=>100,
 'readjsnum'=>100,
@@ -219,7 +219,7 @@ $public_r=array('sitename'=>'å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ',
 'reuserlistnum'=>8,
 'opentitleurl'=>1,
 'searchtempvar'=>1,
-'showinfolevel'=>0,
+'showinfolevel'=>2,
 'navfh'=>'>',
 'spicwidth'=>105,
 'spicheight'=>118,
@@ -238,25 +238,25 @@ $public_r=array('sitename'=>'å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ',
 'nottobq'=>',',
 'defspacestyleid'=>1,
 'canposturl'=>'',
-'openspace'=>0,
+'openspace'=>1,
 'defadminstyle'=>1,
 'realltime'=>0,
 'closeip'=>'',
 'openip'=>'',
 'hopenip'=>'',
 'textpagelistnum'=>6,
-'memberlistlevel'=>0,
+'memberlistlevel'=>2,
 'ebakcanlistdb'=>0,
 'keytog'=>2,
-'keytime'=>30,
-'keyrnd'=>'0ZR0hHW2Pgn0O49QoTh5FzinsUv9DdvGeT7cYoq0Js',
+'keytime'=>900,
+'keyrnd'=>'7IEH3ZrC9eBx5E8p33voKx9b4GjjlqJ2',
 'checkdorepstr'=>',0,0,0,0,',
 'regkey_ok'=>0,
 'opengetdown'=>0,
 'gbkey_ok'=>0,
 'fbkey_ok'=>0,
 'newaddinfotime'=>0,
-'classnavs'=>'<a href=\"/ecms75/news/\">æ–°é—»ä¸­å¿ƒ</a>&nbsp;|&nbsp;<a href=\"/ecms75/download/\">ä¸‹è½½ä¸­å¿ƒ</a>&nbsp;|&nbsp;<a href=\"/ecms75/movie/\">å½±è§†é¢‘é“</a>&nbsp;|&nbsp;<a href=\"/ecms75/shop/\">ç½‘ä¸Šå•†åŸ</a>&nbsp;|&nbsp;<a href=\"/ecms75/flash/\">FLASHé¢‘é“</a>&nbsp;|&nbsp;<a href=\"/ecms75/photo/\">å›¾ç‰‡é¢‘é“</a>&nbsp;|&nbsp;<a href=\"/ecms75/article/\">æ–‡ç« ä¸­å¿ƒ</a>&nbsp;|&nbsp;<a href=\"/ecms75/info/\">åˆ†ç±»ä¿¡æ¯</a>',
+'classnavs'=>'<a href=\"/news/\">ĞÂÎÅÖĞĞÄ</a>&nbsp;|&nbsp;<a href=\"/download/\">ÏÂÔØÖĞĞÄ</a>&nbsp;|&nbsp;<a href=\"/movie/\">Ó°ÊÓÆµµÀ</a>&nbsp;|&nbsp;<a href=\"/shop/\">ÍøÉÏÉÌ³Ç</a>&nbsp;|&nbsp;<a href=\"/flash/\">FLASHÆµµÀ</a>&nbsp;|&nbsp;<a href=\"/photo/\">Í¼Æ¬ÆµµÀ</a>&nbsp;|&nbsp;<a href=\"/article/\">ÎÄÕÂÖĞĞÄ</a>&nbsp;|&nbsp;<a href=\"/info/\">·ÖÀàĞÅÏ¢</a>',
 'adminstyle'=>',1,2,',
 'docnewsnum'=>300,
 'openschall'=>0,
@@ -305,13 +305,13 @@ $public_r=array('sitename'=>'å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ',
 'closeqdtmsg'=>'',
 'openfileserver'=>0,
 'fs_purl'=>'',
-'closemods'=>'',
+'closemods'=>',error,gb,fb,',
 'fieldandtop'=>0,
 'fieldandclosetb'=>'',
 'filedatatbs'=>',1,',
 'filedeftb'=>1,
 'pldeftb'=>1,
-'plurl'=>'/ecms75/e/pl/',
+'plurl'=>'/e/pl/',
 'plkey_ok'=>1,
 'plface'=>'||[~e.jy~]##1.gif||[~e.kq~]##2.gif||[~e.se~]##3.gif||[~e.sq~]##4.gif||[~e.lh~]##5.gif||[~e.ka~]##6.gif||[~e.hh~]##7.gif||[~e.ys~]##8.gif||[~e.ng~]##9.gif||[~e.ot~]##10.gif||',
 'plf'=>'',
@@ -340,7 +340,7 @@ $public_r=array('sitename'=>'å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ',
 'qinfoaddfen'=>0,
 'bakescapetype'=>1,
 'hkeytime'=>30,
-'hkeyrnd'=>'s065M0bBWmmJPPDdqYf2T4BXgKY1rOpc53C',
+'hkeyrnd'=>'Svc1PixDb6foD6imuD1Yr34ZT9mxFtMjbRaX',
 'mhavedatedo'=>0,
 'reportkey'=>0,
 'ctimeopen'=>0,
@@ -353,7 +353,7 @@ $public_r=array('sitename'=>'å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ',
 'ctimetags'=>0,
 'ctimegids'=>'',
 'ctimecids'=>'',
-'ctimernd'=>'pLnmZpF4fqbKQmhv82WQAekQAyktoARuFccZjnLb21',
+'ctimernd'=>'2YQSVilhfxTgc0jVo47CZukmyLnw97DkVlSE36sZ91',
 'qmadminuids'=>'',
 'qmforumuids'=>'',
 'qmotheruids'=>'',
@@ -365,8 +365,13 @@ $public_r=array('sitename'=>'å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ',
 'digglevel'=>0,
 'diggcmids'=>'',
 'spacegids'=>'',
+'candocodetag'=>0,
+'openern'=>'',
+'ernurl'=>'',
 'toqjf'=>'',
 'qtoqjf'=>'',
+'ctimeaddre'=>0,
+'ctimeqaddre'=>0,
 'deftempid'=>0);
 //------------e_public
 
@@ -416,8 +421,8 @@ $etable_r['info']=Array('deftb'=>'1',
 
 $emod_r=array();
 $emod_r[1]=Array('mid'=>1,
-'mname'=>'æ–°é—»ç³»ç»Ÿæ¨¡å‹',
-'qmname'=>'æ–°é—»',
+'mname'=>'ĞÂÎÅÏµÍ³Ä£ĞÍ',
+'qmname'=>'ĞÂÎÅ',
 'defaulttb'=>1,
 'datatbs'=>',1,',
 'deftb'=>'1',
@@ -462,8 +467,8 @@ $emod_r[1]=Array('mid'=>1,
 'tid'=>1,
 'tbname'=>'news');
 $emod_r[2]=Array('mid'=>2,
-'mname'=>'ä¸‹è½½ç³»ç»Ÿæ¨¡å‹',
-'qmname'=>'è½¯ä»¶',
+'mname'=>'ÏÂÔØÏµÍ³Ä£ĞÍ',
+'qmname'=>'Èí¼ş',
 'defaulttb'=>0,
 'datatbs'=>',1,',
 'deftb'=>'1',
@@ -508,8 +513,8 @@ $emod_r[2]=Array('mid'=>2,
 'tid'=>2,
 'tbname'=>'download');
 $emod_r[3]=Array('mid'=>3,
-'mname'=>'å›¾ç‰‡ç³»ç»Ÿæ¨¡å‹',
-'qmname'=>'å›¾ç‰‡',
+'mname'=>'Í¼Æ¬ÏµÍ³Ä£ĞÍ',
+'qmname'=>'Í¼Æ¬',
 'defaulttb'=>0,
 'datatbs'=>',1,',
 'deftb'=>'1',
@@ -554,7 +559,7 @@ $emod_r[3]=Array('mid'=>3,
 'tid'=>3,
 'tbname'=>'photo');
 $emod_r[4]=Array('mid'=>4,
-'mname'=>'FLASHç³»ç»Ÿæ¨¡å‹',
+'mname'=>'FLASHÏµÍ³Ä£ĞÍ',
 'qmname'=>'FLASH',
 'defaulttb'=>0,
 'datatbs'=>',1,',
@@ -600,8 +605,8 @@ $emod_r[4]=Array('mid'=>4,
 'tid'=>4,
 'tbname'=>'flash');
 $emod_r[5]=Array('mid'=>5,
-'mname'=>'ç”µå½±ç³»ç»Ÿæ¨¡å‹',
-'qmname'=>'ç”µå½±',
+'mname'=>'µçÓ°ÏµÍ³Ä£ĞÍ',
+'qmname'=>'µçÓ°',
 'defaulttb'=>0,
 'datatbs'=>',1,',
 'deftb'=>'1',
@@ -646,8 +651,8 @@ $emod_r[5]=Array('mid'=>5,
 'tid'=>5,
 'tbname'=>'movie');
 $emod_r[6]=Array('mid'=>6,
-'mname'=>'å•†åŸç³»ç»Ÿæ¨¡å‹',
-'qmname'=>'å•†å“',
+'mname'=>'ÉÌ³ÇÏµÍ³Ä£ĞÍ',
+'qmname'=>'ÉÌÆ·',
 'defaulttb'=>0,
 'datatbs'=>',1,',
 'deftb'=>'1',
@@ -692,8 +697,8 @@ $emod_r[6]=Array('mid'=>6,
 'tid'=>6,
 'tbname'=>'shop');
 $emod_r[7]=Array('mid'=>7,
-'mname'=>'æ–‡ç« ç³»ç»Ÿæ¨¡å‹',
-'qmname'=>'æ–‡ç« ',
+'mname'=>'ÎÄÕÂÏµÍ³Ä£ĞÍ',
+'qmname'=>'ÎÄÕÂ',
 'defaulttb'=>0,
 'datatbs'=>',1,',
 'deftb'=>'1',
@@ -738,8 +743,8 @@ $emod_r[7]=Array('mid'=>7,
 'tid'=>7,
 'tbname'=>'article');
 $emod_r[8]=Array('mid'=>8,
-'mname'=>'åˆ†ç±»ä¿¡æ¯ç³»ç»Ÿæ¨¡å‹',
-'qmname'=>'åˆ†ç±»ä¿¡æ¯',
+'mname'=>'·ÖÀàĞÅÏ¢ÏµÍ³Ä£ĞÍ',
+'qmname'=>'·ÖÀàĞÅÏ¢',
 'defaulttb'=>0,
 'datatbs'=>',1,',
 'deftb'=>'1',

@@ -5,20 +5,20 @@ require("../../class/db_sql.php");
 require("../../data/dbcache/class.php");
 require("../../member/class/user.php");
 require('../class/ShopSysFun.php');
-eCheckCloseMods('shop');//å…³é—­æ¨¡å—
+eCheckCloseMods('shop');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
 $shoppr=ShopSys_ReturnSet();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 ShopCheckAddDdGroup($shoppr);
 
 $r=$_POST;
 if(!getcvar('mybuycar'))
 {
-	printerror('ä½ çš„è´­ç‰©è½¦æ²¡æœ‰å•†å“','',1,0,1);
+	printerror('ÄãµÄ¹ºÎï³µÃ»ÓĞÉÌÆ·','',1,0,1);
 }
-//å˜é‡å¤„ç†
+//±äÁ¿´¦Àí
 $r['truename']=ehtmlspecialchars($r['truename']);
 $r['mycall']=ehtmlspecialchars($r['mycall']);
 $r['phone']=ehtmlspecialchars($r['phone']);
@@ -37,14 +37,14 @@ $r['psid']=(int)$r['psid'];
 $r['payfsid']=(int)$r['payfsid'];
 $r['precode']=RepPostVar($r['precode']);
 $total=array();
-//å¿…å¡«é¡¹
+//±ØÌîÏî
 ShopSys_CheckDdMust($r,$shoppr);
 
-$ddno=ShopSys_ReturnDdNo();//è®¢å•ID
+$ddno=ShopSys_ReturnDdNo();//¶©µ¥ID
 $classids='';
 $price=0;
 
-//å–å¾—ç”¨æˆ·ä¿¡æ¯
+//È¡µÃÓÃ»§ĞÅÏ¢
 $user=array();
 $userid=(int)getcvar('mluserid');
 $username=RepPostVar(getcvar('mlusername'));
@@ -58,7 +58,7 @@ if($userid)
 		printerror("MustSingleUser","history.go(-1)",1);
 	}
 }
-//å¯¼å…¥æ¨¡æ¿
+//µ¼ÈëÄ£°å
 require(ECMS_PATH.'e/template/ShopSys/SubmitOrder.php');
 db_close();
 $empire=null;

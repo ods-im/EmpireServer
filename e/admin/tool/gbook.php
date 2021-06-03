@@ -8,7 +8,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,7 +17,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"gbook");
 $enews=$_GET['enews'];
 if(empty($enews))
@@ -56,14 +56,14 @@ else
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=12;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=12;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $search='';
 $search.=$ecms_hashur['ehref'];
 $add='';
 $and=' where ';
-//é€‰æ‹©åˆ†ç±»
+//Ñ¡Ôñ·ÖÀà
 $bid=(int)$_GET['bid'];
 if($bid)
 {
@@ -71,22 +71,22 @@ if($bid)
 	$search.="&bid=$bid";
 	$and=' and ';
 }
-//æ˜¯å¦å®¡æ ¸
+//ÊÇ·ñÉóºË
 $checked=(int)$_GET['checked'];
 if($checked)
 {
-	if($checked==1)//å·²å®¡æ ¸
+	if($checked==1)//ÒÑÉóºË
 	{
 		$add.=$and."checked=0";
 	}
-	else//å¾…å®¡æ ¸
+	else//´ıÉóºË
 	{
 		$add.=$and."checked=1";
 	}
 	$and=' and ';
 	$search.="&checked=$checked";
 }
-//æœç´¢
+//ËÑË÷
 $sear=(int)$_GET['sear'];
 if($sear)
 {
@@ -94,19 +94,19 @@ if($sear)
 	$show=(int)$_GET['show'];
 	if($keyboard)
 	{
-		if($show==1)//ç•™è¨€è€…
+		if($show==1)//ÁôÑÔÕß
 		{
 			$add.=$and."name like '%$keyboard%'";
 		}
-		elseif($show==2)//ç•™è¨€å†…å®¹
+		elseif($show==2)//ÁôÑÔÄÚÈİ
 		{
 			$add.=$and."lytext like '%$keyboard%'";
 		}
-		elseif($show==3)//é‚®ç®±
+		elseif($show==3)//ÓÊÏä
 		{
 			$add.=$and."email like '%$keyboard%'";
 		}
-		else//ç•™è¨€IP
+		else//ÁôÑÔIP
 		{
 			$add.=$and."ip like '%$keyboard%'";
 		}
@@ -116,18 +116,18 @@ if($sear)
 }
 $query="select lyid,name,email,`mycall`,lytime,lytext,retext,bid,ip,checked,userid,username,eipport from {$dbtbpre}enewsgbook".$add;
 $totalquery="select count(*) as total from {$dbtbpre}enewsgbook".$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by lyid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-$url="<a href=gbook.php".$ecms_hashur['whehref'].">ç®¡ç†ç•™è¨€</a>";
+$url="<a href=gbook.php".$ecms_hashur['whehref'].">¹ÜÀíÁôÑÔ</a>";
 $gbclass=ReturnGbookClass($bid,0);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç•™è¨€ç®¡ç†</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÁôÑÔ¹ÜÀí</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -145,40 +145,40 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®: 
+    <td width="50%">Î»ÖÃ: 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="ç•™è¨€åˆ†ç±»ç®¡ç†" onclick="self.location.href='GbookClass.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="ÁôÑÔ·ÖÀà¹ÜÀí" onclick="self.location.href='GbookClass.php<?=$ecms_hashur['whehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit52" value="æ‰¹é‡åˆ é™¤ç•™è¨€" onclick="self.location.href='DelMoreGbook.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit52" value="ÅúÁ¿É¾³ıÁôÑÔ" onclick="self.location.href='DelMoreGbook.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td width="29%">é€‰æ‹©ç•™è¨€åˆ†ç±»:
+    <td width="29%">Ñ¡ÔñÁôÑÔ·ÖÀà:
         <select name="bid" id="bid" onchange=window.location='gbook.php?<?=$ecms_hashur['ehref']?>&bid='+this.options[this.selectedIndex].value>
-          <option value="0">æ˜¾ç¤ºå…¨éƒ¨ç•™è¨€</option>
+          <option value="0">ÏÔÊ¾È«²¿ÁôÑÔ</option>
           <?=$gbclass?>
         </select>      </td>
 		<form name="searchform" method="GET" action="gbook.php">
 		<?=$ecms_hashur['eform']?>
     <td width="71%"><div align="right">
-      æœç´¢ï¼š
+      ËÑË÷£º
           <select name="show" id="show">
-            <option value="1"<?=$show==1?' selected':''?>>ç•™è¨€è€…</option>
-            <option value="2"<?=$show==2?' selected':''?>>ç•™è¨€å†…å®¹</option>
-            <option value="3"<?=$show==3?' selected':''?>>é‚®ç®±</option>
-            <option value="4"<?=$show==4?' selected':''?>>IPåœ°å€</option>
+            <option value="1"<?=$show==1?' selected':''?>>ÁôÑÔÕß</option>
+            <option value="2"<?=$show==2?' selected':''?>>ÁôÑÔÄÚÈİ</option>
+            <option value="3"<?=$show==3?' selected':''?>>ÓÊÏä</option>
+            <option value="4"<?=$show==4?' selected':''?>>IPµØÖ·</option>
           </select>
           <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
           <select name="checked" id="checked">
-            <option value="0"<?=$checked==0?' selected':''?>>ä¸é™</option>
-            <option value="1"<?=$checked==1?' selected':''?>>å·²å®¡æ ¸</option>
-            <option value="2"<?=$checked==2?' selected':''?>>å¾…å®¡æ ¸</option>
+            <option value="0"<?=$checked==0?' selected':''?>>²»ÏŞ</option>
+            <option value="1"<?=$checked==1?' selected':''?>>ÒÑÉóºË</option>
+            <option value="2"<?=$checked==2?' selected':''?>>´ıÉóºË</option>
           </select>
-          <input type="submit" name="Submit3" value="æœç´¢">
+          <input type="submit" name="Submit3" value="ËÑË÷">
           <input name="bid" type="hidden" id="bid" value="<?=$bid?>">
 		  <input name="sear" type="hidden" id="sear" value="1">
 		  &nbsp;&nbsp;
@@ -186,21 +186,21 @@ function CheckAll(form)
 	  </form>
   </tr>
 </table>
-<form name=thisform method=post action=gbook.php onsubmit="return confirm('ç¡®è®¤è¦æ‰§è¡Œæ“ä½œ?');">
+<form name=thisform method=post action=gbook.php onsubmit="return confirm('È·ÈÏÒªÖ´ĞĞ²Ù×÷?');">
 <?=$ecms_hashur['form']?>
 <?
 while($r=$empire->fetch($sql))
 {
 $br=$empire->fetch1("select bname from {$dbtbpre}enewsgbookclass where bid='$r[bid]'");
-//å®¡æ ¸
+//ÉóºË
 $checked="";
 $checkednc='';
 if($r[checked])
 {
-$checked=" title='æœªå®¡æ ¸' style='background:#99C4E3'";
+$checked=" title='Î´ÉóºË' style='background:#99C4E3'";
 $checkednc='NC';
 }
-$username="æ¸¸å®¢";
+$username="ÓÎ¿Í";
 if($r['userid'])
 {
 	$username="<a href='../member/AddMember.php?enews=EditMember&userid=".$r['userid'].$ecms_hashur['ehref']."' target=_blank>".$r['username']."</a>";
@@ -208,10 +208,10 @@ if($r['userid'])
 ?>
   <table width="700" border="0" align="center" cellpadding="3" cellspacing="1" class=tableborder>
     <tr class=header> 
-      <td width="55%" height="23">å‘å¸ƒè€…: 
+      <td width="55%" height="23">·¢²¼Õß: 
         <?=stripSlashes($r[name])?>
         &nbsp;(<?=$username?>)</td>  
-      <td width="45%">å‘å¸ƒæ—¶é—´: 
+      <td width="45%">·¢²¼Ê±¼ä: 
         <?=$r[lytime]?>&nbsp;
         (IP:
         <?=$r[ip]?>:<?=$r[eipport]?>) </td>
@@ -226,7 +226,7 @@ if($r['userid'])
       </table>
       <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" style="WORD-BREAK: break-all; WORD-WRAP: break-word">
         <tr> 
-          <td><img src="../../data/images/regb.gif" width="18" height="18"><strong><font color="#FF0000">å›å¤:</font></strong> 
+          <td><img src="../../data/images/regb.gif" width="18" height="18"><strong><font color="#FF0000">»Ø¸´:</font></strong> 
             <?=nl2br(stripSlashes($r[retext]))?>
           </td>
         </tr>
@@ -237,15 +237,15 @@ if($r['userid'])
     <td height="23" colspan="2"><div align="right">
         <table width="100%" border="0" cellspacing="1" cellpadding="3">
           <tr>
-            <td width="65%"><strong>é‚®ç®±:<?=$r[email]?>,ç”µè¯:<?=$r[mycall]?></strong></td>
-            <td width="35%"> <div align="left"><strong>æ“ä½œ:</strong>[<a href="#ecms" onclick="window.open('ReGbook.php?lyid=<?=$r[lyid]?>&bid=<?=$bid?><?=$ecms_hashur['ehref']?>','','width=600,height=380,scrollbars=yes');">å›å¤/ä¿®æ”¹å›å¤</a>]&nbsp;&nbsp;[<a href="gbook.php?enews=DelGbook&lyid=<?=$r[lyid]?>&bid=<?=$bid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>] 
+            <td width="65%"><strong>ÓÊÏä:<?=$r[email]?>,µç»°:<?=$r[mycall]?></strong></td>
+            <td width="35%"> <div align="left"><strong>²Ù×÷:</strong>[<a href="#ecms" onclick="window.open('ReGbook.php?lyid=<?=$r[lyid]?>&bid=<?=$bid?><?=$ecms_hashur['ehref']?>','','width=600,height=380,scrollbars=yes');">»Ø¸´/ĞŞ¸Ä»Ø¸´</a>]&nbsp;&nbsp;[<a href="gbook.php?enews=DelGbook&lyid=<?=$r[lyid]?>&bid=<?=$bid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>] 
                   <input name="lyid[]" type="checkbox" id="lyid[]" value="<?=$r[lyid]?>"<?=$checked?>><?=$checkednc?>
                 </div></td>
           </tr>
         </table>
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
           <tr>
-            <td><div align="center">æ‰€å±ç•™è¨€åˆ†ç±»:<a href="gbook.php?bid=<?=$r[bid]?><?=$ecms_hashur['ehref']?>"><?=$br[bname]?></a></div></td>
+            <td><div align="center">ËùÊôÁôÑÔ·ÖÀà:<a href="gbook.php?bid=<?=$r[bid]?><?=$ecms_hashur['ehref']?>"><?=$br[bname]?></a></div></td>
           </tr>
         </table>
       </div></td>
@@ -257,14 +257,14 @@ if($r['userid'])
 ?>
   <table width="700" border="0" align="center" cellpadding="3" cellspacing="1">
     <tr> 
-      <td>åˆ†é¡µ:
+      <td>·ÖÒ³:
         <?=$returnpage?>
         &nbsp;&nbsp;
-        <input type="submit" name="Submit" value="å®¡æ ¸ç•™è¨€" onClick="document.thisform.enews.value='CheckGbook_all';">
-        &nbsp;&nbsp; <input type="submit" name="Submit2" value="åˆ é™¤ç•™è¨€" onClick="document.thisform.enews.value='DelGbook_all';">
+        <input type="submit" name="Submit" value="ÉóºËÁôÑÔ" onClick="document.thisform.enews.value='CheckGbook_all';">
+        &nbsp;&nbsp; <input type="submit" name="Submit2" value="É¾³ıÁôÑÔ" onClick="document.thisform.enews.value='DelGbook_all';">
         <input name="enews" type="hidden" id="enews" value="DelGbook_all">
         <input name="bid" type="hidden" id="bid" value="<?=$bid?>">
-        &nbsp;&nbsp;<input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>å…¨é€‰</td>
+        &nbsp;&nbsp;<input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>È«Ñ¡</td>
   </tr>
 </table>
 </form>

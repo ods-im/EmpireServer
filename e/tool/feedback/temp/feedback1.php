@@ -6,47 +6,47 @@ if(!defined('InEmpireCMS'))
   <form name='feedback' method='post' enctype='multipart/form-data' action='../../enews/index.php'>
     <input name='enews' type='hidden' value='AddFeedback'>
     <tr>
-      <td width='16%' height=25 bgcolor='ffffff'><div align="right">鎮ㄧ殑濮撳悕:</div></td>
+      <td width='16%' height=25 bgcolor='ffffff'><div align="right">您的姓名:</div></td>
       <td bgcolor='ffffff'><input name='name' type='text' size='42'>
         (*)</td>
     </tr>
     <tr>
-      <td width='16%' height=25 bgcolor='ffffff'><div align="right">鑱屽姟:</div></td>
+      <td width='16%' height=25 bgcolor='ffffff'><div align="right">职务:</div></td>
       <td bgcolor='ffffff'><input name='job' type='text' size='42'></td>
     </tr>
     <tr>
-      <td width='16%' height=25 bgcolor='ffffff'><div align="right">鍏徃鍚嶇О:</div></td>
+      <td width='16%' height=25 bgcolor='ffffff'><div align="right">公司名称:</div></td>
       <td bgcolor='ffffff'><input name='company' type='text' size='42'></td>
     </tr>
     <tr>
-      <td width='16%' height=25 bgcolor='ffffff'><div align="right">鑱旂郴閭:</div></td>
+      <td width='16%' height=25 bgcolor='ffffff'><div align="right">联系邮箱:</div></td>
       <td bgcolor='ffffff'><input name='email' type='text' size='42'></td>
     </tr>
     <tr>
-      <td width='16%' height=25 bgcolor='ffffff'><div align="right">鑱旂郴鐢佃瘽:</div></td>
+      <td width='16%' height=25 bgcolor='ffffff'><div align="right">联系电话:</div></td>
       <td bgcolor='ffffff'><input name='mycall' type='text' size='42'>
         (*)</td>
     </tr>
     <tr>
-      <td width='16%' height=25 bgcolor='ffffff'><div align="right">缃戠珯:</div></td>
+      <td width='16%' height=25 bgcolor='ffffff'><div align="right">网站:</div></td>
       <td bgcolor='ffffff'><input name='homepage' type='text' size='42'></td>
     </tr>
     <tr>
-      <td width='16%' height=25 bgcolor='ffffff'><div align="right">鑱旂郴鍦板潃:</div></td>
+      <td width='16%' height=25 bgcolor='ffffff'><div align="right">联系地址:</div></td>
       <td bgcolor='ffffff'><input name='address' type='text' size="42"></td>
     </tr>
     <tr>
-      <td width='16%' height=25 bgcolor='ffffff'><div align="right">淇℃伅鏍囬:</div></td>
+      <td width='16%' height=25 bgcolor='ffffff'><div align="right">信息标题:</div></td>
       <td bgcolor='ffffff'><input name='title' type='text' size="42"> (*)</td>
     </tr>
     <tr> 
-      <td width='16%' height=25 bgcolor='ffffff'><div align="right">淇℃伅鍐呭(*):</div></td>
+      <td width='16%' height=25 bgcolor='ffffff'><div align="right">信息内容(*):</div></td>
       <td bgcolor='ffffff'><textarea name='saytext' cols='60' rows='12'></textarea> 
       </td>
     </tr>
     <tr>
       <td bgcolor='ffffff'></td>
-      <td bgcolor='ffffff'><input type='submit' name='submit' value='鎻愪氦'></td>
+      <td bgcolor='ffffff'><input type='submit' name='submit' value='提交'></td>
     </tr>
   </form>
 </table>

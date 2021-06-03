@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,19 +16,19 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"votemod");
 
-//å¢åŠ é¢„è®¾æŠ•ç¥¨
+//Ôö¼ÓÔ¤ÉèÍ¶Æ±
 function AddVoteMod($ysvotename,$title,$votename,$votenum,$delvid,$vid,$voteclass,$doip,$dotime,$width,$height,$tempid,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$ysvotename||!$tempid)
 	{
 		printerror("EmptyVoteTitle","history.go(-1)");
 	}
-	//è¿”å›ç»„åˆ
+	//·µ»Ø×éºÏ
 	$votetext=ReturnVote($votename,$votenum,$delvid,$vid,0);
-	//ç»Ÿè®¡æ€»ç¥¨æ•°
+	//Í³¼Æ×ÜÆ±Êı
 	for($i=0;$i<count($votename);$i++)
 	{
 		$t_votenum+=$votenum[$i];
@@ -48,7 +48,7 @@ function AddVoteMod($ysvotename,$title,$votename,$votenum,$delvid,$vid,$voteclas
 	$voteid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("voteid=".$voteid."<br>title=".$title);
 		printerror("AddVoteSuccess","AddVoteMod.php?enews=AddVoteMod".hReturnEcmsHashStrHref2(0));
 	}
@@ -58,7 +58,7 @@ function AddVoteMod($ysvotename,$title,$votename,$votenum,$delvid,$vid,$voteclas
 	}
 }
 
-//ä¿®æ”¹é¢„è®¾æŠ•ç¥¨
+//ĞŞ¸ÄÔ¤ÉèÍ¶Æ±
 function EditVoteMod($voteid,$ysvotename,$title,$votename,$votenum,$delvid,$vid,$voteclass,$doip,$dotime,$width,$height,$tempid,$userid,$username){
 	global $empire,$dbtbpre;
 	$voteid=(int)$voteid;
@@ -66,14 +66,14 @@ function EditVoteMod($voteid,$ysvotename,$title,$votename,$votenum,$delvid,$vid,
 	{
 		printerror("EmptyVoteTitle","history.go(-1)");
 	}
-	//è¿”å›ç»„åˆ
+	//·µ»Ø×éºÏ
 	$votetext=ReturnVote($votename,$votenum,$delvid,$vid,1);
-	//ç»Ÿè®¡æ€»ç¥¨æ•°
+	//Í³¼Æ×ÜÆ±Êı
 	for($i=0;$i<count($votename);$i++)
 	{
 		$t_votenum+=$votenum[$i];
 	}
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$t_votenum=(int)$t_votenum;
 	$voteclass=(int)$voteclass;
 	$width=(int)$width;
@@ -87,7 +87,7 @@ function EditVoteMod($voteid,$ysvotename,$title,$votename,$votenum,$delvid,$vid,
 	$sql=$empire->query("update {$dbtbpre}enewsvotemod set title='$title',votetext='$votetext',voteclass=$voteclass,doip=$doip,dotime='$dotime',tempid=$tempid,width=$width,height=$height,votenum=$t_votenum,ysvotename='$ysvotename' where voteid='$voteid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("voteid=".$voteid."<br>title=".$title);
 		printerror("EditVoteSuccess","ListVoteMod.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -97,7 +97,7 @@ function EditVoteMod($voteid,$ysvotename,$title,$votename,$votenum,$delvid,$vid,
 	}
 }
 
-//åˆ é™¤é¢„è®¾æŠ•ç¥¨
+//É¾³ıÔ¤ÉèÍ¶Æ±
 function DelVoteMod($voteid,$userid,$username){
 	global $empire,$dbtbpre;
 	$voteid=(int)$voteid;
@@ -109,7 +109,7 @@ function DelVoteMod($voteid,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsvotemod where voteid='$voteid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("voteid=".$voteid."<br>title=".$r[title]);
 		printerror("DelVoteSuccess","ListVoteMod.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -127,7 +127,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ æŠ•ç¥¨
+//Ôö¼ÓÍ¶Æ±
 if($enews=="AddVoteMod")
 {
 	$title=$_POST['title'];
@@ -144,7 +144,7 @@ if($enews=="AddVoteMod")
 	$ysvotename=$_POST['ysvotename'];
 	AddVoteMod($ysvotename,$title,$votename,$votenum,$delvid,$vid,$voteclass,$doip,$dotime,$width,$height,$tempid,$logininid,$loginin);
 }
-//ä¿®æ”¹æŠ•ç¥¨
+//ĞŞ¸ÄÍ¶Æ±
 elseif($enews=="EditVoteMod")
 {
 	$voteid=$_POST['voteid'];
@@ -162,7 +162,7 @@ elseif($enews=="EditVoteMod")
 	$ysvotename=$_POST['ysvotename'];
 	EditVoteMod($voteid,$ysvotename,$title,$votename,$votenum,$delvid,$vid,$voteclass,$doip,$dotime,$width,$height,$tempid,$logininid,$loginin);
 }
-//åˆ é™¤æŠ•ç¥¨
+//É¾³ıÍ¶Æ±
 elseif($enews=="DelVoteMod")
 {
 	$voteid=$_GET['voteid'];
@@ -173,32 +173,32 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=20;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=20;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select voteid,ysvotename,title,voteclass from {$dbtbpre}enewsvotemod";
-$num=$empire->num($query);//å–å¾—æ€»æ¡æ•°
+$num=$empire->num($query);//È¡µÃ×ÜÌõÊı
 $query=$query." order by voteid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-$url="<a href=ListVoteMod.php".$ecms_hashur['whehref'].">ç®¡ç†é¢„è®¾æŠ•ç¥¨</a>";
+$url="<a href=ListVoteMod.php".$ecms_hashur['whehref'].">¹ÜÀíÔ¤ÉèÍ¶Æ±</a>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æŠ•ç¥¨</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Í¶Æ±</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr> 
-    <td width="50%">ä½ç½®: 
+    <td width="50%">Î»ÖÃ: 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ é¢„è®¾æŠ•ç¥¨" onclick="self.location.href='AddVoteMod.php?enews=AddVoteMod<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓÔ¤ÉèÍ¶Æ±" onclick="self.location.href='AddVoteMod.php?enews=AddVoteMod<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -206,14 +206,14 @@ $url="<a href=ListVoteMod.php".$ecms_hashur['whehref'].">ç®¡ç†é¢„è®¾æŠ•ç¥¨</a>"
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="10%" height="25"><div align="center">ID</div></td>
-    <td width="43%" height="25"><div align="center">æŠ•ç¥¨åç§°</div></td>
-    <td width="18%" height="25"><div align="center">ç±»å‹</div></td>
-    <td width="29%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="43%" height="25"><div align="center">Í¶Æ±Ãû³Æ</div></td>
+    <td width="18%" height="25"><div align="center">ÀàĞÍ</div></td>
+    <td width="29%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
   {
-  	$voteclass=empty($r['voteclass'])?'å•é€‰':'å¤šé€‰';
+  	$voteclass=empty($r['voteclass'])?'µ¥Ñ¡':'¶àÑ¡';
   ?>
   <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
     <td height="25"><div align="center"> 
@@ -225,8 +225,8 @@ $url="<a href=ListVoteMod.php".$ecms_hashur['whehref'].">ç®¡ç†é¢„è®¾æŠ•ç¥¨</a>"
     <td height="25"><div align="center"> 
         <?=$voteclass?>
       </div></td>
-    <td height="25"><div align="center">[<a href="AddVoteMod.php?enews=EditVoteMod&voteid=<?=$r[voteid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="ListVoteMod.php?enews=DelVoteMod&voteid=<?=$r[voteid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+    <td height="25"><div align="center">[<a href="AddVoteMod.php?enews=EditVoteMod&voteid=<?=$r[voteid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="ListVoteMod.php?enews=DelVoteMod&voteid=<?=$r[voteid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

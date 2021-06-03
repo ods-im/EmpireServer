@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"workflow");
 
-//è¿”å›ç”¨æˆ·ç»„
+//·µ»ØÓÃ»§×é
 function ReturnWfGroup($groupid){
 	$count=count($groupid);
 	if($count==0)
@@ -33,7 +33,7 @@ function ReturnWfGroup($groupid){
 	return $ids;
 }
 
-//å¢åŠ èŠ‚ç‚¹
+//Ôö¼Ó½Úµã
 function AddWorkflowItem($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$wfid=(int)$add['wfid'];
@@ -45,7 +45,7 @@ function AddWorkflowItem($add,$userid,$username){
 	{
 		printerror('EmptyWorkflowItem','history.go(-1)');
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"workflow");
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsworkflowitem where wfid='$wfid' and tno='$tno' limit 1");
 	if($num)
@@ -69,7 +69,7 @@ function AddWorkflowItem($add,$userid,$username){
 	$tid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("wfid=$wfid&tid=$tid<br>tname=".$add[tname]);
 		printerror("AddWorkflowItemSuccess","AddWfItem.php?enews=AddWorkflowItem&wfid=$wfid".hReturnEcmsHashStrHref2(0));
 	}
@@ -77,7 +77,7 @@ function AddWorkflowItem($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹èŠ‚ç‚¹
+//ĞŞ¸Ä½Úµã
 function EditWorkflowItem($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$add['tid'];
@@ -90,7 +90,7 @@ function EditWorkflowItem($add,$userid,$username){
 	{
 		printerror('EmptyWorkflowItem','history.go(-1)');
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"workflow");
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsworkflowitem where wfid='$wfid' and tno='$tno' and tid<>$tid limit 1");
 	if($num)
@@ -113,7 +113,7 @@ function EditWorkflowItem($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsworkflowitem set tname='$add[tname]',tno='$tno',ttext='$add[ttext]',groupid='$groupid',userclass='$userclass',username='$username',lztype='$lztype',tbdo='$tbdo',tddo='$tddo',tstatus='$add[tstatus]' where tid='$tid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("wfid=$wfid&tid=$tid<br>tname=".$add[tname]);
 		printerror("EditWorkflowItemSuccess","ListWfItem.php?wfid=$wfid".hReturnEcmsHashStrHref2(0));
 	}
@@ -121,7 +121,7 @@ function EditWorkflowItem($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤èŠ‚ç‚¹
+//É¾³ı½Úµã
 function DelWorkflowItem($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$add[tid];
@@ -130,13 +130,13 @@ function DelWorkflowItem($add,$userid,$username){
 	{
 		printerror("NotDelWorkflowItemid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"workflow");
 	$r=$empire->fetch1("select tname from {$dbtbpre}enewsworkflowitem where tid='$tid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsworkflowitem where tid='$tid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("wfid=$wfid&tid=$tid<br>tname=".$r[tname]);
 		printerror("DelWorkflowItemSuccess","ListWfItem.php?wfid=$wfid".hReturnEcmsHashStrHref2(0));
 	}
@@ -144,7 +144,7 @@ function DelWorkflowItem($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹èŠ‚ç‚¹ç¼–å·
+//ĞŞ¸Ä½Úµã±àºÅ
 function EditWorkflowItemTno($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$wfid=(int)$add['wfid'];
@@ -160,7 +160,7 @@ function EditWorkflowItemTno($add,$userid,$username){
 		$newtid=(int)$tid[$i];
 		$empire->query("update {$dbtbpre}enewsworkflowitem set tno='$newtno' where tid='$newtid'");
     }
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("wfid=$wfid");
 	printerror("EditWorkflowItemSuccess","ListWfItem.php?wfid=$wfid".hReturnEcmsHashStrHref2(0));
 }
@@ -172,19 +172,19 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="AddWorkflowItem")//å¢åŠ èŠ‚ç‚¹
+if($enews=="AddWorkflowItem")//Ôö¼Ó½Úµã
 {
 	AddWorkflowItem($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditWorkflowItem")//ä¿®æ”¹èŠ‚ç‚¹
+elseif($enews=="EditWorkflowItem")//ĞŞ¸Ä½Úµã
 {
 	EditWorkflowItem($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelWorkflowItem")//åˆ é™¤èŠ‚ç‚¹
+elseif($enews=="DelWorkflowItem")//É¾³ı½Úµã
 {
 	DelWorkflowItem($_GET,$logininid,$loginin);
 }
-elseif($enews=="EditWorkflowItemTno")//ä¿®æ”¹èŠ‚ç‚¹ç¼–å·
+elseif($enews=="EditWorkflowItemTno")//ĞŞ¸Ä½Úµã±àºÅ
 {
 	EditWorkflowItemTno($_POST,$logininid,$loginin);
 }
@@ -201,24 +201,24 @@ if(!$wfr['wfid'])
 }
 $query="select tid,tname,tno,lztype from {$dbtbpre}enewsworkflowitem where wfid='$wfid' order by tno,tid";
 $sql=$empire->query($query);
-$url="<a href=ListWf.php".$ecms_hashur['whehref'].">ç®¡ç†å·¥ä½œæµ</a> &gt; ".$wfr[wfname]." &gt; <a href='ListWfItem.php?wfid=$wfid".$ecms_hashur['ehref']."'>ç®¡ç†èŠ‚ç‚¹</a>";
+$url="<a href=ListWf.php".$ecms_hashur['whehref'].">¹ÜÀí¹¤×÷Á÷</a> &gt; ".$wfr[wfname]." &gt; <a href='ListWfItem.php?wfid=$wfid".$ecms_hashur['ehref']."'>¹ÜÀí½Úµã</a>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å·¥ä½œæµ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹¤×÷Á÷</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr> 
-    <td width="50%">ä½ç½®: 
+    <td width="50%">Î»ÖÃ: 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ èŠ‚ç‚¹" onclick="self.location.href='AddWfItem.php?enews=AddWorkflowItem&wfid=<?=$wfid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó½Úµã" onclick="self.location.href='AddWfItem.php?enews=AddWorkflowItem&wfid=<?=$wfid?><?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -228,10 +228,10 @@ $url="<a href=ListWf.php".$ecms_hashur['whehref'].">ç®¡ç†å·¥ä½œæµ</a> &gt; ".$
   <form name="form1" method="post" action="ListWfItem.php">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="10%"><div align="center">ç¼–å·</div></td>
-      <td width="44%" height="25"> <div align="center">èŠ‚ç‚¹åç§°</div></td>
-      <td width="16%"><div align="center">æµè½¬æ–¹å¼</div></td>
-      <td width="23%" height="25"><div align="center">æ“ä½œ</div></td>
+      <td width="10%"><div align="center">±àºÅ</div></td>
+      <td width="44%" height="25"> <div align="center">½ÚµãÃû³Æ</div></td>
+      <td width="16%"><div align="center">Á÷×ª·½Ê½</div></td>
+      <td width="23%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -246,17 +246,17 @@ $url="<a href=ListWf.php".$ecms_hashur['whehref'].">ç®¡ç†å·¥ä½œæµ</a> &gt; ".$
         <?=$r[tname]?>
       </td>
       <td><div align="center"> 
-          <?=$r[lztype]==1?'ä¼šç­¾':'æ™®é€šæµè½¬'?>
+          <?=$r[lztype]==1?'»áÇ©':'ÆÕÍ¨Á÷×ª'?>
         </div></td>
-      <td height="25"><div align="center">[<a href="AddWfItem.php?enews=EditWorkflowItem&tid=<?=$r[tid]?>&wfid=<?=$wfid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-          [<a href="AddWfItem.php?enews=AddWorkflowItem&tid=<?=$r[tid]?>&wfid=<?=$wfid?>&docopy=1<?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>] 
-          [<a href="ListWfItem.php?enews=DelWorkflowItem&tid=<?=$r[tid]?>&wfid=<?=$wfid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+      <td height="25"><div align="center">[<a href="AddWfItem.php?enews=EditWorkflowItem&tid=<?=$r[tid]?>&wfid=<?=$wfid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+          [<a href="AddWfItem.php?enews=AddWorkflowItem&tid=<?=$r[tid]?>&wfid=<?=$wfid?>&docopy=1<?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>] 
+          [<a href="ListWfItem.php?enews=DelWorkflowItem&tid=<?=$r[tid]?>&wfid=<?=$wfid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
     </tr>
     <?
   }
   ?>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="4"> <input type="submit" name="Submit" value="ä¿®æ”¹ç¼–å·"> 
+      <td height="25" colspan="4"> <input type="submit" name="Submit" value="ĞŞ¸Ä±àºÅ"> 
         <input name="enews" type="hidden" id="enews" value="EditWorkflowItemTno">
         <input name="wfid" type="hidden" id="wfid" value="<?=$wfid?>"> </td>
     </tr>

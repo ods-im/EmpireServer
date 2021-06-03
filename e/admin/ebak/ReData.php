@@ -6,7 +6,7 @@ require("../../class/functions.php");
 require("class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"dbdata");
 $mypath=ehtmlspecialchars($_GET['mypath']);
 $mydbname=ehtmlspecialchars($_GET['mydbname']);
@@ -48,48 +48,48 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ¢å¤æ•°æ®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>»Ö¸´Êı¾İ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td>ä½ç½®ï¼š<a href="ReData.php<?=$ecms_hashur['whehref']?>">æ¢å¤æ•°æ®</a></td>
+    <td>Î»ÖÃ£º<a href="ReData.php<?=$ecms_hashur['whehref']?>">»Ö¸´Êı¾İ</a></td>
   </tr>
 </table>
-<form action="phome.php" method="post" name="ebakredata" target="_blank" onsubmit="return confirm('ç¡®è®¤è¦æ¢å¤ï¼Ÿ');" autocomplete="off">
+<form action="phome.php" method="post" name="ebakredata" target="_blank" onsubmit="return confirm('È·ÈÏÒª»Ö¸´£¿');" autocomplete="off">
   <table width="70%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="34%" height="25">æ¢å¤æ•°æ® 
+      <td width="34%" height="25">»Ö¸´Êı¾İ 
         <input name="phome" type="hidden" id="phome" value="ReData"></td>
       <td width="66%" height="25">&nbsp;</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¢å¤æ•°æ®æºç›®å½•ï¼š</td>
+      <td height="25">»Ö¸´Êı¾İÔ´Ä¿Â¼£º</td>
       <td height="25">
         <?=$bakpath?>
         / 
         <input name="mypath" type="text" id="mypath" value="<?=$mypath?>">
-        <input type="button" name="Submit2" value="é€‰æ‹©ç›®å½•" onclick="javascript:window.open('ChangePath.php?change=1<?=$ecms_hashur['ehref']?>','','width=600,height=500,scrollbars=yes');"></td>
+        <input type="button" name="Submit2" value="Ñ¡ÔñÄ¿Â¼" onclick="javascript:window.open('ChangePath.php?change=1<?=$ecms_hashur['ehref']?>','','width=600,height=500,scrollbars=yes');"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">è¦å¯¼å…¥çš„æ•°æ®åº“ï¼š</td>
+      <td height="25" valign="top">Òªµ¼ÈëµÄÊı¾İ¿â£º</td>
       <td height="25"> <select name="add[mydbname]" size="23" id="add[mydbname]" style="width=200">
           <?=$db?>
         </select></td>
     </tr>
 	<tr bgcolor="#FFFFFF">
-      <td height="25">æ¢å¤é€‰é¡¹ï¼š</td>
-      <td height="25">æ¯ç»„æ¢å¤é—´éš”ï¼š 
+      <td height="25">»Ö¸´Ñ¡Ïî£º</td>
+      <td height="25">Ã¿×é»Ö¸´¼ä¸ô£º 
         <input name="add[waitbaktime]" type="text" id="add[waitbaktime]" value="0" size="2">
-        ç§’</td>
+        Ãë</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"> <div align="left"> 
-          <input type="submit" name="Submit" value="å¼€å§‹æ¢å¤">
+          <input type="submit" name="Submit" value="¿ªÊ¼»Ö¸´">
         </div></td>
     </tr>
   </table>

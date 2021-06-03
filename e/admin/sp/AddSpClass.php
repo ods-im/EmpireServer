@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,18 +15,18 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"sp");
 $enews=ehtmlspecialchars($_GET['enews']);
-$postword='å¢åŠ ç¢ç‰‡åˆ†ç±»';
-$url="<a href=ListSp.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡</a>&nbsp;>&nbsp;<a href=ListSpClass.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡åˆ†ç±»</a>&nbsp;>&nbsp;å¢åŠ ç¢ç‰‡åˆ†ç±»";
-//ä¿®æ”¹
+$postword='Ôö¼ÓËéÆ¬·ÖÀà';
+$url="<a href=ListSp.php".$ecms_hashur['whehref'].">¹ÜÀíËéÆ¬</a>&nbsp;>&nbsp;<a href=ListSpClass.php".$ecms_hashur['whehref'].">¹ÜÀíËéÆ¬·ÖÀà</a>&nbsp;>&nbsp;Ôö¼ÓËéÆ¬·ÖÀà";
+//ĞŞ¸Ä
 if($enews=="EditSpClass")
 {
-	$postword='ä¿®æ”¹ç¢ç‰‡åˆ†ç±»';
+	$postword='ĞŞ¸ÄËéÆ¬·ÖÀà';
 	$classid=(int)$_GET['classid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsspclass where classid='$classid'");
-	$url="<a href=ListSp.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡</a>&nbsp;>&nbsp;<a href=ListSpClass.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡åˆ†ç±»</a>&nbsp;>&nbsp;ä¿®æ”¹ç¢ç‰‡åˆ†ç±»ï¼š".$r[classname];
+	$url="<a href=ListSp.php".$ecms_hashur['whehref'].">¹ÜÀíËéÆ¬</a>&nbsp;>&nbsp;<a href=ListSpClass.php".$ecms_hashur['whehref'].">¹ÜÀíËéÆ¬·ÖÀà</a>&nbsp;>&nbsp;ĞŞ¸ÄËéÆ¬·ÖÀà£º".$r[classname];
 }
 db_close();
 $empire=null;
@@ -34,15 +34,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç¢ç‰‡åˆ†ç±»</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ËéÆ¬·ÖÀà</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListSpClass.php">
@@ -52,17 +52,17 @@ $empire=null;
       <td height="25" colspan="2"><?=$postword?></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="21%" height="25">åˆ†ç±»åç§°ï¼š</td>
+      <td width="21%" height="25">·ÖÀàÃû³Æ£º</td>
       <td width="79%" height="25"><input name="classname" type="text" id="classname" size="42" value="<?=$r[classname]?>"> 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="classid" type="hidden" id="classid" value="<?=$r[classid]?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">åˆ†ç±»è¯´æ˜ï¼š</td>
+      <td height="25">·ÖÀàËµÃ÷£º</td>
       <td height="25"><textarea name="classsay" cols="60" rows="5" id="classsay"><?=ehtmlspecialchars($r[classsay])?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

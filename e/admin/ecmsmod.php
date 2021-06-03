@@ -12,7 +12,7 @@ if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -24,30 +24,30 @@ hCheckEcmsRHash();
 @set_time_limit(0);
 
 require("../class/moddofun.php");
-//è®¾ç½®è®¿é—®ç«¯
+//ÉèÖÃ·ÃÎÊ¶Ë
 $moreportpid=0;
 if($enews=='ChangeAllModForm')
 {
 	$moreportpid=Moreport_hDoSetSelfPath(0);
 }
-//å¢åŠ å­—æ®µ
+//Ôö¼Ó×Ö¶Î
 if($enews=="AddF")
 {
 	$add=$_POST;
 	AddF($add,$logininid,$loginin);
 }
-//ä¿®æ”¹å­—æ®µ
+//ĞŞ¸Ä×Ö¶Î
 elseif($enews=="EditF")
 {
 	$add=$_POST;
 	EditF($add,$logininid,$loginin);
 }
-//ä¿®æ”¹ç³»ç»Ÿå­—æ®µ
+//ĞŞ¸ÄÏµÍ³×Ö¶Î
 elseif($enews=="EditSysF")
 {
 	EditSysF($_POST,$logininid,$loginin);
 }
-//åˆ é™¤å­—æ®µ
+//É¾³ı×Ö¶Î
 elseif($enews=="DelF")
 {
 	$fid=$_GET['fid'];
@@ -55,7 +55,7 @@ elseif($enews=="DelF")
 	$tbname=$_GET['tbname'];
 	DelF($fid,$tid,$tbname,$logininid,$loginin);
 }
-//ä¿®æ”¹å­—æ®µé¡ºåº
+//ĞŞ¸Ä×Ö¶ÎË³Ğò
 elseif($enews=="EditFOrder")
 {
 	$fid=$_POST['fid'];
@@ -64,15 +64,15 @@ elseif($enews=="EditFOrder")
 	$myorder=$_POST['myorder'];
 	EditFOrder($fid,$myorder,$tid,$tbname,$logininid,$loginin);
 }
-elseif($enews=='ChangeDataTableF')//è½¬ç§»å­—æ®µ
+elseif($enews=='ChangeDataTableF')//×ªÒÆ×Ö¶Î
 {
 	ChangeDataTableF($_GET,$logininid,$loginin);
 }
-elseif($enews=='ChangeDocDataTableF')//è½¬ç§»å­—æ®µ(å½’æ¡£)
+elseif($enews=='ChangeDocDataTableF')//×ªÒÆ×Ö¶Î(¹éµµ)
 {
 	ChangeDocDataTableF($_GET,$logininid,$loginin);
 }
-//å¢åŠ æ¨¡å‹
+//Ôö¼ÓÄ£ĞÍ
 elseif($enews=="AddM")
 {
 	$add=$_POST['add'];
@@ -84,7 +84,7 @@ elseif($enews=="AddM")
 	$menter=$_POST['menter'];
 	AddM($add,$cname,$cchange,$schange,$center,$cqenter,$menter,$_POST['listand'],$_POST['ltempf'],$_POST['ptempf'],$_POST['canadd'],$_POST['canedit'],$_POST['listorder'],$logininid,$loginin);
 }
-//ä¿®æ”¹æ¨¡å‹
+//ĞŞ¸ÄÄ£ĞÍ
 elseif($enews=="EditM")
 {
 	$add=$_POST['add'];
@@ -96,7 +96,7 @@ elseif($enews=="EditM")
 	$menter=$_POST['menter'];
 	EditM($add,$cname,$cchange,$schange,$center,$cqenter,$menter,$_POST['listand'],$_POST['ltempf'],$_POST['ptempf'],$_POST['canadd'],$_POST['canedit'],$_POST['listorder'],$logininid,$loginin);
 }
-//åˆ é™¤æ¨¡å‹
+//É¾³ıÄ£ĞÍ
 elseif($enews=="DelM")
 {
 	$mid=$_GET['mid'];
@@ -104,7 +104,7 @@ elseif($enews=="DelM")
 	$tbname=$_GET['tbname'];
 	DelM($mid,$tid,$tbname,$logininid,$loginin);
 }
-//é»˜è®¤æ¨¡å‹
+//Ä¬ÈÏÄ£ĞÍ
 elseif($enews=="DefM")
 {
 	$mid=$_GET['mid'];
@@ -112,46 +112,46 @@ elseif($enews=="DefM")
 	$tbname=$_GET['tbname'];
 	DefM($mid,$tid,$tbname,$logininid,$loginin);
 }
-//æ–°å»ºæ•°æ®è¡¨
+//ĞÂ½¨Êı¾İ±í
 elseif($enews=="AddTable")
 {
 	AddTable($_POST,$logininid,$loginin);
 }
-//å¤åˆ¶æ•°æ®è¡¨
+//¸´ÖÆÊı¾İ±í
 elseif($enews=="CopyNewTable")
 {
 	CopyNewTable($_POST,$logininid,$loginin);
 }
-//ä¿®æ”¹æ•°æ®è¡¨
+//ĞŞ¸ÄÊı¾İ±í
 elseif($enews=="EditTable")
 {
 	EditTable($_POST,$logininid,$loginin);
 }
-//åˆ é™¤æ•°æ®è¡¨
+//É¾³ıÊı¾İ±í
 elseif($enews=="DelTable")
 {
 	$tid=$_GET['tid'];
 	DelTable($tid,$logininid,$loginin);
 }
-//é»˜è®¤æ•°æ®è¡¨
+//Ä¬ÈÏÊı¾İ±í
 elseif($enews=="DefaultTable")
 {
 	$tid=$_GET['tid'];
 	DefaultTable($tid,$logininid,$loginin);
 }
-elseif($enews=="AddDataTable")//å¢åŠ å‰¯è¡¨åˆ†è¡¨
+elseif($enews=="AddDataTable")//Ôö¼Ó¸±±í·Ö±í
 {
 	AddDataTable($_POST,$logininid,$loginin);
 }
-elseif($enews=="DefDataTable")//é»˜è®¤å‰¯è¡¨åˆ†è¡¨
+elseif($enews=="DefDataTable")//Ä¬ÈÏ¸±±í·Ö±í
 {
 	DefDataTable($_GET,$logininid,$loginin);
 }
-elseif($enews=="DelDataTable")//åˆ é™¤å‰¯è¡¨åˆ†è¡¨
+elseif($enews=="DelDataTable")//É¾³ı¸±±í·Ö±í
 {
 	DelDataTable($_GET,$logininid,$loginin);
 }
-//å¯¼å…¥æ¨¡å‹
+//µ¼ÈëÄ£ĞÍ
 elseif($enews=="LoadInMod")
 {
 	$file=$_FILES['file']['tmp_name'];
@@ -160,7 +160,7 @@ elseif($enews=="LoadInMod")
     $file_size=$_FILES['file']['size'];
 	LoadInMod($_POST,$file,$file_name,$file_type,$file_size,$logininid,$loginin);
 }
-elseif($enews=='ChangeAllModForm')//æ‰¹é‡æ›´æ–°æ¨¡å‹è¡¨å•
+elseif($enews=='ChangeAllModForm')//ÅúÁ¿¸üĞÂÄ£ĞÍ±íµ¥
 {
 	ChangeAllModForm($_GET,$logininid,$loginin);
 }

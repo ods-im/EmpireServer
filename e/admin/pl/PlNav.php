@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,20 +15,20 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 //CheckLevel($logininid,$loginin,$classid,"pl");
 $gr=ReturnLeftLevel($loginlevel);
 
 $plr=$empire->fetch1("select pldatatbs,pldeftb from {$dbtbpre}enewspl_set limit 1");
 $tr=explode(',',$plr['pldatatbs']);
-//ä»Šæ—¥è¯„è®º
+//½ñÈÕÆÀÂÛ
 $pur=$empire->fetch1("select lasttimepl,lastnumpl,lastnumpltb,todaytimeinfo,todaytimepl,todaynumpl,yesterdaynumpl from {$dbtbpre}enewspublic_up limit 1");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>èœå•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²Ëµ¥</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <SCRIPT lanuage="JScript">
 function DisplayImg(ss,imgname,phome)
@@ -76,7 +76,7 @@ if($gr['dopl'])
 ?>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="doplid">
   <tr> 
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="plimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dopl,"plimg"); style="CURSOR: hand">ç®¡ç†è¯„è®º</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="plimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dopl,"plimg"); style="CURSOR: hand">¹ÜÀíÆÀÂÛ</a></td>
   </tr>
   <tbody id="dopl">
 	  <?php
@@ -84,7 +84,7 @@ if($gr['dopl'])
 	  for($i=1;$i<$count;$i++)
 	  {
 		$thistb=$tr[$i];
-		$restbname="è¯„è®ºè¡¨".$thistb;
+		$restbname="ÆÀÂÛ±í".$thistb;
 		$pltbname=$dbtbpre.'enewspl_'.$thistb;
 		if($thistb==$plr['pldeftb'])
 		{
@@ -114,7 +114,7 @@ if($gr['doplf']||$gr['dopltable']||$gr['dopl']||$gr['dopublic'])
 ?>
   <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="doplotherid">
     <tr>
-      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="ztimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(doplother,"plotherimg"); style="CURSOR: hand">å…¶ä»–ç®¡ç†</a></td>
+      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="ztimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(doplother,"plotherimg"); style="CURSOR: hand">ÆäËû¹ÜÀí</a></td>
     </tr>
     <tbody id="doplother">
 	<?php
@@ -122,7 +122,7 @@ if($gr['doplf']||$gr['dopltable']||$gr['dopl']||$gr['dopublic'])
 	{
 	?>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListPlF.php<?=$ecms_hashur['whehref']?>" target="apmain">è‡ªå®šä¹‰è¯„è®ºå­—æ®µ</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListPlF.php<?=$ecms_hashur['whehref']?>" target="apmain">×Ô¶¨ÒåÆÀÂÛ×Ö¶Î</a></td>
       </tr>
 	<?php
 	}
@@ -132,10 +132,10 @@ if($gr['doplf']||$gr['dopltable']||$gr['dopl']||$gr['dopublic'])
 	{
 	?>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DelMorePl.php<?=$ecms_hashur['whehref']?>" target="apmain">æ‰¹é‡åˆ é™¤è¯„è®º</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DelMorePl.php<?=$ecms_hashur['whehref']?>" target="apmain">ÅúÁ¿É¾³ıÆÀÂÛ</a></td>
       </tr>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="plface.php<?=$ecms_hashur['whehref']?>" target="apmain">ç®¡ç†è¯„è®ºè¡¨æƒ…</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="plface.php<?=$ecms_hashur['whehref']?>" target="apmain">¹ÜÀíÆÀÂÛ±íÇé</a></td>
       </tr>
 	<?php
 	}
@@ -145,7 +145,7 @@ if($gr['doplf']||$gr['dopltable']||$gr['dopl']||$gr['dopublic'])
 	{
 	?>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SetPl.php<?=$ecms_hashur['whehref']?>" target="apmain">è®¾ç½®è¯„è®ºå‚æ•°</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SetPl.php<?=$ecms_hashur['whehref']?>" target="apmain">ÉèÖÃÆÀÂÛ²ÎÊı</a></td>
       </tr>
 	<?php
 	}

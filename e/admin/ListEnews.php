@@ -5,7 +5,7 @@ require("../class/db_sql.php");
 require("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=(int)$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 $ecms_hashur=hReturnEcmsHashStrAll();
 
 $user_r=$empire->fetch1("select adminclass,groupid from {$dbtbpre}enewsuser where userid='$logininid'");
-//ç”¨æˆ·ç»„æƒé™
+//ÓÃ»§×éÈ¨ÏŞ
 $gr=$empire->fetch1("select doall from {$dbtbpre}enewsgroup where groupid='$user_r[groupid]'");
 if($gr['doall'])
 {
@@ -31,7 +31,7 @@ if(file_exists($fcfile))
 {
 	$fclistenews=str_replace(AddCheckViewTempCode(),'',ReadFiletext($fcfile));
 }
-//æ•°æ®è¡¨
+//Êı¾İ±í
 $changetbs='';
 $dh='';
 $tbi=0;
@@ -49,8 +49,8 @@ while($tbr=$empire->fetch($tbsql))
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ä¿¡æ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíĞÅÏ¢</title>
 <link href="../data/menu/menu.css" rel="stylesheet" type="text/css">
 <script src="../data/menu/menu.js" type="text/javascript"></script>
 <script language="javascript" src="../data/rightmenu/context_menu.js"></script>
@@ -68,7 +68,7 @@ function chft(obj,ecms,classid){
 	{
 		obj.style.fontWeight='';
 	}
-	obj.title='æ ç›®IDï¼š'+classid;
+	obj.title='À¸Ä¿ID£º'+classid;
 }
 
 function goaddclass(){
@@ -84,7 +84,7 @@ if(moz) {
 	extendElementModel();
 	emulateAttachEvent();
 }
-//å³é”®èœå•
+//ÓÒ¼ü²Ëµ¥
 function ShRM(obj,bclassid,classid,classurl,showmenu)
 {
   var eobj,popupoptions;
@@ -92,22 +92,22 @@ function ShRM(obj,bclassid,classid,classurl,showmenu)
 if(showmenu==1)
 {
   popupoptions = [
-    new ContextItem("å¢åŠ ä¿¡æ¯",function(){ parent.document.main.location="AddNews.php?<?=$ecms_hashur['ehref']?>&enews=AddNews&bclassid="+bclassid+"&classid="+classid; }),
+    new ContextItem("Ôö¼ÓĞÅÏ¢",function(){ parent.document.main.location="AddNews.php?<?=$ecms_hashur['ehref']?>&enews=AddNews&bclassid="+bclassid+"&classid="+classid; }),
 	new ContextSeperator(),
-    new ContextItem("åˆ·æ–°æ ç›®",function(){ parent.document.main.location="enews.php?<?=$ecms_hashur['href']?>&enews=ReListHtml&classid="+classid; }),
-	new ContextItem("åˆ·æ–°æ ç›®JS",function(){ parent.document.main.location="ecmschtml.php?<?=$ecms_hashur['href']?>&enews=ReSingleJs&doing=0&classid="+classid; }),
-    new ContextItem("åˆ·æ–°é¦–é¡µ",function(){ parent.document.main.location="ecmschtml.php?enews=ReIndex<?=$ecms_hashur['href']?>"; }),
+    new ContextItem("Ë¢ĞÂÀ¸Ä¿",function(){ parent.document.main.location="enews.php?<?=$ecms_hashur['href']?>&enews=ReListHtml&classid="+classid; }),
+	new ContextItem("Ë¢ĞÂÀ¸Ä¿JS",function(){ parent.document.main.location="ecmschtml.php?<?=$ecms_hashur['href']?>&enews=ReSingleJs&doing=0&classid="+classid; }),
+    new ContextItem("Ë¢ĞÂÊ×Ò³",function(){ parent.document.main.location="ecmschtml.php?enews=ReIndex<?=$ecms_hashur['href']?>"; }),
 	new ContextSeperator(),
-	new ContextItem("é¢„è§ˆé¦–é¡µ",function(){ window.open("../../"); }),
-    new ContextItem("é¢„è§ˆæ ç›®",function(){ window.open(classurl); }),
+	new ContextItem("Ô¤ÀÀÊ×Ò³",function(){ window.open("../../"); }),
+    new ContextItem("Ô¤ÀÀÀ¸Ä¿",function(){ window.open(classurl); }),
 	new ContextSeperator(),
-	new ContextItem("ä¿®æ”¹æ ç›®",function(){ parent.document.main.location="AddClass.php?<?=$ecms_hashur['ehref']?>&classid="+classid+"&enews=EditClass"; }),
-    new ContextItem("å¢åŠ æ–°æ ç›®",function(){ parent.document.main.location="AddClass.php?enews=AddClass<?=$ecms_hashur['ehref']?>"; }),
-    new ContextItem("å¤åˆ¶æ ç›®",function(){ parent.document.main.location="AddClass.php?<?=$ecms_hashur['ehref']?>&classid="+classid+"&enews=AddClass&docopy=1"; }),
+	new ContextItem("ĞŞ¸ÄÀ¸Ä¿",function(){ parent.document.main.location="AddClass.php?<?=$ecms_hashur['ehref']?>&classid="+classid+"&enews=EditClass"; }),
+    new ContextItem("Ôö¼ÓĞÂÀ¸Ä¿",function(){ parent.document.main.location="AddClass.php?enews=AddClass<?=$ecms_hashur['ehref']?>"; }),
+    new ContextItem("¸´ÖÆÀ¸Ä¿",function(){ parent.document.main.location="AddClass.php?<?=$ecms_hashur['ehref']?>&classid="+classid+"&enews=AddClass&docopy=1"; }),
     new ContextSeperator(),
-	new ContextItem("æ•°æ®æ›´æ–°",function(){ parent.document.main.location="ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>"; }),
-	new ContextItem("å¢åŠ é‡‡é›†èŠ‚ç‚¹",function(){ parent.document.main.location="AddInfoClass.php?<?=$ecms_hashur['ehref']?>&enews=AddInfoClass&newsclassid="+classid; }),
-	new ContextItem("ç®¡ç†é™„ä»¶",function(){ parent.document.main.location="file/ListFile.php?<?=$ecms_hashur['ehref']?>&type=9&classid="+classid; }),
+	new ContextItem("Êı¾İ¸üĞÂ",function(){ parent.document.main.location="ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>"; }),
+	new ContextItem("Ôö¼Ó²É¼¯½Úµã",function(){ parent.document.main.location="AddInfoClass.php?<?=$ecms_hashur['ehref']?>&enews=AddInfoClass&newsclassid="+classid; }),
+	new ContextItem("¹ÜÀí¸½¼ş",function(){ parent.document.main.location="file/ListFile.php?<?=$ecms_hashur['ehref']?>&type=9&classid="+classid; }),
 	new ContextSeperator()
   ]
 }
@@ -120,17 +120,17 @@ else if(showmenu==2)
 else
 {
 	popupoptions = [
-    new ContextItem("åˆ·æ–°æ ç›®",function(){ parent.document.main.location="enews.php?<?=$ecms_hashur['href']?>&enews=ReListHtml&classid="+classid; }),
-	new ContextItem("åˆ·æ–°æ ç›®JS",function(){ parent.document.main.location="ecmschtml.php?<?=$ecms_hashur['href']?>&enews=ReSingleJs&doing=0&classid="+classid; }),
-    new ContextItem("åˆ·æ–°é¦–é¡µ",function(){ parent.document.main.location="ecmschtml.php?enews=ReIndex<?=$ecms_hashur['href']?>"; }),
-	new ContextItem("æ•°æ®æ›´æ–°",function(){ parent.document.main.location="ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>"; }),
+    new ContextItem("Ë¢ĞÂÀ¸Ä¿",function(){ parent.document.main.location="enews.php?<?=$ecms_hashur['href']?>&enews=ReListHtml&classid="+classid; }),
+	new ContextItem("Ë¢ĞÂÀ¸Ä¿JS",function(){ parent.document.main.location="ecmschtml.php?<?=$ecms_hashur['href']?>&enews=ReSingleJs&doing=0&classid="+classid; }),
+    new ContextItem("Ë¢ĞÂÊ×Ò³",function(){ parent.document.main.location="ecmschtml.php?enews=ReIndex<?=$ecms_hashur['href']?>"; }),
+	new ContextItem("Êı¾İ¸üĞÂ",function(){ parent.document.main.location="ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>"; }),
 	new ContextSeperator(),
-	new ContextItem("é¢„è§ˆé¦–é¡µ",function(){ window.open("../../"); }),
-	new ContextItem("é¢„è§ˆæ ç›®",function(){ window.open(classurl); }),
+	new ContextItem("Ô¤ÀÀÊ×Ò³",function(){ window.open("../../"); }),
+	new ContextItem("Ô¤ÀÀÀ¸Ä¿",function(){ window.open(classurl); }),
 	new ContextSeperator(),
-	new ContextItem("ä¿®æ”¹æ ç›®",function(){ parent.document.main.location="AddClass.php?<?=$ecms_hashur['ehref']?>&classid="+classid+"&enews=EditClass"; }),
-    new ContextItem("å¢åŠ æ–°æ ç›®",function(){ parent.document.main.location="AddClass.php?enews=AddClass<?=$ecms_hashur['ehref']?>"; }),
-    new ContextItem("å¤åˆ¶æ ç›®",function(){ parent.document.main.location="AddClass.php?<?=$ecms_hashur['ehref']?>&classid="+classid+"&enews=AddClass&docopy=1"; }),
+	new ContextItem("ĞŞ¸ÄÀ¸Ä¿",function(){ parent.document.main.location="AddClass.php?<?=$ecms_hashur['ehref']?>&classid="+classid+"&enews=EditClass"; }),
+    new ContextItem("Ôö¼ÓĞÂÀ¸Ä¿",function(){ parent.document.main.location="AddClass.php?enews=AddClass<?=$ecms_hashur['ehref']?>"; }),
+    new ContextItem("¸´ÖÆÀ¸Ä¿",function(){ parent.document.main.location="AddClass.php?<?=$ecms_hashur['ehref']?>&classid="+classid+"&enews=AddClass&docopy=1"; }),
 	new ContextSeperator()
   ]
 }
@@ -142,7 +142,7 @@ else
 	<table border='0' cellspacing='0' cellpadding='0'>
 	<tr height=20>
 			<td id="home"><img src="../data/images/homepage.gif" border=0></td>
-			<td><a href="#ecms" onclick="parent.main.location.href='ListAllInfo.php<?=$ecms_hashur['whehref']?>';" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'" oncontextmenu="ShRM(this,0,0,'',2)"><b>ç®¡ç†ä¿¡æ¯</b></a></td>
+			<td><a href="#ecms" onclick="parent.main.location.href='ListAllInfo.php<?=$ecms_hashur['whehref']?>';" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'" oncontextmenu="ShRM(this,0,0,'',2)"><b>¹ÜÀíĞÅÏ¢</b></a></td>
 	</tr>
 	</table>
 <?php

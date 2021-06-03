@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,23 +15,23 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"player");
 
-//éªŒè¯æ–‡ä»¶
+//ÑéÖ¤ÎÄ¼ş
 function CheckPlayerFilename($filename){
 	if(strstr($filename,"\\")||strstr($filename,"/")||strstr($filename,".."))
 	{
 		printerror("PlayerFileNotExist","history.go(-1)");
 	}
-	//æ–‡ä»¶æ˜¯å¦å­˜åœ¨
+	//ÎÄ¼şÊÇ·ñ´æÔÚ
 	if(!file_exists("../../DownSys/play/".$filename))
 	{
 		printerror("PlayerFileNotExist","history.go(-1)");
 	}
 }
 
-//------------------å¢åŠ æ’­æ”¾å™¨
+//------------------Ôö¼Ó²¥·ÅÆ÷
 function AddPlayer($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[player]||!$add[filename])
@@ -45,7 +45,7 @@ function AddPlayer($add,$userid,$username){
 	$id=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id<br>player=$add[player]");
 		printerror("AddPlayerSuccess","player.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -53,7 +53,7 @@ function AddPlayer($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//----------------ä¿®æ”¹æ’­æ”¾å™¨
+//----------------ĞŞ¸Ä²¥·ÅÆ÷
 function EditPlayer($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[id]=(int)$add[id];
@@ -67,7 +67,7 @@ function EditPlayer($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsplayer set player='".$add['player']."',filename='".eaddslashes($add[filename])."',bz='".$add['bz']."' where id='$add[id]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$add[id]<br>player=$add[player]");
 		printerror("EditPlayerSuccess","player.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -75,7 +75,7 @@ function EditPlayer($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//---------------åˆ é™¤æ’­æ”¾å™¨
+//---------------É¾³ı²¥·ÅÆ÷
 function DelPlayer($id,$userid,$username){
 	global $empire,$dbtbpre;
 	$id=(int)$id;
@@ -91,7 +91,7 @@ function DelPlayer($id,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsplayer where id='$id'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id<br>player=$r[player]");
 		printerror("DelPlayerSuccess","player.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -106,17 +106,17 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ æ’­æ”¾å™¨
+//Ôö¼Ó²¥·ÅÆ÷
 if($enews=="AddPlayer")
 {
 	AddPlayer($_POST,$logininid,$loginin);
 }
-//ä¿®æ”¹æ’­æ”¾å™¨
+//ĞŞ¸Ä²¥·ÅÆ÷
 elseif($enews=="EditPlayer")
 {
 	EditPlayer($_POST,$logininid,$loginin);
 }
-//åˆ é™¤æ’­æ”¾å™¨
+//É¾³ı²¥·ÅÆ÷
 elseif($enews=="DelPlayer")
 {
 	$id=$_GET['id'];
@@ -127,27 +127,27 @@ $sql=$empire->query("select id,player,filename,bz from {$dbtbpre}enewsplayer ord
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ æ’­æ”¾å™¨</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼Ó²¥·ÅÆ÷</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="player.php<?=$ecms_hashur['whehref']?>">ç®¡ç†æ’­æ”¾å™¨</a></td>
+    <td>Î»ÖÃ£º<a href="player.php<?=$ecms_hashur['whehref']?>">¹ÜÀí²¥·ÅÆ÷</a></td>
   </tr>
 </table>
 <form name="addplayerform" method="post" action="player.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="4">å¢åŠ æ’­æ”¾å™¨: <input type=hidden name=enews value=AddPlayer></td>
+      <td height="25" colspan="4">Ôö¼Ó²¥·ÅÆ÷: <input type=hidden name=enews value=AddPlayer></td>
     </tr>
     <tr>
-      <td width="14%" height="25" bgcolor="#FFFFFF">æ’­æ”¾å™¨åç§°</td>
-      <td width="33%" bgcolor="#FFFFFF">æ–‡ä»¶å</td>
-      <td width="13%" bgcolor="#FFFFFF">è¯´æ˜</td>
+      <td width="14%" height="25" bgcolor="#FFFFFF">²¥·ÅÆ÷Ãû³Æ</td>
+      <td width="33%" bgcolor="#FFFFFF">ÎÄ¼şÃû</td>
+      <td width="13%" bgcolor="#FFFFFF">ËµÃ÷</td>
       <td width="40%" bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <tr> 
@@ -156,9 +156,9 @@ $sql=$empire->query("select id,player,filename,bz from {$dbtbpre}enewsplayer ord
       </td>
       <td bgcolor="#FFFFFF">e/DownSys/play/ 
         <input name="filename" type="text" id="filename" value="">
-        <a href="#ecms" onclick="window.open('ChangePlayerFile.php?returnform=opener.document.addplayerform.filename.value<?=$ecms_hashur['ehref']?>','','width=400,height=500,scrollbars=yes');">[é€‰æ‹©]</a></td>
+        <a href="#ecms" onclick="window.open('ChangePlayerFile.php?returnform=opener.document.addplayerform.filename.value<?=$ecms_hashur['ehref']?>','','width=400,height=500,scrollbars=yes');">[Ñ¡Ôñ]</a></td>
       <td bgcolor="#FFFFFF"><input name="bz" type="text" id="bz"></td>
-      <td bgcolor="#FFFFFF"><input type="submit" name="Submit" value="å¢åŠ "></td>
+      <td bgcolor="#FFFFFF"><input type="submit" name="Submit" value="Ôö¼Ó"></td>
     </tr>
   </table>
 </form>
@@ -166,10 +166,10 @@ $sql=$empire->query("select id,player,filename,bz from {$dbtbpre}enewsplayer ord
   <tr class="header">
     <td width="8%"> 
       <div align="center">ID</div></td>
-    <td width="14%" height="25">æ’­æ”¾å™¨åç§°</td>
-    <td width="33%">æ–‡ä»¶å</td>
-    <td width="13%">è¯´æ˜</td>
-    <td width="32%" height="25"> æ“ä½œ</td>
+    <td width="14%" height="25">²¥·ÅÆ÷Ãû³Æ</td>
+    <td width="33%">ÎÄ¼şÃû</td>
+    <td width="13%">ËµÃ÷</td>
+    <td width="32%" height="25"> ²Ù×÷</td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -185,12 +185,12 @@ $sql=$empire->query("select id,player,filename,bz from {$dbtbpre}enewsplayer ord
       </td>
       <td>e/DownSys/play/ 
         <input name="filename" type="text" value="<?=$r[filename]?>"> 
-        <a href="#ecms" onclick="window.open('ChangePlayerFile.php?returnform=opener.document.playerform<?=$r[id]?>.filename.value<?=$ecms_hashur['ehref']?>','','width=400,height=500,scrollbars=yes');">[é€‰æ‹©]</a></td>
+        <a href="#ecms" onclick="window.open('ChangePlayerFile.php?returnform=opener.document.playerform<?=$r[id]?>.filename.value<?=$ecms_hashur['ehref']?>','','width=400,height=500,scrollbars=yes');">[Ñ¡Ôñ]</a></td>
       <td><input name="bz" type="text" value="<?=$r[bz]?>"></td>
       <td height="25"> <div align="left"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="if(confirm('ç¡®è®¤è¦åˆ é™¤?')){self.location.href='player.php?enews=DelPlayer&id=<?=$r[id]?><?=$ecms_hashur['href']?>';}">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="if(confirm('È·ÈÏÒªÉ¾³ı?')){self.location.href='player.php?enews=DelPlayer&id=<?=$r[id]?><?=$ecms_hashur['href']?>';}">
         </div></td>
     </tr>
   </form>

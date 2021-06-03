@@ -3,12 +3,12 @@ function Init(){
 
 	// Initicalize State String
 
-	RM_STATE[0]="æ’­æ”¾åœæ­¢";
-	RM_STATE[1]="æ­£åœ¨è¿æ¥åª’ä½“æµâ€¦â€¦";
-	RM_STATE[2]="æ­£åœ¨ç¼“å†²â€¦â€¦";
-	RM_STATE[3]="æ­£åœ¨æ’­æ”¾";
-	RM_STATE[4]="æš‚åœæ’­æ”¾";
-	RM_STATE[5]="æ­£åœ¨æœç´¢æµâ€¦â€¦";
+	RM_STATE[0]="²¥·ÅÍ£Ö¹";
+	RM_STATE[1]="ÕıÔÚÁ¬½ÓÃ½ÌåÁ÷¡­¡­";
+	RM_STATE[2]="ÕıÔÚ»º³å¡­¡­";
+	RM_STATE[3]="ÕıÔÚ²¥·Å";
+	RM_STATE[4]="ÔİÍ£²¥·Å";
+	RM_STATE[5]="ÕıÔÚËÑË÷Á÷¡­¡­";
 
 	Player.SetEnableContextMenu(false);
 	Player.SetImageStatus(false);
@@ -28,9 +28,9 @@ function GetStateString(flag){
 
 function StreamMonitor(){
 	if(!Player.GetFullScreen()){
-		strInfo="Real æ ¼å¼ï¼Œ";
+		strInfo="Real ¸ñÊ½£¬";
 		strInfo=strInfo + GetStateString(GetStateFlag())+ "<BR>";//+(TRACE_LEFT+Player.GetPosition()/Player.GetLength()*TRACE_WIDTH);
-		strInfo=strInfo + "å¸¦å®½ï¼š" + Math.round(Player.GetbandWidthCurrent()/1000) + "Kbps ";
+		strInfo=strInfo + "´ø¿í£º" + Math.round(Player.GetbandWidthCurrent()/1000) + "Kbps ";
 		strInfo=strInfo+strMsg
 		info.innerHTML=strInfo;
 		if(!DRAG_POS&&GetStateFlag()==3){
@@ -140,7 +140,7 @@ function SetMute(){
 
 	IS_NUTE=Player.GetMute();
 	Player.SetMute(!IS_NUTE);
-	mute.alt=(IS_NUTE)?"è§£é™¤é™éŸ³":"é™éŸ³";
+	mute.alt=(IS_NUTE)?"½â³ı¾²Òô":"¾²Òô";
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,7 +220,7 @@ function Play(){
 
 	if (Player.GetPlayState()==3) return;//if is playing	
 	Player.DoPlay();
-	document.all.playpause.alt="æš‚åœ";
+	document.all.playpause.alt="ÔİÍ£";
 	document.all.playpause.src="images/pause_d.gif";
 }
 
@@ -229,7 +229,7 @@ function Pause(){
 
 	if (Player.GetPlayState()!=3)  return;//if not playing	
 	Player.DoPause();
-	document.all.playpause.alt="æ’­æ”¾";
+	document.all.playpause.alt="²¥·Å";
 	document.all.playpause.src="images/play_d.gif";
 }
 
@@ -239,7 +239,7 @@ function Stop(){
 	if (Player.GetPlayState()==0&&Player.CanStop())
 		return;
 	Player.DoStop();
-	playpause.alt="æ’­æ”¾";
+	playpause.alt="²¥·Å";
 	document.all.playpause.src="images/play_d.gif";
 }
 

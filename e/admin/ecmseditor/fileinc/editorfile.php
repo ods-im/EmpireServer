@@ -6,7 +6,7 @@ if(!defined('InEmpireCMS'))
 ?>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">é™„ä»¶</td>
+    <td height="25">¸½¼ş</td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
@@ -15,21 +15,21 @@ if(!defined('InEmpireCMS'))
     <td width="8%">
 <div align="center">ID</div></td>
     <td width="42%">
-<div align="center">æ–‡ä»¶å</div></td>
+<div align="center">ÎÄ¼şÃû</div></td>
     <td width="15%">
-<div align="center">å¤§å°</div></td>
+<div align="center">´óĞ¡</div></td>
     <td width="21%">
-<div align="center">ä¸Šä¼ æ—¶é—´</div></td>
-    <td width="10%"><div align="center">é€‰æ‹©</div></td>
+<div align="center">ÉÏ´«Ê±¼ä</div></td>
+    <td width="10%"><div align="center">Ñ¡Ôñ</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
   {
 	$filesize=ChTheFilesize($r[filesize]);
-	//å–å¾—æ–‡ä»¶ç±»å‹
+	//È¡µÃÎÄ¼şÀàĞÍ
 	$truefiletype=GetFiletype($r[filename]);
 	$filetype=substr($truefiletype,1);
-	//æ–‡ä»¶
+	//ÎÄ¼ş
 	$fspath=ReturnFileSavePath($r[classid],$r[fpath]);
 	$filepath=$r[path]?$r[path].'/':$r[path];
 	$file=$fspath['fileurl'].$filepath.$r[filename];
@@ -66,7 +66,7 @@ if(!defined('InEmpireCMS'))
       </div></td>
     <td colspan="5" bgcolor="#FFFFFF">&nbsp;&nbsp; 
       <?=$returnpage?>
-      &nbsp;&nbsp; <input type="submit" name="Submit34" value="åˆ é™¤é€‰ä¸­" onclick="document.dofile.enews.value='TDelFile_all';">
+      &nbsp;&nbsp; <input type="submit" name="Submit34" value="É¾³ıÑ¡ÖĞ" onclick="document.dofile.enews.value='TDelFile_all';">
     </td>
   </tr>
 </table>

@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -31,8 +31,8 @@ if(!$classid||!$class_r[$classid]['tbname'])
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç›¸å…³é“¾æ¥</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ïà¹ØÁ´½Ó</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -81,10 +81,10 @@ if($keyid)
             <td width="11%" height="25"> <div align="center">
                 <?=$infor['id']?>
               </div></td>
-            <td width="75%"><a href="<?=$titleurl?>" target="_blank" title="å‘å¸ƒæ—¶é—´ï¼š<?=date('Y-m-d H:i:s',$infor['newstime'])?>">
+            <td width="75%"><a href="<?=$titleurl?>" target="_blank" title="·¢²¼Ê±¼ä£º<?=date('Y-m-d H:i:s',$infor['newstime'])?>">
               <?=stripSlashes($infor['title'])?>
               </a></td>
-            <td width="14%"><div align="center"><a href="OtherLinkShow.php?classid=<?=$classid?>&id=<?=$id?>&enews=<?=$enews?>&keyid=<?=$ids?>&delid=<?=$infor['id']?><?=$ecms_hashur['ehref']?>" onclick="return confirm('ç¡®è®¤è¦ä»ç›¸å…³é“¾æ¥ç§»é™¤?');">åˆ </a></div></td>
+            <td width="14%"><div align="center"><a href="OtherLinkShow.php?classid=<?=$classid?>&id=<?=$id?>&enews=<?=$enews?>&keyid=<?=$ids?>&delid=<?=$infor['id']?><?=$ecms_hashur['ehref']?>" onclick="return confirm('È·ÈÏÒª´ÓÏà¹ØÁ´½ÓÒÆ³ı?');">É¾</a></div></td>
           </tr>
 	<?php
 	}

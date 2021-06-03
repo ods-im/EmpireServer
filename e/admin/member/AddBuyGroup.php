@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,20 +15,20 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"buygroup");
 $enews=ehtmlspecialchars($_GET['enews']);
 $r[gmoney]=10;
 $r[gfen]=0;
 $r[gdate]=0;
-$url="<a href=ListBuyGroup.php".$ecms_hashur['whehref'].">ç®¡ç†å……å€¼ç±»å‹</a> &gt; å¢åŠ å……å€¼ç±»å‹";
+$url="<a href=ListBuyGroup.php".$ecms_hashur['whehref'].">¹ÜÀí³äÖµÀàĞÍ</a> &gt; Ôö¼Ó³äÖµÀàĞÍ";
 if($enews=="EditBuyGroup")
 {
 	$id=(int)$_GET['id'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsbuygroup where id='$id' limit 1");
-	$url="<a href=ListBuyGroup.php".$ecms_hashur['whehref'].">ç®¡ç†å……å€¼ç±»å‹</a> &gt; ä¿®æ”¹å……å€¼ç±»å‹";
+	$url="<a href=ListBuyGroup.php".$ecms_hashur['whehref'].">¹ÜÀí³äÖµÀàĞÍ</a> &gt; ĞŞ¸Ä³äÖµÀàĞÍ";
 }
-//----------ä¼šå‘˜ç»„
+//----------»áÔ±×é
 $sql=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($level_r=$empire->fetch($sql))
 {
@@ -52,81 +52,81 @@ while($level_r=$empire->fetch($sql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ å……å€¼ç±»å‹</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼Ó³äÖµÀàĞÍ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListBuyGroup.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å¢åŠ å……å€¼ç±»å‹ 
+      <td height="25" colspan="2">Ôö¼Ó³äÖµÀàĞÍ 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="id" type="hidden" id="id" value="<?=$id?>"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="25%" height="25">ç±»å‹åç§°ï¼š</td>
+      <td width="25%" height="25">ÀàĞÍÃû³Æ£º</td>
       <td width="75%" height="25"><input name="gname" type="text" id="gname" value="<?=$r[gname]?>" size="35"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">è´­ä¹°é‡‘é¢ï¼š</td>
+      <td height="25">¹ºÂò½ğ¶î£º</td>
       <td height="25"><input name="gmoney" type="text" id="gmoney" value="<?=$r[gmoney]?>" size="35">
-        å…ƒ</td>
+        Ôª</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å……å€¼ç‚¹æ•°ï¼š</td>
+      <td height="25">³äÖµµãÊı£º</td>
       <td height="25"><input name="gfen" type="text" id="gfen" value="<?=$r[gfen]?>" size="35">
-        ç‚¹</td>
+        µã</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td rowspan="3">å……å€¼æœ‰æ•ˆæœŸï¼š</td>
+      <td rowspan="3">³äÖµÓĞĞ§ÆÚ£º</td>
       <td height="25"><input name="gdate" type="text" id="gdate" value="<?=$r[gdate]?>" size="35">
-        å¤©</td>
+        Ìì</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å……å€¼è®¾ç½®è½¬å‘ä¼šå‘˜ç»„: 
+      <td height="25">³äÖµÉèÖÃ×ªÏò»áÔ±×é: 
         <select name="ggroupid" id="ggroupid">
-          <option value=0>ä¸è®¾ç½®</option>
+          <option value=0>²»ÉèÖÃ</option>
           <?=$group?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">åˆ°æœŸåè½¬å‘çš„ä¼šå‘˜ç»„: 
+      <td height="25">µ½ÆÚºó×ªÏòµÄ»áÔ±×é: 
         <select name="gzgroupid" id="gzgroupid">
-          <option value=0>ä¸è®¾ç½®</option>
+          <option value=0>²»ÉèÖÃ</option>
           <?=$zgroup?>
         </select> </td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ˜¾ç¤ºé¡ºåºï¼š</td>
+      <td height="25">ÏÔÊ¾Ë³Ğò£º</td>
       <td height="25"><input name="myorder" type="text" id="myorder" value="<?=$r[myorder]?>" size="35">
-        <font color="#666666">(å€¼è¶Šå°æ˜¾ç¤ºè¶Šå‰é¢)</font></td>
+        <font color="#666666">(ÖµÔ½Ğ¡ÏÔÊ¾Ô½Ç°Ãæ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å¯è´­ä¹°çš„ä¼šå‘˜ç»„ï¼š</td>
+      <td height="25">¿É¹ºÂòµÄ»áÔ±×é£º</td>
       <td height="25"><select name="buygroupid" id="buygroupid">
-          <option value=0>ä¸è®¾ç½®</option>
+          <option value=0>²»ÉèÖÃ</option>
           <?=$buygroup?>
         </select>
-        <font color="#666666">(ä¼šå‘˜ç»„æƒé™å€¼å¤§äºé€‰æ‹©çš„ä¼šå‘˜ç»„éƒ½å¯ä»¥è´­ä¹°)</font></td>
+        <font color="#666666">(»áÔ±×éÈ¨ÏŞÖµ´óÓÚÑ¡ÔñµÄ»áÔ±×é¶¼¿ÉÒÔ¹ºÂò)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç±»å‹è¯´æ˜ï¼š</td>
+      <td height="25">ÀàĞÍËµÃ÷£º</td>
       <td height="25"><textarea name="gsay" cols="65" rows="6" id="gsay"><?=ehtmlspecialchars($r[gsay])?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"><div align="center"> 
-          <input type="submit" name="Submit" value="æäº¤">
+          <input type="submit" name="Submit" value="Ìá½»">
           &nbsp; 
-          <input type="reset" name="Submit2" value="é‡ç½®">
+          <input type="reset" name="Submit2" value="ÖØÖÃ">
         </div></td>
     </tr>
   </table>

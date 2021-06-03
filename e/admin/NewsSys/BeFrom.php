@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,26 +16,26 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"befrom");
 
-//å¢åŠ æ¥æº
+//Ôö¼ÓÀ´Ô´
 function AddBefrom($sitename,$siteurl,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$sitename||!$siteurl)
 	{
 		printerror("EmptyBefrom","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"befrom");
 	$sitename=hRepPostStr($sitename,1);
 	$siteurl=hRepPostStr($siteurl,1);
 	$sql=$empire->query("insert into {$dbtbpre}enewsbefrom(sitename,siteurl) values('".$sitename."','".$siteurl."');");
 	$lastid=$empire->lastid();
-	GetConfig();//æ›´æ–°ç¼“å­˜
+	GetConfig();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("befromid=".$lastid."<br>sitename=".$sitename);
 		printerror("AddBefromSuccess","BeFrom.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -43,23 +43,23 @@ function AddBefrom($sitename,$siteurl,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹æ¥æº
+//ĞŞ¸ÄÀ´Ô´
 function EditBefrom($befromid,$sitename,$siteurl,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$sitename||!$siteurl||!$befromid)
 	{
 		printerror("EmptyBefrom","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"befrom");
 	$befromid=(int)$befromid;
 	$sitename=hRepPostStr($sitename,1);
 	$siteurl=hRepPostStr($siteurl,1);
 	$sql=$empire->query("update {$dbtbpre}enewsbefrom set sitename='".$sitename."',siteurl='".$siteurl."' where befromid='$befromid'");
-	GetConfig();//æ›´æ–°ç¼“å­˜
+	GetConfig();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("befromid=".$befromid."<br>sitename=".$sitename);
 		printerror("EditBefromSuccess","BeFrom.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -67,7 +67,7 @@ function EditBefrom($befromid,$sitename,$siteurl,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤æ¥æº
+//É¾³ıÀ´Ô´
 function DelBefrom($befromid,$userid,$username){
 	global $empire,$dbtbpre;
 	$befromid=(int)$befromid;
@@ -75,14 +75,14 @@ function DelBefrom($befromid,$userid,$username){
 	{
 		printerror("NotDelBefromid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"befrom");
 	$r=$empire->fetch1("select sitename from {$dbtbpre}enewsbefrom where befromid='$befromid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsbefrom where befromid='$befromid'");
-	GetConfig();//æ›´æ–°ç¼“å­˜
+	GetConfig();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("befromid=".$befromid."<br>sitename=".$r[sitename]);
 		printerror("DelBefromSuccess","BeFrom.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -97,14 +97,14 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ ä¿¡æ¯æ¥æº
+//Ôö¼ÓĞÅÏ¢À´Ô´
 if($enews=="AddBefrom")
 {
 	$sitename=$_POST['sitename'];
 	$siteurl=$_POST['siteurl'];
 	AddBefrom($sitename,$siteurl,$logininid,$loginin);
 }
-//ä¿®æ”¹ä¿¡æ¯æ¥æº
+//ĞŞ¸ÄĞÅÏ¢À´Ô´
 elseif($enews=="EditBefrom")
 {
 	$sitename=$_POST['sitename'];
@@ -112,7 +112,7 @@ elseif($enews=="EditBefrom")
 	$befromid=$_POST['befromid'];
 	EditBefrom($befromid,$sitename,$siteurl,$logininid,$loginin);
 }
-//åˆ é™¤ä¿¡æ¯æ¥æº
+//É¾³ıĞÅÏ¢À´Ô´
 elseif($enews=="DelBefrom")
 {
 	$befromid=$_GET['befromid'];
@@ -124,9 +124,9 @@ else
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $search='';
 $search.=$ecms_hashur['ehref'];
 $totalquery="select count(*) as total from {$dbtbpre}enewsbefrom";
@@ -140,15 +140,15 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¿¡æ¯æ¥æº</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ĞÅÏ¢À´Ô´</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="BeFrom.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¿¡æ¯æ¥æº</a></td>
+    <td>Î»ÖÃ£º<a href="BeFrom.php<?=$ecms_hashur['whehref']?>">¹ÜÀíĞÅÏ¢À´Ô´</a></td>
   </tr>
 </table>
 <form name="form1" method="post" action="BeFrom.php">
@@ -156,22 +156,22 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr>
-      <td height="25" class="header">å¢åŠ ä¿¡æ¯æ¥æº:</td>
+      <td height="25" class="header">Ôö¼ÓĞÅÏ¢À´Ô´:</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> ç«™ç‚¹åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> Õ¾µãÃû³Æ: 
         <input name="sitename" type="text" id="sitename" value="<?=$addsitename?>">
-        é“¾æ¥åœ°å€:
+        Á´½ÓµØÖ·:
         <input name="siteurl" type="text" id="siteurl" value="http://" size="50"> 
-        <input type="submit" name="Submit" value="å¢åŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td width="70%" height="25">ä¿¡æ¯æ¥æº</td>
-    <td width="30%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="70%" height="25">ĞÅÏ¢À´Ô´</td>
+    <td width="30%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -182,15 +182,15 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <input type=hidden name=enews value=EditBefrom>
     <input type=hidden name=befromid value=<?=$r[befromid]?>>
     <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
-      <td height="25">ç«™ç‚¹åç§°: 
+      <td height="25">Õ¾µãÃû³Æ: 
         <input name="sitename" type="text" id="sitename" value="<?=$r[sitename]?>">
-        é“¾æ¥åœ°å€: 
+        Á´½ÓµØÖ·: 
         <input name="siteurl" type="text" id="siteurl" value="<?=$r[siteurl]?>" size="30"> 
       </td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="if(confirm('ç¡®è®¤è¦åˆ é™¤?')){self.location.href='BeFrom.php?enews=DelBefrom&befromid=<?=$r[befromid]?><?=$ecms_hashur['href']?>';}">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="if(confirm('È·ÈÏÒªÉ¾³ı?')){self.location.href='BeFrom.php?enews=DelBefrom&befromid=<?=$r[befromid]?><?=$ecms_hashur['href']?>';}">
         </div></td>
     </tr>
   </form>

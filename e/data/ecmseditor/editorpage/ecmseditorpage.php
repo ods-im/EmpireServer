@@ -2,7 +2,7 @@
 require('../../../class/connect.php');
 $editor=3;
 
-//鎺ユ敹鍙傛暟
+//接收参数
 function EcmsEditor_PageGetVar($add){
 	$r['showmod']=(int)$add['showmod'];
 	$r['type']=(int)$add['type'];
@@ -19,19 +19,19 @@ $doecmspage=ehtmlspecialchars($_GET['doecmspage']);
 $ecms_topager=EcmsEditor_PageGetVar($_GET);
 
 $pagefile='';
-if($doecmspage=='TranImg')//涓婁紶鍥剧墖
+if($doecmspage=='TranImg')//上传图片
 {
 	$pagefile='TranImg.php';
 }
-elseif($doecmspage=='TranFile')//涓婁紶闄勪欢
+elseif($doecmspage=='TranFile')//上传附件
 {
 	$pagefile='TranFile.php';
 }
-elseif($doecmspage=='TranFlash')//涓婁紶FLASH
+elseif($doecmspage=='TranFlash')//上传FLASH
 {
 	$pagefile='TranFlash.php';
 }
-elseif($doecmspage=='TranMedia')//涓婁紶瑙嗛
+elseif($doecmspage=='TranMedia')//上传视频
 {
 	$pagefile='TranMedia.php';
 }

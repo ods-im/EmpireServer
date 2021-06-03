@@ -1,9 +1,9 @@
 <?php
-//è¿”å›sqlè¯­å¥
+//·µ»ØsqlÓï¾ä
 function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 	global $empire,$dbtbpre,$public_r,$class_r,$class_zr,$fun_r,$class_tr,$emod_r,$etable_r,$userid,$eyh_r;
 	$userid=(int)$userid;
-	if($enews==24)//æŒ‰sqlæŸ¥è¯¢
+	if($enews==24)//°´sql²éÑ¯
 	{
 		$query_first=substr($classid,0,7);
 		if(!($query_first=='select '||$query_first=='SELECT '))
@@ -18,9 +18,9 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		}
 		return $sql;
 	}
-	if($enews==0||$enews==1||$enews==2||$enews==9||$enews==12||$enews==15)//æ ç›®
+	if($enews==0||$enews==1||$enews==2||$enews==9||$enews==12||$enews==15)//À¸Ä¿
 	{
-		if(strstr($classid,','))//å¤šæ ç›®
+		if(strstr($classid,','))//¶àÀ¸Ä¿
 		{
 			$son_r=sys_ReturnMoreClass($classid,1);
 			$classid=$son_r[0];
@@ -41,14 +41,14 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$mid=$class_r[$classid][modid];
 		$yhid=$class_r[$classid][yhid];
     }
-	elseif($enews==6||$enews==7||$enews==8||$enews==11||$enews==14||$enews==17)//ä¸“é¢˜
+	elseif($enews==6||$enews==7||$enews==8||$enews==11||$enews==14||$enews==17)//×¨Ìâ
 	{
-		echo"Errorï¼šChange to use e:indexloop";
+		echo"Error£ºChange to use e:indexloop";
 		return false;
 	}
-	elseif($enews==25||$enews==26||$enews==27||$enews==28||$enews==29||$enews==30)//æ ‡é¢˜åˆ†ç±»
+	elseif($enews==25||$enews==26||$enews==27||$enews==28||$enews==29||$enews==30)//±êÌâ·ÖÀà
 	{
-		if(strstr($classid,','))//å¤šæ ‡é¢˜åˆ†ç±»
+		if(strstr($classid,','))//¶à±êÌâ·ÖÀà
 		{
 			$son_r=sys_ReturnMoreTT($classid);
 			$classid=$son_r[0];
@@ -63,43 +63,43 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhid=$class_tr[$classid][yhid];
 	}
 	$query=" where userid='$userid' and ismember=1";
-	if($enews==0)//æ ç›®æœ€æ–°
+	if($enews==0)//À¸Ä¿×îĞÂ
 	{
 		$query.=' and ('.$where.')';
 		$order='newstime';
 		$yhvar='bqnew';
     }
-	elseif($enews==1)//æ ç›®çƒ­é—¨
+	elseif($enews==1)//À¸Ä¿ÈÈÃÅ
 	{
 		$query.=' and ('.$where.')';
 		$order='onclick';
 		$yhvar='bqhot';
     }
-	elseif($enews==2)//æ ç›®æ¨è
+	elseif($enews==2)//À¸Ä¿ÍÆ¼ö
 	{
 		$query.=' and ('.$where.') and isgood>0';
 		$order='newstime';
 		$yhvar='bqgood';
     }
-	elseif($enews==9)//æ ç›®è¯„è®ºæ’è¡Œ
+	elseif($enews==9)//À¸Ä¿ÆÀÂÛÅÅĞĞ
 	{
 		$query.=' and ('.$where.')';
 		$order='plnum';
 		$yhvar='bqpl';
     }
-	elseif($enews==12)//æ ç›®å¤´æ¡
+	elseif($enews==12)//À¸Ä¿Í·Ìõ
 	{
 		$query.=' and ('.$where.') and firsttitle>0';
 		$order='newstime';
 		$yhvar='bqfirst';
     }
-	elseif($enews==15)//æ ç›®ä¸‹è½½æ’è¡Œ
+	elseif($enews==15)//À¸Ä¿ÏÂÔØÅÅĞĞ
 	{
 		$query.=' and ('.$where.')';
 		$order='totaldown';
 		$yhvar='bqdown';
     }
-	elseif($enews==3)//æ‰€æœ‰æœ€æ–°
+	elseif($enews==3)//ËùÓĞ×îĞÂ
 	{
 		$order='newstime';
 		$tbname=$public_r[tbname];
@@ -107,7 +107,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqnew';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==4)//æ‰€æœ‰ç‚¹å‡»æ’è¡Œ
+	elseif($enews==4)//ËùÓĞµã»÷ÅÅĞĞ
 	{
 		$order='onclick';
 		$tbname=$public_r[tbname];
@@ -115,7 +115,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqhot';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==5)//æ‰€æœ‰æ¨è
+	elseif($enews==5)//ËùÓĞÍÆ¼ö
 	{
 		$query.=' and isgood>0';
 		$order='newstime';
@@ -124,7 +124,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqgood';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==10)//æ‰€æœ‰è¯„è®ºæ’è¡Œ
+	elseif($enews==10)//ËùÓĞÆÀÂÛÅÅĞĞ
 	{
 		$order='plnum';
 		$tbname=$public_r[tbname];
@@ -132,7 +132,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqpl';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==13)//æ‰€æœ‰å¤´æ¡
+	elseif($enews==13)//ËùÓĞÍ·Ìõ
 	{
 		$query.=' and firsttitle>0';
 		$order='newstime';
@@ -141,7 +141,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqfirst';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==16)//æ‰€æœ‰ä¸‹è½½æ’è¡Œ
+	elseif($enews==16)//ËùÓĞÏÂÔØÅÅĞĞ
 	{
 		$order='totaldown';
 		$tbname=$public_r[tbname];
@@ -149,7 +149,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqdown';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==18)//å„è¡¨æœ€æ–°
+	elseif($enews==18)//¸÷±í×îĞÂ
 	{
 		$order='newstime';
 		$tbname=$classid;
@@ -157,7 +157,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqnew';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==19)//å„è¡¨çƒ­é—¨
+	elseif($enews==19)//¸÷±íÈÈÃÅ
 	{
 		$order='onclick';
 		$tbname=$classid;
@@ -165,7 +165,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqhot';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==20)//å„è¡¨æ¨è
+	elseif($enews==20)//¸÷±íÍÆ¼ö
 	{
 		$query.=' and isgood>0';
 		$order='newstime';
@@ -174,7 +174,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqgood';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==21)//å„è¡¨è¯„è®ºæ’è¡Œ
+	elseif($enews==21)//¸÷±íÆÀÂÛÅÅĞĞ
 	{
 		$order='plnum';
 		$tbname=$classid;
@@ -182,7 +182,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqpl';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==22)//å„è¡¨å¤´æ¡ä¿¡æ¯
+	elseif($enews==22)//¸÷±íÍ·ÌõĞÅÏ¢
 	{
 		$query.=' and firsttitle>0';
 		$order="newstime";
@@ -191,7 +191,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqfirst';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==23)//å„è¡¨ä¸‹è½½æ’è¡Œ
+	elseif($enews==23)//¸÷±íÏÂÔØÅÅĞĞ
 	{
 		$order='totaldown';
 		$tbname=$classid;
@@ -199,43 +199,43 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 		$yhvar='bqdown';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==25)//æ ‡é¢˜åˆ†ç±»æœ€æ–°
+	elseif($enews==25)//±êÌâ·ÖÀà×îĞÂ
 	{
 		$query.=' and ('.$where.')';
 		$order='newstime';
 		$yhvar='bqnew';
     }
-	elseif($enews==26)//æ ‡é¢˜åˆ†ç±»ç‚¹å‡»æ’è¡Œ
+	elseif($enews==26)//±êÌâ·ÖÀàµã»÷ÅÅĞĞ
 	{
 		$query.=' and ('.$where.')';
 		$order='onclick';
 		$yhvar='bqhot';
     }
-	elseif($enews==27)//æ ‡é¢˜åˆ†ç±»æ¨è
+	elseif($enews==27)//±êÌâ·ÖÀàÍÆ¼ö
 	{
 		$query.=' and ('.$where.') and isgood>0';
 		$order='newstime';
 		$yhvar='bqgood';
     }
-	elseif($enews==28)//æ ‡é¢˜åˆ†ç±»è¯„è®ºæ’è¡Œ
+	elseif($enews==28)//±êÌâ·ÖÀàÆÀÂÛÅÅĞĞ
 	{
 		$query.=' and ('.$where.')';
 		$order='plnum';
 		$yhvar='bqpl';
     }
-	elseif($enews==29)//æ ‡é¢˜åˆ†ç±»å¤´æ¡
+	elseif($enews==29)//±êÌâ·ÖÀàÍ·Ìõ
 	{
 		$query.=' and ('.$where.') and firsttitle>0';
 		$order='newstime';
 		$yhvar='bqfirst';
     }
-	elseif($enews==30)//æ ‡é¢˜åˆ†ç±»ä¸‹è½½æ’è¡Œ
+	elseif($enews==30)//±êÌâ·ÖÀàÏÂÔØÅÅĞĞ
 	{
 		$query.=' and ('.$where.')';
 		$order='totaldown';
 		$yhvar='bqdown';
     }
-	//ä¼˜åŒ–
+	//ÓÅ»¯
 	$yhadd='';
 	if(!empty($eyh_r[$yhid]['dosbq']))
 	{
@@ -245,7 +245,7 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 			$query.=' and '.$yhadd;
 		}
 	}
-	//ä¸è°ƒç”¨
+	//²»µ÷ÓÃ
 	if(!strstr($public_r['nottobq'],','.$classid.','))
 	{
 		$notbqwhere=ReturnNottoBqWhere();
@@ -254,23 +254,23 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 			$query.=' and '.$notbqwhere;
 		}
 	}
-	//å›¾ç‰‡ä¿¡æ¯
+	//Í¼Æ¬ĞÅÏ¢
 	if(!empty($do))
 	{
 		$query.=" and ispic=1";
     }
-	//é™„åŠ æ¡ä»¶
+	//¸½¼ÓÌõ¼ş
 	if(!empty($ewhere))
 	{
 		$query.=' and ('.$ewhere.')';
 	}
-	//ä¸­æ­¢
+	//ÖĞÖ¹
 	if(empty($tbname))
 	{
 		echo "ClassID=<b>".$classid."</b> Table not exists.(DoType=".$enews.")";
 		return false;
 	}
-	//æ’åº
+	//ÅÅĞò
 	$addorder=empty($eorder)?$order.' desc':$eorder;
 	$query='select '.ReturnSqlListF($mid).' from '.$dbtbpre.'ecms_'.$tbname.$query.' order by '.$addorder.' limit '.$line;
 	$sql=$empire->query1($query);
@@ -281,12 +281,12 @@ function espace_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder='
 	return $sql;
 }
 
-//çµåŠ¨æ ‡ç­¾ï¼šè¿”å›SQLå†…å®¹å‡½æ•°
+//Áé¶¯±êÇ©£º·µ»ØSQLÄÚÈİº¯Êı
 function espace_eloop($classid=0,$line=10,$enews=3,$doing=0,$ewhere='',$eorder=''){
 	return espace_ReturnBqQuery($classid,$line,$enews,$doing,$ewhere,$eorder);
 }
 
-//çµåŠ¨æ ‡ç­¾ï¼šè¿”å›ç‰¹æ®Šå†…å®¹å‡½æ•°
+//Áé¶¯±êÇ©£º·µ»ØÌØÊâÄÚÈİº¯Êı
 function espace_eloop_sp($r){
 	global $class_r;
 	$sr['titleurl']=sys_ReturnBqTitleLink($r);

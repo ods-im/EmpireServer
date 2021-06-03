@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -36,14 +36,14 @@ if(!$viewf||!$changef)
 {
 	printerror('ErrorUrl','');
 }
-//å–å¾—è¡¨å
+//È¡µÃ±íÃû
 $tbr=$empire->fetch1("select tbname from {$dbtbpre}enewstable where ".$tbwhere);
 if(!$tbr['tbname'])
 {
 	printerror('ErrorUrl','');
 }
 $tbname=$tbr['tbname'];
-//å­—æ®µ
+//×Ö¶Î
 $sysf=',id,classid,onclick,newspath,keyboard,userid,username,istop,truetime,ismember,userfen,isgood,titlefont,isurl,filename,groupid,plnum,firsttitle,isqf,totaldown,havehtml,lastdotime,stb,ttid,';
 $viewfr=$empire->fetch1("select f,fname from {$dbtbpre}enewsf where ".$tbwhere." and f='$viewf' and tbdataf=0 limit 1");
 $changefr=$empire->fetch1("select f,fname from {$dbtbpre}enewsf where ".$tbwhere." and f='$changef' and tbdataf=0 limit 1");
@@ -70,7 +70,7 @@ if(empty($form))
 }
 $field=RepPostVar($_GET['field']);
 $add='';
-//å…³é”®å­—
+//¹Ø¼ü×Ö
 $keyboard=RepPostVar2($_GET['keyboard']);
 if(!empty($keyboard))
 {
@@ -98,16 +98,16 @@ else
 {
 	$searchoption="<option value='$viewf'>$viewfr[fname]</option><option value='$changef'".$searchoptionselect.">$changefr[fname]</option>";
 }
-//åˆ†é¡µ
+//·ÖÒ³
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=50;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=50;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select ".$viewf.",".$changef." from {$dbtbpre}ecms_".$tbname.$add;
 $totalquery="select count(*) as total from {$dbtbpre}ecms_".$tbname.$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by id desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -115,8 +115,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>é€‰æ‹©</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ñ¡Ôñ</title>
 <link href="edit.css" rel="stylesheet" type="text/css">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
@@ -132,12 +132,12 @@ function ChangeFieldVal(val)
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td width="70%"><div align="center">æœç´¢ï¼š 
+      <td width="70%"><div align="center">ËÑË÷£º 
           <input name="keyboard" type="text" value="<?=$keyboard?>">
           <select name="show">
             <?=$searchoption?>
           </select>
-          <input type="submit" name="Submit" value="æœç´¢">
+          <input type="submit" name="Submit" value="ËÑË÷">
           <input type=hidden name="form" value="<?=$form?>">
           <input type=hidden name="field" value="<?=$field?>">
           <input name="tid" type="hidden" id="tid" value="<?=$tid?>">
@@ -148,7 +148,7 @@ function ChangeFieldVal(val)
         </div></td>
       <td width="30%">
 	  <span id="showaddclassnav"></span>
-      <input type="button" name="Submit" value="å¢åŠ ä¿¡æ¯" onclick="if(document.getElementById('addclassid').value!=0){window.open('../AddNews.php?<?=$ecms_hashur['ehref']?>&enews=AddNews&classid='+document.getElementById('addclassid').value,'','');}else{alert('è¯·é€‰æ‹©è¦å¢åŠ ä¿¡æ¯çš„æ ç›®');document.getElementById('addclassid').focus();}">
+      <input type="button" name="Submit" value="Ôö¼ÓĞÅÏ¢" onclick="if(document.getElementById('addclassid').value!=0){window.open('../AddNews.php?<?=$ecms_hashur['ehref']?>&enews=AddNews&classid='+document.getElementById('addclassid').value,'','');}else{alert('ÇëÑ¡ÔñÒªÔö¼ÓĞÅÏ¢µÄÀ¸Ä¿');document.getElementById('addclassid').focus();}">
 	  </td>
     </tr>
   </table>
@@ -157,7 +157,7 @@ function ChangeFieldVal(val)
   <tr> 
     <td height="25" bgcolor="#FFFFFF"> <div align="center"> 
     <?php
-	//è¾“å‡º
+	//Êä³ö
 	$i=0;
 	$class_text="";
 	while($r=$empire->fetch($sql))
@@ -167,8 +167,8 @@ function ChangeFieldVal(val)
 		{
 			$class_text.="<tr>";
 		}
-		$class_text.="<td align=center height=25><a href='#ecms' onclick=\"ChangeFieldVal('".ehtmlspecialchars(stripSlashes($r[$changef]))."');\" title='é€‰æ‹©'>".stripSlashes($r[$viewf])."</a></td>";
-		//åˆ†å‰²
+		$class_text.="<td align=center height=25><a href='#ecms' onclick=\"ChangeFieldVal('".ehtmlspecialchars(stripSlashes($r[$changef]))."');\" title='Ñ¡Ôñ'>".stripSlashes($r[$viewf])."</a></td>";
+		//·Ö¸î
         if($i%$changeline==0)
 		{
 			$class_text.="</tr>";
@@ -201,7 +201,7 @@ function ChangeFieldVal(val)
   </tr>
 </table>
 <div align="center"> <br>
-  [<a href="#empirecms" onclick="window.close();">å…³é—­</a>]</div>
+  [<a href="#empirecms" onclick="window.close();">¹Ø±Õ</a>]</div>
 <IFRAME frameBorder="0" id="showclassnav" name="showclassnav" scrolling="no" src="../ShowClassNav.php?ecms=7<?=$ecms_hashur['ehref']?>" style="HEIGHT:0;VISIBILITY:inherit;WIDTH:0;Z-INDEX:1"></IFRAME>
 </body>
 </html>

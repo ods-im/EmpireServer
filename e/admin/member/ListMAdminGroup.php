@@ -8,7 +8,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,10 +17,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"madmingroup");
 
-//å¢åŠ ä¼šå‘˜ç®¡ç†ç»„
+//Ôö¼Ó»áÔ±¹ÜÀí×é
 function AddMAdminGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add['agname']))
@@ -33,10 +33,10 @@ function AddMAdminGroup($add,$userid,$username){
 	if($sql)
 	{
 		$agid=$empire->lastid();
-		//æ›´æ–°ç¼“å­˜
+		//¸üĞÂ»º´æ
 		GetConfig();
 		GetMemberLevel();
-		insert_dolog("agid=$agid&agname=$add[agname]");//æ“ä½œæ—¥å¿—
+		insert_dolog("agid=$agid&agname=$add[agname]");//²Ù×÷ÈÕÖ¾
 		printerror("AddMAdminGroupSuccess","AddMAdminGroup.php?enews=AddMAdminGroup".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -45,7 +45,7 @@ function AddMAdminGroup($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ä¼šå‘˜ç®¡ç†ç»„
+//ĞŞ¸Ä»áÔ±¹ÜÀí×é
 function EditMAdminGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$agid=intval($add['agid']);
@@ -65,12 +65,12 @@ function EditMAdminGroup($add,$userid,$username){
 		$addupdate=",isadmin='$add[isadmin]'";
 	}
 	$sql=$empire->query("update {$dbtbpre}enewsag set agname='$add[agname]'".$addupdate." where agid='$agid'");
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	GetConfig();
 	GetMemberLevel();
 	if($sql)
 	{
-		insert_dolog("agid=$agid&agname=$add[agname]");//æ“ä½œæ—¥å¿—
+		insert_dolog("agid=$agid&agname=$add[agname]");//²Ù×÷ÈÕÖ¾
 		printerror("EditMAdminGroupSuccess","ListMAdminGroup.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
@@ -79,7 +79,7 @@ function EditMAdminGroup($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤ä¼šå‘˜ç®¡ç†ç»„
+//É¾³ı»áÔ±¹ÜÀí×é
 function DelMAdminGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$agid=intval($add['agid']);
@@ -98,12 +98,12 @@ function DelMAdminGroup($add,$userid,$username){
 	}
 	$sql=$empire->query("delete from {$dbtbpre}enewsag where agid='$agid'");
 	$empire->query("update ".eReturnMemberTable()." set ".egetmf('agid')."=0 where ".egetmf('agid')."='$agid'");
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	GetConfig();
 	GetMemberLevel();
 	if($sql)
 	{
-		insert_dolog("agid=$gid&agname=$r[agname]");//æ“ä½œæ—¥å¿—
+		insert_dolog("agid=$gid&agname=$r[agname]");//²Ù×÷ÈÕÖ¾
 		printerror("DelMAdminGroupSuccess","ListMAdminGroup.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
@@ -112,7 +112,7 @@ function DelMAdminGroup($add,$userid,$username){
 	}
 }
 
-//å¢åŠ ä¼šå‘˜ç®¡ç†å‘˜
+//Ôö¼Ó»áÔ±¹ÜÀíÔ±
 function AddMAgUser($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$agid=(int)$add['agid'];
@@ -132,7 +132,7 @@ function AddMAgUser($add,$userid,$username){
 	{
 		printerror("ErrorMAgUser","history.go(-1)");
 	}
-	//æ˜¯å¦å­˜åœ¨
+	//ÊÇ·ñ´æÔÚ
 	if(strstr($magr['auids'],','.$adduserid.','))
 	{
 		printerror("HaveMAgUser","history.go(-1)");
@@ -152,12 +152,12 @@ function AddMAgUser($add,$userid,$username){
 	}
 	$sql=$empire->query("update {$dbtbpre}enewsag set auids='$new_auids' where agid='$agid' limit 1");
 	$empire->query("update ".eReturnMemberTable()." set ".egetmf('agid')."='$agid' where ".egetmf('userid')."='$adduserid'");
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	GetConfig();
 	GetMemberLevel();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("agid=".$agid."<br>userid=".$adduserid."&username=".$addusername);
 		printerror("AddMAgUserSuccess","ListMAgUser.php?agid=$agid".hReturnEcmsHashStrHref2(0));
 	}
@@ -165,7 +165,7 @@ function AddMAgUser($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ä¼šå‘˜ç®¡ç†å‘˜
+//É¾³ı»áÔ±¹ÜÀíÔ±
 function DelMAgUser($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$agid=(int)$add['agid'];
@@ -186,12 +186,12 @@ function DelMAgUser($add,$userid,$username){
 	}
 	$sql=$empire->query("update {$dbtbpre}enewsag set auids='$new_auids' where agid='$agid' limit 1");
 	$empire->query("update ".eReturnMemberTable()." set ".egetmf('agid')."=0 where ".egetmf('userid')."='$adduserid'");
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	GetConfig();
 	GetMemberLevel();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("agid=".$agid."<br>userid=".$adduserid);
 		printerror("DelMAgUserSuccess","ListMAgUser.php?agid=$agid".hReturnEcmsHashStrHref2(0));
 	}
@@ -233,12 +233,12 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=50;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=25;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=50;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=25;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select * from {$dbtbpre}enewsag";
 $totalquery="select count(*) as total from {$dbtbpre}enewsag";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by agid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -246,17 +246,17 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ä¼šå‘˜ç®¡ç†ç»„</title>
+<title>»áÔ±¹ÜÀí×é</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href="ListMAdminGroup.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¼šå‘˜ç®¡ç†ç»„</a></td>
+    <td width="50%" height="25">Î»ÖÃ£º<a href="ListMAdminGroup.php<?=$ecms_hashur['whehref']?>">¹ÜÀí»áÔ±¹ÜÀí×é</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ä¼šå‘˜ç®¡ç†ç»„" onclick="self.location.href='AddMAdminGroup.php?enews=AddMAdminGroup<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó»áÔ±¹ÜÀí×é" onclick="self.location.href='AddMAdminGroup.php?enews=AddMAdminGroup<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -265,10 +265,10 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="5%" height="25"> <div align="center">ID</div></td>
-    <td width="32%" height="25"> <div align="center">ç»„åç§°</div></td>
-    <td width="26%"><div align="center">ç®¡ç†çº§åˆ«</div></td>
-    <td width="21%"><div align="center">æˆå‘˜åˆ—è¡¨</div></td>
-    <td width="16%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="32%" height="25"> <div align="center">×éÃû³Æ</div></td>
+    <td width="26%"><div align="center">¹ÜÀí¼¶±ğ</div></td>
+    <td width="21%"><div align="center">³ÉÔ±ÁĞ±í</div></td>
+    <td width="16%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
@@ -283,15 +283,15 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 	}
 	if($r['isadmin']==9)
 	{
-		$isadminname='ç®¡ç†å‘˜';
+		$isadminname='¹ÜÀíÔ±';
 	}
 	elseif($r['isadmin']==5)
 	{
-		$isadminname='ç‰ˆä¸»';
+		$isadminname='°æÖ÷';
 	}
 	elseif($r['isadmin']==1)
 	{
-		$isadminname='å®ä¹ ç‰ˆä¸»';
+		$isadminname='ÊµÏ°°æÖ÷';
 	}
 	else
 	{
@@ -306,8 +306,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
         <?=$r[agname]?>
       </div></td>
     <td><div align="center"><?=$isadminname?></div></td>
-    <td><div align="center"><a href="ListMAgUser.php?agid=<?=$r['agid']?><?=$ecms_hashur['ehref']?>" target="_blank">ç®¡ç†æˆå‘˜åˆ—è¡¨ (<strong><?=$membernum?></strong>)</a></div></td>
-    <td height="25"> <div align="center"> [<a href="AddMAdminGroup.php?enews=EditMAdminGroup&agid=<?=$r[agid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="ListMAdminGroup.php?enews=DelMAdminGroup&agid=<?=$r[agid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td><div align="center"><a href="ListMAgUser.php?agid=<?=$r['agid']?><?=$ecms_hashur['ehref']?>" target="_blank">¹ÜÀí³ÉÔ±ÁĞ±í (<strong><?=$membernum?></strong>)</a></div></td>
+    <td height="25"> <div align="center"> [<a href="AddMAdminGroup.php?enews=EditMAdminGroup&agid=<?=$r[agid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="ListMAdminGroup.php?enews=DelMAdminGroup&agid=<?=$r[agid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

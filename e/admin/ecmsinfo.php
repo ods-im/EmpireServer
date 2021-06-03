@@ -16,7 +16,7 @@ if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -38,37 +38,37 @@ if($public_r['phpmode'])
 	include("../class/ftp.php");
 	$incftp=1;
 }
-//é˜²é‡‡é›†
+//·À²É¼¯
 if($public_r['opennotcj'])
 {
 	@include("../data/dbcache/notcj.php");
 }
-//ä¼šå‘˜
+//»áÔ±
 require("../member/class/user.php");
 require("../class/hinfofun.php");
-if($enews=="AddNews")//å¢åŠ ä¿¡æ¯
+if($enews=="AddNews")//Ôö¼ÓĞÅÏ¢
 {
 	$navtheid=(int)$_POST['filepass'];
 	AddNews($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditNews")//ä¿®æ”¹ä¿¡æ¯
+elseif($enews=="EditNews")//ĞŞ¸ÄĞÅÏ¢
 {
 	$navtheid=(int)$_POST['id'];
 	EditNews($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditInfoSimple")//ä¿®æ”¹ä¿¡æ¯(å¿«é€Ÿ)
+elseif($enews=="EditInfoSimple")//ĞŞ¸ÄĞÅÏ¢(¿ìËÙ)
 {
 	$navtheid=(int)$_POST['id'];
 	EditInfoSimple($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelNews")//åˆ é™¤ä¿¡æ¯
+elseif($enews=="DelNews")//É¾³ıĞÅÏ¢
 {
 	$id=$_GET['id'];
 	$classid=$_GET['classid'];
 	$bclassid=$_GET['bclassid'];
 	DelNews($id,$classid,$logininid,$loginin);
 }
-elseif($enews=="DelNews_all")//æ‰¹é‡åˆ é™¤ä¿¡æ¯
+elseif($enews=="DelNews_all")//ÅúÁ¿É¾³ıĞÅÏ¢
 {
 	$id=$_POST['id'];
 	$classid=$_POST['classid'];
@@ -76,22 +76,22 @@ elseif($enews=="DelNews_all")//æ‰¹é‡åˆ é™¤ä¿¡æ¯
 	$ecms=$_POST['ecmscheck']?2:0;
 	DelNews_all($id,$classid,$logininid,$loginin,$ecms);
 }
-elseif($enews=="EditMoreInfoTime")//æ‰¹é‡ä¿®æ”¹ä¿¡æ¯æ—¶é—´
+elseif($enews=="EditMoreInfoTime")//ÅúÁ¿ĞŞ¸ÄĞÅÏ¢Ê±¼ä
 {
 	EditMoreInfoTime($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelInfoDoc_all")//åˆ é™¤å½’æ¡£
+elseif($enews=="DelInfoDoc_all")//É¾³ı¹éµµ
 {
 	$id=$_POST['id'];
 	$classid=$_POST['classid'];
 	$bclassid=$_POST['bclassid'];
 	DelNews_all($id,$classid,$logininid,$loginin,1);
 }
-elseif($enews=='AddInfoToReHtml')//åˆ·æ–°é¡µé¢
+elseif($enews=='AddInfoToReHtml')//Ë¢ĞÂÒ³Ãæ
 {
 	AddInfoToReHtml($_GET['classid'],$_GET['dore']);
 }
-elseif($enews=="TopNews_all")//ä¿¡æ¯ç½®é¡¶
+elseif($enews=="TopNews_all")//ĞÅÏ¢ÖÃ¶¥
 {
 	$bclassid=$_POST['bclassid'];
 	$classid=$_POST['classid'];
@@ -99,21 +99,21 @@ elseif($enews=="TopNews_all")//ä¿¡æ¯ç½®é¡¶
 	$istop=$_POST['istop'];
 	TopNews_all($classid,$id,$istop,$logininid,$loginin);
 }
-elseif($enews=="CheckNews_all")//å®¡æ ¸ä¿¡æ¯
+elseif($enews=="CheckNews_all")//ÉóºËĞÅÏ¢
 {
 	$bclassid=$_POST['bclassid'];
 	$classid=$_POST['classid'];
 	$id=$_POST['id'];
 	CheckNews_all($classid,$id,$logininid,$loginin);
 }
-elseif($enews=="NoCheckNews_all")//å–æ¶ˆå®¡æ ¸ä¿¡æ¯
+elseif($enews=="NoCheckNews_all")//È¡ÏûÉóºËĞÅÏ¢
 {
 	$bclassid=$_POST['bclassid'];
 	$classid=$_POST['classid'];
 	$id=$_POST['id'];
 	NoCheckNews_all($classid,$id,$logininid,$loginin);
 }
-elseif($enews=="MoveNews_all")//ç§»åŠ¨ä¿¡æ¯
+elseif($enews=="MoveNews_all")//ÒÆ¶¯ĞÅÏ¢
 {
 	$bclassid=$_POST['bclassid'];
 	$classid=$_POST['classid'];
@@ -121,7 +121,7 @@ elseif($enews=="MoveNews_all")//ç§»åŠ¨ä¿¡æ¯
 	$to_classid=$_POST['to_classid'];
 	MoveNews_all($classid,$id,$to_classid,$logininid,$loginin);
 }
-elseif($enews=="CopyNews_all")//å¤åˆ¶ä¿¡æ¯
+elseif($enews=="CopyNews_all")//¸´ÖÆĞÅÏ¢
 {
 	$bclassid=$_POST['bclassid'];
 	$classid=$_POST['classid'];
@@ -129,12 +129,12 @@ elseif($enews=="CopyNews_all")//å¤åˆ¶ä¿¡æ¯
 	$to_classid=$_POST['to_classid'];
 	CopyNews_all($classid,$id,$to_classid,$logininid,$loginin);
 }
-elseif($enews=="MoveClassNews")//æ‰¹é‡ç§»åŠ¨ä¿¡æ¯
+elseif($enews=="MoveClassNews")//ÅúÁ¿ÒÆ¶¯ĞÅÏ¢
 {
 	$add=$_POST['add'];
 	MoveClassNews($add,$logininid,$loginin);
 }
-elseif($enews=="GoodInfo_all")//æ‰¹é‡æ¨è/å¤´æ¡ä¿¡æ¯
+elseif($enews=="GoodInfo_all")//ÅúÁ¿ÍÆ¼ö/Í·ÌõĞÅÏ¢
 {
 	$classid=$_POST['classid'];
 	$id=$_POST['id'];
@@ -142,17 +142,17 @@ elseif($enews=="GoodInfo_all")//æ‰¹é‡æ¨è/å¤´æ¡ä¿¡æ¯
 	$isgood=empty($doing)?$_POST['isgood']:$_POST['firsttitle'];
 	GoodInfo_all($classid,$id,$isgood,$doing,$logininid,$loginin);
 }
-elseif($enews=="SetAllCheckInfo")//æœ¬æ ç›®ä¿¡æ¯å…¨éƒ¨å®¡æ ¸
+elseif($enews=="SetAllCheckInfo")//±¾À¸Ä¿ĞÅÏ¢È«²¿ÉóºË
 {
 	$classid=$_GET['classid'];
 	$bclassid=$_GET['bclassid'];
 	SetAllCheckInfo($bclassid,$classid,$logininid,$loginin);
 }
-elseif($enews=="DoWfInfo")//ç­¾å‘ä¿¡æ¯
+elseif($enews=="DoWfInfo")//Ç©·¢ĞÅÏ¢
 {
 	DoWfInfo($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelInfoData")//åˆ é™¤ä¿¡æ¯é¡µé¢
+elseif($enews=="DelInfoData")//É¾³ıĞÅÏ¢Ò³Ãæ
 {
 	$start=$_GET['start'];
 	$classid=$_GET['classid'];
@@ -165,43 +165,43 @@ elseif($enews=="DelInfoData")//åˆ é™¤ä¿¡æ¯é¡µé¢
 	$tbname=$_GET['tbname'];
 	DelInfoData($start,$classid,$from,$retype,$startday,$endday,$startid,$endid,$tbname,$_GET,$logininid,$loginin);
 }
-elseif($enews=="InfoToDoc")//å½’æ¡£ä¿¡æ¯
+elseif($enews=="InfoToDoc")//¹éµµĞÅÏ¢
 {
-	if($_GET['ecmsdoc']==1)//æ ç›®
+	if($_GET['ecmsdoc']==1)//À¸Ä¿
 	{
 		InfoToDoc_class($_GET,$logininid,$loginin);
 	}
-	elseif($_GET['ecmsdoc']==2)//æ¡ä»¶
+	elseif($_GET['ecmsdoc']==2)//Ìõ¼ş
 	{
 		InfoToDoc($_GET,$logininid,$loginin);
 	}
-	else//ä¿¡æ¯
+	else//ĞÅÏ¢
 	{
 		InfoToDoc_info($_POST,$logininid,$loginin);
 	}
 }
-elseif($enews=="DoInfoAndSendNotice")//å¤„ç†ä¿¡æ¯å¹¶é€šçŸ¥
+elseif($enews=="DoInfoAndSendNotice")//´¦ÀíĞÅÏ¢²¢Í¨Öª
 {
 	$doing=(int)$_POST['doing'];
 	$adddatar=$_POST;
-	if($doing==1)//åˆ é™¤
+	if($doing==1)//É¾³ı
 	{
 		$enews='DelNews';
 		DelNews($adddatar['id'],$adddatar['classid'],$logininid,$loginin);
 	}
-	elseif($doing==2)//å®¡æ ¸é€šè¿‡
+	elseif($doing==2)//ÉóºËÍ¨¹ı
 	{
 		$enews='CheckNews_all';
 		$doid[0]=$adddatar['id'];
 		CheckNews_all($adddatar['classid'],$doid,$logininid,$loginin);
 	}
-	elseif($doing==3)//å–æ¶ˆå®¡æ ¸
+	elseif($doing==3)//È¡ÏûÉóºË
 	{
 		$enews='NoCheckNews_all';
 		$doid[0]=$adddatar['id'];
 		NoCheckNews_all($adddatar['classid'],$doid,$logininid,$loginin);
 	}
-	elseif($doing==4)//è½¬ç§»
+	elseif($doing==4)//×ªÒÆ
 	{
 		$enews='MoveNews_all';
 		$doid[0]=$adddatar['id'];

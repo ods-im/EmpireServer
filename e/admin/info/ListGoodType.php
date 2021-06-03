@@ -8,7 +8,7 @@ require '../'.LoadLang('pub/fun.php');
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,10 +17,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"class");
 
-//è¿”å›ç”¨æˆ·ç»„
+//·µ»ØÓÃ»§×é
 function ReturnGoodTypeGroup($groupid){
 	$count=count($groupid);
 	if($count==0)
@@ -35,7 +35,7 @@ function ReturnGoodTypeGroup($groupid){
 	return $ids;
 }
 
-//å¤„ç†å­—æ®µå˜é‡
+//´¦Àí×Ö¶Î±äÁ¿
 function DoPostGoodTypeVar($add){
 	$add['tname']=hRepPostStr($add['tname'],1);
 	$add['ttype']=(int)$add['ttype'];
@@ -56,7 +56,7 @@ function DoPostGoodTypeVar($add){
 	return $add;
 }
 
-//å¢åŠ æ¨è
+//Ôö¼ÓÍÆ¼ö
 function AddGoodType($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add=DoPostGoodTypeVar($add);
@@ -65,7 +65,7 @@ function AddGoodType($add,$userid,$username){
 		printerror("EmptyGoodTypeName","history.go(-1)");
     }
 	CheckLevel($userid,$username,$classid,"class");
-	//é‡å¤
+	//ÖØ¸´
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsgoodtype where levelid='$add[levelid]' and ttype='$add[ttype]' limit 1");
 	if($num)
 	{
@@ -75,7 +75,7 @@ function AddGoodType($add,$userid,$username){
 	$tid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("ttype=".$add[ttype]."<br>tid=".$tid."<br>tname=".$add[tname]);
 		printerror("AddGoodTypeSuccess","ListGoodType.php?ttype=$add[ttype]".hReturnEcmsHashStrHref2(0));
 	}
@@ -83,7 +83,7 @@ function AddGoodType($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹æ¨è
+//ĞŞ¸ÄÍÆ¼ö
 function EditGoodType($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add=DoPostGoodTypeVar($add);
@@ -93,17 +93,17 @@ function EditGoodType($add,$userid,$username){
 		printerror("EmptyGoodTypeName","history.go(-1)");
     }
 	CheckLevel($userid,$username,$classid,"class");
-	//é‡å¤
+	//ÖØ¸´
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsgoodtype where levelid='$add[levelid]' and ttype='$add[ttype]' and tid<>".$tid." limit 1");
 	if($num)
 	{
 		printerror("ReGoodTypeLevelid","history.go(-1)");
 	}
-	//ä¿®æ”¹
+	//ĞŞ¸Ä
 	$sql=$empire->query("update {$dbtbpre}enewsgoodtype set tname='$add[tname]',ttype='$add[ttype]',levelid='$add[levelid]',myorder='$add[myorder]',groupid='$add[gids]',showall='$add[showall]',showcid='$add[showcid]',hiddencid='$add[hiddencid]' where tid='$tid'");
 	if($sql)
 	{
-		insert_dolog("ttype=".$add[ttype]."<br>tid=".$tid."<br>tname=".$add[tname]);//æ“ä½œæ—¥å¿—
+		insert_dolog("ttype=".$add[ttype]."<br>tid=".$tid."<br>tname=".$add[tname]);//²Ù×÷ÈÕÖ¾
 		printerror("EditGoodTypeSuccess","ListGoodType.php?ttype=$add[ttype]".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -112,7 +112,7 @@ function EditGoodType($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤æ¨è
+//É¾³ıÍÆ¼ö
 function DelGoodType($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$add['tid'];
@@ -126,11 +126,11 @@ function DelGoodType($add,$userid,$username){
 	{
 		printerror("NotDelGoodTid","history.go(-1)");
 	}
-	//åˆ é™¤
+	//É¾³ı
 	$sql=$empire->query("delete from {$dbtbpre}enewsgoodtype where tid='$tid'");
 	if($sql)
 	{
-		insert_dolog("ttype=".$add[ttype]."<br>tid=".$tid."<br>tname=".$r[tname]);//æ“ä½œæ—¥å¿—
+		insert_dolog("ttype=".$add[ttype]."<br>tid=".$tid."<br>tname=".$r[tname]);//²Ù×÷ÈÕÖ¾
 		printerror("DelGoodTypeSuccess","ListGoodType.php?ttype=$add[ttype]".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -147,34 +147,34 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="AddGoodType")//å¢åŠ 
+if($enews=="AddGoodType")//Ôö¼Ó
 {
 	AddGoodType($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditGoodType")//ä¿®æ”¹
+elseif($enews=="EditGoodType")//ĞŞ¸Ä
 {
 	EditGoodType($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelGoodType")//åˆ é™¤
+elseif($enews=="DelGoodType")//É¾³ı
 {
 	DelGoodType($_GET,$logininid,$loginin);
 }
 
 
 $ttype=(int)$_GET['ttype'];
-$ttypetitle=$ttype==0?'æ¨è':'å¤´æ¡';
+$ttypetitle=$ttype==0?'ÍÆ¼ö':'Í·Ìõ';
 $search='&ttype='.$ttype;
 $search.=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=50;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=50;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select tid,tname,ttype,levelid from {$dbtbpre}enewsgoodtype where ttype='$ttype'";
 $totalquery="select count(*) as total from {$dbtbpre}enewsgoodtype where ttype='$ttype'";
 $add='';
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by myorder desc,levelid limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -182,28 +182,28 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title><?=$ttypetitle?>çº§åˆ«</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title><?=$ttypetitle?>¼¶±ğ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="69%" height="25">ä½ç½®ï¼š<a href="ListGoodType.php?ttype=<?=$ttype?><?=$ecms_hashur['ehref']?>">ç®¡ç†<?=$ttypetitle?>çº§åˆ«</a> </td>
+    <td width="69%" height="25">Î»ÖÃ£º<a href="ListGoodType.php?ttype=<?=$ttype?><?=$ecms_hashur['ehref']?>">¹ÜÀí<?=$ttypetitle?>¼¶±ğ</a> </td>
     <td width="31%"><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ <?=$ttypetitle?>çº§åˆ«" onclick="self.location.href='AddGoodType.php?enews=AddGoodType&ttype=<?=$ttype?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó<?=$ttypetitle?>¼¶±ğ" onclick="self.location.href='AddGoodType.php?enews=AddGoodType&ttype=<?=$ttype?><?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
 <br>
 <table width="700" border="0" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name="goodtypeform" method="post" action="ListGoodType.php" onsubmit="return confirm('ç¡®è®¤è¦æäº¤?');">
+  <form name="goodtypeform" method="post" action="ListGoodType.php" onsubmit="return confirm('È·ÈÏÒªÌá½»?');">
     <input name="ttype" type="hidden" id="ttype" value="<?=$ttype?>">
     <tr class="header"> 
-      <td width="24%" height="25"><div align="center"><?=$ttypetitle?>çº§åˆ«</div></td>
-      <td width="47%"><div align="center">çº§åˆ«åç§°</div></td>
-      <td width="29%" height="25"><div align="center">æ“ä½œ</div></td>
+      <td width="24%" height="25"><div align="center"><?=$ttypetitle?>¼¶±ğ</div></td>
+      <td width="47%"><div align="center">¼¶±ğÃû³Æ</div></td>
+      <td width="29%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
     <?php
   while($r=$empire->fetch($sql))
@@ -216,8 +216,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
       <td><div align="center"> 
           <?=$r['tname']?>
           </div></td>
-      <td height="25"><div align="center">[<a href="AddGoodType.php?enews=EditGoodType&tid=<?=$r[tid]?>&ttype=<?=$ttype?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]  
-        [<a href="AddGoodType.php?enews=AddGoodType&tid=<?=$r[tid]?>&ttype=<?=$ttype?>&docopy=1<?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>] [<a href="ListGoodType.php?enews=DelGoodType&tid=<?=$r[tid]?>&ttype=<?=$ttype?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+      <td height="25"><div align="center">[<a href="AddGoodType.php?enews=EditGoodType&tid=<?=$r[tid]?>&ttype=<?=$ttype?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]  
+        [<a href="AddGoodType.php?enews=AddGoodType&tid=<?=$r[tid]?>&ttype=<?=$ttype?>&docopy=1<?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>] [<a href="ListGoodType.php?enews=DelGoodType&tid=<?=$r[tid]?>&ttype=<?=$ttype?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
     </tr>
     <?
   }

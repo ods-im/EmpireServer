@@ -15,12 +15,12 @@ if($id&&$classid)
 	{
 		printerror("ErrorUrl","",1);
     }
-	//ä¸‹ä¸€æ¡è®°å½•
+	//ÏÂÒ»Ìõ¼ÇÂ¼
 	if($enews=="next")
 	{
 		$where="id>$id and classid='$classid' order by id";
     }
-	//ä¸Šä¸€æ¡è®°å½•pre
+	//ÉÏÒ»Ìõ¼ÇÂ¼pre
 	else
 	{
 		$where="id<$id and classid='$classid' order by id desc";

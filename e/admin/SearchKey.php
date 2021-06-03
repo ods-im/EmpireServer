@@ -7,7 +7,7 @@ require LoadLang("pub/fun.php");
 require("../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,13 +16,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"searchkey");
 
-//åˆ é™¤æœç´¢å…³é”®å­—
+//É¾³ıËÑË÷¹Ø¼ü×Ö
 function DelSearchKey($onclick,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"searchkey");
 	$onclick=(int)$onclick;
 	if(empty($onclick))
@@ -32,7 +32,7 @@ function DelSearchKey($onclick,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewssearch where onclick<".$onclick.";");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("onclick=".$onclick);
 		printerror("DelSearchKeySuccess","SearchKey.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -42,10 +42,10 @@ function DelSearchKey($onclick,$userid,$username){
 	}
 }
 
-//åˆ é™¤æœç´¢å…³é”®å­—
+//É¾³ıËÑË÷¹Ø¼ü×Ö
 function DelSearchKey_all($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"searchkey");
 	$searchid=$add['searchid'];
 	$count=count($searchid);
@@ -66,7 +66,7 @@ function DelSearchKey_all($add,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewssearch where searchid in (".$ids.");");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("");
 		printerror("DelSearchKeySuccess","SearchKey.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -83,7 +83,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//åˆ é™¤æœç´¢å…³é”®å­—
+//É¾³ıËÑË÷¹Ø¼ü×Ö
 if($enews=="DelSearchKey")
 {
 	$onclick=$_POST['onclick'];
@@ -97,9 +97,9 @@ if($enews=="DelSearchKey_all")
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=18;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=18;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select * from {$dbtbpre}enewssearch";
 $totalquery="select count(*) as total from {$dbtbpre}enewssearch";
 $classid=ehtmlspecialchars($_GET['classid']);
@@ -111,11 +111,11 @@ if($classid!='all'&&strlen($classid)!=0)
 	$totalquery.=" where trueclassid='".intval($classid)."'";
 }
 $search="&classid=".$classid.$ecms_hashur['ehref'];
-//å–å¾—æ€»æ¡æ•°
+//È¡µÃ×ÜÌõÊı
 $num=$empire->gettotal($totalquery);
 $query.=" order by onclick desc limit $offset,$line";
 $sql=$empire->query($query);
-//ç±»åˆ«
+//Àà±ğ
 $fcfile="../data/fc/ListEnews.php";
 $class="<script src=../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
@@ -125,8 +125,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æœç´¢å…³é”®å­—æ’è¡Œ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ËÑË÷¹Ø¼ü×ÖÅÅĞĞ</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -144,54 +144,54 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<a href="SearchKey.php<?=$ecms_hashur['whehref']?>">æœç´¢å…³é”®å­—æ’è¡Œ</a></td>
+    <td height="25">Î»ÖÃ£º<a href="SearchKey.php<?=$ecms_hashur['whehref']?>">ËÑË÷¹Ø¼ü×ÖÅÅĞĞ</a></td>
   </tr>
 </table>
 
   
 <br>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name="form1" method="post" action="SearchKey.php" onsubmit="return confirm('ç¡®å®šè¦åˆ é™¤?');">
+  <form name="form1" method="post" action="SearchKey.php" onsubmit="return confirm('È·¶¨ÒªÉ¾³ı?');">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25">åˆ é™¤æœç´¢å…³é”®å­—è®°å½•</td>
+      <td height="25">É¾³ıËÑË÷¹Ø¼ü×Ö¼ÇÂ¼</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åˆ é™¤æœç´¢æ¬¡ <strong><font color="#FF0000">&lt;</font></strong> 
+      <td height="25" bgcolor="#FFFFFF">É¾³ıËÑË÷´Î <strong><font color="#FF0000">&lt;</font></strong> 
         <input name="onclick" type="text" id="onclick" value="0" size="8">
-        çš„è®°å½•
-        <input type="submit" name="Submit" value="åˆ é™¤">
+        µÄ¼ÇÂ¼
+        <input type="submit" name="Submit" value="É¾³ı">
         <input name="enews" type="hidden" id="enews" value="DelSearchKey"></td>
     </tr>
 	</form>
   </table>
 <br>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name="searchkeyform" method="post" action="SearchKey.php" onsubmit="return confirm('ç¡®å®šè¦åˆ é™¤?');">
+  <form name="searchkeyform" method="post" action="SearchKey.php" onsubmit="return confirm('È·¶¨ÒªÉ¾³ı?');">
   <?=$ecms_hashur['form']?>
   <input type=hidden name=enews value=DelSearchKey_all>
     <tr class="header"> 
-      <td height="25" colspan="6">æ˜¾ç¤ºèŒƒå›´ï¼š 
+      <td height="25" colspan="6">ÏÔÊ¾·¶Î§£º 
         <select name="classid" id="classid" onchange=window.location='SearchKey.php?<?=$ecms_hashur['ehref']?>&classid='+this.options[this.selectedIndex].value>
-          <option value="all">å…¨éƒ¨å…³é”®å­—</option>
-          <option value="0">ä¸é™æ ç›®çš„æœç´¢</option>
+          <option value="all">È«²¿¹Ø¼ü×Ö</option>
+          <option value="0">²»ÏŞÀ¸Ä¿µÄËÑË÷</option>
           <?=$class?>
         </select></td>
     </tr>
     <tr> 
       <td width="6%"><div align="center"></div></td>
       <td width="10%" height="25"><div align="center">ID</div></td>
-      <td width="30%" height="25"><div align="center">å…³é”®å­—</div></td>
-      <td width="18%" height="25"><div align="center">æœç´¢æ ç›®</div></td>
-      <td width="27%" height="25"><div align="center">æœç´¢å­—æ®µ</div></td>
-      <td width="9%"><div align="center">äººæ°”</div></td>
+      <td width="30%" height="25"><div align="center">¹Ø¼ü×Ö</div></td>
+      <td width="18%" height="25"><div align="center">ËÑË÷À¸Ä¿</div></td>
+      <td width="27%" height="25"><div align="center">ËÑË÷×Ö¶Î</div></td>
+      <td width="9%"><div align="center">ÈËÆø</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
   {
   	if($r['iskey'])
 	{
-		$r[keyboard]='[å¤šæ¡ä»¶æœç´¢]';
+		$r[keyboard]='[¶àÌõ¼şËÑË÷]';
 	}
   ?>
     <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
@@ -224,7 +224,7 @@ function CheckAll(form)
       <td height="25" colspan="5"> 
         <?=$returnpage?>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="submit" name="Submit2" value="åˆ é™¤"> </td>
+        <input type="submit" name="Submit2" value="É¾³ı"> </td>
     </tr>
   </form>
 </table>

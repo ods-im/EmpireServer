@@ -1,18 +1,18 @@
 <?php
-//æäº¤åé¦ˆ
+//Ìá½»·´À¡
 function AddMemberFeedback($add){
 	global $empire,$dbtbpre;
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$keyvname='checkspacefbkey';
 	ecmsCheckShowKey($keyvname,$add['key'],1);
-	//ç”¨æˆ·
+	//ÓÃ»§
 	$userid=intval($add['userid']);
 	$ur=$empire->fetch1("select ".egetmf('userid')." from ".eReturnMemberTable()." where ".egetmf('userid')."='$userid' limit 1");
 	if(empty($ur['userid']))
 	{
 		printerror("NotUsername","",1);
 	}
-	//å‘è¡¨è€…
+	//·¢±íÕß
 	$uid=(int)getcvar('mluserid');
 	if($uid)
 	{
@@ -23,7 +23,7 @@ function AddMemberFeedback($add){
 		$uid=0;
 		$uname='';
 	}
-	//å®åéªŒè¯
+	//ÊµÃûÑéÖ¤
 	eCheckHaveTruenameCK('msps',0);
 
 	$uname=dgdb_tosave($uname);
@@ -44,7 +44,7 @@ function AddMemberFeedback($add){
 	$ip=egetip();
 	$eipport=egetipport();
 	$sql=$empire->query("insert into {$dbtbpre}enewsmemberfeedback(name,company,phone,fax,email,address,zip,title,ftext,userid,ip,uid,uname,addtime,eipport) values('$name','$company','$phone','$fax','$email','$address','$zip','$title','$ftext',$userid,'$ip',$uid,'$uname','$addtime','$eipport');");
-	ecmsEmptyShowKey($keyvname);//æ¸…ç©ºéªŒè¯ç 
+	ecmsEmptyShowKey($keyvname);//Çå¿ÕÑéÖ¤Âë
 	if($sql)
 	{
 		printerror("AddMemberFeedbackSuccess",EcmsGetReturnUrl(),1);
@@ -55,10 +55,10 @@ function AddMemberFeedback($add){
 	}
 }
 
-//åˆ é™¤åé¦ˆ
+//É¾³ı·´À¡
 function DelMemberFeedback($add){
 	global $empire,$dbtbpre;
-	$user_r=islogin();//æ˜¯å¦ç™»é™†
+	$user_r=islogin();//ÊÇ·ñµÇÂ½
 	$fid=intval($add['fid']);
 	if(!$fid)
 	{
@@ -75,10 +75,10 @@ function DelMemberFeedback($add){
 	}
 }
 
-//æ‰¹é‡åˆ é™¤åé¦ˆ
+//ÅúÁ¿É¾³ı·´À¡
 function DelMemberFeedback_All($add){
 	global $empire,$dbtbpre;
-	$user_r=islogin();//æ˜¯å¦ç™»é™†
+	$user_r=islogin();//ÊÇ·ñµÇÂ½
 	$fid=$add['fid'];
 	$count=count($fid);
 	if(empty($count))

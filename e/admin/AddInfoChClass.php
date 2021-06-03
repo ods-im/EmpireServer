@@ -5,7 +5,7 @@ require("../class/db_sql.php");
 require("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=(int)$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 $ecms_hashur=hReturnEcmsHashStrAll();
 
 $user_r=$empire->fetch1("select adminclass,groupid from {$dbtbpre}enewsuser where userid='$logininid'");
-//ç”¨æˆ·ç»„æƒé™
+//ÓÃ»§×éÈ¨ÏŞ
 $gr=$empire->fetch1("select doall from {$dbtbpre}enewsgroup where groupid='$user_r[groupid]'");
 if($gr['doall'])
 {
@@ -26,7 +26,7 @@ else
 {
 	$jsfile='../data/fc/userclass'.$logininid.'.js';
 }
-//æ“ä½œçš„æ ç›®
+//²Ù×÷µÄÀ¸Ä¿
 $fcfile="../data/fc/ListEnews.php";
 $do_class="<script src=".$jsfile."?".time()."></script>";
 if(!file_exists($fcfile))
@@ -37,15 +37,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ ä¿¡æ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼ÓĞÅÏ¢</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function changeclass(obj)
 {
 	if(obj.addclassid.value=="")
 	{
-		alert("è¯·é€‰æ‹©æ ç›®");
+		alert("ÇëÑ¡ÔñÀ¸Ä¿");
 	}
 	else
 	{
@@ -58,7 +58,7 @@ function changeclass(obj)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<a href='ListAllInfo.php<?=$ecms_hashur['whehref']?>'>ç®¡ç†ä¿¡æ¯</a>&nbsp;&gt;&nbsp;å¢åŠ ä¿¡æ¯</td>
+    <td height="25">Î»ÖÃ£º<a href='ListAllInfo.php<?=$ecms_hashur['whehref']?>'>¹ÜÀíĞÅÏ¢</a>&nbsp;&gt;&nbsp;Ôö¼ÓĞÅÏ¢</td>
   </tr>
 </table>
 
@@ -66,7 +66,7 @@ function changeclass(obj)
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['eform']?>
     <tr class="header"> 
-      <td height="25"><div align="center">è¯·é€‰æ‹©è¦å¢åŠ ä¿¡æ¯çš„ç»ˆææ ç›®</div></td>
+      <td height="25"><div align="center">ÇëÑ¡ÔñÒªÔö¼ÓĞÅÏ¢µÄÖÕ¼«À¸Ä¿</div></td>
     </tr>
     <tr> 
       <td height="38" bgcolor="#FFFFFF">
@@ -77,7 +77,7 @@ function changeclass(obj)
         </div></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF"><div align="center"><font color="#666666">è¯´æ˜ï¼šè“è‰²æ¡çš„æ ç›®æ‰ä¸ºç»ˆææ ç›®ã€‚</font></div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="center"><font color="#666666">ËµÃ÷£ºÀ¶É«ÌõµÄÀ¸Ä¿²ÅÎªÖÕ¼«À¸Ä¿¡£</font></div></td>
     </tr>
   </table>
 </form>

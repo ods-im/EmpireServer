@@ -12,7 +12,7 @@ if($enews)
 	hCheckEcmsRHash();
 	include('TruePathfileFun.php');
 }
-if($enews=='TranTruePathFile')//ä¸Šä¼ å›ºå®šç›®å½•æ–‡ä»¶
+if($enews=='TranTruePathFile')//ÉÏ´«¹Ì¶¨Ä¿Â¼ÎÄ¼ş
 {
 	$file=$_FILES['file']['tmp_name'];
     $file_name=$_FILES['file']['name'];
@@ -20,12 +20,12 @@ if($enews=='TranTruePathFile')//ä¸Šä¼ å›ºå®šç›®å½•æ–‡ä»¶
     $file_size=$_FILES['file']['size'];
 	TranTruePathFile($filepathr['filelevel'],$filepathr['filepath'],$file,$file_name,$file_type,$file_size,$_POST,$logininid,$loginin);
 }
-elseif($enews=='DelTruePathFile')//åˆ é™¤å›ºå®šç›®å½•æ–‡ä»¶
+elseif($enews=='DelTruePathFile')//É¾³ı¹Ì¶¨Ä¿Â¼ÎÄ¼ş
 {
 	DelTruePathFile($filepathr['filelevel'],$filepathr['filepath'],$_POST['filename'],$logininid,$loginin);
 }
 
-//åŸºç›®å½•
+//»ùÄ¿Â¼
 $actionurl=$filepath_r['actionurl'];
 $filepath=$filepathr['filepath'];
 $openpath=ECMS_PATH.$filepathr['filepath'];
@@ -38,8 +38,8 @@ $hand=@opendir($openpath);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†é™„ä»¶</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí¸½¼ş</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -65,9 +65,9 @@ function CheckAll(form)
   <form action="<?=$actionurl?>" method="post" enctype="multipart/form-data" name="form2">
   <?=$ecms_hashur['form']?>
     <tr>
-      <td>ä¸Šä¼ é™„ä»¶ï¼š
+      <td>ÉÏ´«¸½¼ş£º
       <input type="file" name="file">
-      <input type="submit" name="Submit2" value="ä¸Šä¼ ">
+      <input type="submit" name="Submit2" value="ÉÏ´«">
       <input name="enews" type="hidden" id="enews" value="TranTruePathFile">
 	  <?=$filepathr['addpostvar']?>
 	  </td>
@@ -77,18 +77,18 @@ function CheckAll(form)
   <br>
 <table width="100%" border="0" cellspacing="1" cellpadding="2">
   <tr>
-    <td height="32">å½“å‰ç›®å½•ï¼š<strong>/<?=$filepath?></strong></td>
+    <td height="32">µ±Ç°Ä¿Â¼£º<strong>/<?=$filepath?></strong></td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name="form1" method="post" action="<?=$actionurl?>" onsubmit="return confirm('ç¡®è®¤åˆ é™¤?');">
+  <form name="form1" method="post" action="<?=$actionurl?>" onsubmit="return confirm('È·ÈÏÉ¾³ı?');">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25"> <div align="center">é€‰æ‹©</div></td>
-      <td height="25"><div align="center">æ–‡ä»¶å</div></td>
-      <td><div align="center">å¤§å°</div></td>
-      <td><div align="center">ç±»å‹</div></td>
-      <td><div align="center">ä¿®æ”¹æ—¶é—´</div></td>
+      <td height="25"> <div align="center">Ñ¡Ôñ</div></td>
+      <td height="25"><div align="center">ÎÄ¼şÃû</div></td>
+      <td><div align="center">´óĞ¡</div></td>
+      <td><div align="center">ÀàĞÍ</div></td>
+      <td><div align="center">ĞŞ¸ÄÊ±¼ä</div></td>
     </tr>
     <?php
 	$efileurl=$public_r['newsurl'].$filepath.'/';
@@ -100,30 +100,30 @@ function CheckAll(form)
 		}
 		$truefile=$file;
 		$pathfile=$openpath."/".$file;
-		if(is_dir($pathfile))//ç›®å½•
+		if(is_dir($pathfile))//Ä¿Â¼
 		{
 			$filelink="'#empirecms'";
 			$filename=$file;
 			$img="../../data/images/dir/folder.gif";
 			$checkbox="";
 			$target="";
-			//å‘å¸ƒæ—¶é—´
+			//·¢²¼Ê±¼ä
 			$ftime=@filemtime($pathfile);
 			$filetime=date("Y-m-d H:i:s",$ftime);
-			$filesize='<ç›®å½•>';
-			$filetype='æ–‡ä»¶å¤¹';
+			$filesize='<Ä¿Â¼>';
+			$filetype='ÎÄ¼ş¼Ğ';
 		}
-		else//æ–‡ä»¶
+		else//ÎÄ¼ş
 		{
 			$filelink=$efileurl.$truefile;
 			$filename=$file;
 			$ftype=GetFiletype($file);
 			$checkbox="<input name='filename[]' type='checkbox' value='".$truefile."'>";
 			$target=" target='_blank'";
-			//å‘å¸ƒæ—¶é—´
+			//·¢²¼Ê±¼ä
 			$ftime=@filemtime($pathfile);
 			$filetime=date("Y-m-d H:i:s",$ftime);
-			//æ–‡ä»¶å¤§å°
+			//ÎÄ¼ş´óĞ¡
 			$fsize=@filesize($pathfile);
 			$filesize=ChTheFilesize($fsize);
 			$furl=$efileurl.$truefile;
@@ -160,7 +160,7 @@ function CheckAll(form)
           <input type="checkbox" name="chkall" value="on" onclick="CheckAll(this.form)">
         </div></td>
       <td height="25" colspan="4"> 
-        <input type="submit" name="Submit" value="åˆ é™¤æ–‡ä»¶"> 
+        <input type="submit" name="Submit" value="É¾³ıÎÄ¼ş"> 
         <input name="enews" type="hidden" id="enews" value="DelTruePathFile">
 		<?=$filepathr['addpostvar']?>
         </td>

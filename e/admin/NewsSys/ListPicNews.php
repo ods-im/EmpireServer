@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,15 +16,15 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"picnews");
 
-//å¢åŠ å›¾ç‰‡ä¿¡æ¯
+//Ôö¼ÓÍ¼Æ¬ĞÅÏ¢
 function AddPicNews($add,$title,$pic_url,$url,$pic_width,$pic_height,$open_pic,$border,$pictext,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$title||!$pic_url||!$url||!$add[classid])
 	{printerror("MustEnter","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"picnews");
 	$add[classid]=(int)$add[classid];
 	$border=(int)$border;
@@ -36,12 +36,12 @@ function AddPicNews($add,$title,$pic_url,$url,$pic_width,$pic_height,$open_pic,$
 	$open_pic=hRepPostStr($open_pic,1);
 	$pictext=hRepPostStr2($pictext);
 	$sql=$empire->query("insert into {$dbtbpre}enewspic(title,pic_url,url,pic_width,pic_height,open_pic,border,pictext,classid) values('$title','$pic_url','$url','$pic_width','$pic_height','$open_pic',$border,'$pictext',$add[classid]);");
-	//ç”Ÿæˆjs
+	//Éú³Éjs
 	$picid=$empire->lastid();
 	GetPicJs($picid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("picid=".$picid."<br>title=".$title);
 		printerror("AddPicNewsSuccess","AddPicNews.php?enews=AddPicNews".hReturnEcmsHashStrHref2(0));
 	}
@@ -49,7 +49,7 @@ function AddPicNews($add,$title,$pic_url,$url,$pic_width,$pic_height,$open_pic,$
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ç”Ÿæˆå›¾ç‰‡ä¿¡æ¯js
+//Éú³ÉÍ¼Æ¬ĞÅÏ¢js
 function GetPicJs($picid){
 	global $empire,$dbtbpre;
 	$r=$empire->fetch1("select * from {$dbtbpre}enewspic where picid='$picid'");
@@ -59,19 +59,19 @@ function GetPicJs($picid){
 	WriteFiletext_n($filename,$string);
 }
 
-//åˆ é™¤å›¾ç‰‡ä¿¡æ¯js
+//É¾³ıÍ¼Æ¬ĞÅÏ¢js
 function DelPicJs($picid){
 	$filename="../../../d/js/pic/pic_".$picid.".js";
 	DelFiletext($filename);
 }
 
-//ä¿®æ”¹å›¾ç‰‡ä¿¡æ¯
+//ĞŞ¸ÄÍ¼Æ¬ĞÅÏ¢
 function EditPicNews($add,$picid,$title,$pic_url,$url,$pic_width,$pic_height,$open_pic,$border,$pictext,$userid,$username){
 	global $empire,$dbtbpre;
 	$picid=(int)$picid;
 	if(!$picid||!$title||!$pic_url||!$url||!$add[classid])
 	{printerror("MustEnter","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"picnews");
 	$add[classid]=(int)$add[classid];
 	$border=(int)$border;
@@ -83,11 +83,11 @@ function EditPicNews($add,$picid,$title,$pic_url,$url,$pic_width,$pic_height,$op
 	$open_pic=hRepPostStr($open_pic,1);
 	$pictext=hRepPostStr2($pictext);
 	$sql=$empire->query("update {$dbtbpre}enewspic set title='$title',pic_url='$pic_url',url='$url',pic_width='$pic_width',pic_height='$pic_height',open_pic='$open_pic',border=$border,pictext='$pictext',classid=$add[classid] where picid='$picid'");
-	//ç”Ÿæˆjs
+	//Éú³Éjs
 	GetPicJs($picid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("picid=".$picid."<br>title=".$title);
 		printerror("EditPicNewsSuccess","ListPicNews.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -95,21 +95,21 @@ function EditPicNews($add,$picid,$title,$pic_url,$url,$pic_width,$pic_height,$op
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤å›¾ç‰‡ä¿¡æ¯
+//É¾³ıÍ¼Æ¬ĞÅÏ¢
 function DelPicNews($picid,$userid,$username){
 	global $empire,$dbtbpre;
 	$picid=(int)$picid;
 	if(!$picid)
 	{printerror("NotDelPicnewsid","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"picnews");
 	$r=$empire->fetch1("select title from {$dbtbpre}enewspic where picid='$picid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewspic where picid='$picid'");
-	//åˆ é™¤å›¾ç‰‡js
+	//É¾³ıÍ¼Æ¬js
 	DelPicJs($picid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("picid=".$picid."<br>title=".$r[title]);
 		printerror("DelPicNewsSuccess","ListPicNews.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -117,10 +117,10 @@ function DelPicNews($picid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ‰¹é‡åˆ é™¤å›¾ç‰‡ä¿¡æ¯
+//ÅúÁ¿É¾³ıÍ¼Æ¬ĞÅÏ¢
 function DelPicNews_all($picid,$userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"picnews");
 	$count=count($picid);
 	if(!$count)
@@ -129,14 +129,14 @@ function DelPicNews_all($picid,$userid,$username){
 	{
 		$picid[$i]=(int)$picid[$i];
 		$add.="picid='$picid[$i]' or ";
-		//åˆ é™¤å›¾ç‰‡js
+		//É¾³ıÍ¼Æ¬js
 		DelPicJs($picid[$i]);
 	}
 	$add=substr($add,0,strlen($add)-4);
 	$sql=$empire->query("delete from {$dbtbpre}enewspic where ".$add);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("DelPicNewsSuccess","ListPicNews.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -153,7 +153,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ å›¾ç‰‡æ–°é—»
+//Ôö¼ÓÍ¼Æ¬ĞÂÎÅ
 if($enews=="AddPicNews")
 {
 	$add=$_POST['add'];
@@ -167,7 +167,7 @@ if($enews=="AddPicNews")
 	$pictext=$_POST['pictext'];
 	AddPicNews($add,$title,$pic_url,$url,$pic_width,$pic_height,$open_pic,$border,$pictext,$logininid,$loginin);
 }
-//ä¿®æ”¹å›¾ç‰‡æ–°é—»
+//ĞŞ¸ÄÍ¼Æ¬ĞÂÎÅ
 elseif($enews=="EditPicNews")
 {
 	$add=$_POST['add'];
@@ -182,13 +182,13 @@ elseif($enews=="EditPicNews")
 	$pictext=$_POST['pictext'];
 	EditPicNews($add,$picid,$title,$pic_url,$url,$pic_width,$pic_height,$open_pic,$border,$pictext,$logininid,$loginin);
 }
-//åˆ é™¤å›¾ç‰‡æ–°é—»
+//É¾³ıÍ¼Æ¬ĞÂÎÅ
 elseif($enews=="DelPicNews")
 {
 	$picid=$_GET['picid'];
 	DelPicNews($picid,$logininid,$loginin);
 }
-//æ‰¹é‡åˆ é™¤å›¾ç‰‡æ–°é—»
+//ÅúÁ¿É¾³ıÍ¼Æ¬ĞÂÎÅ
 elseif($enews=="DelPicNews_all")
 {
 	$picid=$_POST['picid'];
@@ -207,16 +207,16 @@ if($classid)
 	$add=" where classid='$classid'";
     $search.="&classid=$classid";
 }
-$line=10;//æ¯è¡Œæ˜¾ç¤º
+$line=10;//Ã¿ĞĞÏÔÊ¾
 $page_line=15;
 $offset=$page*$line;
 $totalquery="select count(*) as total from {$dbtbpre}enewspic".$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query="select picid,title,pic_url,url,pic_width,pic_height,open_pic,border,pictext from {$dbtbpre}enewspic".$add;
 $query.=" order by picid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//å›¾ç‰‡ç±»åˆ«
+//Í¼Æ¬Àà±ğ
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewspicclass order by classid");
 while($cr=$empire->fetch($csql))
 {
@@ -230,40 +230,40 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†å›¾ç‰‡ä¿¡æ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÍ¼Æ¬ĞÅÏ¢</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š<a href="ListPicNews.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å›¾ç‰‡ä¿¡æ¯</a></td>
+    <td width="50%">Î»ÖÃ£º<a href="ListPicNews.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÍ¼Æ¬ĞÅÏ¢</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ å›¾ç‰‡ä¿¡æ¯" onclick="self.location.href='AddPicNews.php?enews=AddPicNews<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓÍ¼Æ¬ĞÅÏ¢" onclick="self.location.href='AddPicNews.php?enews=AddPicNews<?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit52" value="ç®¡ç†å›¾ç‰‡ä¿¡æ¯åˆ†ç±»" onclick="self.location.href='PicClass.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit52" value="¹ÜÀíÍ¼Æ¬ĞÅÏ¢·ÖÀà" onclick="self.location.href='PicClass.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
 <br>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr>
-    <td>åˆ†ç±»ï¼š
+    <td>·ÖÀà£º
       <select name="classid" id="classid" onchange=window.location='ListPicNews.php?<?=$ecms_hashur['ehref']?>&classid='+this.options[this.selectedIndex].value>
-        <option value="0">æ‰€æœ‰ç±»åˆ«</option>
+        <option value="0">ËùÓĞÀà±ğ</option>
 		<?=$class?>
       </select></td>
   </tr>
 </table>
-<form name="form1" method="post" action="ListPicNews.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+<form name="form1" method="post" action="ListPicNews.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
 <input type=hidden name=enews value=DelPicNews_all>
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
       <td width="10%" height="25"><div align="center">ID</div></td>
-      <td width="64%" height="25"><div align="center">é¢„è§ˆ</div></td>
-      <td width="26%" height="25"><div align="center">æ“ä½œ</div></td>
+      <td width="64%" height="25"><div align="center">Ô¤ÀÀ</div></td>
+      <td width="26%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
     <?
 	while($r=$empire->fetch($sql))
@@ -276,8 +276,8 @@ while($cr=$empire->fetch($csql))
       <td height="25"><div align="center"><a href="<?=$r[url]?>" target="<?=$r[open_pic]?>" title="<?=$r[title]?>"><img src="<?=$r[pic_url]?>" height="<?=$r[pic_height]?>" width="<?=$r[pic_width]?>" border="<?=$r[border]?>"></a><br>
           <?=$r[title]?>
         </div></td>
-      <td height="25"><div align="center">[<a href="AddPicNews.php?enews=EditPicNews&picid=<?=$r[picid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-          [<a href="ListPicNews.php?enews=DelPicNews&picid=<?=$r[picid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a> 
+      <td height="25"><div align="center">[<a href="AddPicNews.php?enews=EditPicNews&picid=<?=$r[picid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+          [<a href="ListPicNews.php?enews=DelPicNews&picid=<?=$r[picid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a> 
           <input name="picid[]" type="checkbox" id="picid[]" value="<?=$r[picid]?>" onclick="if(this.checked){pic<?=$r[picid]?>.style.backgroundColor='#DBEAF5';}else{pic<?=$r[picid]?>.style.backgroundColor='#ffffff';}">
           ]</div></td>
     </tr>
@@ -288,12 +288,12 @@ while($cr=$empire->fetch($csql))
       <td height="25" colspan="3">&nbsp;
         <?=$returnpage?>
         &nbsp;&nbsp;
-        <input type="submit" name="Submit" value="æ‰¹é‡åˆ é™¤"></td>
+        <input type="submit" name="Submit" value="ÅúÁ¿É¾³ı"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25" colspan="3"><font color="#666666">JSè°ƒç”¨æ–¹å¼ï¼š&lt;script src= 
+      <td height="25" colspan="3"><font color="#666666">JSµ÷ÓÃ·½Ê½£º&lt;script src= 
         <?=$public_r[newsurl]?>
-        d/js/pic/pic_å›¾ç‰‡ä¿¡æ¯ID.js&gt;&lt;/script&gt;</font></td>
+        d/js/pic/pic_Í¼Æ¬ĞÅÏ¢ID.js&gt;&lt;/script&gt;</font></td>
     </tr>
   </table>
 </form>

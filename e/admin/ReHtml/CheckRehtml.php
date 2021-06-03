@@ -7,7 +7,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,7 +17,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 hCheckEcmsRHash();
-//åˆä½¿åŒ–
+//³õÊ¹»¯
 $from=RepPostStrUrl($_GET['from']);
 if($_GET['first']==1)
 {
@@ -31,9 +31,9 @@ else
 if($rechecktablenum>=$_COOKIE['retablenum'])
 {
 	$enews="ReNewsHtml";
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
-	echo"<script>alert('åˆ·æ–°ä¿¡æ¯é¡µé¢æˆåŠŸ!');parent.location.href='$from';</script>";
+	echo"<script>alert('Ë¢ĞÂĞÅÏ¢Ò³Ãæ³É¹¦!');parent.location.href='$from';</script>";
 }
 else
 {

@@ -7,8 +7,8 @@ if(!defined('InEmpireCMS'))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å›žå¤ç•™è¨€</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>»Ø¸´ÁôÑÔ</title>
 <link href="../../data/images/qcss.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -16,25 +16,25 @@ if(!defined('InEmpireCMS'))
 <form name="regbook" method="post" action="index.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
     <tr class=header> 
-      <td height="25" colspan="2">å›žå¤/ä¿®æ”¹ç•™è¨€
+      <td height="25" colspan="2">»Ø¸´/ÐÞ¸ÄÁôÑÔ
         <input name="enews" type="hidden" id="enews" value="ReMemberGbook">
         <input name="gid" type="hidden" id="gid" value="<?=$gid?>">
         </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="20%" height="25">ç•™è¨€å‘è¡¨è€…:</td>
+      <td width="20%" height="25">ÁôÑÔ·¢±íÕß:</td>
       <td width="80%" height="25"> 
         <?=stripSlashes($r['uname'])?>
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç•™è¨€å†…å®¹:</td>
+      <td height="25">ÁôÑÔÄÚÈÝ:</td>
       <td height="25" style='word-break:break-all'> 
         <?=nl2br(stripSlashes($r[gbtext]))?>
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å‘å¸ƒæ—¶é—´:</td>
+      <td height="25">·¢²¼Ê±¼ä:</td>
       <td height="25">
         <?=$r[addtime]?>&nbsp;
         (IP:
@@ -42,17 +42,17 @@ if(!defined('InEmpireCMS'))
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><strong>å›žå¤å†…å®¹:</strong></td>
+      <td height="25"><strong>»Ø¸´ÄÚÈÝ:</strong></td>
       <td height="25"><textarea name="retext" cols="60" rows="9" id="retext"><?=stripSlashes($r[retext])?></textarea> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="2"><div align="center">[ <a href="javascript:window.close();">å…³ 
-          é—­</a> ]</div></td>
+      <td height="25" colspan="2"><div align="center">[ <a href="javascript:window.close();">¹Ø 
+          ±Õ</a> ]</div></td>
     </tr>
   </table>
 </form>

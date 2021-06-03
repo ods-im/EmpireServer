@@ -14,7 +14,7 @@ $empire=new mysqlquery();
 $enews=$_POST['enews'];
 if(empty($enews))
 {$enews=$_GET['enews'];}
-//éªŒè¯IP
+//ÑéÖ¤IP
 eCheckAccessDoIp('postinfo');
 $muserid=(int)getcvar('mluserid');
 $musername=RepPostVar(getcvar('mlusername'));
@@ -22,22 +22,22 @@ $mrnd=RepPostVar(getcvar('mlrnd'));
 $loginin='[Member]'.$musername;
 $doetran=1;
 include('../data/ecmseditor/eshoweditor.php');
-//å¢åŠ æŠ•ç¨¿
+//Ôö¼ÓÍ¶¸å
 if($enews=="MAddInfo")
 {
 	DodoInfo($_POST,0);
 }
-//ä¿®æ”¹æŠ•ç¨¿
+//ĞŞ¸ÄÍ¶¸å
 elseif($enews=="MEditInfo")
 {
 	DodoInfo($_POST,1);
 }
-//åˆ é™¤æŠ•ç¨¿
+//É¾³ıÍ¶¸å
 elseif($enews=="MDelInfo")
 {
 	DodoInfo($_GET,2);
 }
-//ç¼–è¾‘å™¨ä¸Šä¼ å›¾ç‰‡
+//±à¼­Æ÷ÉÏ´«Í¼Æ¬
 elseif($enews=="MEditorTranFile")
 {
 	$file=$_FILES['file']['tmp_name'];
@@ -46,7 +46,7 @@ elseif($enews=="MEditorTranFile")
     $file_size=$_FILES['file']['size'];
 	DoQTranFile($_POST,$file,$file_name,$file_type,$file_size,$muserid,$musername,$mrnd,1);
 }
-//ä¸Šä¼ é™„ä»¶
+//ÉÏ´«¸½¼ş
 elseif($enews=="MTranFile")
 {
 	$file=$_FILES['file']['tmp_name'];

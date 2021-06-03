@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"gbook");
 $enews=$_POST['enews'];
 if(empty($enews))
@@ -41,7 +41,7 @@ elseif($enews=="DelGbookClass")
 else
 {}
 $sql=$empire->query("select bid,bname,checked,groupid from {$dbtbpre}enewsgbookclass order by bid desc");
-//----------ä¼šå‘˜ç»„
+//----------»áÔ±×é
 $sql1=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($l_r=$empire->fetch($sql1))
 {
@@ -51,7 +51,7 @@ while($l_r=$empire->fetch($sql1))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -59,37 +59,37 @@ while($l_r=$empire->fetch($sql1))
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="gbook.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ç•™è¨€</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="GbookClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ç•™è¨€åˆ†ç±»</a></td>
+    <td>Î»ÖÃ£º<a href="gbook.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÁôÑÔ</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="GbookClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÁôÑÔ·ÖÀà</a></td>
   </tr>
 </table>
 <form name="form1" method="post" action="GbookClass.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td height="25">å¢žåŠ ç•™è¨€åˆ†ç±»: 
+      <td height="25">Ôö¼ÓÁôÑÔ·ÖÀà: 
         <input name=enews type=hidden id="enews" value=AddGbookClass>
         </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> åˆ†ç±»åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> ·ÖÀàÃû³Æ: 
         <input name="bname" type="text" id="bname">
         <select name="groupid" id="groupid">
-          <option value="0">æ¸¸å®¢</option>
+          <option value="0">ÓÎ¿Í</option>
           <?=$membergroup?>
         </select>
         <input name="checked" type="checkbox" id="checked" value="1">
-        éœ€è¦å®¡æ ¸ 
-        <input type="submit" name="Submit" value="å¢žåŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        ÐèÒªÉóºË 
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="7%"><div align="center">ID</div></td>
-    <td width="39%" height="25"><div align="center">åˆ†ç±»åç§°</div></td>
-    <td width="39%"><div align="center">ç•™è¨€æ¿åœ°å€</div></td>
-    <td width="15%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="39%" height="25"><div align="center">·ÖÀàÃû³Æ</div></td>
+    <td width="39%"><div align="center">ÁôÑÔ°åµØÖ·</div></td>
+    <td width="15%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -113,18 +113,18 @@ while($l_r=$empire->fetch($sql1))
       <td height="25"> <div align="center"> 
           <input name="bname" type="text" id="bname" value="<?=$r[bname]?>">
           <select name="groupid" id="groupid">
-            <option value="0">æ¸¸å®¢</option>
+            <option value="0">ÓÎ¿Í</option>
             <?=$thismembergroup?>
           </select>
           <input name="checked" type="checkbox" id="checked" value="1"<?=$checked?>>
-          å®¡æ ¸</div></td>
+          ÉóºË</div></td>
       <td><div align="center">
           <input name="textfield" type="text" size="32" value="<?=$gourl?>">
-          [<a href="<?=$gourl?>" target="_blank">è®¿é—®</a>]</div></td>
+          [<a href="<?=$gourl?>" target="_blank">·ÃÎÊ</a>]</div></td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ÐÞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="self.location.href='GbookClass.php?enews=DelGbookClass&bid=<?=$r[bid]?><?=$ecms_hashur['href']?>';">
+          <input type="button" name="Submit4" value="É¾³ý" onclick="self.location.href='GbookClass.php?enews=DelGbookClass&bid=<?=$r[bid]?><?=$ecms_hashur['href']?>';">
         </div></td>
     </tr>
   </form>

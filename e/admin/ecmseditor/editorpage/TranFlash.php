@@ -7,8 +7,8 @@ if(!defined('InEmpireCMS'))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>ä¸Šä¼ Flash</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>ÉÏ´«Flash</title>
 		<link type="text/css" href="images/editorpage.css" rel=stylesheet>
 		<script>
 		function EcmsEditorReturnDoAction2(str){
@@ -24,7 +24,7 @@ if(!defined('InEmpireCMS'))
 			actypes="<?=$public_r['filetype']?>";
 			if(obj.tranurl.value==''&&obj.file.value=='')
 			{
-				alert('è¯·é€‰æ‹©è¦ä¸Šä¼ çš„FLASH');
+				alert('ÇëÑ¡ÔñÒªÉÏ´«µÄFLASH');
 				obj.file.focus();
 				return false;
 			}
@@ -41,7 +41,7 @@ if(!defined('InEmpireCMS'))
 			cfiletype=','+ToGetFiletype(sfile)+',';
 			if(ctypes.indexOf(cfiletype)==-1)
 			{
-				alert('æ–‡ä»¶æ‰©å±•åé”™è¯¯');
+				alert('ÎÄ¼şÀ©Õ¹Ãû´íÎó');
 				if(sfocus==1)
 				{
 					obj.tranurl.focus();
@@ -55,7 +55,7 @@ if(!defined('InEmpireCMS'))
 			cfiletype='|'+ToGetFiletype(sfile)+'|';
 			if(actypes.indexOf(cfiletype)==-1)
 			{
-				alert('æ–‡ä»¶æ‰©å±•åä¸åœ¨å…è®¸çš„èŒƒå›´å†…');
+				alert('ÎÄ¼şÀ©Õ¹Ãû²»ÔÚÔÊĞíµÄ·¶Î§ÄÚ');
 				if(sfocus==1)
 				{
 					obj.tranurl.focus();
@@ -75,7 +75,7 @@ if(!defined('InEmpireCMS'))
 			filetype=sfile.substring(s+1).toLowerCase();
 			return '.'+filetype;
 		}
-		//è¿”å›ç¼–å·
+		//·µ»Ø±àºÅ
 		function ExpStr(str,exp){
 			var pos,len,ext;
 			pos=str.lastIndexOf(exp)+1;
@@ -128,21 +128,21 @@ if(!defined('InEmpireCMS'))
 	  <input type=hidden name=InstanceId value="<?=$ecms_topager['InstanceId']?>">
 	  <input type=hidden name=doecmspage id=doecmspage value="<?=$doecmspage?>">
       <tr> 
-        <td><strong>è¿œç¨‹ä¿å­˜</strong><br> 
+        <td><strong>Ô¶³Ì±£´æ</strong><br> 
         <input name="tranurl" type="text" id="tranurl" size="32" style="width: 100%"></td>
       </tr>
       <tr> 
-        <td><strong>æœ¬åœ°ä¸Šä¼ </strong><br> 
+        <td><strong>±¾µØÉÏ´«</strong><br> 
           <input type="file" name="file" id="file" style="width: 100%"> 
         </td>
       </tr>
       <tr> 
-        <td><strong>æ–‡ä»¶åˆ«å</strong><br> 
+        <td><strong>ÎÄ¼ş±ğÃû</strong><br> 
           <input name="no" type="text" id="no" value="<?=$ecms_topager['fileno']?>" style="width: 100%"> 
         </td>
       </tr>
       <tr> 
-        <td height="30"> <input type="submit" name="Submit2" value="å‘é€åˆ°æœåŠ¡å™¨ä¸Š"> 
+        <td height="30"> <input type="submit" name="Submit2" value="·¢ËÍµ½·şÎñÆ÷ÉÏ"> 
         </td>
       </tr>
     </form>

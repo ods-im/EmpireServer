@@ -1,13 +1,13 @@
 <?php
-//ä¸Šä¼ å›ºå®šç›®å½•æ–‡ä»¶
+//ÉÏ´«¹Ì¶¨Ä¿Â¼ÎÄ¼þ
 function TranTruePathFile($level,$path,$file,$file_name,$file_type,$file_size,$add,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	if(!$file_name)
 	{
 		printerror("EmptyTranFile","history.go(-1)");
 	}
-	$r['filetype']=GetFiletype($file_name);//å–å¾—æ–‡ä»¶ç±»åž‹
-	//å¦‚æžœæ˜¯.phpæ–‡ä»¶
+	$r['filetype']=GetFiletype($file_name);//È¡µÃÎÄ¼þÀàÐÍ
+	//Èç¹ûÊÇ.phpÎÄ¼þ
 	if(CheckSaveTranFiletype($r['filetype']))
 	{
 		printerror("TranPHP","history.go(-1)");
@@ -21,12 +21,12 @@ function TranTruePathFile($level,$path,$file,$file_name,$file_type,$file_size,$a
 	{
 		printerror("TranFilesizeFail","history.go(-1)");
 	}
-	//æ–‡ä»¶å
+	//ÎÄ¼þÃû
 	$r['insertfile']=ReturnDoTranFilename($file_name,$classid);
 	$r['filename']=$r['insertfile'].$r['filetype'];
 	$r['name']=ECMS_PATH.$path.'/'.$r['filename'];
 	$r['tran']=1;
-	//ä¸Šä¼ æ–‡ä»¶
+	//ÉÏ´«ÎÄ¼þ
 	$cp=@move_uploaded_file($file,$r['name']);
 	if(empty($cp))
 	{
@@ -34,14 +34,14 @@ function TranTruePathFile($level,$path,$file,$file_name,$file_type,$file_size,$a
 		printerror('TranFail','');
 	}
 	DoChmodFile($r['name']);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("path=$path<br>filename=".$r['filename']);
 	echo'<meta http-equiv="refresh" content="0;url='.EcmsGetReturnUrl().'">';
 	db_close();
 	$empire=null;
 }
 
-//åˆ é™¤å›ºå®šç›®å½•æ–‡ä»¶
+//É¾³ý¹Ì¶¨Ä¿Â¼ÎÄ¼þ
 function DelTruePathFile($level,$path,$filename,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	$count=count($filename);
@@ -49,7 +49,7 @@ function DelTruePathFile($level,$path,$filename,$userid,$username){
 	{
 		printerror("NotFileid","history.go(-1)");
 	}
-	//åŸºç›®å½•
+	//»ùÄ¿Â¼
 	$basepath=ECMS_PATH.$path;
 	for($i=0;$i<$count;$i++)
 	{
@@ -59,7 +59,7 @@ function DelTruePathFile($level,$path,$filename,$userid,$username){
 	    }
 		DelFiletext($basepath."/".$filename[$i]);
     }
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("path=$path");
 	printerror("DelFileSuccess",EcmsGetReturnUrl());
 }

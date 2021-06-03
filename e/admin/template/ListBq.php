@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,19 +16,19 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"bq");
 
 $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=20;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=20;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select bqid,bqname,bq,issys,funname,isclose,classid from {$dbtbpre}enewsbq";
 $totalquery="select count(*) as total from {$dbtbpre}enewsbq";
-//ç±»åˆ«
+//Àà±ğ
 $add="";
 $classid=(int)$_GET['classid'];
 if($classid)
@@ -38,11 +38,11 @@ if($classid)
 }
 $query.=$add;
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by myorder desc,isclose,bqid limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//ç±»åˆ«
+//Àà±ğ
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewsbqclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -58,30 +58,30 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†æ ‡ç­¾</title>
+<title>¹ÜÀí±êÇ©</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href="ListBq.php<?=$ecms_hashur['whehref']?>">ç®¡ç†æ ‡ç­¾</a></td>
+    <td width="50%" height="25">Î»ÖÃ£º<a href="ListBq.php<?=$ecms_hashur['whehref']?>">¹ÜÀí±êÇ©</a></td>
     <td><div align="right" class="emenubutton"> 
-        <input type="button" name="Submit5" value="å¢åŠ æ ‡ç­¾" onclick="self.location.href='AddBq.php?enews=AddBq&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó±êÇ©" onclick="self.location.href='AddBq.php?enews=AddBq&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
         &nbsp;&nbsp; 
-        <input type="button" name="Submit5" value="å¯¼å…¥æ ‡ç­¾" onclick="self.location.href='LoadInBq.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="µ¼Èë±êÇ©" onclick="self.location.href='LoadInBq.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
         &nbsp;&nbsp; 
-        <input type="button" name="Submit52" value="ç®¡ç†æ ‡ç­¾åˆ†ç±»" onclick="self.location.href='BqClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit52" value="¹ÜÀí±êÇ©·ÖÀà" onclick="self.location.href='BqClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
 
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td> é€‰æ‹©ç±»åˆ«ï¼š 
+    <td> Ñ¡ÔñÀà±ğ£º 
       <select name="classid" id="classid" onchange=window.location='ListBq.php?<?=$ecms_hashur['ehref']?>&classid='+this.options[this.selectedIndex].value>
-        <option value="0">æ˜¾ç¤ºæ‰€æœ‰ç±»åˆ«</option>
+        <option value="0">ÏÔÊ¾ËùÓĞÀà±ğ</option>
         <?=$cstr?>
       </select> </td>
   </tr>
@@ -90,27 +90,27 @@ while($cr=$empire->fetch($csql))
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="5%" height="25"> <div align="center">ID</div></td>
-    <td width="27%" height="25"> <div align="center">æ ‡ç­¾åç§°</div></td>
-    <td width="26%" height="25"> <div align="center">æ ‡ç­¾ç¬¦å·</div></td>
-    <td width="11%" height="25"> <div align="center">ç³»ç»Ÿæ ‡ç­¾</div></td>
-    <td width="8%"><div align="center">å¼€å¯</div></td>
-    <td width="23%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="27%" height="25"> <div align="center">±êÇ©Ãû³Æ</div></td>
+    <td width="26%" height="25"> <div align="center">±êÇ©·ûºÅ</div></td>
+    <td width="11%" height="25"> <div align="center">ÏµÍ³±êÇ©</div></td>
+    <td width="8%"><div align="center">¿ªÆô</div></td>
+    <td width="23%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
   {
   if($r[issys])
-  {$issys="æ˜¯";}
+  {$issys="ÊÇ";}
   else
-  {$issys="å¦";}
-  //å¼€å¯
+  {$issys="·ñ";}
+  //¿ªÆô
   if($r[isclose])
   {
-  $isclose="<font color=red>å…³é—­</font>";
+  $isclose="<font color=red>¹Ø±Õ</font>";
   }
   else
   {
-  $isclose="å¼€å¯";
+  $isclose="¿ªÆô";
   }
   ?>
   <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
@@ -127,7 +127,7 @@ while($cr=$empire->fetch($csql))
         <?=$issys?>
       </div></td>
     <td><div align="center"><?=$isclose?></div></td>
-    <td height="25"> <div align="center">[<a href="AddBq.php?enews=EditBq&bqid=<?=$r[bqid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="../ecmstemp.php?enews=DelBq&bqid=<?=$r[bqid]?>&cid=<?=$classid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]&nbsp;[<a href="#ecms" onclick="window.open('LoadOutBq.php?bqid=<?=$r[bqid]?><?=$ecms_hashur['ehref']?>','','width=500,height=500,scrollbars=auto');">å¯¼å‡º</a>]</div></td>
+    <td height="25"> <div align="center">[<a href="AddBq.php?enews=EditBq&bqid=<?=$r[bqid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="../ecmstemp.php?enews=DelBq&bqid=<?=$r[bqid]?>&cid=<?=$classid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]&nbsp;[<a href="#ecms" onclick="window.open('LoadOutBq.php?bqid=<?=$r[bqid]?><?=$ecms_hashur['ehref']?>','','width=500,height=500,scrollbars=auto');">µ¼³ö</a>]</div></td>
   </tr>
   <?
   }

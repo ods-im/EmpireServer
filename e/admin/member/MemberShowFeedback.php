@@ -7,7 +7,7 @@ require("../../member/class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"spacedata");
 $fid=(int)$_GET['fid'];
 $r=$empire->fetch1("select fid,name,company,phone,fax,email,address,zip,title,ftext,userid,ip,uid,uname,addtime,userid,eipport from {$dbtbpre}enewsmemberfeedback where fid='$fid'");
@@ -30,7 +30,7 @@ if($r['uid'])
 }
 else
 {
-	$r['uname']='æ¸¸å®¢';
+	$r['uname']='ÓÎ¿Í';
 }
 $ur=$empire->fetch1("select ".egetmf('username')." from ".eReturnMemberTable()." where ".egetmf('userid')."='$r[userid]'");
 $username=$ur['username'];
@@ -40,93 +40,93 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æŸ¥çœ‹åé¦ˆä¿¡æ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²é¿´·´À¡ĞÅÏ¢</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class=tableborder style='word-break:break-all'>
   <tr class=header> 
-    <td height="25" colspan="2">æ ‡é¢˜ï¼š
+    <td height="25" colspan="2">±êÌâ£º
       <?=$r[title]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF">
-    <td height="25">ç©ºé—´ä¸»äººï¼š</td>
+    <td height="25">¿Õ¼äÖ÷ÈË£º</td>
     <td height="25"><a href="../../space/?userid=<?=$r[userid]?>" target="_blank"><?=$username?></a></td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td width="19%" height="25">æäº¤è€…:</td>
+    <td width="19%" height="25">Ìá½»Õß:</td>
     <td width="81%" height="25"> 
       <?=$r[uname]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">å‘å¸ƒæ—¶é—´:</td>
+    <td height="25">·¢²¼Ê±¼ä:</td>
     <td height="25"> 
       <?=$r[addtime]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">IPåœ°å€:</td>
+    <td height="25">IPµØÖ·:</td>
     <td height="25"> 
       <?=$r[ip]?>:<?=$r[eipport]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">å§“å:</td>
+    <td height="25">ĞÕÃû:</td>
     <td height="25">
       <?=$r[name]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">å…¬å¸åç§°:</td>
+    <td height="25">¹«Ë¾Ãû³Æ:</td>
     <td height="25">
       <?=$r[company]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">è”ç³»é‚®ç®±:</td>
+    <td height="25">ÁªÏµÓÊÏä:</td>
     <td height="25">
       <?=$r[email]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">è”ç³»ç”µè¯:</td>
+    <td height="25">ÁªÏµµç»°:</td>
     <td height="25">
       <?=$r[phone]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">ä¼ çœŸ:</td>
+    <td height="25">´«Õæ:</td>
     <td height="25">
       <?=$r[fax]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">è”ç³»åœ°å€:</td>
+    <td height="25">ÁªÏµµØÖ·:</td>
     <td height="25">
       <?=$r[address]?>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;é‚®ç¼–ï¼š
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÓÊ±à£º
       <?=$r[zip]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">ä¿¡æ¯æ ‡é¢˜:</td>
+    <td height="25">ĞÅÏ¢±êÌâ:</td>
     <td height="25">
       <?=$r[title]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25" valign="top">ä¿¡æ¯å†…å®¹:</td>
+    <td height="25" valign="top">ĞÅÏ¢ÄÚÈİ:</td>
     <td height="25">
       <?=nl2br($r[ftext])?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25" colspan="2"><div align="center">[ <a href="javascript:window.close();">å…³ 
-        é—­</a> ]</div></td>
+    <td height="25" colspan="2"><div align="center">[ <a href="javascript:window.close();">¹Ø 
+        ±Õ</a> ]</div></td>
   </tr>
 </table>
 </body>

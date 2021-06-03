@@ -4,7 +4,7 @@ if(!defined('InEmpireCMS'))
 	exit();
 }
 
-//ç»Ÿè®¡è®¿é—®
+//Í³¼Æ·ÃÎÊ
 function UpdateSpaceViewStats($userid){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;
@@ -15,7 +15,7 @@ function UpdateSpaceViewStats($userid){
 	}
 }
 
-//å…³é—­
+//¹Ø±Õ
 if($public_r['openspace']==1)
 {
 	printerror('CloseMemberSpace','',1);
@@ -23,7 +23,7 @@ if($public_r['openspace']==1)
 
 require_once ECMS_PATH.'e/space/spacefun.php';
 
-//ç”¨æˆ·æ˜¯å¦å­˜åœ¨
+//ÓÃ»§ÊÇ·ñ´æÔÚ
 $userid=intval($_GET['userid']);
 if($userid)
 {
@@ -52,7 +52,7 @@ if(empty($ur['checked']))
 {
 	printerror("NotUsername","",1);
 }
-//ä¼šå‘˜ç»„
+//»áÔ±×é
 if($public_r['spacegids'])
 {
 	if(!strstr($public_r['spacegids'],','.$ur['groupid'].','))
@@ -60,24 +60,24 @@ if($public_r['spacegids'])
 		printerror("UserNotSpace","",1);
 	}
 }
-//å®åéªŒè¯
+//ÊµÃûÑéÖ¤
 eCheckHaveTruename('msp',$ur['userid'],$ur['username'],$ur['isern'],$ur['checked'],0);
 
 $userid=$userid?$userid:$ur['userid'];
 $utfusername=$utfusername?$utfusername:$ur['username'];
 $username=$username?$username:$ur['username'];
 $groupid=$ur['groupid'];
-UpdateSpaceViewStats($userid);//ç»Ÿè®¡è®¿é—®
+UpdateSpaceViewStats($userid);//Í³¼Æ·ÃÎÊ
 $addur=$empire->fetch1("select * from {$dbtbpre}enewsmemberadd where userid='".$userid."' limit 1");
-//å¤´åƒ
+//Í·Ïñ
 $userpic=$addur['userpic']?$addur['userpic']:$public_r[newsurl].'e/data/images/nouserpic.gif';
-//ç©ºé—´åœ°å€
+//¿Õ¼äµØÖ·
 $spaceurl=eReturnDomainSiteUrl()."e/space/?userid=".$userid;
-//ç©ºé—´åç§°
+//¿Õ¼äÃû³Æ
 $addur['spacename']=stripSlashes($addur['spacename']);
 $addur['spacegg']=stripSlashes($addur['spacegg']);
-$spacename=$addur['spacename']?$addur['spacename']:$username." çš„ç©ºé—´";
-//ç©ºé—´æ¨¡æ¿
+$spacename=$addur['spacename']?$addur['spacename']:$username." µÄ¿Õ¼ä";
+//¿Õ¼äÄ£°å
 $spacestyleid=$addur['spacestyleid'];
 if(empty($spacestyleid))
 {

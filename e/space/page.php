@@ -11,7 +11,7 @@ $userid=0;
 $username='';
 $groupid=0;
 $spacestyle='';
-require('CheckUser.php');//楠岃瘉鐢ㄦ埛
+require('CheckUser.php');//验证用户
 $p=RepPostVar($_GET['p']);
 if(!$p)
 {

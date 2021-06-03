@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//验证用户
+//��֤�û�
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,13 +15,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//验证权限
+//��֤Ȩ��
 CheckLevel($logininid,$loginin,$classid,"public");
 
-//设置DIGG参数
+//����DIGG����
 function eSetDigg($add,$userid,$username){
 	global $empire,$dbtbpre;
-	CheckLevel($userid,$username,$classid,"public");//验证权限
+	CheckLevel($userid,$username,$classid,"public");//��֤Ȩ��
 	$add['digglevel']=(int)$add['digglevel'];
 	$diggcmids=eReturnSetGroups($add['cmid']);
 	$diggcmids=hRepPostStr($diggcmids,1);
@@ -30,7 +30,7 @@ function eSetDigg($add,$userid,$username){
 	if($sql)
 	{
 		GetConfig();
-		//操作日志
+		//������־
 		insert_dolog("");
 		printerror("SetDiggSuccess","SetDigg.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -38,12 +38,12 @@ function eSetDigg($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//清空DIGG记录
+//���DIGG��¼
 function eClearDiggRecord($add,$userid,$username){
 	global $empire,$dbtbpre,$ecms_config,$public_r;
-	//DIGG记录表
+	//DIGG��¼��
 	$empire->query("TRUNCATE `{$dbtbpre}enewsdiggips`;");
-	//操作日志
+	//������־
 	insert_dolog("");
 	printerror("ClearDiggRecordSuccess",EcmsGetReturnUrl());
 }
@@ -56,11 +56,11 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="SetDigg")//设置参数
+if($enews=="SetDigg")//���ò���
 {
 	eSetDigg($_POST,$logininid,$loginin);
 }
-elseif($enews=="ClearDiggRecord")//清空记录
+elseif($enews=="ClearDiggRecord")//��ռ�¼
 {
 	@set_time_limit(1000);
 	eClearDiggRecord($_GET,$logininid,$loginin);
@@ -70,7 +70,7 @@ else
 
 $r=$empire->fetch1("select * from {$dbtbpre}enewspublicadd limit 1");
 
-//系统模型
+//ϵͳģ��
 $mids='';
 $i=0;
 $modsql=$empire->query("select mid,mname from {$dbtbpre}enewsmod order by myorder,mid");
@@ -100,8 +100,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>DIGG顶参数设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>DIGG����������</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 </head>
@@ -109,39 +109,39 @@ $empire=null;
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td><p>位置：<a href="SetDigg.php<?=$ecms_hashur['whehref']?>">DIGG顶参数设置</a></p>
+    <td><p>λ�ã�<a href="SetDigg.php<?=$ecms_hashur['whehref']?>">DIGG����������</a></p>
     </td>
   </tr>
 </table>
-<form name="setpublic" method="post" action="SetDigg.php" onsubmit="return confirm('确认设置?');">
+<form name="setpublic" method="post" action="SetDigg.php" onsubmit="return confirm('ȷ������?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">DIGG顶参数设置 
+      <td height="25" colspan="2">DIGG���������� 
         <input name="enews" type="hidden" value="SetDigg"></td>
     </tr>
 	<tr bgcolor="#FFFFFF">
-      <td width="18%" height="25">重复顶限制</td>
+      <td width="18%" height="25">�ظ�������</td>
       <td width="82%"><select name="digglevel" id="digglevel">
-        <option value="0"<?=$r['digglevel']==0?' selected':''?>>不限制 (可一直重复顶)</option>
-        <option value="1"<?=$r['digglevel']==1?' selected':''?>>COOKIE验证 (同一浏览器COOKIE进行只能顶一次)</option>
-        <option value="2"<?=$r['digglevel']==2?' selected':''?>>IP验证 (同一IP只能顶一次)</option>
-        <option value="3"<?=$r['digglevel']==3?' selected':''?>>会员验证 (每个会员只能顶一次)</option>
+        <option value="0"<?=$r['digglevel']==0?' selected':''?>>������ (��һֱ�ظ���)</option>
+        <option value="1"<?=$r['digglevel']==1?' selected':''?>>COOKIE��֤ (ͬһ�����COOKIE����ֻ�ܶ�һ��)</option>
+        <option value="2"<?=$r['digglevel']==2?' selected':''?>>IP��֤ (ͬһIPֻ�ܶ�һ��)</option>
+        <option value="3"<?=$r['digglevel']==3?' selected':''?>>��Ա��֤ (ÿ����Աֻ�ܶ�һ��)</option>
       </select>
-        &nbsp;(<strong><a href="SetDigg.php?enews=ClearDiggRecord<?=$ecms_hashur['href']?>" onclick="return confirm('确认要清空验证记录？');"><u>点击这里</u></a></strong>清空验证记录，可以让重新顶)</td>
+        &nbsp;(<strong><a href="SetDigg.php?enews=ClearDiggRecord<?=$ecms_hashur['href']?>" onclick="return confirm('ȷ��Ҫ�����֤��¼��');"><u>�������</u></a></strong>�����֤��¼�����������¶�)</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">关闭顶的系统模型</td>
+      <td height="25">�رն���ϵͳģ��</td>
       <td><?=$mids?></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="提交"> <input type="reset" name="Submit2" value="重置"></td>
+      <td height="25"><input type="submit" name="Submit" value="�ύ"> <input type="reset" name="Submit2" value="����"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25" colspan="2"><font color="#666666">说明：<br>
-      要让系统模型支持顶功能，需要往模型表增加字段名为“diggtop”、类型为INT的字段；<br>
-      要让系统模型支持踩功能，需要往模型表增加字段名为“diggdown”、类型为INT的字段。</font>      </td>
+      <td height="25" colspan="2"><font color="#666666">˵����<br>
+      Ҫ��ϵͳģ��֧�ֶ����ܣ���Ҫ��ģ�ͱ������ֶ���Ϊ��diggtop��������ΪINT���ֶΣ�<br>
+      Ҫ��ϵͳģ��֧�ֲȹ��ܣ���Ҫ��ģ�ͱ������ֶ���Ϊ��diggdown��������ΪINT���ֶΡ�</font>      </td>
     </tr>
   </table>
 </form>

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"tags");
 db_close();
 $empire=null;
@@ -23,7 +23,7 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <title>TAGS</title>
 </head>
@@ -31,22 +31,22 @@ $empire=null;
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="ListTags.php<?=$ecms_hashur['whehref']?>">ç®¡ç†TAGS</a> &gt; åˆ é™¤ä½¿ç”¨ç‡ä½çš„TAGS</td>
+    <td>Î»ÖÃ£º<a href="ListTags.php<?=$ecms_hashur['whehref']?>">¹ÜÀíTAGS</a> &gt; É¾³ıÊ¹ÓÃÂÊµÍµÄTAGS</td>
   </tr>
 </table>
-<form name="form1" method="post" action="ListTags.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+<form name="form1" method="post" action="ListTags.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25"><div align="center">åˆ é™¤ä½¿ç”¨ç‡ä½çš„TAGS
+      <td height="25"><div align="center">É¾³ıÊ¹ÓÃÂÊµÍµÄTAGS
           <input name="enews" type="hidden" id="enews" value="DelLessTags">
         </div></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="center">åˆ é™¤ä¿¡æ¯æ•°<font color="#FF0000"><strong>&lt;=</strong></font> 
+      <td height="25" bgcolor="#FFFFFF"><div align="center">É¾³ıĞÅÏ¢Êı<font color="#FF0000"><strong>&lt;=</strong></font> 
           <input name="num" type="text" id="num" value="0" size="8">
-          çš„TAGS
-<input type="submit" name="Submit2" value="åˆ é™¤">
+          µÄTAGS
+<input type="submit" name="Submit2" value="É¾³ı">
         </div></td>
     </tr>
   </table>

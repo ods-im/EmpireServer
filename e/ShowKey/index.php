@@ -1,22 +1,22 @@
 <?php
 require('../class/connect.php');
 
-//å–å¾—éšæœºæ•°
+//È¡µÃËæ»úÊý
 function domake_password($pw_length){
 	global $public_r;
-	if($public_r['keytog']==1)//å­—æ¯
+	if($public_r['keytog']==1)//×ÖÄ¸
 	{
 		$low_ascii_bound=65;
 		$upper_ascii_bound=90;
 		$notuse=array(91);
 	}
-	elseif($public_r['keytog']==2)//æ•°å­—+å­—æ¯
+	elseif($public_r['keytog']==2)//Êý×Ö+×ÖÄ¸
 	{
 		$low_ascii_bound=50;
 		$upper_ascii_bound=90;
 		$notuse=array(58,59,60,61,62,63,64,73,79);
 	}
-	else//æ•°å­—
+	else//Êý×Ö
 	{
 		$low_ascii_bound=48;
 		$upper_ascii_bound=57;
@@ -39,10 +39,10 @@ function domake_password($pw_length){
 	return $password1;
 }
 
-//è¿”å›žé¢œè‰²
+//·µ»ØÑÕÉ«
 function ReturnShowKeyColor($img){
 	global $public_r;
-	//èƒŒæ™¯è‰²
+	//±³¾°É«
 	if($public_r['keybgcolor'])
 	{
 		$bgcr=ToReturnRGB($public_r['keybgcolor']);
@@ -52,7 +52,7 @@ function ReturnShowKeyColor($img){
 	{
 		$r['bgcolor']=imagecolorallocate($img,102,102,102);
 	}
-	//æ–‡å­—è‰²
+	//ÎÄ×ÖÉ«
 	if($public_r['keyfontcolor'])
 	{
 		$fcr=ToReturnRGB($public_r['keyfontcolor']);
@@ -62,7 +62,7 @@ function ReturnShowKeyColor($img){
 	{
 		$r['fontcolor']=ImageColorAllocate($img,255,255,255);
 	}
-	//å¹²æ‰°è‰²
+	//¸ÉÈÅÉ«
 	if($public_r['keydistcolor'])
 	{
 		$dcr=ToReturnRGB($public_r['keydistcolor']);
@@ -75,12 +75,12 @@ function ReturnShowKeyColor($img){
 	return $r;
 }
 
-//æ˜¾ç¤ºéªŒè¯ç 
+//ÏÔÊ¾ÑéÖ¤Âë
 function ShowKey($v){
 	$vname=ecmsReturnKeyVarname($v);
 	$key=strtolower(domake_password(4));
 	ecmsSetShowKey($vname,$key);
-	//æ˜¯å¦æ”¯æŒgdåº“
+	//ÊÇ·ñÖ§³Ögd¿â
 	if(function_exists("imagejpeg")) 
 	{
 		header ("Content-type: image/jpeg");
@@ -91,7 +91,7 @@ function ShowKey($v){
 		$distcolor=$colorr['distcolor'];
 		imagefill($img,0,0,$bgcolor);
 		imagestring($img,5,6,3,$key,$fontcolor);
-		for($i=0;$i<90;$i++) //åŠ å…¥å¹²æ‰°è±¡ç´ 
+		for($i=0;$i<90;$i++) //¼ÓÈë¸ÉÈÅÏóËØ
 		{
 			imagesetpixel($img,rand()%70,rand()%30,$distcolor);
 		}
@@ -108,7 +108,7 @@ function ShowKey($v){
 		$distcolor=$colorr['distcolor'];
 		imagefill($img,0,0,$bgcolor);
 		imagestring($img,5,6,3,$key,$fontcolor);
-		for($i=0;$i<90;$i++) //åŠ å…¥å¹²æ‰°è±¡ç´ 
+		for($i=0;$i<90;$i++) //¼ÓÈë¸ÉÈÅÏóËØ
 		{
 			imagesetpixel($img,rand()%70,rand()%30,$distcolor);
 		}
@@ -125,7 +125,7 @@ function ShowKey($v){
 		$distcolor=$colorr['distcolor'];
 		imagefill($img,0,0,$bgcolor);
 		imagestring($img,5,6,3,$key,$fontcolor);
-		for($i=0;$i<90;$i++) //åŠ å…¥å¹²æ‰°è±¡ç´ 
+		for($i=0;$i<90;$i++) //¼ÓÈë¸ÉÈÅÏóËØ
 		{
 			imagesetpixel($img,rand()%70,rand()%30,$distcolor);
 		}
@@ -142,7 +142,7 @@ function ShowKey($v){
 		$distcolor=$colorr['distcolor'];
 		imagefill($img,0,0,$bgcolor);
 		imagestring($img,5,6,3,$key,$fontcolor);
-		for($i=0;$i<90;$i++) //åŠ å…¥å¹²æ‰°è±¡ç´ 
+		for($i=0;$i<90;$i++) //¼ÓÈë¸ÉÈÅÏóËØ
 		{
 			imagesetpixel($img,rand()%70,rand()%30,$distcolor);
 		}
@@ -156,49 +156,49 @@ function ShowKey($v){
 	}
 }
 
-//è¿”å›žå˜é‡å
+//·µ»Ø±äÁ¿Ãû
 function ecmsReturnKeyVarname($v){
-	if($v=='login')//ç™»é™†
+	if($v=='login')//µÇÂ½
 	{
 		$name='checkloginkey';
 	}
-	elseif($v=='reg')//æ³¨å†Œ
+	elseif($v=='reg')//×¢²á
 	{
 		$name='checkregkey';
 	}
-	elseif($v=='info')//ä¿¡æ¯
+	elseif($v=='info')//ÐÅÏ¢
 	{
 		$name='checkinfokey';
 	}
-	elseif($v=='spacefb')//ç©ºé—´åé¦ˆ
+	elseif($v=='spacefb')//¿Õ¼ä·´À¡
 	{
 		$name='checkspacefbkey';
 	}
-	elseif($v=='spacegb')//ç©ºé—´ç•™è¨€
+	elseif($v=='spacegb')//¿Õ¼äÁôÑÔ
 	{
 		$name='checkspacegbkey';
 	}
-	elseif($v=='gbook')//ç•™è¨€
+	elseif($v=='gbook')//ÁôÑÔ
 	{
 		$name='checkgbookkey';
 	}
-	elseif($v=='feedback')//åé¦ˆ
+	elseif($v=='feedback')//·´À¡
 	{
 		$name='checkfeedbackkey';
 	}
-	elseif($v=='getpassword')//å–å›žå¯†ç 
+	elseif($v=='getpassword')//È¡»ØÃÜÂë
 	{
 		$name='checkgetpasskey';
 	}
-	elseif($v=='regsend')//é‡å‘æ¿€æ´»é‚®ä»¶
+	elseif($v=='regsend')//ÖØ·¢¼¤»îÓÊ¼þ
 	{
 		$name='checkregsendkey';
 	}
-	elseif($v=='report')//æŠ¥å‘Š
+	elseif($v=='report')//±¨¸æ
 	{
 		$name='checkreportkey';
 	}
-	else//è¯„è®ºpl
+	else//ÆÀÂÛpl
 	{
 		$name='checkplkey';
 	}

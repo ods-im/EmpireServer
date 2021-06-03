@@ -5,22 +5,22 @@ if(!defined('InEmpireCMS'))
 }
 
 $i=0;
-$line=3;//æ¯è¡Œæ˜¾ç¤ºå›¾ç‰‡æ•°
+$line=3;//Ã¿ĞĞÏÔÊ¾Í¼Æ¬Êı
 $width=100;
 $height=80;
-$sub=23;//ç¼–å·æˆªå–æ•°
+$sub=23;//±àºÅ½ØÈ¡Êı
 while($r=$empire->fetch($sql))
 {
 	$ono=$r[no];
 	$r[no]=sub($r[no],0,$sub,false);
-	$filesize=ChTheFilesize($r[filesize]);//æ–‡ä»¶å¤§å°
-	$filetype=GetFiletype($r[filename]);//å–å¾—æ–‡ä»¶æ‰©å±•å
+	$filesize=ChTheFilesize($r[filesize]);//ÎÄ¼ş´óĞ¡
+	$filetype=GetFiletype($r[filename]);//È¡µÃÎÄ¼şÀ©Õ¹Ãû
 	$i++;
 	if(($i-1)%$line==0||$i==1)
 	{
 		$class_text.="<tr bgcolor='#DBEAF5'>";
 	}
-	//æ–‡ä»¶
+	//ÎÄ¼ş
 	$fspath=ReturnFileSavePath($r[classid],$r[fpath]);
 	$filepath=$r[path]?$r[path].'/':$r[path];
 	$file=$fspath['fileurl'].$filepath.$r[filename];
@@ -29,21 +29,21 @@ while($r=$empire->fetch($sql))
 	$buttonurl=$buttonr['bturl'];
 	$class_text.="<td><table width='100%' border='0' cellspacing='1' cellpadding='2'>
   <tr> 
-    <td width='96%' rowspan='2'><div align='center'><a href='#empirecms' title='ç‚¹å‡»é€‰æ‹©' onclick=\"javascript:".$buttonurl."\"><img src='".$file."' width='".$width."' height='".$height."' border=0></a></div></td>
+    <td width='96%' rowspan='2'><div align='center'><a href='#empirecms' title='µã»÷Ñ¡Ôñ' onclick=\"javascript:".$buttonurl."\"><img src='".$file."' width='".$width."' height='".$height."' border=0></a></div></td>
     <td width='4%' valign='top'> <div align='center'> 
         <input type=checkbox name=fileid[] value='$r[fileid]'>
       </div></td>
   </tr>
   <tr>
     <td valign='bottom'>
-<div align='center'><a href='cropimg/CropImage.php?fileid=".$r[fileid]."&filepass=".$filepass."&classid=$classid&infoid=$infoid&modtype=$modtype&fstb=$fstb".$ecms_hashur['ehref']."' target='_blank' title='è£å‰ª'><img src='../../data/images/cropimg.gif' width='13' height='13' border='0'></a></div></td>
+<div align='center'><a href='cropimg/CropImage.php?fileid=".$r[fileid]."&filepass=".$filepass."&classid=$classid&infoid=$infoid&modtype=$modtype&fstb=$fstb".$ecms_hashur['ehref']."' target='_blank' title='²Ã¼ô'><img src='../../data/images/cropimg.gif' width='13' height='13' border='0'></a></div></td>
   </tr>
   <tr> 
     <td><div align='center'><a title='".$ono."'>".$r[no]."</a></div></td>
-    <td><div align='center'><a href='../../ViewImg/index.html?url=".$file."' target='_blank' title='é¢„è§ˆ:".$r[filename]."'><img src='../../data/images/viewimg.gif' width='13' height='13' border='0'></a></div></td>
+    <td><div align='center'><a href='../../ViewImg/index.html?url=".$file."' target='_blank' title='Ô¤ÀÀ:".$r[filename]."'><img src='../../data/images/viewimg.gif' width='13' height='13' border='0'></a></div></td>
   </tr>
 </table></td>";
-	//åˆ†å‰²
+	//·Ö¸î
 	if($i%$line==0)
 	{
 		$class_text.="</tr>";
@@ -53,7 +53,7 @@ if($i<>0)
 {
 	$table="<table width='100%' border=0 cellpadding=3 cellspacing=1 class='tableborder'>
 				<tr class='header'>
-					<td>å›¾ç‰‡ (ç‚¹å‡»å›¾ç‰‡é€‰æ‹©)</td>
+					<td>Í¼Æ¬ (µã»÷Í¼Æ¬Ñ¡Ôñ)</td>
 				</tr>
 				<tr>
 					<td bgcolor='#FFFFFF'><table width='100%' border=1 align=center cellpadding=2 cellspacing=1 bordercolor='#FFFFFF' bgcolor='#FFFFFF'>";
@@ -83,13 +83,13 @@ echo"$text";
     <tr>
       <td height="25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input name="getmark" type="checkbox" id="getmark" value="1">
-        <a href="../SetEnews.php<?=$ecms_hashur['whehref']?>" target="_blank">åŠ æ°´å°</a>,
+        <a href="../SetEnews.php<?=$ecms_hashur['whehref']?>" target="_blank">¼ÓË®Ó¡</a>,
         <input name="getsmall" type="checkbox" id="getsmall" value="1">
-        ç”Ÿæˆç¼©ç•¥å›¾:ç¼©å›¾å®½åº¦: 
+        Éú³ÉËõÂÔÍ¼:ËõÍ¼¿í¶È: 
         <input name="width" type="text" id="width" value="<?=$public_r['spicwidth']?>" size="6">
-        * é«˜åº¦: 
+        * ¸ß¶È: 
         <input name="height" type="text" id="height" value="<?=$public_r['spicheight']?>" size="6">
-        <input type="submit" name="Submit" value="æ“ä½œé€‰ä¸­å›¾ç‰‡">
-        &nbsp;&nbsp;<input type="submit" name="Submit3" value="åˆ é™¤é€‰ä¸­" onclick="document.dofile.enews.value='TDelFile_all';"><input type="checkbox" name="chkall" value="on" onclick="CheckAll(this.form)">å…¨é€‰ </td>
+        <input type="submit" name="Submit" value="²Ù×÷Ñ¡ÖĞÍ¼Æ¬">
+        &nbsp;&nbsp;<input type="submit" name="Submit3" value="É¾³ıÑ¡ÖĞ" onclick="document.dofile.enews.value='TDelFile_all';"><input type="checkbox" name="chkall" value="on" onclick="CheckAll(this.form)">È«Ñ¡ </td>
     </tr>
   </table>

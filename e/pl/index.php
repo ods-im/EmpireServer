@@ -6,8 +6,8 @@ require("../data/dbcache/class.php");
 require LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
-eCheckCloseMods('pl');//å…³é—­æ¨¡å—
-//ç”¨æˆ·å
+eCheckCloseMods('pl');//¹Ø±ÕÄ£¿é
+//ÓÃ»§Ãû
 $lusername=getcvar('mlusername');
 $lpassword='';
 if($lusername)
@@ -17,7 +17,7 @@ if($lusername)
 }
 $id=(int)$_GET['id'];
 $classid=(int)$_GET['classid'];
-//ä¸“é¢˜
+//×¨Ìâ
 $doaction=$_GET['doaction']=='dozt'?'dozt':'';
 $rewritedoaction='doinfo';
 if($doaction=='dozt')
@@ -34,11 +34,11 @@ if($doaction=='dozt')
 	}
 	$pubid='-'.$classid;
 	$search="&doaction=dozt&classid=$classid";
-	//æ ‡é¢˜é“¾æ¥
+	//±êÌâÁ´½Ó
 	$titleurl=sys_ReturnBqZtname($n_r);
 	$title=stripSlashes($n_r['ztname']);
 	$pagetitle=ehtmlspecialchars($title);
-	//è¯„åˆ†
+	//ÆÀ·Ö
 	$infopfennum=0;
 	$pinfopfen=0;
 	$url=ReturnZtLink($n_r['ztid'])."&nbsp;>&nbsp;".$fun_r[pl];
@@ -60,16 +60,16 @@ else
 	}
 	$pubid=ReturnInfoPubid($classid,$id);
 	$search="&classid=$classid&id=".$id;
-	//æ ‡é¢˜é“¾æ¥
+	//±êÌâÁ´½Ó
 	$titleurl=sys_ReturnBqTitleLink($n_r);
 	$title=stripSlashes($n_r[title]);
 	$pagetitle=ehtmlspecialchars($title);
-	//è¯„åˆ†
+	//ÆÀ·Ö
 	$infopfennum=$n_r['infopfennum'];
 	$pinfopfen=$infopfennum?round($n_r['infopfen']/$infopfennum):0;
 	$url=ReturnClassLink($n_r[classid])."&nbsp;>&nbsp;<a href=".$titleurl.">".$title."</a>&nbsp;>&nbsp;".$fun_r[pl];
 }
-//ä½¿ç”¨æ¨¡æ¿
+//Ê¹ÓÃÄ£°å
 $rewritetempid=0;
 if($_GET['tempid'])
 {
@@ -97,11 +97,11 @@ if(empty($tempid))
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$page_line=10;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$line=$public_r['pl_num'];//æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$page_line=10;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$line=$public_r['pl_num'];//Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select * from {$dbtbpre}enewspl_".$n_r['restb']." where pubid='$pubid' and checked=0";
-//æ€»æ•°é‡
+//×ÜÊıÁ¿
 if($doaction=='dozt')
 {
 	$totalquery="select count(*) as total from {$dbtbpre}enewspl_".$n_r['restb']." where pubid='$pubid' and checked=0";
@@ -109,7 +109,7 @@ if($doaction=='dozt')
 }
 else
 {
-	//éœ€å®¡æ ¸
+	//ĞèÉóºË
 	if($class_r[$classid][checkpl])
 	{
 		$totalquery="select count(*) as total from {$dbtbpre}enewspl_".$n_r['restb']." where pubid='$pubid' and checked=0";
@@ -120,7 +120,7 @@ else
 		$num=$n_r['plnum'];
 	}
 }
-//æ’åº
+//ÅÅĞò
 $addorder='plid desc';
 $myorder=(int)$_GET['myorder'];
 if($myorder==1)
@@ -130,10 +130,10 @@ if($myorder==1)
 }
 $query.=" order by ".$addorder." limit $offset,$line";
 $sql=$empire->query($query);
-//ä¼ªé™æ€
+//Î±¾²Ì¬
 $pagefunr=eReturnRewritePlUrl($classid,$id,$rewritedoaction,$myorder,$rewritetempid,0);
 $pagefunr['repagenum']=0;
-//åˆ†é¡µ
+//·ÖÒ³
 if($pagefunr['rewrite']==1)
 {
 	$listpage=InfoUsePage($num,$line,$page_line,$start,$page,$search,$pagefunr);

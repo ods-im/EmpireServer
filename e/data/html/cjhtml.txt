@@ -1,6 +1,6 @@
 [!--text--]
   <tr bgcolor="#FFFFFF"> 
-    <td height="22" valign="top"><strong>[!--enews.name--]æ­£åˆ™ï¼š</strong><br>
+    <td height="22" valign="top"><strong>[!--enews.name--]ÕıÔò£º</strong><br>
       (<input name="textfield" type="text" id="textfield" value="[!--[!--enews.var--]--]" size="20">)</td>
     <td><table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
@@ -8,14 +8,14 @@
         </tr>
         <tr> 
           <td><input name="add[z_[!--enews.var--]]" type="text" id="add[z_[!--enews.var--]]" value="<?=stripSlashes($r[z_[!--enews.var--]])?>">
-            (å¦‚å¡«å†™è¿™é‡Œï¼Œå°†ä¸ºå­—æ®µçš„å€¼)</td>
+            (ÈçÌîĞ´ÕâÀï£¬½«Îª×Ö¶ÎµÄÖµ)</td>
         </tr>
       </table></td>
   </tr>
 [!--text--]
 [!--textarea--]
   <tr bgcolor="#FFFFFF"> 
-    <td height="22" valign="top"><strong>[!--enews.name--]æ­£åˆ™ï¼š</strong><br>
+    <td height="22" valign="top"><strong>[!--enews.name--]ÕıÔò£º</strong><br>
       (<input name="textfield" type="text" id="textfield" value="[!--[!--enews.var--]--]" size="20">)</td>
     <td><table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
@@ -23,95 +23,95 @@
         </tr>
         <tr> 
           <td><input name="add[z_[!--enews.var--]]" type="text" id="add[z_[!--enews.var--]]" value="<?=stripSlashes($r[z_[!--enews.var--]])?>">
-            (å¦‚å¡«å†™è¿™é‡Œï¼Œå°†ä¸ºå­—æ®µçš„å€¼)</td>
+            (ÈçÌîĞ´ÕâÀï£¬½«Îª×Ö¶ÎµÄÖµ)</td>
         </tr>
       </table></td>
   </tr>
 [!--textarea--]
 [!--img--]
   <tr bgcolor="#FFFFFF"> 
-    <td height="22" valign="top"><strong>[!--enews.name--]æ­£åˆ™ï¼š</strong><br>
+    <td height="22" valign="top"><strong>[!--enews.name--]ÕıÔò£º</strong><br>
       ( 
       <input name="textfield" type="text" id="textfield" value="[!--[!--enews.var--]--]" size="20">
       )</td>
     <td><table width="100%" border="0" cellspacing="1" cellpadding="3">
     <tr>
-      <td>é™„ä»¶å‰ç¼€ 
+      <td>¸½¼şÇ°×º 
         <input name="add[qz_[!--enews.var--]]" type="text" id="add[qz_[!--enews.var--]]" value="<?=stripSlashes($r[qz_[!--enews.var--]])?>"> 
         <input name="add[save_[!--enews.var--]]" type="checkbox" id="add[save_[!--enews.var--]]" value=" checked"<?=$r[save_[!--enews.var--]]?>>
-        è¿œç¨‹ä¿å­˜ </td>
+        Ô¶³Ì±£´æ </td>
     </tr>
     <tr> 
       <td><textarea name="add[zz_[!--enews.var--]]" cols="60" rows="10" id="add[zz_[!--enews.var--]]"><?=ehtmlspecialchars(stripSlashes($r[zz_[!--enews.var--]]))?></textarea></td>
     </tr>
     <tr> 
       <td><input name="add[z_[!--enews.var--]]" type="text" id="[!--enews.var--]5" value="<?=stripSlashes($r[z_[!--enews.var--]])?>">
-        (å¦‚å¡«å†™è¿™é‡Œï¼Œè¿™å°±æ˜¯å­—æ®µçš„å€¼)</td>
+        (ÈçÌîĞ´ÕâÀï£¬Õâ¾ÍÊÇ×Ö¶ÎµÄÖµ)</td>
     </tr>
   </table></td>
   </tr>
 [!--img--]
 [!--flash--]
   <tr bgcolor="#FFFFFF"> 
-    <td height="22" valign="top"><strong>[!--enews.name--]æ­£åˆ™ï¼š</strong><br>
+    <td height="22" valign="top"><strong>[!--enews.name--]ÕıÔò£º</strong><br>
       ( 
       <input name="textfield" type="text" id="textfield" value="[!--[!--enews.var--]--]" size="20">
       )</td>
     <td><table width="100%" border="0" cellspacing="1" cellpadding="3">
     <tr>
-      <td>é™„ä»¶å‰ç¼€ 
+      <td>¸½¼şÇ°×º 
         <input name="add[qz_[!--enews.var--]]" type="text" id="add[qz_[!--enews.var--]]" value="<?=stripSlashes($r[qz_[!--enews.var--]])?>"> 
         <input name="add[save_[!--enews.var--]]" type="checkbox" id="add[save_[!--enews.var--]]" value=" checked"<?=$r[save_[!--enews.var--]]?>>
-        è¿œç¨‹ä¿å­˜ </td>
+        Ô¶³Ì±£´æ </td>
     </tr>
     <tr> 
       <td><textarea name="add[zz_[!--enews.var--]]" cols="60" rows="10" id="add[zz_[!--enews.var--]]"><?=ehtmlspecialchars(stripSlashes($r[zz_[!--enews.var--]]))?></textarea></td>
     </tr>
     <tr> 
       <td><input name="add[z_[!--enews.var--]]" type="text" id="[!--enews.var--]5" value="<?=stripSlashes($r[z_[!--enews.var--]])?>">
-        (å¦‚å¡«å†™è¿™é‡Œï¼Œè¿™å°±æ˜¯å­—æ®µçš„å€¼)</td>
+        (ÈçÌîĞ´ÕâÀï£¬Õâ¾ÍÊÇ×Ö¶ÎµÄÖµ)</td>
     </tr>
   </table></td>
   </tr>
 [!--flash--]
 [!--file--]
   <tr bgcolor="#FFFFFF"> 
-    <td height="22" valign="top"><strong>[!--enews.name--]æ­£åˆ™ï¼š</strong><br>
+    <td height="22" valign="top"><strong>[!--enews.name--]ÕıÔò£º</strong><br>
       ( 
       <input name="textfield" type="text" id="textfield" value="[!--[!--enews.var--]--]" size="20">
       )</td>
     <td><table width="100%" border="0" cellspacing="1" cellpadding="3">
     <tr>
-      <td>é™„ä»¶å‰ç¼€ 
+      <td>¸½¼şÇ°×º 
         <input name="add[qz_[!--enews.var--]]" type="text" id="add[qz_[!--enews.var--]]" value="<?=stripSlashes($r[qz_[!--enews.var--]])?>"> 
         <input name="add[save_[!--enews.var--]]" type="checkbox" id="add[save_[!--enews.var--]]" value=" checked"<?=$r[save_[!--enews.var--]]?>>
-        è¿œç¨‹ä¿å­˜ </td>
+        Ô¶³Ì±£´æ </td>
     </tr>
     <tr> 
       <td><textarea name="add[zz_[!--enews.var--]]" cols="60" rows="10" id="add[zz_[!--enews.var--]]"><?=ehtmlspecialchars(stripSlashes($r[zz_[!--enews.var--]]))?></textarea></td>
     </tr>
     <tr> 
       <td><input name="add[z_[!--enews.var--]]" type="text" id="[!--enews.var--]5" value="<?=stripSlashes($r[z_[!--enews.var--]])?>">
-        (å¦‚å¡«å†™è¿™é‡Œï¼Œè¿™å°±æ˜¯å­—æ®µçš„å€¼)</td>
+        (ÈçÌîĞ´ÕâÀï£¬Õâ¾ÍÊÇ×Ö¶ÎµÄÖµ)</td>
     </tr>
   </table></td>
   </tr>
 [!--file--]
 [!--downpath--]
   <tr bgcolor="#FFFFFF"> 
-    <td height="22" valign="top"><strong>[!--enews.name--]æ­£åˆ™ï¼š</strong><br>
+    <td height="22" valign="top"><strong>[!--enews.name--]ÕıÔò£º</strong><br>
       (
       <input name="textfield" type="text" id="textfield" value="[!--ecmsdownpathurl--]" size="20">
       <br>
       <input name="textfield2" type="text" id="textfield2" value="[!--ecmsdownpathname--]" size="20">
       )<br>
-      æ ¼å¼:åœ°å€æ­£åˆ™(url)[!empirecms!]åç§°æ­£åˆ™(name)</td>
+      ¸ñÊ½:µØÖ·ÕıÔò(url)[!empirecms!]Ãû³ÆÕıÔò(name)</td>
     <td><table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
           <td><textarea name="add[zz_[!--enews.var--]]" cols="60" rows="10" id="textarea"><?=ehtmlspecialchars(stripSlashes($r[zz_[!--enews.var--]]))?></textarea></td>
         </tr>
         <tr> 
-          <td>åœ°å€å‰ç¼€:
+          <td>µØÖ·Ç°×º:
 <input name="add[qz_[!--enews.var--]]" type="text" id="add[qz_[!--enews.var--]]" value="<?=stripSlashes($r[qz_[!--enews.var--]])?>">
         </td>
         </tr>
@@ -120,19 +120,19 @@
 [!--downpath--]
 [!--onlinepath--]
   <tr bgcolor="#FFFFFF"> 
-    <td height="22" valign="top"><strong>[!--enews.name--]æ­£åˆ™ï¼š</strong><br>
+    <td height="22" valign="top"><strong>[!--enews.name--]ÕıÔò£º</strong><br>
       (
       <input name="textfield" type="text" id="textfield" value="[!--ecmsonlinepathurl--]" size="20">
       <br>
       <input name="textfield2" type="text" id="textfield2" value="[!--ecmsonlinepathname--]" size="20">
       )<br>
-      æ ¼å¼:åœ°å€æ­£åˆ™(url)[!empirecms!]åç§°æ­£åˆ™(name)</td>
+      ¸ñÊ½:µØÖ·ÕıÔò(url)[!empirecms!]Ãû³ÆÕıÔò(name)</td>
     <td><table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
           <td><textarea name="add[zz_[!--enews.var--]]" cols="60" rows="10" id="textarea"><?=ehtmlspecialchars(stripSlashes($r[zz_[!--enews.var--]]))?></textarea></td>
         </tr>
         <tr> 
-          <td>åœ°å€å‰ç¼€:
+          <td>µØÖ·Ç°×º:
 <input name="add[qz_[!--enews.var--]]" type="text" id="add[qz_[!--enews.var--]]" value="<?=stripSlashes($r[qz_[!--enews.var--]])?>">
         </td>
         </tr>
@@ -142,7 +142,7 @@
 [!--onlinepath--]
 [!--morepic--]
   <tr bgcolor="#FFFFFF"> 
-    <td height="22" valign="top"><strong>[!--enews.name--]æ­£åˆ™ï¼š</strong><br>
+    <td height="22" valign="top"><strong>[!--enews.name--]ÕıÔò£º</strong><br>
       (
       <input name="textfield" type="text" id="textfield" value="[!--ecmsspicurl--]" size="20">
       <br>
@@ -150,16 +150,16 @@
 	  <br>
       <input name="textfield2" type="text" id="textfield2" value="[!--ecmspicname--]" size="20">
       )<br>
-      æ ¼å¼:ç¼©ç•¥å›¾[!empirecms!]å¤§å›¾[!empirecms!]åç§°</td>
+      ¸ñÊ½:ËõÂÔÍ¼[!empirecms!]´óÍ¼[!empirecms!]Ãû³Æ</td>
     <td><table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
           <td><textarea name="add[zz_[!--enews.var--]]" cols="60" rows="10" id="textarea"><?=ehtmlspecialchars(stripSlashes($r[zz_[!--enews.var--]]))?></textarea></td>
         </tr>
         <tr> 
-          <td>åœ°å€å‰ç¼€:
+          <td>µØÖ·Ç°×º:
 <input name="add[qz_[!--enews.var--]]" type="text" id="add[qz_[!--enews.var--]]" value="<?=stripSlashes($r[qz_[!--enews.var--]])?>">
 <input name="add[save_[!--enews.var--]]" type="checkbox" id="add[save_[!--enews.var--]]" value=" checked"<?=$r[save_[!--enews.var--]]?>>
-        è¿œç¨‹ä¿å­˜
+        Ô¶³Ì±£´æ
         </td>
         </tr>
       </table></td>
@@ -179,8 +179,8 @@ while($player_r=$empire->fetch($player_sql))
 }
 ?>
   <tr bgcolor="#FFFFFF"> 
-    <td height="22" valign="top"><strong>[!--enews.name--]ï¼š</strong><br>
+    <td height="22" valign="top"><strong>[!--enews.name--]£º</strong><br>
       (<input name="textfield" type="text" id="textfield" value="[!--[!--enews.var--]--]" size="20">)</td>
-    <td><select name="add[z_[!--enews.var--]]"><option value=0>è‡ªåŠ¨è¯†åˆ«</option><?=$player_class?></select></td>
+    <td><select name="add[z_[!--enews.var--]]"><option value=0>×Ô¶¯Ê¶±ğ</option><?=$player_class?></select></td>
   </tr>
 [!--playerid--]

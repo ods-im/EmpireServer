@@ -1,14 +1,14 @@
 <?php
-//*************************** ä¿¡æ¯ ***************************
+//*************************** ĞÅÏ¢ ***************************
 
-//å¢åŠ æŠ•ç¥¨
+//Ôö¼ÓÍ¶Æ±
 function AddInfoVote($classid,$id,$add){
 	global $empire,$dbtbpre,$class_r;
 	$pubid=ReturnInfoPubid($classid,$id);
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsinfovote where pubid='$pubid' limit 1");
 	$votename=$add['vote_name'];
 	$votenum=$add['vote_num'];
-	//ç»Ÿè®¡æ€»ç¥¨æ•°
+	//Í³¼Æ×ÜÆ±Êı
 	for($i=0;$i<count($votename);$i++)
 	{
 		$t_votenum+=$votenum[$i];
@@ -21,7 +21,7 @@ function AddInfoVote($classid,$id,$add){
 	$tempid=(int)$add['vote_tempid'];
 	$add['vote_title']=hRepPostStr($add['vote_title'],1);
 	$add['vote_dotime']=hRepPostStr($add['vote_dotime'],1);
-	//é™„åŠ å­—æ®µ
+	//¸½¼Ó×Ö¶Î
 	$diyotherlink=(int)$add['info_diyotherlink'];
 	$infouptime=0;
 	if($add['info_infouptime'])
@@ -33,15 +33,15 @@ function AddInfoVote($classid,$id,$add){
 	{
 		$infodowntime=to_time($add['info_infodowntime']);
 	}
-	if($num)	//ä¿®æ”¹
+	if($num)	//ĞŞ¸Ä
 	{
-		$votetext=ReturnVote($add['vote_name'],$add['vote_num'],$add['delvote_id'],$add['vote_id'],1);	//è¿”å›ç»„åˆ
+		$votetext=ReturnVote($add['vote_name'],$add['vote_num'],$add['delvote_id'],$add['vote_id'],1);	//·µ»Ø×éºÏ
 		$votetext=hRepPostStr($votetext,1);
 		$sql=$empire->query("update {$dbtbpre}enewsinfovote set title='$add[vote_title]',votenum='$t_votenum',votetext='$votetext',voteclass='$voteclass',doip='$doip',dotime='$add[vote_dotime]',tempid='$tempid',width='$width',height='$height',diyotherlink='$diyotherlink',infouptime='$infouptime',infodowntime='$infodowntime' where pubid='$pubid' limit 1");
 	}
-	else	//å¢åŠ 
+	else	//Ôö¼Ó
 	{
-		$votetext=ReturnVote($add['vote_name'],$add['vote_num'],$add['delvote_id'],$add['vote_id'],0);	//è¿”å›ç»„åˆ
+		$votetext=ReturnVote($add['vote_name'],$add['vote_num'],$add['delvote_id'],$add['vote_id'],0);	//·µ»Ø×éºÏ
 		if(!($votetext||$diyotherlink||$infouptime||$infodowntime))
 		{
 			return '';
@@ -51,22 +51,22 @@ function AddInfoVote($classid,$id,$add){
 	}
 }
 
-//æ›´æ–°åŒæ—¶å‘å¸ƒ
+//¸üĞÂÍ¬Ê±·¢²¼
 function UpdateInfoCopyids($classid,$id,$copyids){
 	global $empire,$dbtbpre,$class_r;
 	$pubid=ReturnInfoPubid($classid,$id);
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsinfovote where pubid='$pubid' limit 1");
-	if($num)	//ä¿®æ”¹
+	if($num)	//ĞŞ¸Ä
 	{
 		$empire->query("update {$dbtbpre}enewsinfovote set copyids='$copyids' where pubid='$pubid' limit 1");
 	}
-	else	//å¢åŠ 
+	else	//Ôö¼Ó
 	{
 		$empire->query("insert into {$dbtbpre}enewsinfovote(pubid,id,classid,copyids) values('$pubid','$id','$classid','$copyids');");
 	}
 }
 
-//è¿”å›æ ‡é¢˜æ˜¯å¦é‡å¤
+//·µ»Ø±êÌâÊÇ·ñÖØ¸´
 function ReturnCheckRetitle($add){
 	global $empire,$dbtbpre,$class_r;
 	$classid=(int)$add['classid'];
@@ -77,9 +77,9 @@ function ReturnCheckRetitle($add){
 	{
 		$where=' and id<>'.$id;
 	}
-	//å·²å®¡æ ¸
+	//ÒÑÉóºË
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$class_r[$classid][tbname]." where title='".addslashes($title)."'".$where." limit 1");
-	//æœªå®¡æ ¸
+	//Î´ÉóºË
 	if(empty($num))
 	{
 		$num=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_check where title='".addslashes($title)."'".$where." limit 1");
@@ -87,7 +87,7 @@ function ReturnCheckRetitle($add){
 	return $num;
 }
 
-//AJAXéªŒè¯æ ‡é¢˜æ˜¯å¦é‡å¤
+//AJAXÑéÖ¤±êÌâÊÇ·ñÖØ¸´
 function CheckReTitleAjax($add){
 	if(ReturnCheckRetitle($add))
 	{
@@ -99,19 +99,19 @@ function CheckReTitleAjax($add){
 	}
 }
 
-//å¢åŠ ä¿¡æ¯å¤„ç†å˜é‡
+//Ôö¼ÓĞÅÏ¢´¦Àí±äÁ¿
 function DoPostInfoVar($add){
 	global $class_r,$public_r;
 	$add['classid']=(int)$add['classid'];
-	//ç»„åˆæ ‡é¢˜å±æ€§
+	//×éºÏ±êÌâÊôĞÔ
 	$add[titlecolor]=eDoRepPostComStr(RepPhpAspJspcodeText($add[titlecolor]));
 	$add['my_titlefont']=eDoRepPostComStr(TitleFont($add[titlefont],$add[titlecolor]));
-	//ä¸“é¢˜
+	//×¨Ìâ
 	$add['ztids']=RepPostVar($add['ztids']);
 	$add['zcids']=RepPostVar($add['zcids']);
 	$add['oldztids']=RepPostVar($add['oldztids']);
 	$add['oldzcids']=RepPostVar($add['oldzcids']);
-	//å…¶å®ƒå˜é‡
+	//ÆäËü±äÁ¿
 	$add['title']=eDoInfoTbfToQj($class_r[$add['classid']]['tbname'],'title',$add['title'],$public_r['toqjf']);
 	$add[title]=eDoRepPostComStr($add[title],1);
 	$add[keyboard]=eDoRepPostComStr(RepPhpAspJspcodeText(DoReplaceQjDh($add[keyboard])),1);
@@ -142,7 +142,7 @@ function DoPostInfoVar($add){
 	return $add;
 }
 
-//ç›¸å…³é“¾æ¥IDå¤„ç†
+//Ïà¹ØÁ´½ÓID´¦Àí
 function DoPostDiyOtherlinkID($keyid){
 	if(!$keyid||$keyid==',')
 	{
@@ -165,7 +165,7 @@ function DoPostDiyOtherlinkID($keyid){
 	return $new_keyid;
 }
 
-//å¢åŠ ä¿¡æ¯
+//Ôö¼ÓĞÅÏ¢
 function AddNews($add,$userid,$username){
 	global $empire,$class_r,$class_zr,$bclassid,$public_r,$dbtbpre,$emod_r,$lur;
 	$add[classid]=(int)$add[classid];
@@ -174,9 +174,9 @@ function AddNews($add,$userid,$username){
 	{
 		printerror("EmptyTitle","history.go(-1)");
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	$doselfinfo=CheckLevel($userid,$username,$add[classid],"news");
-	if(!$doselfinfo['doaddinfo'])//å¢åŠ æƒé™
+	if(!$doselfinfo['doaddinfo'])//Ôö¼ÓÈ¨ÏŞ
 	{
 		printerror("NotAddInfoLevel","history.go(-1)");
 	}
@@ -185,33 +185,33 @@ function AddNews($add,$userid,$username){
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	if($ccr['sametitle'])//éªŒè¯æ ‡é¢˜é‡å¤
+	if($ccr['sametitle'])//ÑéÖ¤±êÌâÖØ¸´
 	{
 		if(ReturnCheckRetitle($add))
 		{
 			printerror("ReInfoTitle","history.go(-1)");
 	    }
     }
-	//ä¿®æ”¹æ–‡ä»¶åæƒé™
+	//ĞŞ¸ÄÎÄ¼şÃûÈ¨ÏŞ
 	if(!$doselfinfo['doinfofile'])
 	{
 		$add['newspath']=date($class_r[$add['classid']]['newspath']);
 		$add['filename']='';
 	}
-	$add=DoPostInfoVar($add);//è¿”å›å˜é‡
-	$ret_r=ReturnAddF($add,$class_r[$add[classid]][modid],$userid,$username,0,0,1);//è¿”å›è‡ªå®šä¹‰å­—æ®µ
-	$newspath=FormatPath($add[classid],$add[newspath],1);//æŸ¥çœ‹ç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™å»ºç«‹
-	//å®¡æ ¸æƒé™
+	$add=DoPostInfoVar($add);//·µ»Ø±äÁ¿
+	$ret_r=ReturnAddF($add,$class_r[$add[classid]][modid],$userid,$username,0,0,1);//·µ»Ø×Ô¶¨Òå×Ö¶Î
+	$newspath=FormatPath($add[classid],$add[newspath],1);//²é¿´Ä¿Â¼ÊÇ·ñ´æÔÚ£¬²»´æÔÚÔò½¨Á¢
+	//ÉóºËÈ¨ÏŞ
 	if(!$doselfinfo['docheckinfo'])
 	{
 		$add['checked']=$class_r[$add[classid]][checked];
 	}
-	//å¿…é¡»å®¡æ ¸
+	//±ØĞëÉóºË
 	if($doselfinfo['domustcheck'])
 	{
 		$add['checked']=0;
 	}
-	//æ¨èæƒé™
+	//ÍÆ¼öÈ¨ÏŞ
 	if(!$doselfinfo['dogoodinfo'])
 	{
 		$add['isgood']=0;
@@ -220,16 +220,16 @@ function AddNews($add,$userid,$username){
 	}
 	else
 	{
-		if(!eFirstTitleCheckLevel($add['isgood'],0))//æ¨è
+		if(!eFirstTitleCheckLevel($add['isgood'],0))//ÍÆ¼ö
 		{
 			$add['isgood']=0;
 		}
-		if(!eFirstTitleCheckLevel($add['firsttitle'],1))//å¤´æ¡
+		if(!eFirstTitleCheckLevel($add['firsttitle'],1))//Í·Ìõ
 		{
 			$add['firsttitle']=0;
 		}
 	}
-	//ç­¾å‘
+	//Ç©·¢
 	$isqf=0;
 	if($class_r[$add[classid]][wfid])
 	{
@@ -243,13 +243,13 @@ function AddNews($add,$userid,$username){
 	$newstime=empty($add['newstime'])?time():to_time($add['newstime']);
 	$truetime=time();
 	$lastdotime=$truetime;
-	//æ˜¯å¦ç”Ÿæˆ
+	//ÊÇ·ñÉú³É
 	$havehtml=0;
 	if($add['checked']==1&&$ccr['addreinfo'])
 	{
 		$havehtml=1;
 	}
-	//è¿”å›å…³é”®å­—ç»„åˆ
+	//·µ»Ø¹Ø¼ü×Ö×éºÏ
 	if($add['info_diyotherlink'])
 	{
 		$keyid=DoPostDiyOtherlinkID($add['info_keyid']);
@@ -258,29 +258,29 @@ function AddNews($add,$userid,$username){
 	{
 		$keyid=GetKeyid($add[keyboard],$add[classid],0,$class_r[$add[classid]][link_num]);
 	}
-	//é™„åŠ é“¾æ¥å‚æ•°
+	//¸½¼ÓÁ´½Ó²ÎÊı
 	$addecmscheck=empty($add['checked'])?'&ecmscheck=1':'';
-	//ç´¢å¼•è¡¨
+	//Ë÷Òı±í
 	$sql=$empire->query("insert into {$dbtbpre}ecms_".$class_r[$add[classid]][tbname]."_index(classid,checked,newstime,truetime,lastdotime,havehtml) values('$add[classid]','$add[checked]','$newstime','$truetime','$lastdotime','$havehtml');");
 	$id=$empire->lastid();
 	$pubid=ReturnInfoPubid($add['classid'],$id);
 	$infotbr=ReturnInfoTbname($class_r[$add[classid]][tbname],$add['checked'],$ret_r['tb']);
-	//ä¸»è¡¨
+	//Ö÷±í
 	$infosql=$empire->query("insert into ".$infotbr['tbname']."(id,classid,ttid,onclick,plnum,totaldown,newspath,filename,userid,username,firsttitle,isgood,ispic,istop,isqf,ismember,isurl,truetime,lastdotime,havehtml,groupid,userfen,titlefont,titleurl,stb,fstb,restb,keyboard".$ret_r['fields'].") values('$id','$add[classid]','$add[ttid]','$add[onclick]',0,'$add[totaldown]','$newspath','$filename','$userid','".addslashes($username)."','$add[firsttitle]','$add[isgood]','$add[ispic]','$add[istop]','$isqf',0,'$add[isurl]','$truetime','$lastdotime','$havehtml','$add[groupid]','$add[userfen]','".addslashes($add[my_titlefont])."','".addslashes($add[titleurl])."','$ret_r[tb]','$public_r[filedeftb]','$public_r[pldeftb]','".addslashes($add[keyboard])."'".$ret_r['values'].");");
-	//å‰¯è¡¨
+	//¸±±í
 	$finfosql=$empire->query("insert into ".$infotbr['datatbname']."(id,classid,keyid,dokey,newstempid,closepl,haveaddfen,infotags".$ret_r['datafields'].") values('$id','$add[classid]','$keyid','$add[dokey]','$add[newstempid]','$add[closepl]',0,'".addslashes($add[infotags])."'".$ret_r['datavalues'].");");
-	//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+	//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 	AddClassInfos($add['classid'],'+1','+1',$add['checked']);
-	//æ›´æ–°æ–°ä¿¡æ¯æ•°
+	//¸üĞÂĞÂĞÅÏ¢Êı
 	DoUpdateAddDataNum('info',$class_r[$add['classid']]['tid'],1);
-	//ç­¾å‘
+	//Ç©·¢
 	if($isqf==1)
 	{
 		InfoInsertToWorkflow($id,$add[classid],$class_r[$add[classid]][wfid],$userid,$username);
 	}
-	//æ›´æ–°é™„ä»¶è¡¨
+	//¸üĞÂ¸½¼ş±í
 	UpdateTheFile($id,$add['filepass'],$add['classid'],$public_r['filedeftb']);
-	//å–ç¬¬ä¸€å¼ å›¾ä½œä¸ºæ ‡é¢˜å›¾ç‰‡
+	//È¡µÚÒ»ÕÅÍ¼×÷Îª±êÌâÍ¼Æ¬
 	if($add['getfirsttitlepic']&&empty($add['titlepic']))
 	{
 		$firsttitlepic=GetFpicToTpic($add['classid'],$id,$add['getfirsttitlepic'],$add['getfirsttitlespic'],$add['getfirsttitlespicw'],$add['getfirsttitlespich'],$public_r['filedeftb']);
@@ -289,7 +289,7 @@ function AddNews($add,$userid,$username){
 			$addtitlepic=",titlepic='".addslashes($firsttitlepic)."',ispic=1";
 		}
 	}
-	//æ–‡ä»¶å‘½å
+	//ÎÄ¼şÃüÃû
 	if($add['filename'])
 	{
 		$filename=$add['filename'];
@@ -298,7 +298,7 @@ function AddNews($add,$userid,$username){
 	{
 		$filename=ReturnInfoFilename($add[classid],$id,'');
 	}
-	//ä¿¡æ¯åœ°å€
+	//ĞÅÏ¢µØÖ·
 	$updateinfourl='';
 	if(!$add['isurl'])
 	{
@@ -306,28 +306,28 @@ function AddNews($add,$userid,$username){
 		$updateinfourl=",titleurl='$infourl'";
 	}
 	$usql=$empire->query("update ".$infotbr['tbname']." set filename='$filename'".$updateinfourl.$addtitlepic." where id='$id'");
-	//æ›¿æ¢å›¾ç‰‡ä¸‹ä¸€é¡µ
+	//Ìæ»»Í¼Æ¬ÏÂÒ»Ò³
 	if($add['repimgnexturl'])
 	{
 		UpdateImgNexturl($add[classid],$id,$add['checked']);
 	}
-	//æŠ•ç¥¨
+	//Í¶Æ±
 	AddInfoVote($add['classid'],$id,$add);
-	//åŠ å…¥ä¸“é¢˜
+	//¼ÓÈë×¨Ìâ
 	InsertZtInfo($add['ztids'],$add['zcids'],$add['oldztids'],$add['oldzcids'],$add['classid'],$id,$newstime);
 	//TAGS
 	if($add[infotags]&&$add[infotags]<>$add[oldinfotags])
 	{
 		eInsertTags($add[infotags],$add['classid'],$id,$newstime);
 	}
-	//å¤„ç†å‡½æ•°
+	//´¦Àíº¯Êı
 	DoMFun($class_r[$add['classid']]['modid'],$add['classid'],$id,1,0);
-	//å¢åŠ ä¿¡æ¯æ˜¯å¦ç”Ÿæˆæ–‡ä»¶
+	//Ôö¼ÓĞÅÏ¢ÊÇ·ñÉú³ÉÎÄ¼ş
 	if($ccr['addreinfo']&&$add['checked'])
 	{
 		GetHtml($add['classid'],$id,'',0);
 	}
-	//ç”Ÿæˆä¸Šä¸€ç¯‡
+	//Éú³ÉÉÏÒ»Æª
 	$epreid=0;
 	if($ccr['repreinfo']&&$add['checked'])
 	{
@@ -335,16 +335,16 @@ function AddNews($add,$userid,$username){
 		$epreid=$prer['id'];
 		GetHtml($add['classid'],$prer['id'],$prer,1);
 	}
-	//ç”Ÿæˆæ ç›®
+	//Éú³ÉÀ¸Ä¿
 	if($ccr['haddlist']&&$add['checked'])
 	{
-		hAddListHtml($add['classid'],$ccr['modid'],$ccr['haddlist'],$ccr['listdt']);//ç”Ÿæˆä¿¡æ¯åˆ—è¡¨
-		if($add['ttid'])//ç”Ÿæˆæ ‡é¢˜åˆ†ç±»åˆ—è¡¨
+		hAddListHtml($add['classid'],$ccr['modid'],$ccr['haddlist'],$ccr['listdt']);//Éú³ÉĞÅÏ¢ÁĞ±í
+		if($add['ttid'])//Éú³É±êÌâ·ÖÀàÁĞ±í
 		{
 			ListHtml($add['ttid'],'',5);
 		}
 	}
-	//åŒæ—¶å‘å¸ƒ
+	//Í¬Ê±·¢²¼
 	$copyclassid=$add[copyclassid];
 	$cpcount=count($copyclassid);
 	if($cpcount)
@@ -355,14 +355,14 @@ function AddNews($add,$userid,$username){
 			UpdateInfoCopyids($add['classid'],$id,$copyids);
 		}
 	}
-	//æ›´æ–°åŠ¨æ€ç¼“å­˜
+	//¸üĞÂ¶¯Ì¬»º´æ
 	if($public_r['ctimeopen']&&$add['checked'])
 	{
 		eUpCacheInfo(1,$add['classid'],0,$epreid,$add['ttid'],'',$add['infotags'],0,0);
 	}
 	if($sql)
 	{
-		//è¿”å›åœ°å€
+		//·µ»ØµØÖ·
 		if($add['ecmsfrom']&&(stristr($add['ecmsfrom'],'ListNews.php')||stristr($add['ecmsfrom'],'ListAllInfo.php')))
 		{
 			$ecmsfrom=$add['ecmsfrom'];
@@ -373,7 +373,7 @@ function AddNews($add,$userid,$username){
 			$ecmsfrom.=hReturnEcmsHashStrHref2(0);
 		}
 		$GLOBALS['ecmsadderrorurl']=$ecmsfrom.$addecmscheck;
-		insert_dolog("classid=$add[classid]<br>id=".$id."<br>title=".$add[title],$pubid);//æ“ä½œæ—¥å¿—
+		insert_dolog("classid=$add[classid]<br>id=".$id."<br>title=".$add[title],$pubid);//²Ù×÷ÈÕÖ¾
 		printerror("AddNewsSuccess","AddNews.php?enews=AddNews&ecmsnfrom=$add[ecmsnfrom]&bclassid=$add[bclassid]&classid=$add[classid]".$addecmscheck.hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -382,7 +382,7 @@ function AddNews($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ä¿¡æ¯
+//ĞŞ¸ÄĞÅÏ¢
 function EditNews($add,$userid,$username){
 	global $empire,$class_r,$class_zr,$bclassid,$public_r,$dbtbpre,$emod_r;
 	$add[classid]=(int)$add[classid];
@@ -392,8 +392,8 @@ function EditNews($add,$userid,$username){
 	{
 		printerror("EmptyTitle","history.go(-1)");
 	}
-	$doselfinfo=CheckLevel($userid,$username,$add[classid],"news");//æ“ä½œæƒé™
-	if(!$doselfinfo['doeditinfo'])//ç¼–è¾‘æƒé™
+	$doselfinfo=CheckLevel($userid,$username,$add[classid],"news");//²Ù×÷È¨ÏŞ
+	if(!$doselfinfo['doeditinfo'])//±à¼­È¨ÏŞ
 	{
 		printerror("NotEditInfoLevel","history.go(-1)");
 	}
@@ -402,25 +402,25 @@ function EditNews($add,$userid,$username){
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//ç´¢å¼•è¡¨
+	//Ë÷Òı±í
 	$index_checkr=$empire->fetch1("select id,classid,checked from {$dbtbpre}ecms_".$class_r[$add[classid]][tbname]."_index where id='$add[id]' limit 1");
 	if(!$index_checkr['id']||$index_checkr['classid']!=$add['classid'])
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//ä¸»è¡¨
+	//Ö÷±í
 	$infotb=ReturnInfoMainTbname($class_r[$add[classid]][tbname],$index_checkr['checked']);
 	$checkr=$empire->fetch1("select id,classid,userid,username,ismember,stb,newspath,filename,isqf,fstb,isgood,firsttitle,istop,ttid,eckuid from ".$infotb." where id='$add[id]' limit 1");
-	if($doselfinfo['doselfinfo']&&($checkr['userid']<>$userid||$checkr['ismember']))//åªèƒ½ç¼–è¾‘è‡ªå·±çš„ä¿¡æ¯
+	if($doselfinfo['doselfinfo']&&($checkr['userid']<>$userid||$checkr['ismember']))//Ö»ÄÜ±à¼­×Ô¼ºµÄĞÅÏ¢
 	{
 		printerror("NotDoSelfinfo","history.go(-1)");
     }
-	//å·²å®¡æ ¸ä¿¡æ¯ä¸å¯ä¿®æ”¹
+	//ÒÑÉóºËĞÅÏ¢²»¿ÉĞŞ¸Ä
 	if($doselfinfo['docheckedit']&&$index_checkr['checked'])
 	{
 		printerror("NotEditCheckInfoLevel","history.go(-1)");
 	}
-	//ç­¾å‘ä¿¡æ¯
+	//Ç©·¢ĞÅÏ¢
 	if($checkr['isqf'])
 	{
 		$qfr=$empire->fetch1("select wfid,checktno from {$dbtbpre}enewswfinfo where id='$add[id]' and classid='$add[classid]' limit 1");
@@ -433,17 +433,17 @@ function EditNews($add,$userid,$username){
 			}
 		}
 	}
-	//å®¡æ ¸æƒé™
+	//ÉóºËÈ¨ÏŞ
 	if(!$doselfinfo['docheckinfo'])
 	{
 		$add['checked']=$index_checkr['checked'];
 	}
-	//å¿…é¡»å®¡æ ¸
+	//±ØĞëÉóºË
 	if($doselfinfo['domustcheck']&&!$index_checkr['checked'])
 	{
 		$add['checked']=0;
 	}
-	//æ¨èæƒé™
+	//ÍÆ¼öÈ¨ÏŞ
 	if(!$doselfinfo['dogoodinfo'])
 	{
 		$add['isgood']=$checkr['isgood'];
@@ -452,49 +452,49 @@ function EditNews($add,$userid,$username){
 	}
 	else
 	{
-		if(!eFirstTitleCheckLevel($add['isgood'],0))//æ¨è
+		if(!eFirstTitleCheckLevel($add['isgood'],0))//ÍÆ¼ö
 		{
 			$add['isgood']=$checkr['isgood'];
 		}
-		if(!eFirstTitleCheckLevel($add['firsttitle'],1))//å¤´æ¡
+		if(!eFirstTitleCheckLevel($add['firsttitle'],1))//Í·Ìõ
 		{
 			$add['firsttitle']=$checkr['firsttitle'];
 		}
 	}
-	if($ccr['sametitle'])//éªŒè¯æ ‡é¢˜é‡å¤
+	if($ccr['sametitle'])//ÑéÖ¤±êÌâÖØ¸´
 	{
 		if(ReturnCheckRetitle($add))
 		{
 			printerror("ReInfoTitle","history.go(-1)");
 	    }
     }
-	//ä¿®æ”¹æ–‡ä»¶åæƒé™
+	//ĞŞ¸ÄÎÄ¼şÃûÈ¨ÏŞ
 	if(!$doselfinfo['doinfofile'])
 	{
 		$add['newspath']=$checkr['newspath'];
 		$add['filename']=$checkr['filename'];
 	}
-	//å…¬å…±è¡¨
+	//¹«¹²±í
 	$pubid=ReturnInfoPubid($add['classid'],$add['id']);
 	$pubcheckr=$empire->fetch1("select copyids from {$dbtbpre}enewsinfovote where pubid='$pubid' limit 1");
 	$mid=$class_r[$add[classid]][modid];
 	$pf=$emod_r[$mid]['pagef'];
-	$add=DoPostInfoVar($add);//è¿”å›å˜é‡
+	$add=DoPostInfoVar($add);//·µ»Ø±äÁ¿
 	$add['fstb']=$checkr['fstb'];
-	$ret_r=ReturnAddF($add,$class_r[$add[classid]][modid],$userid,$username,1,0,1);//è¿”å›è‡ªå®šä¹‰å­—æ®µ
+	$ret_r=ReturnAddF($add,$class_r[$add[classid]][modid],$userid,$username,1,0,1);//·µ»Ø×Ô¶¨Òå×Ö¶Î
 	$deloldfile=0;
-	if($add[groupid]<>$add[oldgroupid]||($index_checkr['checked']&&!$add[checked]))//æ”¹å˜æ–‡ä»¶æƒé™
+	if($add[groupid]<>$add[oldgroupid]||($index_checkr['checked']&&!$add[checked]))//¸Ä±äÎÄ¼şÈ¨ÏŞ
 	{
-        DelNewsFile($checkr[filename],$checkr[newspath],$add[classid],$add[$pf],$add[oldgroupid]);//åˆ é™¤æ—§çš„æ–‡ä»¶
+        DelNewsFile($checkr[filename],$checkr[newspath],$add[classid],$add[$pf],$add[oldgroupid]);//É¾³ı¾ÉµÄÎÄ¼ş
 		$deloldfile=1;
 	}
-	//ç­¾å‘
+	//Ç©·¢
 	$newchecked=$index_checkr['checked'];
 	$a='';
 	if($class_r[$add[classid]][wfid]&&$checkr['isqf'])
 	{
 		$qfr=$empire->fetch1("select checktno from {$dbtbpre}enewswfinfo where id='$add[id]' and classid='$add[classid]' limit 1");
-		if($qfr['checktno']=='100')//å·²é€šè¿‡
+		if($qfr['checktno']=='100')//ÒÑÍ¨¹ı
 		{
 			$aqf=",checked='$add[checked]'";
 			$newchecked=$add[checked];
@@ -513,21 +513,21 @@ function EditNews($add,$userid,$username){
 		$aqf=",checked='$add[checked]'";
 		$newchecked=$add[checked];
 	}
-	//æ—¥æœŸç›®å½•
+	//ÈÕÆÚÄ¿Â¼
 	$updatefile='';
 	$urlnewspath=$checkr['newspath'];
 	if($add['newspath']!=$checkr[newspath])
 	{
-		$add[newspath]=FormatPath($add[classid],$add[newspath],1);//æŸ¥çœ‹ç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™å»ºç«‹
+		$add[newspath]=FormatPath($add[classid],$add[newspath],1);//²é¿´Ä¿Â¼ÊÇ·ñ´æÔÚ£¬²»´æÔÚÔò½¨Á¢
 		$updatefile.=",newspath='$add[newspath]'";
 		if($deloldfile==0)
 		{
-			DelNewsFile($checkr[filename],$checkr[newspath],$add[classid],$add[$pf],$add[oldgroupid]);//åˆ é™¤æ—§æ–‡ä»¶
+			DelNewsFile($checkr[filename],$checkr[newspath],$add[classid],$add[$pf],$add[oldgroupid]);//É¾³ı¾ÉÎÄ¼ş
 			$deloldfile=1;
 		}
 		$urlnewspath=$add['newspath'];
 	}
-	//æ–‡ä»¶å
+	//ÎÄ¼şÃû
 	$urlfilename=$checkr['filename'];
 	if($add['filename']&&$add['filename']!=$checkr[filename])
 	{
@@ -535,12 +535,12 @@ function EditNews($add,$userid,$username){
 		$updatefile.=",filename='$newfilename'";
 		if($deloldfile==0)
 		{
-			DelNewsFile($checkr[filename],$checkr[newspath],$add[classid],$add[$pf],$add[oldgroupid]);//åˆ é™¤æ—§æ–‡ä»¶
+			DelNewsFile($checkr[filename],$checkr[newspath],$add[classid],$add[$pf],$add[oldgroupid]);//É¾³ı¾ÉÎÄ¼ş
 			$deloldfile=1;
 		}
 		$urlfilename=$newfilename;
 	}
-	//å®¡æ ¸äºº
+	//ÉóºËÈË
 	if(!$index_checkr['checked']&&$index_checkr['checked']!=$newchecked)
 	{
 		if(!$checkr['eckuid']&&($checkr['ismember']||$checkr['userid']!=$userid))
@@ -550,7 +550,7 @@ function EditNews($add,$userid,$username){
 	}
 	$newstime=empty($add['newstime'])?time():to_time($add['newstime']);
 	$lastdotime=time();
-	//è¿”å›å…³é”®å­—ç»„åˆ
+	//·µ»Ø¹Ø¼ü×Ö×éºÏ
 	if($add['info_diyotherlink'])
 	{
 		$keyid=DoPostDiyOtherlinkID($add['info_keyid']);
@@ -559,20 +559,20 @@ function EditNews($add,$userid,$username){
 	{
 		$keyid=GetKeyid($add[keyboard],$add[classid],$add[id],$class_r[$add[classid]][link_num]);
 	}
-	//é™„åŠ é“¾æ¥å‚æ•°
+	//¸½¼ÓÁ´½Ó²ÎÊı
 	$addecmscheck=empty($newchecked)?'&ecmscheck=1':'';
-	//ä¿¡æ¯åœ°å€
+	//ĞÅÏ¢µØÖ·
 	$infourl=GotoGetTitleUrl($add['classid'],$add['id'],$urlnewspath,$urlfilename,$add['groupid'],$add['isurl'],$add['titleurl']);
-	//è¿”å›è¡¨ä¿¡æ¯
+	//·µ»Ø±íĞÅÏ¢
 	$infotbr=ReturnInfoTbname($class_r[$add[classid]][tbname],$index_checkr['checked'],$checkr['stb']);
-	//ç´¢å¼•è¡¨
+	//Ë÷Òı±í
 	$indexsql=$empire->query("update {$dbtbpre}ecms_".$class_r[$add[classid]][tbname]."_index set newstime='$newstime',lastdotime='$lastdotime'".$aqf." where id='$add[id]' limit 1");
-	//ä¸»è¡¨
+	//Ö÷±í
 	$sql=$empire->query("update ".$infotbr['tbname']." set classid='$add[classid]',ttid='$add[ttid]',onclick='$add[onclick]',totaldown='$add[totaldown]',firsttitle=$add[firsttitle],isgood=$add[isgood],ispic='$add[ispic]',istop=$add[istop],isurl='$add[isurl]',lastdotime=$lastdotime,groupid=$add[groupid],userfen=$add[userfen],titlefont='".addslashes($add[my_titlefont])."',titleurl='".addslashes($infourl)."',keyboard='".addslashes($add[keyboard])."'".$updatefile.$ret_r[values]." where id='$add[id]' limit 1");
-	//å‰¯è¡¨
+	//¸±±í
 	$stb=$checkr['stb'];
 	$fsql=$empire->query("update ".$infotbr['datatbname']." set classid='$add[classid]',keyid='$keyid',dokey=$add[dokey],newstempid=$add[newstempid],closepl=$add[closepl],infotags='".addslashes($add[infotags])."'".$ret_r[datavalues]." where id='$add[id]' limit 1");
-	//å–ç¬¬ä¸€å¼ å›¾ä½œä¸ºæ ‡é¢˜å›¾ç‰‡
+	//È¡µÚÒ»ÕÅÍ¼×÷Îª±êÌâÍ¼Æ¬
 	if($add['getfirsttitlepic']&&empty($add['titlepic']))
 	{
 		$firsttitlepic=GetFpicToTpic($add['classid'],$add['id'],$add['getfirsttitlepic'],$add['getfirsttitlespic'],$add['getfirsttitlespicw'],$add['getfirsttitlespich'],$checkr['fstb']);
@@ -581,27 +581,27 @@ function EditNews($add,$userid,$username){
 			$usql=$empire->query("update ".$infotbr['tbname']." set titlepic='".addslashes($firsttitlepic)."',ispic=1 where id='$add[id]'");
 		}
 	}
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileEdit($add['classid'],$add['id'],$checkr['fstb']);
-	//æ›¿æ¢å›¾ç‰‡ä¸‹ä¸€é¡µ
+	//Ìæ»»Í¼Æ¬ÏÂÒ»Ò³
 	if($add['repimgnexturl'])
 	{
 		UpdateImgNexturl($add['classid'],$add['id'],$index_checkr['checked']);
 	}
-	//æŠ•ç¥¨
+	//Í¶Æ±
 	AddInfoVote($add['classid'],$add['id'],$add);
-	//å†™å…¥ä¸“é¢˜
+	//Ğ´Èë×¨Ìâ
 	InsertZtInfo($add['ztids'],$add['zcids'],$add['oldztids'],$add['oldzcids'],$add['classid'],$add['id'],$newstime);
 	//TAGS
 	if($add[infotags]&&$add[infotags]<>$add[oldinfotags])
 	{
 		eInsertTags($add[infotags],$add['classid'],$add['id'],$newstime);
 	}
-	//æ˜¯å¦æ”¹å˜å®¡æ ¸çŠ¶æ€
+	//ÊÇ·ñ¸Ä±äÉóºË×´Ì¬
 	if($index_checkr['checked']!=$newchecked)
 	{
 		MoveCheckInfoData($class_r[$add[classid]][tbname],$index_checkr['checked'],$checkr['stb'],"id='$add[id]'");
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		if($newchecked)
 		{
 			AddClassInfos($add['classid'],'','+1');
@@ -611,14 +611,14 @@ function EditNews($add,$userid,$username){
 			AddClassInfos($add['classid'],'','-1');
 		}
 	}
-	//å¤„ç†å‡½æ•°
+	//´¦Àíº¯Êı
 	DoMFun($class_r[$add['classid']]['modid'],$add['classid'],$add['id'],0,0);
-	//ç”Ÿæˆæ–‡ä»¶
+	//Éú³ÉÎÄ¼ş
 	if($ccr['addreinfo']&&$newchecked)
 	{
 		GetHtml($add['classid'],$add['id'],'',0);
 	}
-	//ç”Ÿæˆä¸Šä¸€ç¯‡
+	//Éú³ÉÉÏÒ»Æª
 	$epreid=0;
 	if($ccr['repreinfo']&&($newchecked||$newchecked<>$add[oldchecked]))
 	{
@@ -626,21 +626,21 @@ function EditNews($add,$userid,$username){
 		$epreid=$prer['id'];
 		GetHtml($prer['classid'],$prer['id'],$prer,1);
 	}
-	//ç”Ÿæˆæ ç›®
+	//Éú³ÉÀ¸Ä¿
 	if($ccr['haddlist']&&($newchecked||$newchecked<>$add[oldchecked]))
 	{
-		hAddListHtml($add[classid],$ccr['modid'],$ccr['haddlist'],$ccr['listdt']);//ç”Ÿæˆä¿¡æ¯åˆ—è¡¨
-		if($add['ttid'])//ç”Ÿæˆæ ‡é¢˜åˆ†ç±»åˆ—è¡¨
+		hAddListHtml($add[classid],$ccr['modid'],$ccr['haddlist'],$ccr['listdt']);//Éú³ÉĞÅÏ¢ÁĞ±í
+		if($add['ttid'])//Éú³É±êÌâ·ÖÀàÁĞ±í
 		{
 			ListHtml($add['ttid'],'',5);
 		}
-		//æ”¹å˜æ ‡é¢˜åˆ†ç±»
+		//¸Ä±ä±êÌâ·ÖÀà
 		if($add['oldttid']&&$add['ttid']<>$add['oldttid'])
 		{
 			ListHtml($add['oldttid'],'',5);
 		}
 	}
-	//åŒæ—¶æ›´æ–°
+	//Í¬Ê±¸üĞÂ
 	if($pubcheckr['copyids']&&$pubcheckr['copyids']<>'1')
 	{
 		EditInfoToCopyInfo($add[classid],$add[id],$userid,$username,$doselfinfo);
@@ -658,14 +658,14 @@ function EditNews($add,$userid,$username){
 			}
 		}
 	}
-	//æ›´æ–°åŠ¨æ€ç¼“å­˜
+	//¸üĞÂ¶¯Ì¬»º´æ
 	if($public_r['ctimeopen']&&($newchecked||$newchecked<>$add[oldchecked]))
 	{
 		eUpCacheInfo(1,$add['classid'],0,$epreid,$add['ttid'],'',$add['infotags'],0,$checkr['ttid']);
 	}
 	if($sql)
 	{
-		//è¿”å›åœ°å€
+		//·µ»ØµØÖ·
 		if($add['ecmsfrom']&&(stristr($add['ecmsfrom'],'ListNews.php')||stristr($add['ecmsfrom'],'ListAllInfo.php')))
 		{
 			$ecmsfrom=$add['ecmsfrom'];
@@ -674,7 +674,7 @@ function EditNews($add,$userid,$username){
 		{
 			$ecmsfrom="ListNews.php?bclassid=$add[bclassid]&classid=$add[classid]".hReturnEcmsHashStrHref2(0);
 		}
-		insert_dolog("classid=$add[classid]<br>id=".$add[id]."<br>title=".$add[title],$pubid);//æ“ä½œæ—¥å¿—
+		insert_dolog("classid=$add[classid]<br>id=".$add[id]."<br>title=".$add[title],$pubid);//²Ù×÷ÈÕÖ¾
 		printerror("EditNewsSuccess",$ecmsfrom.$addecmscheck);
 	}
 	else
@@ -683,7 +683,7 @@ function EditNews($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ä¿¡æ¯(å¿«é€Ÿ)
+//ĞŞ¸ÄĞÅÏ¢(¿ìËÙ)
 function EditInfoSimple($add,$userid,$username){
 	global $empire,$class_r,$class_zr,$bclassid,$public_r,$dbtbpre,$emod_r;
 	$add[classid]=(int)$add[classid];
@@ -694,8 +694,8 @@ function EditInfoSimple($add,$userid,$username){
 	{
 		printerror("EmptyTitle","history.go(-1)",8);
 	}
-	$doselfinfo=CheckLevel($userid,$username,$add[classid],"news");//æ“ä½œæƒé™
-	if(!$doselfinfo['doeditinfo'])//ç¼–è¾‘æƒé™
+	$doselfinfo=CheckLevel($userid,$username,$add[classid],"news");//²Ù×÷È¨ÏŞ
+	if(!$doselfinfo['doeditinfo'])//±à¼­È¨ÏŞ
 	{
 		printerror("NotEditInfoLevel","history.go(-1)",8);
 	}
@@ -704,25 +704,25 @@ function EditInfoSimple($add,$userid,$username){
 	{
 		printerror("ErrorUrl","history.go(-1)",8);
 	}
-	//ç´¢å¼•è¡¨
+	//Ë÷Òı±í
 	$index_checkr=$empire->fetch1("select id,classid,checked from {$dbtbpre}ecms_".$class_r[$add[classid]][tbname]."_index where id='$add[id]' limit 1");
 	if(!$index_checkr['id']||$index_checkr['classid']!=$add['classid'])
 	{
 		printerror("ErrorUrl","history.go(-1)",8);
 	}
-	//ä¸»è¡¨
+	//Ö÷±í
 	$infotb=ReturnInfoMainTbname($class_r[$add[classid]][tbname],$index_checkr['checked']);
 	$checkr=$empire->fetch1("select id,classid,userid,username,ismember,stb,newspath,filename,isqf,fstb,isgood,firsttitle,istop,groupid,ttid from ".$infotb." where id='$add[id]' limit 1");
-	if($doselfinfo['doselfinfo']&&($checkr['userid']<>$userid||$checkr['ismember']))//åªèƒ½ç¼–è¾‘è‡ªå·±çš„ä¿¡æ¯
+	if($doselfinfo['doselfinfo']&&($checkr['userid']<>$userid||$checkr['ismember']))//Ö»ÄÜ±à¼­×Ô¼ºµÄĞÅÏ¢
 	{
 		printerror("NotDoSelfinfo","history.go(-1)",8);
     }
-	//å·²å®¡æ ¸ä¿¡æ¯ä¸å¯ä¿®æ”¹
+	//ÒÑÉóºËĞÅÏ¢²»¿ÉĞŞ¸Ä
 	if($doselfinfo['docheckedit']&&$index_checkr['checked'])
 	{
 		printerror("NotEditCheckInfoLevel","history.go(-1)");
 	}
-	//ç­¾å‘ä¿¡æ¯
+	//Ç©·¢ĞÅÏ¢
 	if($checkr['isqf'])
 	{
 		$qfr=$empire->fetch1("select wfid,checktno from {$dbtbpre}enewswfinfo where id='$add[id]' and classid='$add[classid]' limit 1");
@@ -735,17 +735,17 @@ function EditInfoSimple($add,$userid,$username){
 			}
 		}
 	}
-	//å®¡æ ¸æƒé™
+	//ÉóºËÈ¨ÏŞ
 	if(!$doselfinfo['docheckinfo'])
 	{
 		$add['checked']=$index_checkr['checked'];
 	}
-	//å¿…é¡»å®¡æ ¸
+	//±ØĞëÉóºË
 	if($doselfinfo['domustcheck']&&!$index_checkr['checked'])
 	{
 		$add['checked']=0;
 	}
-	//æ¨èæƒé™
+	//ÍÆ¼öÈ¨ÏŞ
 	if(!$doselfinfo['dogoodinfo'])
 	{
 		$add['isgood']=$checkr['isgood'];
@@ -754,35 +754,35 @@ function EditInfoSimple($add,$userid,$username){
 	}
 	else
 	{
-		if(!eFirstTitleCheckLevel($add['isgood'],0))//æ¨è
+		if(!eFirstTitleCheckLevel($add['isgood'],0))//ÍÆ¼ö
 		{
 			$add['isgood']=$checkr['isgood'];
 		}
-		if(!eFirstTitleCheckLevel($add['firsttitle'],1))//å¤´æ¡
+		if(!eFirstTitleCheckLevel($add['firsttitle'],1))//Í·Ìõ
 		{
 			$add['firsttitle']=$checkr['firsttitle'];
 		}
 	}
-	if($ccr['sametitle'])//éªŒè¯æ ‡é¢˜é‡å¤
+	if($ccr['sametitle'])//ÑéÖ¤±êÌâÖØ¸´
 	{
 		if(ReturnCheckRetitle($add))
 		{
 			printerror("ReInfoTitle","history.go(-1)",8);
 	    }
     }
-	//å…¬å…±è¡¨
+	//¹«¹²±í
 	$pubid=ReturnInfoPubid($add['classid'],$add['id']);
 	$pubcheckr=$empire->fetch1("select copyids from {$dbtbpre}enewsinfovote where pubid='$pubid' limit 1");
 	$mid=$class_r[$add[classid]][modid];
 	$pf=$emod_r[$mid]['pagef'];
-	$add=DoPostInfoVar($add);//è¿”å›å˜é‡
-	//ç­¾å‘
+	$add=DoPostInfoVar($add);//·µ»Ø±äÁ¿
+	//Ç©·¢
 	$newchecked=$index_checkr['checked'];
 	$a="";
 	if($class_r[$add[classid]][wfid]&&$checkr['isqf'])
 	{
 		$qfr=$empire->fetch1("select checktno from {$dbtbpre}enewswfinfo where id='$add[id]' and classid='$add[classid]' limit 1");
-		if($qfr['checktno']=='100')//å·²é€šè¿‡
+		if($qfr['checktno']=='100')//ÒÑÍ¨¹ı
 		{
 			$aqf=",checked='$add[checked]'";
 			$newchecked=$add[checked];
@@ -802,27 +802,27 @@ function EditInfoSimple($add,$userid,$username){
 		$newchecked=$add[checked];
 	}
 	$lastdotime=time();
-	//å‘å¸ƒæ—¶é—´
+	//·¢²¼Ê±¼ä
 	$newstime=empty($add['newstime'])?time():to_time($add['newstime']);
-	//é™„åŠ é“¾æ¥å‚æ•°
+	//¸½¼ÓÁ´½Ó²ÎÊı
 	$addecmscheck=empty($newchecked)?'&ecmscheck=1':'';
-	//ä¿¡æ¯åœ°å€
+	//ĞÅÏ¢µØÖ·
 	$infourl=GotoGetTitleUrl($add['classid'],$add['id'],$checkr['newspath'],$checkr['filename'],$checkr['groupid'],$add['isurl'],$add['titleurl']);
-	//è¿”å›è¡¨ä¿¡æ¯
+	//·µ»Ø±íĞÅÏ¢
 	$infotbr=ReturnInfoTbname($class_r[$add[classid]][tbname],$index_checkr['checked'],$checkr['stb']);
-	//ç´¢å¼•è¡¨
+	//Ë÷Òı±í
 	$indexsql=$empire->query("update {$dbtbpre}ecms_".$class_r[$add[classid]][tbname]."_index set newstime='$newstime',lastdotime='$lastdotime'".$aqf." where id='$add[id]' limit 1");
-	//ä¸»è¡¨
+	//Ö÷±í
 	$sql=$empire->query("update ".$infotbr['tbname']." set classid='$add[classid]',ttid='$add[ttid]',onclick='$add[onclick]',totaldown='$add[totaldown]',firsttitle='$add[firsttitle]',isgood='$add[isgood]',ispic='$add[ispic]',istop='$add[istop]',isurl='$add[isurl]',lastdotime='$lastdotime',titlefont='".addslashes($add[my_titlefont])."',titleurl='".addslashes($infourl)."',title='".addslashes($add[title])."',titlepic='".addslashes($add[titlepic])."',newstime='$newstime' where id='$add[id]' limit 1");
-	//å‰¯è¡¨
+	//¸±±í
 	$fsql=$empire->query("update ".$infotbr['datatbname']." set classid='$add[classid]',closepl='$add[closepl]'".$ret_r[datavalues]." where id='$add[id]' limit 1");
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileEdit($add['classid'],$add['id'],$checkr['fstb']);
-	//æ˜¯å¦æ”¹å˜å®¡æ ¸çŠ¶æ€
+	//ÊÇ·ñ¸Ä±äÉóºË×´Ì¬
 	if($index_checkr['checked']!=$newchecked)
 	{
 		MoveCheckInfoData($class_r[$add[classid]][tbname],$index_checkr['checked'],$checkr['stb'],"id='$add[id]'");
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		if($newchecked)
 		{
 			AddClassInfos($add['classid'],'','+1');
@@ -832,14 +832,14 @@ function EditInfoSimple($add,$userid,$username){
 			AddClassInfos($add['classid'],'','-1');
 		}
 	}
-	//å¤„ç†å‡½æ•°
+	//´¦Àíº¯Êı
 	DoMFun($class_r[$add['classid']]['modid'],$add['classid'],$add['id'],0,0);
-	//ç”Ÿæˆæ–‡ä»¶
+	//Éú³ÉÎÄ¼ş
 	if($ccr['addreinfo']&&$newchecked)
 	{
 		GetHtml($add['classid'],$add['id'],'',0);
 	}
-	//ç”Ÿæˆä¸Šä¸€ç¯‡
+	//Éú³ÉÉÏÒ»Æª
 	$epreid=0;
 	if($ccr['repreinfo']&&($newchecked||$newchecked<>$add[oldchecked]))
 	{
@@ -847,24 +847,24 @@ function EditInfoSimple($add,$userid,$username){
 		$epreid=$prer['id'];
 		GetHtml($prer['classid'],$prer['id'],$prer,1);
 	}
-	//ç”Ÿæˆæ ç›®
+	//Éú³ÉÀ¸Ä¿
 	if($ccr['haddlist']&&($newchecked||$newchecked<>$add[oldchecked]))
 	{
-		hAddListHtml($add[classid],$ccr['modid'],$ccr['haddlist'],$ccr['listdt']);//ç”Ÿæˆä¿¡æ¯åˆ—è¡¨
+		hAddListHtml($add[classid],$ccr['modid'],$ccr['haddlist'],$ccr['listdt']);//Éú³ÉĞÅÏ¢ÁĞ±í
 	}
-	//åŒæ—¶æ›´æ–°
+	//Í¬Ê±¸üĞÂ
 	if($pubcheckr['copyids']&&$pubcheckr['copyids']<>'1')
 	{
 		EditInfoToCopyInfo($add[classid],$add[id],$userid,$username,$doselfinfo);
 	}
-	//æ›´æ–°åŠ¨æ€ç¼“å­˜
+	//¸üĞÂ¶¯Ì¬»º´æ
 	if($public_r['ctimeopen']&&($newchecked||$newchecked<>$add[oldchecked]))
 	{
 		eUpCacheInfo(1,$add['classid'],0,$epreid,$add['ttid'],'','',0,$checkr['ttid']);
 	}
 	if($sql)
 	{
-		//è¿”å›åœ°å€
+		//·µ»ØµØÖ·
 		if($add['ecmsfrom']&&(stristr($add['ecmsfrom'],'ListNews.php')||stristr($add['ecmsfrom'],'ListAllInfo.php')))
 		{
 			$ecmsfrom=$add['ecmsfrom'];
@@ -874,7 +874,7 @@ function EditInfoSimple($add,$userid,$username){
 			$ecmsfrom="ListNews.php?bclassid=$add[bclassid]&classid=$add[classid]".hReturnEcmsHashStrHref2(0);
 		}
 		$ecmsfrom=$ecmsfrom.$addecmscheck;
-		insert_dolog("classid=$add[classid]<br>id=".$add[id]."<br>title=".$add[title],$pubid);//æ“ä½œæ—¥å¿—
+		insert_dolog("classid=$add[classid]<br>id=".$add[id]."<br>title=".$add[title],$pubid);//²Ù×÷ÈÕÖ¾
 		printerror("EditNewsSuccess",$closeurl,8);
 	}
 	else
@@ -883,7 +883,7 @@ function EditInfoSimple($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤ä¿¡æ¯
+//É¾³ıĞÅÏ¢
 function DelNews($id,$classid,$userid,$username){
 	global $empire,$class_r,$class_zr,$bclassid,$public_r,$dbtbpre,$emod_r,$adddatar;
 	$id=(int)$id;
@@ -892,8 +892,8 @@ function DelNews($id,$classid,$userid,$username){
 	{
 		printerror("NotDelNewsid","history.go(-1)");
 	}
-	$doselfinfo=CheckLevel($userid,$username,$classid,"news");//æ“ä½œæƒé™
-	if(!$doselfinfo['dodelinfo'])//åˆ é™¤æƒé™
+	$doselfinfo=CheckLevel($userid,$username,$classid,"news");//²Ù×÷È¨ÏŞ
+	if(!$doselfinfo['dodelinfo'])//É¾³ıÈ¨ÏŞ
 	{
 		printerror("NotDelInfoLevel","history.go(-1)");
 	}
@@ -902,30 +902,30 @@ function DelNews($id,$classid,$userid,$username){
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//ç´¢å¼•è¡¨
+	//Ë÷Òı±í
 	$index_r=$empire->fetch1("select classid,checked from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index  where id='$id' limit 1");
 	if(!$index_r[classid]||$index_r[classid]!=$classid)
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//è¿”å›è¡¨
+	//·µ»Ø±í
 	$infotb=ReturnInfoMainTbname($class_r[$classid][tbname],$index_r['checked']);
 	$r=$empire->fetch1("select * from ".$infotb." where id='$id' limit 1");
-	if($doselfinfo['doselfinfo']&&($r[userid]<>$userid||$r[ismember]))//åªèƒ½ç¼–è¾‘è‡ªå·±çš„ä¿¡æ¯
+	if($doselfinfo['doselfinfo']&&($r[userid]<>$userid||$r[ismember]))//Ö»ÄÜ±à¼­×Ô¼ºµÄĞÅÏ¢
 	{
 		printerror("NotDoSelfinfo","history.go(-1)");
     }
 	$pubid=ReturnInfoPubid($classid,$id);
 	$pubcheckr=$empire->fetch1("select copyids from {$dbtbpre}enewsinfovote where pubid='$pubid' limit 1");
-	//é™„åŠ é“¾æ¥å‚æ•°
+	//¸½¼ÓÁ´½Ó²ÎÊı
 	$addecmscheck=empty($index_r['checked'])?'&ecmscheck=1':'';
 	$mid=$class_r[$classid][modid];
 	$tbname=$class_r[$classid][tbname];
 	$pf=$emod_r[$mid]['pagef'];
 	$stf=$emod_r[$mid]['savetxtf'];
-	//è¿”å›è¡¨ä¿¡æ¯
+	//·µ»Ø±íĞÅÏ¢
 	$infotbr=ReturnInfoTbname($class_r[$classid][tbname],$index_r['checked'],$r['stb']);
-	//åˆ†é¡µå­—æ®µ
+	//·ÖÒ³×Ö¶Î
 	if($pf)
 	{
 		if(strstr($emod_r[$mid]['tbdataf'],','.$pf.','))
@@ -934,32 +934,32 @@ function DelNews($id,$classid,$userid,$username){
 			$r[$pf]=$finfor[$pf];
 		}
 	}
-	//å­˜æ–‡æœ¬
+	//´æÎÄ±¾
 	if($stf)
 	{
 		$newstextfile=$r[$stf];
 		$r[$stf]=GetTxtFieldText($r[$stf]);
-		DelTxtFieldText($newstextfile);//åˆ é™¤æ–‡ä»¶
+		DelTxtFieldText($newstextfile);//É¾³ıÎÄ¼ş
 	}
-	DelNewsFile($r[filename],$r[newspath],$classid,$r[$pf],$r[groupid]);//åˆ é™¤ä¿¡æ¯æ–‡ä»¶
+	DelNewsFile($r[filename],$r[newspath],$classid,$r[$pf],$r[groupid]);//É¾³ıĞÅÏ¢ÎÄ¼ş
 	$sql=$empire->query("delete from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index where id='$id'");
 	$sql=$empire->query("delete from ".$infotbr['tbname']." where id='$id'");
 	$fsql=$empire->query("delete from ".$infotbr['datatbname']." where id='$id'");
-	//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+	//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 	AddClassInfos($classid,'-1','-1',$index_r['checked']);
-	//åˆ é™¤å…¶å®ƒè¡¨è®°å½•å’Œé™„ä»¶
+	//É¾³ıÆäËü±í¼ÇÂ¼ºÍ¸½¼ş
 	DelSingleInfoOtherData($r['classid'],$id,$r,0,0);
 	$epreid=0;
 	$epreid2=0;
 	if($index_r['checked'])
 	{
-		//ç”Ÿæˆä¸Šä¸€ç¯‡
+		//Éú³ÉÉÏÒ»Æª
 		if($ccr['repreinfo'])
 		{
 			$prer=$empire->fetch1("select * from {$dbtbpre}ecms_".$tbname." where id<$id and classid='$classid' order by id desc limit 1");
 			$epreid=$prer['id'];
 			GetHtml($prer['classid'],$prer['id'],$prer,1);
-			//ä¸‹ä¸€ç¯‡
+			//ÏÂÒ»Æª
 			$nextr=$empire->fetch1("select * from {$dbtbpre}ecms_".$tbname." where id>$id and classid='$classid' order by id limit 1");
 			if($nextr['id'])
 			{
@@ -967,18 +967,18 @@ function DelNews($id,$classid,$userid,$username){
 				GetHtml($nextr['classid'],$nextr['id'],$nextr,1);
 			}
 		}
-		hAddListHtml($classid,$ccr['modid'],$ccr['haddlist'],$ccr['listdt']);//ç”Ÿæˆä¿¡æ¯åˆ—è¡¨
-		if($r['ttid'])//å¦‚æœæ˜¯æ ‡é¢˜åˆ†ç±»
+		hAddListHtml($classid,$ccr['modid'],$ccr['haddlist'],$ccr['listdt']);//Éú³ÉĞÅÏ¢ÁĞ±í
+		if($r['ttid'])//Èç¹ûÊÇ±êÌâ·ÖÀà
 		{
 			ListHtml($r['ttid'],'',5);
 		}
 	}
-	//åŒæ­¥åˆ é™¤
+	//Í¬²½É¾³ı
 	if($pubcheckr['copyids']&&$pubcheckr['copyids']<>'1')
 	{
 		DelInfoToCopyInfo($classid,$id,$r,$userid,$username,$doselfinfo,$pubcheckr['copyids']);
 	}
-	//æ›´æ–°åŠ¨æ€ç¼“å­˜
+	//¸üĞÂ¶¯Ì¬»º´æ
 	if($public_r['ctimeopen']&&$index_r['checked'])
 	{
 		eUpCacheInfo(1,$classid,$epreid2,$epreid,$r['ttid'],'','',0,0);
@@ -986,7 +986,7 @@ function DelNews($id,$classid,$userid,$username){
 	if($sql)
 	{
 		$returl=EcmsGetReturnUrl();
-		//å‘é€é€šçŸ¥
+		//·¢ËÍÍ¨Öª
 		if($adddatar['causetext'])
 		{
 			DoInfoSendNotice($userid,$username,$r['userid'],$r['username'],$adddatar['causetext'],$r,1);
@@ -1006,7 +1006,7 @@ function DelNews($id,$classid,$userid,$username){
 				$returl="ListNews.php?bclassid=$adddatar[bclassid]&classid=$adddatar[classid]".$addecmscheck.hReturnEcmsHashStrHref2(0);
 			}
 		}
-		insert_dolog("classid=$classid<br>id=".$id."<br>title=".$r[title],$pubid);//æ“ä½œæ—¥å¿—
+		insert_dolog("classid=$classid<br>id=".$id."<br>title=".$r[title],$pubid);//²Ù×÷ÈÕÖ¾
 		printerror("DelNewsSuccess",$returl);
 	}
 	else
@@ -1015,7 +1015,7 @@ function DelNews($id,$classid,$userid,$username){
 	}
 }
 
-//æ‰¹é‡åˆ é™¤ä¿¡æ¯
+//ÅúÁ¿É¾³ıĞÅÏ¢
 function DelNews_all($id,$classid,$userid,$username,$ecms=0){
 	global $empire,$class_r,$class_zr,$public_r,$dbtbpre,$emod_r;
 	$classid=(int)$classid;
@@ -1024,8 +1024,8 @@ function DelNews_all($id,$classid,$userid,$username,$ecms=0){
 	{
 		printerror("NotDelNewsid","history.go(-1)");
 	}
-	$doselfinfo=CheckLevel($userid,$username,$classid,"news");//æ“ä½œæƒé™
-	if(!$doselfinfo['dodelinfo'])//åˆ é™¤æƒé™
+	$doselfinfo=CheckLevel($userid,$username,$classid,"news");//²Ù×÷È¨ÏŞ
+	if(!$doselfinfo['dodelinfo'])//É¾³ıÈ¨ÏŞ
 	{
 		printerror("NotDelInfoLevel","history.go(-1)");
 	}
@@ -1049,11 +1049,11 @@ function DelNews_all($id,$classid,$userid,$username,$ecms=0){
 	$donum=0;
 	$dolog='';
 	$add=substr($add,0,strlen($add)-4);
-	for($i=0;$i<$count;$i++)//åˆ é™¤ä¿¡æ¯æ–‡ä»¶
+	for($i=0;$i<$count;$i++)//É¾³ıĞÅÏ¢ÎÄ¼ş
 	{
 		$id[$i]=intval($id[$i]);
 		$r=$empire->fetch1("select * from {$dbtbpre}ecms_".$tbname.$doctb." where id='$id[$i]'");
-		if($doselfinfo['doselfinfo']&&($r[userid]<>$userid||$r[ismember]))//åªèƒ½ç¼–è¾‘è‡ªå·±çš„ä¿¡æ¯
+		if($doselfinfo['doselfinfo']&&($r[userid]<>$userid||$r[ismember]))//Ö»ÄÜ±à¼­×Ô¼ºµÄĞÅÏ¢
 		{
 			$add=str_replace("id='".$id[$i]."'","id='0'",$add);
 			continue;
@@ -1064,7 +1064,7 @@ function DelNews_all($id,$classid,$userid,$username,$ecms=0){
 			$dopubid=ReturnInfoPubid($r['classid'],$id[$i]);
 			$dolog="classid=".$r['classid']."<br>id=".$r['id']."&ecms=$ecms<br>title=".$r['title'];
 		}
-		//åˆ†é¡µå­—æ®µ
+		//·ÖÒ³×Ö¶Î
 		if($pf)
 		{
 			if(strstr($emod_r[$mid]['tbdataf'],','.$pf.','))
@@ -1084,39 +1084,39 @@ function DelNews_all($id,$classid,$userid,$username,$ecms=0){
 				$r[$pf]=$finfor[$pf];
 			}
 		}
-		//å­˜æ–‡æœ¬
+		//´æÎÄ±¾
 		if($stf)
 		{
 			$newstextfile=$r[$stf];
 			$r[$stf]=GetTxtFieldText($r[$stf]);
-			DelTxtFieldText($newstextfile);//åˆ é™¤æ–‡ä»¶
+			DelTxtFieldText($newstextfile);//É¾³ıÎÄ¼ş
 		}
 		DelNewsFile($r[filename],$r[newspath],$r[classid],$r[$pf],$r[groupid]);
-		//åˆ é™¤å‰¯è¡¨
+		//É¾³ı¸±±í
 		if($ecms==0)
 		{
 			$empire->query("delete from {$dbtbpre}ecms_".$tbname."_data_".$r[stb]." where id='$id[$i]'");
 		}
-		//åˆ é™¤å…¶å®ƒè¡¨è®°å½•å’Œé™„ä»¶
+		//É¾³ıÆäËü±í¼ÇÂ¼ºÍ¸½¼ş
 		DelSingleInfoOtherData($r['classid'],$id[$i],$r,0,0);
-		//æ›´æ–°åŠ¨æ€ç¼“å­˜
+		//¸üĞÂ¶¯Ì¬»º´æ
 		if($public_r['ctimeopen']&&$ecms==0)
 		{
 			eUpCacheInfo(1,$r['classid'],0,0,$r['ttid'],'','',0,0,1);
 		}
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		if($ecms==0||$ecms==2)
 		{
 			AddClassInfos($r['classid'],'-1','-1',$ecms==2?0:1);
 		}
     }
-	//åˆ é™¤ä¿¡æ¯
+	//É¾³ıĞÅÏ¢
 	$sql=$empire->query("delete from {$dbtbpre}ecms_".$tbname.$doctb." where ".$add);
 	if($ecms==0)
 	{
 		$empire->query("delete from {$dbtbpre}ecms_".$tbname."_index where ".$add);
 		$ccr=$empire->fetch1("select classid,modid,listdt,haddlist from {$dbtbpre}enewsclass where classid='$classid'");
-		hAddListHtml($classid,$ccr['modid'],$ccr['haddlist'],$ccr['listdt']);//ç”Ÿæˆä¿¡æ¯åˆ—è¡¨
+		hAddListHtml($classid,$ccr['modid'],$ccr['haddlist'],$ccr['listdt']);//Éú³ÉĞÅÏ¢ÁĞ±í
 	}
 	elseif($ecms==1)
 	{
@@ -1130,7 +1130,7 @@ function DelNews_all($id,$classid,$userid,$username,$ecms=0){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		if($donum==1)
 		{
 			insert_dolog($dolog,$dopubid);
@@ -1147,7 +1147,7 @@ function DelNews_all($id,$classid,$userid,$username,$ecms=0){
 	}
 }
 
-//æ‰¹é‡ä¿®æ”¹å‘å¸ƒæ—¶é—´
+//ÅúÁ¿ĞŞ¸Ä·¢²¼Ê±¼ä
 function EditMoreInfoTime($add,$userid,$username){
 	global $empire,$dbtbpre,$class_r,$public_r;
 	$classid=(int)$add['classid'];
@@ -1159,29 +1159,29 @@ function EditMoreInfoTime($add,$userid,$username){
 	{
 		printerror('EmptyMoreInfoTime','');
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	$doselfinfo=CheckLevel($userid,$username,$classid,"news");
-	if(!$doselfinfo['doeditinfo'])//ç¼–è¾‘æƒé™
+	if(!$doselfinfo['doeditinfo'])//±à¼­È¨ÏŞ
 	{
 		printerror('NotEditInfoLevel','history.go(-1)');
 	}
 	$dopubid=0;
 	$donum=0;
 	$dolog='';
-	//ä¸»è¡¨
+	//Ö÷±í
 	$infotb='';
 	for($i=0;$i<$count;$i++)
 	{
 		$doinfoid=(int)$infoid[$i];
 		if(empty($infotb))
 		{
-			//ç´¢å¼•è¡¨
+			//Ë÷Òı±í
 			$index_r=$empire->fetch1("select classid,checked from {$dbtbpre}ecms_".$tbname."_index where id='$doinfoid' limit 1");
 			if(!$index_r['classid'])
 			{
 				continue;
 			}
-			//è¿”å›è¡¨
+			//·µ»Ø±í
 			$infotb=ReturnInfoMainTbname($tbname,$index_r['checked']);
 		}
 		$donum++;
@@ -1194,12 +1194,12 @@ function EditMoreInfoTime($add,$userid,$username){
 		$empire->query("update {$dbtbpre}ecms_".$tbname."_index set newstime='$donewstime' where id='$doinfoid'");
 		$empire->query("update ".$infotb." set newstime='$donewstime' where id='$doinfoid'");
 	}
-	//æ›´æ–°åŠ¨æ€ç¼“å­˜
+	//¸üĞÂ¶¯Ì¬»º´æ
 	if($public_r['ctimeopen']&&$index_r['checked'])
 	{
 		eUpCacheInfo(1,$classid,0,0,0,'','',0,0);
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	if($donum==1)
 	{
 		insert_dolog($dolog,$dopubid);
@@ -1211,24 +1211,24 @@ function EditMoreInfoTime($add,$userid,$username){
 	printerror('EditMoreInfoTimeSuccess',EcmsGetReturnUrl());
 }
 
-//åˆ·æ–°é¡µé¢
+//Ë¢ĞÂÒ³Ãæ
 function AddInfoToReHtml($classid,$dore){
 	global $class_r;
 	$classid=(int)$classid;
 	$dore=RepPostVar($dore);
-	hAddListHtml($classid,$class_r[$classid]['modid'],$dore,$class_r[$classid]['listdt']);//ç”Ÿæˆä¿¡æ¯åˆ—è¡¨
-	insert_dolog("classid=".$classid."<br>do=".$dore);//æ“ä½œæ—¥å¿—
+	hAddListHtml($classid,$class_r[$classid]['modid'],$dore,$class_r[$classid]['listdt']);//Éú³ÉĞÅÏ¢ÁĞ±í
+	insert_dolog("classid=".$classid."<br>do=".$dore);//²Ù×÷ÈÕÖ¾
 	printerror('AddInfoToReHtmlSuccess','history.go(-1)');
 }
 
-//å¢åŠ ä¿¡æ¯ç”Ÿæˆé¡µé¢
+//Ôö¼ÓĞÅÏ¢Éú³ÉÒ³Ãæ
 function hAddListHtml($classid,$mid,$qaddlist,$listdt){
 	global $class_r;
-	if($qaddlist==0)//ä¸ç”Ÿæˆ
+	if($qaddlist==0)//²»Éú³É
 	{
 		return "";
 	}
-	elseif($qaddlist==1)//ç”Ÿæˆå½“å‰æ ç›®
+	elseif($qaddlist==1)//Éú³Éµ±Ç°À¸Ä¿
 	{
 		if(!$listdt)
 		{
@@ -1236,11 +1236,11 @@ function hAddListHtml($classid,$mid,$qaddlist,$listdt){
 			hReClassHtml($sonclass);
 		}
 	}
-	elseif($qaddlist==2)//ç”Ÿæˆé¦–é¡µ
+	elseif($qaddlist==2)//Éú³ÉÊ×Ò³
 	{
 		hReIndex();
 	}
-	elseif($qaddlist==3)//ç”Ÿæˆçˆ¶æ ç›®
+	elseif($qaddlist==3)//Éú³É¸¸À¸Ä¿
 	{
 		$featherclass=$class_r[$classid]['featherclass'];
 		if($featherclass&&$featherclass!="|")
@@ -1248,7 +1248,7 @@ function hAddListHtml($classid,$mid,$qaddlist,$listdt){
 			hReClassHtml($featherclass);
 		}
 	}
-	elseif($qaddlist==4)//ç”Ÿæˆå½“å‰æ ç›®ä¸çˆ¶æ ç›®
+	elseif($qaddlist==4)//Éú³Éµ±Ç°À¸Ä¿Óë¸¸À¸Ä¿
 	{
 		$featherclass=$class_r[$classid]['featherclass'];
 		if(empty($featherclass))
@@ -1261,7 +1261,7 @@ function hAddListHtml($classid,$mid,$qaddlist,$listdt){
 		}
 		hReClassHtml($featherclass);
 	}
-	elseif($qaddlist==5)//ç”Ÿæˆçˆ¶æ ç›®ä¸é¦–é¡µ
+	elseif($qaddlist==5)//Éú³É¸¸À¸Ä¿ÓëÊ×Ò³
 	{
 		hReIndex();
 		$featherclass=$class_r[$classid]['featherclass'];
@@ -1270,7 +1270,7 @@ function hAddListHtml($classid,$mid,$qaddlist,$listdt){
 			hReClassHtml($featherclass);
 		}
 	}
-	elseif($qaddlist==6)//ç”Ÿæˆå½“å‰æ ç›®ã€çˆ¶æ ç›®ä¸é¦–é¡µ
+	elseif($qaddlist==6)//Éú³Éµ±Ç°À¸Ä¿¡¢¸¸À¸Ä¿ÓëÊ×Ò³
 	{
 		hReIndex();
 		$featherclass=$class_r[$classid]['featherclass'];
@@ -1286,14 +1286,14 @@ function hAddListHtml($classid,$mid,$qaddlist,$listdt){
 	}
 }
 
-//å¢åŠ ä¿¡æ¯ç”Ÿæˆæ ç›®
+//Ôö¼ÓĞÅÏ¢Éú³ÉÀ¸Ä¿
 function hReClassHtml($sonclass){
 	global $empire,$dbtbpre,$class_r;
 	$r=explode("|",$sonclass);
 	$count=count($r);
 	for($i=1;$i<$count-1;$i++)
 	{
-		//ç»ˆææ ç›®
+		//ÖÕ¼«À¸Ä¿
 		if($class_r[$r[$i]]['islast'])
 		{
 			if(!$class_r[$r[$i]]['listdt'])
@@ -1301,18 +1301,18 @@ function hReClassHtml($sonclass){
 				ListHtml($r[$i],'',0,$userlistr);
 			}
 		}
-		elseif($class_r[$r[$i]]['islist']==1)//åˆ—è¡¨å¼çˆ¶æ ç›®
+		elseif($class_r[$r[$i]]['islist']==1)//ÁĞ±íÊ½¸¸À¸Ä¿
 		{
 			if(!$class_r[$r[$i]]['listdt'])
 			{
 				ListHtml($r[$i],'',3);
 			}
 		}
-		elseif($class_r[$r[$i]]['islist']==3)//æ ç›®ç»‘å®šä¿¡æ¯
+		elseif($class_r[$r[$i]]['islist']==3)//À¸Ä¿°ó¶¨ĞÅÏ¢
 		{
 			ReClassBdInfo($r[$i]);
 		}
-		else//çˆ¶æ ç›®
+		else//¸¸À¸Ä¿
 		{
 			$cr=$empire->fetch1("select classtempid from {$dbtbpre}enewsclass where classid='$r[$i]'");
 			$classtemp=$class_r[$r[$i]]['islist']==2?GetClassText($r[$i]):GetClassTemp($cr['classtempid']);
@@ -1321,13 +1321,13 @@ function hReClassHtml($sonclass){
 	}
 }
 
-//å¢åŠ ä¿¡æ¯ç”Ÿæˆé¦–é¡µ
+//Ôö¼ÓĞÅÏ¢Éú³ÉÊ×Ò³
 function hReIndex(){
 	$indextemp=GetIndextemp();
 	NewsBq($classid,$indextemp,1,0);
 }
 
-//å‘å¸ƒåŒæ—¶å¤åˆ¶
+//·¢²¼Í¬Ê±¸´ÖÆ
 function AddInfoToCopyInfo($classid,$id,$to_classid,$userid,$username,$usergroupr){
 	global $empire,$public_r,$class_r,$dbtbpre,$emod_r,$lur;
 	$classid=(int)$classid;
@@ -1341,27 +1341,27 @@ function AddInfoToCopyInfo($classid,$id,$to_classid,$userid,$username,$usergroup
 	$mid=$class_r[$classid][modid];
 	$tbname=$class_r[$classid][tbname];
 	$stf=$emod_r[$mid]['savetxtf'];
-	//ç´¢å¼•è¡¨
+	//Ë÷Òı±í
 	$index_r=$empire->fetch1("select id,checked from {$dbtbpre}ecms_".$tbname."_index where id='$id' limit 1");
 	if(empty($index_r['id']))
 	{
 		return '';
 	}
-	//è¿”å›è¡¨
+	//·µ»Ø±í
 	$infotb=ReturnInfoMainTbname($tbname,$index_r['checked']);
-	//ä¸»è¡¨
+	//Ö÷±í
 	$r=$empire->fetch1("select * from ".$infotb." where id='$id'");
-	//è¿”å›è¡¨ä¿¡æ¯
+	//·µ»Ø±íĞÅÏ¢
 	$infotbr=ReturnInfoTbname($tbname,$index_r['checked'],$r['stb']);
-	//å‰¯è¡¨
+	//¸±±í
 	$fr=$empire->fetch1("select ".ReturnSqlFtextF($mid)." from ".$infotbr['datatbname']." where id='$id' limit 1");
 	$r=array_merge($r,$fr);
-	if($stf)//å­˜æ”¾æ–‡æœ¬
+	if($stf)//´æ·ÅÎÄ±¾
 	{
 		$r[newstext_url]=$r[$stf];
 		$r[$stf]=GetTxtFieldText($r[$stf]);
 	}
-	//è¿”å›ä¿¡æ¯åœ°å€
+	//·µ»ØĞÅÏ¢µØÖ·
 	$copyinfourl=0;
 	if($_POST['copyinfotitleurl']&&!$r['isurl'])
 	{
@@ -1374,7 +1374,7 @@ function AddInfoToCopyInfo($classid,$id,$to_classid,$userid,$username,$usergroup
 	for($i=0;$i<$count;$i++)
 	{
 		$newclassid=(int)$cr[$i];
-		//å‘å¸ƒæƒé™
+		//·¢²¼È¨ÏŞ
 		if(empty($usergroupr['doall'])&&!strstr($usergroupr['add_adminclass'],'|'.$newclassid.'|'))
 		{
 			continue;
@@ -1383,11 +1383,11 @@ function AddInfoToCopyInfo($classid,$id,$to_classid,$userid,$username,$usergroup
 		{
 			continue;
 		}
-		//æŸ¥çœ‹ç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™å»ºç«‹
+		//²é¿´Ä¿Â¼ÊÇ·ñ´æÔÚ£¬²»´æÔÚÔò½¨Á¢
 		$newspath=FormatPath($newclassid,"",0);
 		$newstempid=0;
 		$copyids='1';
-		//è¿”å›è‡ªå®šä¹‰å­—æ®µ
+		//·µ»Ø×Ô¶¨Òå×Ö¶Î
 		$ret_r=ReturnAddF($r,$mid,$userid,$username,9,1,0);
 		if($class_r[$newclassid][wfid])
 		{
@@ -1407,34 +1407,34 @@ function AddInfoToCopyInfo($classid,$id,$to_classid,$userid,$username,$usergroup
 			$checked=$class_r[$newclassid][checked];
 			$isqf=0;
 	    }
-		//å¿…é¡»å®¡æ ¸
+		//±ØĞëÉóºË
 		if($usergroupr['domustcheck'])
 		{
 			$checked=0;
 		}
 		$checked=(int)$checked;
-		//ç´¢å¼•è¡¨
+		//Ë÷Òı±í
 		$empire->query("insert into {$dbtbpre}ecms_".$tbname."_index(classid,checked,newstime,truetime,lastdotime,havehtml) values('$newclassid','$checked','$r[newstime]','$r[truetime]','$r[truetime]','$r[havehtml]');");
 		$l_id=$empire->lastid();
 		$infotbr=ReturnInfoTbname($tbname,$checked,$ret_r['tb']);
-		//ä¸»è¡¨
+		//Ö÷±í
 		$empire->query("insert into ".$infotbr['tbname']."(id,classid,ttid,onclick,plnum,totaldown,newspath,filename,userid,username,firsttitle,isgood,ispic,istop,isqf,ismember,isurl,truetime,lastdotime,havehtml,groupid,userfen,titlefont,titleurl,stb,fstb,restb,keyboard".$ret_r[fields].") values('$l_id','$newclassid','$r[ttid]',0,0,0,'$newspath','$filename','$r[userid]','".StripAddsData($r[username])."',0,0,'$r[ispic]',0,'$isqf',0,'$r[isurl]','$r[truetime]',$r[truetime],$r[havehtml],$r[groupid],$r[userfen],'".StripAddsData($r[titlefont])."','".StripAddsData($r[titleurl])."','$ret_r[tb]','$public_r[filedeftb]','$public_r[pldeftb]','".StripAddsData($r[keyboard])."'".$ret_r[values].");");
-		//å‰¯è¡¨
+		//¸±±í
 		$empire->query("insert into ".$infotbr['datatbname']."(id,classid,keyid,dokey,newstempid,closepl,haveaddfen,infotags".$ret_r[datafields].") values('$l_id','$newclassid','$r[keyid]',$r[dokey],'".$newstempid."',$r[closepl],0,''".$ret_r[datavalues].");");
-		//å…¬å…±è¡¨
+		//¹«¹²±í
 		UpdateInfoCopyids($newclassid,$l_id,$copyids);
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		AddClassInfos($newclassid,'+1','+1',$checked);
-		//æ›´æ–°æ–°ä¿¡æ¯æ•°
+		//¸üĞÂĞÂĞÅÏ¢Êı
 		DoUpdateAddDataNum('info',$class_r[$newclassid]['tid'],1);
-		//ç­¾å‘
+		//Ç©·¢
 		if($isqf==1)
 		{
 			InfoInsertToWorkflow($l_id,$newclassid,$class_r[$newclassid][wfid],$userid,$username);
 		}
-		//æ–‡ä»¶å‘½å
+		//ÎÄ¼şÃüÃû
 		$filename=ReturnInfoFilename($newclassid,$l_id,$r[filenameqz]);
-		//ä¿¡æ¯åœ°å€
+		//ĞÅÏ¢µØÖ·
 		$updateinfourl='';
 		if(!$copyinfourl)
 		{
@@ -1442,16 +1442,16 @@ function AddInfoToCopyInfo($classid,$id,$to_classid,$userid,$username,$usergroup
 			$updateinfourl=",titleurl='$infourl'";
 		}
 		$empire->query("update ".$infotbr['tbname']." set filename='$filename'".$updateinfourl." where id='$l_id' limit 1");
-		//å¤„ç†å‡½æ•°
+		//´¦Àíº¯Êı
 		DoMFun($class_r[$newclassid]['modid'],$newclassid,$l_id,1,0);
-		//ç”Ÿæˆä¿¡æ¯æ–‡ä»¶
+		//Éú³ÉĞÅÏ¢ÎÄ¼ş
 		if($checked)
 		{
 			$addr=$empire->fetch1("select * from ".$infotbr['tbname']." where id='$l_id' limit 1");
 			GetHtml($addr['classid'],$addr['id'],$addr,1);
 		}
 		$ids.=$l_id.',';
-		//æ›´æ–°åŠ¨æ€ç¼“å­˜
+		//¸üĞÂ¶¯Ì¬»º´æ
 		if($public_r['ctimeopen']&&$checked)
 		{
 			eUpCacheInfo(1,$newclassid,0,0,0,'','',0,0,1);
@@ -1464,7 +1464,7 @@ function AddInfoToCopyInfo($classid,$id,$to_classid,$userid,$username,$usergroup
 	return $ids;
 }
 
-//å‘å¸ƒåŒæ­¥ä¿®æ”¹
+//·¢²¼Í¬²½ĞŞ¸Ä
 function EditInfoToCopyInfo($classid,$id,$userid,$username,$usergroupr){
 	global $empire,$public_r,$class_r,$dbtbpre,$emod_r;
 	$classid=(int)$classid;
@@ -1476,7 +1476,7 @@ function EditInfoToCopyInfo($classid,$id,$userid,$username,$usergroupr){
 	$mid=$class_r[$classid][modid];
 	$tbname=$class_r[$classid][tbname];
 	$stf=$emod_r[$mid]['savetxtf'];
-	//å…¬å…±è¡¨
+	//¹«¹²±í
 	$pubid=ReturnInfoPubid($classid,$id);
 	$pub_r=$empire->fetch1("select copyids from {$dbtbpre}enewsinfovote where pubid='$pubid'");
 	$cr=explode(',',$pub_r['copyids']);
@@ -1485,23 +1485,23 @@ function EditInfoToCopyInfo($classid,$id,$userid,$username,$usergroupr){
 	{
 		return '';
 	}
-	//ç´¢å¼•è¡¨
+	//Ë÷Òı±í
 	$index_r=$empire->fetch1("select id,checked from {$dbtbpre}ecms_".$tbname."_index where id='$id' limit 1");
-	//è¿”å›è¡¨
+	//·µ»Ø±í
 	$infotb=ReturnInfoMainTbname($tbname,$index_r['checked']);
-	//ä¸»è¡¨
+	//Ö÷±í
 	$r=$empire->fetch1("select * from ".$infotb." where id='$id' limit 1");
-	//è¿”å›è¡¨ä¿¡æ¯
+	//·µ»Ø±íĞÅÏ¢
 	$infotbr=ReturnInfoTbname($tbname,$index_r['checked'],$r['stb']);
-	//å‰¯è¡¨
+	//¸±±í
 	$fr=$empire->fetch1("select ".ReturnSqlFtextF($mid)." from ".$infotbr['datatbname']."  where id='$id' limit 1");
 	$r=array_merge($r,$fr);
-	if($stf)//å­˜æ”¾æ–‡æœ¬
+	if($stf)//´æ·ÅÎÄ±¾
 	{
 		$r[newstext_url]=$r[$stf];
 		$r[$stf]=GetTxtFieldText($r[$stf]);
 	}
-	//ä¿¡æ¯é“¾æ¥åœ°å€
+	//ĞÅÏ¢Á´½ÓµØÖ·
 	$titleurl=sys_ReturnBqTitleLink($r);
 	for($i=1;$i<$count-1;$i++)
 	{
@@ -1510,9 +1510,9 @@ function EditInfoToCopyInfo($classid,$id,$userid,$username,$usergroupr){
 		{
 			continue;
 		}
-		//ç´¢å¼•è¡¨
+		//Ë÷Òı±í
 		$index_infor=$empire->fetch1("select classid,checked from {$dbtbpre}ecms_".$tbname."_index where id='$infoid' limit 1");
-		//è¿”å›è¡¨
+		//·µ»Ø±í
 		$update_infotb=ReturnInfoMainTbname($tbname,$index_infor['checked']);
 		if($stf)
 		{
@@ -1523,7 +1523,7 @@ function EditInfoToCopyInfo($classid,$id,$userid,$username,$usergroupr){
 				{
 					continue;
 				}
-				//è¿”å›è¡¨ä¿¡æ¯
+				//·µ»Ø±íĞÅÏ¢
 				$update_infotbr=ReturnInfoTbname($tbname,$index_infor['checked'],$infor['stb']);
 				$infodr=$empire->fetch1("select ".$stf." from ".$update_infotbr['datatbname']." where id='$infoid' limit 1");
 				$r[newstext_url]=$infodr[$stf];
@@ -1553,25 +1553,25 @@ function EditInfoToCopyInfo($classid,$id,$userid,$username,$usergroupr){
 		}
 		else
 		{
-			//ä¿¡æ¯åœ°å€
+			//ĞÅÏ¢µØÖ·
 			$infourl=GotoGetTitleUrl($index_infor['classid'],$infoid,$infor['newspath'],$infor['filename'],$r['groupid'],$infor['isurl'],$r['titleurl']);
 			$r['titleurl']=$infourl;
 		}
-		//è¿”å›è‡ªå®šä¹‰å­—æ®µ
+		//·µ»Ø×Ô¶¨Òå×Ö¶Î
 		$ret_r=ReturnAddF($r,$mid,$userid,$username,8,1,0);
-		//è¿”å›è¡¨ä¿¡æ¯
+		//·µ»Ø±íĞÅÏ¢
 		$update_infotbr=ReturnInfoTbname($tbname,$index_infor['checked'],$infor['stb']);
-		//ç´¢å¼•è¡¨
+		//Ë÷Òı±í
 		$empire->query("update {$dbtbpre}ecms_".$tbname."_index set checked='$index_r[checked]',newstime='$r[newstime]',lastdotime='$r[lastdotime]' where id='$infoid'");
-		//ä¸»è¡¨
+		//Ö÷±í
 		$empire->query("update ".$update_infotb." set ttid='$r[ttid]',ispic='$r[ispic]',isurl='$r[isurl]',lastdotime=$r[lastdotime],groupid=$r[groupid],userfen=$r[userfen],titlefont='".StripAddsData($r[titlefont])."',titleurl='".StripAddsData($r[titleurl])."',keyboard='".StripAddsData($r[keyboard])."'".$ret_r[values]." where id='$infoid'");
-		//å‰¯è¡¨
+		//¸±±í
 		$empire->query("update ".$update_infotbr['datatbname']." set keyid='$r[keyid]',dokey=$r[dokey],closepl=$r[closepl]".$ret_r[datavalues]." where id='$infoid'");
-		//æ˜¯å¦æ”¹å˜å®¡æ ¸çŠ¶æ€
+		//ÊÇ·ñ¸Ä±äÉóºË×´Ì¬
 		if($index_infor['checked']!=$index_r['checked'])
 		{
 			MoveCheckInfoData($tbname,$index_infor['checked'],$infor['stb'],"id='$infoid'");
-			//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+			//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 			if($index_r['checked'])
 			{
 				AddClassInfos($index_infor['classid'],'','+1');
@@ -1581,15 +1581,15 @@ function EditInfoToCopyInfo($classid,$id,$userid,$username,$usergroupr){
 				AddClassInfos($index_infor['classid'],'','-1');
 			}
 		}
-		//å¤„ç†å‡½æ•°
+		//´¦Àíº¯Êı
 		DoMFun($class_r[$index_infor['classid']]['modid'],$index_infor['classid'],$infoid,0,0);
 		if($index_r['checked'])
 		{
-			//ç”Ÿæˆä¿¡æ¯æ–‡ä»¶
+			//Éú³ÉĞÅÏ¢ÎÄ¼ş
 			$addr=$empire->fetch1("select * from {$dbtbpre}ecms_".$tbname." where id='$infoid' limit 1");
 			GetHtml($addr['classid'],$addr['id'],$addr,1);
 		}
-		//æ›´æ–°åŠ¨æ€ç¼“å­˜
+		//¸üĞÂ¶¯Ì¬»º´æ
 		if($public_r['ctimeopen']&&$index_r['checked'])
 		{
 			eUpCacheInfo(1,$index_infor['classid'],0,0,0,'','',0,0,1);
@@ -1597,7 +1597,7 @@ function EditInfoToCopyInfo($classid,$id,$userid,$username,$usergroupr){
 	}
 }
 
-//å‘å¸ƒåŒæ­¥åˆ é™¤
+//·¢²¼Í¬²½É¾³ı
 function DelInfoToCopyInfo($classid,$id,$r,$userid,$username,$usergroupr,$pubcopyids){
 	global $empire,$public_r,$class_r,$dbtbpre,$emod_r;
 	$classid=(int)$classid;
@@ -1609,7 +1609,7 @@ function DelInfoToCopyInfo($classid,$id,$r,$userid,$username,$usergroupr,$pubcop
 	$mid=$class_r[$classid][modid];
 	$tbname=$class_r[$classid][tbname];
 	$stf=$emod_r[$mid]['savetxtf'];
-	//å…¬å…±è¡¨
+	//¹«¹²±í
 	$pubid=ReturnInfoPubid($classid,$id);
 	//$pub_r=$empire->fetch1("select copyids from {$dbtbpre}enewsinfovote where pubid='$pubid'");
 	$cr=explode(',',$pubcopyids);
@@ -1637,39 +1637,39 @@ function DelInfoToCopyInfo($classid,$id,$r,$userid,$username,$usergroupr,$pubcop
 		{
 			continue;
 		}
-		//ç´¢å¼•è¡¨
+		//Ë÷Òı±í
 		$index_infor=$empire->fetch1("select checked from {$dbtbpre}ecms_".$tbname."_index where id='$infoid' limit 1");
-		//è¿”å›è¡¨
+		//·µ»Ø±í
 		$update_infotb=ReturnInfoMainTbname($tbname,$index_infor['checked']);
-		//ä¸»è¡¨
+		//Ö÷±í
 		$infor=$empire->fetch1("select * from ".$update_infotb." where id='$infoid' limit 1");
 		if(!$infor[stb])
 		{
 			continue;
 		}
-		//è¿”å›è¡¨ä¿¡æ¯
+		//·µ»Ø±íĞÅÏ¢
 		$update_infotbr=ReturnInfoTbname($tbname,$index_infor['checked'],$infor['stb']);
 		if($selectdataf)
 		{
 			$infodr=$empire->fetch1("select ".$selectdataf." from ".$update_infotbr['datatbname']." where id='$infoid' limit 1");
 			$infor=array_merge($infor,$infodr);
 		}
-		//å­˜æ–‡æœ¬
+		//´æÎÄ±¾
 		if($stf)
 		{
 			$newstextfile=$infor[$stf];
 			$infor[$stf]=GetTxtFieldText($infor[$stf]);
-			DelTxtFieldText($newstextfile);//åˆ é™¤æ–‡ä»¶
+			DelTxtFieldText($newstextfile);//É¾³ıÎÄ¼ş
 		}
-		DelNewsFile($infor[filename],$infor[newspath],$infor[classid],$infor[$pf],$infor[groupid]);//åˆ é™¤ä¿¡æ¯æ–‡ä»¶
+		DelNewsFile($infor[filename],$infor[newspath],$infor[classid],$infor[$pf],$infor[groupid]);//É¾³ıĞÅÏ¢ÎÄ¼ş
 		$empire->query("delete from {$dbtbpre}ecms_".$tbname."_index where id='$infoid'");
 		$empire->query("delete from ".$update_infotbr['tbname']." where id='$infoid'");
 		$empire->query("delete from ".$update_infotbr['datatbname']." where id='$infoid'");
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		AddClassInfos($infor['classid'],'-1','-1',$index_infor['checked']);
-		//åˆ é™¤å…¶å®ƒè¡¨è®°å½•ä¸é™„ä»¶
+		//É¾³ıÆäËü±í¼ÇÂ¼Óë¸½¼ş
 		DelSingleInfoOtherData($infor['classid'],$infoid,$infor,0,0);
-		//æ›´æ–°åŠ¨æ€ç¼“å­˜
+		//¸üĞÂ¶¯Ì¬»º´æ
 		if($public_r['ctimeopen']&&$index_infor['checked'])
 		{
 			eUpCacheInfo(1,$infor['classid'],0,0,0,'','',0,0,1);
@@ -1677,7 +1677,7 @@ function DelInfoToCopyInfo($classid,$id,$r,$userid,$username,$usergroupr,$pubcop
 	}
 }
 
-//ä¿¡æ¯ç½®é¡¶
+//ĞÅÏ¢ÖÃ¶¥
 function TopNews_all($classid,$id,$istop,$userid,$username){
 	global $empire,$bclassid,$class_r,$dbtbpre,$public_r;
 	$classid=(int)$classid;
@@ -1685,8 +1685,8 @@ function TopNews_all($classid,$id,$istop,$userid,$username){
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	$doselfinfo=CheckLevel($userid,$username,$classid,"news");//éªŒè¯æƒé™
-	if(!$doselfinfo['dogoodinfo'])//æƒé™
+	$doselfinfo=CheckLevel($userid,$username,$classid,"news");//ÑéÖ¤È¨ÏŞ
+	if(!$doselfinfo['dogoodinfo'])//È¨ÏŞ
 	{
 		printerror("NotGoodInfoLevel","history.go(-1)");
 	}
@@ -1706,7 +1706,7 @@ function TopNews_all($classid,$id,$istop,$userid,$username){
 		if($infoid&&empty($infotb))
 		{
 			$index_r=$empire->fetch1("select checked from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index where id='$infoid' limit 1");
-			//è¿”å›è¡¨
+			//·µ»Ø±í
 			$infotb=ReturnInfoMainTbname($class_r[$classid][tbname],$index_r['checked']);
 		}
 		$donum++;
@@ -1725,17 +1725,17 @@ function TopNews_all($classid,$id,$istop,$userid,$username){
 	$sql=$empire->query("update ".$infotb." set istop=$istop where ".$add);
 	if($index_r['checked'])
 	{
-		//åˆ·æ–°åˆ—è¡¨
+		//Ë¢ĞÂÁĞ±í
 		ReListHtml($classid,1);
 	}
-	//æ›´æ–°åŠ¨æ€ç¼“å­˜
+	//¸üĞÂ¶¯Ì¬»º´æ
 	if($public_r['ctimeopen']&&$index_r['checked'])
 	{
 		eUpCacheInfo(1,$classid,0,0,0,'','',0,0);
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		if($donum==1)
 		{
 			insert_dolog($dolog,$dopubid);
@@ -1750,7 +1750,7 @@ function TopNews_all($classid,$id,$istop,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//å®¡æ ¸ä¿¡æ¯
+//ÉóºËĞÅÏ¢
 function CheckNews_all($classid,$id,$userid,$username){
 	global $empire,$class_r,$dbtbpre,$emod_r,$adddatar,$public_r;
 	$classid=(int)$classid;
@@ -1759,9 +1759,9 @@ function CheckNews_all($classid,$id,$userid,$username){
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	$doselfinfo=CheckLevel($userid,$username,$classid,"news");
-	//æƒé™
+	//È¨ÏŞ
 	if(!$doselfinfo['docheckinfo'])
 	{
 		printerror("NotCheckInfoLevel","history.go(-1)");
@@ -1774,7 +1774,7 @@ function CheckNews_all($classid,$id,$userid,$username){
 	$dopubid=0;
 	$donum=0;
 	$dolog='';
-	//é™„åŠ é“¾æ¥å‚æ•°
+	//¸½¼ÓÁ´½Ó²ÎÊı
 	$addecmscheck=empty($_POST['ecmscheck'])?'&ecmscheck=1':'';
 	$add='';
 	for($i=0;$i<$count;$i++)
@@ -1790,7 +1790,7 @@ function CheckNews_all($classid,$id,$userid,$username){
 			continue;
 		}
 		$sql=$empire->query("update {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index set checked=1 where id='$infoid'");
-		//æŠ•ç¨¿å¢åŠ ç§¯åˆ†
+		//Í¶¸åÔö¼Ó»ı·Ö
 		if($infor['ismember']&&$infor['userid'])
 		{
 			$cr=$empire->fetch1("select classid,addinfofen from {$dbtbpre}enewsclass where classid='$infor[classid]'");
@@ -1808,18 +1808,18 @@ function CheckNews_all($classid,$id,$userid,$username){
 			}
 			$empire->query("update {$dbtbpre}ecms_".$class_r[$classid][tbname]."_check_data set haveaddfen=1 where id='$infoid'");
 		}
-		//æœªå®¡æ ¸è¡¨è½¬æ¢
+		//Î´ÉóºË±í×ª»»
 		MoveCheckInfoData($class_r[$classid][tbname],0,$infor['stb'],"id='$infoid'");
-		//å®¡æ ¸äºº
+		//ÉóºËÈË
 		if(!$infor['eckuid']&&($infor['ismember']||$infor['userid']!=$userid))
 		{
 			$empire->query("update {$dbtbpre}ecms_".$class_r[$classid][tbname]." set eckuid='$userid' where id='$infoid'");
 		}
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		AddClassInfos($infor['classid'],'','+1');
-		//åˆ·æ–°ä¿¡æ¯
+		//Ë¢ĞÂĞÅÏ¢
 		GetHtml($infor['classid'],$infor['id'],$infor,1);
-		//æ›´æ–°åŠ¨æ€ç¼“å­˜
+		//¸üĞÂ¶¯Ì¬»º´æ
 		if($public_r['ctimeopen'])
 		{
 			eUpCacheInfo(1,$infor['classid'],0,0,$infor['ttid'],'',$infor['infotags'],0,0,1);
@@ -1831,10 +1831,10 @@ function CheckNews_all($classid,$id,$userid,$username){
 			$dolog="classid=".$infor['classid']."<br>id=".$infor['id']."<br>title=".$infor['title'];
 		}
     }
-	//åˆ·æ–°åˆ—è¡¨
+	//Ë¢ĞÂÁĞ±í
 	//ReListHtml($classid,1);
 	$returl=EcmsGetReturnUrl();
-	//å‘é€é€šçŸ¥
+	//·¢ËÍÍ¨Öª
 	if($adddatar['causetext']&&$infoid)
 	{
 		if(!$infor['id'])
@@ -1851,7 +1851,7 @@ function CheckNews_all($classid,$id,$userid,$username){
 			$returl="ListNews.php?bclassid=$adddatar[bclassid]&classid=$adddatar[classid]".$addecmscheck.hReturnEcmsHashStrHref2(0);
 		}
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	if($donum==1)
 	{
 		insert_dolog($dolog,$dopubid);
@@ -1863,7 +1863,7 @@ function CheckNews_all($classid,$id,$userid,$username){
 	printerror("CheckNewsSuccess",$returl);
 }
 
-//å–æ¶ˆå®¡æ ¸ä¿¡æ¯
+//È¡ÏûÉóºËĞÅÏ¢
 function NoCheckNews_all($classid,$id,$userid,$username){
 	global $empire,$class_r,$public_r,$dbtbpre,$emod_r,$adddatar;
 	$classid=(int)$classid;
@@ -1871,9 +1871,9 @@ function NoCheckNews_all($classid,$id,$userid,$username){
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	$doselfinfo=CheckLevel($userid,$username,$classid,"news");
-	//æƒé™
+	//È¨ÏŞ
 	if(!$doselfinfo['docheckinfo'])
 	{
 		printerror("NotCheckInfoLevel","history.go(-1)");
@@ -1886,7 +1886,7 @@ function NoCheckNews_all($classid,$id,$userid,$username){
 	$dopubid=0;
 	$donum=0;
 	$dolog='';
-	//é™„åŠ é“¾æ¥å‚æ•°
+	//¸½¼ÓÁ´½Ó²ÎÊı
 	$addecmscheck=empty($_POST['ecmscheck'])?'&ecmscheck=1':'';
 	$mid=$class_r[$classid][modid];
 	$tbname=$class_r[$classid][tbname];
@@ -1895,18 +1895,18 @@ function NoCheckNews_all($classid,$id,$userid,$username){
 	for($i=0;$i<$count;$i++)
 	{
 		$infoid=(int)$id[$i];
-		//ä¸»è¡¨
+		//Ö÷±í
 		$r=$empire->fetch1("select * from {$dbtbpre}ecms_".$class_r[$classid][tbname]." where id='$infoid' limit 1");
 		if(!$r['id']||$r['isqf']==1)
 		{
 			continue;
 		}
 		$sql=$empire->query("update {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index set checked=0 where id='$infoid'");
-		//æœªå®¡æ ¸äº’è½¬
+		//Î´ÉóºË»¥×ª
 		MoveCheckInfoData($class_r[$classid][tbname],1,$r['stb'],"id='$infoid'");
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		AddClassInfos($r['classid'],'','-1');
-		//åˆ†é¡µå­—æ®µ
+		//·ÖÒ³×Ö¶Î
 		if($pf)
 		{
 			if(strstr($emod_r[$mid]['tbdataf'],','.$pf.','))
@@ -1914,13 +1914,13 @@ function NoCheckNews_all($classid,$id,$userid,$username){
 				$finfor=$empire->fetch1("select ".$pf." from {$dbtbpre}ecms_".$tbname."_data_".$r[stb]." where id='$infoid'");
 				$r[$pf]=$finfor[$pf];
 			}
-			if($stf&&$stf==$pf)//å­˜æ”¾æ–‡æœ¬
+			if($stf&&$stf==$pf)//´æ·ÅÎÄ±¾
 			{
 				$r[$pf]=GetTxtFieldText($r[$pf]);
 			}
 		}
 		DelNewsFile($r[filename],$r[newspath],$r[classid],$r[$pf],$r[groupid]);
-		//æ›´æ–°åŠ¨æ€ç¼“å­˜
+		//¸üĞÂ¶¯Ì¬»º´æ
 		if($public_r['ctimeopen'])
 		{
 			eUpCacheInfo(1,$r['classid'],0,0,$r['ttid'],'',$r['infotags'],0,0,1);
@@ -1932,10 +1932,10 @@ function NoCheckNews_all($classid,$id,$userid,$username){
 			$dolog="classid=".$r['classid']."<br>id=".$r['id']."<br>title=".$r['title'];
 		}
 	}
-	//åˆ·æ–°åˆ—è¡¨
+	//Ë¢ĞÂÁĞ±í
 	ReListHtml($classid,1);
 	$returl=EcmsGetReturnUrl();
-	//å‘é€é€šçŸ¥
+	//·¢ËÍÍ¨Öª
 	if($adddatar['causetext']&&$infoid)
 	{
 		if(!$r['id'])
@@ -1952,7 +1952,7 @@ function NoCheckNews_all($classid,$id,$userid,$username){
 			$returl="ListNews.php?bclassid=$adddatar[bclassid]&classid=$adddatar[classid]".$addecmscheck.hReturnEcmsHashStrHref2(0);
 		}
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	if($donum==1)
 	{
 		insert_dolog($dolog,$dopubid);
@@ -1964,7 +1964,7 @@ function NoCheckNews_all($classid,$id,$userid,$username){
 	printerror("NoCheckNewsSuccess",$returl);
 }
 
-//ç§»åŠ¨ä¿¡æ¯
+//ÒÆ¶¯ĞÅÏ¢
 function MoveNews_all($classid,$id,$to_classid,$userid,$username){
 	global $empire,$class_r,$dbtbpre,$emod_r,$adddatar,$public_r;
 	$classid=(int)$classid;
@@ -1981,9 +1981,9 @@ function MoveNews_all($classid,$id,$to_classid,$userid,$username){
 	{
 		printerror("DefModid","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	$doselfinfo=CheckLevel($userid,$username,$classid,"news");
-	//æƒé™
+	//È¨ÏŞ
 	if(!$doselfinfo['domoveinfo'])
 	{
 		printerror("NotMoveInfoLevel","history.go(-1)");
@@ -1996,7 +1996,7 @@ function MoveNews_all($classid,$id,$to_classid,$userid,$username){
 	$dopubid=0;
 	$donum=0;
 	$dolog='';
-	//é™„åŠ é“¾æ¥å‚æ•°
+	//¸½¼ÓÁ´½Ó²ÎÊı
 	$addecmscheck=empty($_POST['ecmscheck'])?'&ecmscheck=1':'';
 	$infotb='';
 	$tbname=$class_r[$classid][tbname];
@@ -2006,28 +2006,28 @@ function MoveNews_all($classid,$id,$to_classid,$userid,$username){
 		$add.="id='".$id[$i]."' or ";
 		if(empty($infotb))
 		{
-			//ç´¢å¼•è¡¨
+			//Ë÷Òı±í
 			$index_r=$empire->fetch1("select checked from {$dbtbpre}ecms_".$tbname."_index where id='".$id[$i]."' limit 1");
-			//è¿”å›è¡¨
+			//·µ»Ø±í
 			$infotb=ReturnInfoMainTbname($tbname,$index_r['checked']);
 		}
-		//ä¸»è¡¨
+		//Ö÷±í
 		$r=$empire->fetch1("select stb,classid,fstb,restb,id,isurl,filename,groupid,newspath,titleurl,title,ismember,userid,username,newstime,truetime,ttid from ".$infotb." where id='".$id[$i]."' limit 1");
 		$pubid=ReturnInfoPubid($r['classid'],$id[$i]);
-		//ä¿¡æ¯åœ°å€
+		//ĞÅÏ¢µØÖ·
 		$infourl=GotoGetTitleUrl($to_classid,$id[$i],$r['newspath'],$r['filename'],$r['groupid'],$r['isurl'],$r['titleurl']);
-		//è¿”å›è¡¨ä¿¡æ¯
+		//·µ»Ø±íĞÅÏ¢
 		$infotbr=ReturnInfoTbname($tbname,$index_r['checked'],$r['stb']);
-		//ä¸»è¡¨
+		//Ö÷±í
 		$empire->query("update ".$infotb." set classid='$to_classid',titleurl='$infourl' where id='".$id[$i]."'");
-		//å‰¯è¡¨
+		//¸±±í
 		$empire->query("update ".$infotbr['datatbname']." set classid='$to_classid' where id='".$id[$i]."'");
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		AddClassInfos($r['classid'],'-1','-1',$index_r['checked']);
 		AddClassInfos($to_classid,'+1','+1',$index_r['checked']);
-		//æ›´æ–°ä¿¡æ¯é™„åŠ è¡¨
+		//¸üĞÂĞÅÏ¢¸½¼Ó±í
 		UpdateSingleInfoOtherData($r['classid'],$id[$i],$to_classid,$r,0,0);
-		//æ›´æ–°åŠ¨æ€ç¼“å­˜
+		//¸üĞÂ¶¯Ì¬»º´æ
 		if($public_r['ctimeopen']&&$index_r['checked'])
 		{
 			eUpCacheInfo(1,$r['classid'],0,0,$r['ttid'],'','',$to_classid,0,1);
@@ -2041,11 +2041,11 @@ function MoveNews_all($classid,$id,$to_classid,$userid,$username){
 	}
 	$add=substr($add,0,strlen($add)-4);
 	$sql=$empire->query("update {$dbtbpre}ecms_".$tbname."_index set classid='$to_classid' where ".$add);
-	//åˆ·æ–°åˆ—è¡¨
+	//Ë¢ĞÂÁĞ±í
 	ReListHtml($classid,1);
 	ReListHtml($to_classid,1);
 	$returl=EcmsGetReturnUrl();
-	//å‘é€é€šçŸ¥
+	//·¢ËÍÍ¨Öª
 	if($donum==1&&$r['id'])
 	{
 		DoInfoSendNotice($userid,$username,$r['userid'],$r['username'],$adddatar['causetext'],$r,4);
@@ -2063,7 +2063,7 @@ function MoveNews_all($classid,$id,$to_classid,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		if($donum==1)
 		{
 			insert_dolog($dolog,$dopubid);
@@ -2078,7 +2078,7 @@ function MoveNews_all($classid,$id,$to_classid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//å¤åˆ¶ä¿¡æ¯
+//¸´ÖÆĞÅÏ¢
 function CopyNews_all($classid,$id,$to_classid,$userid,$username){
 	global $empire,$public_r,$class_r,$dbtbpre,$emod_r,$lur;
 	$classid=(int)$classid;
@@ -2096,9 +2096,9 @@ function CopyNews_all($classid,$id,$to_classid,$userid,$username){
 		printerror("DefModid","history.go(-1)");
     }
 	$userid=(int)$userid;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	$doselfinfo=CheckLevel($userid,$username,$classid,"news");
-	//æƒé™
+	//È¨ÏŞ
 	if(!$doselfinfo['domoveinfo'])
 	{
 		printerror("NotMoveInfoLevel","history.go(-1)");
@@ -2112,7 +2112,7 @@ function CopyNews_all($classid,$id,$to_classid,$userid,$username){
 	$dopubid=0;
 	$donum=0;
 	$dolog='';
-	//é™„åŠ é“¾æ¥å‚æ•°
+	//¸½¼ÓÁ´½Ó²ÎÊı
 	$addecmscheck=empty($_POST['ecmscheck'])?'&ecmscheck=1':'';
 	for($i=0;$i<$count;$i++)
 	{
@@ -2122,7 +2122,7 @@ function CopyNews_all($classid,$id,$to_classid,$userid,$username){
 	$mid=$class_r[$classid][modid];
 	$tbname=$class_r[$classid][tbname];
 	$stf=$emod_r[$mid]['savetxtf'];
-	//æŸ¥çœ‹ç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™å»ºç«‹
+	//²é¿´Ä¿Â¼ÊÇ·ñ´æÔÚ£¬²»´æÔÚÔò½¨Á¢
 	$newspath=FormatPath($to_classid,"",0);
     $newstime=time();
     $truetime=$newstime;
@@ -2130,20 +2130,20 @@ function CopyNews_all($classid,$id,$to_classid,$userid,$username){
 	$dosql=$empire->query("select id,classid,checked from {$dbtbpre}ecms_".$tbname."_index where ".$add);
 	while($index_r=$empire->fetch($dosql))
 	{
-		//è¿”å›è¡¨
+		//·µ»Ø±í
 		$infotb=ReturnInfoMainTbname($tbname,$index_r['checked']);
-		//ä¸»è¡¨
+		//Ö÷±í
 		$r=$empire->fetch1("select * from ".$infotb." where id='$index_r[id]' limit 1");
-		//è¿”å›è¡¨ä¿¡æ¯
+		//·µ»Ø±íĞÅÏ¢
 		$infotbr=ReturnInfoTbname($tbname,$index_r['checked'],$r['stb']);
-		//å‰¯è¡¨
+		//¸±±í
 		$finfor=$empire->fetch1("select ".ReturnSqlFtextF($mid)." from ".$infotbr['datatbname']." where id='$r[id]' limit 1");
 		$r=array_merge($r,$finfor);
-		if($stf)//å­˜æ”¾æ–‡æœ¬
+		if($stf)//´æ·ÅÎÄ±¾
 		{
 			$r[$stf]=GetTxtFieldText($r[$stf]);
 		}
-		//è¿”å›è‡ªå®šä¹‰å­—æ®µ
+		//·µ»Ø×Ô¶¨Òå×Ö¶Î
 		$ret_r=ReturnAddF($r,$class_r[$to_classid][modid],$userid,$username,9,1,0);
 		if($class_r[$to_classid][wfid])
 		{
@@ -2164,22 +2164,22 @@ function CopyNews_all($classid,$id,$to_classid,$userid,$username){
 			$isqf=0;
 	    }
 		$checked=(int)$checked;
-		//ç´¢å¼•è¡¨
+		//Ë÷Òı±í
 		$empire->query("insert into {$dbtbpre}ecms_".$tbname."_index(classid,checked,newstime,truetime,lastdotime,havehtml) values('$to_classid','$checked','$r[newstime]','$truetime','$truetime','$r[havehtml]');");
 		$l_id=$empire->lastid();
 		$update_infotbr=ReturnInfoTbname($tbname,$checked,$ret_r['tb']);
-		//ä¸»è¡¨
+		//Ö÷±í
 		$sql=$empire->query("insert into ".$update_infotbr['tbname']."(id,classid,ttid,onclick,plnum,totaldown,newspath,filename,userid,username,firsttitle,isgood,ispic,istop,isqf,ismember,isurl,truetime,lastdotime,havehtml,groupid,userfen,titlefont,titleurl,stb,fstb,restb,keyboard".$ret_r[fields].") values('$l_id','$to_classid','$r[ttid]',0,0,0,'$newspath','$filename',$userid,'$username',0,0,'$r[ispic]',0,'$isqf',0,'$r[isurl]',$truetime,$truetime,$r[havehtml],$r[groupid],$r[userfen],'$r[titlefont]','$r[titleurl]','$ret_r[tb]','$public_r[filedeftb]','$public_r[pldeftb]','$r[keyboard]'".$ret_r[values].");");		
-		//å‰¯è¡¨
+		//¸±±í
 		$empire->query("insert into ".$update_infotbr['datatbname']."(id,classid,keyid,dokey,newstempid,closepl,haveaddfen,infotags".$ret_r[datafields].") values('$l_id','$to_classid','$r[keyid]',$r[dokey],'".$newstempid."',$r[closepl],0,'$r[infotags]'".$ret_r[datavalues].");");
-		//ç­¾å‘
+		//Ç©·¢
 		if($isqf==1)
 		{
 			InfoInsertToWorkflow($l_id,$to_classid,$class_r[$to_classid][wfid],$userid,$username);
 		}
-		//æ–‡ä»¶å‘½å
+		//ÎÄ¼şÃüÃû
 		$filename=ReturnInfoFilename($to_classid,$l_id,$r[filenameqz]);
-		//ä¿¡æ¯åœ°å€
+		//ĞÅÏ¢µØÖ·
 		$updateinfourl='';
 		if(!$r['isurl'])
 		{
@@ -2187,15 +2187,15 @@ function CopyNews_all($classid,$id,$to_classid,$userid,$username){
 			$updateinfourl=",titleurl='$infourl'";
 		}
 		$usql=$empire->query("update ".$update_infotbr['tbname']." set filename='$filename'".$updateinfourl." where id='$l_id'");
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		AddClassInfos($to_classid,'+1','+1',$checked);
-		//ç”Ÿæˆä¿¡æ¯æ–‡ä»¶
+		//Éú³ÉĞÅÏ¢ÎÄ¼ş
 		if($checked)
 		{
 			$addr=$empire->fetch1("select * from ".$update_infotbr['tbname']." where id='$l_id'");
 			GetHtml($addr['classid'],$addr['id'],$addr,1);
 		}
-		//æ›´æ–°åŠ¨æ€ç¼“å­˜
+		//¸üĞÂ¶¯Ì¬»º´æ
 		if($public_r['ctimeopen']&&$checked)
 		{
 			eUpCacheInfo(1,$to_classid,0,0,$r['ttid'],'',$r[infotags],0,0,1);
@@ -2207,9 +2207,9 @@ function CopyNews_all($classid,$id,$to_classid,$userid,$username){
 			$dolog="classid=".$r['classid']."<br>id=".$r['id']."<br>title=".$r['title']."<br>to_classid=".$to_classid;
 		}
 	}
-	//åˆ·æ–°åˆ—è¡¨
+	//Ë¢ĞÂÁĞ±í
 	ReListHtml($to_classid,1);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	if($donum==1)
 	{
 		insert_dolog($dolog,$dopubid);
@@ -2221,7 +2221,7 @@ function CopyNews_all($classid,$id,$to_classid,$userid,$username){
 	printerror("CopyNewsSuccess",EcmsGetReturnUrl());
 }
 
-//æ‰¹é‡è½¬ç§»ä¿¡æ¯
+//ÅúÁ¿×ªÒÆĞÅÏ¢
 function MoveClassNews($add,$userid,$username){
 	global $empire,$class_r,$dbtbpre,$emod_r,$public_r;
 	$add[classid]=(int)$add[classid];
@@ -2234,9 +2234,9 @@ function MoveClassNews($add,$userid,$username){
 	{
 		printerror("DefModid","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"movenews");
-	//ç»ˆææ ç›®
+	//ÖÕ¼«À¸Ä¿
 	if(!$class_r[$add[classid]][islast]||!$class_r[$add[toclassid]][islast])
 	{
 		printerror("MovetoClassidMustLastid","history.go(-1)");
@@ -2247,34 +2247,34 @@ function MoveClassNews($add,$userid,$username){
 	}
 	$mid=$class_r[$add[classid]][modid];
 	$tbname=$class_r[$add[classid]][tbname];
-	//ä¸»è¡¨
+	//Ö÷±í
 	$indexsql=$empire->query("update {$dbtbpre}ecms_".$tbname."_index set classid=$add[toclassid] where classid='$add[classid]'");
 	$sql=$empire->query("update {$dbtbpre}ecms_".$tbname." set classid=$add[toclassid] where classid='$add[classid]'");
 	$empire->query("update {$dbtbpre}ecms_".$tbname."_check set classid=$add[toclassid] where classid='$add[classid]'");
 	$empire->query("update {$dbtbpre}ecms_".$tbname."_doc set classid=$add[toclassid] where classid='$add[classid]'");
-	//å‰¯è¡¨
+	//¸±±í
 	UpdateAllDataTbField($tbname,"classid='$add[toclassid]'"," where classid='$add[classid]'",1,1);
-	//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+	//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 	$cr=$empire->fetch1("select classid,allinfos,infos from {$dbtbpre}enewsclass where classid='$add[classid]'");
 	AddClassInfos($add[classid],'-'.$cr[allinfos],'-'.$cr[infos]);
 	$tocr=$empire->fetch1("select classid,allinfos,infos from {$dbtbpre}enewsclass where classid='$add[toclassid]'");
 	AddClassInfos($add[toclassid],'+'.$cr[allinfos],'+'.$cr[infos]);
-	//æ›´æ–°ä¿¡æ¯é™„åŠ è¡¨ä¸é™„ä»¶è¡¨
+	//¸üĞÂĞÅÏ¢¸½¼Ó±íÓë¸½¼ş±í
 	UpdateMoreInfoOtherData($add[classid],$add[toclassid],0,0);
-	//ç”Ÿæˆä¿¡æ¯åˆ—è¡¨
+	//Éú³ÉĞÅÏ¢ÁĞ±í
 	ListHtml($add[toclassid],$ret_r,0);
-	//æ›´æ–°åŠ¨æ€ç¼“å­˜
+	//¸üĞÂ¶¯Ì¬»º´æ
 	if($public_r['ctimeopen'])
 	{
 		eUpCacheInfo(1,$add['classid'],0,0,0,'','',$add['toclassid'],0);
 	}
-	//ç§»åŠ¨æ•°æ®
+	//ÒÆ¶¯Êı¾İ
 	$opath=ECMS_PATH.$class_r[$add[classid]][classpath];
-    DelPath($opath);//åˆ é™¤æ—§çš„æ ç›®ç›®å½•
+    DelPath($opath);//É¾³ı¾ÉµÄÀ¸Ä¿Ä¿Â¼
 	$mk=DoMkdir($opath);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$add[classid]."&nbsp;(".$class_r[$add[classid]][classname].")<br>toclassid=".$add[toclassid]."(".$class_r[$add[toclassid]][classname].")");
 		printerror("MoveClassNewsSuccess","MoveClassNews.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -2282,7 +2282,7 @@ function MoveClassNews($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ‰¹é‡æ¨è/å¤´æ¡ä¿¡æ¯
+//ÅúÁ¿ÍÆ¼ö/Í·ÌõĞÅÏ¢
 function GoodInfo_all($classid,$id,$isgood,$doing=0,$userid,$username){
 	global $empire,$class_r,$dbtbpre,$public_r;
 	$classid=(int)$classid;
@@ -2290,18 +2290,18 @@ function GoodInfo_all($classid,$id,$isgood,$doing=0,$userid,$username){
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	$doselfinfo=CheckLevel($userid,$username,$classid,"news");
-	//æƒé™
+	//È¨ÏŞ
 	if(!$doselfinfo['dogoodinfo'])
 	{
 		printerror("NotGoodInfoLevel","history.go(-1)");
 	}
-	//é™„åŠ é“¾æ¥å‚æ•°
+	//¸½¼ÓÁ´½Ó²ÎÊı
 	$addecmscheck=empty($_POST['ecmscheck'])?'&ecmscheck=1':'';
 	$isgood=(int)$isgood;
 	$doing=(int)$doing;
-	if($doing==0)//æ¨è
+	if($doing==0)//ÍÆ¼ö
 	{
 		if(!eFirstTitleCheckLevel($isgood,0))
 		{
@@ -2311,7 +2311,7 @@ function GoodInfo_all($classid,$id,$isgood,$doing=0,$userid,$username){
 		$domess="GoodInfoSuccess";
 		$setf="isgood=$isgood";
 	}
-	else//å¤´æ¡
+	else//Í·Ìõ
 	{
 		if(!eFirstTitleCheckLevel($isgood,1))
 		{
@@ -2337,7 +2337,7 @@ function GoodInfo_all($classid,$id,$isgood,$doing=0,$userid,$username){
 		if($infoid&&empty($infotb))
 		{
 			$index_r=$empire->fetch1("select checked from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index where id='$infoid' limit 1");
-			//è¿”å›è¡¨
+			//·µ»Ø±í
 			$infotb=ReturnInfoMainTbname($class_r[$classid][tbname],$index_r['checked']);
 		}
 		$donum++;
@@ -2355,7 +2355,7 @@ function GoodInfo_all($classid,$id,$isgood,$doing=0,$userid,$username){
 	$sql=$empire->query("update ".$infotb." set ".$setf." where ".$add);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		if($donum==1)
 		{
 			insert_dolog($dolog,$dopubid);
@@ -2370,7 +2370,7 @@ function GoodInfo_all($classid,$id,$isgood,$doing=0,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æœ¬æ ç›®ä¿¡æ¯å…¨éƒ¨å®¡æ ¸
+//±¾À¸Ä¿ĞÅÏ¢È«²¿ÉóºË
 function SetAllCheckInfo($bclassid,$classid,$userid,$username){
 	global $empire,$dbtbpre,$class_r,$public_r;
 	$classid=(int)$classid;
@@ -2378,20 +2378,20 @@ function SetAllCheckInfo($bclassid,$classid,$userid,$username){
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	$doselfinfo=CheckLevel($userid,$username,$classid,"news");
-	//æƒé™
+	//È¨ÏŞ
 	if(!$doselfinfo['docheckinfo'])
 	{
 		printerror("NotCheckInfoLevel","history.go(-1)");
 	}
-	//é™„åŠ é“¾æ¥å‚æ•°
+	//¸½¼ÓÁ´½Ó²ÎÊı
 	$addecmscheck=empty($_POST['ecmscheck'])?'&ecmscheck=1':'';
 	$sql=$empire->query("select id,classid,userid,ismember,isqf,stb from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_check where classid='$classid'");
 	$n=0;
 	while($r=$empire->fetch($sql))
 	{
-		//åªèƒ½æ“ä½œè‡ªå·±çš„ä¿¡æ¯
+		//Ö»ÄÜ²Ù×÷×Ô¼ºµÄĞÅÏ¢
 		if($doselfinfo['doselfinfo']&&($userid!=$r['userid']||$r['ismember']==1))
 		{
 			continue;
@@ -2401,23 +2401,23 @@ function SetAllCheckInfo($bclassid,$classid,$userid,$username){
 			continue;
 		}
 		$empire->query("update {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index set checked=1 where id='$r[id]'");
-		//å®¡æ ¸è¡¨è½¬æ¢
+		//ÉóºË±í×ª»»
 		MoveCheckInfoData($class_r[$classid][tbname],0,$r['stb'],"id='$r[id]'");
 		$n++;
 	}
-	//æ›´æ–°åŠ¨æ€ç¼“å­˜
+	//¸üĞÂ¶¯Ì¬»º´æ
 	if($public_r['ctimeopen']&&$n)
 	{
 		eUpCacheInfo(1,$classid,0,0,0,'','',0,0);
 	}
-	//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+	//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 	AddClassInfos($classid,'','+'.$n);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("classid=".$classid."<br>classname=".$class_r[$classid][classname]);
 	printerror("CheckNewsSuccess",EcmsGetReturnUrl());
 }
 
-//ç­¾å‘ä¿¡æ¯
+//Ç©·¢ĞÅÏ¢
 function DoWfInfo($add,$userid,$username){
 	global $empire,$dbtbpre,$class_r,$emod_r,$lur,$public_r;
 	$id=(int)$add[id];
@@ -2446,127 +2446,127 @@ function DoWfInfo($add,$userid,$username){
 		printerror("HaveDoWfInfo","history.go(-1)");
 	}
 	$pubid=ReturnInfoPubid($classid,$id);
-	//é™„åŠ é“¾æ¥å‚æ•°
+	//¸½¼ÓÁ´½Ó²ÎÊı
 	$addecmscheck=empty($_POST['ecmscheck'])?'&ecmscheck=1':'';
 	$checktext=hRepPostStr($add[checktext],1);
-	if($doing==1)//é€šè¿‡
+	if($doing==1)//Í¨¹ı
 	{
-		if($wfitemr[lztype]==0)//æ™®ç­¾
+		if($wfitemr[lztype]==0)//ÆÕÇ©
 		{
-			if($wfitemr['tno']=='100')//å…¨éƒ¨é€šè¿‡
+			if($wfitemr['tno']=='100')//È«²¿Í¨¹ı
 			{
 				$empire->query("update {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index set checked=1 where id='$id'");
 				$ar=$empire->fetch1("select * from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_check where id='$id'");
-				//æœªå®¡æ ¸è¡¨è½¬æ¢
+				//Î´ÉóºË±í×ª»»
 				MoveCheckInfoData($class_r[$classid][tbname],0,$ar['stb'],"id='$id'");
-				//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+				//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 				AddClassInfos($classid,'','+1');
 				$empire->query("update {$dbtbpre}enewswfinfo set tstatus='',checktno='100' where id='$id' and classid='$classid' limit 1");
-				//æ—¥å¿—
+				//ÈÕÖ¾
 				InsertWfLog($classid,$id,$wfitemr[wfid],$wfitemr[tid],$username,$checktext,$wfinfor[checknum],1);
-				//ç”Ÿæˆ
+				//Éú³É
 				GetHtml($ar['classid'],$ar['id'],$ar,1);
 				ListHtml($classid,$fr,0);
-				//æ›´æ–°åŠ¨æ€ç¼“å­˜
+				//¸üĞÂ¶¯Ì¬»º´æ
 				if($public_r['ctimeopen'])
 				{
 					eUpCacheInfo(1,$ar['classid'],0,0,$ar['ttid'],'','',0,0);
 				}
 			}
-			else//æµè½¬
+			else//Á÷×ª
 			{
 				$newwfitemr=$empire->fetch1("select tid,wfid,tno,groupid,userclass,username,lztype,tbdo,tddo,tstatus from {$dbtbpre}enewsworkflowitem where wfid='$wfitemr[wfid]' and tno>$wfitemr[tno] order by tno limit 1");
 				$empire->query("update {$dbtbpre}enewswfinfo set tid='$newwfitemr[tid]',groupid='$newwfitemr[groupid]',userclass='$newwfitemr[userclass]',username='$newwfitemr[username]',tstatus='$newwfitemr[tstatus]',checktno='0' where id='$id' and classid='$classid' limit 1");
-				//æ—¥å¿—
+				//ÈÕÖ¾
 				InsertWfLog($classid,$id,$newwfitemr[wfid],$newwfitemr[tid],$username,$checktext,$wfinfor[checknum],1);
 			}
 		}
-		else//ä¼šç­¾
+		else//»áÇ©
 		{
 			$newgroupid=str_replace(','.$lur[groupid].',',',',$wfinfor[groupid]);
 			$newuserclass=str_replace(','.$lur[classid].',',',',$wfinfor[userclass]);
 			$newusername=str_replace(','.$lur[username].',',',',$wfinfor[username]);
-			//ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
+			//ÏÂÒ»¸ö½Úµã
 			if(($newgroupid==''||$newgroupid==',')&&($newuserclass==''||$newuserclass==',')&&($newusername==''||$newusername==','))
 			{
-				if($wfitemr['tno']=='100')//å…¨éƒ¨é€šè¿‡
+				if($wfitemr['tno']=='100')//È«²¿Í¨¹ı
 				{
 					$empire->query("update {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index set checked=1 where id='$id'");
 					$ar=$empire->fetch1("select * from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_check where id='$id'");
-					//æœªå®¡æ ¸è¡¨è½¬æ¢
+					//Î´ÉóºË±í×ª»»
 					MoveCheckInfoData($class_r[$classid][tbname],0,$ar['stb'],"id='$id'");
-					//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+					//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 					AddClassInfos($classid,'','+1');
 					$empire->query("update {$dbtbpre}enewswfinfo set tstatus='',checktno='100' where id='$id' and classid='$classid' limit 1");
-					//æ—¥å¿—
+					//ÈÕÖ¾
 					InsertWfLog($classid,$id,$wfitemr[wfid],$wfitemr[tid],$username,$checktext,$wfinfor[checknum],1);
-					//ç”Ÿæˆ
+					//Éú³É
 					GetHtml($ar['classid'],$ar['id'],$ar,1);
 					ListHtml($classid,$fr,0);
-					//æ›´æ–°åŠ¨æ€ç¼“å­˜
+					//¸üĞÂ¶¯Ì¬»º´æ
 					if($public_r['ctimeopen'])
 					{
 						eUpCacheInfo(1,$ar['classid'],0,0,$ar['ttid'],'','',0,0);
 					}
 				}
-				else//æµè½¬
+				else//Á÷×ª
 				{
 					$newwfitemr=$empire->fetch1("select tid,wfid,tno,groupid,userclass,username,lztype,tbdo,tddo,tstatus from {$dbtbpre}enewsworkflowitem where wfid='$wfitemr[wfid]' and tno>$wfitemr[tno] order by tno limit 1");
 					$empire->query("update {$dbtbpre}enewswfinfo set tid='$newwfitemr[tid]',groupid='$newwfitemr[groupid]',userclass='$newwfitemr[userclass]',username='$newwfitemr[username]',tstatus='$newwfitemr[tstatus]',checktno='0' where id='$id' and classid='$classid' limit 1");
-					//æ—¥å¿—
+					//ÈÕÖ¾
 					InsertWfLog($classid,$id,$newwfitemr[wfid],$newwfitemr[tid],$username,$checktext,$wfinfor[checknum],1);
 				}
 			}
-			else//æœ¬èŠ‚ç‚¹ç»§ç»­
+			else//±¾½Úµã¼ÌĞø
 			{
 				$empire->query("update {$dbtbpre}enewswfinfo set groupid='$newgroupid',userclass='$newuserclass',username='$newusername' where id='$id' and classid='$classid' limit 1");
-				//æ—¥å¿—
+				//ÈÕÖ¾
 				InsertWfLog($classid,$id,$wfitemr[wfid],$wfitemr[tid],$username,$checktext,$wfinfor[checknum],1);
 			}
 		}
 		$mess='DoWfInfoCkSuccess';
 	}
-	elseif($doing==2)//è¿”å·¥
+	elseif($doing==2)//·µ¹¤
 	{
 		if(empty($checktext))
 		{
 			printerror('EmptyChecktext','history.go(-1)');
 		}
-		if($wfitemr[tbdo]==0)//å‘ç»™ä½œè€…
+		if($wfitemr[tbdo]==0)//·¢¸ø×÷Õß
 		{
 			$empire->query("update {$dbtbpre}enewswfinfo set tid=0,tstatus='',checktno='101' where id='$id' and classid='$classid' limit 1");
 		}
-		else//å‘ç»™èŠ‚ç‚¹
+		else//·¢¸ø½Úµã
 		{
 			$newwfitemr=$empire->fetch1("select tid,wfid,tno,groupid,userclass,username,lztype,tbdo,tddo,tstatus from {$dbtbpre}enewsworkflowitem where wfid='$wfitemr[wfid]' and tid='$wfitemr[tbdo]' limit 1");
 			$empire->query("update {$dbtbpre}enewswfinfo set tid='$newwfitemr[tid]',groupid='$newwfitemr[groupid]',userclass='$newwfitemr[userclass]',username='$newwfitemr[username]',tstatus='$newwfitemr[tstatus]',checktno='101' where id='$id' and classid='$classid' limit 1");
 		}
-		//æ—¥å¿—
+		//ÈÕÖ¾
 		InsertWfLog($classid,$id,$wfitemr[wfid],$wfitemr[tid],$username,$checktext,$wfinfor[checknum],2);
 		$mess='DoWfInfoTbSuccess';
 	}
-	else//å¦å†³
+	else//·ñ¾ö
 	{
 		if(empty($checktext))
 		{
 			printerror('EmptyChecktext','history.go(-1)');
 		}
 		$empire->query("update {$dbtbpre}enewswfinfo set tid=0,tstatus='',checktno='102' where id='$id' and classid='$classid' limit 1");
-		//æ—¥å¿—
+		//ÈÕÖ¾
 		InsertWfLog($classid,$id,$wfitemr[wfid],$wfitemr[tid],$username,$checktext,$wfinfor[checknum],3);
-		if($wfitemr[tddo])//åˆ é™¤ä¿¡æ¯
+		if($wfitemr[tddo])//É¾³ıĞÅÏ¢
 		{
 			$index_r=$empire->fetch1("select checked from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index where id='$id' limit 1");
-			//è¿”å›è¡¨
+			//·µ»Ø±í
 			$infotb=ReturnInfoMainTbname($class_r[$classid][tbname],$index_r['checked']);
 			$r=$empire->fetch1("select * from ".$infotb." where id='$id' limit 1");
 			$mid=$class_r[$classid][modid];
 			$tbname=$class_r[$classid][tbname];
 			$pf=$emod_r[$mid]['pagef'];
 			$stf=$emod_r[$mid]['savetxtf'];
-			//è¿”å›è¡¨ä¿¡æ¯
+			//·µ»Ø±íĞÅÏ¢
 			$infotbr=ReturnInfoTbname($class_r[$classid][tbname],$index_r['checked'],$r['stb']);
-			//åˆ†é¡µå­—æ®µ
+			//·ÖÒ³×Ö¶Î
 			if($pf)
 			{
 				if(strstr($emod_r[$mid]['tbdataf'],','.$pf.','))
@@ -2575,34 +2575,34 @@ function DoWfInfo($add,$userid,$username){
 					$r[$pf]=$finfor[$pf];
 				}
 			}
-			//å­˜æ–‡æœ¬
+			//´æÎÄ±¾
 			if($stf)
 			{
 				$newstextfile=$r[$stf];
 				$r[$stf]=GetTxtFieldText($r[$stf]);
-				DelTxtFieldText($newstextfile);//åˆ é™¤æ–‡ä»¶
+				DelTxtFieldText($newstextfile);//É¾³ıÎÄ¼ş
 			}
-			DelNewsFile($r[filename],$r[newspath],$classid,$r[$pf],$r[groupid]);//åˆ é™¤ä¿¡æ¯æ–‡ä»¶
+			DelNewsFile($r[filename],$r[newspath],$classid,$r[$pf],$r[groupid]);//É¾³ıĞÅÏ¢ÎÄ¼ş
 			$empire->query("delete from {$dbtbpre}ecms_".$tbname."_index where id='$id'");
 			$sql=$empire->query("delete from ".$infotbr['tbname']." where id='$id'");
 			$fsql=$empire->query("delete from ".$infotbr['datatbname']." where id='$id'");
-			//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+			//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 			AddClassInfos($r[classid],'-1','-1',$index_r['checked']);
-			//åˆ é™¤å…¶å®ƒè¡¨è®°å½•ä¸é™„ä»¶
+			//É¾³ıÆäËü±í¼ÇÂ¼Óë¸½¼ş
 			DelSingleInfoOtherData($r['classid'],$id,$r,0,0);
 		}
 		$mess='DoWfInfoTdSuccess';
 		$isclose=1;
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("classid=$classid&id=$id",$pubid);
 	printerror($mess,"workflow/DoWfInfo.php?classid=$classid&id=$id&isclose=$isclose".hReturnEcmsHashStrHref2(0));
 }
 
-//æ‰¹é‡åˆ é™¤ä¿¡æ¯
+//ÅúÁ¿É¾³ıĞÅÏ¢
 function DelInfoData($start,$classid,$from,$retype,$startday,$endday,$startid,$endid,$tbname,$add,$userid,$username){
 	global $empire,$public_r,$class_r,$fun_r,$dbtbpre,$emod_r;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"delinfodata");
 	$search='';
 	$start=(int)$start;
@@ -2612,24 +2612,24 @@ function DelInfoData($start,$classid,$from,$retype,$startday,$endday,$startid,$e
 		printerror("ErrorUrl","history.go(-1)");
     }
 	$search.="&tbname=$tbname";
-	//æŸ¥è¯¢è¡¨
+	//²éÑ¯±í
 	$infotb="{$dbtbpre}ecms_".$tbname;
-	//æŒ‰æ ç›®
+	//°´À¸Ä¿
 	$classid=(int)$classid;
 	if($classid)
 	{
-		if(empty($class_r[$classid][islast]))//å¤§æ ç›®
+		if(empty($class_r[$classid][islast]))//´óÀ¸Ä¿
 		{
 			$where=ReturnClass($class_r[$classid][sonclass]);
 		}
-		else//ç»ˆææ ç›®
+		else//ÖÕ¼«À¸Ä¿
 		{
 			$where="classid='$classid'";
 		}
 		$add1=" and (".$where.")";
 		$search.="&classid=$classid";
     }
-	//æŒ‰IDåˆ·æ–°
+	//°´IDË¢ĞÂ
 	$search.="&retype=$retype";
 	if($retype)
 	{
@@ -2651,16 +2651,16 @@ function DelInfoData($start,$classid,$from,$retype,$startday,$endday,$startid,$e
 	    }
 		$search.="&startday=$startday&endday=$endday";
     }
-	//ä¿¡æ¯ç±»å‹
+	//ĞÅÏ¢ÀàĞÍ
 	$delckinfo=0;
 	$infost=(int)$add['infost'];
 	if($infost)
 	{
-		if($infost==1)//å·²å®¡æ ¸
+		if($infost==1)//ÒÑÉóºË
 		{
 			$delckinfo=1;
 		}
-		else//æœªå®¡æ ¸
+		else//Î´ÉóºË
 		{
 			$infotb="{$dbtbpre}ecms_".$tbname."_check";
 			$delckinfo=2;
@@ -2677,64 +2677,64 @@ function DelInfoData($start,$classid,$from,$retype,$startday,$endday,$startid,$e
 			$search.="&dodelcheck=1";
 		}
 	}
-	//ç”¨æˆ·å‘å¸ƒ
+	//ÓÃ»§·¢²¼
 	$ismember=(int)$add['ismember'];
 	if($ismember)
 	{
-		if($ismember==1)//æ¸¸å®¢
+		if($ismember==1)//ÓÎ¿Í
 		{
 			$add1.=" and userid=0";
 		}
-		elseif($ismember==2)//ä¼šå‘˜+ç”¨æˆ·
+		elseif($ismember==2)//»áÔ±+ÓÃ»§
 		{
 			$add1.=" and userid>0";
 		}
-		elseif($ismember==3)//ä¼šå‘˜
+		elseif($ismember==3)//»áÔ±
 		{
 			$add1.=" and userid>0 and ismember=1";
 		}
-		elseif($ismember==4)//ç”¨æˆ·
+		elseif($ismember==4)//ÓÃ»§
 		{
 			$add1.=" and userid>0 and ismember=0";
 		}
 		$search.="&ismember=$ismember";
 	}
-	//æ˜¯å¦å¤–éƒ¨é“¾æ¥
+	//ÊÇ·ñÍâ²¿Á´½Ó
 	$isurl=(int)$add['isurl'];
 	if($isurl)
 	{
-		if($isurl==1)//å¤–éƒ¨é“¾æ¥
+		if($isurl==1)//Íâ²¿Á´½Ó
 		{
 			$add1.=" and isurl=1";
 		}
-		else//å†…éƒ¨ä¿¡æ¯
+		else//ÄÚ²¿ĞÅÏ¢
 		{
 			$add1.=" and isurl=0";
 		}
 		$search.="&isurl=$isurl";
 	}
-	//è¯„è®ºæ•°
+	//ÆÀÂÛÊı
 	$plnum=(int)$add['plnum'];
 	if($plnum)
 	{
 		$add1.=" and plnum<".$plnum;
 		$search.="&plnum=$plnum";
 	}
-	//ç‚¹å‡»æ•°
+	//µã»÷Êı
 	$onclick=(int)$add['onclick'];
 	if($onclick)
 	{
 		$add1.=" and onclick<".$onclick;
 		$search.="&onclick=$onclick";
 	}
-	//ä¸‹è½½æ•°
+	//ÏÂÔØÊı
 	$totaldown=(int)$add['totaldown'];
 	if($totaldown)
 	{
 		$add1.=" and totaldown<".$totaldown;
 		$search.="&totaldown=$totaldown";
 	}
-	//ç”¨æˆ·ID
+	//ÓÃ»§ID
 	$userids=RepPostVar($add['userids']);
 	$usertype=(int)$add['usertype'];
 	if($userids)
@@ -2748,17 +2748,17 @@ function DelInfoData($start,$classid,$from,$retype,$startday,$endday,$startid,$e
 			$uids.=$udh.intval($uidsr[$ui]);
 			$udh=',';
 		}
-		if($usertype==1)//ç”¨æˆ·
+		if($usertype==1)//ÓÃ»§
 		{
 			$add1.=" and userid in (".$uids.") and ismember=0";
 		}
-		else//ä¼šå‘˜
+		else//»áÔ±
 		{
 			$add1.=" and userid in (".$uids.") and ismember=1";
 		}
 		$search.="&userids=$userids&usertype=$usertype";
 	}
-	//æ ‡é¢˜
+	//±êÌâ
 	$title=RepPostStr($add['title']);
 	if($title)
 	{
@@ -2783,7 +2783,7 @@ function DelInfoData($start,$classid,$from,$retype,$startday,$endday,$startid,$e
 		$mid=$class_r[$r[classid]]['modid'];
 		$pf=$emod_r[$mid]['pagef'];
 		$stf=$emod_r[$mid]['savetxtf'];
-		//æœªå®¡æ ¸è¡¨
+		//Î´ÉóºË±í
 		if($delckinfo==2)
 		{
 			$infodatatb="{$dbtbpre}ecms_".$tbname."_check_data";
@@ -2792,7 +2792,7 @@ function DelInfoData($start,$classid,$from,$retype,$startday,$endday,$startid,$e
 		{
 			$infodatatb="{$dbtbpre}ecms_".$tbname."_data_".$r['stb'];
 		}
-		//åˆ†é¡µå­—æ®µ
+		//·ÖÒ³×Ö¶Î
 		if($pf)
 		{
 			if(strstr($emod_r[$mid]['tbdataf'],','.$pf.','))
@@ -2801,25 +2801,25 @@ function DelInfoData($start,$classid,$from,$retype,$startday,$endday,$startid,$e
 				$r[$pf]=$finfor[$pf];
 			}
 		}
-		//å­˜æ–‡æœ¬
+		//´æÎÄ±¾
 		if($stf)
 		{
 			$newstextfile=$r[$stf];
 			$r[$stf]=GetTxtFieldText($r[$stf]);
-			DelTxtFieldText($newstextfile);//åˆ é™¤æ–‡ä»¶
+			DelTxtFieldText($newstextfile);//É¾³ıÎÄ¼ş
 		}
-		//åˆ é™¤ä¿¡æ¯æ–‡ä»¶
+		//É¾³ıĞÅÏ¢ÎÄ¼ş
 		if($add['delhtml']!=1&&$delckinfo!=2)
 		{
 			DelNewsFile($r[filename],$r[newspath],$r[classid],$r[$pf],$r[groupid]);
 		}
-		//åˆ é™¤è¡¨ä¿¡æ¯
+		//É¾³ı±íĞÅÏ¢
 		$empire->query("delete from {$dbtbpre}ecms_".$tbname."_index where id='$r[id]'");
 		$empire->query("delete from ".$infotb." where id='$r[id]'");
 		$empire->query("delete from ".$infodatatb." where id='$r[id]'");
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		AddClassInfos($r['classid'],'-1','-1',($delckinfo==2?0:1));
-		//åˆ é™¤å…¶å®ƒè¡¨è®°å½•å’Œé™„ä»¶
+		//É¾³ıÆäËü±í¼ÇÂ¼ºÍ¸½¼ş
 		DelSingleInfoOtherData($r['classid'],$r['id'],$r,0,0);
 	}
 	if(empty($b))
@@ -2829,7 +2829,7 @@ function DelInfoData($start,$classid,$from,$retype,$startday,$endday,$startid,$e
 			echo $fun_r[DelDataSuccess]."<script>self.location.href='ecmsinfo.php?enews=DelInfoData&start=0&from=".urlencode($from)."&delhtml=$add[delhtml]&dodelcheck=1".$search.hReturnEcmsHashStrHref(0)."';</script>";
 			exit();
 		}
-	    //æ“ä½œæ—¥å¿—
+	    //²Ù×÷ÈÕÖ¾
 	    insert_dolog("");
 		printerror("DelNewsAllSuccess","db/DelData.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -2837,10 +2837,10 @@ function DelInfoData($start,$classid,$from,$retype,$startday,$endday,$startid,$e
 	exit();
 }
 
-//å½’æ¡£ä¿¡æ¯(æ ç›®)
+//¹éµµĞÅÏ¢(À¸Ä¿)
 function InfoToDoc_class($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$class_r;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"class");
 	$classid=(int)$add['classid'];
 	if(!$classid)
@@ -2865,10 +2865,10 @@ function InfoToDoc_class($add,$userid,$username){
 	}
 	if(empty($b))
 	{
-		//æœªå®¡æ ¸ä¿¡æ¯
+		//Î´ÉóºËĞÅÏ¢
 		DoDocCkInfo($cr['tbname'],"classid='$classid' and truetime<$doctime",0);
 		$add['docfrom']=urldecode($add['docfrom']);
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tbname=".$cr['tbname']."&classid=$classid&do=1");
 		printerror("InfoToDocSuccess",$add['docfrom']);
 	}
@@ -2876,10 +2876,10 @@ function InfoToDoc_class($add,$userid,$username){
 	exit();
 }
 
-//å½’æ¡£ä¿¡æ¯(æŒ‰æ¡ä»¶æ‰¹é‡)
+//¹éµµĞÅÏ¢(°´Ìõ¼şÅúÁ¿)
 function InfoToDoc($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$class_r;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"infodoc");
 	$tbname=RepPostVar($add['tbname']);
 	if(empty($tbname))
@@ -2892,14 +2892,14 @@ function InfoToDoc($add,$userid,$username){
 		$selecttbname=$tbname.'_doc';
 	}
 	$search="&retype=$add[retype]";
-	if($add['retype']==0)//æŒ‰å¤©æ•°å½’æ¡£
+	if($add['retype']==0)//°´ÌìÊı¹éµµ
 	{
-		if($add['doing']==1)//è¿˜åŸ
+		if($add['doing']==1)//»¹Ô­
 		{
 			$doctime=(int)$add['doctime1'];
 			$dx=">";
 		}
-		else//å½’æ¡£
+		else//¹éµµ
 		{
 			$doctime=(int)$add['doctime'];
 			$dx="<";
@@ -2913,7 +2913,7 @@ function InfoToDoc($add,$userid,$username){
 		$log="doctime=$doctime";
 		$search.="&doctime=$add[doctime]&doctime1=$add[doctime1]";
 	}
-	elseif($add['retype']==1)//æŒ‰æ—¶é—´å½’æ¡£
+	elseif($add['retype']==1)//°´Ê±¼ä¹éµµ
 	{
 		$startday=RepPostVar($add['startday']);
 		$endday=RepPostVar($add['endday']);
@@ -2929,7 +2929,7 @@ function InfoToDoc($add,$userid,$username){
 		$log="startday=$startday&endday=$endday";
 		$search.="&startday=$add[startday]&endday=$add[endday]";
 	}
-	else//æŒ‰IDå½’æ¡£
+	else//°´ID¹éµµ
 	{
 		$startid=(int)$add['startid'];
 		$endid=(int)$add['endid'];
@@ -2945,7 +2945,7 @@ function InfoToDoc($add,$userid,$username){
 		$log="startid=$startid&endid=$endid";
 		$search.="&startid=$add[startid]&endid=$add[endid]";
 	}
-	//æ ç›®
+	//À¸Ä¿
 	$classid=$add['classid'];
 	$count=count($classid);
 	if($count)
@@ -2975,10 +2975,10 @@ function InfoToDoc($add,$userid,$username){
 	}
 	if(empty($b))
 	{
-		//æœªå®¡æ ¸ä¿¡æ¯å½’æ¡£
+		//Î´ÉóºËĞÅÏ¢¹éµµ
 		DoDocCkInfo($tbname,$where,$add['doing']);
 		$add['docfrom']=urldecode($add['docfrom']);
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tbname=".$tbname.$log."&doing=$add[doing]&do=2");
 		printerror("InfoToDocSuccess",$add['docfrom']);
 	}
@@ -2986,13 +2986,13 @@ function InfoToDoc($add,$userid,$username){
 	exit();
 }
 
-//å½’æ¡£ä¿¡æ¯(é€‰æ‹©ä¿¡æ¯)
+//¹éµµĞÅÏ¢(Ñ¡ÔñĞÅÏ¢)
 function InfoToDoc_info($add,$userid,$username){
 	global $empire,$dbtbpre,$class_r;
 	$classid=(int)$add['classid'];
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	$doselfinfo=CheckLevel($userid,$username,$classid,"news");
-	//æƒé™
+	//È¨ÏŞ
 	if(!$doselfinfo['dodocinfo'])
 	{
 		printerror("NotDocInfoLevel","history.go(-1)");
@@ -3028,89 +3028,89 @@ function InfoToDoc_info($add,$userid,$username){
 	{
 		DoDocInfo($tbname,$r,$add['doing']);
 	}
-	//æœªå®¡æ ¸ä¿¡æ¯å½’æ¡£
+	//Î´ÉóºËĞÅÏ¢¹éµµ
 	DoDocCkInfo($tbname,$where,$add['doing']);
 	$add['docfrom']=urldecode($add['docfrom']);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("tbname=".$tbname."&doing=$add[doing]&do=0");
 	printerror("InfoToDocSuccess",$add['docfrom']);
 }
 
-//å¤„ç†å½’æ¡£
+//´¦Àí¹éµµ
 function DoDocInfo($tb,$r,$ecms=0){
 	global $empire,$dbtbpre,$class_r,$emod_r;
-	if($ecms==1)//è¿˜åŸ
+	if($ecms==1)//»¹Ô­
 	{
-		$table=$dbtbpre.'ecms_'.$tb.'_doc_index';	//ç´¢å¼•è¡¨
-		$table1=$dbtbpre.'ecms_'.$tb.'_doc';	//ä¸»è¡¨
-		$table2=$dbtbpre.'ecms_'.$tb.'_doc_data';	//å‰¯è¡¨
-		$ytable=$dbtbpre.'ecms_'.$tb.'_index';	//ç›®æ ‡ç´¢å¼•è¡¨
-		$ytable1=$dbtbpre.'ecms_'.$tb;	//ç›®æ ‡ä¸»è¡¨
-		$ytable2=$dbtbpre.'ecms_'.$tb.'_data_'.$r[stb];	//ç›®æ ‡å‰¯è¡¨
+		$table=$dbtbpre.'ecms_'.$tb.'_doc_index';	//Ë÷Òı±í
+		$table1=$dbtbpre.'ecms_'.$tb.'_doc';	//Ö÷±í
+		$table2=$dbtbpre.'ecms_'.$tb.'_doc_data';	//¸±±í
+		$ytable=$dbtbpre.'ecms_'.$tb.'_index';	//Ä¿±êË÷Òı±í
+		$ytable1=$dbtbpre.'ecms_'.$tb;	//Ä¿±êÖ÷±í
+		$ytable2=$dbtbpre.'ecms_'.$tb.'_data_'.$r[stb];	//Ä¿±ê¸±±í
 	}
-	else//å½’æ¡£
+	else//¹éµµ
 	{
-		$table=$dbtbpre.'ecms_'.$tb.'_index';	//ç´¢å¼•è¡¨
-		$table1=$dbtbpre.'ecms_'.$tb;	//ä¸»è¡¨
-		$table2=$dbtbpre.'ecms_'.$tb.'_data_'.$r[stb];	//å‰¯è¡¨
-		$ytable=$dbtbpre.'ecms_'.$tb.'_doc_index';	//ç›®æ ‡ç´¢å¼•è¡¨
-		$ytable1=$dbtbpre.'ecms_'.$tb.'_doc';	//ç›®æ ‡ä¸»è¡¨
-		$ytable2=$dbtbpre.'ecms_'.$tb.'_doc_data';	//ç›®æ ‡å‰¯è¡¨
+		$table=$dbtbpre.'ecms_'.$tb.'_index';	//Ë÷Òı±í
+		$table1=$dbtbpre.'ecms_'.$tb;	//Ö÷±í
+		$table2=$dbtbpre.'ecms_'.$tb.'_data_'.$r[stb];	//¸±±í
+		$ytable=$dbtbpre.'ecms_'.$tb.'_doc_index';	//Ä¿±êË÷Òı±í
+		$ytable1=$dbtbpre.'ecms_'.$tb.'_doc';	//Ä¿±êÖ÷±í
+		$ytable2=$dbtbpre.'ecms_'.$tb.'_doc_data';	//Ä¿±ê¸±±í
 	}
 	$mid=$class_r[$r[classid]][modid];
-	//ç´¢å¼•è¡¨
+	//Ë÷Òı±í
 	$index_r=$empire->fetch1("select * from ".$table." where id='$r[id]' limit 1");
 	if($index_r['checked']==0)
 	{
 		return '';
 	}
-	//å‰¯è¡¨
+	//¸±±í
 	$fr=$empire->fetch1("select ".ReturnSqlFtextF($mid)." from ".$table2." where id='$r[id]' limit 1");
 	$r=array_merge($r,$fr);
-	$ret_r=ReturnAddF($r,$mid,$userid,$username,10,0,0);//è¿”å›è‡ªå®šä¹‰å­—æ®µ
-	//ç´¢å¼•è¡¨
+	$ret_r=ReturnAddF($r,$mid,$userid,$username,10,0,0);//·µ»Ø×Ô¶¨Òå×Ö¶Î
+	//Ë÷Òı±í
 	$empire->query("insert into ".$ytable."(id,classid,checked,newstime,truetime,lastdotime,havehtml) values('$index_r[id]','$index_r[classid]','$index_r[checked]','$index_r[newstime]','$index_r[truetime]','$index_r[lastdotime]','$index_r[havehtml]');");
-	//ä¸»è¡¨
+	//Ö÷±í
 	$empire->query("replace into ".$ytable1."(id,classid,ttid,onclick,plnum,totaldown,newspath,filename,userid,username,firsttitle,isgood,ispic,istop,isqf,ismember,isurl,truetime,lastdotime,havehtml,groupid,userfen,titlefont,titleurl,stb,fstb,restb,keyboard".$ret_r[fields].") values('$r[id]','$r[classid]','$r[ttid]','$r[onclick]','$r[plnum]','$r[totaldown]','".StripAddsData($r[newspath])."','".StripAddsData($r[filename])."','$r[userid]','".StripAddsData($r[username])."','$r[firsttitle]','$r[isgood]','$r[ispic]','$r[istop]','$r[isqf]','$r[ismember]','$r[isurl]','$r[truetime]','$r[lastdotime]','$r[havehtml]','$r[groupid]','$r[userfen]','".StripAddsData($r[titlefont])."','".StripAddsData($r[titleurl])."','$r[stb]','$r[fstb]','$r[restb]','".StripAddsData($r[keyboard])."'".$ret_r[values].");");
-	//å‰¯è¡¨
+	//¸±±í
 	$empire->query("replace into ".$ytable2."(id,classid,keyid,dokey,newstempid,closepl,haveaddfen,infotags".$ret_r[datafields].") values('$r[id]','$r[classid]','$r[keyid]','$r[dokey]','$r[newstempid]','$r[closepl]','$r[haveaddfen]','".StripAddsData($r[infotags])."'".$ret_r[datavalues].");");
-	//åˆ é™¤
+	//É¾³ı
 	$empire->query("delete from ".$table." where id='$r[id]'");
 	$empire->query("delete from ".$table1." where id='$r[id]'");
 	$empire->query("delete from ".$table2." where id='$r[id]'");
-	//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
-	if($ecms==1)//è¿˜åŸ
+	//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
+	if($ecms==1)//»¹Ô­
 	{
 		AddClassInfos($r['classid'],'+1','+1');
 	}
-	else//å½’æ¡£
+	else//¹éµµ
 	{
 		AddClassInfos($r['classid'],'-1','-1');
 	}
 }
 
-//å¤„ç†å½’æ¡£(æœªå®¡æ ¸ä¿¡æ¯)
+//´¦Àí¹éµµ(Î´ÉóºËĞÅÏ¢)
 function DoDocCkInfo($tb,$where,$ecms=0){
 	global $empire,$dbtbpre,$class_r,$emod_r;
-	if($ecms==1)//è¿˜åŸ
+	if($ecms==1)//»¹Ô­
 	{
-		$table=$dbtbpre.'ecms_'.$tb.'_doc_index';	//ä¸»è¡¨
-		$table1=$dbtbpre.'ecms_'.$tb.'_doc';	//ä¸»è¡¨
-		$table2=$dbtbpre.'ecms_'.$tb.'_doc_data';	//å‰¯è¡¨
-		$ytable=$dbtbpre.'ecms_'.$tb.'_index';	//ç›®æ ‡ä¸»è¡¨
-		$ytable1=$dbtbpre.'ecms_'.$tb.'_check';	//ç›®æ ‡ä¸»è¡¨
-		$ytable2=$dbtbpre.'ecms_'.$tb.'_check_data';	//ç›®æ ‡å‰¯è¡¨
+		$table=$dbtbpre.'ecms_'.$tb.'_doc_index';	//Ö÷±í
+		$table1=$dbtbpre.'ecms_'.$tb.'_doc';	//Ö÷±í
+		$table2=$dbtbpre.'ecms_'.$tb.'_doc_data';	//¸±±í
+		$ytable=$dbtbpre.'ecms_'.$tb.'_index';	//Ä¿±êÖ÷±í
+		$ytable1=$dbtbpre.'ecms_'.$tb.'_check';	//Ä¿±êÖ÷±í
+		$ytable2=$dbtbpre.'ecms_'.$tb.'_check_data';	//Ä¿±ê¸±±í
 	}
-	else//å½’æ¡£
+	else//¹éµµ
 	{
-		$table=$dbtbpre.'ecms_'.$tb.'_index';	//ä¸»è¡¨
-		$table1=$dbtbpre.'ecms_'.$tb.'_check';	//ä¸»è¡¨
-		$table2=$dbtbpre.'ecms_'.$tb.'_check_data';	//å‰¯è¡¨
-		$ytable=$dbtbpre.'ecms_'.$tb.'_doc_index';	//ç›®æ ‡ä¸»è¡¨
-		$ytable1=$dbtbpre.'ecms_'.$tb.'_doc';	//ç›®æ ‡ä¸»è¡¨
-		$ytable2=$dbtbpre.'ecms_'.$tb.'_doc_data';	//ç›®æ ‡å‰¯è¡¨
+		$table=$dbtbpre.'ecms_'.$tb.'_index';	//Ö÷±í
+		$table1=$dbtbpre.'ecms_'.$tb.'_check';	//Ö÷±í
+		$table2=$dbtbpre.'ecms_'.$tb.'_check_data';	//¸±±í
+		$ytable=$dbtbpre.'ecms_'.$tb.'_doc_index';	//Ä¿±êÖ÷±í
+		$ytable1=$dbtbpre.'ecms_'.$tb.'_doc';	//Ä¿±êÖ÷±í
+		$ytable2=$dbtbpre.'ecms_'.$tb.'_doc_data';	//Ä¿±ê¸±±í
 	}
-	//è½¬æ¢å‰¯è¡¨
+	//×ª»»¸±±í
 	$fids='';
 	$dh='';
 	$sql=$empire->query("select id,classid from ".$table1." where ".$where);
@@ -3118,12 +3118,12 @@ function DoDocCkInfo($tb,$where,$ecms=0){
 	{
 		$fids.=$dh.$r['id'];
 		$dh=',';
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
-		if($ecms==1)//è¿˜åŸ
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
+		if($ecms==1)//»¹Ô­
 		{
 			AddClassInfos($r['classid'],'+1','',0);
 		}
-		else//å½’æ¡£
+		else//¹éµµ
 		{
 			AddClassInfos($r['classid'],'-1','',0);
 		}
@@ -3135,48 +3135,48 @@ function DoDocCkInfo($tb,$where,$ecms=0){
 	$empire->query("replace into ".$ytable." select * from ".$table." where ".$where);
 	$empire->query("replace into ".$ytable1." select * from ".$table1." where ".$where);
 	$empire->query("replace into ".$ytable2." select * from ".$table2." where id in (".$fids.")");
-	//åˆ é™¤
+	//É¾³ı
 	$empire->query("delete from ".$table." where ".$where);
 	$empire->query("delete from ".$table1." where ".$where);
 	$empire->query("delete from ".$table2." where id in (".$fids.")");
 }
 
-//å‘é€ä¿¡æ¯æ“ä½œé€šçŸ¥
+//·¢ËÍĞÅÏ¢²Ù×÷Í¨Öª
 function DoInfoSendNotice($userid,$username,$to_userid,$to_username,$causetext,$infor,$ecms=0){
 	global $empire,$dbtbpre,$class_r;
 	if(!$infor['ismember'])
 	{
 		return '';
 	}
-	//æ“ä½œè€…
+	//²Ù×÷Õß
 	$user_r=$empire->fetch1("select wname from {$dbtbpre}enewsuser where userid='$userid'");
-	$dousername=$user_r['wname']?$user_r['wname']:'ç®¡ç†å‘˜';
-	//æ“ä½œç±»å‹
+	$dousername=$user_r['wname']?$user_r['wname']:'¹ÜÀíÔ±';
+	//²Ù×÷ÀàĞÍ
 	if($ecms==1)
 	{
-		$doing='åˆ é™¤';
-		$title='æ‚¨çš„ä¿¡æ¯è¢«åˆ é™¤';
+		$doing='É¾³ı';
+		$title='ÄúµÄĞÅÏ¢±»É¾³ı';
 	}
 	elseif($ecms==2)
 	{
-		$doing='å®¡æ ¸é€šè¿‡';
-		$title='æ‚¨çš„ä¿¡æ¯å·²å®¡æ ¸é€šè¿‡';
+		$doing='ÉóºËÍ¨¹ı';
+		$title='ÄúµÄĞÅÏ¢ÒÑÉóºËÍ¨¹ı';
 	}
 	elseif($ecms==3)
 	{
-		$doing='å–æ¶ˆå®¡æ ¸';
-		$title='æ‚¨çš„ä¿¡æ¯è¢«å–æ¶ˆå®¡æ ¸';
+		$doing='È¡ÏûÉóºË';
+		$title='ÄúµÄĞÅÏ¢±»È¡ÏûÉóºË';
 	}
 	elseif($ecms==4)
 	{
-		$doing='è½¬ç§»';
-		$title='æ‚¨çš„ä¿¡æ¯è¢«è½¬ç§»';
+		$doing='×ªÒÆ';
+		$title='ÄúµÄĞÅÏ¢±»×ªÒÆ';
 	}
-	//æ“ä½œä¿¡æ¯
+	//²Ù×÷ĞÅÏ¢
 	$title=RepPostStr($title);
 	$causetext=RepPostStr($causetext);
 	$dotime=date("Y-m-d H:i:s");
-	//ä¿¡æ¯å†…å®¹
+	//ĞÅÏ¢ÄÚÈİ
 	$titleurl=sys_ReturnBqTitleLink($infor);
 	$infotitle=$infor['title'];
 	$infotime=date("Y-m-d H:i:s",$infor[truetime]);
@@ -3186,13 +3186,13 @@ function DoInfoSendNotice($userid,$username,$to_userid,$to_username,$causetext,$
 	$dousername=RepPostVar($dousername);
 	$to_username=RepPostVar($to_username);
 
-	$msgtext="æ‚¨å‘å¸ƒçš„ä¿¡æ¯è¢« <strong>$dousername</strong> æ‰§è¡Œ <strong>$doing</strong> æ“ä½œ<br>
+	$msgtext="Äú·¢²¼µÄĞÅÏ¢±» <strong>$dousername</strong> Ö´ĞĞ <strong>$doing</strong> ²Ù×÷<br>
 <br>
-<strong>ä¿¡æ¯æ ‡é¢˜ï¼š</strong><a href='".$titleurl."'>".$infotitle."</a><br>
-<strong>å‘å¸ƒæ—¶é—´ï¼š</strong>".$infotime."<br>
-<strong>æ‰€åœ¨æ ç›®ï¼š</strong><a href='".$classurl."'>".$classname."</a><br>
-<strong>æ“ä½œæ—¶é—´ï¼š</strong>$dotime<br>
-<strong>æ“ä½œç†ç”±ï¼š</strong>".$causetext."<br>";
+<strong>ĞÅÏ¢±êÌâ£º</strong><a href='".$titleurl."'>".$infotitle."</a><br>
+<strong>·¢²¼Ê±¼ä£º</strong>".$infotime."<br>
+<strong>ËùÔÚÀ¸Ä¿£º</strong><a href='".$classurl."'>".$classname."</a><br>
+<strong>²Ù×÷Ê±¼ä£º</strong>$dotime<br>
+<strong>²Ù×÷ÀíÓÉ£º</strong>".$causetext."<br>";
 	
 	eSendMsg(addslashes($title),addslashes($msgtext),$to_username,0,'',1,1,$isadmin);
 }

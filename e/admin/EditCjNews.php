@@ -6,7 +6,7 @@ require("../class/functions.php");
 require("../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -19,7 +19,7 @@ $ecms_hashur=hReturnEcmsHashStrAll();
 $classid=(int)$_GET['classid'];
 $id=(int)$_GET['id'];
 $enews=ehtmlspecialchars($_GET['enews']);
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"cj");
 if($_GET['from'])
 {
@@ -29,7 +29,7 @@ else
 {
 	$listclasslink="ListInfoClass.php";
 }
-//èŠ‚ç‚¹åç§°
+//½ÚµãÃû³Æ
 $cr=$empire->fetch1("select classname,newsclassid,classid,tbname from {$dbtbpre}enewsinfoclass where classid='$classid'");
 if(!$cr[classid])
 {
@@ -40,17 +40,17 @@ if(empty($r[id]))
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-//æ¨¡å‹
+//Ä£ĞÍ
 $modid=(int)$class_r[$cr[newsclassid]][modid];
 $enter=$emod_r[$modid]['enter'];
-//ä¼šå‘˜ç»„
+//»áÔ±×é
 $sql1=$empire->query("select * from {$dbtbpre}enewsmembergroup order by level");
 while($l_r=$empire->fetch($sql1))
 {
 	$ygroup.="<option value=".$l_r[groupid].">".$l_r[groupname]."</option>";
 }
-//----------------ç‰¹æ®Šæ¨¡å‹----------------
-//ä¸‹è½½åœ°å€å‰ç¼€
+//----------------ÌØÊâÄ£ĞÍ----------------
+//ÏÂÔØµØÖ·Ç°×º
 if(strstr($enter,',downpath,')||strstr($enter,',onlinepath,'))
 {
 	$downurlqz="";
@@ -62,27 +62,27 @@ if(strstr($enter,',downpath,')||strstr($enter,',onlinepath,'))
 		$newdownqz.="<option value='".$downr[urlid]."'>".$downr[urlname]."</option>";
 	}
 }
-//htmlç¼–è¾‘å™¨
+//html±à¼­Æ÷
 $loadeditorjs='';
 if($emod_r[$modid]['editorf']&&$emod_r[$modid]['editorf']!=',')
 {
 	include('ecmseditor/eshoweditor.php');
 	$loadeditorjs=ECMS_ShowEditorJS('ecmseditor/infoeditor/');
 }
-//æ ç›®åç§°
+//À¸Ä¿Ãû³Æ
 $newsclassid=$cr[newsclassid];
 $newsclassname=$class_r[$newsclassid][classname];
 $newsbclassname=$class_r[$class_r[$newsclassid][bclassid]][classname];
 $newsclass="<font color=red>".$newsbclassname."&nbsp;>&nbsp;".$newsclassname."</font>";
-//è¡¨å•æ–‡ä»¶
+//±íµ¥ÎÄ¼ş
 $cjfile="../data/html/editcj".$modid.".php";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<title>ä¿®æ”¹é‡‡é›†ä¿¡æ¯</title>
+<title>ĞŞ¸Ä²É¼¯ĞÅÏ¢</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function doSpChangeFile(name,url,filesize,filetype,idvar){
@@ -109,7 +109,7 @@ function SpOpenChFile(type,field){
 
 function bs(){
 	var f=document.add;
-	if(f.title.value.length==0){alert("æ ‡é¢˜è¿˜æ²¡å†™");f.title.focus();return false;}
+	if(f.title.value.length==0){alert("±êÌâ»¹Ã»Ğ´");f.title.focus();return false;}
 }
 function foreColor(){
   if(!Error())	return;
@@ -132,13 +132,13 @@ function FieldChangeColor(obj){
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
   <tr> 
-    <td>ä½ç½®ï¼šé‡‡é›† &gt; <a href="<?=$listclasslink?><?=$ecms_hashur['whehref']?>">ç®¡ç†èŠ‚ç‚¹</a> &gt; <a href="CheckCj.php?classid=<?=$classid?>&from=<?=ehtmlspecialchars($_GET['from'])?><?=$ecms_hashur['ehref']?>">å®¡æ ¸é‡‡é›†</a> 
-      &gt; èŠ‚ç‚¹åç§°ï¼š 
+    <td>Î»ÖÃ£º²É¼¯ &gt; <a href="<?=$listclasslink?><?=$ecms_hashur['whehref']?>">¹ÜÀí½Úµã</a> &gt; <a href="CheckCj.php?classid=<?=$classid?>&from=<?=ehtmlspecialchars($_GET['from'])?><?=$ecms_hashur['ehref']?>">ÉóºË²É¼¯</a> 
+      &gt; ½ÚµãÃû³Æ£º 
       <?=$cr[classname]?>
-      &gt; ä¿®æ”¹é‡‡é›†ä¿¡æ¯</td>
+      &gt; ĞŞ¸Ä²É¼¯ĞÅÏ¢</td>
   </tr>
   <tr>
-    <td>å…¥åº“æ ç›®ï¼š 
+    <td>Èë¿âÀ¸Ä¿£º 
       <?=$newsclass?>
     </td>
   </tr>
@@ -147,7 +147,7 @@ function FieldChangeColor(obj){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="17%" height="25">ä¿®æ”¹é‡‡é›†ä¿¡æ¯</td>
+      <td width="17%" height="25">ĞŞ¸Ä²É¼¯ĞÅÏ¢</td>
       <td width="83%" height="25"><input type=hidden name=from value="<?=ehtmlspecialchars($_GET['from'])?>">
 	  <input name="id" type="hidden" value="<?=$id?>"> 
         <input name="classid" type="hidden" value="<?=$classid?>">
@@ -155,13 +155,13 @@ function FieldChangeColor(obj){
         <input name="enews" type="hidden" value="<?=$enews?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">é‡‡é›†åœ°å€ï¼š</td>
+      <td height="25">²É¼¯µØÖ·£º</td>
       <td height="25"><a href="<?=$r[oldurl]?>" target="_blank">
         <?=$r[oldurl]?>
         </a></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">é‡‡é›†æ—¶é—´ï¼š</td>
+      <td height="25">²É¼¯Ê±¼ä£º</td>
       <td height="25">
         <?=$r[tmptime]?>
       </td>
@@ -171,7 +171,7 @@ function FieldChangeColor(obj){
 	?>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="ä¿®æ”¹"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="ĞŞ¸Ä"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

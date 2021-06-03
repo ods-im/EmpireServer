@@ -7,7 +7,7 @@ require LoadLang("pub/fun.php");
 require("../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,23 +16,23 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"cj");
 
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $add="";
 $search="";
 $search.=$ecms_hashur['ehref'];
-//æœç´¢
+//ËÑË÷
 if($_GET['sear'])
 {
 	$search.="&sear=1";
-	//å…³é”®å­—
+	//¹Ø¼ü×Ö
 	$keyboard=RepPostVar2($_GET['keyboard']);
 	if($keyboard)
 	{
@@ -58,7 +58,7 @@ if($_GET['sear'])
 }
 $totalquery="select count(*) as total from {$dbtbpre}enewsinfoclass".$add;
 $query="select * from {$dbtbpre}enewsinfoclass".$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by classid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -66,9 +66,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†èŠ‚ç‚¹</title>
+<title>¹ÜÀí½Úµã</title>
 <script>
 function CheckAll(form)
   {
@@ -85,7 +85,7 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
   <tr> 
-    <td width="50%">ä½ç½®ï¼šé‡‡é›† &gt; <a href="ListPageInfoClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†èŠ‚ç‚¹</a></td>
+    <td width="50%">Î»ÖÃ£º²É¼¯ &gt; <a href="ListPageInfoClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀí½Úµã</a></td>
     <td><div align="right"> </div></td>
   </tr>
 </table>
@@ -93,53 +93,53 @@ function CheckAll(form)
   <form name="searchinfoclass" method="GET" action="ListPageInfoClass.php">
   <?=$ecms_hashur['eform']?>
     <tr>
-      <td width="50%" class="emenubutton"><input type="button" name="Submit52" value="å¢åŠ èŠ‚ç‚¹" onclick="self.location.href='AddInfoC.php?from=1<?=$ecms_hashur['ehref']?>';">
+      <td width="50%" class="emenubutton"><input type="button" name="Submit52" value="Ôö¼Ó½Úµã" onclick="self.location.href='AddInfoC.php?from=1<?=$ecms_hashur['ehref']?>';">
 	  &nbsp;&nbsp;
-        <input type="button" name="Submit52" value="å¯¼å…¥é‡‡é›†è§„åˆ™" onclick="self.location.href='cj/LoadInCj.php?from=1<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit52" value="µ¼Èë²É¼¯¹æÔò" onclick="self.location.href='cj/LoadInCj.php?from=1<?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-		<input type="button" name="Submit6" value="æ•°æ®æ›´æ–°ä¸­å¿ƒ" onclick="window.open('ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>#ReIfInfoHtml');">
+		<input type="button" name="Submit6" value="Êı¾İ¸üĞÂÖĞĞÄ" onclick="window.open('ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>#ReIfInfoHtml');">
 		</td>
       <td width="50%" height="32">
-<div align="right">æœç´¢: 
+<div align="right">ËÑË÷: 
           <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
           <select name="show" id="show">
-            <option value="0"<?=$show==0?' selected':''?>>ä¸é™</option>
-            <option value="1"<?=$show==1?' selected':''?>>èŠ‚ç‚¹åç§°</option>
-            <option value="2"<?=$show==2?' selected':''?>>å¤‡æ³¨</option>
-            <option value="3"<?=$show==3?' selected':''?>>é‡‡é›†é¡µé¢åœ°å€</option>
+            <option value="0"<?=$show==0?' selected':''?>>²»ÏŞ</option>
+            <option value="1"<?=$show==1?' selected':''?>>½ÚµãÃû³Æ</option>
+            <option value="2"<?=$show==2?' selected':''?>>±¸×¢</option>
+            <option value="3"<?=$show==3?' selected':''?>>²É¼¯Ò³ÃæµØÖ·</option>
           </select>
-          <input type="submit" name="Submit8" value="æœç´¢">
+          <input type="submit" name="Submit8" value="ËÑË÷">
           <input name="sear" type="hidden" id="sear" value="1">
         </div></td>
     </tr>
   </form>
 </table>
-<form name=form1 method=get action="DoCj.php" onsubmit="return confirm('ç¡®è®¤è¦é‡‡é›†?');" target=_blank>
+<form name=form1 method=get action="DoCj.php" onsubmit="return confirm('È·ÈÏÒª²É¼¯?');" target=_blank>
   <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <input type=hidden name=enews value=DoCj>
 	<input type=hidden name=from value=1>
     <tr class="header"> 
       <td width="3%"><div align="center"></div></td>
-      <td width="8%" height="25"> <div align="center">é‡‡é›†</div></td>
-      <td width="27%" height="25"> <div align="center">èŠ‚ç‚¹(ç‚¹å‡»è®¿é—®é‡‡é›†é¡µ)</div></td>
-      <td width="6%" height="25"> <div align="center">é¢„è§ˆ</div></td>
-      <td width="16%" height="25"> <div align="center">ç»‘å®šæ ç›®</div></td>
-      <td width="9%" height="25"> <div align="center">å®¡æ ¸é‡‡é›†</div></td>
-      <td width="24%" height="25"> <div align="center">æ“ä½œ</div></td>
+      <td width="8%" height="25"> <div align="center">²É¼¯</div></td>
+      <td width="27%" height="25"> <div align="center">½Úµã(µã»÷·ÃÎÊ²É¼¯Ò³)</div></td>
+      <td width="6%" height="25"> <div align="center">Ô¤ÀÀ</div></td>
+      <td width="16%" height="25"> <div align="center">°ó¶¨À¸Ä¿</div></td>
+      <td width="9%" height="25"> <div align="center">ÉóºË²É¼¯</div></td>
+      <td width="24%" height="25"> <div align="center">²Ù×÷</div></td>
     </tr>
     <?php
 	while($r=$empire->fetch($sql))
 	{
-		//é‡‡é›†é¡µé¢
+		//²É¼¯Ò³Ãæ
 		$pager=explode("\r\n",$r[infourl]);
 	    $infourl=$pager[0];
 		if($r[newsclassid])
 		{
-			$lastcjtime=!$r['lasttime']?'ä»æœªé‡‡é›†':date("Y-m-d H:i:s",$r['lasttime']);
-			$cj="<a href='DoCj.php?enews=CjUrl&classid[]=".$r[classid]."&from=1".$ecms_hashur['href']."' title='æœ€åé‡‡é›†æ—¶é—´ï¼š".$lastcjtime."' target=_blank><u>".$fun_r['StartCj']."</u></a>";
+			$lastcjtime=!$r['lasttime']?'´ÓÎ´²É¼¯':date("Y-m-d H:i:s",$r['lasttime']);
+			$cj="<a href='DoCj.php?enews=CjUrl&classid[]=".$r[classid]."&from=1".$ecms_hashur['href']."' title='×îºó²É¼¯Ê±¼ä£º".$lastcjtime."' target=_blank><u>".$fun_r['StartCj']."</u></a>";
 			$emptydb="&nbsp;[<a href='ListInfoClass.php?enews=EmptyCj&classid=$r[classid]&from=1".$ecms_hashur['href']."' onclick=\"return confirm('".$fun_r['CheckEmptyCjRecord']."');\">".$fun_r['EmptyCjRecord']."</a>]";
-			$loadoutcj="&nbsp;[<a href=ecmscj.php?enews=LoadOutCj&classid=$r[classid]&from=1".$ecms_hashur['href']." onclick=\"return confirm('ç¡®è®¤è¦å¯¼å‡º?');\">å¯¼å‡º</a>]";
+			$loadoutcj="&nbsp;[<a href=ecmscj.php?enews=LoadOutCj&classid=$r[classid]&from=1".$ecms_hashur['href']." onclick=\"return confirm('È·ÈÏÒªµ¼³ö?');\">µ¼³ö</a>]";
 			$checkbox="<input type=checkbox name=classid[] value='$r[classid]' onClick=\"if(this.checked){c".$r[classid].".style.backgroundColor='#DBEAF5';}else{c".$r[classid].".style.backgroundColor='#ffffff';}\">";
 		}
 		else
@@ -148,7 +148,7 @@ function CheckAll(form)
 			$emptydb="";
 			$checkbox="";
 		}
-		//æ ç›®é“¾æ¥
+		//À¸Ä¿Á´½Ó
 		$getcurlr['classid']=$r[newsclassid];
 		$classurl=sys_ReturnBqClassname($getcurlr,9);
 	?>
@@ -182,7 +182,7 @@ function CheckAll(form)
       <td> <div align="center"> 
           <input type=checkbox name=chkall value=on onClick="CheckAll(this.form)">
         </div></td>
-      <td height="25" colspan="6"> <input type="submit" name="Submit" value="æ‰¹é‡é‡‡é›†èŠ‚ç‚¹"></td>
+      <td height="25" colspan="6"> <input type="submit" name="Submit" value="ÅúÁ¿²É¼¯½Úµã"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td>&nbsp;</td>
@@ -192,7 +192,7 @@ function CheckAll(form)
     </tr>
     <tr bgcolor="#FFFFFF">
       <td>&nbsp;</td>
-      <td height="25" colspan="6"><font color="#666666">å¤‡æ³¨ï¼šå¼¹å‡ºé‡‡é›†çª—å£ï¼Œè¯·æŒ‰ä½&quot;Shift&quot;+ç‚¹å‡»â€å¼€å§‹é‡‡é›†&quot;</font></td>
+      <td height="25" colspan="6"><font color="#666666">±¸×¢£ºµ¯³ö²É¼¯´°¿Ú£¬Çë°´×¡&quot;Shift&quot;+µã»÷£¢¿ªÊ¼²É¼¯&quot;</font></td>
     </tr>
   </table>
   </form>

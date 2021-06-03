@@ -7,7 +7,7 @@ require("../../class/com_functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"feedback");
 $enews=$_GET['enews'];
 if(empty($enews))
@@ -43,14 +43,14 @@ include "../".LoadLang("pub/fun.php");
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $add='';
 $and=' where ';
 $search='';
 $search.=$ecms_hashur['ehref'];
-//é€‰æ‹©åˆ†ç±»
+//Ñ¡Ôñ·ÖÀà
 $bid=(int)$_GET['bid'];
 $bidr=ReturnAdminFeedbackClass($bid,$logininid,$loginin);
 if($bid)
@@ -64,22 +64,22 @@ elseif($bidr['bids']&&$bidr['allbid']==0)
 	$add.=$and.'bid in ('.$bidr['bids'].')';
 	$and=' and ';
 }
-//æ˜¯å¦é˜…è¯»
+//ÊÇ·ñÔÄ¶Á
 $haveread=(int)$_GET['haveread'];
 if($haveread)
 {
-	if($haveread==1)//å·²è¯»
+	if($haveread==1)//ÒÑ¶Á
 	{
 		$add.=$and."haveread=1";
 	}
-	else//æœªè¯»
+	else//Î´¶Á
 	{
 		$add.=$and."haveread=0";
 	}
 	$and=' and ';
 	$search.="&haveread=$haveread";
 }
-//æœç´¢
+//ËÑË÷
 $sear=(int)$_GET['sear'];
 if($sear)
 {
@@ -87,27 +87,27 @@ if($sear)
 	$show=(int)$_GET['show'];
 	if($keyboard)
 	{
-		if($show==1)//æ ‡é¢˜
+		if($show==1)//±êÌâ
 		{
 			$add.=$and."title like '%$keyboard%'";
 		}
-		elseif($show==2)//åé¦ˆå†…å®¹
+		elseif($show==2)//·´À¡ÄÚÈİ
 		{
 			$add.=$and."saytext like '%$keyboard%'";
 		}
-		elseif($show==3)//å§“å
+		elseif($show==3)//ĞÕÃû
 		{
 			$add.=$and."name like '%$keyboard%'";
 		}
-		elseif($show==4)//å•ä½åç§°
+		elseif($show==4)//µ¥Î»Ãû³Æ
 		{
 			$add.=$and."company like '%$keyboard%'";
 		}
-		elseif($show==5)//é‚®ç®±
+		elseif($show==5)//ÓÊÏä
 		{
 			$add.=$and."email like '%$keyboard%'";
 		}
-		else//ç•™è¨€IP
+		else//ÁôÑÔIP
 		{
 			$add.=$and."ip like '%$keyboard%'";
 		}
@@ -118,17 +118,17 @@ if($sear)
 $gbclass=$bidr['selects'];
 $query="select id,bid,title,saytime,userid,username,haveread,eipport from {$dbtbpre}enewsfeedback".$add;
 $totalquery="select count(*) as total from {$dbtbpre}enewsfeedback".$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by id desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-$url="<a href=feedback.php".$ecms_hashur['whehref'].">ç®¡ç†ä¿¡æ¯åé¦ˆ</a>";
+$url="<a href=feedback.php".$ecms_hashur['whehref'].">¹ÜÀíĞÅÏ¢·´À¡</a>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ä¿¡æ¯åé¦ˆ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíĞÅÏ¢·´À¡</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -146,44 +146,44 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton"> 
-        <input type="button" name="Submit5" value="ç®¡ç†åé¦ˆåˆ†ç±»" onclick="self.location.href='FeedbackClass.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀí·´À¡·ÖÀà" onclick="self.location.href='FeedbackClass.php<?=$ecms_hashur['whehref']?>';">
         &nbsp;&nbsp; 
-        <input type="button" name="Submit52" value="ç®¡ç†åé¦ˆå­—æ®µ" onclick="self.location.href='ListFeedbackF.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit52" value="¹ÜÀí·´À¡×Ö¶Î" onclick="self.location.href='ListFeedbackF.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
     <td width="35%"><div align="center">
-        <p align="left">é€‰æ‹©åé¦ˆåˆ†ç±»: 
+        <p align="left">Ñ¡Ôñ·´À¡·ÖÀà: 
           <select name="bid" id="bid" onchange=window.location='feedback.php?<?=$ecms_hashur['ehref']?>&bid='+this.options[this.selectedIndex].value>
-            <option value="0">æ˜¾ç¤ºå…¨éƒ¨åé¦ˆ</option>
+            <option value="0">ÏÔÊ¾È«²¿·´À¡</option>
             <?=$gbclass?>
           </select>
         </p>
         </div></td>
 		<form name="searchform" method="GET" action="feedback.php">
 		<?=$ecms_hashur['eform']?>
-    <td width="65%"><div align="right">æœç´¢ï¼š
+    <td width="65%"><div align="right">ËÑË÷£º
         <select name="show" id="show">
-          <option value="1"<?=$show==1?' selected':''?>>æ ‡é¢˜</option>
-          <option value="2"<?=$show==2?' selected':''?>>åé¦ˆå†…å®¹</option>
-		  <option value="3"<?=$show==3?' selected':''?>>å§“å</option>
-		  <option value="4"<?=$show==4?' selected':''?>>å•ä½åç§°</option>
-          <option value="5"<?=$show==5?' selected':''?>>é‚®ç®±</option>
-          <option value="6"<?=$show==6?' selected':''?>>IPåœ°å€</option>
+          <option value="1"<?=$show==1?' selected':''?>>±êÌâ</option>
+          <option value="2"<?=$show==2?' selected':''?>>·´À¡ÄÚÈİ</option>
+		  <option value="3"<?=$show==3?' selected':''?>>ĞÕÃû</option>
+		  <option value="4"<?=$show==4?' selected':''?>>µ¥Î»Ãû³Æ</option>
+          <option value="5"<?=$show==5?' selected':''?>>ÓÊÏä</option>
+          <option value="6"<?=$show==6?' selected':''?>>IPµØÖ·</option>
         </select>
         <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
         <select name="haveread" id="haveread">
-          <option value="0"<?=$haveread==0?' selected':''?>>ä¸é™</option>
-          <option value="1"<?=$haveread==1?' selected':''?>>å·²è¯»</option>
-          <option value="2"<?=$haveread==2?' selected':''?>>æœªè¯»</option>
+          <option value="0"<?=$haveread==0?' selected':''?>>²»ÏŞ</option>
+          <option value="1"<?=$haveread==1?' selected':''?>>ÒÑ¶Á</option>
+          <option value="2"<?=$haveread==2?' selected':''?>>Î´¶Á</option>
         </select>
-        <input type="submit" name="Submit3" value="æœç´¢">
+        <input type="submit" name="Submit3" value="ËÑË÷">
         <input name="bid" type="hidden" id="bid" value="<?=$bid?>">
         <input name="sear" type="hidden" id="sear" value="1">
 &nbsp;&nbsp;
@@ -192,21 +192,21 @@ function CheckAll(form)
 	  </form>
   </tr>
 </table>
-<form name="form1" method="post" action="feedback.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+<form name="form1" method="post" action="feedback.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class=tableborder>
   <?=$ecms_hashur['form']?>
     <tr class=header> 
       <td width="7%" height="23"><div align="center">ID</div></td>
-      <td width="43%" height="23"><div align="center">æ ‡é¢˜(ç‚¹å‡»æŸ¥çœ‹)</div></td>
-      <td width="20%" height="23"><div align="center">æ‰€å±åˆ†ç±»</div></td>
-      <td width="18%" height="23"><div align="center">å‘å¸ƒæ—¶é—´</div></td>
-      <td width="12%" height="23"><div align="center">æ“ä½œ</div></td>
+      <td width="43%" height="23"><div align="center">±êÌâ(µã»÷²é¿´)</div></td>
+      <td width="20%" height="23"><div align="center">ËùÊô·ÖÀà</div></td>
+      <td width="18%" height="23"><div align="center">·¢²¼Ê±¼ä</div></td>
+      <td width="12%" height="23"><div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
   {
   	$br=$empire->fetch1("select bname from {$dbtbpre}enewsfeedbackclass where bid='$r[bid]'");
-  	$username="æ¸¸å®¢";
+  	$username="ÓÎ¿Í";
   	if($r['userid'])
   	{
     	$username="<a href='../member/AddMember.php?enews=EditMember&userid=".$r['userid'].$ecms_hashur['ehref']."' target=_blank>".$r['username']."</a>";
@@ -232,7 +232,7 @@ function CheckAll(form)
       <td height="25"><div align="center"> 
           <?=$r[saytime]?>
         </div></td>
-      <td height="25"><div align="center">[<a href="feedback.php?enews=DelFeedback&id=<?=$r[id]?>&bid=<?=$bid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a> 
+      <td height="25"><div align="center">[<a href="feedback.php?enews=DelFeedback&id=<?=$r[id]?>&bid=<?=$bid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a> 
           <input name="id[]" type="checkbox" id="id[]" value="<?=$r[id]?>">
           ]</div></td>
     </tr>
@@ -242,14 +242,14 @@ function CheckAll(form)
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="5">&nbsp; 
         <?=$returnpage?>
-        &nbsp;&nbsp;&nbsp; <input type="submit" name="Submit" value="æ‰¹é‡åˆ é™¤"> <input name="bid" type="hidden" id="bid" value="<?=$bid?>"> 
+        &nbsp;&nbsp;&nbsp; <input type="submit" name="Submit" value="ÅúÁ¿É¾³ı"> <input name="bid" type="hidden" id="bid" value="<?=$bid?>"> 
         <input name="enews" type="hidden" id="enews" value="DelFeedback_all"> 
         &nbsp;&nbsp;
         <input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
-        å…¨é€‰</td>
+        È«Ñ¡</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25" colspan="5">è¯´æ˜ï¼šæœªè¯»ä¿¡æ¯æ ‡é¢˜ä¸ºç²—ä½“å­—ã€‚</td>
+      <td height="25" colspan="5">ËµÃ÷£ºÎ´¶ÁĞÅÏ¢±êÌâÎª´ÖÌå×Ö¡£</td>
     </tr>
   </table>
 </form>

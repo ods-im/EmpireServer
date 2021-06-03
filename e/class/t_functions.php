@@ -6,17 +6,17 @@ if(!defined('InEmpireCMS'))
 define('InEmpireCMSTfun',TRUE);
 require_once(ECMS_PATH."e/class/userfun.php");
 
-//åˆ—è¡¨æ¨¡æ¿åˆ†é¡µå‡½æ•°
+//ÁĞ±íÄ£°å·ÖÒ³º¯Êı
 function sys_ShowListPage($num,$pagenum,$dolink,$dotype,$page,$lencord,$ok,$search="",$add){
 	global $fun_r;
-	//æ–‡ä»¶å
+	//ÎÄ¼şÃû
 	if(empty($add['dofile']))
 	{
 		$add['dofile']='index';
 	}
-	//é™æ€é¡µæ•°
+	//¾²Ì¬Ò³Êı
 	$repagenum=$add['repagenum'];
-	//é¦–é¡µ
+	//Ê×Ò³
 	if($pagenum<>1)
 	{
 		$pagetop="<a href='".$dolink.$add['dofile'].$dotype."'>".$fun_r['startpage']."</a>&nbsp;&nbsp;";
@@ -25,7 +25,7 @@ function sys_ShowListPage($num,$pagenum,$dolink,$dotype,$page,$lencord,$ok,$sear
 	{
 		$pagetop=$fun_r['startpage']."&nbsp;&nbsp;";
 	}
-	//ä¸Šä¸€é¡µ
+	//ÉÏÒ»Ò³
 	if($pagenum<>1)
 	{
 		$pagepr=$pagenum-1;
@@ -43,7 +43,7 @@ function sys_ShowListPage($num,$pagenum,$dolink,$dotype,$page,$lencord,$ok,$sear
 	{
 		$pagepri=$fun_r['pripage']."&nbsp;&nbsp;";
 	}
-	//ä¸‹ä¸€é¡µ
+	//ÏÂÒ»Ò³
 	if($pagenum<>$page)
 	{
 		$pagenex=$pagenum+1;
@@ -54,7 +54,7 @@ function sys_ShowListPage($num,$pagenum,$dolink,$dotype,$page,$lencord,$ok,$sear
 	{
 		$pagenext=$fun_r['nextpage']."&nbsp;&nbsp;";
 	}
-	//å°¾é¡µ
+	//Î²Ò³
 	if($pagenum==$page)
 	{
 		$pageeof=$fun_r['lastpage'];
@@ -65,7 +65,7 @@ function sys_ShowListPage($num,$pagenum,$dolink,$dotype,$page,$lencord,$ok,$sear
 		$pageeof="<a href='".$lastpagelink."'>".$fun_r['lastpage']."</a>";
 	}
 	$options="";
-	//å–å¾—ä¸‹æ‹‰é¡µç 
+	//È¡µÃÏÂÀ­Ò³Âë
 	if(empty($search))
 	{
 		for($go=1;$go<=$page;$go++)
@@ -89,15 +89,15 @@ function sys_ShowListPage($num,$pagenum,$dolink,$dotype,$page,$lencord,$ok,$sear
 		$options=str_replace("value='".$dolink.$add['dofile'].'_'.$ok.$dotype."'>","value='".$dolink.$add['dofile']."_".$ok.$dotype."' selected>",$search);
 	}
 	$options="<select name=select onchange=\"self.location.href=this.options[this.selectedIndex].value\">".$options."</select>";
-	//åˆ†é¡µ
+	//·ÖÒ³
 	$pagelink=$pagetop.$pagepri.$pagenext.$pageeof;
-	//æ›¿æ¢æ¨¡æ¿å˜é‡
+	//Ìæ»»Ä£°å±äÁ¿
 	$pager['showpage']=ReturnListpageStr($pagenum,$page,$lencord,$num,$pagelink,$options);
 	$pager['option']=$myoptions;
 	return $pager;
 }
 
-//åˆ—è¡¨æ¨¡æ¿ä¹‹åˆ—è¡¨å¼åˆ†é¡µ
+//ÁĞ±íÄ£°åÖ®ÁĞ±íÊ½·ÖÒ³
 function sys_ShowListMorePage($num,$page,$dolink,$type,$totalpage,$line,$ok,$search="",$add){
 	global $fun_r,$public_r;
 	if($num<=$line)
@@ -105,18 +105,18 @@ function sys_ShowListMorePage($num,$page,$dolink,$type,$totalpage,$line,$ok,$sea
 		$pager['showpage']='';
 		return $pager;
 	}
-	//æ–‡ä»¶å
+	//ÎÄ¼şÃû
 	if(empty($add['dofile']))
 	{
 		$add['dofile']='index';
 	}
-	//é™æ€é¡µæ•°
+	//¾²Ì¬Ò³Êı
 	$repagenum=$add['repagenum'];
 	$page_line=$public_r['listpagelistnum'];
 	$snum=2;
-	//$totalpage=ceil($num/$line);//å–å¾—æ€»é¡µæ•°
+	//$totalpage=ceil($num/$line);//È¡µÃ×ÜÒ³Êı
 	$firststr='<a title="Total record">&nbsp;<b>'.$num.'</b> </a>&nbsp;&nbsp;';
-	//ä¸Šä¸€é¡µ
+	//ÉÏÒ»Ò³
 	if($page<>1)
 	{
 		$toppage='<a href="'.$dolink.$add['dofile'].$type.'">'.$fun_r['startpage'].'</a>&nbsp;';
@@ -131,7 +131,7 @@ function sys_ShowListMorePage($num,$page,$dolink,$type,$totalpage,$line,$ok,$sea
 		}
 		$prepage='<a href="'.$dolink.$prido.'">'.$fun_r['pripage'].'</a>';
 	}
-	//ä¸‹ä¸€é¡µ
+	//ÏÂÒ»Ò³
 	if($page!=$totalpage)
 	{
 		$pagenex=$page+1;
@@ -168,7 +168,7 @@ function sys_ShowListMorePage($num,$page,$dolink,$type,$totalpage,$line,$ok,$sea
 	return $pager;
 }
 
-//è¿”å›å†…å®¹åˆ†é¡µ
+//·µ»ØÄÚÈİ·ÖÒ³
 function sys_ShowTextPage($totalpage,$page,$dolink,$add,$type,$search=""){
 	global $fun_r,$public_r;
 	if($totalpage==1)
@@ -177,9 +177,9 @@ function sys_ShowTextPage($totalpage,$page,$dolink,$add,$type,$search=""){
 	}
 	$page_line=$public_r['textpagelistnum'];
 	$snum=2;
-	//$totalpage=ceil($num/$line);//å–å¾—æ€»é¡µæ•°
+	//$totalpage=ceil($num/$line);//È¡µÃ×ÜÒ³Êı
 	$firststr='<a title="Page">&nbsp;<b>'.$page.'</b>/<b>'.$totalpage.'</b> </a>&nbsp;&nbsp;';
-	//ä¸Šä¸€é¡µ
+	//ÉÏÒ»Ò³
 	if($page<>1)
 	{
 		$toppage='<a href="'.$dolink.$add[filename].$type.'">'.$fun_r['startpage'].'</a>&nbsp;';
@@ -194,7 +194,7 @@ function sys_ShowTextPage($totalpage,$page,$dolink,$add,$type,$search=""){
 		}
 		$prepage='<a href="'.$dolink.$prido.'">'.$fun_r['pripage'].'</a>';
 	}
-	//ä¸‹ä¸€é¡µ
+	//ÏÂÒ»Ò³
 	if($page!=$totalpage)
 	{
 		$pagenex=$page+1;
@@ -227,7 +227,7 @@ function sys_ShowTextPage($totalpage,$page,$dolink,$add,$type,$search=""){
 	return $returnstr;
 }
 
-//è¿”å›ä¸‹æ‹‰å¼å†…å®¹åˆ†é¡µå¯¼èˆª
+//·µ»ØÏÂÀ­Ê½ÄÚÈİ·ÖÒ³µ¼º½
 function sys_ShowTextPageSelect($thispagenum,$dolink,$add,$filetype,$n_r){
 	if($thispagenum==1)
 	{
@@ -261,10 +261,10 @@ function sys_ShowTextPageSelect($thispagenum,$dolink,$add,$filetype,$n_r){
 	return $titleselect;
 }
 
-//è¿”å›sqlè¯­å¥
+//·µ»ØsqlÓï¾ä
 function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 	global $empire,$public_r,$class_r,$class_zr,$navclassid,$dbtbpre,$fun_r,$class_tr,$emod_r,$etable_r,$eyh_r;
-	if($enews==24)//æŒ‰sqlæŸ¥è¯¢
+	if($enews==24)//°´sql²éÑ¯
 	{
 		$query_first=substr($classid,0,7);
 		if(!($query_first=='select '||$query_first=='SELECT '))
@@ -279,9 +279,9 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		}
 		return $sql;
 	}
-	if($enews==0||$enews==1||$enews==2||$enews==9||$enews==12||$enews==15)//æ ç›®
+	if($enews==0||$enews==1||$enews==2||$enews==9||$enews==12||$enews==15)//À¸Ä¿
 	{
-		if(strstr($classid,','))//å¤šæ ç›®
+		if(strstr($classid,','))//¶àÀ¸Ä¿
 		{
 			$son_r=sys_ReturnMoreClass($classid,1);
 			$classid=$son_r[0];
@@ -289,7 +289,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		}
 		else
 		{
-			if($classid=='selfinfo')//æ˜¾ç¤ºå½“å‰æ ç›®ä¿¡æ¯
+			if($classid=='selfinfo')//ÏÔÊ¾µ±Ç°À¸Ä¿ĞÅÏ¢
 			{
 				$classid=$navclassid;
 			}
@@ -306,14 +306,14 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$mid=$class_r[$classid][modid];
 		$yhid=$class_r[$classid][yhid];
     }
-	elseif($enews==6||$enews==7||$enews==8||$enews==11||$enews==14||$enews==17)//ä¸“é¢˜
+	elseif($enews==6||$enews==7||$enews==8||$enews==11||$enews==14||$enews==17)//×¨Ìâ
 	{
-		echo"Errorï¼šChange to use e:indexloop";
+		echo"Error£ºChange to use e:indexloop";
 		return false;
 	}
-	elseif($enews==25||$enews==26||$enews==27||$enews==28||$enews==29||$enews==30)//æ ‡é¢˜åˆ†ç±»
+	elseif($enews==25||$enews==26||$enews==27||$enews==28||$enews==29||$enews==30)//±êÌâ·ÖÀà
 	{
-		if(strstr($classid,','))//å¤šæ ‡é¢˜åˆ†ç±»
+		if(strstr($classid,','))//¶à±êÌâ·ÖÀà
 		{
 			$son_r=sys_ReturnMoreTT($classid);
 			$classid=$son_r[0];
@@ -321,7 +321,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		}
 		else
 		{
-			if($classid=='selfinfo')//æ˜¾ç¤ºå½“å‰æ ‡é¢˜åˆ†ç±»ä¿¡æ¯
+			if($classid=='selfinfo')//ÏÔÊ¾µ±Ç°±êÌâ·ÖÀàĞÅÏ¢
 			{
 				$classid=$navclassid;
 			}
@@ -333,43 +333,43 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 	}
 	$query='';
 	$qand=' and ';
-	if($enews==0)//æ ç›®æœ€æ–°
+	if($enews==0)//À¸Ä¿×îĞÂ
 	{
 		$query=' where ('.$where.')';
 		$order='newstime';
 		$yhvar='bqnew';
     }
-	elseif($enews==1)//æ ç›®çƒ­é—¨
+	elseif($enews==1)//À¸Ä¿ÈÈÃÅ
 	{
 		$query=' where ('.$where.')';
 		$order='onclick';
 		$yhvar='bqhot';
     }
-	elseif($enews==2)//æ ç›®æ¨è
+	elseif($enews==2)//À¸Ä¿ÍÆ¼ö
 	{
 		$query=' where ('.$where.') and isgood>0';
 		$order='newstime';
 		$yhvar='bqgood';
     }
-	elseif($enews==9)//æ ç›®è¯„è®ºæ’è¡Œ
+	elseif($enews==9)//À¸Ä¿ÆÀÂÛÅÅĞĞ
 	{
 		$query=' where ('.$where.')';
 		$order='plnum';
 		$yhvar='bqpl';
     }
-	elseif($enews==12)//æ ç›®å¤´æ¡
+	elseif($enews==12)//À¸Ä¿Í·Ìõ
 	{
 		$query=' where ('.$where.') and firsttitle>0';
 		$order='newstime';
 		$yhvar='bqfirst';
     }
-	elseif($enews==15)//æ ç›®ä¸‹è½½æ’è¡Œ
+	elseif($enews==15)//À¸Ä¿ÏÂÔØÅÅĞĞ
 	{
 		$query=' where ('.$where.')';
 		$order='totaldown';
 		$yhvar='bqdown';
     }
-	elseif($enews==3)//æ‰€æœ‰æœ€æ–°
+	elseif($enews==3)//ËùÓĞ×îĞÂ
 	{
 		$qand=' where ';
 		$order='newstime';
@@ -378,7 +378,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqnew';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==4)//æ‰€æœ‰ç‚¹å‡»æ’è¡Œ
+	elseif($enews==4)//ËùÓĞµã»÷ÅÅĞĞ
 	{
 		$qand=' where ';
 		$order='onclick';
@@ -387,7 +387,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqhot';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==5)//æ‰€æœ‰æ¨è
+	elseif($enews==5)//ËùÓĞÍÆ¼ö
 	{
 		$query=' where isgood>0';
 		$order='newstime';
@@ -396,7 +396,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqgood';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==10)//æ‰€æœ‰è¯„è®ºæ’è¡Œ
+	elseif($enews==10)//ËùÓĞÆÀÂÛÅÅĞĞ
 	{
 		$qand=' where ';
 		$order='plnum';
@@ -405,7 +405,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqpl';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==13)//æ‰€æœ‰å¤´æ¡
+	elseif($enews==13)//ËùÓĞÍ·Ìõ
 	{
 		$query=' where firsttitle>0';
 		$order='newstime';
@@ -414,7 +414,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqfirst';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==16)//æ‰€æœ‰ä¸‹è½½æ’è¡Œ
+	elseif($enews==16)//ËùÓĞÏÂÔØÅÅĞĞ
 	{
 		$qand=' where ';
 		$order='totaldown';
@@ -423,7 +423,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqdown';
 		$yhid=$etable_r[$tbname][yhid];
     }
-	elseif($enews==18)//å„è¡¨æœ€æ–°
+	elseif($enews==18)//¸÷±í×îĞÂ
 	{
 		$qand=' where ';
 		$order='newstime';
@@ -432,7 +432,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqnew';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==19)//å„è¡¨çƒ­é—¨
+	elseif($enews==19)//¸÷±íÈÈÃÅ
 	{
 		$qand=' where ';
 		$order='onclick';
@@ -441,7 +441,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqhot';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==20)//å„è¡¨æ¨è
+	elseif($enews==20)//¸÷±íÍÆ¼ö
 	{
 		$query=' where isgood>0';
 		$order='newstime';
@@ -450,7 +450,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqgood';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==21)//å„è¡¨è¯„è®ºæ’è¡Œ
+	elseif($enews==21)//¸÷±íÆÀÂÛÅÅĞĞ
 	{
 		$qand=' where ';
 		$order='plnum';
@@ -459,7 +459,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqpl';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==22)//å„è¡¨å¤´æ¡ä¿¡æ¯
+	elseif($enews==22)//¸÷±íÍ·ÌõĞÅÏ¢
 	{
 		$query=' where firsttitle>0';
 		$order="newstime";
@@ -468,7 +468,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqfirst';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==23)//å„è¡¨ä¸‹è½½æ’è¡Œ
+	elseif($enews==23)//¸÷±íÏÂÔØÅÅĞĞ
 	{
 		$qand=' where ';
 		$order='totaldown';
@@ -477,43 +477,43 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 		$yhvar='bqdown';
 		$yhid=$etable_r[$tbname][yhid];
 	}
-	elseif($enews==25)//æ ‡é¢˜åˆ†ç±»æœ€æ–°
+	elseif($enews==25)//±êÌâ·ÖÀà×îĞÂ
 	{
 		$query=' where ('.$where.')';
 		$order='newstime';
 		$yhvar='bqnew';
     }
-	elseif($enews==26)//æ ‡é¢˜åˆ†ç±»ç‚¹å‡»æ’è¡Œ
+	elseif($enews==26)//±êÌâ·ÖÀàµã»÷ÅÅĞĞ
 	{
 		$query=' where ('.$where.')';
 		$order='onclick';
 		$yhvar='bqhot';
     }
-	elseif($enews==27)//æ ‡é¢˜åˆ†ç±»æ¨è
+	elseif($enews==27)//±êÌâ·ÖÀàÍÆ¼ö
 	{
 		$query=' where ('.$where.') and isgood>0';
 		$order='newstime';
 		$yhvar='bqgood';
     }
-	elseif($enews==28)//æ ‡é¢˜åˆ†ç±»è¯„è®ºæ’è¡Œ
+	elseif($enews==28)//±êÌâ·ÖÀàÆÀÂÛÅÅĞĞ
 	{
 		$query=' where ('.$where.')';
 		$order='plnum';
 		$yhvar='bqpl';
     }
-	elseif($enews==29)//æ ‡é¢˜åˆ†ç±»å¤´æ¡
+	elseif($enews==29)//±êÌâ·ÖÀàÍ·Ìõ
 	{
 		$query=' where ('.$where.') and firsttitle>0';
 		$order='newstime';
 		$yhvar='bqfirst';
     }
-	elseif($enews==30)//æ ‡é¢˜åˆ†ç±»ä¸‹è½½æ’è¡Œ
+	elseif($enews==30)//±êÌâ·ÖÀàÏÂÔØÅÅĞĞ
 	{
 		$query=' where ('.$where.')';
 		$order='totaldown';
 		$yhvar='bqdown';
     }
-	//ä¼˜åŒ–
+	//ÓÅ»¯
 	$yhadd='';
 	if(!empty($eyh_r[$yhid]['dobq']))
 	{
@@ -524,7 +524,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 			$qand=' and ';
 		}
 	}
-	//ä¸è°ƒç”¨
+	//²»µ÷ÓÃ
 	if(!strstr($public_r['nottobq'],','.$classid.','))
 	{
 		$notbqwhere=ReturnNottoBqWhere();
@@ -534,25 +534,25 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 			$qand=' and ';
 		}
 	}
-	//å›¾ç‰‡ä¿¡æ¯
+	//Í¼Æ¬ĞÅÏ¢
 	if(!empty($do))
 	{
 		$query.=$qand.'ispic=1';
 		$qand=' and ';
     }
-	//é™„åŠ æ¡ä»¶
+	//¸½¼ÓÌõ¼ş
 	if(!empty($ewhere))
 	{
 		$query.=$qand.'('.$ewhere.')';
 		$qand=' and ';
 	}
-	//ä¸­æ­¢
+	//ÖĞÖ¹
 	if(empty($tbname))
 	{
 		echo $fun_r['BqErrorCid']."=<b>".$classid."</b>".$fun_r['BqErrorNtb']."(".$fun_r['BqErrorDo']."=".$enews.")";
 		return false;
 	}
-	//æ’åº
+	//ÅÅĞò
 	$addorder=empty($eorder)?$order.' desc':$eorder;
 	$query='select '.ReturnSqlListF($mid).' from '.$dbtbpre.'ecms_'.$tbname.$query.' order by '.ReturnSetTopSql('bq').$addorder.' limit '.$line;
 	$sql=$empire->query1($query);
@@ -563,7 +563,7 @@ function sys_ReturnBqQuery($classid,$line,$enews=0,$do=0,$ewhere='',$eorder=''){
 	return $sql;
 }
 
-//è¿”å›æ ‡ç­¾æ¨¡æ¿
+//·µ»Ø±êÇ©Ä£°å
 function sys_ReturnBqTemp($tempid){
 	global $empire,$dbtbpre,$fun_r;
 	$r=$empire->fetch1("select tempid,modid,temptext,showdate,listvar,subnews,rownum,docode from ".GetTemptb("enewsbqtemp")." where tempid='$tempid'");
@@ -574,7 +574,7 @@ function sys_ReturnBqTemp($tempid){
 	return $r;
 }
 
-//æ›¿æ¢æ ç›®å
+//Ìæ»»À¸Ä¿Ãû
 function ReplaceEcmsinfoClassname($temp,$enews,$classid){
 	global $class_r,$class_zr;
 	if(strstr($classid,","))
@@ -583,14 +583,14 @@ function ReplaceEcmsinfoClassname($temp,$enews,$classid){
     }
 	$thecdo=',0,1,2,9,12,15,';
 	$thezdo=',6,7,8,11,14,17,';
-	//æ ç›®
+	//À¸Ä¿
 	if(strstr($thecdo,",".$enews.","))
 	{
 		$classname=$class_r[$classid][classname];
 		$r[classid]=$classid;
 		$classurl=sys_ReturnBqClassname($r,9);
     }
-	//ä¸“é¢˜
+	//×¨Ìâ
 	elseif(strstr($thezdo,",".$enews.","))
 	{
 		$r[ztid]=$classid;
@@ -608,13 +608,13 @@ function ReplaceEcmsinfoClassname($temp,$enews,$classid){
 	return $temp;
 }
 
-//å¸¦æ¨¡æ¿çš„æ ‡ç­¾
+//´øÄ£°åµÄ±êÇ©
 function sys_GetEcmsInfo($classid,$line,$strlen,$have_class=0,$enews=0,$tempid,$doing=0,$ewhere='',$eorder=''){
 	global $empire,$public_r;
 	$sql=sys_ReturnBqQuery($classid,$line,$enews,$doing,$ewhere,$eorder);
 	if(!$sql)
 	{return "";}
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$tr=sys_ReturnBqTemp($tempid);
 	if(empty($tr['tempid']))
 	{return "";}
@@ -624,13 +624,13 @@ function sys_GetEcmsInfo($classid,$line,$strlen,$have_class=0,$enews=0,$tempid,$
 	$rownum=$tr[rownum];
 	$formatdate=$tr[showdate];
 	$docode=$tr[docode];
-	//æ›¿æ¢å˜é‡
+	//Ìæ»»±äÁ¿
 	$listtemp=ReplaceEcmsinfoClassname($listtemp,$enews,$classid);
 	if(empty($rownum))
 	{$rownum=1;}
-	//å­—æ®µ
+	//×Ö¶Î
 	$ret_r=ReturnReplaceListF($tr[modid]);
-	//åˆ—è¡¨
+	//ÁĞ±í
 	$list_exp="[!--empirenews.listtemp--]";
 	$list_r=explode($list_exp,$listtemp);
 	$listtext=$list_r[1];
@@ -639,11 +639,11 @@ function sys_GetEcmsInfo($classid,$line,$strlen,$have_class=0,$enews=0,$tempid,$
 	while($r=$empire->fetch($sql))
 	{
 		$r[oldtitle]=$r[title];
-		//æ›¿æ¢åˆ—è¡¨å˜é‡
+		//Ìæ»»ÁĞ±í±äÁ¿
 		$repvar=ReplaceListVars($no,$listvar,$subnews,$strlen,$formatdate,$url,$have_class,$r,$ret_r,$docode);
 		$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 		$changerow+=1;
-		//è¶…è¿‡è¡Œæ•°
+		//³¬¹ıĞĞÊı
 		if($changerow>$rownum)
 		{
 			$changerow=1;
@@ -652,7 +652,7 @@ function sys_GetEcmsInfo($classid,$line,$strlen,$have_class=0,$enews=0,$tempid,$
 		}
 		$no++;
     }
-	//å¤šä½™æ•°æ®
+	//¶àÓàÊı¾İ
     if($changerow<=$rownum&&$listtext<>$list_r[1])
 	{
 		$string.=$listtext;
@@ -661,12 +661,12 @@ function sys_GetEcmsInfo($classid,$line,$strlen,$have_class=0,$enews=0,$tempid,$
 	echo $string;
 }
 
-//çµåŠ¨æ ‡ç­¾ï¼šè¿”å›SQLå†…å®¹å‡½æ•°
+//Áé¶¯±êÇ©£º·µ»ØSQLÄÚÈİº¯Êı
 function sys_ReturnEcmsLoopBq($classid=0,$line=10,$enews=3,$doing=0,$ewhere='',$eorder=''){
 	return sys_ReturnBqQuery($classid,$line,$enews,$doing,$ewhere,$eorder);
 }
 
-//çµåŠ¨æ ‡ç­¾ï¼šè¿”å›ç‰¹æ®Šå†…å®¹å‡½æ•°
+//Áé¶¯±êÇ©£º·µ»ØÌØÊâÄÚÈİº¯Êı
 function sys_ReturnEcmsLoopStext($r){
 	global $class_r;
 	$sr['titleurl']=sys_ReturnBqTitleLink($r);
@@ -675,16 +675,16 @@ function sys_ReturnEcmsLoopStext($r){
 	return $sr;
 }
 
-//è¿”å›ç›¸å…³é“¾æ¥æ“ä½œç±»å‹
+//·µ»ØÏà¹ØÁ´½Ó²Ù×÷ÀàĞÍ
 function sys_OtherLinkQuery($classid,$line,$enews,$doing){
 	global $empire,$public_r,$class_r,$class_zr,$navinfor,$dbtbpre,$eyh_r,$etable_r,$class_tr;
-	if($enews==1)//æŒ‰è¡¨
+	if($enews==1)//°´±í
 	{
 		$tbname=$classid;
 	}
-	elseif($enews==2)//æŒ‰æ ç›®
+	elseif($enews==2)//°´À¸Ä¿
 	{
-		if($classid=='selfinfo')//å½“å‰æ ç›®
+		if($classid=='selfinfo')//µ±Ç°À¸Ä¿
 		{
 			$classid=$navinfor['classid'];
 		}
@@ -698,16 +698,16 @@ function sys_OtherLinkQuery($classid,$line,$enews,$doing){
 			$and=ReturnClass($class_r[$classid][sonclass]);
 		}
 	}
-	elseif($enews==3)//æŒ‰æ ‡é¢˜åˆ†ç±»
+	elseif($enews==3)//°´±êÌâ·ÖÀà
 	{
 		$tbname=$class_tr[$classid]['tbname'];
 		$and="ttid='$classid'";
 	}
-	else//é»˜è®¤
+	else//Ä¬ÈÏ
 	{
 		$tbname=$class_r[$navinfor[classid]]['tbname'];
 	}
-	//å…³é”®å­—
+	//¹Ø¼ü×Ö
 	$keys='';
 	if(!empty($enews))
 	{
@@ -726,7 +726,7 @@ function sys_OtherLinkQuery($classid,$line,$enews,$doing){
 			}
 			$repadd.=$or."[!--f--!] like '%".$keyr[$i]."%'";
 		}
-		//æœç´¢èŒƒå›´
+		//ËÑË÷·¶Î§
 		if($public_r['newslink']==1)
 		{
 			$keys='('.str_replace('[!--f--!]','keyboard',$repadd).')';
@@ -744,12 +744,12 @@ function sys_OtherLinkQuery($classid,$line,$enews,$doing){
 	{
 		$keys='id in ('.$navinfor['keyid'].')';
 	}
-	//å½“å‰ä¿¡æ¯
+	//µ±Ç°ĞÅÏ¢
 	if($tbname==$class_r[$navinfor[classid]][tbname])
 	{
 		$and.=empty($and)?"id<>'$navinfor[id]'":" and id<>'$navinfor[id]'";
 	}
-	//å›¾ç‰‡ä¿¡æ¯
+	//Í¼Æ¬ĞÅÏ¢
 	if($doing)
 	{
 		$and.=empty($and)?"ispic=1":" and ispic=1";
@@ -762,7 +762,7 @@ function sys_OtherLinkQuery($classid,$line,$enews,$doing){
 	{
 		$line=$class_r[$navinfor[classid]]['link_num'];
 	}
-	//ä¼˜åŒ–
+	//ÓÅ»¯
 	$yhvar='otherlink';
 	$yhid=$etable_r[$tbname][yhid];
 	$yhadd='';
@@ -779,7 +779,7 @@ function sys_OtherLinkQuery($classid,$line,$enews,$doing){
 	return $sql;
 }
 
-//ç›¸å…³é“¾æ¥æ ‡ç­¾
+//Ïà¹ØÁ´½Ó±êÇ©
 function sys_GetOtherLinkInfo($tempid,$classid='',$line=0,$strlen=60,$have_class=0,$enews=0,$doing=0){
 	global $empire,$navinfor,$public_r;
 	if(empty($navinfor['keyboard'])||(empty($enews)&&!$navinfor['keyid']))
@@ -789,7 +789,7 @@ function sys_GetOtherLinkInfo($tempid,$classid='',$line=0,$strlen=60,$have_class
 	$sql=sys_OtherLinkQuery($classid,$line,$enews,$doing);
 	if(!$sql)
 	{return "";}
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$tr=sys_ReturnBqTemp($tempid);
 	if(empty($tr['tempid']))
 	{return "";}
@@ -799,13 +799,13 @@ function sys_GetOtherLinkInfo($tempid,$classid='',$line=0,$strlen=60,$have_class
 	$rownum=$tr[rownum];
 	$formatdate=$tr[showdate];
 	$docode=$tr[docode];
-	//æ›¿æ¢å˜é‡
+	//Ìæ»»±äÁ¿
 	$listtemp=ReplaceEcmsinfoClassname($listtemp,$enews,$classid);
 	if(empty($rownum))
 	{$rownum=1;}
-	//å­—æ®µ
+	//×Ö¶Î
 	$ret_r=ReturnReplaceListF($tr[modid]);
-	//åˆ—è¡¨
+	//ÁĞ±í
 	$list_exp="[!--empirenews.listtemp--]";
 	$list_r=explode($list_exp,$listtemp);
 	$listtext=$list_r[1];
@@ -814,11 +814,11 @@ function sys_GetOtherLinkInfo($tempid,$classid='',$line=0,$strlen=60,$have_class
 	while($r=$empire->fetch($sql))
 	{
 		$r[oldtitle]=$r[title];
-		//æ›¿æ¢åˆ—è¡¨å˜é‡
+		//Ìæ»»ÁĞ±í±äÁ¿
 		$repvar=ReplaceListVars($no,$listvar,$subnews,$strlen,$formatdate,$url,$have_class,$r,$ret_r,$docode);
 		$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 		$changerow+=1;
-		//è¶…è¿‡è¡Œæ•°
+		//³¬¹ıĞĞÊı
 		if($changerow>$rownum)
 		{
 			$changerow=1;
@@ -827,7 +827,7 @@ function sys_GetOtherLinkInfo($tempid,$classid='',$line=0,$strlen=60,$have_class
 		}
 		$no++;
     }
-	//å¤šä½™æ•°æ®
+	//¶àÓàÊı¾İ
     if($changerow<=$rownum&&$listtext<>$list_r[1])
 	{
 		$string.=$listtext;
@@ -836,7 +836,7 @@ function sys_GetOtherLinkInfo($tempid,$classid='',$line=0,$strlen=60,$have_class
 	echo $string;
 }
 
-//æ–‡å­—æ ‡ç­¾å‡½æ•°
+//ÎÄ×Ö±êÇ©º¯Êı
 function sys_GetClassNews($classid,$line,$strlen,$showdate=true,$enews=0,$have_class=0,$formatdate='(m-d)',$ewhere='',$eorder=''){
 	global $empire;
 	$sql=sys_ReturnBqQuery($classid,$line,$enews,0,$ewhere,$eorder);
@@ -848,19 +848,19 @@ function sys_GetClassNews($classid,$line,$strlen,$showdate=true,$enews=0,$have_c
 		$record=1;
 		$oldtitle=$r[title];
 		$title=sub($r[title],0,$strlen,false);
-		//æ ‡é¢˜å±æ€§
+		//±êÌâÊôĞÔ
 		$title=DoTitleFont($r[titlefont],$title);
-		//æ˜¾ç¤ºæ ç›®
+		//ÏÔÊ¾À¸Ä¿
 		$myadd=sys_ReturnBqClassname($r,$have_class);
-		//æ˜¾ç¤ºæ—¶é—´
+		//ÏÔÊ¾Ê±¼ä
         if($showdate)
 		{
 			$newstime=date($formatdate,$r[newstime]);
             $newstime="&nbsp;".$newstime;
         }
-		//æ ‡é¢˜é“¾æ¥
+		//±êÌâÁ´½Ó
 		$titleurl=sys_ReturnBqTitleLink($r);
-        $title="Â·".$myadd."<a href='".$titleurl."' target=_blank title='".$oldtitle."'>".$title."</a>".$newstime;
+        $title="¡¤".$myadd."<a href='".$titleurl."' target=_blank title='".$oldtitle."'>".$title."</a>".$newstime;
         $allnews.="<tr><td height=20>".$title."</td></tr>";
     }
 	if($record)
@@ -869,32 +869,32 @@ function sys_GetClassNews($classid,$line,$strlen,$showdate=true,$enews=0,$have_c
 	}
 }
 
-//å›¾æ–‡ä¿¡æ¯è°ƒç”¨
+//Í¼ÎÄĞÅÏ¢µ÷ÓÃ
 function sys_GetClassNewsPic($classid,$line,$num,$width,$height,$showtitle=true,$strlen,$enews=0,$ewhere='',$eorder=''){
 	global $empire;
 	$sql=sys_ReturnBqQuery($classid,$num,$enews,1,$ewhere,$eorder);
 	if(!$sql)
 	{return "";}
-	//è¾“å‡º
+	//Êä³ö
 	$i=0;
 	while($r=$empire->fetch($sql))
 	{
 		$i++;
 		if(($i-1)%$line==0||$i==1)
 		{$class_text.="<tr>";}
-		//æ ‡é¢˜é“¾æ¥
+		//±êÌâÁ´½Ó
 		$titleurl=sys_ReturnBqTitleLink($r);
-		//------æ˜¯å¦æ˜¾ç¤ºæ ‡é¢˜
+		//------ÊÇ·ñÏÔÊ¾±êÌâ
 		if($showtitle)
 		{
 			$oldtitle=$r[title];
 			$title=sub($r[title],0,$strlen,false);
-			//æ ‡é¢˜å±æ€§
+			//±êÌâÊôĞÔ
 			$title=DoTitleFont($r[titlefont],$title);
 			$title="<br><span style='line-height:15pt'>".$title."</span>";
 		}
         $class_text.="<td align=center><a href='".$titleurl."' target=_blank><img src='".$r[titlepic]."' width='".$width."' height='".$height."' border=0 alt='".$oldtitle."'>".$title."</a></td>";
-        //åˆ†å‰²
+        //·Ö¸î
         if($i%$line==0)
 		{$class_text.="</tr>";}
     }
@@ -917,11 +917,11 @@ function sys_GetClassNewsPic($classid,$line,$num,$width,$height,$showtitle=true,
     echo"$text";
 }
 
-//å¹¿å‘Šæ ‡ç­¾
+//¹ã¸æ±êÇ©
 function sys_GetAd($adid){
 	global $empire,$public_r,$dbtbpre;
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsad where adid='$adid'");
-	//åˆ°æœŸ
+	//µ½ÆÚ
 	if($r['endtime']<>'0000-00-00'&&time()>to_time($r['endtime']))
 	{
 		echo addslashes($r[reptext]);
@@ -933,62 +933,62 @@ function sys_GetAd($adid){
 	}
 	else
 	{
-		$ad_url=$public_r[newsurl]."e/public/ClickAd?adid=".$adid;//å¹¿å‘Šé“¾æ¥
+		$ad_url=$public_r[newsurl]."e/public/ClickAd?adid=".$adid;//¹ã¸æÁ´½Ó
 	}
-	//----------------------æ–‡å­—å¹¿å‘Š
+	//----------------------ÎÄ×Ö¹ã¸æ
 	if($r[t]==1)
 	{
 		$r[titlefont]=$r[titlecolor].','.$r[titlefont];
-		$picurl=DoTitleFont($r[titlefont],$r[picurl]);//æ–‡å­—å±æ€§
+		$picurl=DoTitleFont($r[titlefont],$r[picurl]);//ÎÄ×ÖÊôĞÔ
 		$h="<a href='".$ad_url."' target=".$r[target]." title='".$r[alt]."'>".addslashes($picurl)."</a>";
-		//æ™®é€šæ˜¾ç¤º
+		//ÆÕÍ¨ÏÔÊ¾
 		if($r[adtype]==1)
 		{
 			$html=$h;
 	    }
-		//å¯ç§»åŠ¨é€æ˜å¯¹è¯æ¡†
+		//¿ÉÒÆ¶¯Í¸Ã÷¶Ô»°¿ò
 		else
 		{
 			$html="<script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_dialog.js></script> 
-<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >å…³é—­>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>";
+<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >¹Ø±Õ>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>";
 	    }
     }
-	//------------------htmlå¹¿å‘Š
+	//------------------html¹ã¸æ
 	elseif($r[t]==2)
 	{
 		$h=addslashes($r[htmlcode]);
-		//æ™®é€šæ˜¾ç¤º
+		//ÆÕÍ¨ÏÔÊ¾
 		if($r[adtype]==1)
 		{
 			$html=$h;
 		}
-		//å¯ç§»åŠ¨é€æ˜å¯¹è¯æ¡†
+		//¿ÉÒÆ¶¯Í¸Ã÷¶Ô»°¿ò
 		else
 		{
 			$html="<script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_dialog.js></script>
-<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >å…³é—­>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>";
+<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >¹Ø±Õ>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>";
 		}
     }
-	//------------------å¼¹å‡ºå¹¿å‘Š
+	//------------------µ¯³ö¹ã¸æ
 	elseif($r[t]==3)
 	{
-		//æ‰“å¼€æ–°çª—å£
+		//´ò¿ªĞÂ´°¿Ú
 		if($r[adtype]==8)
 		{
 			$html="<script>window.open('".$r[url]."');</script>";
 		}
-		//å¼¹å‡ºçª—å£
+		//µ¯³ö´°¿Ú
 	    elseif($r[adtype]==9)
 		{
 			$html="<script>window.open('".$r[url]."','','width=".$r[pic_width].",height=".$r[pic_height].",scrollbars=yes');</script>";
 		}
-		//æ™®èƒ½ç½‘é¡µçª—å£
+		//ÆÕÄÜÍøÒ³´°¿Ú
 		else
 		{
 			$html="<script>window.showModalDialog('".$r[url]."','','dialogWidth:".$r[pic_width]."px;dialogHeight:".$r[pic_height]."px;scroll:no;status:no;help:no');</script>";
 		}
     }
-	//---------------------å›¾ç‰‡ä¸flashå¹¿å‘Š
+	//---------------------Í¼Æ¬Óëflash¹ã¸æ
 	else
 	{
 		$filetype=GetFiletype($r[picurl]);
@@ -1001,12 +1001,12 @@ function sys_GetAd($adid){
 		{
 			$h="<a href='".$ad_url."' target=".$r[target]."><img src='".$r[picurl]."' border=0 width='".$r[pic_width]."' height='".$r[pic_height]."' alt='".$r[alt]."'></a>";
 		}
-		//æ™®é€šæ˜¾ç¤º
+		//ÆÕÍ¨ÏÔÊ¾
 		if($r[adtype]==1)
 		{
 			$html=$h;
 		}
-		//æ»¡å±æµ®åŠ¨æ˜¾ç¤º
+		//ÂúÆÁ¸¡¶¯ÏÔÊ¾
 		elseif($r[adtype]==4)
 		{
 			$html="<script>ns4=(document.layers)?true:false;
@@ -1015,7 +1015,7 @@ if(ns4){document.write(\"<layer id=DGbanner2 width=".$r[pic_width]." height=".$r
 else{document.write(\"<div id=DGbanner2 style='position:absolute; width:".$r[pic_width]."px; height:".$r[pic_height]."px; z-index:9; filter: Alpha(Opacity=90)' onmouseover=stopme('DGbanner2') onmouseout=movechip('DGbanner2')>".$h."</div>\");}</script>
 <script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_float_fullscreen.js></script>";
 		}
-		//ä¸Šä¸‹æµ®åŠ¨æ˜¾ç¤º - å³
+		//ÉÏÏÂ¸¡¶¯ÏÔÊ¾ - ÓÒ
 		elseif($r[adtype]==5)
 		{
 			$html="<script>if (navigator.appName == 'Netscape')
@@ -1023,7 +1023,7 @@ else{document.write(\"<div id=DGbanner2 style='position:absolute; width:".$r[pic
 else{document.write(\"<div id=DGbanner3 style='position: absolute;width:".$r[pic_height].";top:150;visibility: visible;z-index: 1'>".$h."</div>\");}</script>
 <script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_float_upanddown.js></script>";
 		}
-		//ä¸Šä¸‹æµ®åŠ¨æ˜¾ç¤º - å·¦
+		//ÉÏÏÂ¸¡¶¯ÏÔÊ¾ - ×ó
 		elseif($r[adtype]==6)
 		{
 			$html="<script>if(navigator.appName == 'Netscape')
@@ -1031,7 +1031,7 @@ else{document.write(\"<div id=DGbanner3 style='position: absolute;width:".$r[pic
 else{document.write(\"<div id=DGbanner10 style='position: absolute;width:".$r[pic_width].";top:150;visibility: visible;z-index: 1'>".$h."</div>\");}</script>
 <script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_float_upanddown_L.js></script>";
 		}
-		//å…¨å±å¹•æ¸éšæ¶ˆå¤±
+		//È«ÆÁÄ»½¥ÒşÏûÊ§
 		elseif($r[adtype]==7)
 		{
 			$html="<script>ns4=(document.layers)?true:false;
@@ -1039,11 +1039,11 @@ if(ns4){document.write(\"<layer id=DGbanner4Cont onLoad='moveToAbsolute(layer1.p
 else{document.write(\"<div id=DGbanner4 style='position:absolute;top:0; left:0;'><div id=DGbanner4Cont style='position:absolute;width:".$r[pic_width].";height:".$r[pic_height].";clip:rect(0,".$r[pic_width].",".$r[pic_height].",0)'><div id=DGbanner4News style='position:absolute;top:0;left:0;right:820'>".$h."</div></div></div>\");}</script> 
 <script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_fullscreen.js></script>";
 		}
-		//å¯ç§»åŠ¨é€æ˜å¯¹è¯æ¡†
+		//¿ÉÒÆ¶¯Í¸Ã÷¶Ô»°¿ò
 		elseif($r[adtype]==3)
 		{
 			$html="<script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_dialog.js></script> 
-<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >å…³é—­>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>";
+<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >¹Ø±Õ>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>";
 		}
 		else
 		{
@@ -1054,7 +1054,7 @@ else{document.write(\"<div id=DGbanner4 style='position:absolute;top:0; left:0;'
 	echo $html;
 }
 
-//æŠ•ç¥¨æ ‡ç­¾
+//Í¶Æ±±êÇ©
 function sys_GetVote($voteid){
 	global $empire,$public_r,$dbtbpre;
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsvote where voteid='$voteid'");
@@ -1062,21 +1062,21 @@ function sys_GetVote($voteid){
 	{
 		return '';
 	}
-	//æ¨¡æ¿
+	//Ä£°å
 	$votetemp=ReturnVoteTemp($r[tempid],0);
 	$votetemp=RepVoteTempAllvar($votetemp,$r);
 	$listexp="[!--empirenews.listtemp--]";
 	$listtemp_r=explode($listexp,$votetemp);
 	$r_exp="\r\n";
 	$f_exp="::::::";
-	//é¡¹ç›®æ•°
+	//ÏîÄ¿Êı
 	$r_r=explode($r_exp,$r[votetext]);
 	$checked=0;
 	for($i=0;$i<count($r_r);$i++)
 	{
 		$checked++;
 		$f_r=explode($f_exp,$r_r[$i]);
-		//æŠ•ç¥¨ç±»å‹
+		//Í¶Æ±ÀàĞÍ
 		if($r[voteclass])
 		{$vote="<input type=checkbox name=vote[] value=".$checked.">";}
 		else
@@ -1087,7 +1087,7 @@ function sys_GetVote($voteid){
 	echo"$votetext";
 }
 
-//ä¿¡æ¯æŠ•ç¥¨æ ‡ç­¾
+//ĞÅÏ¢Í¶Æ±±êÇ©
 function sys_GetInfoVote($classid,$id){
 	global $empire,$public_r,$dbtbpre;
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsinfovote where id='$id' and classid='$classid' limit 1");
@@ -1095,21 +1095,21 @@ function sys_GetInfoVote($classid,$id){
 	{
 		return '';
 	}
-	//æ¨¡æ¿
+	//Ä£°å
 	$votetemp=ReturnVoteTemp($r[tempid],0);
 	$votetemp=RepVoteTempAllvar($votetemp,$r);
 	$listexp="[!--empirenews.listtemp--]";
 	$listtemp_r=explode($listexp,$votetemp);
 	$r_exp="\r\n";
 	$f_exp="::::::";
-	//é¡¹ç›®æ•°
+	//ÏîÄ¿Êı
 	$r_r=explode($r_exp,$r[votetext]);
 	$checked=0;
 	for($i=0;$i<count($r_r);$i++)
 	{
 		$checked++;
 		$f_r=explode($f_exp,$r_r[$i]);
-		//æŠ•ç¥¨ç±»å‹
+		//Í¶Æ±ÀàĞÍ
 		if($r[voteclass])
 		{$vote="<input type=checkbox name=vote[] value=".$checked.">";}
 		else
@@ -1120,28 +1120,28 @@ function sys_GetInfoVote($classid,$id){
 	return $votetext;
 }
 
-//å‹æƒ…é“¾æ¥
+//ÓÑÇéÁ´½Ó
 function sys_GetSitelink($line,$num,$enews=0,$classid=0,$stats=0){
 	global $empire,$public_r,$dbtbpre;
-	//å›¾ç‰‡
+	//Í¼Æ¬
 	if($enews==1)
 	{$a=" and lpic<>''";}
-	//æ–‡å­—
+	//ÎÄ×Ö
 	elseif($enews==2)
 	{$a=" and lpic=''";}
 	else
 	{$a="";}
-	//è°ƒç”¨ç›¸åº”çš„æ ç›®åˆ†ç±»
+	//µ÷ÓÃÏàÓ¦µÄÀ¸Ä¿·ÖÀà
 	if(!empty($classid))
 	{
 		$whereclass=" and classid='$classid'";
 	}
 	$sql=$empire->query("select * from {$dbtbpre}enewslink where checked=1".$a.$whereclass." order by myorder,lid limit ".$num);
-	//è¾“å‡º
+	//Êä³ö
 	$i=0;
 	while($r=$empire->fetch($sql))
 	{
-		//é“¾æ¥
+		//Á´½Ó
 		if(empty($stats))
 		{
 			$linkurl=$public_r[newsurl]."e/public/GotoSite/?lid=".$r[lid]."&url=".urlencode($r[lurl]);
@@ -1153,18 +1153,18 @@ function sys_GetSitelink($line,$num,$enews=0,$classid=0,$stats=0){
 		$i++;
 		if(($i-1)%$line==0||$i==1)
 		{$class_text.="<tr>";}
-		//æ–‡å­—
+		//ÎÄ×Ö
 		if(empty($r[lpic]))
 		{
 			$logo="<a href='".$linkurl."' title='".$r[lname]."' target=".$r[target].">".$r[lname]."</a>";
 		}
-		//å›¾ç‰‡
+		//Í¼Æ¬
 		else
 		{
 			$logo="<a href='".$linkurl."' target=".$r[target]."><img src='".$r[lpic]."' alt='".$r[lname]."' border=0 width='".$r[width]."' height='".$r[height]."'></a>";
 		}
 		$class_text.="<td align=center>".$logo."</td>";
-		//åˆ†å‰²
+		//·Ö¸î
 		if($i%$line==0)
 		{$class_text.="</tr>";}
 	}
@@ -1187,55 +1187,55 @@ function sys_GetSitelink($line,$num,$enews=0,$classid=0,$stats=0){
     echo"$text";
 }
 
-//å¼•ç”¨æ–‡ä»¶
+//ÒıÓÃÎÄ¼ş
 function sys_IncludeFile($file){
 	@include($file);
 }
 
-//è¯»å–è¿œç¨‹æ–‡ä»¶
+//¶ÁÈ¡Ô¶³ÌÎÄ¼ş
 function sys_ReadFile($http){
 	echo ReadFiletext($http);
 }
 
-//ä¿¡æ¯ç»Ÿè®¡
+//ĞÅÏ¢Í³¼Æ
 function sys_TotalData($classid,$enews=0,$day=0,$totaltype=0){
 	global $empire,$class_r,$class_zr,$dbtbpre,$fun_r,$class_tr;
 	if(empty($classid))
 	{
 		return "";
     }
-	//ç»Ÿè®¡ç±»å‹
-	if($totaltype==1)//è¯„è®ºæ•°
+	//Í³¼ÆÀàĞÍ
+	if($totaltype==1)//ÆÀÂÛÊı
 	{
 		$totalfield='sum(plnum) as total';
 	}
-	elseif($totaltype==2)//ç‚¹å‡»æ•°
+	elseif($totaltype==2)//µã»÷Êı
 	{
 		$totalfield='sum(onclick) as total';
 	}
-	elseif($totaltype==3)//ä¸‹è½½æ•°
+	elseif($totaltype==3)//ÏÂÔØÊı
 	{
 		$totalfield='sum(totaldown) as total';
 	}
-	else//ä¿¡æ¯æ•°
+	else//ĞÅÏ¢Êı
 	{
 		$totalfield='count(*) as total';
 	}
 	if($day)
 	{
-		if($day==1)//ä»Šæ—¥ä¿¡æ¯
+		if($day==1)//½ñÈÕĞÅÏ¢
 		{
 			$date=date("Y-m-d");
 			$starttime=$date." 00:00:01";
 			$endtime=$date." 23:59:59";
 		}
-		elseif($day==2)//æœ¬æœˆä¿¡æ¯
+		elseif($day==2)//±¾ÔÂĞÅÏ¢
 		{
 			$date=date("Y-m");
 			$starttime=$date."-01 00:00:01";
 			$endtime=$date."-".date("t")." 23:59:59";
 		}
-		elseif($day==3)//æœ¬å¹´ä¿¡æ¯
+		elseif($day==3)//±¾ÄêĞÅÏ¢
 		{
 			$date=date("Y");
 			$starttime=$date."-01-01 00:00:01";
@@ -1243,7 +1243,7 @@ function sys_TotalData($classid,$enews=0,$day=0,$totaltype=0){
 		}
 		$and=" and newstime>=".to_time($starttime)." and newstime<=".to_time($endtime);
 	}
-	if($enews==1)//ç»Ÿè®¡æ ‡é¢˜åˆ†ç±»
+	if($enews==1)//Í³¼Æ±êÌâ·ÖÀà
 	{
 		if(empty($class_tr[$classid][tbname]))
 		{
@@ -1252,22 +1252,22 @@ function sys_TotalData($classid,$enews=0,$day=0,$totaltype=0){
 		}
 		$query="select ".$totalfield." from {$dbtbpre}ecms_".$class_tr[$classid][tbname]." where ttid='$classid'".$and;
     }
-	elseif($enews==2)//ç»Ÿè®¡æ•°æ®è¡¨
+	elseif($enews==2)//Í³¼ÆÊı¾İ±í
 	{
 		$query="select ".$totalfield." from {$dbtbpre}ecms_".$classid.(empty($and)?'':' where '.substr($and,5));
     }
-	else//ç»Ÿè®¡æ ç›®æ•°æ®
+	else//Í³¼ÆÀ¸Ä¿Êı¾İ
 	{
 		if(empty($class_r[$classid][tbname]))
 		{
 			echo $fun_r['BqErrorCid']."=<b>".$classid."</b>".$fun_r['BqErrorNtb'];
 			return "";
 		}
-		if($class_r[$classid][islast])//ç»ˆææ ç›®
+		if($class_r[$classid][islast])//ÖÕ¼«À¸Ä¿
 		{
 			$where="classid='$classid'";
 		}
-		else//å¤§æ ç›®
+		else//´óÀ¸Ä¿
 		{
 			$where=ReturnClass($class_r[$classid][sonclass]);
 		}
@@ -1277,7 +1277,7 @@ function sys_TotalData($classid,$enews=0,$day=0,$totaltype=0){
 	echo $num;
 }
 
-//flashå¹»ç¯å›¾ç‰‡ä¿¡æ¯è°ƒç”¨
+//flash»ÃµÆÍ¼Æ¬ĞÅÏ¢µ÷ÓÃ
 function sys_FlashPixpic($classid,$line,$width,$height,$showtitle=true,$strlen,$enews=0,$sec=5,$ewhere='',$eorder=''){
 	global $empire,$public_r,$class_r,$class_zr;
 	$sql=sys_ReturnBqQuery($classid,$line,$enews,1,$ewhere,$eorder);
@@ -1286,13 +1286,13 @@ function sys_FlashPixpic($classid,$line,$width,$height,$showtitle=true,$strlen,$
 	$i=0;
 	while($r=$empire->fetch($sql))
 	{
-		//æ ‡é¢˜é“¾æ¥
+		//±êÌâÁ´½Ó
 		$titleurl=sys_ReturnBqTitleLink($r);
-		//------æ˜¯å¦æ˜¾ç¤ºæ ‡é¢˜
+		//------ÊÇ·ñÏÔÊ¾±êÌâ
 		if($showtitle)
 		{
 			$title=sub($r[title],0,$strlen,false);
-			//æ ‡é¢˜å±æ€§
+			//±êÌâÊôĞÔ
 			$title=addslashes(DoTitleFont($r[titlefont],ehtmlspecialchars($title)));
 		}
 		$fh="|";
@@ -1305,7 +1305,7 @@ function sys_FlashPixpic($classid,$line,$width,$height,$showtitle=true,$strlen,$
 		$subject.=$fh.$title;
 		$i=1;
 	}
-	//æ˜¾ç¤ºæ ‡é¢˜
+	//ÏÔÊ¾±êÌâ
 	if($showtitle)
 	{
 		$text_height=22;
@@ -1341,7 +1341,7 @@ function sys_FlashPixpic($classid,$line,$width,$height,$showtitle=true,$strlen,$
 <?
 }
 
-//æœç´¢å…³é”®å­—
+//ËÑË÷¹Ø¼ü×Ö
 function sys_ShowSearchKey($line,$num,$classid=0,$enews=0){
 	global $empire,$public_r,$dbtbpre;
 	if($enews)
@@ -1378,39 +1378,39 @@ function sys_ShowSearchKey($line,$num,$classid=0,$enews=0){
 	echo $returnkey;
 }
 
-//å¸¦æ¨¡æ¿çš„æ ‡ç­¾æ˜¾ç¤º-å¾ªç¯
+//´øÄ£°åµÄ±êÇ©ÏÔÊ¾-Ñ­»·
 function sys_GetEcmsInfoMore($classid,$line,$strlen,$have_class=0,$ecms=0,$tr,$doing=0,$field,$cr,$dofirstinfo=0,$fsubtitle=0,$fsubnews=0,$fdoing=0,$ewhere='',$eorder=''){
 	global $empire,$public_r;
-	//æ“ä½œç±»å‹
-	if($ecms==0)//æ ç›®æœ€æ–°
+	//²Ù×÷ÀàĞÍ
+	if($ecms==0)//À¸Ä¿×îĞÂ
 	{
 		$enews=0;
 	}
-	elseif($ecms==1)//æ ç›®çƒ­é—¨
+	elseif($ecms==1)//À¸Ä¿ÈÈÃÅ
 	{
 		$enews=1;
 	}
-	elseif($ecms==2)//æ ç›®æ¨è
+	elseif($ecms==2)//À¸Ä¿ÍÆ¼ö
 	{
 		$enews=2;
 	}
-	elseif($ecms==3)//æ ç›®è¯„è®ºæ’è¡Œ
+	elseif($ecms==3)//À¸Ä¿ÆÀÂÛÅÅĞĞ
 	{
 		$enews=9;
 	}
-	elseif($ecms==4)//æ ç›®å¤´æ¡
+	elseif($ecms==4)//À¸Ä¿Í·Ìõ
 	{
 		$enews=12;
 	}
-	elseif($ecms==5)//æ ç›®ä¸‹è½½æ’è¡Œ
+	elseif($ecms==5)//À¸Ä¿ÏÂÔØÅÅĞĞ
 	{
 		$enews=15;
 	}
-	elseif($ecms==6)//æ ç›®è¯„åˆ†
+	elseif($ecms==6)//À¸Ä¿ÆÀ·Ö
 	{
 		$enews=25;
 	}
-	elseif($ecms==7)//æ ç›®æŠ•ç¥¨
+	elseif($ecms==7)//À¸Ä¿Í¶Æ±
 	{
 		$enews=26;
 	}
@@ -1421,19 +1421,19 @@ function sys_GetEcmsInfoMore($classid,$line,$strlen,$have_class=0,$ecms=0,$tr,$d
 	$sql=sys_ReturnBqQuery($classid,$line,$enews,$doing,$ewhere,$eorder);
 	if(!$sql)
 	{return "";}
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$listtemp=$tr[temptext];
 	$subnews=$tr[subnews];
 	$listvar=$tr[listvar];
 	$rownum=$tr[rownum];
 	$formatdate=$tr[showdate];
 	$docode=$tr[docode];
-	//æ›¿æ¢å˜é‡
+	//Ìæ»»±äÁ¿
 	$listtemp=ReplaceEcmsinfoClassname($listtemp,$enews,$classid);
 	$listtemp=sys_ForSonclassDataFirstInfo($listtemp,$cr,$dofirstinfo,$fsubtitle,$fsubnews,$fdoing);
 	if(empty($rownum))
 	{$rownum=1;}
-	//åˆ—è¡¨
+	//ÁĞ±í
 	$list_exp="[!--empirenews.listtemp--]";
 	$list_r=explode($list_exp,$listtemp);
 	$listtext=$list_r[1];
@@ -1442,11 +1442,11 @@ function sys_GetEcmsInfoMore($classid,$line,$strlen,$have_class=0,$ecms=0,$tr,$d
 	while($r=$empire->fetch($sql))
 	{
 		$r[oldtitle]=$r[title];
-		//æ›¿æ¢åˆ—è¡¨å˜é‡
+		//Ìæ»»ÁĞ±í±äÁ¿
 		$repvar=ReplaceListVars($no,$listvar,$subnews,$strlen,$formatdate,$url,$have_class,$r,$field,$docode);
 		$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 		$changerow+=1;
-		//è¶…è¿‡è¡Œæ•°
+		//³¬¹ıĞĞÊı
 		if($changerow>$rownum)
 		{
 			$changerow=1;
@@ -1455,7 +1455,7 @@ function sys_GetEcmsInfoMore($classid,$line,$strlen,$have_class=0,$ecms=0,$tr,$d
 		}
 		$no++;
     }
-	//å¤šä½™æ•°æ®
+	//¶àÓàÊı¾İ
     if($changerow<=$rownum&&$listtext<>$list_r[1])
 	{
 		$string.=$listtext;
@@ -1464,7 +1464,7 @@ function sys_GetEcmsInfoMore($classid,$line,$strlen,$have_class=0,$ecms=0,$tr,$d
 	echo $string;
 }
 
-//å¾ªç¯å­æ ç›®æ˜¾ç¤ºå¤´æ¡ä¿¡æ¯
+//Ñ­»·×ÓÀ¸Ä¿ÏÔÊ¾Í·ÌõĞÅÏ¢
 function sys_ForSonclassDataFirstInfo($temptext,$cr,$ecms=0,$subtitle=0,$subnews=0,$fdoing=0){
 	global $empire,$class_r,$public_r,$dbtbpre;
 	if($ecms==2||$ecms==3||$ecms==4)
@@ -1475,7 +1475,7 @@ function sys_ForSonclassDataFirstInfo($temptext,$cr,$ecms=0,$subtitle=0,$subnews
 	{
 		$add=" and ispic=1";
 	}
-	if($ecms==1)//æ ç›®ç¼©å›¾
+	if($ecms==1)//À¸Ä¿ËõÍ¼
 	{
 		$id=$cr['classid'];
 		$title=$cr['classname'];
@@ -1483,15 +1483,15 @@ function sys_ForSonclassDataFirstInfo($temptext,$cr,$ecms=0,$subtitle=0,$subnews
 		$titlepic=$cr['classimg'];
 		$smalltext=$cr['intro'];
 	}
-	elseif($ecms==2)//æ¨èä¿¡æ¯
+	elseif($ecms==2)//ÍÆ¼öĞÅÏ¢
 	{
 		$r=$empire->fetch1("select * from {$dbtbpre}ecms_".$class_r[$cr[classid]][tbname]." where isgood>0 and (".$where.")".$add." order by newstime desc limit 1");
 	}
-	elseif($ecms==3)//å¤´æ¡ä¿¡æ¯
+	elseif($ecms==3)//Í·ÌõĞÅÏ¢
 	{
 		$r=$empire->fetch1("select * from {$dbtbpre}ecms_".$class_r[$cr[classid]][tbname]." where firsttitle>0 and (".$where.")".$add." order by newstime desc limit 1");
 	}
-	elseif($ecms==4)//æœ€æ–°ä¿¡æ¯
+	elseif($ecms==4)//×îĞÂĞÅÏ¢
 	{
 		$r=$empire->fetch1("select * from {$dbtbpre}ecms_".$class_r[$cr[classid]][tbname]." where (".$where.")".$add." order by newstime desc limit 1");
 	}
@@ -1505,7 +1505,7 @@ function sys_ForSonclassDataFirstInfo($temptext,$cr,$ecms=0,$subtitle=0,$subnews
 		$title=$r['title'];
 		$titleurl=sys_ReturnBqTitleLink($r);
 		$titlepic=$r['titlepic'];
-		//ç®€ä»‹
+		//¼ò½é
 		if($r['smalltext'])
 		{$smalltext=$r['smalltext'];}
 		elseif($r['flashsay'])
@@ -1533,10 +1533,10 @@ function sys_ForSonclassDataFirstInfo($temptext,$cr,$ecms=0,$subtitle=0,$subnews
 	return $temptext;
 }
 
-//å¾ªç¯å­æ ç›®æ•°æ®
+//Ñ­»·×ÓÀ¸Ä¿Êı¾İ
 function sys_ForSonclassData($classid,$line,$strlen,$have_class=0,$enews=0,$tempid,$doing=0,$cline=0,$dofirstinfo=0,$fsubtitle=0,$fsubnews=0,$fdoing=0,$ewhere='',$eorder=''){
 	global $empire,$public_r,$class_r,$class_zr,$navclassid,$dbtbpre;
-	//å¤šæ ç›®
+	//¶àÀ¸Ä¿
 	if(strstr($classid,","))
 	{
 		$son_r=sys_ReturnMoreClass($classid);
@@ -1545,27 +1545,27 @@ function sys_ForSonclassData($classid,$line,$strlen,$have_class=0,$enews=0,$temp
 	}
 	else
 	{
-		//å½“å‰æ ç›®
+		//µ±Ç°À¸Ä¿
 		if('dg'.$classid=='dgselfinfo')
 		{
 			$classid=$navclassid;
 		}
 		$where="bclassid='$classid'";
 	}
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$tr=sys_ReturnBqTemp($tempid);
 	if(empty($tr['tempid']))
 	{return "";}
 	$tr[temptext]=str_replace('[!--news.url--]',$public_r[newsurl],$tr[temptext]);
 	$tr[listvar]=str_replace('[!--news.url--]',$public_r[newsurl],$tr[listvar]);
-	//é™åˆ¶æ¡æ•°
+	//ÏŞÖÆÌõÊı
 	if($cline)
 	{
 		$limit=" limit ".$cline;
 	}
-	//å­—æ®µ
+	//×Ö¶Î
 	$ret_r=ReturnReplaceListF($tr[modid]);
-	//æ ç›®å­—æ®µ
+	//À¸Ä¿×Ö¶Î
 	if($dofirstinfo==1)
 	{
 		$addclassfield=',classname,classimg,intro';
@@ -1577,10 +1577,10 @@ function sys_ForSonclassData($classid,$line,$strlen,$have_class=0,$enews=0,$temp
 	}
 }
 
-//å¸¦æ¨¡æ¿çš„æ ç›®å¯¼èˆªæ ‡ç­¾
+//´øÄ£°åµÄÀ¸Ä¿µ¼º½±êÇ©
 function sys_ShowClassByTemp($classid,$tempid,$show=0,$cline=0){
 	global $navclassid,$empire,$class_r,$public_r,$dbtbpre;
-	//å½“å‰æ ç›®
+	//µ±Ç°À¸Ä¿
 	if('dg'.$classid=='dgselfinfo')
 	{
 		if(empty($navclassid))
@@ -1588,7 +1588,7 @@ function sys_ShowClassByTemp($classid,$tempid,$show=0,$cline=0){
 		else
 		{
 			$classid=$navclassid;
-			//ç»ˆæç±»åˆ«åˆ™æ˜¾ç¤ºåŒçº§ç±»åˆ«
+			//ÖÕ¼«Àà±ğÔòÏÔÊ¾Í¬¼¶Àà±ğ
 			if($class_r[$classid][islast]&&$class_r[$classid][bclassid])
 			{
 				$classid=$class_r[$classid][bclassid];
@@ -1597,7 +1597,7 @@ function sys_ShowClassByTemp($classid,$tempid,$show=0,$cline=0){
 			{$classid=0;}
 		}
 	}
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$tr=sys_ReturnBqTemp($tempid);
 	if(empty($tr['tempid']))
 	{return "";}
@@ -1608,19 +1608,19 @@ function sys_ShowClassByTemp($classid,$tempid,$show=0,$cline=0){
 	$formatdate=$tr[showdate];
 	if(empty($rownum))
 	{$rownum=1;}
-	//é™åˆ¶æ¡æ•°
+	//ÏŞÖÆÌõÊı
 	if($cline)
 	{
 		$limit=" limit ".$cline;
 	}
-	//æ›¿æ¢å˜é‡
+	//Ìæ»»±äÁ¿
 	$bclassname=$class_r[$classid][classname];
 	$br[classid]=$classid;
 	$bclassurl=sys_ReturnBqClassname($br,9);
 	$listtemp=str_replace("[!--bclassname--]",$bclassname,$listtemp);
 	$listtemp=str_replace("[!--bclassurl--]",$bclassurl,$listtemp);
 	$listtemp=str_replace("[!--bclassid--]",$classid,$listtemp);
-	//åˆ—è¡¨
+	//ÁĞ±í
 	$list_exp="[!--empirenews.listtemp--]";
 	$list_r=explode($list_exp,$listtemp);
 	$listtext=$list_r[1];
@@ -1629,16 +1629,16 @@ function sys_ShowClassByTemp($classid,$tempid,$show=0,$cline=0){
 	$sql=$empire->query("select classid,classname,islast,sonclass,tbname,intro,classimg,infos from {$dbtbpre}enewsclass where bclassid='$classid' and showclass=0 order by myorder,classid".$limit);
 	while($r=$empire->fetch($sql))
 	{
-		//æ˜¾ç¤ºç±»åˆ«æ•°æ®æ•°
+		//ÏÔÊ¾Àà±ğÊı¾İÊı
 		if($show)
 		{
 			$num=ReturnClassInfoNum($r);
 		}
-		//æ›¿æ¢åˆ—è¡¨å˜é‡
+		//Ìæ»»ÁĞ±í±äÁ¿
 		$repvar=ReplaceShowClassVars($no,$listvar,$r,$num,0,$subnews);
 		$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 		$changerow+=1;
-		//è¶…è¿‡è¡Œæ•°
+		//³¬¹ıĞĞÊı
 		if($changerow>$rownum)
 		{
 			$changerow=1;
@@ -1647,7 +1647,7 @@ function sys_ShowClassByTemp($classid,$tempid,$show=0,$cline=0){
 		}
 		$no++;
 	}
-	//å¤šä½™æ•°æ®
+	//¶àÓàÊı¾İ
     if($changerow<=$rownum&&$listtext<>$list_r[1])
 	{
 		$string.=$listtext;
@@ -1656,29 +1656,29 @@ function sys_ShowClassByTemp($classid,$tempid,$show=0,$cline=0){
 	echo $string;
 }
 
-//å¾ªç¯å­æ ç›®å¯¼èˆªæ ‡ç­¾
+//Ñ­»·×ÓÀ¸Ä¿µ¼º½±êÇ©
 function sys_ForShowSonClass($classid,$tempid,$show=0,$cline=0){
 	global $navclassid,$empire,$class_r,$public_r,$dbtbpre;
-	//å¤šæ ç›®
+	//¶àÀ¸Ä¿
 	if(strstr($classid,","))
 	{
 		$where='classid in ('.$classid.')';
 	}
 	else
 	{
-		if('dg'.$classid=='dgselfinfo')//å½“å‰æ ç›®
+		if('dg'.$classid=='dgselfinfo')//µ±Ç°À¸Ä¿
 		{
 			$classid=intval($navclassid);
 		}
 		$where="bclassid='$classid'";
 	}
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$tr=sys_ReturnBqTemp($tempid);
 	if(empty($tr['tempid']))
 	{return "";}
 	$tr[temptext]=str_replace('[!--news.url--]',$public_r[newsurl],$tr[temptext]);
 	$tr[listvar]=str_replace('[!--news.url--]',$public_r[newsurl],$tr[listvar]);
-	//é™åˆ¶æ¡æ•°
+	//ÏŞÖÆÌõÊı
 	if($cline)
 	{
 		$limit=" limit ".$cline;
@@ -1687,7 +1687,7 @@ function sys_ForShowSonClass($classid,$tempid,$show=0,$cline=0){
 	$sql=$empire->query("select classid,classname,islast,sonclass,tbname,intro,classimg,infos from {$dbtbpre}enewsclass where ".$where." and showclass=0 order by myorder,classid".$limit);
 	while($r=$empire->fetch($sql))
 	{
-		//æ˜¾ç¤ºæ ç›®æ•°æ®æ•°
+		//ÏÔÊ¾À¸Ä¿Êı¾İÊı
 		if($show)
 		{
 			$num=ReturnClassInfoNum($r);
@@ -1697,10 +1697,10 @@ function sys_ForShowSonClass($classid,$tempid,$show=0,$cline=0){
 	}
 }
 
-//æ ç›®å¯¼èˆªæ ‡ç­¾ï¼å¾ªç¯
+//À¸Ä¿µ¼º½±êÇ©£­Ñ­»·
 function sys_GetShowClassMore($bclassid,$bcr,$tr,$bno,$bnum,$show=0){
 	global $empire,$class_r,$public_r,$dbtbpre;
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$listtemp=$tr[temptext];
 	$subnews=$tr[subnews];
 	$listvar=$tr[listvar];
@@ -1708,17 +1708,17 @@ function sys_GetShowClassMore($bclassid,$bcr,$tr,$bno,$bnum,$show=0){
 	$formatdate=$tr[showdate];
 	if(empty($rownum))
 	{$rownum=1;}
-	//æ›¿æ¢å˜é‡
+	//Ìæ»»±äÁ¿
 	$listtemp=str_replace("[!--bclassname--]",$bcr[classname],$listtemp);
-	$bclassurl=sys_ReturnBqClassname($bcr,9);//æ ç›®é“¾æ¥
+	$bclassurl=sys_ReturnBqClassname($bcr,9);//À¸Ä¿Á´½Ó
 	$listtemp=str_replace("[!--bclassurl--]",$bclassurl,$listtemp);
 	$listtemp=str_replace("[!--bclassid--]",$bclassid,$listtemp);
-	$bclassimg=$bcr[classimg]?$bcr[classimg]:$public_r[newsurl]."e/data/images/notimg.gif";//æ ç›®å›¾ç‰‡
+	$bclassimg=$bcr[classimg]?$bcr[classimg]:$public_r[newsurl]."e/data/images/notimg.gif";//À¸Ä¿Í¼Æ¬
 	$listtemp=str_replace("[!--bclassimg--]",$bclassimg,$listtemp);
-	$listtemp=str_replace("[!--bintro--]",nl2br($bcr[intro]),$listtemp);//æ ç›®ç®€ä»‹
+	$listtemp=str_replace("[!--bintro--]",nl2br($bcr[intro]),$listtemp);//À¸Ä¿¼ò½é
 	$listtemp=str_replace("[!--bno--]",$bno,$listtemp);
 	$listtemp=str_replace("[!--bnum--]",$bnum,$listtemp);
-	//åˆ—è¡¨
+	//ÁĞ±í
 	$list_exp="[!--empirenews.listtemp--]";
 	$list_r=explode($list_exp,$listtemp);
 	$listtext=$list_r[1];
@@ -1727,16 +1727,16 @@ function sys_GetShowClassMore($bclassid,$bcr,$tr,$bno,$bnum,$show=0){
 	$sql=$empire->query("select classid,classname,islast,sonclass,tbname,intro,classimg,infos from {$dbtbpre}enewsclass where bclassid='$bclassid' and showclass=0 order by myorder,classid");
 	while($r=$empire->fetch($sql))
 	{
-		//æ˜¾ç¤ºæ ç›®æ•°æ®æ•°
+		//ÏÔÊ¾À¸Ä¿Êı¾İÊı
 		if($show)
 		{
 			$num=ReturnClassInfoNum($r);
 		}
-		//æ›¿æ¢åˆ—è¡¨å˜é‡
+		//Ìæ»»ÁĞ±í±äÁ¿
 		$repvar=ReplaceShowClassVars($no,$listvar,$r,$num,0,$subnews);
 		$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 		$changerow+=1;
-		//è¶…è¿‡è¡Œæ•°
+		//³¬¹ıĞĞÊı
 		if($changerow>$rownum)
 		{
 			$changerow=1;
@@ -1745,7 +1745,7 @@ function sys_GetShowClassMore($bclassid,$bcr,$tr,$bno,$bnum,$show=0){
 		}
 		$no++;
 	}
-	//å¤šä½™æ•°æ®
+	//¶àÓàÊı¾İ
     if($changerow<=$rownum&&$listtext<>$list_r[1])
 	{
 		$string.=$listtext;
@@ -1754,10 +1754,10 @@ function sys_GetShowClassMore($bclassid,$bcr,$tr,$bno,$bnum,$show=0){
 	echo $string;
 }
 
-//æ›¿æ¢æ ç›®å¯¼èˆªæ ‡ç­¾
+//Ìæ»»À¸Ä¿µ¼º½±êÇ©
 function ReplaceShowClassVars($no,$listtemp,$r,$num,$ecms=0,$subnews=0){
 	global $public_r,$class_r;
-	//æ ç›®é“¾æ¥
+	//À¸Ä¿Á´½Ó
 	if($ecms==1)
 	{
 		$classurl=sys_ReturnBqZtname($r);
@@ -1774,26 +1774,26 @@ function ReplaceShowClassVars($no,$listtemp,$r,$num,$ecms=0,$subnews=0){
 		$r[intro]=sub($r[intro],0,$subnews,false);
 	}
 	$listtemp=str_replace("[!--classurl--]",$classurl,$listtemp);
-	//æ ç›®åç§°
+	//À¸Ä¿Ãû³Æ
 	$listtemp=str_replace("[!--classname--]",$r[classname],$listtemp);
-	//æ ç›®id
+	//À¸Ä¿id
 	$listtemp=str_replace("[!--classid--]",$r[classid],$listtemp);
-	//æ ç›®å›¾ç‰‡
+	//À¸Ä¿Í¼Æ¬
 	if(empty($r[classimg]))
 	{
 		$r[classimg]=$public_r[newsurl]."e/data/images/notimg.gif";
 	}
 	$listtemp=str_replace("[!--classimg--]",$r[classimg],$listtemp);
-	//æ ç›®ç®€ä»‹
+	//À¸Ä¿¼ò½é
 	$listtemp=str_replace("[!--intro--]",nl2br($r[intro]),$listtemp);
-	//è®°å½•æ•°
+	//¼ÇÂ¼Êı
 	$listtemp=str_replace("[!--num--]",$num,$listtemp);
-	//åºå·
+	//ĞòºÅ
 	$listtemp=str_replace("[!--no--]",$no,$listtemp);
 	return $listtemp;
 }
 
-//ç•™è¨€è°ƒç”¨
+//ÁôÑÔµ÷ÓÃ
 function sys_ShowLyInfo($line,$tempid,$bid=0){
 	global $empire,$dbtbpre,$public_r;
 	$a="";
@@ -1801,7 +1801,7 @@ function sys_ShowLyInfo($line,$tempid,$bid=0){
 	{
 		$a=" and bid='$bid'";
 	}
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$tr=sys_ReturnBqTemp($tempid);
 	if(empty($tr['tempid']))
 	{return "";}
@@ -1812,7 +1812,7 @@ function sys_ShowLyInfo($line,$tempid,$bid=0){
 	$formatdate=$tr[showdate];
 	if(empty($rownum))
 	{$rownum=1;}
-	//åˆ—è¡¨
+	//ÁĞ±í
 	$list_exp="[!--empirenews.listtemp--]";
 	$list_r=explode($list_exp,$listtemp);
 	$listtext=$list_r[1];
@@ -1821,11 +1821,11 @@ function sys_ShowLyInfo($line,$tempid,$bid=0){
 	$sql=$empire->query("select lyid,name,email,lytime,lytext,retext from {$dbtbpre}enewsgbook where checked=0".$a." order by lyid desc limit ".$line);
 	while($r=$empire->fetch($sql))
 	{
-		//æ›¿æ¢åˆ—è¡¨å˜é‡
+		//Ìæ»»ÁĞ±í±äÁ¿
 		$repvar=ReplaceShowLyVars($no,$listvar,$r,$formatdate,$subnews);
 		$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 		$changerow+=1;
-		//è¶…è¿‡è¡Œæ•°
+		//³¬¹ıĞĞÊı
 		if($changerow>$rownum)
 		{
 			$changerow=1;
@@ -1834,7 +1834,7 @@ function sys_ShowLyInfo($line,$tempid,$bid=0){
 		}
 		$no++;
 	}
-	//å¤šä½™æ•°æ®
+	//¶àÓàÊı¾İ
     if($changerow<=$rownum&&$listtext<>$list_r[1])
 	{
 		$string.=$listtext;
@@ -1843,7 +1843,7 @@ function sys_ShowLyInfo($line,$tempid,$bid=0){
 	echo $string;
 }
 
-//æ›¿æ¢ç•™è¨€æ ‡ç­¾
+//Ìæ»»ÁôÑÔ±êÇ©
 function ReplaceShowLyVars($no,$listtemp,$r,$formatdate,$subnews=0){
 	global $public_r;
 	$r['lytext']=stripSlashes($r['lytext']);
@@ -1852,17 +1852,17 @@ function ReplaceShowLyVars($no,$listtemp,$r,$formatdate,$subnews=0){
 		$r['lytext']=sub($r['lytext'],0,$subnews,false);
 	}
 	$listtemp=str_replace("[!--lyid--]",$r['lyid'],$listtemp);//id
-	$listtemp=str_replace("[!--lytext--]",nl2br($r['lytext']),$listtemp);//ç•™è¨€å†…å®¹
-	$listtemp=str_replace("[!--retext--]",nl2br(stripSlashes($r['retext'])),$listtemp);//å›å¤
+	$listtemp=str_replace("[!--lytext--]",nl2br($r['lytext']),$listtemp);//ÁôÑÔÄÚÈİ
+	$listtemp=str_replace("[!--retext--]",nl2br(stripSlashes($r['retext'])),$listtemp);//»Ø¸´
 	$listtemp=str_replace("[!--lytime--]",format_datetime($r['lytime'],$formatdate),$listtemp);
 	$listtemp=str_replace("[!--name--]",stripSlashes($r['name']),$listtemp);
 	$listtemp=str_replace("[!--email--]",stripSlashes($r['email']),$listtemp);
-	//åºå·
+	//ĞòºÅ
 	$listtemp=str_replace("[!--no--]",$no,$listtemp);
 	return $listtemp;
 }
 
-//ä¸“é¢˜è°ƒç”¨
+//×¨Ìâµ÷ÓÃ
 function sys_ShowZtData($tempid,$zcid=0,$cline=0,$classid=0){
 	global $empire,$dbtbpre,$public_r;
 	$a='';
@@ -1874,7 +1874,7 @@ function sys_ShowZtData($tempid,$zcid=0,$cline=0,$classid=0){
 	{
 		$a.=' and classid in ('.$classid.')';
 	}
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$tr=sys_ReturnBqTemp($tempid);
 	if(empty($tr['tempid']))
 	{return "";}
@@ -1885,12 +1885,12 @@ function sys_ShowZtData($tempid,$zcid=0,$cline=0,$classid=0){
 	$formatdate=$tr[showdate];
 	if(empty($rownum))
 	{$rownum=1;}
-	//é™åˆ¶æ¡æ•°
+	//ÏŞÖÆÌõÊı
 	if($cline)
 	{
 		$limit=" limit ".$cline;
 	}
-	//åˆ—è¡¨
+	//ÁĞ±í
 	$list_exp="[!--empirenews.listtemp--]";
 	$list_r=explode($list_exp,$listtemp);
 	$listtext=$list_r[1];
@@ -1899,11 +1899,11 @@ function sys_ShowZtData($tempid,$zcid=0,$cline=0,$classid=0){
 	$sql=$empire->query("select ztid,ztname,intro,ztimg from {$dbtbpre}enewszt where showzt=0".$a." order by myorder,ztid desc".$limit);
 	while($r=$empire->fetch($sql))
 	{
-		//æ›¿æ¢åˆ—è¡¨å˜é‡
+		//Ìæ»»ÁĞ±í±äÁ¿
 		$repvar=ReplaceShowClassVars($no,$listvar,$r,$num,1,$subnews);
 		$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 		$changerow+=1;
-		//è¶…è¿‡è¡Œæ•°
+		//³¬¹ıĞĞÊı
 		if($changerow>$rownum)
 		{
 			$changerow=1;
@@ -1912,7 +1912,7 @@ function sys_ShowZtData($tempid,$zcid=0,$cline=0,$classid=0){
 		}
 		$no++;
 	}
-	//å¤šä½™æ•°æ®
+	//¶àÓàÊı¾İ
     if($changerow<=$rownum&&$listtext<>$list_r[1])
 	{
 		$string.=$listtext;
@@ -1921,7 +1921,7 @@ function sys_ShowZtData($tempid,$zcid=0,$cline=0,$classid=0){
 	echo $string;
 }
 
-//å›¾åº“æ¨¡å‹åˆ†é¡µæ ‡ç­¾
+//Í¼¿âÄ£ĞÍ·ÖÒ³±êÇ©
 function sys_PhotoMorepage($tempid,$spicwidth=0,$spicheight=0){
 	global $navinfor;
 	$morepic=$navinfor['morepic'];
@@ -1929,7 +1929,7 @@ function sys_PhotoMorepage($tempid,$spicwidth=0,$spicheight=0){
 	{
 		return "";
 	}
-	//å–å¾—æ ‡ç­¾
+	//È¡µÃ±êÇ©
 	$tempr=sys_ReturnBqTemp($tempid);
 	if(empty($tempr['tempid']))
 	{return "";}
@@ -1953,13 +1953,13 @@ function sys_PhotoMorepage($tempid,$spicwidth=0,$spicheight=0){
 	{
 		$j=$i+1;
 		$fr=explode($fexp,$rr[$i]);
-		$smallpic=$fr[0];	//å°å›¾
-		$bigpic=$fr[1];	//å¤§å›¾
+		$smallpic=$fr[0];	//Ğ¡Í¼
+		$bigpic=$fr[1];	//´óÍ¼
 		if(empty($bigpic))
 		{
 			$bigpic=$smallpic;
 		}
-		$picname=ehtmlspecialchars($fr[2]);	//åç§°
+		$picname=ehtmlspecialchars($fr[2]);	//Ãû³Æ
 		$showpic=ReplaceMorePagelistvar($tempr['listvar'],$picname,$bigpic);
 		$sdh.=$nbsp."<a href='#ecms' onclick='GotoPhPage(".$j.");' title='".$picname."'><img src='".$smallpic."' alt='".$picname."' border=0".$gs."></a>";
 		if($i==0)
@@ -1968,15 +1968,15 @@ function sys_PhotoMorepage($tempid,$spicwidth=0,$spicheight=0){
 		}
 		$rstr.="photosr[".$j."]=\"".addslashes($showpic)."\";
 		";
-		$optionstr.="<option value=".$j.">ç¬¬ ".$j." é¡µ</option>";
-		$titleoption.="<option value=".$j.">".$j."ã€".$picname."</option>";
+		$optionstr.="<option value=".$j.">µÚ ".$j." Ò³</option>";
+		$titleoption.="<option value=".$j.">".$j."¡¢".$picname."</option>";
 		$listpage.=$nbsp."<a href='#ecms' onclick='GotoPhPage(".$j.");' title='".$picname."'>".$j."</a>";
 		$nbsp="&nbsp;";
 	}
 	echo ReplaceMorePagetemp($tempr['temptext'],$rstr,$sdh,$optionstr,$titleoption,$firstpic,$listpage);
 }
 
-//æ›¿æ¢å›¾ç‰‡é›†åˆ†é¡µæ¨¡æ¿
+//Ìæ»»Í¼Æ¬¼¯·ÖÒ³Ä£°å
 function ReplaceMorePagetemp($temp,$rstr,$sdh,$select,$titleselect,$showpic,$listpage){
 	$temp=str_replace("[!--photor--]",$rstr,$temp);
 	$temp=str_replace("[!--smalldh--]",$sdh,$temp);
@@ -1987,14 +1987,14 @@ function ReplaceMorePagetemp($temp,$rstr,$sdh,$select,$titleselect,$showpic,$lis
 	return $temp;
 }
 
-//æ›¿æ¢å›¾ç‰‡é›†listvaræ¨¡æ¿
+//Ìæ»»Í¼Æ¬¼¯listvarÄ£°å
 function ReplaceMorePagelistvar($temp,$picname,$picurl){
 	$temp=str_replace("[!--picname--]",$picname,$temp);
 	$temp=str_replace("[!--picurl--]",$picurl,$temp);
 	return $temp;
 }
 
-//è¾“å‡ºå¤é€‰æ¡†å­—æ®µå†…å®¹
+//Êä³ö¸´Ñ¡¿ò×Ö¶ÎÄÚÈİ
 function sys_EchoCheckboxFValue($f,$exp='<br>'){
 	global $navinfor;
 	$r=explode('|',$navinfor[$f]);
@@ -2013,7 +2013,7 @@ function sys_EchoCheckboxFValue($f,$exp='<br>'){
 	echo $str;
 }
 
-//è¯„è®ºè°ƒç”¨
+//ÆÀÂÛµ÷ÓÃ
 function sys_ShowPlInfo($line,$tempid,$classid=0,$id=0,$isgood=0,$enews=0){
 	global $empire,$dbtbpre,$class_r,$public_r;
 	$a="";
@@ -2037,20 +2037,20 @@ function sys_ShowPlInfo($line,$tempid,$classid=0,$id=0,$isgood=0,$enews=0){
 	{
 		$a.=" and id='$id'";
 	}
-	//æ’åº
-	if($enews==1)//æ”¯æŒ
+	//ÅÅĞò
+	if($enews==1)//Ö§³Ö
 	{
 		$order='zcnum desc,plid desc';
 	}
-	elseif($enews==2)//åå¯¹
+	elseif($enews==2)//·´¶Ô
 	{
 		$order='fdnum desc,plid desc';
 	}
-	else//å‘å¸ƒæ—¶é—´
+	else//·¢²¼Ê±¼ä
 	{
 		$order='plid desc';
 	}
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$tr=sys_ReturnBqTemp($tempid);
 	if(empty($tr['tempid']))
 	{return "";}
@@ -2061,7 +2061,7 @@ function sys_ShowPlInfo($line,$tempid,$classid=0,$id=0,$isgood=0,$enews=0){
 	$formatdate=$tr[showdate];
 	if(empty($rownum))
 	{$rownum=1;}
-	//åˆ—è¡¨
+	//ÁĞ±í
 	$list_exp="[!--empirenews.listtemp--]";
 	$list_r=explode($list_exp,$listtemp);
 	$listtext=$list_r[1];
@@ -2070,11 +2070,11 @@ function sys_ShowPlInfo($line,$tempid,$classid=0,$id=0,$isgood=0,$enews=0){
 	$sql=$empire->query("select plid,userid,username,saytime,id,classid,zcnum,fdnum,saytext from {$dbtbpre}enewspl_".$public_r['pldeftb']." where checked=0".$a." order by ".$order." limit ".$line);
 	while($r=$empire->fetch($sql))
 	{
-		//æ›¿æ¢åˆ—è¡¨å˜é‡
+		//Ìæ»»ÁĞ±í±äÁ¿
 		$repvar=ReplaceShowPlVars($no,$listvar,$r,$formatdate,$subnews);
 		$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 		$changerow+=1;
-		//è¶…è¿‡è¡Œæ•°
+		//³¬¹ıĞĞÊı
 		if($changerow>$rownum)
 		{
 			$changerow=1;
@@ -2083,7 +2083,7 @@ function sys_ShowPlInfo($line,$tempid,$classid=0,$id=0,$isgood=0,$enews=0){
 		}
 		$no++;
 	}
-	//å¤šä½™æ•°æ®
+	//¶àÓàÊı¾İ
     if($changerow<=$rownum&&$listtext<>$list_r[1])
 	{
 		$string.=$listtext;
@@ -2092,10 +2092,10 @@ function sys_ShowPlInfo($line,$tempid,$classid=0,$id=0,$isgood=0,$enews=0){
 	echo $string;
 }
 
-//æ›¿æ¢è¯„è®ºæ ‡ç­¾
+//Ìæ»»ÆÀÂÛ±êÇ©
 function ReplaceShowPlVars($no,$listtemp,$r,$formatdate,$subnews=0){
 	global $public_r,$empire,$dbtbpre,$class_r;
-	//æ ‡é¢˜
+	//±êÌâ
 	$infor=$empire->fetch1("select isurl,titleurl,classid,id,title,titlepic from {$dbtbpre}ecms_".$class_r[$r[classid]][tbname]." where id='$r[id]' limit 1");
 	$r['saytext']=stripSlashes($r['saytext']);
 	if($subnews)
@@ -2108,7 +2108,7 @@ function ReplaceShowPlVars($no,$listtemp,$r,$formatdate,$subnews=0){
 	}
 	if(empty($r['username']))
 	{
-		$r['username']='åŒ¿å';
+		$r['username']='ÄäÃû';
 	}
 	$titleurl=sys_ReturnBqTitleLink($infor);
 	$titlepic=$infor['titlepic']?$infor['titlepic']:$public_r['newsurl'].'e/data/images/notimg.gif';
@@ -2123,12 +2123,12 @@ function ReplaceShowPlVars($no,$listtemp,$r,$formatdate,$subnews=0){
 	$listtemp=str_replace("[!--username--]",$r['username'],$listtemp);
 	$listtemp=str_replace("[!--zcnum--]",$r['zcnum'],$listtemp);
 	$listtemp=str_replace("[!--fdnum--]",$r['fdnum'],$listtemp);
-	//åºå·
+	//ĞòºÅ
 	$listtemp=str_replace("[!--no--]",$no,$listtemp);
 	return $listtemp;
 }
 
-//æ˜¾ç¤ºå•ä¸ªä¼šå‘˜ä¿¡æ¯
+//ÏÔÊ¾µ¥¸ö»áÔ±ĞÅÏ¢
 function sys_ShowMemberInfo($userid=0,$fields=''){
 	global $empire,$dbtbpre,$public_r,$navinfor,$level_r;
 	if(empty($userid)&&$navinfor[ismember]==0)
@@ -2147,31 +2147,31 @@ function sys_ShowMemberInfo($userid=0,$fields=''){
 	}
 	$r=$empire->fetch1("select ".$fields." from ".eReturnMemberTable()." u LEFT JOIN {$dbtbpre}enewsmemberadd ui ON u.".egetmf('userid')."=ui.userid where u.".egetmf('userid')."='$uid' limit 1");
 	$field_groupid=egetmf('groupid');
-	$r['groupname']=$level_r[$r[$field_groupid]][groupname];//ä¼šå‘˜ç»„
+	$r['groupname']=$level_r[$r[$field_groupid]][groupname];//»áÔ±×é
 	return $r;
 }
 
-//è°ƒç”¨ä¼šå‘˜åˆ—è¡¨
+//µ÷ÓÃ»áÔ±ÁĞ±í
 function sys_ListMemberInfo($line=10,$ecms=0,$groupid=0,$userids=0,$fields=''){
 	global $empire,$dbtbpre,$public_r,$navinfor,$level_r;
 	if(!defined('InEmpireCMSUser'))
 	{
 		include_once ECMS_PATH.'e/member/class/user.php';
 	}
-	//æ“ä½œç±»å‹
-	if($ecms==1)//ç§¯åˆ†æ’è¡Œ
+	//²Ù×÷ÀàĞÍ
+	if($ecms==1)//»ı·ÖÅÅĞĞ
 	{
 		$order='u.'.egetmf('userfen').' desc';
 	}
-	elseif($ecms==2)//èµ„é‡‘æ’è¡Œ
+	elseif($ecms==2)//×Ê½ğÅÅĞĞ
 	{
 		$order='u.'.egetmf('money').' desc';
 	}
-	elseif($ecms==3)//ç©ºé—´äººæ°”æ’è¡Œ
+	elseif($ecms==3)//¿Õ¼äÈËÆøÅÅĞĞ
 	{
 		$order='ui.viewstats desc';
 	}
-	else//ç”¨æˆ·IDæ’è¡Œ
+	else//ÓÃ»§IDÅÅĞĞ
 	{
 		$order='u.'.egetmf('userid').' desc';
 	}
@@ -2192,7 +2192,7 @@ function sys_ListMemberInfo($line=10,$ecms=0,$groupid=0,$userids=0,$fields=''){
 	return $sql;
 }
 
-//æ˜¾ç¤ºTAGS
+//ÏÔÊ¾TAGS
 function sys_eShowTags($cid,$num=0,$line=0,$order='',$isgood='',$isgoodshow='',$showjg='',$shownum=0,$cs='',$vartype=''){
 	global $empire,$dbtbpre,$public_r,$navinfor;
 	$str='';
@@ -2270,7 +2270,7 @@ function sys_eShowTags($cid,$num=0,$line=0,$order='',$isgood='',$isgoodshow='',$
 		{
 			$limit=' limit '.$num;
 		}
-		//æ¨èæ ‡çº¢
+		//ÍÆ¼ö±êºì
 		$gfont1='';
 		$gfont2='';
 		if($isgoodshow)
@@ -2327,78 +2327,78 @@ function sys_eShowTags($cid,$num=0,$line=0,$order='',$isgood='',$isgoodshow='',$
 	echo $str;
 }
 
-//ç´¢å¼•çµåŠ¨æ ‡ç­¾ï¼šè¿”å›SQLå†…å®¹å‡½æ•°
+//Ë÷ÒıÁé¶¯±êÇ©£º·µ»ØSQLÄÚÈİº¯Êı
 function sys_ReturnEcmsIndexLoopBq($id=0,$line=10,$enews=3,$classid='',$mid='',$ewhere=''){
 	global $navclassid;
-	if($enews==1)//ä¸“é¢˜æœ€æ–°
+	if($enews==1)//×¨Ìâ×îĞÂ
 	{
 		$type='zt';
 		$eorder='newstime desc';
 		$selectf=',ztid,cid,isgood';
 	}
-	elseif($enews==2)//ä¸“é¢˜æœ€æ—©
+	elseif($enews==2)//×¨Ìâ×îÔç
 	{
 		$type='zt';
 		$eorder='newstime asc';
 		$selectf=',ztid,cid,isgood';
 	}
-	elseif($enews==3)//ä¸“é¢˜æ¨è
+	elseif($enews==3)//×¨ÌâÍÆ¼ö
 	{
 		$type='zt';
 		$eorder='newstime desc';
 		$selectf=',ztid,cid,isgood';
 		$where='isgood>0';
 	}
-	elseif($enews==4)//ä¸“é¢˜å­ç±»æœ€æ–°
+	elseif($enews==4)//×¨Ìâ×ÓÀà×îĞÂ
 	{
 		$type='ztc';
 		$eorder='newstime desc';
 		$selectf=',ztid,cid,isgood';
 	}
-	elseif($enews==5)//ä¸“é¢˜å­ç±»æœ€æ—©
+	elseif($enews==5)//×¨Ìâ×ÓÀà×îÔç
 	{
 		$type='ztc';
 		$eorder='newstime asc';
 		$selectf=',ztid,cid,isgood';
 	}
-	elseif($enews==6)//ä¸“é¢˜å­ç±»æ¨è
+	elseif($enews==6)//×¨Ìâ×ÓÀàÍÆ¼ö
 	{
 		$type='ztc';
 		$eorder='newstime desc';
 		$selectf=',ztid,cid,isgood';
 		$where='isgood>0';
 	}
-	elseif($enews==7)//ç¢ç‰‡æœ€æ–°
+	elseif($enews==7)//ËéÆ¬×îĞÂ
 	{
 		$type='sp';
 		$eorder='newstime desc';
 		$selectf='';
 	}
-	elseif($enews==8)//ç¢ç‰‡æœ€æ—©
+	elseif($enews==8)//ËéÆ¬×îÔç
 	{
 		$type='sp';
 		$eorder='newstime asc';
 		$selectf='';
 	}
-	elseif($enews==9)//TAGSæœ€æ–°
+	elseif($enews==9)//TAGS×îĞÂ
 	{
 		$type='tags';
 		$eorder='newstime desc';
 		$selectf='';
 	}
-	elseif($enews==10)//TAGSæœ€æ—©
+	elseif($enews==10)//TAGS×îÔç
 	{
 		$type='tags';
 		$eorder='newstime asc';
 		$selectf='';
 	}
-	elseif($enews==11)//SQLè°ƒç”¨
+	elseif($enews==11)//SQLµ÷ÓÃ
 	{
 		$type='sql';
 		$eorder='newstime asc';
 		$selectf='';
 	}
-	if($id=='selfinfo')//æ˜¾ç¤ºå½“å‰IDä¿¡æ¯
+	if($id=='selfinfo')//ÏÔÊ¾µ±Ç°IDĞÅÏ¢
 	{
 		$id=$navclassid;
 	}
@@ -2409,7 +2409,7 @@ function sys_ReturnEcmsIndexLoopBq($id=0,$line=10,$enews=3,$classid='',$mid='',$
 	return sys_ReturnTogQuery($type,$id,$line,$classid,$mid,$ewhere,$eorder,$selectf);
 }
 
-//è¿”å›ç»„åˆæŸ¥è¯¢
+//·µ»Ø×éºÏ²éÑ¯
 function sys_ReturnTogQuery($type,$id,$line,$classid='',$mid='',$ewhere='',$eorder='',$selectf=''){
 	global $empire,$public_r,$class_r,$class_zr,$navclassid,$dbtbpre,$class_tr,$emod_r;
 	if($type=='tags')//TAGS
@@ -2418,19 +2418,19 @@ function sys_ReturnTogQuery($type,$id,$line,$classid='',$mid='',$ewhere='',$eord
 		$orderf='newstime desc';
 		$table=$dbtbpre.'enewstagsdata';
 	}
-	elseif($type=='zt')//ä¸“é¢˜
+	elseif($type=='zt')//×¨Ìâ
 	{
 		$idf='ztid';
 		$orderf='newstime desc';
 		$table=$dbtbpre.'enewsztinfo';
 	}
-	elseif($type=='ztc')//ä¸“é¢˜å­ç±»
+	elseif($type=='ztc')//×¨Ìâ×ÓÀà
 	{
 		$idf='cid';
 		$orderf='newstime desc';
 		$table=$dbtbpre.'enewsztinfo';
 	}
-	elseif($type=='sql')//SQLæŸ¥è¯¢
+	elseif($type=='sql')//SQL²éÑ¯
 	{
 		$query_first=substr($id,0,7);
 		if(!($query_first=='select '||$query_first=='SELECT '))
@@ -2445,17 +2445,17 @@ function sys_ReturnTogQuery($type,$id,$line,$classid='',$mid='',$ewhere='',$eord
 		}
 		return $sql;
 	}
-	else//ç¢ç‰‡
+	else//ËéÆ¬
 	{
 		$idf='spid';
 		$orderf='newstime desc';
 		$table=$dbtbpre.'enewssp_2';
 	}
 	$where=strstr($id,',')?"$idf in ($id)":"$idf='$id'";
-	//æ ç›®
+	//À¸Ä¿
 	if($classid)
 	{
-		if(strstr($classid,','))//å¤šæ ç›®
+		if(strstr($classid,','))//¶àÀ¸Ä¿
 		{
 			$son_r=sys_ReturnMoreClass($classid,1);
 			$classid=$son_r[0];
@@ -2463,7 +2463,7 @@ function sys_ReturnTogQuery($type,$id,$line,$classid='',$mid='',$ewhere='',$eord
 		}
 		else
 		{
-			if($classid=='selfinfo')//æ˜¾ç¤ºå½“å‰æ ç›®ä¿¡æ¯
+			if($classid=='selfinfo')//ÏÔÊ¾µ±Ç°À¸Ä¿ĞÅÏ¢
 			{
 				$classid=$navclassid;
 			}
@@ -2478,17 +2478,17 @@ function sys_ReturnTogQuery($type,$id,$line,$classid='',$mid='',$ewhere='',$eord
 		}
 		$where.=' and ('.$add.')';
 	}
-	//æ¨¡å‹
+	//Ä£ĞÍ
 	if($mid)
 	{
 		$where.=strstr($mid,',')?" and mid in ($mid)":" and mid='$mid'";
 	}
-	//é™„åŠ sqlæ¡ä»¶
+	//¸½¼ÓsqlÌõ¼ş
 	if(!empty($ewhere))
 	{
 		$where.=' and ('.$ewhere.')';
 	}
-	//æ’åº
+	//ÅÅĞò
 	if(!empty($eorder))
 	{
 		$orderf=$eorder;
@@ -2502,7 +2502,7 @@ function sys_ReturnTogQuery($type,$id,$line,$classid='',$mid='',$ewhere='',$eord
 	return $sql;
 }
 
-//è°ƒç”¨TAGSä¿¡æ¯
+//µ÷ÓÃTAGSĞÅÏ¢
 function sys_eShowTagsInfo($tagid,$line,$strlen,$tempid,$classid='',$mid=''){
 	global $empire,$dbtbpre,$public_r,$class_r,$emod_r;
 	if(empty($tagid))
@@ -2512,7 +2512,7 @@ function sys_eShowTagsInfo($tagid,$line,$strlen,$tempid,$classid='',$mid=''){
 	$sql=sys_ReturnTogQuery('tags',$tagid,$line,$classid,$mid);
 	if(!$sql)
 	{return "";}
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$tr=sys_ReturnBqTemp($tempid);
 	if(empty($tr['tempid']))
 	{return "";}
@@ -2524,9 +2524,9 @@ function sys_eShowTagsInfo($tagid,$line,$strlen,$tempid,$classid='',$mid=''){
 	$docode=$tr[docode];
 	if(empty($rownum))
 	{$rownum=1;}
-	//å­—æ®µ
+	//×Ö¶Î
 	$ret_r=ReturnReplaceListF($tr[modid]);
-	//åˆ—è¡¨
+	//ÁĞ±í
 	$list_exp="[!--empirenews.listtemp--]";
 	$list_r=explode($list_exp,$listtemp);
 	$listtext=$list_r[1];
@@ -2544,11 +2544,11 @@ function sys_eShowTagsInfo($tagid,$line,$strlen,$tempid,$classid='',$mid=''){
 			continue;
 		}
 		$infor[oldtitle]=$infor[title];
-		//æ›¿æ¢åˆ—è¡¨å˜é‡
+		//Ìæ»»ÁĞ±í±äÁ¿
 		$repvar=ReplaceListVars($no,$listvar,$subnews,$strlen,$formatdate,$url,$have_class,$infor,$ret_r,$docode);
 		$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 		$changerow+=1;
-		//è¶…è¿‡è¡Œæ•°
+		//³¬¹ıĞĞÊı
 		if($changerow>$rownum)
 		{
 			$changerow=1;
@@ -2557,7 +2557,7 @@ function sys_eShowTagsInfo($tagid,$line,$strlen,$tempid,$classid='',$mid=''){
 		}
 		$no++;
     }
-	//å¤šä½™æ•°æ®
+	//¶àÓàÊı¾İ
     if($changerow<=$rownum&&$listtext<>$list_r[1])
 	{
 		$string.=$listtext;
@@ -2566,8 +2566,8 @@ function sys_eShowTagsInfo($tagid,$line,$strlen,$tempid,$classid='',$mid=''){
 	echo $string;
 }
 
-//-------------------------- ç¢ç‰‡ --------------------------
-//æ˜¾ç¤ºç¢ç‰‡
+//-------------------------- ËéÆ¬ --------------------------
+//ÏÔÊ¾ËéÆ¬
 function sys_eShowSpInfo($spvar,$line=10,$strlen=0){
 	global $empire,$dbtbpre,$public_r;
 	if(empty($spvar))
@@ -2575,7 +2575,7 @@ function sys_eShowSpInfo($spvar,$line=10,$strlen=0){
 		return '';
 	}
 	$spr=$empire->fetch1("select spid,spname,sppic,spsay,tempid,sptype from {$dbtbpre}enewssp where varname='$spvar' limit 1");
-	if($spr['sptype']==1)//é™æ€ä¿¡æ¯ç¢ç‰‡
+	if($spr['sptype']==1)//¾²Ì¬ĞÅÏ¢ËéÆ¬
 	{
 		sys_eShowSp1($spr['spid'],$spr,$line,$strlen);
 	}
@@ -2589,7 +2589,7 @@ function sys_eShowSpInfo($spvar,$line=10,$strlen=0){
 	}
 }
 
-//æ›¿æ¢ç¢ç‰‡å
+//Ìæ»»ËéÆ¬Ãû
 function ReplaceSpClassname($temp,$spid,$spr){
 	$temp=str_replace("[!--the.spname--]",$spr[spname],$temp);
 	$temp=str_replace("[!--the.spid--]",$spid,$temp);
@@ -2598,10 +2598,10 @@ function ReplaceSpClassname($temp,$spid,$spr){
 	return $temp;
 }
 
-//é™æ€ä¿¡æ¯ç¢ç‰‡
+//¾²Ì¬ĞÅÏ¢ËéÆ¬
 function sys_eShowSp1($spid,$spr,$line,$strlen){
 	global $empire,$dbtbpre,$public_r;
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$tr=sys_ReturnBqTemp($spr['tempid']);
 	if(empty($tr['tempid']))
 	{return "";}
@@ -2610,11 +2610,11 @@ function sys_eShowSp1($spid,$spr,$line,$strlen){
 	$listvar=str_replace('[!--news.url--]',$public_r[newsurl],$tr[listvar]);
 	$rownum=$tr[rownum];
 	$formatdate=$tr[showdate];
-	//æ›¿æ¢æ¨¡æ¿å˜é‡
+	//Ìæ»»Ä£°å±äÁ¿
 	$listtemp=ReplaceSpClassname($listtemp,$spid,$spr);
 	if(empty($rownum))
 	{$rownum=1;}
-	//åˆ—è¡¨
+	//ÁĞ±í
 	$list_exp="[!--empirenews.listtemp--]";
 	$list_r=explode($list_exp,$listtemp);
 	$listtext=$list_r[1];
@@ -2624,11 +2624,11 @@ function sys_eShowSp1($spid,$spr,$line,$strlen){
 	while($r=$empire->fetch($sql))
 	{
 		$r[oldtitle]=$r[title];
-		//æ›¿æ¢åˆ—è¡¨å˜é‡
+		//Ìæ»»ÁĞ±í±äÁ¿
 		$repvar=ReplaceShowSponeVars($no,$listvar,$subnews,$strlen,$formatdate,$r);
 		$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 		$changerow+=1;
-		//è¶…è¿‡è¡Œæ•°
+		//³¬¹ıĞĞÊı
 		if($changerow>$rownum)
 		{
 			$changerow=1;
@@ -2637,7 +2637,7 @@ function sys_eShowSp1($spid,$spr,$line,$strlen){
 		}
 		$no++;
     }
-	//å¤šä½™æ•°æ®
+	//¶àÓàÊı¾İ
     if($changerow<=$rownum&&$listtext<>$list_r[1])
 	{
 		$string.=$listtext;
@@ -2646,44 +2646,44 @@ function sys_eShowSp1($spid,$spr,$line,$strlen){
 	echo $string;
 }
 
-//æ›¿æ¢é™æ€ç¢ç‰‡æ ‡ç­¾
+//Ìæ»»¾²Ì¬ËéÆ¬±êÇ©
 function ReplaceShowSponeVars($no,$listtemp,$subnews,$subtitle,$formatdate,$r){
 	global $public_r;
-	//æ ‡é¢˜
-	if(!empty($subtitle))//æˆªå–å­—ç¬¦
+	//±êÌâ
+	if(!empty($subtitle))//½ØÈ¡×Ö·û
 	{
 		$r[title]=sub($r[title],0,$subtitle,false);
 	}
 	$r[title]=DoTitleFont($r[titlefont],$r[title]);
 	$listtemp=str_replace('[!--title--]',$r['title'],$listtemp);
 	$listtemp=str_replace('[!--oldtitle--]',$r['oldtitle'],$listtemp);
-	//æ—¶é—´
+	//Ê±¼ä
 	$listtemp=str_replace('[!--newstime--]',date($formatdate,$r['newstime']),$listtemp);
-	//å…¶å®ƒå˜é‡
+	//ÆäËü±äÁ¿
 	$listtemp=str_replace('[!--id--]',$r['sid'],$listtemp);
 	$listtemp=str_replace('[!--titleurl--]',$r['titleurl'],$listtemp);
 	$listtemp=str_replace('[!--titlepic--]',$r['titlepic'],$listtemp);
 	$listtemp=str_replace('[!--bigpic--]',$r['bigpic'],$listtemp);
 	$listtemp=str_replace('[!--titlepre--]',$r['titlepre'],$listtemp);
 	$listtemp=str_replace('[!--titlenext--]',$r['titlenext'],$listtemp);
-	//ç®€ä»‹
-	if(!empty($subnews))//æˆªå–å­—ç¬¦
+	//¼ò½é
+	if(!empty($subnews))//½ØÈ¡×Ö·û
 	{
 		$r[smalltext]=sub($r[smalltext],0,$subnews,false);
 	}
 	$listtemp=str_replace('[!--smalltext--]',nl2br($r['smalltext']),$listtemp);
-	//åºå·
+	//ĞòºÅ
 	$listtemp=str_replace('[!--no.num--]',$no,$listtemp);
 	return $listtemp;
 }
 
-//åŠ¨æ€ä¿¡æ¯ç¢ç‰‡
+//¶¯Ì¬ĞÅÏ¢ËéÆ¬
 function sys_eShowSp2($spid,$spr,$line,$strlen){
 	global $empire,$dbtbpre,$public_r,$class_r,$emod_r;
 	$sql=sys_ReturnTogQuery('sp',$spid,$line,'','');
 	if(!$sql)
 	{return "";}
-	//å–å¾—æ¨¡æ¿
+	//È¡µÃÄ£°å
 	$tr=sys_ReturnBqTemp($spr['tempid']);
 	if(empty($tr['tempid']))
 	{return "";}
@@ -2693,13 +2693,13 @@ function sys_eShowSp2($spid,$spr,$line,$strlen){
 	$rownum=$tr[rownum];
 	$formatdate=$tr[showdate];
 	$docode=$tr[docode];
-	//æ›¿æ¢æ¨¡æ¿å˜é‡
+	//Ìæ»»Ä£°å±äÁ¿
 	$listtemp=ReplaceSpClassname($listtemp,$spid,$spr);
 	if(empty($rownum))
 	{$rownum=1;}
-	//å­—æ®µ
+	//×Ö¶Î
 	$ret_r=ReturnReplaceListF($tr[modid]);
-	//åˆ—è¡¨
+	//ÁĞ±í
 	$list_exp="[!--empirenews.listtemp--]";
 	$list_r=explode($list_exp,$listtemp);
 	$listtext=$list_r[1];
@@ -2717,11 +2717,11 @@ function sys_eShowSp2($spid,$spr,$line,$strlen){
 			continue;
 		}
 		$infor[oldtitle]=$infor[title];
-		//æ›¿æ¢åˆ—è¡¨å˜é‡
+		//Ìæ»»ÁĞ±í±äÁ¿
 		$repvar=ReplaceListVars($no,$listvar,$subnews,$strlen,$formatdate,$url,$have_class,$infor,$ret_r,$docode);
 		$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 		$changerow+=1;
-		//è¶…è¿‡è¡Œæ•°
+		//³¬¹ıĞĞÊı
 		if($changerow>$rownum)
 		{
 			$changerow=1;
@@ -2730,7 +2730,7 @@ function sys_eShowSp2($spid,$spr,$line,$strlen){
 		}
 		$no++;
     }
-	//å¤šä½™æ•°æ®
+	//¶àÓàÊı¾İ
     if($changerow<=$rownum&&$listtext<>$list_r[1])
 	{
 		$string.=$listtext;
@@ -2739,21 +2739,21 @@ function sys_eShowSp2($spid,$spr,$line,$strlen){
 	echo $string;
 }
 
-//ä»£ç ç¢ç‰‡
+//´úÂëËéÆ¬
 function sys_eShowSp3($spid){
 	global $empire,$dbtbpre;
 	$r=$empire->fetch1("select sptext from {$dbtbpre}enewssp_3 where spid='$spid' limit 1");
 	echo $r['sptext'];
 }
 
-//è°ƒç”¨ç”Ÿæˆç¼©å›¾
+//µ÷ÓÃÉú³ÉËõÍ¼
 function sys_ResizeImg($file,$width,$height,$docut=0,$target_filename='',$target_path='e/data/tmp/titlepic/'){
 	global $public_r,$ecms_config;
 	if(!$file||!$width||!$height)
 	{
 		return $file;
 	}
-	//æ‰©å±•å
+	//À©Õ¹Ãû
 	$filetype=GetFiletype($file);
 	if(!strstr($ecms_config['sets']['tranpicturetype'],','.$filetype.','))
 	{
@@ -2797,7 +2797,7 @@ function sys_ResizeImg($file,$width,$height,$docut=0,$target_filename='',$target
 	return $fileurl;
 }
 
-//æ˜¾ç¤ºå›¾é›†å‡½æ•°
+//ÏÔÊ¾Í¼¼¯º¯Êı
 function sys_ModShowMorepic($epicswidth=120,$epicsheight=80,$temptext=''){
 	global $navinfor,$public_r;
 	$morepic=$navinfor['morepic'];
@@ -2805,7 +2805,7 @@ function sys_ModShowMorepic($epicswidth=120,$epicsheight=80,$temptext=''){
 	{
 		return "";
 	}
-	//æ¨¡æ¿
+	//Ä£°å
 	if(empty($temptext))
 	{
 		$temptext='<table><tr>[!--empirenews.listtemp--]<td bgcolor="#cccccc" align="center" id="espicid\'+i+\'"\'+cname+\'><a href="#empirecms" onclick="ecmsShowPic(\'+i+\');"><img src="\'+ecmspicr[i][0]+\'" width="\'+epicswidth+\'" height="\'+epicsheight+\'" border="0"></a><br>\'+(i+1)+\'/\'+ecmspicnum+\'</td>[!--empirenews.listtemp--]</tr></table>';
@@ -2822,7 +2822,7 @@ function sys_ModShowMorepic($epicswidth=120,$epicsheight=80,$temptext=''){
 		$temptext=str_replace("[!--spicno--]","'+(i+1)+'/'+ecmspicnum+'",$temptext);
 	}
 	$tempr=explode('[!--empirenews.listtemp--]',$temptext);
-	//å›¾ç‰‡åœ°å€
+	//Í¼Æ¬µØÖ·
 	$rexp="\r\n";
 	$fexp="::::::";
 	$rr=explode($rexp,$morepic);
@@ -2833,27 +2833,27 @@ function sys_ModShowMorepic($epicswidth=120,$epicsheight=80,$temptext=''){
 
 var ecmspicr=new Array();
 
-var epicswidth=<?=$epicswidth?>;	//å°å›¾å®½åº¦
-var epicsheight=<?=$epicsheight?>;	//å°å›¾é«˜åº¦
+var epicswidth=<?=$epicswidth?>;	//Ğ¡Í¼¿í¶È
+var epicsheight=<?=$epicsheight?>;	//Ğ¡Í¼¸ß¶È
 
-var eopenlistpage=1;	//æ˜¾ç¤ºåˆ—è¡¨åˆ†é¡µå¯¼èˆª
-var eopenselectpage=1;	//æ˜¾ç¤ºä¸‹æ‹‰åˆ†é¡µå¯¼èˆª
-var eopensmallpics=1;	//æ˜¾ç¤ºå°å›¾å¯¼èˆª
+var eopenlistpage=1;	//ÏÔÊ¾ÁĞ±í·ÖÒ³µ¼º½
+var eopenselectpage=1;	//ÏÔÊ¾ÏÂÀ­·ÖÒ³µ¼º½
+var eopensmallpics=1;	//ÏÔÊ¾Ğ¡Í¼µ¼º½
 
 var ecmspicnum=0;
 
-//å›¾ç‰‡åˆ—è¡¨
+//Í¼Æ¬ÁĞ±í
 <?php
 for($i=0;$i<$count;$i++)
 {
 	$fr=explode($fexp,$rr[$i]);
-	$smallpic=$fr[0];	//å°å›¾
-	$bigpic=$fr[1];	//å¤§å›¾
+	$smallpic=$fr[0];	//Ğ¡Í¼
+	$bigpic=$fr[1];	//´óÍ¼
 	if(empty($bigpic))
 	{
 		$bigpic=$smallpic;
 	}
-	$picname=ehtmlspecialchars($fr[2]);	//åç§°
+	$picname=ehtmlspecialchars($fr[2]);	//Ãû³Æ
 ?>
 ecmspicr[<?=$i?>]=new Array("<?=$smallpic?>","<?=$bigpic?>","<?=$picname?>");
 <?php
@@ -2898,7 +2898,7 @@ function ecmsShowSmallPics(){
 		}
 		str+='<?=$tempr[1]?>';
 
-		selectpages+='<option value="'+i+'"'+sname+'>ç¬¬ '+(i+1)+' é¡µ</option>';
+		selectpages+='<option value="'+i+'"'+sname+'>µÚ '+(i+1)+' Ò³</option>';
 
 		listpages+='<a href="#empirecms" id="epiclpid'+i+'" onclick="ecmsShowPic('+i+');"'+lname+'>'+(i+1)+'</a> ';
 	}

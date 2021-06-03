@@ -2,10 +2,10 @@
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>่ฏดๆ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>หตร๗</title>
 </head>
 <body>
-่ฏท้€ๆฉๅทฆ่พน็็ฎก็่ๅ•
+ว๋ักิ๑ื๓ฑ฿ตฤนÜภํฒหตฅ
 </body>
 </html>

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,28 +15,28 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 //CheckLevel($logininid,$loginin,$classid,"table");
-$url="<a href='ListTable.php".$ecms_hashur['whehref']."'>ç®¡ç†æ•°æ®è¡¨</a>";
+$url="<a href='ListTable.php".$ecms_hashur['whehref']."'>¹ÜÀíÊı¾İ±í</a>";
 $sql=$empire->query("select tid,tname,tbname,isdefault from {$dbtbpre}enewstable order by tid");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†æ•°æ®è¡¨</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÊı¾İ±í</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit" value="å¢åŠ æ•°æ®è¡¨" onclick="self.location.href='AddTable.php?enews=AddTable<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
-		<input type="button" name="Submit" value="å¯¼å…¥ç³»ç»Ÿæ¨¡å‹" onclick="self.location.href='LoadInM.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit" value="Ôö¼ÓÊı¾İ±í" onclick="self.location.href='AddTable.php?enews=AddTable<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
+		<input type="button" name="Submit" value="µ¼ÈëÏµÍ³Ä£ĞÍ" onclick="self.location.href='LoadInM.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -45,14 +45,14 @@ $sql=$empire->query("select tid,tname,tbname,isdefault from {$dbtbpre}enewstable
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="5%" height="25"><div align="center">ID</div></td>
-    <td width="35%" height="25"><div align="center">è¡¨åç§°</div></td>
-    <td width="32%"><div align="center">ç®¡ç†</div></td>
-    <td width="28%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="35%" height="25"><div align="center">±íÃû³Æ</div></td>
+    <td width="32%"><div align="center">¹ÜÀí</div></td>
+    <td width="28%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
   {
-	//é»˜è®¤è¡¨
+	//Ä¬ÈÏ±í
 	if($r[isdefault])
 	{
 		$bgcolor="#DBEAF5";
@@ -71,13 +71,13 @@ $sql=$empire->query("select tid,tname,tbname,isdefault from {$dbtbpre}enewstable
     <td height="25"> 
       <?=$r[tname]?>
       &nbsp;( <?=$dbtbpre?>ecms_<b><?=$r[tbname]?></b> ) </td>
-    <td><div align="center">[<a href="#ecms" onclick="window.open('ListF.php?tid=<?=$r[tid]?>&tbname=<?=$r[tbname]?><?=$ecms_hashur['ehref']?>','','width=700,height=560,scrollbars=yes,top=70,left=100,resizable=yes');"><strong>ç®¡ç†å­—æ®µ</strong></a>] &nbsp;
-        [<a href="#ecms" onclick="window.open('ListM.php?tid=<?=$r[tid]?>&tbname=<?=$r[tbname]?><?=$ecms_hashur['ehref']?>','','width=860,height=560,scrollbars=yes,top=70,left=100,resizable=yes');"><strong>ç®¡ç†ç³»ç»Ÿæ¨¡å‹</strong></a>] &nbsp;
-        [<a href="#ecms" onclick="window.open('ListDataTable.php?tid=<?=$r[tid]?>&tbname=<?=$r[tbname]?><?=$ecms_hashur['ehref']?>','','width=700,height=560,scrollbars=yes,top=70,left=100,resizable=yes');"><strong>ç®¡ç†åˆ†è¡¨</strong></a>]</div></td>
-    <td height="25"><div align="center"> [<a href="../ecmsmod.php?enews=DefaultTable&tid=<?=$r[tid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦é»˜è®¤?');"><strong>è®¾ä¸ºé»˜è®¤è¡¨</strong></a>] &nbsp;
-        [<a href="CopyTable.php?enews=CopyNewTable&tid=<?=$r[tid]?><?=$ecms_hashur['ehref']?>"><strong>å¤åˆ¶</strong></a>] &nbsp;
-        [<a href="AddTable.php?enews=EditTable&tid=<?=$r[tid]?><?=$ecms_hashur['ehref']?>"><strong>ä¿®æ”¹</strong></a>] &nbsp;
-        [<a href="../ecmsmod.php?enews=DelTable&tid=<?=$r[tid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');"><strong>åˆ é™¤</strong></a>] 
+    <td><div align="center">[<a href="#ecms" onclick="window.open('ListF.php?tid=<?=$r[tid]?>&tbname=<?=$r[tbname]?><?=$ecms_hashur['ehref']?>','','width=700,height=560,scrollbars=yes,top=70,left=100,resizable=yes');"><strong>¹ÜÀí×Ö¶Î</strong></a>] &nbsp;
+        [<a href="#ecms" onclick="window.open('ListM.php?tid=<?=$r[tid]?>&tbname=<?=$r[tbname]?><?=$ecms_hashur['ehref']?>','','width=860,height=560,scrollbars=yes,top=70,left=100,resizable=yes');"><strong>¹ÜÀíÏµÍ³Ä£ĞÍ</strong></a>] &nbsp;
+        [<a href="#ecms" onclick="window.open('ListDataTable.php?tid=<?=$r[tid]?>&tbname=<?=$r[tbname]?><?=$ecms_hashur['ehref']?>','','width=700,height=560,scrollbars=yes,top=70,left=100,resizable=yes');"><strong>¹ÜÀí·Ö±í</strong></a>]</div></td>
+    <td height="25"><div align="center"> [<a href="../ecmsmod.php?enews=DefaultTable&tid=<?=$r[tid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÄ¬ÈÏ?');"><strong>ÉèÎªÄ¬ÈÏ±í</strong></a>] &nbsp;
+        [<a href="CopyTable.php?enews=CopyNewTable&tid=<?=$r[tid]?><?=$ecms_hashur['ehref']?>"><strong>¸´ÖÆ</strong></a>] &nbsp;
+        [<a href="AddTable.php?enews=EditTable&tid=<?=$r[tid]?><?=$ecms_hashur['ehref']?>"><strong>ĞŞ¸Ä</strong></a>] &nbsp;
+        [<a href="../ecmsmod.php?enews=DelTable&tid=<?=$r[tid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');"><strong>É¾³ı</strong></a>] 
       </div></td>
   </tr>
   <?php

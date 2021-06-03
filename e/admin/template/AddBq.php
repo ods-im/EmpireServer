@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,19 +15,19 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"bq");
 $enews=ehtmlspecialchars($_GET['enews']);
 $cid=ehtmlspecialchars($_GET['cid']);
-$url="<a href=ListBq.php".$ecms_hashur['whehref'].">ç®¡ç†æ ‡ç­¾</a>&nbsp;>&nbsp;å¢åŠ æ ‡ç­¾";
-//ä¿®æ”¹æ ‡ç­¾
+$url="<a href=ListBq.php".$ecms_hashur['whehref'].">¹ÜÀí±êÇ©</a>&nbsp;>&nbsp;Ôö¼Ó±êÇ©";
+//ĞŞ¸Ä±êÇ©
 if($enews=="EditBq")
 {
 	$bqid=(int)$_GET['bqid'];
-	$url="<a href=ListBq.php".$ecms_hashur['whehref'].">ç®¡ç†æ ‡ç­¾</a>&nbsp;>&nbsp;ä¿®æ”¹æ ‡ç­¾";
+	$url="<a href=ListBq.php".$ecms_hashur['whehref'].">¹ÜÀí±êÇ©</a>&nbsp;>&nbsp;ĞŞ¸Ä±êÇ©";
 	$r=$empire->fetch1("select bqname,bqsay,funname,bq,issys,bqgs,isclose,classid,myorder from {$dbtbpre}enewsbq where bqid='$bqid'");
 }
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewsbqclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -42,16 +42,16 @@ while($cr=$empire->fetch($csql))
 db_close();
 $empire=null;
 
-//--------------------htmlç¼–è¾‘å™¨
+//--------------------html±à¼­Æ÷
 include('../ecmseditor/eshoweditor.php');
 $loadeditorjs=ECMS_ShowEditorJS('../ecmseditor/infoeditor/');
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<title>æ ‡ç­¾ç®¡ç†</title>
+<title>±êÇ©¹ÜÀí</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <?=$loadeditorjs?>
 <script>
@@ -65,7 +65,7 @@ var f=document.add
 f.bqsay.value=f.HTML.value;
 }
 function br(){
-if(!confirm("æ˜¯å¦å¤ä½ï¼Ÿ")){return false;}
+if(!confirm("ÊÇ·ñ¸´Î»£¿")){return false;}
 document.add.title.select()
 }
 </script>
@@ -74,7 +74,7 @@ document.add.title.select()
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 
@@ -82,66 +82,66 @@ document.add.title.select()
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å¢åŠ æ¨¡æ¿æ ‡ç­¾ 
+      <td height="25" colspan="2">Ôö¼ÓÄ£°å±êÇ© 
         <input name="add[bqid]" type="hidden" id="add[bqid]" value="<?=$bqid?>"> 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="add[cid]" type="hidden" id="add[cid]" value="<?=$cid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="21%" height="25">æ ‡ç­¾åï¼š</td>
+      <td width="21%" height="25">±êÇ©Ãû£º</td>
       <td width="79%" height="25"><input name="add[bqname]" type="text" id="add[bqname]" value="<?=$r[bqname]?>" size="38">
-        <font color="#666666">(å¦‚â€è°ƒç”¨æ–‡å­—ä¿¡æ¯æ ‡ç­¾â€)</font></td>
+        <font color="#666666">(Èç£¢µ÷ÓÃÎÄ×ÖĞÅÏ¢±êÇ©£¢)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ ‡ç­¾ç¬¦å·ï¼š</td>
+      <td height="25">±êÇ©·ûºÅ£º</td>
       <td height="25"><input name="add[bq]" type="text" id="add[bq]" value="<?=$r[bq]?>" size="38">
-        <font color="#666666">(å¦‚ï¼š[ad]å‚æ•°[/ad]ï¼Œåˆ™ç¬¦å·ä¸ºâ€adâ€)</font></td>
+        <font color="#666666">(Èç£º[ad]²ÎÊı[/ad]£¬Ôò·ûºÅÎª£¢ad£¢)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ‰€å±ç±»åˆ«ï¼š</td>
+      <td height="25">ËùÊôÀà±ğ£º</td>
       <td height="25"><select name="add[classid]" id="add[classid]">
-          <option value="0">ä¸éš¶å±äºä»»ä½•ç±»åˆ«</option>
+          <option value="0">²»Á¥ÊôÓÚÈÎºÎÀà±ğ</option>
           <?=$cstr?>
-        </select> <input type="button" name="Submit3" value="ç®¡ç†åˆ†ç±»" onclick="window.open('BqClass.php<?=$ecms_hashur['whehref']?>');"></td>
+        </select> <input type="button" name="Submit3" value="¹ÜÀí·ÖÀà" onclick="window.open('BqClass.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å‡½æ•°åï¼š</td>
+      <td height="25">º¯ÊıÃû£º</td>
       <td height="25"><input name="add[funname]" type="text" id="add[funname]" value="<?=$r[funname]?>" size="38"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"> <p>ç³»ç»Ÿæ ‡ç­¾ï¼š(ç›¸å¯¹äºe/class/t_functions.phpæ–‡ä»¶çš„å‡½æ•°å)<br>
-          ç”¨æˆ·è‡ªå®šä¹‰æ ‡ç­¾ï¼š(ç›¸å¯¹äºe/class/userfun.phpæ–‡ä»¶çš„å‡½æ•°åï¼Œå‡½æ•°å‘½åè¯·ä»¥â€<strong><font color="#FF0000">user_</font></strong>â€å¼€å¤´)</p></td>
+      <td height="25" bgcolor="#FFFFFF"> <p>ÏµÍ³±êÇ©£º(Ïà¶ÔÓÚe/class/t_functions.phpÎÄ¼şµÄº¯ÊıÃû)<br>
+          ÓÃ»§×Ô¶¨Òå±êÇ©£º(Ïà¶ÔÓÚe/class/userfun.phpÎÄ¼şµÄº¯ÊıÃû£¬º¯ÊıÃüÃûÇëÒÔ£¢<strong><font color="#FF0000">user_</font></strong>£¢¿ªÍ·)</p></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ ‡ç­¾æ ¼å¼ï¼š</td>
+      <td height="25">±êÇ©¸ñÊ½£º</td>
       <td height="25"><input name="add[bqgs]" type="text" id="add[bqgs]" value="<?=stripSlashes($r[bqgs])?>" size="80"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25">å¦‚ï¼š<font color="#FF0000">[phomenews]æ ç›®ID/ä¸“é¢˜ID,æ˜¾ç¤ºæ¡æ•°,æ ‡é¢˜æˆªå–æ•°,æ˜¯å¦æ˜¾ç¤ºæ—¶é—´,æ“ä½œç±»å‹[/phomenews]</font></td>
+      <td height="25">Èç£º<font color="#FF0000">[phomenews]À¸Ä¿ID/×¨ÌâID,ÏÔÊ¾ÌõÊı,±êÌâ½ØÈ¡Êı,ÊÇ·ñÏÔÊ¾Ê±¼ä,²Ù×÷ÀàĞÍ[/phomenews]</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">æ ‡ç­¾è¯´æ˜ï¼š</td>
+      <td height="25" valign="top">±êÇ©ËµÃ÷£º</td>
       <td height="25"> 
         <?=ECMS_ShowEditorVar('bqsay',stripSlashes($r[bqsay]),'Default','../ecmseditor/infoeditor/')?>
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ˜¯å¦å¼€å¯æ ‡ç­¾ï¼š</td>
+      <td height="25">ÊÇ·ñ¿ªÆô±êÇ©£º</td>
       <td height="25"><input type="radio" name="add[isclose]" value="0"<?=$r[isclose]==0?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="add[isclose]" value="1"<?=$r[isclose]==1?' checked':''?>>
-        å¦ <font color="#666666">ï¼ˆå¼€å¯æ‰ä¼šåœ¨æ¨¡æ¿ä¸­ç”Ÿæ•ˆï¼‰</font></td>
+        ·ñ <font color="#666666">£¨¿ªÆô²Å»áÔÚÄ£°åÖĞÉúĞ§£©</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ’åºï¼š</td>
+      <td height="25">ÅÅĞò£º</td>
       <td height="25"><input name="add[myorder]" type="text" id="add[myorder]" value="<?=$r[myorder]?>" size="38">
-        <font color="#666666">(å€¼è¶Šå¤§è¶Šå‰é¢)</font></td>
+        <font color="#666666">(ÖµÔ½´óÔ½Ç°Ãæ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

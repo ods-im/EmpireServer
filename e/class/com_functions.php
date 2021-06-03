@@ -1,5 +1,5 @@
 <?php
-//å¢åŠ ç•™è¨€åˆ†ç±»
+//Ôö¼ÓÁôÑÔ·ÖÀà
 function AddGbookClass($add,$do=0,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add[bname]))
@@ -24,14 +24,14 @@ function AddGbookClass($add,$do=0,$userid,$username){
 		$mychecked="";
 		$mycheckedvalue="";
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,$level);
 	$add['bname']=hRepPostStr($add['bname'],1);
 	$sql=$empire->query("insert into ".$table."(bname".$mychecked.") values('$add[bname]'".$mycheckedvalue.");");
 	if($sql)
 	{
 		$bid=$empire->lastid();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("bid=".$bid."<br>bname=".$add[bname]);
 		printerror("AddGbookClassSuccess",$location);
     }
@@ -39,7 +39,7 @@ function AddGbookClass($add,$do=0,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ç•™è¨€åˆ†ç±»
+//ĞŞ¸ÄÁôÑÔ·ÖÀà
 function EditGbookClass($add,$do=0,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[bid]=(int)$add[bid];
@@ -63,13 +63,13 @@ function EditGbookClass($add,$do=0,$userid,$username){
 		$location="FeedbackClass.php".hReturnEcmsHashStrHref2(1);
 		$mychecked="";
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,$level);
 	$add['bname']=hRepPostStr($add['bname'],1);
 	$sql=$empire->query("update ".$table." set bname='$add[bname]'".$mychecked." where bid='$add[bid]';");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("bid=".$add[bid]."<br>bname=".$add[bname]);
 		printerror("EditGbookClassSuccess",$location);
     }
@@ -77,7 +77,7 @@ function EditGbookClass($add,$do=0,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ç•™è¨€åˆ†ç±»
+//É¾³ıÁôÑÔ·ÖÀà
 function DelGbookClass($bid,$do=0,$userid,$username){
 	global $empire,$dbtbpre;
 	$bid=(int)$bid;
@@ -99,14 +99,14 @@ function DelGbookClass($bid,$do=0,$userid,$username){
 		$tabledata="{$dbtbpre}enewsfeedback";
 		$location="FeedbackClass.php".hReturnEcmsHashStrHref2(1);
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,$level);
 	$r=$empire->fetch1("select bname from ".$table." where bid='$bid';");
 	$sql=$empire->query("delete from ".$table." where bid='$bid';");
 	$sql1=$empire->query("delete from ".$tabledata." where bid='$bid';");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("bid=".$bid."<br>bname=".$r[bname]);
 		printerror("DelGbookClassSuccess",$location);
     }
@@ -114,7 +114,7 @@ function DelGbookClass($bid,$do=0,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//---------è¿”å›ç•™è¨€/åé¦ˆåˆ†ç±»
+//---------·µ»ØÁôÑÔ/·´À¡·ÖÀà
 function ReturnGbookClass($bid,$do=0){
 	global $empire,$dbtbpre;
 	$bid=(int)$bid;
@@ -138,7 +138,7 @@ function ReturnGbookClass($bid,$do=0){
 	return $select;
 }
 
-//å›å¤ç•™è¨€æ¿
+//»Ø¸´ÁôÑÔ°å
 function ReGbook($lyid,$retext,$bid,$userid,$username){
 	global $empire,$dbtbpre;
 	$lyid=(int)$lyid;
@@ -147,13 +147,13 @@ function ReGbook($lyid,$retext,$bid,$userid,$username){
 	{
 		printerror("EmptyReGbooktext","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"gbook");
 	$retext=hRepPostStr2($retext);
 	$sql=$empire->query("update {$dbtbpre}enewsgbook set retext='$retext' where lyid='$lyid';");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("lyid=".$lyid);
 		echo"<script>opener.parent.main.location.href='gbook.php?bid=$bid".hReturnEcmsHashStrHref2(0)."';window.close();</script>";
 		exit();
@@ -162,7 +162,7 @@ function ReGbook($lyid,$retext,$bid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ç•™è¨€
+//É¾³ıÁôÑÔ
 function DelGbook($lyid,$bid,$userid,$username){
 	global $empire,$dbtbpre;
 	$lyid=(int)$lyid;
@@ -171,12 +171,12 @@ function DelGbook($lyid,$bid,$userid,$username){
 	{
 		printerror("NotChangeLyid","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"gbook");
 	$sql=$empire->query("delete from {$dbtbpre}enewsgbook where lyid='$lyid';");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("lyid=".$lyid);
 		printerror("DelGbookSuccess",EcmsGetReturnUrl());
 	}
@@ -184,10 +184,10 @@ function DelGbook($lyid,$bid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//--------------------------æ‰¹é‡åˆ é™¤ç•™è¨€(3.6)
+//--------------------------ÅúÁ¿É¾³ıÁôÑÔ(3.6)
 function DelGbook_all($lyid,$bid,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"gbook");
 	$bid=(int)$bid;
 	$count=count($lyid);
@@ -202,7 +202,7 @@ function DelGbook_all($lyid,$bid,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsgbook where ".$add);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("DelGbookSuccess",EcmsGetReturnUrl());
 	}
@@ -210,10 +210,10 @@ function DelGbook_all($lyid,$bid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//--------------------------æ‰¹é‡å®¡æ ¸ç•™è¨€(3.6)
+//--------------------------ÅúÁ¿ÉóºËÁôÑÔ(3.6)
 function CheckGbook_all($lyid,$bid,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"gbook");
 	$bid=(int)$bid;
 	$count=count($lyid);
@@ -228,7 +228,7 @@ function CheckGbook_all($lyid,$bid,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsgbook set checked=0 where ".$add);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("CheckLysuccess",EcmsGetReturnUrl());
 	}
@@ -236,7 +236,7 @@ function CheckGbook_all($lyid,$bid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤åé¦ˆé™„ä»¶
+//É¾³ı·´À¡¸½¼ş
 function DelFeedbackFile($filename,$filepath){
 	global $empire,$dbtbpre,$public_r,$efileftp_dr;
 	if($filename)
@@ -269,7 +269,7 @@ function DelFeedbackFile($filename,$filepath){
 	}
 }
 
-//åˆ é™¤åé¦ˆä¿¡æ¯
+//É¾³ı·´À¡ĞÅÏ¢
 function DelFeedback($id,$bid,$userid,$username){
 	global $empire,$dbtbpre;
 	$id=(int)$id;
@@ -278,21 +278,21 @@ function DelFeedback($id,$bid,$userid,$username){
 	{
 		printerror("NotChangeFeedbackid","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"feedback");
 	$r=$empire->fetch1("select id,title,filepath,filename,bid from {$dbtbpre}enewsfeedback where id='$id';");
 	if(!$r['id'])
 	{
 		printerror("NotChangeFeedbackid","history.go(-1)");
     }
-	//åé¦ˆæƒé™
+	//·´À¡È¨ÏŞ
 	$bidr=ReturnAdminFeedbackClass($r['bid'],$userid,$username);
 	$sql=$empire->query("delete from {$dbtbpre}enewsfeedback where id='$id';");
-	//åˆ é™¤é™„ä»¶
+	//É¾³ı¸½¼ş
 	DelFeedbackFile($r['filename'],$r['filepath']);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=".$id."<br>title=$r[title]");
 		printerror("DelFeedbackSuccess",EcmsGetReturnUrl());
 	}
@@ -300,7 +300,7 @@ function DelFeedback($id,$bid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ‰¹é‡åˆ é™¤åé¦ˆä¿¡æ¯
+//ÅúÁ¿É¾³ı·´À¡ĞÅÏ¢
 function DelFeedback_all($id,$bid,$userid,$username){
 	global $empire,$dbtbpre;
 	$bid=(int)$bid;
@@ -309,14 +309,14 @@ function DelFeedback_all($id,$bid,$userid,$username){
 	{
 		printerror("NotChangeFeedbackid","history.go(-1)");
     }
-	//åé¦ˆæƒé™
+	//·´À¡È¨ÏŞ
 	$bidr=ReturnAdminFeedbackClass(0,$userid,$username);
 	$dh='';
 	$inid='';
 	for($i=0;$i<$count;$i++)
 	{
 		$id[$i]=(int)$id[$i];
-		//åˆ é™¤é™„ä»¶
+		//É¾³ı¸½¼ş
 		$r=$empire->fetch1("select id,filepath,filename,bid from {$dbtbpre}enewsfeedback where id='".$id[$i]."';");
 		if(!strstr(','.$bidr['bids'].',',','.$r['bid'].','))
 		{
@@ -332,7 +332,7 @@ function DelFeedback_all($id,$bid,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("DelFeedbackSuccess",EcmsGetReturnUrl());
 	}
@@ -340,21 +340,21 @@ function DelFeedback_all($id,$bid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//è¿”å›å­—æ®µå€¼
+//·µ»Ø×Ö¶ÎÖµ
 function ReturnFBFvalue($value){
 	$value=str_replace("\r\n","|",$value);
 	return $value;
 }
 
-//å¢åŠ åé¦ˆå­—æ®µ
+//Ôö¼Ó·´À¡×Ö¶Î
 function AddFeedbackF($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[f]=RepPostVar($add[f]);
 	if(empty($add[f])||empty($add[fname]))
 	{printerror("EmptyF","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"feedbackf");
-	//å­—æ®µæ˜¯å¦é‡å¤
+	//×Ö¶ÎÊÇ·ñÖØ¸´
 	$s=$empire->query("SHOW FIELDS FROM {$dbtbpre}enewsfeedback");
 	$b=0;
 	while($r=$empire->fetch($s))
@@ -367,8 +367,8 @@ function AddFeedbackF($add,$userid,$username){
     }
 	if($b)
 	{printerror("ReF","history.go(-1)");}
-	$add[fvalue]=ReturnFBFvalue($add[fvalue]);//åˆå§‹åŒ–å€¼
-	//å­—æ®µç±»å‹
+	$add[fvalue]=ReturnFBFvalue($add[fvalue]);//³õÊ¼»¯Öµ
+	//×Ö¶ÎÀàĞÍ
 	if($add[ftype]=="TINYINT"||$add[ftype]=="SMALLINT"||$add[ftype]=="INT"||$add[ftype]=="BIGINT"||$add[ftype]=="FLOAT"||$add[ftype]=="DOUBLE")
 	{
 		$def=" default '0'";
@@ -387,7 +387,7 @@ function AddFeedbackF($add,$userid,$username){
 	{
 		$add[flen]='255';
 	}
-	//å­—æ®µé•¿åº¦
+	//×Ö¶Î³¤¶È
 	if($add[flen])
 	{
 		if($add[ftype]!="TEXT"&&$add[ftype]!="MEDIUMTEXT"&&$add[ftype]!="LONGTEXT")
@@ -396,15 +396,15 @@ function AddFeedbackF($add,$userid,$username){
 		}
 	}
 	$field="`".$add[f]."` ".$type." NOT NULL".$def;
-	//æ–°å¢å­—æ®µ
+	//ĞÂÔö×Ö¶Î
 	$asql=$empire->query("alter table {$dbtbpre}enewsfeedback add ".$field);
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[myorder]=(int)$add[myorder];
 	$sql=$empire->query("insert into {$dbtbpre}enewsfeedbackf(f,fname,fform,fzs,myorder,ftype,flen,fformsize,fvalue) values('$add[f]','$add[fname]','$add[fform]','".eaddslashes($add[fzs])."',$add[myorder],'$add[ftype]','$add[flen]','$add[fformsize]','".eaddslashes2($add[fvalue])."');");
 	$lastid=$empire->lastid();
 	if($asql&&$sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("fid=".$lastid."<br>f=".$add[f]);
 		printerror("AddFSuccess","AddFeedbackF.php?enews=AddFeedbackF".hReturnEcmsHashStrHref2(0));
 	}
@@ -414,7 +414,7 @@ function AddFeedbackF($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹åé¦ˆå­—æ®µ
+//ĞŞ¸Ä·´À¡×Ö¶Î
 function EditFeedbackF($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$fid=(int)$add['fid'];
@@ -422,11 +422,11 @@ function EditFeedbackF($add,$userid,$username){
 	$add[oldf]=RepPostVar($add[oldf]);
 	if(empty($add[f])||empty($add[fname])||!$fid)
 	{printerror("EmptyF","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"feedbackf");
 	if($add[f]<>$add[oldf])
 	{
-		//å­—æ®µæ˜¯å¦é‡å¤
+		//×Ö¶ÎÊÇ·ñÖØ¸´
 		$s=$empire->query("SHOW FIELDS FROM {$dbtbpre}enewsfeedback");
 		$b=0;
 		while($r=$empire->fetch($s))
@@ -440,8 +440,8 @@ function EditFeedbackF($add,$userid,$username){
 		if($b)
 		{printerror("ReF","history.go(-1)");}
 	}
-	$add[fvalue]=ReturnFBFvalue($add[fvalue]);//åˆå§‹åŒ–å€¼
-	//å­—æ®µç±»å‹
+	$add[fvalue]=ReturnFBFvalue($add[fvalue]);//³õÊ¼»¯Öµ
+	//×Ö¶ÎÀàĞÍ
 	if($add[ftype]=="TINYINT"||$add[ftype]=="SMALLINT"||$add[ftype]=="INT"||$add[ftype]=="BIGINT"||$add[ftype]=="FLOAT"||$add[ftype]=="DOUBLE")
 	{
 		$def=" default '0'";
@@ -460,7 +460,7 @@ function EditFeedbackF($add,$userid,$username){
 	{
 		$add[flen]='255';
 	}
-	//å­—æ®µé•¿åº¦
+	//×Ö¶Î³¤¶È
 	if($add[flen])
 	{
 		if($add[ftype]!="TEXT"&&$add[ftype]!="MEDIUMTEXT"&&$add[ftype]!="LONGTEXT")
@@ -470,10 +470,10 @@ function EditFeedbackF($add,$userid,$username){
 	}
 	$field="`".$add[f]."` ".$type." NOT NULL".$def;
 	$usql=$empire->query("alter table {$dbtbpre}enewsfeedback change `".$add[oldf]."` ".$field);
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[myorder]=(int)$add[myorder];
 	$sql=$empire->query("update {$dbtbpre}enewsfeedbackf set f='$add[f]',fname='$add[fname]',fform='$add[fform]',fzs='".eaddslashes($add[fzs])."',myorder=$add[myorder],ftype='$add[ftype]',flen='$add[flen]',fformsize='$add[fformsize]',fvalue='".eaddslashes2($add[fvalue])."' where fid=$fid");
-	//å­—æ®µåæ›´æ¢
+	//×Ö¶ÎÃû¸ü»»
 	if($add[f]<>$add[oldf])
 	{
 		$record="<!--record-->";
@@ -503,7 +503,7 @@ function EditFeedbackF($add,$userid,$username){
 	}
 	if($usql&&$sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("fid=".$fid."<br>f=".$add[f]);
 		printerror("EditFSuccess","ListFeedbackF.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -511,13 +511,13 @@ function EditFeedbackF($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤åé¦ˆå­—æ®µ
+//É¾³ı·´À¡×Ö¶Î
 function DelFeedbackF($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$fid=(int)$add['fid'];
 	if(empty($fid))
 	{printerror("EmptyFid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"feedbackf");
 	$r=$empire->fetch1("select f from {$dbtbpre}enewsfeedbackf where fid=$fid");
 	if(!$r[f])
@@ -530,7 +530,7 @@ function DelFeedbackF($add,$userid,$username){
 	}
 	$usql=$empire->query("alter table {$dbtbpre}enewsfeedback drop COLUMN `".$r[f]."`");
 	$sql=$empire->query("delete from {$dbtbpre}enewsfeedbackf where fid=$fid");
-	//æ›´æ–°åˆ†ç±»è¡¨
+	//¸üĞÂ·ÖÀà±í
 	$record="<!--record-->";
 	$field="<!--field--->";
 	$like=$field.$r[f].$record;
@@ -551,7 +551,7 @@ function DelFeedbackF($add,$userid,$username){
 		{
 			$setf.=",checkboxf=REPLACE(checkboxf,'$slike',',')";
 		}
-		//å½•å…¥é¡¹
+		//Â¼ÈëÏî
 		$enter="";
 		$re1=explode($record,$cr[enter]);
 		for($i=0;$i<count($re1)-1;$i++)
@@ -564,7 +564,7 @@ function DelFeedbackF($add,$userid,$username){
 	}
 	if($usql&&$sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("fid=".$fid."<br>f=".$r[f]);
 		printerror("DelFSuccess","ListFeedbackF.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -572,10 +572,10 @@ function DelFeedbackF($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹åé¦ˆå­—æ®µé¡ºåº
+//ĞŞ¸Ä·´À¡×Ö¶ÎË³Ğò
 function EditFeedbackFOrder($fid,$myorder,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"feedbackf");
 	for($i=0;$i<count($myorder);$i++)
 	{
@@ -586,7 +586,7 @@ function EditFeedbackFOrder($fid,$myorder,$userid,$username){
 	printerror("EditFOrderSuccess","ListFeedbackF.php".hReturnEcmsHashStrHref2(1));
 }
 
-//è¿”å›æœ‰æƒé™çš„åé¦ˆåˆ†ç±»
+//·µ»ØÓĞÈ¨ÏŞµÄ·´À¡·ÖÀà
 function ReturnAdminFeedbackClass($bid,$userid,$username){
 	global $empire,$dbtbpre;
 	$bids='';
@@ -624,7 +624,7 @@ function ReturnAdminFeedbackClass($bid,$userid,$username){
 	return $ret_r;
 }
 
-//å–å¾—select/radioå…ƒç´ ä»£ç 
+//È¡µÃselect/radioÔªËØ´úÂë
 function GetBFFformSelect($type,$f,$fvalue,$fformsize=''){
 	$vr=explode("|",$fvalue);
 	$count=count($vr);
@@ -664,10 +664,10 @@ function GetBFFformSelect($type,$f,$fvalue,$fformsize=''){
 	return $change;
 }
 
-//è‡ªåŠ¨ç”Ÿæˆåé¦ˆè¡¨å•
+//×Ô¶¯Éú³É·´À¡±íµ¥
 function ReturnFeedbackBtemp($cname,$center,$mustenter){
 	global $empire,$dbtbpre,$fun_r;
-	//è¡¨å•å…ƒç´ 
+	//±íµ¥ÔªËØ
 	$temp="<tr><td width='16%' height=25 bgcolor='ffffff'>enews.name</td><td bgcolor='ffffff'>enews.var</td></tr>";
 	for($i=0;$i<count($center);$i++)
 	{
@@ -694,7 +694,7 @@ function ReturnFeedbackBtemp($cname,$center,$mustenter){
 			$fsize=$fr[fformsize]?" size='".$fr[fformsize]."'":"";
 			$repform="<input name='".$v."' type='text' value='".$fr[fvalue]."'".$fsize.">";
 		}
-		//å¿…å¡«
+		//±ØÌî
 		$star="";
 		if(strstr($mustenter,",".$v.","))
 		{
@@ -705,12 +705,12 @@ function ReturnFeedbackBtemp($cname,$center,$mustenter){
 	return "[!--cp.header--]<table width=100% align=center cellpadding=3 cellspacing=1 bgcolor='#DBEAF5'><form name='feedback' method='post' enctype='multipart/form-data' action='../../enews/index.php'><input name='enews' type='hidden' value='AddFeedback'>".$data."<tr><td bgcolor='ffffff'></td><td bgcolor='ffffff'><input type='submit' name='submit' value='".$fun_r['onsubmit']."'></td></tr></form></table>[!--cp.footer--]";
 }
 
-//ç”Ÿæˆåé¦ˆè¡¨å•æ–‡ä»¶
+//Éú³É·´À¡±íµ¥ÎÄ¼ş
 function ReFeedbackClassFile($bid){
 	global $empire,$dbtbpre;
 	$bid=(int)$bid;
 	$r=$empire->fetch1("select btemp from {$dbtbpre}enewsfeedbackclass where bid='$bid'");
-	//æ›¿æ¢å…¬å…±å˜é‡
+	//Ìæ»»¹«¹²±äÁ¿
 	$url="<?=\$url?>";
 	$pagetitle="<?=\$bname?>";
 	$btemp=ReplaceSvars($r['btemp'],$url,0,$pagetitle,$pagetitle,$pagetitle,$add,1);
@@ -726,10 +726,10 @@ if(!defined('InEmpireCMS'))
 	WriteFiletext($file,$btemp);
 }
 
-//æ‰¹é‡ç”Ÿæˆåé¦ˆè¡¨å•æ–‡ä»¶
+//ÅúÁ¿Éú³É·´À¡±íµ¥ÎÄ¼ş
 function ReMoreFeedbackClassFile($start=0,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"changedata");
 	$sql=$empire->query("select bid from {$dbtbpre}enewsfeedbackclass order by bid");
 	while($r=$empire->fetch($sql))
@@ -739,7 +739,7 @@ function ReMoreFeedbackClassFile($start=0,$userid,$username){
 	printerror("ReMFeedbackFileSuccess","");
 }
 
-//ç»„åˆæŠ•ç¨¿é¡¹
+//×éºÏÍ¶¸åÏî
 function TogFBqenter($cname,$cqenter){
 	$record="<!--record-->";
 	$field="<!--field--->";
@@ -754,7 +754,7 @@ function TogFBqenter($cname,$cqenter){
 	return $c;
 }
 
-//ç»„åˆå¿…å¡«é¡¹
+//×éºÏ±ØÌîÏî
 function TogFBMustf($cname,$menter){
 	$c="";
 	for($i=0;$i<count($menter);$i++)
@@ -769,18 +769,18 @@ function TogFBMustf($cname,$menter){
 	return $c;
 }
 
-//å¢åŠ åé¦ˆåˆ†ç±»
+//Ôö¼Ó·´À¡·ÖÀà
 function AddFeedbackClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add[bname]))
 	{printerror("EmptyGbookClass","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"feedbackf");
 	$enter=TogFBqenter($add['cname'],$add['center']);
 	$mustenter=TogFBMustf($add['cname'],$add['menter']);
 	$filef=ReturnMFileF($enter,$dbtbpre."enewsfeedbackf",0,"file");
 	$checkboxf=ReturnMFileF($enter,$dbtbpre."enewsfeedbackf",0,"checkbox");
-	//è‡ªåŠ¨ç”Ÿæˆè¡¨å•
+	//×Ô¶¯Éú³É±íµ¥
 	if($add[btype])
 	{
 		$add[btemp]=ReturnFeedbackBtemp($add['cname'],$add['center'],$mustenter);
@@ -798,11 +798,11 @@ function AddFeedbackClass($add,$userid,$username){
 	$add['usernames']=eaddslashes($add['usernames']);
 	$sql=$empire->query("insert into {$dbtbpre}enewsfeedbackclass(bname,btemp,bzs,enter,mustenter,filef,groupid,checkboxf,usernames) values('$add[bname]','".eaddslashes2($add[btemp])."','".eaddslashes($add[bzs])."','$enter','$mustenter','$filef',$groupid,'$checkboxf','$add[usernames]');");
 	$bid=$empire->lastid();
-	//ç”Ÿæˆè¡¨å•é¡µé¢
+	//Éú³É±íµ¥Ò³Ãæ
 	ReFeedbackClassFile($bid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("bid=".$bid."<br>bname=".$add[bname]);
 		printerror("AddGbookClassSuccess","AddFeedbackClass.php?enews=AddFeedbackClass".hReturnEcmsHashStrHref2(0));
 	}
@@ -810,19 +810,19 @@ function AddFeedbackClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹åé¦ˆåˆ†ç±»
+//ĞŞ¸Ä·´À¡·ÖÀà
 function EditFeedbackClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$bid=(int)$add['bid'];
 	if(empty($add[bname])||!$bid)
 	{printerror("EmptyGbookClass","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"feedbackf");
 	$enter=TogFBqenter($add['cname'],$add['center']);
 	$mustenter=TogFBMustf($add['cname'],$add['menter']);
 	$filef=ReturnMFileF($enter,$dbtbpre."enewsfeedbackf",0,"file");
 	$checkboxf=ReturnMFileF($enter,$dbtbpre."enewsfeedbackf",0,"checkbox");
-	//è‡ªåŠ¨ç”Ÿæˆè¡¨å•
+	//×Ô¶¯Éú³É±íµ¥
 	if($add[btype])
 	{
 		$add[btemp]=ReturnFeedbackBtemp($add['cname'],$add['center'],$mustenter);
@@ -839,11 +839,11 @@ function EditFeedbackClass($add,$userid,$username){
 	$checkboxf=eaddslashes($checkboxf);
 	$add['usernames']=eaddslashes($add['usernames']);
 	$sql=$empire->query("update {$dbtbpre}enewsfeedbackclass set bname='$add[bname]',btemp='".eaddslashes2($add[btemp])."',bzs='".eaddslashes($add[bzs])."',enter='$enter',mustenter='$mustenter',filef='$filef',groupid=$groupid,checkboxf='$checkboxf',usernames='$add[usernames]' where bid=$bid");
-	//ç”Ÿæˆè¡¨å•é¡µé¢
+	//Éú³É±íµ¥Ò³Ãæ
 	ReFeedbackClassFile($bid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("bid=".$bid."<br>bname=".$add[bname]);
 		printerror("EditGbookClassSuccess","FeedbackClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -851,31 +851,31 @@ function EditFeedbackClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤åé¦ˆåˆ†ç±»
+//É¾³ı·´À¡·ÖÀà
 function DelFeedbackClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$bid=(int)$add['bid'];
 	if(!$bid)
 	{printerror("NotChangeGbookClassid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"feedbackf");
 	$r=$empire->fetch1("select bid,bname from {$dbtbpre}enewsfeedbackclass where bid=$bid;");
 	if(!$r['bid'])
 	{printerror("NotChangeGbookClassid","history.go(-1)");}
 	$sql=$empire->query("delete from {$dbtbpre}enewsfeedbackclass where bid=$bid;");
-	//åˆ é™¤é™„ä»¶
+	//É¾³ı¸½¼ş
 	$fsql=$empire->query("select id,filepath,filename from {$dbtbpre}enewsfeedback where bid=$bid");
 	while($fr=$empire->fetch($fsql))
 	{
 		DelFeedbackFile($fr['filename'],$fr['filepath']);
 	}
 	$sql1=$empire->query("delete from {$dbtbpre}enewsfeedback where bid=$bid;");
-	//åˆ é™¤è¡¨å•æ–‡ä»¶
+	//É¾³ı±íµ¥ÎÄ¼ş
 	$file="../../tool/feedback/temp/feedback".$bid.".php";
 	DelFiletext($file);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("bid=".$bid."<br>bname=".$r[bname]);
 		printerror("DelGbookClassSuccess","FeedbackClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -883,7 +883,7 @@ function DelFeedbackClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤çŸ­æ¶ˆæ¯
+//É¾³ı¶ÌÏûÏ¢
 function DelMoreMsg($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$starttime=RepPostVar($add['starttime']);
@@ -892,29 +892,29 @@ function DelMoreMsg($add,$userid,$username){
 	{
 		printerror("EmptyDelMoreMsg","history.go(-1)");
 	}
-	//ä¿¡ç®±ç±»å‹
+	//ĞÅÏäÀàĞÍ
 	$msgtype=(int)$add['msgtype'];
-	if($msgtype==1)//åå°
+	if($msgtype==1)//ºóÌ¨
 	{
 		$a='';
 		$tbname="{$dbtbpre}enewshmsg";
 	}
-	elseif($msgtype==2)//å‰å°ç³»ç»Ÿæ¶ˆæ¯
+	elseif($msgtype==2)//Ç°Ì¨ÏµÍ³ÏûÏ¢
 	{
 		$a=' and issys=1';
 		$tbname="{$dbtbpre}enewsqmsg";
 	}
-	elseif($msgtype==3)//åå°ç³»ç»Ÿæ¶ˆæ¯
+	elseif($msgtype==3)//ºóÌ¨ÏµÍ³ÏûÏ¢
 	{
 		$a=' and issys=1';
 		$tbname="{$dbtbpre}enewshmsg";
 	}
-	else//å‰å°
+	else//Ç°Ì¨
 	{
 		$a='';
 		$tbname="{$dbtbpre}enewsqmsg";
 	}
-	//å‘ä»¶äºº
+	//·¢¼şÈË
 	$from_username=RepPostVar($add['from_username']);
 	if($from_username)
 	{
@@ -939,11 +939,11 @@ function DelMoreMsg($add,$userid,$username){
 			$a.=" and to_username='$to_username'";
 		}
 	}
-	//å…³é”®å­—
+	//¹Ø¼ü×Ö
 	$keyboard=RepPostVar2($add['keyboard']);
 	if(trim($keyboard))
 	{
-		//æ£€ç´¢å­—æ®µ
+		//¼ìË÷×Ö¶Î
 		$keyfield=(int)$add['keyfield'];
 		if($keyfield==1)
 		{
@@ -977,7 +977,7 @@ function DelMoreMsg($add,$userid,$username){
 	$sql=$empire->query("delete from ".$tbname." where msgtime>'$starttime' and msgtime<'$endtime'".$a);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("starttime=$starttime&endtime=$endtime<br>msgtype=$msgtype");
 		printerror("DelMoreMsgSuccess","DelMoreMsg.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -985,7 +985,7 @@ function DelMoreMsg($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//è¿”å›ä¼šå‘˜ç»„
+//·µ»Ø»áÔ±×é
 function ReturnSendMemberGroup($r){
 	global $public_r,$ecms_config;
 	$user_groupid=eReturnMemberDefGroupid();
@@ -1017,7 +1017,7 @@ function ReturnSendMemberGroup($r){
 	return $re;
 }
 
-//è¿”å›ä¼šå‘˜ç”¨æˆ·å
+//·µ»Ø»áÔ±ÓÃ»§Ãû
 function ReturnSendMemberUsername($username){
 	$r=explode('|',$username);
 	$count=count($r);
@@ -1039,7 +1039,7 @@ function ReturnSendMemberUsername($username){
 	return $re;
 }
 
-//æ‰¹é‡å‘é€ç«™å†…ä¿¡æ¯
+//ÅúÁ¿·¢ËÍÕ¾ÄÚĞÅÏ¢
 function DoSendMsg($add,$ecms=0,$userid,$username){
 	global $empire,$dbtbpre;
 	$start=(int)$add['start'];
@@ -1048,26 +1048,26 @@ function DoSendMsg($add,$ecms=0,$userid,$username){
 	$msgtext=ClearAddsData($add['msgtext']);
 	if(empty($title)||empty($msgtext))
 	{printerror("EmptySendMsg","history.go(-1)");}
-	if($ecms==1)//å‘é€é‚®ä»¶
+	if($ecms==1)//·¢ËÍÓÊ¼ş
 	{
 		$enews="SendEmail";
 		$mess="SendEmailSuccess";
 		$returnurl="SendEmail.php";
 		$pr=$empire->fetch1("select sendmailtype,smtphost,fromemail,loginemail,emailusername,emailpassword,smtpport,emailname from {$dbtbpre}enewspublic limit 1");
-		//å‘é€åˆä½¿åŒ–
+		//·¢ËÍ³õÊ¹»¯
 		$mailer=FirstSendMail($pr,$title,$msgtext);
 	}
-	else//å‘é€çŸ­æ¶ˆæ¯
+	else//·¢ËÍ¶ÌÏûÏ¢
 	{
 		$enews="SendMsg";
 		$mess="SendMsgSuccess";
 		$returnurl="SendMsg.php";
 	}
-	if($add['username'])//ç”¨æˆ·å
+	if($add['username'])//ÓÃ»§Ãû
 	{
 		$gr=ReturnSendMemberUsername($add['username']);
 	}
-	else//ä¼šå‘˜ç»„
+	else//»áÔ±×é
 	{
 		$gr=ReturnSendMemberGroup($add['groupid']);
 	}
@@ -1093,7 +1093,7 @@ function DoSendMsg($add,$ecms=0,$userid,$username){
 	}
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("title=$title");
 		printerror($mess,$returnurl.hReturnEcmsHashStrHref2(1));
 	}
@@ -1104,11 +1104,11 @@ function DoSendMsg($add,$ecms=0,$userid,$username){
 			echo $mailer->ErrorInfo;
 		}
 	}
-	//è¾“å‡ºä¸‹ä¸€ç»„æäº¤è¡¨å•
+	//Êä³öÏÂÒ»×éÌá½»±íµ¥
 	EchoSendMsgForm($enews,$returnurl,$newstart,$line,$gr[1],$add);
 }
 
-//è¾“å‡ºä¸€ç»„æäº¤è¡¨å•
+//Êä³öÒ»×éÌá½»±íµ¥
 function EchoSendMsgForm($enews,$returnurl,$start,$line,$checkbox,$add){
 	global $fun_r;
 	?>
@@ -1129,7 +1129,7 @@ function EchoSendMsgForm($enews,$returnurl,$start,$line,$checkbox,$add){
 	exit();
 }
 
-//å‘é€ç«™å†…çŸ­æ¶ˆæ¯
+//·¢ËÍÕ¾ÄÚ¶ÌÏûÏ¢
 function SendSiteMsg($title,$msgtext,$msgtime,$userid,$username,$havemsg){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;

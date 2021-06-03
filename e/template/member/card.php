@@ -5,15 +5,15 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='ç‚¹å¡å……å€¼';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;ç‚¹å¡å……å€¼";
+$public_diyr['pagetitle']='µã¿¨³äÖµ';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;µã¿¨³äÖµ";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <script>
 function GetFen1()
 {
 var ok;
-ok=confirm("ç¡®è®¤è¦å……å€¼?");
+ok=confirm("È·ÈÏÒª³äÖµ?");
 if(ok)
 {
 document.GetFen.Submit.disabled=true
@@ -28,35 +28,35 @@ else
   <form name=GetFen method=post action=../doaction.php onsubmit="return GetFen1();">
     <input type=hidden name=enews value=CardGetFen>
     <tr class="header"> 
-      <td height="25" colspan="2"><div align="center">ç‚¹å¡å†²å€¼</div></td>
+      <td height="25" colspan="2"><div align="center">µã¿¨³åÖµ</div></td>
     </tr>
     <tr bordercolor="#FFFFFF" bgcolor="#FFFFFF"> 
-      <td width="34%" height="25"> <div align="right">å†²å€¼çš„ç”¨æˆ·åï¼š</div></td>
+      <td width="34%" height="25"> <div align="right">³åÖµµÄÓÃ»§Ãû£º</div></td>
       <td width="66%" height="25"> <input name="username" type="text" id="username" value="<?=$user[username]?>">
         *</td>
     </tr>
     <tr bordercolor="#FFFFFF" bgcolor="#FFFFFF"> 
-      <td height="25"> <div align="right">é‡å¤ç”¨æˆ·åï¼š</div></td>
+      <td height="25"> <div align="right">ÖØ¸´ÓÃ»§Ãû£º</div></td>
       <td height="25"> <input name="reusername" type="text" id="reusername" value="<?=$user[username]?>">
         *</td>
     </tr>
     <tr bordercolor="#FFFFFF" bgcolor="#FFFFFF"> 
-      <td height="25"> <div align="right">å†²å€¼å¡å·ï¼š</div></td>
+      <td height="25"> <div align="right">³åÖµ¿¨ºÅ£º</div></td>
       <td height="25"> <input name="card_no" type="text" id="card_no">
         *</td>
     </tr>
     <tr bordercolor="#FFFFFF" bgcolor="#FFFFFF"> 
-      <td height="25"> <div align="right">å†²å€¼å¡å¯†ç ï¼š</div></td>
+      <td height="25"> <div align="right">³åÖµ¿¨ÃÜÂë£º</div></td>
       <td height="25"> <input name="password" type="password" id="password">
         *</td>
     </tr>
     <tr bordercolor="#FFFFFF" bgcolor="#FFFFFF"> 
       <td height="25"> <div align="center"></div></td>
-      <td height="25"> <input type="submit" name="Submit" value="å¼€å§‹å†²å€¼"> &nbsp; 
-        <input type="reset" name="Submit2" value="é‡ç½®"> </td>
+      <td height="25"> <input type="submit" name="Submit" value="¿ªÊ¼³åÖµ"> &nbsp; 
+        <input type="reset" name="Submit2" value="ÖØÖÃ"> </td>
     </tr>
     <tr bordercolor="#FFFFFF" bgcolor="#FFFFFF"> 
-      <td height="25" colspan="2"> <div align="center">è¯´æ˜ï¼šå¸¦*çš„ä¸ºå¿…å¡«é¡¹ã€‚</div></td>
+      <td height="25" colspan="2"> <div align="center">ËµÃ÷£º´ø*µÄÎª±ØÌîÏî¡£</div></td>
     </tr>
   </form>
 </table>

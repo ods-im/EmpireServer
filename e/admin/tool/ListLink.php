@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,15 +16,15 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"link");
 
-//------------------å¢åŠ å‹æƒ…é“¾æ¥
+//------------------Ôö¼ÓÓÑÇéÁ´½Ó
 function AddLink($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[lname]||!$add[lurl])
 	{printerror("EmptyLname","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"link");
 	$ltime=date("Y-m-d H:i:s");
 	$add[lname]=hRepPostStr($add[lname],1);
@@ -44,7 +44,7 @@ function AddLink($add,$userid,$username){
 	$lastid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("lid=".$lastid."<br>lname=".$add[lname]);
 		printerror("AddLinkSuccess","AddLink.php?enews=AddLink&cid=$add[cid]".hReturnEcmsHashStrHref2(0));
 	}
@@ -52,13 +52,13 @@ function AddLink($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//----------------ä¿®æ”¹å‹æƒ…é“¾æ¥
+//----------------ĞŞ¸ÄÓÑÇéÁ´½Ó
 function EditLink($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[lid]=(int)$add[lid];
 	if(!$add[lname]||!$add[lurl]||!$add[lid])
 	{printerror("EmptyLname","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"link");
 	$add[lname]=hRepPostStr($add[lname],1);
 	$add[lpic]=hRepPostStr2(eDoRepPostComStr($add[lpic],1));
@@ -76,7 +76,7 @@ function EditLink($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewslink set lname='".$add[lname]."',lpic='".$add[lpic]."',lurl='".$add[lurl]."',onclick=$add[onclick],width='$add[width]',height='$add[height]',target='$add[target]',myorder=$add[myorder],email='".$add[email]."',lsay='".eaddslashes($add[lsay])."',ltype=$add[ltype],checked=$add[checked],classid=$add[classid] where lid='$add[lid]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("lid=".$add[lid]."<br>lname=".$add[lname]);
 		printerror("EditLinkSuccess","ListLink.php?classid=$add[cid]".hReturnEcmsHashStrHref2(0));
 	}
@@ -84,20 +84,20 @@ function EditLink($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//---------------åˆ é™¤å‹æƒ…é“¾æ¥
+//---------------É¾³ıÓÑÇéÁ´½Ó
 function DelLink($lid,$cid,$userid,$username){
 	global $empire,$dbtbpre;
 	$lid=(int)$lid;
 	$cid=(int)$cid;
 	if(!$lid)
 	{printerror("EmptyLid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"link");
 	$r=$empire->fetch1("select lname from {$dbtbpre}enewslink where lid='$lid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewslink where lid='$lid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("lid=".$lid."<br>lname=".$r[lname]);
 		printerror("DelLinkSuccess","ListLink.php?classid=$cid".hReturnEcmsHashStrHref2(0));
 	}
@@ -133,12 +133,12 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=16;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=25;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=16;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=25;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select * from {$dbtbpre}enewslink";
 $totalquery="select count(*) as total from {$dbtbpre}enewslink";
-//ç±»åˆ«
+//Àà±ğ
 $add="";
 $classid=(int)$_GET['classid'];
 if($classid)
@@ -148,11 +148,11 @@ if($classid)
 }
 $query.=$add;
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by myorder,lid limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//ç±»åˆ«
+//Àà±ğ
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewslinkclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -168,26 +168,26 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†å‹æƒ…é“¾æ¥</title>
+<title>¹ÜÀíÓÑÇéÁ´½Ó</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href="ListLink.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å‹æƒ…é“¾æ¥</a></td>
+    <td width="50%" height="25">Î»ÖÃ£º<a href="ListLink.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÓÑÇéÁ´½Ó</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ å‹æƒ…é“¾æ¥" onclick="self.location.href='AddLink.php?enews=AddLink<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓÓÑÇéÁ´½Ó" onclick="self.location.href='AddLink.php?enews=AddLink<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
 
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td> é€‰æ‹©ç±»åˆ«ï¼š 
+    <td> Ñ¡ÔñÀà±ğ£º 
       <select name="classid" id="classid" onchange=window.location='ListLink.php?<?=$ecms_hashur['ehref']?>&classid='+this.options[this.selectedIndex].value>
-        <option value="0">æ˜¾ç¤ºæ‰€æœ‰ç±»åˆ«</option>
+        <option value="0">ÏÔÊ¾ËùÓĞÀà±ğ</option>
         <?=$cstr?>
       </select> </td>
   </tr>
@@ -196,28 +196,28 @@ while($cr=$empire->fetch($csql))
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="6%" height="25"> <div align="center">ID</div></td>
-    <td width="51%" height="25"> <div align="center">é¢„è§ˆ</div></td>
-    <td width="11%" height="25"> <div align="center">ç‚¹å‡»</div></td>
-    <td width="12%"><div align="center">çŠ¶æ€</div></td>
-    <td width="20%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="51%" height="25"> <div align="center">Ô¤ÀÀ</div></td>
+    <td width="11%" height="25"> <div align="center">µã»÷</div></td>
+    <td width="12%"><div align="center">×´Ì¬</div></td>
+    <td width="20%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
   {
-  //æ–‡å­—
+  //ÎÄ×Ö
   if(empty($r[lpic]))
   {
   $logo="<a href='".$r[lurl]."' title='".$r[lname]."' target=".$r[target].">".$r[lname]."</a>";
   }
-  //å›¾ç‰‡
+  //Í¼Æ¬
   else
   {
   $logo="<a href='".$r[lurl]."' target=".$r[target]."><img src='".$r[lpic]."' alt='".$r[lname]."' border=0 width='".$r[width]."' height='".$r[height]."'></a>";
   }
   if(empty($r[checked]))
-  {$checked="å…³é—­";}
+  {$checked="¹Ø±Õ";}
   else
-  {$checked="æ˜¾ç¤º";}
+  {$checked="ÏÔÊ¾";}
   ?>
   <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
     <td height="25"> <div align="center"> 
@@ -230,7 +230,7 @@ while($cr=$empire->fetch($csql))
         <?=$r[onclick]?>
       </div></td>
     <td><div align="center"><?=$checked?></div></td>
-    <td height="25"> <div align="center">[<a href="AddLink.php?enews=EditLink&lid=<?=$r[lid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="ListLink.php?enews=DelLink&lid=<?=$r[lid]?>&cid=<?=$classid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td height="25"> <div align="center">[<a href="AddLink.php?enews=EditLink&lid=<?=$r[lid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="ListLink.php?enews=DelLink&lid=<?=$r[lid]?>&cid=<?=$classid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

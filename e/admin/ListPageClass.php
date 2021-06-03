@@ -6,7 +6,7 @@ require("../class/functions.php");
 require LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,22 +15,22 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"class");
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $add="";
 $search="";
 $search.=$ecms_hashur['ehref'];
-//æœç´¢
+//ËÑË÷
 if($_GET['sear'])
 {
 	$search.="&sear=1";
-	//å…³é”®å­—
+	//¹Ø¼ü×Ö
 	$keyboard=RepPostVar2($_GET['keyboard']);
 	if($keyboard)
 	{
@@ -65,7 +65,7 @@ if($_GET['sear'])
 		}
 		$search.="&keyboard=$keyboard&show=$show";
 	}
-	//æ¡ä»¶
+	//Ìõ¼ş
 	$scond=(int)$_GET['scond'];
 	if($scond)
 	{
@@ -119,7 +119,7 @@ if($_GET['sear'])
 		}
 		$search.="&scond=$scond";
 	}
-	//æ¨¡å‹
+	//Ä£ĞÍ
 	$modid=(int)$_GET['modid'];
 	if($modid)
 	{
@@ -131,7 +131,7 @@ if($add)
 {
 	$add=" where".substr($add,4,strlen($add));
 }
-//ç³»ç»Ÿæ¨¡å‹
+//ÏµÍ³Ä£ĞÍ
 $modselect="";
 $msql=$empire->query("select mid,mname from {$dbtbpre}enewsmod where usemod=0 order by myorder,mid");
 while($mr=$empire->fetch($msql))
@@ -145,8 +145,8 @@ while($mr=$empire->fetch($msql))
 }
 $totalquery="select count(*) as total from {$dbtbpre}enewsclass".$add;
 $query="select * from {$dbtbpre}enewsclass".$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
-//æ’åº
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
+//ÅÅĞò
 $myorder=(int)$_GET['myorder'];
 if($myorder==1)
 {
@@ -160,17 +160,17 @@ $orderby=(int)$_GET['orderby'];
 if($orderby==1)
 {
 	$doorderby="";
-	$ordername="é™åº";
+	$ordername="½µĞò";
 	$neworderby=0;
 }
 else
 {
 	$doorderby=" desc";
-	$ordername="å‡åº";
+	$ordername="ÉıĞò";
 	$neworderby=1;
 }
-$orderidlink="<a href='ListPageClass.php?myorder=0&orderby=$neworderby".$search."' title='ç‚¹å‡»æŒ‰ æ ç›®ID ".$ordername."æ’åˆ—'><u>ID</u></a>";
-$ordertwolink="<a href='ListPageClass.php?myorder=1&orderby=$neworderby".$search."' title='ç‚¹å‡»æŒ‰ æ ç›®é¡ºåº ".$ordername."æ’åˆ—'><u>é¡ºåº</u></a>";
+$orderidlink="<a href='ListPageClass.php?myorder=0&orderby=$neworderby".$search."' title='µã»÷°´ À¸Ä¿ID ".$ordername."ÅÅÁĞ'><u>ID</u></a>";
+$ordertwolink="<a href='ListPageClass.php?myorder=1&orderby=$neworderby".$search."' title='µã»÷°´ À¸Ä¿Ë³Ğò ".$ordername."ÅÅÁĞ'><u>Ë³Ğò</u></a>";
 $search.="&myorder=$myorder&orderby=$orderby";
 $query=$query." order by ".$doorder.$doorderby." limit $offset,$line";
 $sql=$empire->query($query);
@@ -179,21 +179,21 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†æ ç›®</title>
+<title>¹ÜÀíÀ¸Ä¿</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="18%">ä½ç½®: <a href="ListPageClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†æ ç›®</a></td>
+    <td width="18%">Î»ÖÃ: <a href="ListPageClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÀ¸Ä¿</a></td>
     <td width="82%"> <div align="right" class="emenubutton">
-        <input type="button" name="Submit6" value="å¢åŠ æ ç›®" onclick="self.location.href='AddClass.php?enews=AddClass&from=1<?=$ecms_hashur['ehref']?>'">
-        <input type="button" name="Submit" value="åˆ·æ–°é¦–é¡µ" onclick="self.location.href='ecmschtml.php?enews=ReIndex<?=$ecms_hashur['href']?>'">
-        <input type="button" name="Submit2" value="åˆ·æ–°æ‰€æœ‰æ ç›®é¡µ" onclick="window.open('ecmschtml.php?enews=ReListHtml_all&from=ListPageClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
-        <input type="button" name="Submit3" value="åˆ·æ–°æ‰€æœ‰ä¿¡æ¯é¡µé¢" onclick="window.open('ReHtml/DoRehtml.php?enews=ReNewsHtml&start=0&from=ListPageClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
-        <input type="button" name="Submit4" value="åˆ·æ–°æ‰€æœ‰JSè°ƒç”¨" onclick="window.open('ecmschtml.php?enews=ReAllNewsJs&from=ListPageClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
+        <input type="button" name="Submit6" value="Ôö¼ÓÀ¸Ä¿" onclick="self.location.href='AddClass.php?enews=AddClass&from=1<?=$ecms_hashur['ehref']?>'">
+        <input type="button" name="Submit" value="Ë¢ĞÂÊ×Ò³" onclick="self.location.href='ecmschtml.php?enews=ReIndex<?=$ecms_hashur['href']?>'">
+        <input type="button" name="Submit2" value="Ë¢ĞÂËùÓĞÀ¸Ä¿Ò³" onclick="window.open('ecmschtml.php?enews=ReListHtml_all&from=ListPageClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
+        <input type="button" name="Submit3" value="Ë¢ĞÂËùÓĞĞÅÏ¢Ò³Ãæ" onclick="window.open('ReHtml/DoRehtml.php?enews=ReNewsHtml&start=0&from=ListPageClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
+        <input type="button" name="Submit4" value="Ë¢ĞÂËùÓĞJSµ÷ÓÃ" onclick="window.open('ecmschtml.php?enews=ReAllNewsJs&from=ListPageClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
       </div></td>
   </tr>
 </table>
@@ -201,37 +201,37 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
   <form name="searchclass" method="GET" action="ListPageClass.php">
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="32"><div align="right">æœç´¢: 
+      <td height="32"><div align="right">ËÑË÷: 
           <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
           <select name="show" id="show">
-            <option value="0"<?=$show==0?' selected':''?>>ä¸é™å­—æ®µ</option>
-            <option value="1"<?=$show==1?' selected':''?>>æ ç›®å</option>
-            <option value="2"<?=$show==2?' selected':''?>>æ ç›®ç®€ä»‹</option>
-            <option value="3"<?=$show==3?' selected':''?>>æ ç›®åˆ«å</option>
-            <option value="4"<?=$show==4?' selected':''?>>æ ç›®ID</option>
-			<option value="6"<?=$show==6?' selected':''?>>çˆ¶æ ç›®ID</option>
-            <option value="5"<?=$show==5?' selected':''?>>æ ç›®ç›®å½•</option>
+            <option value="0"<?=$show==0?' selected':''?>>²»ÏŞ×Ö¶Î</option>
+            <option value="1"<?=$show==1?' selected':''?>>À¸Ä¿Ãû</option>
+            <option value="2"<?=$show==2?' selected':''?>>À¸Ä¿¼ò½é</option>
+            <option value="3"<?=$show==3?' selected':''?>>À¸Ä¿±ğÃû</option>
+            <option value="4"<?=$show==4?' selected':''?>>À¸Ä¿ID</option>
+			<option value="6"<?=$show==6?' selected':''?>>¸¸À¸Ä¿ID</option>
+            <option value="5"<?=$show==5?' selected':''?>>À¸Ä¿Ä¿Â¼</option>
           </select>
           <select name="scond" id="scond">
-            <option value="0"<?=$scond==0?' selected':''?>>ä¸é™æ¡ä»¶</option>
-            <option value="1"<?=$scond==1?' selected':''?>>ç»ˆææ ç›®</option>
-            <option value="2"<?=$scond==2?' selected':''?>>å¤§æ ç›®</option>
-            <option value="3"<?=$scond==3?' selected':''?>>åˆ—è¡¨å¼å¤§æ ç›®</option>
-            <option value="4"<?=$scond==4?' selected':''?>>å°é¢å¼å¤§æ ç›®</option>
-			<option value="12"<?=$scond==12?' selected':''?>>ç»‘å®šä¿¡æ¯å¼å¤§æ ç›®</option>
-			<option value="11"<?=$scond==11?' selected':''?>>é¡µé¢å†…å®¹å¼å¤§æ ç›®</option>
-            <option value="5"<?=$scond==5?' selected':''?>>æœªå¼€æ”¾æŠ•ç¨¿çš„æ ç›®</option>
-            <option value="6"<?=$scond==6?' selected':''?>>æœªå¼€æ”¾è¯„è®ºçš„æ ç›®</option>
-            <option value="7"<?=$scond==7?' selected':''?>>åŠ¨æ€åˆ—è¡¨çš„æ ç›®</option>
-            <option value="8"<?=$scond==8?' selected':''?>>åŠ¨æ€ç”Ÿæˆå†…å®¹çš„æ ç›®</option>
-			<option value="10"<?=$scond==10?' selected':''?>>åŠ¨æ€å†…å®¹é¡µé¢çš„æ ç›®</option>
-            <option value="9"<?=$scond==9?' selected':''?>>ä¸æ˜¾ç¤ºåˆ°å¯¼èˆªçš„æ ç›®</option>
+            <option value="0"<?=$scond==0?' selected':''?>>²»ÏŞÌõ¼ş</option>
+            <option value="1"<?=$scond==1?' selected':''?>>ÖÕ¼«À¸Ä¿</option>
+            <option value="2"<?=$scond==2?' selected':''?>>´óÀ¸Ä¿</option>
+            <option value="3"<?=$scond==3?' selected':''?>>ÁĞ±íÊ½´óÀ¸Ä¿</option>
+            <option value="4"<?=$scond==4?' selected':''?>>·âÃæÊ½´óÀ¸Ä¿</option>
+			<option value="12"<?=$scond==12?' selected':''?>>°ó¶¨ĞÅÏ¢Ê½´óÀ¸Ä¿</option>
+			<option value="11"<?=$scond==11?' selected':''?>>Ò³ÃæÄÚÈİÊ½´óÀ¸Ä¿</option>
+            <option value="5"<?=$scond==5?' selected':''?>>Î´¿ª·ÅÍ¶¸åµÄÀ¸Ä¿</option>
+            <option value="6"<?=$scond==6?' selected':''?>>Î´¿ª·ÅÆÀÂÛµÄÀ¸Ä¿</option>
+            <option value="7"<?=$scond==7?' selected':''?>>¶¯Ì¬ÁĞ±íµÄÀ¸Ä¿</option>
+            <option value="8"<?=$scond==8?' selected':''?>>¶¯Ì¬Éú³ÉÄÚÈİµÄÀ¸Ä¿</option>
+			<option value="10"<?=$scond==10?' selected':''?>>¶¯Ì¬ÄÚÈİÒ³ÃæµÄÀ¸Ä¿</option>
+            <option value="9"<?=$scond==9?' selected':''?>>²»ÏÔÊ¾µ½µ¼º½µÄÀ¸Ä¿</option>
           </select>
           <select name="modid" id="modid">
-            <option value="0">ä¸é™æ¨¡å‹</option>
+            <option value="0">²»ÏŞÄ£ĞÍ</option>
             <?=$modselect?>
           </select>
-          <input type="submit" name="Submit8" value="æ˜¾ç¤º">
+          <input type="submit" name="Submit8" value="ÏÔÊ¾">
           <input name="sear" type="hidden" id="sear" value="1">
           <input name="myorder" type="hidden" id="myorder" value="<?=$myorder?>">
           <input name="orderby" type="hidden" id="orderby" value="<?=$orderby?>">
@@ -241,7 +241,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
   </table>
 <br>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name=editorder method=post action=ecmsclass.php onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+  <form name=editorder method=post action=ecmsclass.php onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
       <td width="5%"><div align="center"> 
@@ -251,10 +251,10 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
       <td width="5%" height="25"> <div align="center"> 
           <?=$orderidlink?>
         </div></td>
-      <td width="36%" height="25">æ ç›®å</td>
-      <td width="6%" height="25"> <div align="center">è®¿é—®</div></td>
-      <td width="14%" height="25">æ ç›®ç®¡ç†</td>
-      <td width="29%" height="25">æ“ä½œ</td>
+      <td width="36%" height="25">À¸Ä¿Ãû</td>
+      <td width="6%" height="25"> <div align="center">·ÃÎÊ</div></td>
+      <td width="14%" height="25">À¸Ä¿¹ÜÀí</td>
+      <td width="29%" height="25">²Ù×÷</td>
     </tr>
     <?
 	while($r=$empire->fetch($sql))
@@ -264,23 +264,23 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 		$classurl=sys_ReturnBqClassUrl($r);
 		if($r[islast]==1)
 		{
-			$img="<a href='AddNews.php?enews=AddNews&classid=".$r[classid].$ecms_hashur['ehref']."' target=_blank title='å¢åŠ ä¿¡æ¯'><img src='../data/images/txt.gif' border=0></a>";
+			$img="<a href='AddNews.php?enews=AddNews&classid=".$r[classid].$ecms_hashur['ehref']."' target=_blank title='Ôö¼ÓĞÅÏ¢'><img src='../data/images/txt.gif' border=0></a>";
 			$renewshtml=" <a href='ReHtml/DoRehtml.php?enews=ReNewsHtml&from=ListPageClass.php".urlencode($ecms_hashur['whehref'])."&classid=".$r[classid]."&tbname[]=".$r[tbname].$ecms_hashur['href']."'>".$fun_r['news']."</a> ";
-			$docinfo=" <a href='ecmsinfo.php?enews=InfoToDoc&ecmsdoc=1&docfrom=ListPageClass.php".urlencode($ecms_hashur['whehref'])."&classid=".$r[classid].$ecms_hashur['href']."' onclick=\"return confirm('ç¡®è®¤å½’æ¡£?');\">å½’æ¡£</a>";
-			$classinfotype=" <a href='#e' onclick=window.open('ClassInfoType.php?classid=".$r[classid].$ecms_hashur['ehref']."');>åˆ†ç±»</a>";
+			$docinfo=" <a href='ecmsinfo.php?enews=InfoToDoc&ecmsdoc=1&docfrom=ListPageClass.php".urlencode($ecms_hashur['whehref'])."&classid=".$r[classid].$ecms_hashur['href']."' onclick=\"return confirm('È·ÈÏ¹éµµ?');\">¹éµµ</a>";
+			$classinfotype=" <a href='#e' onclick=window.open('ClassInfoType.php?classid=".$r[classid].$ecms_hashur['ehref']."');>·ÖÀà</a>";
 		}
 		else
 		{
 			$img="<img src='../data/images/dir.gif'>";
 			$renewshtml=" <a href='ReHtml/DoRehtml.php?enews=ReNewsHtml&from=ListPageClass.php".urlencode($ecms_hashur['whehref'])."&classid=".$r[classid]."&tbname[]=".$r[tbname].$ecms_hashur['href']."'>".$fun_r['news']."</a> ";
 		}
-		//å¤–éƒ¨æ ç›®
+		//Íâ²¿À¸Ä¿
 		$classname=$r[classname];
 		if($r[wburl])
 		{
-			$classname="<font color='#666666'>".$classname."&nbsp;(å¤–éƒ¨)</font>";
+			$classname="<font color='#666666'>".$classname."&nbsp;(Íâ²¿)</font>";
 		}
-		//ä¸Šçº§æ ç›®
+		//ÉÏ¼¶À¸Ä¿
 		$bclassname='';
 		if($r[bclassid])
 		{
@@ -297,8 +297,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
       <td height="25"><div align="center"><?=$r[classid]?></div></td>
       <td height="25"><?="<input type=checkbox name=reclassid[] value='".$r[classid]."'>&nbsp;".$bclassname."<a href='".$classurl."' target=_blank><b>".$classname."</b></a>";?></td>
       <td height="25"><div align="center"><?=$r[onclick]?></div></td>
-      <td height="25"><?="<a href='AddClass.php?classid=".$r[classid]."&enews=EditClass&from=1".$ecms_hashur['ehref']."'>ä¿®æ”¹</a> <a href='AddClass.php?classid=".$r[classid]."&enews=AddClass&docopy=1&from=1".$ecms_hashur['ehref']."'>å¤åˆ¶</a> <a href='ecmsclass.php?classid=".$r[classid]."&enews=DelClass&from=1".$ecms_hashur['href']."' onclick=\"return confirm('".$fun_r['CheckDelClass']."');\">åˆ é™¤</a>"?></td>
-      <td height="25"><?="<a href='enews.php?enews=ReListHtml&from=ListPageClass.php".urlencode($ecms_hashur['whehref'])."&classid=".$r[classid].$ecms_hashur['href']."'>åˆ·æ–°</a>".$renewshtml."<a href='ecmschtml.php?enews=ReSingleJs&doing=0&classid=".$r[classid].$ecms_hashur['href']."'>JS</a> <a href='#ecms' onclick=window.open('view/ClassUrl.php?classid=".$r[classid].$ecms_hashur['ehref']."','','width=500,height=250');>è°ƒç”¨</a>".$classinfotype.$docinfo;?>
+      <td height="25"><?="<a href='AddClass.php?classid=".$r[classid]."&enews=EditClass&from=1".$ecms_hashur['ehref']."'>ĞŞ¸Ä</a> <a href='AddClass.php?classid=".$r[classid]."&enews=AddClass&docopy=1&from=1".$ecms_hashur['ehref']."'>¸´ÖÆ</a> <a href='ecmsclass.php?classid=".$r[classid]."&enews=DelClass&from=1".$ecms_hashur['href']."' onclick=\"return confirm('".$fun_r['CheckDelClass']."');\">É¾³ı</a>"?></td>
+      <td height="25"><?="<a href='enews.php?enews=ReListHtml&from=ListPageClass.php".urlencode($ecms_hashur['whehref'])."&classid=".$r[classid].$ecms_hashur['href']."'>Ë¢ĞÂ</a>".$renewshtml."<a href='ecmschtml.php?enews=ReSingleJs&doing=0&classid=".$r[classid].$ecms_hashur['href']."'>JS</a> <a href='#ecms' onclick=window.open('view/ClassUrl.php?classid=".$r[classid].$ecms_hashur['ehref']."','','width=500,height=250');>µ÷ÓÃ</a>".$classinfotype.$docinfo;?>
 	  </td>
     </tr>
     <?
@@ -306,12 +306,12 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
   	?>
     <tr bgcolor="#ffffff"> 
       <td height="25" colspan="7"> <div align="right">
-          <input type="submit" name="Submit5" value="ä¿®æ”¹æ ç›®é¡ºåº" onClick="document.editorder.enews.value='EditClassOrder';document.editorder.action='ecmsclass.php';">
+          <input type="submit" name="Submit5" value="ĞŞ¸ÄÀ¸Ä¿Ë³Ğò" onClick="document.editorder.enews.value='EditClassOrder';document.editorder.action='ecmsclass.php';">
           <input name="enews" type="hidden" id="enews" value="EditClassOrder">
           &nbsp;&nbsp; 
-          <input type="submit" name="Submit7" value="åˆ·æ–°æ ç›®é¡µé¢" onClick="document.editorder.enews.value='GoReListHtmlMoreA';document.editorder.action='ecmschtml.php';"">
+          <input type="submit" name="Submit7" value="Ë¢ĞÂÀ¸Ä¿Ò³Ãæ" onClick="document.editorder.enews.value='GoReListHtmlMoreA';document.editorder.action='ecmschtml.php';"">
           &nbsp;&nbsp; 
-          <input type="submit" name="Submit72" value="ç»ˆææ ç›®å±æ€§è½¬æ¢" onClick="document.editorder.enews.value='ChangeClassIslast';document.editorder.action='ecmsclass.php';"">
+          <input type="submit" name="Submit72" value="ÖÕ¼«À¸Ä¿ÊôĞÔ×ª»»" onClick="document.editorder.enews.value='ChangeClassIslast';document.editorder.action='ecmsclass.php';"">
         </div></td>
     </tr>
     <tr bgcolor="#ffffff"> 
@@ -320,10 +320,10 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="65" colspan="7"><strong>ç»ˆææ ç›®å±æ€§è½¬æ¢è¯´æ˜(åªèƒ½é€‰æ‹©å•ä¸ªæ ç›®)ï¼š</strong><br>
-        å¦‚æœä½ é€‰æ‹©çš„æ˜¯<font color="#FF0000">éç»ˆææ ç›®</font>ï¼Œåˆ™è½¬ä¸º<font color="#FF0000">ç»ˆææ ç›®</font><font color="#666666">(æ­¤æ ç›®ä¸èƒ½æœ‰å­æ ç›®)</font><br>
-        å¦‚æœä½ é€‰æ‹©çš„æ˜¯<font color="#FF0000">ç»ˆææ ç›®</font>ï¼Œåˆ™è½¬ä¸º<font color="#FF0000">éç»ˆææ ç›®</font><font color="#666666">(è¯·å…ˆæŠŠå½“å‰æ ç›®çš„æ•°æ®è½¬ç§»ï¼Œå¦åˆ™ä¼šå‡ºç°å†—ä½™æ•°æ®)<br>
-        </font><strong>ä¿®æ”¹æ ç›®é¡ºåº:é¡ºåºå€¼è¶Šå°è¶Šå‰é¢</strong></td>
+      <td height="65" colspan="7"><strong>ÖÕ¼«À¸Ä¿ÊôĞÔ×ª»»ËµÃ÷(Ö»ÄÜÑ¡Ôñµ¥¸öÀ¸Ä¿)£º</strong><br>
+        Èç¹ûÄãÑ¡ÔñµÄÊÇ<font color="#FF0000">·ÇÖÕ¼«À¸Ä¿</font>£¬Ôò×ªÎª<font color="#FF0000">ÖÕ¼«À¸Ä¿</font><font color="#666666">(´ËÀ¸Ä¿²»ÄÜÓĞ×ÓÀ¸Ä¿)</font><br>
+        Èç¹ûÄãÑ¡ÔñµÄÊÇ<font color="#FF0000">ÖÕ¼«À¸Ä¿</font>£¬Ôò×ªÎª<font color="#FF0000">·ÇÖÕ¼«À¸Ä¿</font><font color="#666666">(ÇëÏÈ°Ñµ±Ç°À¸Ä¿µÄÊı¾İ×ªÒÆ£¬·ñÔò»á³öÏÖÈßÓàÊı¾İ)<br>
+        </font><strong>ĞŞ¸ÄÀ¸Ä¿Ë³Ğò:Ë³ĞòÖµÔ½Ğ¡Ô½Ç°Ãæ</strong></td>
     </tr>
     <input name="from" type="hidden" value="ListPageClass.php<?=$ecms_hashur['whehref']?>">
     <input name="gore" type="hidden" value="0">

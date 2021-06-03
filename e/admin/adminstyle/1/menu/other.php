@@ -7,8 +7,8 @@ if(!defined('InEmpireCMS'))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>èœå•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²Ëµ¥</title>
 <link href="../../../data/menu/menu.css" rel="stylesheet" type="text/css">
 <script src="../../../data/menu/menu.js" type="text/javascript"></script>
 <SCRIPT lanuage="JScript">
@@ -21,7 +21,7 @@ function tourl(url){
 <table border='0' cellspacing='0' cellpadding='0'>
 	<tr height=20>
 			<td id="home"><img src="../../../data/images/homepage.gif" border=0></td>
-			<td><b>å…¶ä»–ç®¡ç†</b></td>
+			<td><b>ÆäËû¹ÜÀí</b></td>
 	</tr>
 </table>
 
@@ -32,7 +32,7 @@ if($r[dobefrom]||$r[dowriter]||$r[dokey]||$r[doword])
 ?>
   <tr> 
     <td id="prnewsadmin" class="menu1" onclick="chengstate('newsadmin')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ–°é—»æ¨¡åž‹ç›¸å…³</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÐÂÎÅÄ£ÐÍÏà¹Ø</a>
 	</td>
   </tr>
   <tr id="itemnewsadmin" style="display:none"> 
@@ -44,7 +44,7 @@ if($r[dobefrom]||$r[dowriter]||$r[dokey]||$r[doword])
 		?>
         <tr> 
           <td class="file">
-			<a href="../../NewsSys/BeFrom.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†ä¿¡æ¯æ¥æº</a>
+			<a href="../../NewsSys/BeFrom.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÐÅÏ¢À´Ô´</a>
           </td>
         </tr>
 		<?
@@ -54,7 +54,7 @@ if($r[dobefrom]||$r[dowriter]||$r[dokey]||$r[doword])
 		?>
 		<tr> 
           <td class="file">
-			<a href="../../NewsSys/writer.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†ä½œè€…</a>
+			<a href="../../NewsSys/writer.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí×÷Õß</a>
           </td>
         </tr>
 		<?
@@ -64,7 +64,7 @@ if($r[dobefrom]||$r[dowriter]||$r[dokey]||$r[doword])
 		?>
 		<tr> 
           <td class="file">
-			<a href="../../NewsSys/key.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†å†…å®¹å…³é”®å­—</a>
+			<a href="../../NewsSys/key.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÄÚÈÝ¹Ø¼ü×Ö</a>
           </td>
         </tr>
 		<?
@@ -74,7 +74,7 @@ if($r[dobefrom]||$r[dowriter]||$r[dokey]||$r[doword])
 		?>
 		<tr> 
           <td class="file1">
-			<a href="../../NewsSys/word.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†è¿‡æ»¤å­—ç¬¦</a>
+			<a href="../../NewsSys/word.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí¹ýÂË×Ö·û</a>
           </td>
         </tr>
 		<?
@@ -93,7 +93,7 @@ if($r[dodownurl]||$r[dodeldownrecord]||$r[dodownerror]||$r[dorepdownpath]||$r[do
 ?>
   <tr> 
     <td id="prdownadmin" class="menu1" onclick="chengstate('downadmin')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ä¸‹è½½æ¨¡åž‹ç›¸å…³</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÏÂÔØÄ£ÐÍÏà¹Ø</a>
 	</td>
   </tr>
   <tr id="itemdownadmin" style="display:none"> 
@@ -105,7 +105,7 @@ if($r[dodownurl]||$r[dodeldownrecord]||$r[dodownerror]||$r[dorepdownpath]||$r[do
 		?>
         <tr> 
           <td class="file">
-			<a href="../../DownSys/url.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†åœ°å€å‰ç¼€</a>
+			<a href="../../DownSys/url.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíµØÖ·Ç°×º</a>
           </td>
         </tr>
 		<?
@@ -115,7 +115,7 @@ if($r[dodownurl]||$r[dodeldownrecord]||$r[dodownerror]||$r[dorepdownpath]||$r[do
 		?>
 		<tr> 
           <td class="file">
-			<a href="../../DownSys/DelDownRecord.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">åˆ é™¤ä¸‹è½½è®°å½•</a>
+			<a href="../../DownSys/DelDownRecord.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">É¾³ýÏÂÔØ¼ÇÂ¼</a>
           </td>
         </tr>
 		<?
@@ -125,7 +125,7 @@ if($r[dodownurl]||$r[dodeldownrecord]||$r[dodownerror]||$r[dorepdownpath]||$r[do
 		?>
 		<tr> 
           <td class="file">
-			<a href="../../DownSys/ListError.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†é”™è¯¯æŠ¥å‘Š</a>
+			<a href="../../DownSys/ListError.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí´íÎó±¨¸æ</a>
           </td>
         </tr>
 		<?
@@ -135,7 +135,7 @@ if($r[dodownurl]||$r[dodeldownrecord]||$r[dodownerror]||$r[dorepdownpath]||$r[do
 		?>
 		<tr> 
           <td class="file">
-			<a href="../../DownSys/RepDownLevel.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ‰¹é‡æ›¿æ¢åœ°å€æƒé™</a>
+			<a href="../../DownSys/RepDownLevel.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÅúÁ¿Ìæ»»µØÖ·È¨ÏÞ</a>
           </td>
         </tr>
 		<?
@@ -145,7 +145,7 @@ if($r[dodownurl]||$r[dodeldownrecord]||$r[dodownerror]||$r[dorepdownpath]||$r[do
 		?>
 		<tr> 
           <td class="file1">
-			<a href="../../DownSys/player.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ’­æ”¾å™¨ç®¡ç†</a>
+			<a href="../../DownSys/player.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">²¥·ÅÆ÷¹ÜÀí</a>
           </td>
         </tr>
 		<?
@@ -164,7 +164,7 @@ if($r[dopay])
 ?>
   <tr> 
     <td id="prpay" class="menu1" onclick="chengstate('pay')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">åœ¨çº¿æ”¯ä»˜</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÔÚÏßÖ§¸¶</a>
 	</td>
   </tr>
   <tr id="itempay" style="display:none"> 
@@ -172,17 +172,17 @@ if($r[dopay])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../pay/SetPayFen.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ”¯ä»˜å‚æ•°é…ç½®</a>
+			<a href="../../pay/SetPayFen.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Ö§¸¶²ÎÊýÅäÖÃ</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../pay/PayApi.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æ”¯ä»˜æŽ¥å£</a>
+			<a href="../../pay/PayApi.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÖ§¸¶½Ó¿Ú</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../pay/ListPayRecord.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æ”¯ä»˜è®°å½•</a>
+			<a href="../../pay/ListPayRecord.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÖ§¸¶¼ÇÂ¼</a>
           </td>
         </tr>
       </table>
@@ -198,7 +198,7 @@ if($r[dopicnews])
 ?>
   <tr> 
     <td id="prpicnews" class="menu3" onclick="chengstate('picnews')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å›¾ç‰‡ä¿¡æ¯ç®¡ç†</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Í¼Æ¬ÐÅÏ¢¹ÜÀí</a>
 	</td>
   </tr>
   <tr id="itempicnews" style="display:none"> 
@@ -206,12 +206,12 @@ if($r[dopicnews])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../NewsSys/PicClass.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†å›¾ç‰‡ä¿¡æ¯åˆ†ç±»</a>
+			<a href="../../NewsSys/PicClass.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÍ¼Æ¬ÐÅÏ¢·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../NewsSys/ListPicNews.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†å›¾ç‰‡ä¿¡æ¯</a>
+			<a href="../../NewsSys/ListPicNews.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÍ¼Æ¬ÐÅÏ¢</a>
           </td>
         </tr>
       </table>

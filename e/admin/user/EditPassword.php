@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//验证用户
+//��֤�û�
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 
-//修改密码
+//�޸�����
 function EditPassword($userid,$username,$oldpassword,$password,$repassword,$styleid,$oldstyleid,$add){
 	global $empire,$dbtbpre,$gr;
 	$userid=(int)$userid;
@@ -31,7 +31,7 @@ function EditPassword($userid,$username,$oldpassword,$password,$repassword,$styl
 	{
 		printerror("EmptyOldPassword","history.go(-1)");
 	}
-	//修改密码
+	//�޸�����
 	$a='';
 	if($oldpassword)
 	{
@@ -66,13 +66,13 @@ function EditPassword($userid,$username,$oldpassword,$password,$repassword,$styl
 		$password=DoEmpireCMSAdminPassword($password,$salt,$salt2);
 		$a=",password='$password',salt='$salt',salt2='$salt2'";
 	}
-	//风格
+	//���
 	if($gr['dochadminstyle'])
 	{
 		$a.=",styleid='$styleid'";
 	}
 	$sql=$empire->query("update {$dbtbpre}enewsuser set truename='$truename',email='$email'".$a." where username='$username'");
-	//安全提问
+	//��ȫ����
 	$equestion=(int)$_POST['equestion'];
 	$eanswer=$_POST['eanswer'];
 	$uadd='';
@@ -95,9 +95,9 @@ function EditPassword($userid,$username,$oldpassword,$password,$repassword,$styl
 	$empire->query("update {$dbtbpre}enewsuseradd set equestion='$equestion'".$uadd." where userid='$userid'");
 	if($sql)
 	{
-		//操作日志
+		//������־
 		insert_dolog("");
-		//改变风格
+		//�ı���
 		if($styleid!=$oldstyleid)
 		{
 			$styler=$empire->fetch1("select path from {$dbtbpre}enewsadminstyle where styleid='$styleid'");
@@ -127,7 +127,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//修改密码
+//�޸�����
 if($enews=="EditPassword")
 {
 	$oldpassword=$_POST['oldpassword'];
@@ -142,7 +142,7 @@ $r=$empire->fetch1("select userid,styleid,truename,email from {$dbtbpre}enewsuse
 $addur=$empire->fetch1("select equestion from {$dbtbpre}enewsuseradd where userid='$r[userid]'");
 if($gr['dochadminstyle'])
 {
-	//后台样式
+	//��̨��ʽ
 	$stylesql=$empire->query("select styleid,stylename,path from {$dbtbpre}enewsadminstyle order by styleid");
 	$style="";
 	while($styler=$empire->fetch($stylesql))
@@ -160,75 +160,75 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>修改资料</title>
+<title>�޸�����</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>位置：<a href="EditPassword.php<?=$ecms_hashur['whehref']?>">修改个人资料</a></td>
+    <td>λ�ã�<a href="EditPassword.php<?=$ecms_hashur['whehref']?>">�޸ĸ�������</a></td>
   </tr>
 </table>
 <form name="form1" method="post" action="EditPassword.php" autocomplete="off">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">修改资料 
+      <td height="25" colspan="2">�޸����� 
         <input name="enews" type="hidden" id="enews" value="EditPassword"> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">用户名：</td>
+      <td width="19%" height="25">�û�����</td>
       <td width="81%" height="25"> 
         <?=$loginin?>      </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">旧密码：</td>
+      <td height="25">�����룺</td>
       <td height="25"><input name="oldpassword" type="password" id="oldpassword" size="32"> 
-        <font color="#666666">(不修改密码,请留空) </font></td>
+        <font color="#666666">(���޸�����,������) </font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">新密码：</td>
+      <td height="25">�����룺</td>
       <td height="25"><input name="password" type="password" id="password" size="32"> 
-        <font color="#666666">(不修改密码,请留空) </font></td>
+        <font color="#666666">(���޸�����,������) </font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">重复新密码：</td>
+      <td height="25">�ظ������룺</td>
       <td height="25"><input name="repassword" type="password" id="repassword" size="32"> 
-        <font color="#666666">(不修改密码,请留空) </font></td>
+        <font color="#666666">(���޸�����,������) </font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
       <td height="25">&nbsp;</td>
-      <td height="25"><font color="#666666">(说明：密码设置6位以上，区分大小写，且密码不能包含：$ 
-      &amp; * # &lt; &gt; ' &quot; / \ % ; 空格)</font></td>
+      <td height="25"><font color="#666666">(˵������������6λ���ϣ����ִ�Сд�������벻�ܰ�����$ 
+      &amp; * # &lt; &gt; ' &quot; / \ % ; �ո�)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">安全提问：</td>
+      <td height="25">��ȫ���ʣ�</td>
       <td height="25"> <select name="equestion" id="equestion">
-          <option value="0"<?=$addur[equestion]==0?' selected':''?>>无安全提问</option>
-          <option value="1"<?=$addur[equestion]==1?' selected':''?>>母亲的名字</option>
-          <option value="2"<?=$addur[equestion]==2?' selected':''?>>爷爷的名字</option>
-          <option value="3"<?=$addur[equestion]==3?' selected':''?>>父亲出生的城市</option>
-          <option value="4"<?=$addur[equestion]==4?' selected':''?>>您其中一位老师的名字</option>
-          <option value="5"<?=$addur[equestion]==5?' selected':''?>>您个人计算机的型号</option>
-          <option value="6"<?=$addur[equestion]==6?' selected':''?>>您最喜欢的餐馆名称</option>
-          <option value="7"<?=$addur[equestion]==7?' selected':''?>>驾驶执照的最后四位数字</option>
+          <option value="0"<?=$addur[equestion]==0?' selected':''?>>�ް�ȫ����</option>
+          <option value="1"<?=$addur[equestion]==1?' selected':''?>>ĸ�׵�����</option>
+          <option value="2"<?=$addur[equestion]==2?' selected':''?>>үү������</option>
+          <option value="3"<?=$addur[equestion]==3?' selected':''?>>���׳����ĳ���</option>
+          <option value="4"<?=$addur[equestion]==4?' selected':''?>>������һλ��ʦ������</option>
+          <option value="5"<?=$addur[equestion]==5?' selected':''?>>�����˼�������ͺ�</option>
+          <option value="6"<?=$addur[equestion]==6?' selected':''?>>����ϲ���Ĳ͹�����</option>
+          <option value="7"<?=$addur[equestion]==7?' selected':''?>>��ʻִ�յ������λ����</option>
         </select> <font color="#666666"> 
         <input name="oldequestion" type="hidden" id="oldequestion" value="<?=$addur[equestion]?>">
-        (如果启用安全提问，登录时需填入相应的项目才能登录)</font></td>
+        (������ð�ȫ���ʣ���¼ʱ��������Ӧ����Ŀ���ܵ�¼)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">安全回答：</td>
+      <td height="25">��ȫ�ش�</td>
       <td height="25"><input name="eanswer" type="text" id="eanswer" size="32"> 
-        <font color="#666666">(如果修改答案，请在此输入新答案。区分大小写)</font></td>
+        <font color="#666666">(����޸Ĵ𰸣����ڴ������´𰸡����ִ�Сд)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">姓名：</td>
+      <td height="25">������</td>
       <td height="25"><input name="truename" type="text" id="truename" value="<?=$r[truename]?>" size="32"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">邮箱：</td>
+      <td height="25">���䣺</td>
       <td height="25"><input name="email" type="text" id="email" value="<?=$r[email]?>" size="32"></td>
     </tr>
     <?php
@@ -236,10 +236,10 @@ $empire=null;
 	{
 	?>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">操作界面：</td>
+      <td height="25">�������棺</td>
       <td height="25"><select name="styleid" id="styleid">
           <?=$style?>
-        </select> <input type="button" name="Submit6222322" value="管理后台样式" onclick="window.open('../template/AdminStyle.php<?=$ecms_hashur['whehref']?>');"> 
+        </select> <input type="button" name="Submit6222322" value="������̨��ʽ" onclick="window.open('../template/AdminStyle.php<?=$ecms_hashur['whehref']?>');"> 
         <input name="oldstyleid" type="hidden" id="oldstyleid" value="<?=$r[styleid]?>">      </td>
     </tr>
     <?php
@@ -247,12 +247,12 @@ $empire=null;
 	?>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="提交"> <input type="reset" name="Submit2" value="重置">
+      <td height="25"><input type="submit" name="Submit" value="�ύ"> <input type="reset" name="Submit2" value="����">
         </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="2"><font color="#666666">说明：密码设置6位以上，区分大小写，且密码不能包含：$ 
-        &amp; * # &lt; &gt; ' &quot; / \ % ; 空格</font></td>
+      <td height="25" colspan="2"><font color="#666666">˵������������6λ���ϣ����ִ�Сд�������벻�ܰ�����$ 
+        &amp; * # &lt; &gt; ' &quot; / \ % ; �ո�</font></td>
     </tr>
   </table>
 </form>

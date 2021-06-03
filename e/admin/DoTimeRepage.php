@@ -11,7 +11,7 @@ require("../data/dbcache/class.php");
 require("../data/dbcache/MemberLevel.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -23,33 +23,33 @@ $ecms_hashur=hReturnEcmsHashStrAll();
 
 @set_time_limit(0);
 
-//åŠ è½½
+//¼ÓÔØ
 $incftp=0;
 if($public_r['phpmode'])
 {
 	include("../class/ftp.php");
 	$incftp=1;
 }
-//é˜²é‡‡é›†
+//·À²É¼¯
 if($public_r['opennotcj'])
 {
 	@include("../data/dbcache/notcj.php");
 }
 
-//å®šæ—¶åˆ·æ–°ä»»åŠ¡
+//¶¨Ê±Ë¢ĞÂÈÎÎñ
 function DoTimeRepage($time){
 	global $empire,$dbtbpre;
 	if(empty($time))
 	{$time=120;}
 	echo"<meta http-equiv=\"refresh\" content=\"".$time.";url=DoTimeRepage.php".hReturnEcmsHashStrHref(1)."\">";
-	DoAutoUpAndDownInfo();//è‡ªåŠ¨ä¸Š/ä¸‹çº¿
+	DoAutoUpAndDownInfo();//×Ô¶¯ÉÏ/ÏÂÏß
 	$todaytime=time();
 	$b=0;
 	$sql=$empire->query("select doing,classid,doid from {$dbtbpre}enewsdo where isopen=1 and lasttime+dotime*60<$todaytime");
 	while($r=$empire->fetch($sql))
 	{
 		$b=1;
-		if($r[doing]==1)//ç”Ÿæˆæ ç›®
+		if($r[doing]==1)//Éú³ÉÀ¸Ä¿
 		{
 			$cr=explode(',',$r[classid]);
 			$count=count($cr)-1;
@@ -63,7 +63,7 @@ function DoTimeRepage($time){
 				ReListHtml($cr[$i],1);
 			}
 	    }
-		elseif($r[doing]==2)//ç”Ÿæˆä¸“é¢˜
+		elseif($r[doing]==2)//Éú³É×¨Ìâ
 		{
 			$cr=explode(',',$r[classid]);
 			$count=count($cr)-1;
@@ -77,7 +77,7 @@ function DoTimeRepage($time){
 				ListHtmlIndex($cr[$i],$ret_r[0],0);
 			}
 	    }
-		elseif($r[doing]==3)//ç”Ÿæˆè‡ªå®šä¹‰åˆ—è¡¨
+		elseif($r[doing]==3)//Éú³É×Ô¶¨ÒåÁĞ±í
 		{
 			$cr=explode(',',$r[classid]);
 			$count=count($cr)-1;
@@ -92,7 +92,7 @@ function DoTimeRepage($time){
 				ReUserlist($ur,"");
 			}
 	    }
-		elseif($r[doing]==4)//ç”Ÿæˆè‡ªå®šä¹‰é¡µé¢
+		elseif($r[doing]==4)//Éú³É×Ô¶¨ÒåÒ³Ãæ
 		{
 			$cr=explode(',',$r[classid]);
 			$count=count($cr)-1;
@@ -107,7 +107,7 @@ function DoTimeRepage($time){
 				ReUserpage($ur[id],$ur[pagetext],$ur[path],$ur[title],$ur[pagetitle],$ur[pagekeywords],$ur[pagedescription],$ur[tempid]);
 			}
 	    }
-		elseif($r[doing]==5)//ç”Ÿæˆè‡ªå®šä¹‰JS
+		elseif($r[doing]==5)//Éú³É×Ô¶¨ÒåJS
 		{
 			$cr=explode(',',$r[classid]);
 			$count=count($cr)-1;
@@ -122,7 +122,7 @@ function DoTimeRepage($time){
 				ReUserjs($ur,'');
 			}
 	    }
-		elseif($r[doing]==6)//ç”Ÿæˆæ ‡é¢˜åˆ†ç±»é¡µé¢
+		elseif($r[doing]==6)//Éú³É±êÌâ·ÖÀàÒ³Ãæ
 		{
 			$cr=explode(',',$r[classid]);
 			$count=count($cr)-1;
@@ -136,7 +136,7 @@ function DoTimeRepage($time){
 				ListHtml($cr[$i],$ret_r,5);
 			}
 	    }
-		else//ç”Ÿæˆé¦–é¡µ
+		else//Éú³ÉÊ×Ò³
 		{
 			$indextemp=GetIndextemp();
 			NewsBq($classid,$indextemp,1,0);
@@ -145,11 +145,11 @@ function DoTimeRepage($time){
     }
 	if($b)
 	{
-		echo "æœ€åæ‰§è¡Œæ—¶é—´ï¼š".date("Y-m-d H:i:s",$todaytime)."<br><br>";
+		echo "×îºóÖ´ĞĞÊ±¼ä£º".date("Y-m-d H:i:s",$todaytime)."<br><br>";
 	}
 }
 
-//å®šæ—¶ä¸Šçº¿/ä¸‹çº¿
+//¶¨Ê±ÉÏÏß/ÏÂÏß
 function DoAutoUpAndDownInfo(){
 	global $empire,$dbtbpre,$class_r,$emod_r,$public_r;
 	$todaytime=time();
@@ -160,7 +160,7 @@ function DoAutoUpAndDownInfo(){
 		{
 			continue;
 		}
-		//ä¸Šçº¿
+		//ÉÏÏß
 		if($r['infouptime']&&$r['infouptime']<=$todaytime)
 		{
 			$infor=$empire->fetch1("select * from {$dbtbpre}ecms_".$class_r[$r[classid]][tbname]."_check where id='$r[id]' limit 1");
@@ -168,7 +168,7 @@ function DoAutoUpAndDownInfo(){
 			{
 				continue;
 			}
-			//ç­¾å‘
+			//Ç©·¢
 			if($infor['isqf'])
 			{
 				$qfr=$empire->fetch1("select checktno from {$dbtbpre}enewswfinfo where id='$r[id]' and classid='$r[classid]' limit 1");
@@ -180,28 +180,28 @@ function DoAutoUpAndDownInfo(){
 			$empire->query("update {$dbtbpre}ecms_".$class_r[$r[classid]][tbname]."_index set checked=1 where id='$r[id]' limit 1");
 			$pubid=ReturnInfoPubid($r['classid'],$r['id']);
 			$empire->query("update {$dbtbpre}enewsinfovote set infouptime=0 where pubid='$pubid' limit 1");
-			//äº’è½¬
+			//»¥×ª
 			MoveCheckInfoData($class_r[$r[classid]][tbname],0,$infor['stb'],"id='$r[id]'");
 			AddClassInfos($r['classid'],'','+1');
-			//åˆ·æ–°ä¿¡æ¯
+			//Ë¢ĞÂĞÅÏ¢
 			GetHtml($infor['classid'],$infor['id'],$infor,1);
-			//åˆ·æ–°åˆ—è¡¨
+			//Ë¢ĞÂÁĞ±í
 			ReListHtml($r[classid],1);
 		}
-		//ä¸‹çº¿
+		//ÏÂÏß
 		if($r['infodowntime']&&$r['infodowntime']<=$todaytime)
 		{
 			$mid=$class_r[$r[classid]][modid];
 			$tbname=$class_r[$r[classid]][tbname];
 			$pf=$emod_r[$mid]['pagef'];
 			$stf=$emod_r[$mid]['savetxtf'];
-			//ä¸»è¡¨
+			//Ö÷±í
 			$infor=$empire->fetch1("select * from {$dbtbpre}ecms_".$class_r[$r[classid]][tbname]." where id='".$r[id]."' limit 1");
 			if(!$infor['id'])
 			{
 				continue;
 			}
-			//ç­¾å‘
+			//Ç©·¢
 			if($infor['isqf'])
 			{
 				$qfr=$empire->fetch1("select checktno from {$dbtbpre}enewswfinfo where id='$r[id]' and classid='$r[classid]' limit 1");
@@ -210,7 +210,7 @@ function DoAutoUpAndDownInfo(){
 					continue;
 				}
 			}
-			//åˆ†é¡µå­—æ®µ
+			//·ÖÒ³×Ö¶Î
 			if($pf)
 			{
 				if(strstr($emod_r[$mid]['tbdataf'],','.$pf.','))
@@ -218,7 +218,7 @@ function DoAutoUpAndDownInfo(){
 					$finfor=$empire->fetch1("select ".$pf." from {$dbtbpre}ecms_".$tbname."_data_".$infor[stb]." where id='$r[id]' limit 1");
 					$infor[$pf]=$finfor[$pf];
 				}
-				if($stf&&$stf==$pf)//å­˜æ”¾æ–‡æœ¬
+				if($stf&&$stf==$pf)//´æ·ÅÎÄ±¾
 				{
 					$infor[$pf]=GetTxtFieldText($infor[$pf]);
 				}
@@ -227,17 +227,17 @@ function DoAutoUpAndDownInfo(){
 			$empire->query("update {$dbtbpre}ecms_".$class_r[$r[classid]][tbname]."_index set checked=0,havehtml=0 where id='$r[id]' limit 1");
 			$pubid=ReturnInfoPubid($r['classid'],$r['id']);
 			$empire->query("update {$dbtbpre}enewsinfovote set infodowntime=0 where pubid='$pubid' limit 1");
-			//äº’è½¬
+			//»¥×ª
 			MoveCheckInfoData($class_r[$r[classid]][tbname],1,$infor['stb'],"id='$r[id]'");
 			AddClassInfos($r['classid'],'','-1');
-			//åˆ·æ–°åˆ—è¡¨
+			//Ë¢ĞÂÁĞ±í
 			ReListHtml($r[classid],1);
 		}
 	}
 }
 
-DoTimeRepage(120);//è‡ªåŠ¨åˆ·æ–°é¡µé¢
+DoTimeRepage(120);//×Ô¶¯Ë¢ĞÂÒ³Ãæ
 db_close();
 $empire=null;
 ?>
-<b>è¯´æ˜ï¼šæœ¬é¡µé¢ä¸ºå®šæ—¶åˆ·æ–°ä»»åŠ¡æ‰§è¡Œçª—å£.</b>
+<b>ËµÃ÷£º±¾Ò³ÃæÎª¶¨Ê±Ë¢ĞÂÈÎÎñÖ´ĞĞ´°¿Ú.</b>

@@ -7,7 +7,7 @@ if(!defined('InEmpireCMS'))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title><?=$word?></title>
 <link href="../data/images/qcss.css" rel="stylesheet" type="text/css">
 <script>
@@ -15,7 +15,7 @@ function DoInsertUrl(str)
 {
 	if(str=="http://")
 	{
-		alert('è¯·è¾“å…¥è¦æ’å…¥çš„è¿æ¥');
+		alert('ÇëÊäÈëÒª²åÈëµÄÁ¬½Ó');
 	    return false;
 	}
 pos=str.lastIndexOf(".")+1;
@@ -62,12 +62,12 @@ else
       <td height="23"><strong><font color="#FFFFFF"><?=$word?></font></strong></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="32">æœ¬åœ°ä¸Šä¼ ï¼š 
-        <input type="file" name="file"> <input type="submit" name="Submit" value="ä¸Šä¼ ">
+      <td height="32">±¾µØÉÏ´«£º 
+        <input type="file" name="file"> <input type="submit" name="Submit" value="ÉÏ´«">
       </td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td>æ–‡ä»¶å¤§å°&lt; <b><?=$filesize?></b> KBï¼Œä¸Šä¼ æ‰©å±•åï¼š<?=$filetype?></td>
+      <td>ÎÄ¼ş´óĞ¡&lt; <b><?=$filesize?></b> KB£¬ÉÏ´«À©Õ¹Ãû£º<?=$filetype?></td>
     </tr>
 	 </form>
   </table>

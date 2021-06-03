@@ -3,18 +3,18 @@ require("../class/connect.php");
 require("../class/db_sql.php");
 require("../data/dbcache/class.php");
 require("../class/q_functions.php");
-eCheckCloseMods('search');//å…³é—­æ¨¡å—
+eCheckCloseMods('search');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
 
-//å¤„ç†å…³é”®å­—
+//´¦Àí¹Ø¼ü×Ö
 function SearchDoKeyboardVar($keyboard){
 	$keyboard=str_replace('  ','',$keyboard);
 	$keyboard=RepPostVar2(trim($keyboard));
 	return $keyboard;
 }
 
-//è¿”å›SQL
+//·µ»ØSQL
 function SearchDoKeyboard($f,$hh,$keyboard){
 	$where='';
 	$keyboard=SearchDoKeyboardVar($keyboard);
@@ -24,31 +24,31 @@ function SearchDoKeyboard($f,$hh,$keyboard){
 	}
 	if(!empty($hh))
 	{
-		if($hh=='LT')//å°äº
+		if($hh=='LT')//Ğ¡ÓÚ
 		{
 			$where=$f."<'".$keyboard."'";
 		}
-		elseif($hh=='GT')//å¤§äº
+		elseif($hh=='GT')//´óÓÚ
 		{
 			$where=$f.">'".$keyboard."'";
 		}
-		elseif($hh=='EQ')//ç­‰äº
+		elseif($hh=='EQ')//µÈÓÚ
 		{
 			$where=$f."='".$keyboard."'";
 		}
-		elseif($hh=='LE')//å°äºç­‰äº
+		elseif($hh=='LE')//Ğ¡ÓÚµÈÓÚ
 		{
 			$where=$f."<='".$keyboard."'";
 		}
-		elseif($hh=='GE')//å¤§äºç­‰äº
+		elseif($hh=='GE')//´óÓÚµÈÓÚ
 		{
 			$where=$f.">='".$keyboard."'";
 		}
-		elseif($hh=='NE')//ä¸ç­‰äº
+		elseif($hh=='NE')//²»µÈÓÚ
 		{
 			$where=$f."<>'".$keyboard."'";
 		}
-		elseif($hh=='IN')//åŒ…å«
+		elseif($hh=='IN')//°üº¬
 		{
 			$kr=explode(' ',$keyboard);
 			$kcount=count($kr);
@@ -76,7 +76,7 @@ function SearchDoKeyboard($f,$hh,$keyboard){
 				return '';
 			}
 		}
-		elseif($hh=='BT')//èŒƒå›´
+		elseif($hh=='BT')//·¶Î§
 		{
 			$keyboard=ltrim($keyboard);
 			if(!strstr($keyboard,' '))
@@ -92,7 +92,7 @@ function SearchDoKeyboard($f,$hh,$keyboard){
 			}
 			$where=$f." BETWEEN '".$kr[0]."' and '".$kr[1]."'";
 		}
-		else//ç›¸ä¼¼
+		else//ÏàËÆ
 		{
 			$where=$f." LIKE '%".$keyboard."%'";
 		}
@@ -104,7 +104,7 @@ function SearchDoKeyboard($f,$hh,$keyboard){
 	return $where;
 }
 
-//å˜é‡
+//±äÁ¿
 if($_GET['searchget']==1)
 {
 	$_POST=$_GET;
@@ -123,9 +123,9 @@ else
 	$getfrom="../../search/";
 	$dogetvar="&getvar=1";
 }
-//è¿”å›
+//·µ»Ø
 $getfrom=DoingReturnUrl($getfrom,$_POST['ecmsfrom']);
-//æœç´¢ç”¨æˆ·ç»„
+//ËÑË÷ÓÃ»§×é
 if($public_r['searchgroupid'])
 {
 	$psearchgroupid=$public_r['searchgroupid'];
@@ -136,7 +136,7 @@ if($public_r['searchgroupid'])
 		printerror("NotLevelToSearch",$getfrom,1);
 	}
 }
-//æœç´¢é—´éš”
+//ËÑË÷¼ä¸ô
 $lastsearchtime=getcvar('lastsearchtime');
 if($lastsearchtime)
 {
@@ -145,13 +145,13 @@ if($lastsearchtime)
 		printerror("SearchOutTime",$getfrom,1);
 	}
 }
-//æœç´¢å­—æ®µ
+//ËÑË÷×Ö¶Î
 $searchclass=$_POST['show'];
 if(empty($searchclass)||@strstr($searchclass," "))
 {
 	printerror("SearchNotRecord",$getfrom,1);
 }
-//æ—¶é—´èŒƒå›´
+//Ê±¼ä·¶Î§
 $add='';
 $addtime='';
 $starttime=RepPostVar($_POST['starttime']);
@@ -168,7 +168,7 @@ if($endtime!="0000-00-00")
 {
 	$addtime=" and (newstime BETWEEN '".to_time($starttime." 00:00:00")."' and '".to_time($endtime." 23:59:59")."')";
 }
-//ä»·æ ¼
+//¼Û¸ñ
 $addprice='';
 $startprice=(int)$_POST['startprice'];
 $endprice=(int)$_POST['endprice'];
@@ -176,14 +176,14 @@ if($endprice)
 {
 	$addprice=" and (price BETWEEN ".$startprice." and ".$endprice.")";
 }
-//æœç´¢æ ç›®åŠè¡¨
+//ËÑË÷À¸Ä¿¼°±í
 $classid=RepPostVar($_POST['classid']);
 $s_tbname=RepPostVar($_POST['tbname']);
 $s_tempid=(int)$_POST['tempid'];
 $trueclassid=0;
-if($classid)//æŒ‰æ ç›®
+if($classid)//°´À¸Ä¿
 {
-	if(strstr($classid,","))//å¤šæ ç›®
+	if(strstr($classid,","))//¶àÀ¸Ä¿
 	{
 		$son_r=sys_ReturnMoreClass($classid,1);
 		$trueclassid=$son_r[0];
@@ -197,7 +197,7 @@ if($classid)//æŒ‰æ ç›®
 	$tbname=$class_r[$trueclassid][tbname];
 	$modid=$class_r[$trueclassid][modid];
 }
-elseif($s_tbname)//æŒ‰æ•°æ®è¡¨
+elseif($s_tbname)//°´Êı¾İ±í
 {
 	$tbnamenum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewstable where tbname='$s_tbname' limit 1");
 	if(!$tbnamenum)
@@ -205,7 +205,7 @@ elseif($s_tbname)//æŒ‰æ•°æ®è¡¨
 		printerror("SearchNotRecord",$getfrom,1);
 	}
 	$tbname=$s_tbname;
-	//æ¨¡å‹id
+	//Ä£ĞÍid
 	$thestemp_r=$empire->fetch1("select modid from ".GetTemptb("enewssearchtemp")." where tempid='$s_tempid'");
 	if(empty($thestemp_r['modid']))
 	{
@@ -218,17 +218,17 @@ else
 	$tbname=$public_r['tbname'];
 	$modid=0;
 }
-//è¡¨ä¸å­˜åœ¨
+//±í²»´æÔÚ
 if(empty($tbname)||InfoIsInTable($tbname))
 {
 	printerror("SearchNotRecord",$getfrom,1);
 }
-//æ ‡é¢˜åˆ†ç±»
+//±êÌâ·ÖÀà
 $ttid=RepPostVar($_POST['ttid']);
 $truettid=0;
 if($ttid)
 {
-	if(strstr($ttid,","))//å¤šæ ‡é¢˜åˆ†ç±»
+	if(strstr($ttid,","))//¶à±êÌâ·ÖÀà
 	{
 		$son_r=sys_ReturnMoreTT($ttid);
 		$truettid=$son_r[0];
@@ -240,7 +240,7 @@ if($ttid)
 		$add.=" and ttid='$truettid'";
 	}
 }
-//ä¼šå‘˜
+//»áÔ±
 $member=$_POST['member'];
 if($member==1)
 {
@@ -250,7 +250,7 @@ elseif($member==2)
 {
 	$add.=' and ismember=0';
 }
-//æ¨¡å‹
+//Ä£ĞÍ
 $tempr=array();
 if(empty($class_r[$trueclassid][searchtempid]))
 {
@@ -268,7 +268,7 @@ else
 	$tempr[modid]=$modid;
 }
 
-//å…³é”®å­—
+//¹Ø¼ü×Ö
 $keyboard=$_POST['keyboard'];
 $keyboardone=0;
 if(is_array($keyboard))
@@ -288,7 +288,7 @@ else
 	$keyboardone=1;
 }
 
-//ç¬¦å·
+//·ûºÅ
 $hh=$_POST['hh'];
 $hhone=0;
 if(is_array($hh))
@@ -302,7 +302,7 @@ else
 	$hhone=1;
 }
 
-//å­—æ®µ
+//×Ö¶Î
 if(!is_array($searchclass))
 {
 	$searchclass=explode(',',$searchclass);
@@ -312,13 +312,13 @@ $andor=$_POST['andor'];
 $andor=$andor=='and'?'and':'or';
 
 $mr=$empire->fetch1("select searchvar,tbname from {$dbtbpre}enewsmod where mid='$tempr[modid]'");
-if(!strstr($mr[searchvar],",price,"))//æ˜¯å¦åŒ…å«ä»·æ ¼
+if(!strstr($mr[searchvar],",price,"))//ÊÇ·ñ°üº¬¼Û¸ñ
 {
 	$addprice="";
 	$startprice=0;
 	$endprice=0;
 }
-//æœç´¢ç‰¹æ®Šå­—æ®µ
+//ËÑË÷ÌØÊâ×Ö¶Î
 $mr[searchvar].='id,keyboard,userid,username,';
 $where='';
 $newsearchclass='';
@@ -354,7 +354,7 @@ for($i=0;$i<$count;$i++)
 		$where.=$or.'('.$onewhere.')';
 	}
 }
-//å‚æ•°é”™
+//²ÎÊı´í
 if(empty($newsearchclass))
 {
 	printerror("SearchNotRecord",$getfrom,1);
@@ -370,12 +370,12 @@ if(strlen($newsearchclass)>250||strlen($classid)>200||strlen($andsql)>3000||strl
 {
 	printerror("SearchNotRecord",$getfrom,1);
 }
-//éªŒè¯ç 
+//ÑéÖ¤Âë
 $checkpass=md5($allwhere.$tbname);
 $query="select count(*) as total from {$dbtbpre}ecms_".$tbname.($allwhere?' where '.substr($allwhere,5):'');
 $search_r=$empire->fetch1("select searchid from {$dbtbpre}enewssearch where checkpass='$checkpass' limit 1");
 $searchid=$search_r[searchid];
-//æ’åº
+//ÅÅĞò
 $orderby=RepPostVar($_POST['orderby']);
 $myorder=(int)$_POST['myorder'];
 if($orderby)
@@ -387,7 +387,7 @@ else
 {
 	$orderby='newstime';
 }
-//æ˜¯å¦æœ‰å†å²è®°å½•
+//ÊÇ·ñÓĞÀúÊ·¼ÇÂ¼
 if($searchid)
 {
     $search_num=$empire->gettotal($query);
@@ -411,7 +411,7 @@ else
 		$searchid=$empire->lastid();
 	}
 }
-//è®¾ç½®æœ€åæœç´¢æ—¶é—´
+//ÉèÖÃ×îºóËÑË÷Ê±¼ä
 $set1=esetcookie("lastsearchtime",$searchtime,$searchtime+3600*24);
 if(!$searchid)
 {

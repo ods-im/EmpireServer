@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"bq");
 $enews=$_POST['enews'];
-$url="<a href=ListBq.php".$ecms_hashur['whehref'].">ç®¡ç†æ ‡ç­¾</a>&nbsp;>&nbsp;<a href=LoadInBq.php".$ecms_hashur['whehref'].">å¯¼å…¥æ ‡ç­¾</a>";
+$url="<a href=ListBq.php".$ecms_hashur['whehref'].">¹ÜÀí±êÇ©</a>&nbsp;>&nbsp;<a href=LoadInBq.php".$ecms_hashur['whehref'].">µ¼Èë±êÇ©</a>";
 if($enews)
 {
 	hCheckEcmsRHash();
@@ -34,7 +34,7 @@ if($enews=="LoadInBq")
 }
 else
 {
-	//ç±»åˆ«
+	//Àà±ğ
 	$cstr="";
 	$csql=$empire->query("select classid,classname from {$dbtbpre}enewsbqclass order by classid");
 	while($cr=$empire->fetch($csql))
@@ -48,15 +48,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¯¼å…¥æ ‡ç­¾</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>µ¼Èë±êÇ©</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <?
@@ -66,16 +66,16 @@ if($enews=="LoadInBq")
 <form name="form2" method="post" action="">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
     <tr class="header"> 
-      <td height="25"><div align="center">å¯¼å…¥æ ‡ç­¾å®Œæ¯•</div></td>
+      <td height="25"><div align="center">µ¼Èë±êÇ©Íê±Ï</div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25"><table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
           <tr> 
-            <td width="34%"><div align="right">å¯¼å…¥æ ‡ç­¾åç§°ï¼š</div></td>
+            <td width="34%"><div align="right">µ¼Èë±êÇ©Ãû³Æ£º</div></td>
             <td width="66%" height="27"><b><? echo $r[0]."&nbsp;(".$r[3].")";?></b></td>
           </tr>
           <tr> 
-            <td height="27" colspan="2"><div align="center">æ ‡ç­¾å‡½æ•°å†…å®¹ï¼š</div></td>
+            <td height="27" colspan="2"><div align="center">±êÇ©º¯ÊıÄÚÈİ£º</div></td>
           </tr>
           <tr> 
             <td height="27" colspan="2"> <div align="right"></div>
@@ -86,7 +86,7 @@ if($enews=="LoadInBq")
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><div align="center">è¯´æ˜ï¼šå¯¼å…¥æ ‡ç­¾åï¼Œè¯·æŠŠå‡½æ•°å†…å®¹å¤åˆ¶åˆ°e/class/userfun.phpæ–‡ä»¶</div></td>
+      <td height="25"><div align="center">ËµÃ÷£ºµ¼Èë±êÇ©ºó£¬Çë°Ñº¯ÊıÄÚÈİ¸´ÖÆµ½e/class/userfun.phpÎÄ¼ş</div></td>
     </tr>
   </table>
 </form>
@@ -95,25 +95,25 @@ if($enews=="LoadInBq")
 else
 {
 ?>
-<form action="LoadInBq.php" method="post" enctype="multipart/form-data" name="form1" onsubmit="return confirm('ç¡®è®¤è¦å¯¼å…¥ï¼Ÿ');">
+<form action="LoadInBq.php" method="post" enctype="multipart/form-data" name="form1" onsubmit="return confirm('È·ÈÏÒªµ¼Èë£¿');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
 	<?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25"><div align="center">å¯¼å…¥æ ‡ç­¾ 
+      <td height="25"><div align="center">µ¼Èë±êÇ© 
           <input name="enews" type="hidden" id="enews" value="LoadInBq">
         </div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25"><table width="500" border="0" align="center" cellpadding="3" cellspacing="1">
           <tr> 
-            <td width="34%"><div align="right">æ ‡ç­¾æ‰€å±åˆ†ç±»ï¼š</div></td>
+            <td width="34%"><div align="right">±êÇ©ËùÊô·ÖÀà£º</div></td>
             <td width="66%" height="27"><select name="classid" id="classid">
-                <option value="0">ä¸éš¶å±äºä»»ä½•åˆ†ç±»</option>
+                <option value="0">²»Á¥ÊôÓÚÈÎºÎ·ÖÀà</option>
                 <?=$cstr?>
               </select></td>
           </tr>
           <tr> 
-            <td height="27"> <div align="right">å¯¼å…¥æ ‡ç­¾æ–‡ä»¶ï¼š</div></td>
+            <td height="27"> <div align="right">µ¼Èë±êÇ©ÎÄ¼ş£º</div></td>
             <td height="27"><input type="file" name="file">
               (*.bq) </td>
           </tr>
@@ -121,9 +121,9 @@ else
     </tr>
     <tr bgcolor="#FFFFFF">
       <td height="25"><div align="center">
-          <input type="submit" name="Submit" value="é©¬ä¸Šå¯¼å…¥">
+          <input type="submit" name="Submit" value="ÂíÉÏµ¼Èë">
           &nbsp;&nbsp;
-          <input type="reset" name="Submit2" value="é‡ç½®">
+          <input type="reset" name="Submit2" value="ÖØÖÃ">
         </div></td>
     </tr>
   </table>

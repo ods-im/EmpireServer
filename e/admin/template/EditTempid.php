@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,11 +15,11 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"template");
 
 
-//ä¿®æ”¹æ¨¡æ¿ID
+//ĞŞ¸ÄÄ£°åID
 function EditTempid($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$gid=(int)$add['gid'];
@@ -32,7 +32,7 @@ function EditTempid($add,$userid,$username){
 	{
 		printerror("EmptyEditTempid","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$temptbname=GetDoTemptb($temptb,$gid);
 	if($tempno==7)
@@ -51,7 +51,7 @@ function EditTempid($add,$userid,$username){
 		printerror("EmptyEditTempid","history.go(-1)");
     }
 	$newr=$empire->fetch1("select ".$tempnamef.",".$tempidf." from ".$temptbname." where ".$tempidf."='$newtempid'");
-	//IDå·²å­˜åœ¨
+	//IDÒÑ´æÔÚ
 	$lastid=0;
 	if($newr[$tempidf])
 	{
@@ -60,14 +60,14 @@ function EditTempid($add,$userid,$username){
 		$empire->query("update ".$temptbname." set ".$tempidf."='$lastid' where ".$tempidf."='$newtempid'");
 	}
 	$sql=$empire->query("update ".$temptbname." set ".$tempidf."='$newtempid' where ".$tempidf."='$tempid'");
-	//å¯¹æ¢
+	//¶Ô»»
 	if($newr[$tempidf]&&$redo==1&&$lastid)
 	{
 		$empire->query("update ".$temptbname." set ".$tempidf."='$tempid' where ".$tempidf."='$lastid'");
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tb=$temptb&tempid=$tempid&tempname=".$r[$tempnamef]."&gid=$gid&newtempid=$newtempid&redo=$redo");
 		printerror("EditTempidSuccess",EcmsGetReturnUrl());
 	}
@@ -77,7 +77,7 @@ function EditTempid($add,$userid,$username){
 	}
 }
 
-//æ“ä½œ
+//²Ù×÷
 $enews=$_POST['enews'];
 if(empty($enews))
 {$enews=$_GET['enews'];}
@@ -85,7 +85,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//ä¿®æ”¹æ¨¡æ¿ID
+//ĞŞ¸ÄÄ£°åID
 if($enews=="EditTempid")
 {
 	EditTempid($_POST,$logininid,$loginin);
@@ -112,8 +112,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¿®æ”¹æ¨¡æ¿ID</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ĞŞ¸ÄÄ£°åID</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <SCRIPT lanuage="JScript">
 <!--
@@ -135,29 +135,29 @@ function eCheckForm(obj){
 	var ok;
 	if(obj.gid.value==0)
 	{
-		alert('è¯·é€‰æ‹©æ¨¡æ¿ç»„');
+		alert('ÇëÑ¡ÔñÄ£°å×é');
 		obj.gid.focus();
 		return false;
 	}
 	if(obj.tempno.value==0)
 	{
-		alert('è¯·é€‰æ‹©æ¨¡æ¿');
+		alert('ÇëÑ¡ÔñÄ£°å');
 		obj.tempno.focus();
 		return false;
 	}
 	if(obj.tempid.value==0)
 	{
-		alert('è¯·å¡«å†™åŸæ¨¡æ¿ID');
+		alert('ÇëÌîĞ´Ô­Ä£°åID');
 		obj.tempid.focus();
 		return false;
 	}
 	if(obj.newtempid.value==0)
 	{
-		alert('è¯·å¡«å†™æ–°æ¨¡æ¿ID');
+		alert('ÇëÌîĞ´ĞÂÄ£°åID');
 		obj.newtempid.focus();
 		return false;
 	}
-	ok=confirm("ç¡®è®¤è¦ä¿®æ”¹?");
+	ok=confirm("È·ÈÏÒªĞŞ¸Ä?");
 	if(ok)
 	{
 		return true;
@@ -173,7 +173,7 @@ function eCheckForm(obj){
 <body>
 <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼šä¿®æ”¹æ¨¡æ¿ID</td>
+    <td height="25">Î»ÖÃ£ºĞŞ¸ÄÄ£°åID</td>
   </tr>
 </table>
 <br>
@@ -181,55 +181,55 @@ function eCheckForm(obj){
   <form name="form1" id="form1" method="post" action="EditTempid.php" onsubmit="return eCheckForm(document.form1);">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">ä¿®æ”¹æ¨¡æ¿ID 
+      <td height="25" colspan="2">ĞŞ¸ÄÄ£°åID 
         <input name="enews" type="hidden" id="enews" value="EditTempid">  
          </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">æ¨¡æ¿ç»„</td>
+      <td width="19%" height="25">Ä£°å×é</td>
       <td width="81%" height="25"><select name="gid" id="gid">
-        <option value="0">----------- é€‰æ‹©æ¨¡æ¿ç»„ -----------</option>
+        <option value="0">----------- Ñ¡ÔñÄ£°å×é -----------</option>
 		<?=$tgtemps?>
       </select>
       </td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ¨¡æ¿è¡¨</td>
+      <td height="25">Ä£°å±í</td>
       <td height="25">
 	  <select name="tempno">
-  <option value="0">------------ é€‰æ‹©æ¨¡æ¿ ------------</option>
-  <option value="1"<?=$tempno==1?' selected':''?>>æ ‡ç­¾æ¨¡æ¿(enewsbqtemp)</option>
-  <option value="2"<?=$tempno==2?' selected':''?>>JSæ¨¡æ¿(enewsjstemp)</option>
-  <option value="3"<?=$tempno==3?' selected':''?>>åˆ—è¡¨æ¨¡æ¿(enewslisttemp)</option>
-  <option value="4"<?=$tempno==4?' selected':''?>>å†…å®¹æ¨¡æ¿(enewsnewstemp)</option>
-  <option value="6"<?=$tempno==6?' selected':''?>>æœç´¢æ¨¡æ¿(enewssearchtemp)</option>
-  <option value="7"<?=$tempno==7?' selected':''?>>å…¬å…±æ¨¡æ¿å˜é‡(enewstempvar)</option>
-  <option value="8"<?=$tempno==8?' selected':''?>>æŠ•ç¥¨æ¨¡æ¿(enewsvotetemp)</option>
-  <option value="9"<?=$tempno==9?' selected':''?>>å°é¢æ¨¡æ¿(enewsclasstemp)</option>
-  <option value="10"<?=$tempno==10?' selected':''?>>è¯„è®ºæ¨¡æ¿(enewspltemp)</option>
-  <option value="11"<?=$tempno==11?' selected':''?>>æ‰“å°æ¨¡æ¿(enewsprinttemp)</option>
-  <option value="12"<?=$tempno==12?' selected':''?>>è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿(enewspagetemp)</option>
+  <option value="0">------------ Ñ¡ÔñÄ£°å ------------</option>
+  <option value="1"<?=$tempno==1?' selected':''?>>±êÇ©Ä£°å(enewsbqtemp)</option>
+  <option value="2"<?=$tempno==2?' selected':''?>>JSÄ£°å(enewsjstemp)</option>
+  <option value="3"<?=$tempno==3?' selected':''?>>ÁĞ±íÄ£°å(enewslisttemp)</option>
+  <option value="4"<?=$tempno==4?' selected':''?>>ÄÚÈİÄ£°å(enewsnewstemp)</option>
+  <option value="6"<?=$tempno==6?' selected':''?>>ËÑË÷Ä£°å(enewssearchtemp)</option>
+  <option value="7"<?=$tempno==7?' selected':''?>>¹«¹²Ä£°å±äÁ¿(enewstempvar)</option>
+  <option value="8"<?=$tempno==8?' selected':''?>>Í¶Æ±Ä£°å(enewsvotetemp)</option>
+  <option value="9"<?=$tempno==9?' selected':''?>>·âÃæÄ£°å(enewsclasstemp)</option>
+  <option value="10"<?=$tempno==10?' selected':''?>>ÆÀÂÛÄ£°å(enewspltemp)</option>
+  <option value="11"<?=$tempno==11?' selected':''?>>´òÓ¡Ä£°å(enewsprinttemp)</option>
+  <option value="12"<?=$tempno==12?' selected':''?>>×Ô¶¨ÒåÒ³ÃæÄ£°å(enewspagetemp)</option>
 </select>
 	  </td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">åŸæ¨¡æ¿ID</td>
+      <td height="25">Ô­Ä£°åID</td>
       <td height="25"><input name="tempid" type="text" id="tempid" value="<?=$tempid?>" size="38"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ–°æ¨¡æ¿ID</td>
+      <td height="25">ĞÂÄ£°åID</td>
       <td height="25"><input name="newtempid" type="text" id="newtempid" value="<?=$newtempid?>" size="38"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ–°æ¨¡æ¿IDå­˜åœ¨å¤„ç†</td>
+      <td height="25">ĞÂÄ£°åID´æÔÚ´¦Àí</td>
       <td height="25"><input name="redo" type="radio" value="0" checked>
-      å°†æ¨¡æ¿IDè½¬ä¸ºæœ€æ–°ID
-          <input type="radio" name="redo" value="1">æ¨¡æ¿IDç›¸äº’æ›¿æ¢</td>
+      ½«Ä£°åID×ªÎª×îĞÂID
+          <input type="radio" name="redo" value="1">Ä£°åIDÏà»¥Ìæ»»</td>
     </tr>
     
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®">
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ">
       </td>
     </tr>
 	</form>

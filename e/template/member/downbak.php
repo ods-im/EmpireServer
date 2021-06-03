@@ -5,15 +5,15 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='娑堣垂璁板綍';
-$url="<a href=../../../>棣栭〉</a>&nbsp;>&nbsp;<a href=../cp/>浼氬憳涓績</a>&nbsp;>&nbsp;娑堣垂璁板綍";
+$public_diyr['pagetitle']='消费记录';
+$url="<a href=../../../>首页</a>&nbsp;>&nbsp;<a href=../cp/>会员中心</a>&nbsp;>&nbsp;消费记录";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
           <tr class="header"> 
-            <td width="55%" height="25"><div align="center">鏍囬</div></td>
-            <td width="16%" height="25"><div align="center">鎵ｉ櫎鐐规暟</div></td>
-            <td width="29%" height="25"><div align="center">鏃堕棿</div></td>
+            <td width="55%" height="25"><div align="center">标题</div></td>
+            <td width="16%" height="25"><div align="center">扣除点数</div></td>
+            <td width="29%" height="25"><div align="center">时间</div></td>
           </tr>
 	<?php
 	while($r=$empire->fetch($sql))
@@ -21,28 +21,28 @@ require(ECMS_PATH.'e/template/incfile/header.php');
 		if(empty($class_r[$r[classid]][tbname]))
 		{continue;}
 		$nr=$empire->fetch1("select title,isurl,titleurl,classid from {$dbtbpre}ecms_".$class_r[$r[classid]][tbname]." where id='$r[id]' limit 1");
-		//鏍囬閾炬帴
+		//标题链接
 		$titlelink=sys_ReturnBqTitleLink($nr);
 		if(!$nr['classid'])
 		{
-			$r['title']="姝や俊鎭凡鍒犻櫎";
+			$r['title']="此信息已删除";
 			$titlelink="#EmpireCMS";
 		}
 		if($r['online']==0)
 		{
-			$type='涓嬭浇';
+			$type='下载';
 		}
 		elseif($r['online']==1)
 		{
-			$type='瑙傜湅';
+			$type='观看';
 		}
 		elseif($r['online']==2)
 		{
-			$type='鏌ョ湅';
+			$type='查看';
 		}
 		elseif($r['online']==3)
 		{
-			$type='鍙戝竷';
+			$type='发布';
 		}
 	?>
           <tr bgcolor="#FFFFFF"> 

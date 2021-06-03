@@ -3,27 +3,27 @@ define('InEmpireCMSIconv',TRUE);
 
 class Chinese
 {
-	//å­˜æ”¾ç®€ä½“ä¸­æ–‡ä¸æ‹¼éŸ³å¯¹ç…§è¡¨
+	//´æ·Å¼òÌåÖĞÎÄÓëÆ´Òô¶ÔÕÕ±í
     var $pinyin_table = array();
 
-	//å­˜æ”¾ GB <-> UNICODE å¯¹ç…§è¡¨çš„å†…å®¹
+	//´æ·Å GB <-> UNICODE ¶ÔÕÕ±íµÄÄÚÈİ
     var $unicode_table = array();
 
-	//è®¿é—®ä¸­æ–‡ç¹ç®€äº’æ¢è¡¨çš„æ–‡ä»¶æŒ‡é’ˆ
+	//·ÃÎÊÖĞÎÄ·±¼ò»¥»»±íµÄÎÄ¼şÖ¸Õë
     var $ctf;
 
     var $SourceText = "";
 
-	//é…ç½®
+	//ÅäÖÃ
     var $config  =  array(
-        'codetable_dir'         => '',                      //  å­˜æ”¾å„ç§è¯­è¨€äº’æ¢è¡¨çš„ç›®å½•
-        'source_lang'           => '',                      //  å­—ç¬¦çš„åŸç¼–ç 
-        'target_lang'           => '',                      //  è½¬æ¢åçš„ç¼–ç 
-        'GBtoBIG5_table'        => 'gb-big5.table',         //  ç®€ä½“ä¸­æ–‡è½¬æ¢ä¸ºç¹ä½“ä¸­æ–‡çš„å¯¹ç…§è¡¨
-        'BIG5toGB_table'        => 'big5-gb.table',         //  ç¹ä½“ä¸­æ–‡è½¬æ¢ä¸ºç®€ä½“ä¸­æ–‡çš„å¯¹ç…§è¡¨
-        'GBtoPinYin_table'      => 'gb-pinyin.table',       //  ç®€ä½“ä¸­æ–‡è½¬æ¢ä¸ºæ‹¼éŸ³çš„å¯¹ç…§è¡¨
-        'GBtoUnicode_table'     => 'gb-unicode.table',      //  ç®€ä½“ä¸­æ–‡è½¬æ¢ä¸ºUNICODEçš„å¯¹ç…§è¡¨
-        'BIG5toUnicode_table'   => 'big5-unicode.table'     //  ç¹ä½“ä¸­æ–‡è½¬æ¢ä¸ºUNICODEçš„å¯¹ç…§è¡¨
+        'codetable_dir'         => '',                      //  ´æ·Å¸÷ÖÖÓïÑÔ»¥»»±íµÄÄ¿Â¼
+        'source_lang'           => '',                      //  ×Ö·ûµÄÔ­±àÂë
+        'target_lang'           => '',                      //  ×ª»»ºóµÄ±àÂë
+        'GBtoBIG5_table'        => 'gb-big5.table',         //  ¼òÌåÖĞÎÄ×ª»»Îª·±ÌåÖĞÎÄµÄ¶ÔÕÕ±í
+        'BIG5toGB_table'        => 'big5-gb.table',         //  ·±ÌåÖĞÎÄ×ª»»Îª¼òÌåÖĞÎÄµÄ¶ÔÕÕ±í
+        'GBtoPinYin_table'      => 'gb-pinyin.table',       //  ¼òÌåÖĞÎÄ×ª»»ÎªÆ´ÒôµÄ¶ÔÕÕ±í
+        'GBtoUnicode_table'     => 'gb-unicode.table',      //  ¼òÌåÖĞÎÄ×ª»»ÎªUNICODEµÄ¶ÔÕÕ±í
+        'BIG5toUnicode_table'   => 'big5-unicode.table'     //  ·±ÌåÖĞÎÄ×ª»»ÎªUNICODEµÄ¶ÔÕÕ±í
     );
 
     function Chinese($dir='./')
@@ -33,7 +33,7 @@ class Chinese
 
     function Convert( $source_lang , $target_lang , $source_string='' )
     {
-        /* å¦‚æœç¼–ç ç›¸åŒï¼Œç›´æ¥è¿”å› */
+        /* Èç¹û±àÂëÏàÍ¬£¬Ö±½Ó·µ»Ø */
         if ($source_lang == $target_lang || $source_string == '')
         {
             return $source_string;
@@ -51,28 +51,28 @@ class Chinese
         $this->SourceText = $source_string;
         
         $this->OpenTable();
-        // åˆ¤æ–­æ˜¯å¦ä¸ºä¸­æ–‡ç¹ã€ç®€è½¬æ¢
+        // ÅĞ¶ÏÊÇ·ñÎªÖĞÎÄ·±¡¢¼ò×ª»»
         if ( ($this->config['source_lang']=="GB2312" || $this->config['source_lang']=="BIG5") && ($this->config['target_lang']=="GB2312" || $this->config['target_lang']=="BIG5") ) {
             return $this->GB2312toBIG5();
         }
 
-        // åˆ¤æ–­æ˜¯å¦ä¸ºç®€ä½“ä¸­æ–‡ä¸æ‹¼éŸ³è½¬æ¢
+        // ÅĞ¶ÏÊÇ·ñÎª¼òÌåÖĞÎÄÓëÆ´Òô×ª»»
         if ( ($this->config['source_lang']=="GB2312" || $this->config['source_lang']=="BIG5") && $this->config['target_lang']=="PinYin" ) {
             return $this->CHStoPinYin();
         }
 
-        // åˆ¤æ–­æ˜¯å¦ä¸ºç®€ä½“ã€ç¹ä½“ä¸­æ–‡ä¸UTF8è½¬æ¢
+        // ÅĞ¶ÏÊÇ·ñÎª¼òÌå¡¢·±ÌåÖĞÎÄÓëUTF8×ª»»
         if ( ($this->config['source_lang']=="GB2312" || $this->config['source_lang']=="BIG5" || $this->config['source_lang']=="UTF8") && ($this->config['target_lang']=="UTF8" || $this->config['target_lang']=="GB2312" || $this->config['target_lang']=="BIG5") ) {
             return $this->CHStoUTF8();
         }
 
-        // åˆ¤æ–­æ˜¯å¦ä¸ºç®€ä½“ã€ç¹ä½“ä¸­æ–‡ä¸UNICODEè½¬æ¢
+        // ÅĞ¶ÏÊÇ·ñÎª¼òÌå¡¢·±ÌåÖĞÎÄÓëUNICODE×ª»»
         if ( ($this->config['source_lang']=="GB2312" || $this->config['source_lang']=="BIG5") && $this->config['target_lang']=="UNICODE" ) {
             return $this->CHStoUNICODE();
         }
     }
 
-	//å°† 16 è¿›åˆ¶è½¬æ¢ä¸º 2 è¿›åˆ¶å­—ç¬¦
+	//½« 16 ½øÖÆ×ª»»Îª 2 ½øÖÆ×Ö·û
     function _hex2bin( $hexdata )
     {
         $bindata = '';
@@ -87,23 +87,23 @@ class Chinese
     function OpenTable()
     {
 
-        // å‡å¦‚åŸç¼–ç ä¸ºç®€ä½“ä¸­æ–‡çš„è¯
+        // ¼ÙÈçÔ­±àÂëÎª¼òÌåÖĞÎÄµÄ»°
         if ($this->config['source_lang']=="GB2312") {
 
-            // å‡å¦‚è½¬æ¢ç›®æ ‡ç¼–ç ä¸ºç¹ä½“ä¸­æ–‡çš„è¯
+            // ¼ÙÈç×ª»»Ä¿±ê±àÂëÎª·±ÌåÖĞÎÄµÄ»°
             if ($this->config['target_lang'] == "BIG5") {
                 $this->ctf = fopen($this->config['codetable_dir'].$this->config['GBtoBIG5_table'], "rb");
                 if (is_null($this->ctf)) {
-                    echo "æ‰“å¼€æ‰“å¼€è½¬æ¢è¡¨æ–‡ä»¶å¤±è´¥ï¼";
+                    echo "´ò¿ª´ò¿ª×ª»»±íÎÄ¼şÊ§°Ü£¡";
                     exit;
                 }
             }
 
-            // å‡å¦‚è½¬æ¢ç›®æ ‡ç¼–ç ä¸ºæ‹¼éŸ³çš„è¯
+            // ¼ÙÈç×ª»»Ä¿±ê±àÂëÎªÆ´ÒôµÄ»°
             if ($this->config['target_lang'] == "PinYin") {
                 $tmp = @file($this->config['codetable_dir'].$this->config['GBtoPinYin_table']);
                 if (!$tmp) {
-                    echo "æ‰“å¼€æ‰“å¼€è½¬æ¢è¡¨æ–‡ä»¶å¤±è´¥ï¼";
+                    echo "´ò¿ª´ò¿ª×ª»»±íÎÄ¼şÊ§°Ü£¡";
                     exit;
                 }
                 //
@@ -114,11 +114,11 @@ class Chinese
                 }
             }
 
-            // å‡å¦‚è½¬æ¢ç›®æ ‡ç¼–ç ä¸º UTF8 çš„è¯
+            // ¼ÙÈç×ª»»Ä¿±ê±àÂëÎª UTF8 µÄ»°
             if ($this->config['target_lang'] == "UTF8") {
                 $tmp = @file($this->config['codetable_dir'].$this->config['GBtoUnicode_table']);
                 if (!$tmp) {
-                    echo "ç¼–ç è½¬æ¢å¤±è´¥ï¼";
+                    echo "±àÂë×ª»»Ê§°Ü£¡";
                     exit;
                 }
                 $this->unicode_table = array();
@@ -126,11 +126,11 @@ class Chinese
                 $this->unicode_table[hexdec(substr($value,0,6))]=substr($value,7,6);
             }
 
-            // å‡å¦‚è½¬æ¢ç›®æ ‡ç¼–ç ä¸º UNICODE çš„è¯
+            // ¼ÙÈç×ª»»Ä¿±ê±àÂëÎª UNICODE µÄ»°
             if ($this->config['target_lang'] == "UNICODE") {
                 $tmp = @file($this->config['codetable_dir'].$this->config['GBtoUnicode_table']);
                 if (!$tmp) {
-                    echo "æ‰“å¼€æ‰“å¼€è½¬æ¢è¡¨æ–‡ä»¶å¤±è´¥ï¼";
+                    echo "´ò¿ª´ò¿ª×ª»»±íÎÄ¼şÊ§°Ü£¡";
                     exit;
                 }
                 $this->unicode_table = array();
@@ -139,21 +139,21 @@ class Chinese
             }
         }
 
-        // å‡å¦‚åŸç¼–ç ä¸ºç¹ä½“ä¸­æ–‡çš„è¯
+        // ¼ÙÈçÔ­±àÂëÎª·±ÌåÖĞÎÄµÄ»°
         if ($this->config['source_lang']=="BIG5") {
-            // å‡å¦‚è½¬æ¢ç›®æ ‡ç¼–ç ä¸ºç®€ä½“ä¸­æ–‡çš„è¯
+            // ¼ÙÈç×ª»»Ä¿±ê±àÂëÎª¼òÌåÖĞÎÄµÄ»°
             if ($this->config['target_lang'] == "GB2312") {
                 $this->ctf = fopen($this->config['codetable_dir'].$this->config['BIG5toGB_table'], "r");
                 if (is_null($this->ctf)) {
-                    echo "æ‰“å¼€æ‰“å¼€è½¬æ¢è¡¨æ–‡ä»¶å¤±è´¥ï¼";
+                    echo "´ò¿ª´ò¿ª×ª»»±íÎÄ¼şÊ§°Ü£¡";
                     exit;
                 }
             }
-            // å‡å¦‚è½¬æ¢ç›®æ ‡ç¼–ç ä¸º UTF8 çš„è¯
+            // ¼ÙÈç×ª»»Ä¿±ê±àÂëÎª UTF8 µÄ»°
             if ($this->config['target_lang'] == "UTF8") {
                 $tmp = @file($this->config['codetable_dir'].$this->config['BIG5toUnicode_table']);
                 if (!$tmp) {
-                    echo "æ‰“å¼€æ‰“å¼€è½¬æ¢è¡¨æ–‡ä»¶å¤±è´¥ï¼";
+                    echo "´ò¿ª´ò¿ª×ª»»±íÎÄ¼şÊ§°Ü£¡";
                     exit;
                 }
                 $this->unicode_table = array();
@@ -161,11 +161,11 @@ class Chinese
                 $this->unicode_table[hexdec(substr($value,0,6))]=substr($value,7,6);
             }
 
-            // å‡å¦‚è½¬æ¢ç›®æ ‡ç¼–ç ä¸º UNICODE çš„è¯
+            // ¼ÙÈç×ª»»Ä¿±ê±àÂëÎª UNICODE µÄ»°
             if ($this->config['target_lang'] == "UNICODE") {
                 $tmp = @file($this->config['codetable_dir'].$this->config['BIG5toUnicode_table']);
                 if (!$tmp) {
-                    echo "æ‰“å¼€æ‰“å¼€è½¬æ¢è¡¨æ–‡ä»¶å¤±è´¥ï¼";
+                    echo "´ò¿ª´ò¿ª×ª»»±íÎÄ¼şÊ§°Ü£¡";
                     exit;
                 }
                 $this->unicode_table = array();
@@ -173,11 +173,11 @@ class Chinese
                 $this->unicode_table[hexdec(substr($value,0,6))]=substr($value,9,4);
             }
 
-            // å‡å¦‚è½¬æ¢ç›®æ ‡ç¼–ç ä¸ºæ‹¼éŸ³çš„è¯
+            // ¼ÙÈç×ª»»Ä¿±ê±àÂëÎªÆ´ÒôµÄ»°
             if ($this->config['target_lang'] == "PinYin") {
                 $tmp = @file($this->config['codetable_dir'].$this->config['GBtoPinYin_table']);
                 if (!$tmp) {
-                    echo "æ‰“å¼€æ‰“å¼€è½¬æ¢è¡¨æ–‡ä»¶å¤±è´¥ï¼";
+                    echo "´ò¿ª´ò¿ª×ª»»±íÎÄ¼şÊ§°Ü£¡";
                     exit;
                 }
                 //
@@ -189,14 +189,14 @@ class Chinese
             }
         }
 
-        // å‡å¦‚åŸç¼–ç ä¸º UTF8 çš„è¯
+        // ¼ÙÈçÔ­±àÂëÎª UTF8 µÄ»°
         if ($this->config['source_lang']=="UTF8") {
 
-            // å‡å¦‚è½¬æ¢ç›®æ ‡ç¼–ç ä¸º GB2312 çš„è¯
+            // ¼ÙÈç×ª»»Ä¿±ê±àÂëÎª GB2312 µÄ»°
             if ($this->config['target_lang'] == "GB2312") {
                 $tmp = @file($this->config['codetable_dir'].$this->config['GBtoUnicode_table']);
                 if (!$tmp) {
-                    echo "æ‰“å¼€æ‰“å¼€è½¬æ¢è¡¨æ–‡ä»¶å¤±è´¥ï¼";
+                    echo "´ò¿ª´ò¿ª×ª»»±íÎÄ¼şÊ§°Ü£¡";
                     exit;
                 }
                 $this->unicode_table = array();
@@ -206,11 +206,11 @@ class Chinese
                 }
             }
 
-            // å‡å¦‚è½¬æ¢ç›®æ ‡ç¼–ç ä¸º BIG5 çš„è¯
+            // ¼ÙÈç×ª»»Ä¿±ê±àÂëÎª BIG5 µÄ»°
             if ($this->config['target_lang'] == "BIG5") {
                 $tmp = @file($this->config['codetable_dir'].$this->config['BIG5toUnicode_table']);
                 if (!$tmp) {
-                    echo "æ‰“å¼€æ‰“å¼€è½¬æ¢è¡¨æ–‡ä»¶å¤±è´¥ï¼";
+                    echo "´ò¿ª´ò¿ª×ª»»±íÎÄ¼şÊ§°Ü£¡";
                     exit;
                 }
                 $this->unicode_table = array();
@@ -228,7 +228,7 @@ class Chinese
         $tempcontent = @file($position);
 
         if (!$tempcontent) {
-            echo "æ‰“å¼€æ–‡ä»¶å¤±è´¥ï¼";
+            echo "´ò¿ªÎÄ¼şÊ§°Ü£¡";
             exit;
         }
 
@@ -248,11 +248,11 @@ class Chinese
         $tempcontent = @file($position);
 
         if (!$tempcontent) {
-            echo "æ‰“å¼€æ–‡ä»¶å¤±è´¥ï¼";
+            echo "´ò¿ªÎÄ¼şÊ§°Ü£¡";
             exit;
         }
 
-        // å°†æ•°ç»„çš„æ‰€æœ‰å†…å®¹è½¬æ¢ä¸ºå­—ç¬¦ä¸²
+        // ½«Êı×éµÄËùÓĞÄÚÈİ×ª»»Îª×Ö·û´®
         $this->SourceText = implode("",$tempcontent);
 
         $this->SourceText = preg_replace( "/charset=".$this->config['source_lang']."/i" , "charset=".$this->config['target_lang'] , $this->SourceText);
@@ -370,7 +370,7 @@ class Chinese
                 }
             }
 
-            // è¿”å›ç»“æœ
+            // ·µ»Ø½á¹û
             return $out;
         }
     }
@@ -404,7 +404,7 @@ class Chinese
 
     function GB2312toBIG5()
     {
-        // è·å–ç­‰å¾…è½¬æ¢çš„å­—ç¬¦ä¸²çš„æ€»é•¿åº¦
+        // »ñÈ¡µÈ´ı×ª»»µÄ×Ö·û´®µÄ×Ü³¤¶È
         $max=strlen($this->SourceText)-1;
 
         for($i=0;$i<$max;$i++){
@@ -430,13 +430,13 @@ class Chinese
         }
         fclose($this->ctf);
 
-        // å°†è½¬æ¢åçš„ç»“æœèµ‹äºˆ $result;
+        // ½«×ª»»ºóµÄ½á¹û¸³Óè $result;
         $result = $this->SourceText;
 
-        // æ¸…ç©º $thisSourceText
+        // Çå¿Õ $thisSourceText
         $this->SourceText = "";
 
-        // è¿”å›è½¬æ¢ç»“æœ
+        // ·µ»Ø×ª»»½á¹û
         return $result;
     }
 
@@ -465,7 +465,7 @@ class Chinese
         if ( $this->config['source_lang']=="BIG5" ) {
             $this->ctf = fopen($this->config['codetable_dir'].$this->config['BIG5toGB_table'], "r");
             if (is_null($this->ctf)) {
-                echo "æ‰“å¼€æ‰“å¼€è½¬æ¢è¡¨æ–‡ä»¶å¤±è´¥ï¼";
+                echo "´ò¿ª´ò¿ª×ª»»±íÎÄ¼şÊ§°Ü£¡";
                 exit;
             }
 
@@ -488,33 +488,33 @@ class Chinese
             $ri = $ri + 1;
         }
 
-        // æ¸…ç©º $this->SourceText
+        // Çå¿Õ $this->SourceText
         $this->SourceText = "";
 
         $this->pinyin_table = array();
 
-        // è¿”å›è½¬æ¢åçš„ç»“æœ
+        // ·µ»Ø×ª»»ºóµÄ½á¹û
         return implode(" ", $ret);
     }
 
     function ConvertIT()
     {
-        // åˆ¤æ–­æ˜¯å¦ä¸ºä¸­æ–‡ç¹ã€ç®€è½¬æ¢
+        // ÅĞ¶ÏÊÇ·ñÎªÖĞÎÄ·±¡¢¼ò×ª»»
         if ( ($this->config['source_lang']=="GB2312" || $this->config['source_lang']=="BIG5") && ($this->config['target_lang']=="GB2312" || $this->config['target_lang']=="BIG5") ) {
             return $this->GB2312toBIG5();
         }
 
-        // åˆ¤æ–­æ˜¯å¦ä¸ºç®€ä½“ä¸­æ–‡ä¸æ‹¼éŸ³è½¬æ¢
+        // ÅĞ¶ÏÊÇ·ñÎª¼òÌåÖĞÎÄÓëÆ´Òô×ª»»
         if ( ($this->config['source_lang']=="GB2312" || $this->config['source_lang']=="BIG5") && $this->config['target_lang']=="PinYin" ) {
             return $this->CHStoPinYin();
         }
 
-        // åˆ¤æ–­æ˜¯å¦ä¸ºç®€ä½“ã€ç¹ä½“ä¸­æ–‡ä¸UTF8è½¬æ¢
+        // ÅĞ¶ÏÊÇ·ñÎª¼òÌå¡¢·±ÌåÖĞÎÄÓëUTF8×ª»»
         if ( ($this->config['source_lang']=="GB2312" || $this->config['source_lang']=="BIG5" || $this->config['source_lang']=="UTF8") && ($this->config['target_lang']=="UTF8" || $this->config['target_lang']=="GB2312" || $this->config['target_lang']=="BIG5") ) {
             return $this->CHStoUTF8();
         }
 
-        // åˆ¤æ–­æ˜¯å¦ä¸ºç®€ä½“ã€ç¹ä½“ä¸­æ–‡ä¸UNICODEè½¬æ¢
+        // ÅĞ¶ÏÊÇ·ñÎª¼òÌå¡¢·±ÌåÖĞÎÄÓëUNICODE×ª»»
         if ( ($this->config['source_lang']=="GB2312" || $this->config['source_lang']=="BIG5") && $this->config['target_lang']=="UNICODE" ) {
             return $this->CHStoUNICODE();
         }

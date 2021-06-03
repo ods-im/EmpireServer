@@ -13,7 +13,7 @@ require("wapfun.php");
 $pagetitle=ehtmlspecialchars($public_r['sitename']);
 $pagekey=ehtmlspecialchars($pr['sitekey']);
 $pagedes=ehtmlspecialchars($pr['siteintro']);
-//å‚æ•°
+//²ÎÊı
 $ecmsvar_mbr=array();
 $ecmsvar_mbr['wapstyle']=$wapstyle;
 $ecmsvar_mbr['urladdcs']=ewap_UrlAddCs();

@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -32,14 +32,14 @@ if(!$classid||!$class_r[$classid]['tbname'])
 }
 if($keyboard)
 {
-	$defaultkeyboard=str_replace(',',' ',str_replace('ï¼Œ',' ',$keyboard));
+	$defaultkeyboard=str_replace(',',' ',str_replace('£¬',' ',$keyboard));
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç›¸å…³é“¾æ¥</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ïà¹ØÁ´½Ó</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function UpdateInfoKeyid(){
@@ -49,7 +49,7 @@ function UpdateInfoKeyid(){
 function CheckSearchForm(obj){
 	if(obj.keyboard.value=='')
 	{
-		alert('æœç´¢å…³é”®å­—ä¸èƒ½ä¸ºç©º');
+		alert('ËÑË÷¹Ø¼ü×Ö²»ÄÜÎª¿Õ');
 		obj.keyboard.focus();
 		return false;
 	}
@@ -63,14 +63,14 @@ function CheckSearchForm(obj){
   <tr> 
     <td height="25" colspan="2" class="header">
       <?=stripSlashes($title)?>
-      çš„ç›¸å…³é“¾æ¥ </td>
+      µÄÏà¹ØÁ´½Ó </td>
   </tr>
   <tr> 
     <td height="25" valign="top" bgcolor="#FFFFFF">
 <table width="100%" border="0" cellspacing="1" cellpadding="3" class="tableborder">
         <form name="otherlinkform" method="post" action="">
           <tr> 
-            <td width="80%" height="25"><strong>å·²é€‰ç›¸å…³é“¾æ¥</strong></td>
+            <td width="80%" height="25"><strong>ÒÑÑ¡Ïà¹ØÁ´½Ó</strong></td>
             <td width="20%">&nbsp;</td>
           </tr>
           <tr> 
@@ -78,9 +78,9 @@ function CheckSearchForm(obj){
           </tr>
           <tr> 
             <td height="25" colspan="2" bgcolor="#FFFFFF"><div align="center"> 
-                <input type="button" name="Submit2" value=" ç¡® å®š " onclick="UpdateInfoKeyid();">
+                <input type="button" name="Submit2" value=" È· ¶¨ " onclick="UpdateInfoKeyid();">
                 &nbsp;&nbsp;&nbsp;
-                <input type="button" name="Submit3" value="å–æ¶ˆ" onclick="window.close();">
+                <input type="button" name="Submit3" value="È¡Ïû" onclick="window.close();">
                 <input name="returnkeyid" type="hidden" id="returnkeyid">
               </div></td>
           </tr>
@@ -91,14 +91,14 @@ function CheckSearchForm(obj){
 		<form action="OtherLinkSearch.php" method="GET" name="searchinfoform" target="searchinfopage" id="searchinfoform" onsubmit="return CheckSearchForm(document.searchinfoform);">
 		<?=$ecms_hashur['eform']?>
           <tr> 
-            <td height="25">æŸ¥è¯¢ï¼š 
+            <td height="25">²éÑ¯£º 
               <input name="keyboard" type="text" id="keyboard" value="<?=$defaultkeyboard?>">
               <select name="show" id="show">
-                <option value="1" selected>æ ‡é¢˜</option>
-                <option value="2">å…³é”®å­—</option>
+                <option value="1" selected>±êÌâ</option>
+                <option value="2">¹Ø¼ü×Ö</option>
                 <option value="3">ID</option>
               </select><span id="listfileclassnav"></span>
-              <input type="submit" name="Submit" value="æœç´¢">
+              <input type="submit" name="Submit" value="ËÑË÷">
               <input name="sear" type="hidden" id="sear" value="1">
               <input name="returnkeyid" type="hidden" id="returnkeyid">
               <input name="pclassid" type="hidden" id="pclassid" value="<?=$classid?>">
@@ -117,7 +117,7 @@ function CheckSearchForm(obj){
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td height="25"><div align="center"><font color="#666666">è¯´æ˜ï¼šæœç´¢å¤šä¸ªå…³é”®å­—å¯ä»¥ç”¨ç©ºæ ¼éš”å¼€ã€‚</font></div></td>
+    <td height="25"><div align="center"><font color="#666666">ËµÃ÷£ºËÑË÷¶à¸ö¹Ø¼ü×Ö¿ÉÒÔÓÃ¿Õ¸ñ¸ô¿ª¡£</font></div></td>
   </tr>
 </table>
 <IFRAME frameBorder="0" id="showclassnav" name="showclassnav" scrolling="no" src="../ShowClassNav.php?ecms=5&classid=<?=$classid?><?=$ecms_hashur['ehref']?>" style="HEIGHT:0;VISIBILITY:inherit;WIDTH:0;Z-INDEX:1"></IFRAME>

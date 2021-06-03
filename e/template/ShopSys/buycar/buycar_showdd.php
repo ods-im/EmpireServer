@@ -14,11 +14,11 @@ $bcount=count($buycarr);
 ?>
 <table width="100%" border=0 align=center cellpadding=3 cellspacing=1>
 <tr class="header"> 
-	<td width="9%" height=23><div align=center>åºå·</div></td>
-	<td width="43%"><div align=center>å•†å“åç§°</div></td>
-	<td width="19%"><div align=center>å•ä»·</div></td>
-	<td width="10%"><div align=center>æ•°é‡</div></td>
-	<td width="19%"><div align=center>å°è®¡</div></td>
+	<td width="9%" height=23><div align=center>ÐòºÅ</div></td>
+	<td width="43%"><div align=center>ÉÌÆ·Ãû³Æ</div></td>
+	<td width="19%"><div align=center>µ¥¼Û</div></td>
+	<td width="10%"><div align=center>ÊýÁ¿</div></td>
+	<td width="19%"><div align=center>Ð¡¼Æ</div></td>
 </tr>
 <?php
 $j=0;
@@ -31,36 +31,36 @@ for($i=0;$i<$bcount-1;$i++)
 	//ID
 	$classid=(int)$fr[0];
 	$id=(int)$fr[1];
-	//å±žæ€§
+	//ÊôÐÔ
 	$addatt='';
 	if($pr[2])
 	{
 		$addatt=$pr[2];
 	}
-	//æ•°é‡
+	//ÊýÁ¿
 	$pnum=(int)$pr[3];
 	if($pnum<1)
 	{
 		$pnum=1;
 	}
-	//å•ä»·
+	//µ¥¼Û
 	$price=$pr[4];
 	$thistotal=$price*$pnum;
 	$buyfen=$pr[5];
 	$thistotalfen=$buyfen*$pnum;
 	if($payby==1)
 	{
-		$showprice=$buyfen." ç‚¹";
-		$showthistotal=$thistotalfen." ç‚¹";
+		$showprice=$buyfen." µã";
+		$showthistotal=$thistotalfen." µã";
 	}
 	else
 	{
-		$showprice=$price." å…ƒ";
-		$showthistotal=$thistotal." å…ƒ";
+		$showprice=$price." Ôª";
+		$showthistotal=$thistotal." Ôª";
 	}
-	//äº§å“åç§°
+	//²úÆ·Ãû³Æ
 	$title=stripSlashes($pr[6]);
-	//è¿”å›žé“¾æŽ¥
+	//·µ»ØÁ´½Ó
 	$titleurl="../../public/InfoUrl/?classid=$classid&id=$id";
 	$totalmoney+=$thistotal;
 	$totalfen+=$thistotalfen;
@@ -68,7 +68,7 @@ for($i=0;$i<$bcount-1;$i++)
 <tr>
 	<td align="center"><?=$j?></td>
 	<td align="center"><a href="<?=$titleurl?>" target="_blank"><?=$title?></a><?=$addatt?' - '.$addatt:''?></td>
-	<td align="right"><b>ï¿¥<?=$showprice?></b></td>
+	<td align="right"><b>£¤<?=$showprice?></b></td>
 	<td align="right"><?=$pnum?></td>
 	<td align="right"><?=$showthistotal?></td>
 </tr>
@@ -76,11 +76,11 @@ for($i=0;$i<$bcount-1;$i++)
 }
 ?>
 <?php
-if($payby==1)//ç‚¹æ•°ä»˜è´¹
+if($payby==1)//µãÊý¸¶·Ñ
 {
 ?>
 <tr> 
-	<td colspan=5><div align=right>åˆè®¡ç‚¹æ•°:<strong><?=$totalfen?></strong></div></td>
+	<td colspan=5><div align=right>ºÏ¼ÆµãÊý:<strong><?=$totalfen?></strong></div></td>
 	<td>&nbsp;</td>
 </tr>
 <?php
@@ -89,7 +89,7 @@ else
 {
 ?>
 <tr> 
-     <td colspan=5><div align=right>åˆè®¡:<strong>ï¿¥<?=$totalmoney?></strong></div></td>
+     <td colspan=5><div align=right>ºÏ¼Æ:<strong>£¤<?=$totalmoney?></strong></div></td>
      <td>&nbsp;</td>
 </tr>
 <?php

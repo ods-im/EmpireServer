@@ -10,7 +10,7 @@ if($addr['oicq'])
 {
 	$addr['oicq']="<a href='http://wpa.qq.com/msgrd?V=1&amp;Uin=".$addr['oicq']."&amp;Site=".$public_r['sitename']."&amp;Menu=yes' target='_blank'><img src='http://wpa.qq.com/pa?p=1:".$addr['oicq'].":4'  border='0' alt='QQ' />".$addr['oicq']."</a>";
 }
-//è¡¨å•
+//±íµ¥
 $record="<!--record-->";
 $field="<!--field--->";
 $er=explode($record,$formr['viewenter']);
@@ -19,7 +19,7 @@ $memberinfo='';
 for($i=0;$i<$count-1;$i++)
 {
 	$er1=explode($field,$er[$i]);
-	if(strstr($formr['filef'],",".$er1[1].","))//é™„ä»¶
+	if(strstr($formr['filef'],",".$er1[1].","))//¸½¼ş
 	{
 		if($addr[$er1[1]])
 		{
@@ -30,7 +30,7 @@ for($i=0;$i<$count-1;$i++)
 			$val="";
 		}
 	}
-	elseif(strstr($formr['imgf'],",".$er1[1].","))//å›¾ç‰‡
+	elseif(strstr($formr['imgf'],",".$er1[1].","))//Í¼Æ¬
 	{
 		if($addr[$er1[1]])
 		{
@@ -41,7 +41,7 @@ for($i=0;$i<$count-1;$i++)
 			$val="";
 		}
 	}
-	elseif(strstr($formr['tobrf'],",".$er1[1].","))//å¤šè¡Œæ–‡æœ¬æ¡†
+	elseif(strstr($formr['tobrf'],",".$er1[1].","))//¶àĞĞÎÄ±¾¿ò
 	{
 		$val=nl2br($addr[$er1[1]]);
 	}
@@ -52,44 +52,44 @@ for($i=0;$i<$count-1;$i++)
 	$memberinfo.="<tr bgcolor='#FFFFFF'><td height=25>".$er1[0].":</td><td>".$val."</td></tr>";
 }
 
-$public_diyr['pagetitle']='æŸ¥çœ‹ '.$username.' çš„ä¼šå‘˜èµ„æ–™';
-$url="<a href='../../../'>é¦–é¡µ</a>&nbsp;>&nbsp;<a href='../cp/'>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;æŸ¥çœ‹ä¼šå‘˜èµ„æ–™";
+$public_diyr['pagetitle']='²é¿´ '.$username.' µÄ»áÔ±×ÊÁÏ';
+$url="<a href='../../../'>Ê×Ò³</a>&nbsp;>&nbsp;<a href='../cp/'>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;²é¿´»áÔ±×ÊÁÏ";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <table width='100%' border='0' align='center' cellpadding='3' cellspacing='1' class="tableborder">
   <tr class="header"> 
-    <td height="25" colspan="2">æŸ¥çœ‹ <?=$username?> çš„ä¼šå‘˜èµ„æ–™</td>
+    <td height="25" colspan="2">²é¿´ <?=$username?> µÄ»áÔ±×ÊÁÏ</td>
   </tr>
   <tr>
     <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
     <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellpadding="3" cellspacing="1">
         <tr>
-          <td> [ <a href="../msg/AddMsg/?username=<?=$username?>" target="_blank">å‘çŸ­æ¶ˆæ¯</a> 
-            ] [ <a href="../friend/add/?fname=<?=$username?>" target="_blank">åŠ ä¸ºå¥½å‹</a> 
-            ] [ <a href="../../space/?userid=<?=$r[userid]?>" target="_blank">ä¼šå‘˜ç©ºé—´</a> ] </td>
+          <td> [ <a href="../msg/AddMsg/?username=<?=$username?>" target="_blank">·¢¶ÌÏûÏ¢</a> 
+            ] [ <a href="../friend/add/?fname=<?=$username?>" target="_blank">¼ÓÎªºÃÓÑ</a> 
+            ] [ <a href="../../space/?userid=<?=$r[userid]?>" target="_blank">»áÔ±¿Õ¼ä</a> ] </td>
         </tr>
       </table></td>
   </tr>
   <tr> 
-    <td width='17%' height="25" bgcolor="#FFFFFF"> <div align='left'>ç”¨æˆ·å </div></td>
+    <td width='17%' height="25" bgcolor="#FFFFFF"> <div align='left'>ÓÃ»§Ãû </div></td>
     <td width='83%' height="25" bgcolor="#FFFFFF"> 
       <?=$username?>
     </td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF">ä¼šå‘˜ç­‰çº§</td>
+    <td height="25" bgcolor="#FFFFFF">»áÔ±µÈ¼¶</td>
     <td height="25" bgcolor="#FFFFFF">
       <?=$level_r[$r[groupid]]['groupname']?>
     </td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF">æ³¨å†Œæ—¶é—´</td>
+    <td height="25" bgcolor="#FFFFFF">×¢²áÊ±¼ä</td>
     <td height="25" bgcolor="#FFFFFF"> 
       <?=$registertime?>
     </td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF"> <div align='left'>é‚®ç®±</div></td>
+    <td height="25" bgcolor="#FFFFFF"> <div align='left'>ÓÊÏä</div></td>
     <td height="25" bgcolor="#FFFFFF"> <a href="mailto:<?=$email?>"> 
       <?=$email?>
       </a></td>
@@ -97,7 +97,7 @@ require(ECMS_PATH.'e/template/incfile/header.php');
   <?=$memberinfo?>
   <tr> 
     <td>&nbsp;</td>
-    <td height="25"> <input type='button' name='Submit2' value='è¿”å›' onclick='history.go(-1)'></td>
+    <td height="25"> <input type='button' name='Submit2' value='·µ»Ø' onclick='history.go(-1)'></td>
   </tr>
 </table>
 <?php

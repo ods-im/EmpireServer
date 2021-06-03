@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,21 +15,21 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"tags");
 $enews=ehtmlspecialchars($_GET['enews']);
-$postword='å¢åŠ TAGS';
-$url="<a href=ListTags.php".$ecms_hashur['whehref'].">ç®¡ç†TAGS</a> &gt; å¢åŠ TAGS";
+$postword='Ôö¼ÓTAGS';
+$url="<a href=ListTags.php".$ecms_hashur['whehref'].">¹ÜÀíTAGS</a> &gt; Ôö¼ÓTAGS";
 $fcid=(int)$_GET['fcid'];
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditTags")
 {
-	$postword='ä¿®æ”¹TAGS';
+	$postword='ĞŞ¸ÄTAGS';
 	$tagid=(int)$_GET['tagid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewstags where tagid='$tagid'");
-	$url="<a href=ListTags.php".$ecms_hashur['whehref'].">ç®¡ç†TAGS</a> -&gt; ä¿®æ”¹TAGSï¼š<b>".$r[tagname]."</b>";
+	$url="<a href=ListTags.php".$ecms_hashur['whehref'].">¹ÜÀíTAGS</a> -&gt; ĞŞ¸ÄTAGS£º<b>".$r[tagname]."</b>";
 }
-//åˆ†ç±»
+//·ÖÀà
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewstagsclass order by classid");
 while($cr=$empire->fetch($csql))
 {
@@ -46,7 +46,7 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <title>TAGS</title>
 </head>
@@ -54,7 +54,7 @@ $empire=null;
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListTags.php">
@@ -66,36 +66,36 @@ $empire=null;
         <input name="fcid" type="hidden" id="fcid" value="<?=$fcid?>"> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="18%" height="25">TAGåç§°:</td>
+      <td width="18%" height="25">TAGÃû³Æ:</td>
       <td width="82%" height="25"> <input name="tagname" type="text" id="tagname" value="<?=$r[tagname]?>" size="42">
-        <font color="#666666">(æœ€å¤š20ä¸ªå­—)</font> </td>
+        <font color="#666666">(×î¶à20¸ö×Ö)</font> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ‰€å±åˆ†ç±»:</td>
+      <td height="25">ËùÊô·ÖÀà:</td>
       <td height="25"><select name="cid" id="cid">
-          <option value="0">ä¸åˆ†ç±»</option>
+          <option value="0">²»·ÖÀà</option>
 		  <?=$cs?>
         </select> 
-        <input type="button" name="Submit62223" value="ç®¡ç†åˆ†ç±»" onclick="window.open('TagsClass.php<?=$ecms_hashur['whehref']?>');"></td>
+        <input type="button" name="Submit62223" value="¹ÜÀí·ÖÀà" onclick="window.open('TagsClass.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">ç½‘é¡µæ ‡é¢˜:</td>
+      <td height="25">ÍøÒ³±êÌâ:</td>
       <td height="25"><input name="tagtitle" type="text" id="tagtitle" value="<?=ehtmlspecialchars($r[tagtitle])?>" size="42">
-      <font color="#666666">(æœ€å¤š60ä¸ªå­—)</font></td>
+      <font color="#666666">(×î¶à60¸ö×Ö)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">ç½‘é¡µå…³é”®è¯:</td>
+      <td height="25">ÍøÒ³¹Ø¼ü´Ê:</td>
       <td height="25"><input name="tagkey" type="text" id="tagkey" value="<?=ehtmlspecialchars($r[tagkey])?>" size="42">
-      <font color="#666666">(æœ€å¤š100ä¸ªå­—)</font></td>
+      <font color="#666666">(×î¶à100¸ö×Ö)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">ç½‘é¡µæè¿°:</td>
+      <td height="25">ÍøÒ³ÃèÊö:</td>
       <td height="25"><input name="tagdes" type="text" id="tagdes" value="<?=ehtmlspecialchars($r[tagdes])?>" size="42">
-      <font color="#666666">(æœ€å¤š255ä¸ªå­—)</font></td>
+      <font color="#666666">(×î¶à255¸ö×Ö)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"> <input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"> <input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

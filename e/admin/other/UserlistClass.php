@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,14 +15,14 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"userlist");
 $sql=$empire->query("select classid,classname from {$dbtbpre}enewsuserlistclass order by classid desc");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -30,7 +30,7 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewsuserlistclass 
 <body>
 <table width="98%%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td><p>ä½ç½®ï¼š<a href="ListUserlist.php<?=$ecms_hashur['whehref']?>">ç®¡ç†è‡ªå®šä¹‰åˆ—è¡¨</a> &gt; <a href="UserlistClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†è‡ªå®šä¹‰åˆ—è¡¨ç±»åˆ«</a></p>
+    <td><p>Î»ÖÃ£º<a href="ListUserlist.php<?=$ecms_hashur['whehref']?>">¹ÜÀí×Ô¶¨ÒåÁĞ±í</a> &gt; <a href="UserlistClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀí×Ô¶¨ÒåÁĞ±íÀà±ğ</a></p>
       </td>
   </tr>
 </table>
@@ -38,24 +38,24 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewsuserlistclass 
   <table width="98%%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td height="25">å¢åŠ è‡ªå®šä¹‰åˆ—è¡¨ç±»åˆ«: 
+      <td height="25">Ôö¼Ó×Ô¶¨ÒåÁĞ±íÀà±ğ: 
         <input name=enews type=hidden id="enews" value=AddUserlistClass>
 		<input name=doing type=hidden value=userlist>
         </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> ç±»åˆ«åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> Àà±ğÃû³Æ: 
         <input name="classname" type="text" id="classname">
-        <input type="submit" name="Submit" value="å¢åŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="98%%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header">
     <td width="10%"><div align="center">ID</div></td>
-    <td width="59%" height="25"><div align="center">ç±»åˆ«åç§°</div></td>
-    <td width="31%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="59%" height="25"><div align="center">Àà±ğÃû³Æ</div></td>
+    <td width="31%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -72,9 +72,9 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewsuserlistclass 
           <input name="classname" type="text" id="classname" value="<?=$r[classname]?>">
         </div></td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="self.location.href='../ecmscom.php?enews=DelUserlistClass&classid=<?=$r[classid]?>&doing=userlist<?=$ecms_hashur['href']?>';">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="self.location.href='../ecmscom.php?enews=DelUserlistClass&classid=<?=$r[classid]?>&doing=userlist<?=$ecms_hashur['href']?>';">
         </div></td>
     </tr>
   </form>

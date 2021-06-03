@@ -7,8 +7,8 @@ if(!defined('InEmpireCMS'))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>ä¸Šä¼ Flash</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>ÉÏ´«Flash</title>
 		<link type="text/css" href="images/editorpage.css" rel=stylesheet>
 		<script>
 		function EcmsEditorReturnDoAction2(str){
@@ -23,7 +23,7 @@ if(!defined('InEmpireCMS'))
 			ctypes="<?=$ecms_config['sets']['tranflashtype']?>";
 			if(obj.file.value=='')
 			{
-				alert('è¯·é€‰æ‹©è¦ä¸Šä¼ çš„FLASH');
+				alert('ÇëÑ¡ÔñÒªÉÏ´«µÄFLASH');
 				obj.file.focus();
 				return false;
 			}
@@ -32,7 +32,7 @@ if(!defined('InEmpireCMS'))
 			cfiletype=','+ToGetFiletype(sfile)+',';
 			if(ctypes.indexOf(cfiletype)==-1)
 			{
-				alert('æ–‡ä»¶æ‰©å±•åé”™è¯¯');
+				alert('ÎÄ¼şÀ©Õ¹Ãû´íÎó');
 				obj.file.focus();
 				return false;
 			}
@@ -44,7 +44,7 @@ if(!defined('InEmpireCMS'))
 			filetype=sfile.substring(s+1).toLowerCase();
 			return '.'+filetype;
 		}
-		//è¿”å›ç¼–å·
+		//·µ»Ø±àºÅ
 		function ExpStr(str,exp){
 			var pos,len,ext;
 			pos=str.lastIndexOf(exp)+1;
@@ -88,12 +88,12 @@ if(!defined('InEmpireCMS'))
 	  <input type=hidden name=doecmspage id=doecmspage value="<?=$doecmspage?>">
       
       <tr> 
-        <td><strong>æœ¬åœ°ä¸Šä¼ </strong><br> 
+        <td><strong>±¾µØÉÏ´«</strong><br> 
           <input type="file" name="file" id="file" style="width: 100%">        </td>
       </tr>
       
       <tr> 
-        <td height="30"> <input type="submit" name="Submit2" value="ä¸Š ä¼ ">        </td>
+        <td height="30"> <input type="submit" name="Submit2" value="ÉÏ ´«">        </td>
       </tr>
     </form>
   </table>

@@ -7,7 +7,7 @@ require LoadLang("pub/fun.php");
 require("../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"cj");
 
-//è¿”å›èŠ‚ç‚¹å¤šåˆ—è¡¨
+//·µ»Ø½Úµã¶àÁĞ±í
 function ReturnInfoUrl($r){
 	if($r[infourl1])
 	{
@@ -30,13 +30,13 @@ function ReturnInfoUrl($r){
 		for($i=$r[urlstart];$i<=$r[urlend];$i++)
 		{
 			$page=$i*$r['urlbs'];
-			//è¡¥é›¶
+			//²¹Áã
 			if($r['urlbl'])
 			{
 				$page=AddNumZero($page,$r[urlend]);
 			}
 			$dourl=str_replace("[page]",$page,$r[infourl1]);
-			//å€’åº
+			//µ¹Ğò
 			if($r['urldx'])
 			{
 				$a="";
@@ -72,23 +72,23 @@ function ReturnInfoUrl($r){
 	return $url;
 }
 
-//å¢åŠ èŠ‚ç‚¹
+//Ôö¼Ó½Úµã
 function AddInfoClass($bclassid,$newsclassid,$add,$ztid,$userid,$username){
 	global $empire,$class_r,$dbtbpre;
 	if(!$add[classname])
 	{printerror("EmptyInfoTitleSuccess","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
-	//é€‰æ‹©æ ç›®
+	//Ñ¡ÔñÀ¸Ä¿
 	if($newsclassid)
 	{
 		if(!$class_r[$newsclassid][islast])
 		{
 			printerror("CjClassidMustLast","history.go(-1)");
 		}
-		//è¿”å›é‡‡é›†é¡µé¢åœ°å€
+		//·µ»Ø²É¼¯Ò³ÃæµØÖ·
 		$add[infourl]=ReturnInfoUrl($add);
-	    //å–å¾—é‡‡é›†å­—æ®µ
+	    //È¡µÃ²É¼¯×Ö¶Î
 		$mr=$empire->fetch1("select cj,tid,tbname from {$dbtbpre}enewsmod where mid='".$class_r[$newsclassid][modid]."'");
 	    $ret_r=ReturnAddCj($add,$mr[cj],0);
 	}
@@ -103,7 +103,7 @@ function AddInfoClass($bclassid,$newsclassid,$add,$ztid,$userid,$username){
 	{$add[renum]=2;}
 	if(empty($add[insertnum]))
 	{$add[insertnum]=10;}
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$bclassid=(int)$bclassid;
 	$newsclassid=(int)$newsclassid;
 	$add[num]=(int)$add[num];
@@ -157,17 +157,17 @@ function AddInfoClass($bclassid,$newsclassid,$add,$ztid,$userid,$username){
 		$add['isnullf']=$_POST['isnullf'];
 		$add['isnullf']=','.hRepPostStr($add['isnullf'],1).',';
 	}
-	//å†™å…¥ä¸»è¡¨
+	//Ğ´ÈëÖ÷±í
 	$sql=$empire->query("insert into {$dbtbpre}enewsinfoclass(bclassid,classname,infourl,newsclassid,startday,endday,bz,num,copyimg,renum,keyboard,oldword,newword,titlelen,retitlewriter,smalltextlen,zz_smallurl,zz_newsurl,httpurl,repad,imgurl,relistnum,zz_titlepicl,z_titlepicl,qz_titlepicl,save_titlepicl,keynum,insertnum,copyflash,tid,tbname,pagetype,smallpagezz,pagezz,smallpageallzz,pageallzz,mark,enpagecode,recjtheurl,hiddenload,justloadin,justloadcheck,delloadinfo,pagerepad,getfirstpic,oldpagerep,newpagerep,keeptime,lasttime,newstextisnull,getfirstspic,getfirstspicw,getfirstspich,doaddtextpage,infourlispage,repf,repadf,loadkeeptime,isnullf) values($bclassid,'".eaddslashes($add[classname])."','".eaddslashes2($add[infourl])."',$newsclassid,'$add[startday]','$add[endday]','".eaddslashes2($add[bz])."',$add[num],$add[copyimg],$add[renum],'".eaddslashes2($add[keyboard])."','".eaddslashes2($add[oldword])."','".eaddslashes2($add[newword])."',$add[titlelen],$add[retitlewriter],$add[smalltextlen],'".eaddslashes2($add[zz_smallurl])."','".eaddslashes2($add[zz_newsurl])."','".eaddslashes2($add[httpurl])."','".eaddslashes2($add[repad])."','".eaddslashes2($add[imgurl])."',$add[relistnum],'".eaddslashes2($add[zz_titlepicl])."','".eaddslashes2($add[z_titlepicl])."','".eaddslashes2($add[qz_titlepicl])."','$add[save_titlepicl]',$add[keynum],$add[insertnum],$add[copyflash],$mr[tid],'$mr[tbname]',$add[pagetype],'".eaddslashes2($add[smallpagezz])."','".eaddslashes2($add[pagezz])."','".eaddslashes2($add[smallpageallzz])."','".eaddslashes2($add[pageallzz])."',$add[mark],$add[enpagecode],$add[recjtheurl],$add[hiddenload],$add[justloadin],$add[justloadcheck],$add[delloadinfo],'".eaddslashes2($add[pagerepad])."',$add[getfirstpic],'".eaddslashes2($add[oldpagerep])."','".eaddslashes2($add[newpagerep])."',$keeptime,$lasttime,$newstextisnull,$add[getfirstspic],$add[getfirstspicw],$add[getfirstspich],$add[doaddtextpage],$add[infourlispage],'$add[repf]','$add[repadf]','$loadkeeptime','$add[isnullf]');");
 	$classid=$empire->lastid();
 	if($newsclassid)
 	{
-		//å†™å…¥å‰¯è¡¨
+		//Ğ´Èë¸±±í
 		$usql=$empire->query("insert into {$dbtbpre}ecms_infoclass_".$mr[tbname]."(classid".$ret_r[0].") values($classid".$ret_r[1].");");
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$add[classname]);
 		printerror("AddInfoClassSuccess","AddInfoClass.php?enews=AddInfoClass&newsclassid=$newsclassid&from=".ehtmlspecialchars($_POST[from]).hReturnEcmsHashStrHref2(0));
 	}
@@ -175,26 +175,26 @@ function AddInfoClass($bclassid,$newsclassid,$add,$ztid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹èŠ‚ç‚¹
+//ĞŞ¸Ä½Úµã
 function EditInfoClass($bclassid,$newsclassid,$add,$ztid,$userid,$username){
 	global $empire,$class_r,$dbtbpre;
 	if(!$add[classid]||!$add[classname])
 	{printerror("EmptyInfoTitleSuccess","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
-	//çˆ¶èŠ‚ç‚¹ä¸åŸèŠ‚ç‚¹ä¸€æ ·
+	//¸¸½ÚµãÓëÔ­½ÚµãÒ»Ñù
 	if($add[classid]==$bclassid)
 	{printerror("OldInfoidNotSingle","history.go(-1)");}
-	//é€‰æ‹©æ ç›®
+	//Ñ¡ÔñÀ¸Ä¿
 	if($newsclassid)
 	{
 		if(!$class_r[$newsclassid][islast])
 		{
 			printerror("CjClassidMustLast","history.go(-1)");
 		}
-		//è¿”å›é‡‡é›†é¡µé¢åœ°å€
+		//·µ»Ø²É¼¯Ò³ÃæµØÖ·
 		$add[infourl]=ReturnInfoUrl($add);
-		//å–å¾—é‡‡é›†å­—æ®µ
+		//È¡µÃ²É¼¯×Ö¶Î
 		$mr=$empire->fetch1("select cj,tid,tbname from {$dbtbpre}enewsmod where mid='".$class_r[$newsclassid][modid]."'");
 	}
 	if(empty($add[startday]))
@@ -207,7 +207,7 @@ function EditInfoClass($bclassid,$newsclassid,$add,$ztid,$userid,$username){
 	{$add[renum]=2;}
 	if(empty($add[insertnum]))
 	{$add[insertnum]=10;}
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[classid]=(int)$add[classid];
 	$bclassid=(int)$bclassid;
 	$newsclassid=(int)$newsclassid;
@@ -262,27 +262,27 @@ function EditInfoClass($bclassid,$newsclassid,$add,$ztid,$userid,$username){
 		$add['isnullf']=$_POST['isnullf'];
 		$add['isnullf']=','.hRepPostStr($add['isnullf'],1).',';
 	}
-	//ä¸»è¡¨
+	//Ö÷±í
 	$sql=$empire->query("update {$dbtbpre}enewsinfoclass set bclassid=$bclassid,classname='".eaddslashes($add[classname])."',infourl='".eaddslashes2($add[infourl])."',newsclassid=$newsclassid,startday='$add[startday]',endday='$add[endday]',bz='".eaddslashes2($add[bz])."',num=$add[num],copyimg=$add[copyimg],renum=$add[renum],keyboard='".eaddslashes2($add[keyboard])."',oldword='".eaddslashes2($add[oldword])."',newword='".eaddslashes2($add[newword])."',titlelen=$add[titlelen],retitlewriter=$add[retitlewriter],smalltextlen=$add[smalltextlen],zz_smallurl='".eaddslashes2($add[zz_smallurl])."',zz_newsurl='".eaddslashes2($add[zz_newsurl])."',httpurl='".eaddslashes2($add[httpurl])."',repad='".eaddslashes2($add[repad])."',imgurl='".eaddslashes2($add[imgurl])."',relistnum=$add[relistnum],zz_titlepicl='".eaddslashes2($add[zz_titlepicl])."',z_titlepicl='".eaddslashes2($add[z_titlepicl])."',qz_titlepicl='".eaddslashes2($add[qz_titlepicl])."',save_titlepicl='$add[save_titlepicl]',keynum=$add[keynum],insertnum=$add[insertnum],copyflash=$add[copyflash],tid=$mr[tid],tbname='$mr[tbname]',pagetype=$add[pagetype],smallpagezz='".eaddslashes2($add[smallpagezz])."',pagezz='".eaddslashes2($add[pagezz])."',smallpageallzz='".eaddslashes2($add[smallpageallzz])."',pageallzz='".eaddslashes2($add[pageallzz])."',mark=$add[mark],enpagecode=$add[enpagecode],recjtheurl=$add[recjtheurl],hiddenload=$add[hiddenload],justloadin=$add[justloadin],justloadcheck=$add[justloadcheck],delloadinfo=$add[delloadinfo],pagerepad='".eaddslashes2($add[pagerepad])."',getfirstpic=$add[getfirstpic],oldpagerep='".eaddslashes2($add[oldpagerep])."',newpagerep='".eaddslashes2($add[newpagerep])."',keeptime='$keeptime',newstextisnull=$newstextisnull,getfirstspic=$add[getfirstspic],getfirstspicw=$add[getfirstspicw],getfirstspich=$add[getfirstspich],doaddtextpage=$add[doaddtextpage],infourlispage=$add[infourlispage],repf='$add[repf]',repadf='$add[repadf]',loadkeeptime='$loadkeeptime',isnullf='$add[isnullf]' where classid='$add[classid]'");
 	if($newsclassid)
 	{
-		//æ˜¯å¦å·²æœ‰è®°å½•
+		//ÊÇ·ñÒÑÓĞ¼ÇÂ¼
 		$havenum=$empire->num("select count(*) as total from {$dbtbpre}ecms_infoclass_".$mr[tbname]." where classid='$add[classid]' limit 1");
-		//åŸæœ¬æ˜¯çˆ¶æ ç›®
+		//Ô­±¾ÊÇ¸¸À¸Ä¿
 		if(empty($add[oldnewsclassid])&&!$havenum)
 		{
 			$ret_r=ReturnAddCj($add,$mr[cj],0);
-			//å†™å…¥å‰¯è¡¨
+			//Ğ´Èë¸±±í
 			$usql=$empire->query("insert into {$dbtbpre}ecms_infoclass_".$mr[tbname]."(classid".$ret_r[0].") values($add[classid]".$ret_r[1].");");
 	    }
 		else
 		{
 			$ret_r=ReturnAddCj($add,$mr[cj],1);
-			//å‰¯è¡¨
+			//¸±±í
 			$usql=$empire->query("update {$dbtbpre}ecms_infoclass_".$mr[tbname]." set classid='$add[classid]'".$ret_r[0]." where classid='$add[classid]'");
 		}
 	}
-	//æ¥æº
+	//À´Ô´
 	if($_POST['from'])
 	{
 		$returnurl="ListPageInfoClass.php";
@@ -293,7 +293,7 @@ function EditInfoClass($bclassid,$newsclassid,$add,$ztid,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("classid=".$add[classid]."<br>classname=".$add[classname]);
 		printerror("EditInfoClassSuccess",$returnurl.hReturnEcmsHashStrHref2(1));
 	}
@@ -301,13 +301,13 @@ function EditInfoClass($bclassid,$newsclassid,$add,$ztid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤é‡‡é›†èŠ‚ç‚¹
+//É¾³ı²É¼¯½Úµã
 function DelInfoClass($classid,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
 	if(empty($classid))
 	{printerror("NotDelInfoid","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
 	$r=$empire->fetch1("select classname,tid,tbname,newsclassid from {$dbtbpre}enewsinfoclass where classid='$classid'");
 	$del=$empire->query("delete from {$dbtbpre}enewsinfoclass where classid='$classid'");
@@ -316,9 +316,9 @@ function DelInfoClass($classid,$userid,$username){
 		$del2=$empire->query("delete from {$dbtbpre}ecms_infoclass_".$r[tbname]." where classid='$classid'");
 		$del1=$empire->query("delete from {$dbtbpre}ecms_infotmp_".$r[tbname]." where classid='$classid'");
 	}
-	//åˆ é™¤å­èŠ‚ç‚¹
+	//É¾³ı×Ó½Úµã
 	DelInfoClass1($classid);
-	//æ¥æº
+	//À´Ô´
 	if($_GET['from'])
 	{
 		$returnurl="ListPageInfoClass.php";
@@ -329,7 +329,7 @@ function DelInfoClass($classid,$userid,$username){
 	}
 	if($del)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$r[classname]);
 		printerror("DelInfoClassSuccess",$returnurl.hReturnEcmsHashStrHref2(1));
 	}
@@ -337,7 +337,7 @@ function DelInfoClass($classid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//é€’å½’åˆ é™¤èŠ‚ç‚¹
+//µİ¹éÉ¾³ı½Úµã
 function DelInfoClass1($classid){
 	global $empire,$dbtbpre;
 	if(empty($classid))
@@ -357,7 +357,7 @@ function DelInfoClass1($classid){
     }
 }
 
-//è®¾ç½®ä¼¸ç¼©
+//ÉèÖÃÉìËõ
 function SetDisplayInfoClass($open){
 	$time=time()+365*24*3600;
 	$set=esetcookie("displayinfoclass",$open,$time,1);
@@ -365,10 +365,10 @@ function SetDisplayInfoClass($open){
 	exit();
 }
 
-//æ˜¾ç¤ºæ— é™çº§èŠ‚ç‚¹[ç®¡ç†èŠ‚ç‚¹æ—¶]
+//ÏÔÊ¾ÎŞÏŞ¼¶½Úµã[¹ÜÀí½ÚµãÊ±]
 function ShowClass_ListInfoClass($bclassid,$exp){
 	global $empire,$class_r,$fun_r,$dbtbpre,$ecms_hashur;
-	//ç¼©
+	//Ëõ
 	if(getcvar('displayinfoclass',1))
 	{
 		$display=" style=display:none";
@@ -384,7 +384,7 @@ function ShowClass_ListInfoClass($bclassid,$exp){
 	$returnstr="";
 	while($r=$empire->fetch($sql))
 	{
-		//é‡‡é›†é¡µé¢
+		//²É¼¯Ò³Ãæ
 		$pager=explode("\r\n",$r[infourl]);
 	    $infourl=eDoRepPostComStr($pager[0],1);
 		$divonclick="";
@@ -402,10 +402,10 @@ function ShowClass_ListInfoClass($bclassid,$exp){
 		{$bgcolor="#ffffff";}
 		if($r[newsclassid])
 		{
-			$lastcjtime=!$r['lasttime']?'ä»æœªé‡‡é›†':date("Y-m-d H:i:s",$r['lasttime']);
-			$cj="<a href='DoCj.php?enews=CjUrl&classid[]=".$r[classid].$ecms_hashur['href']."' title='æœ€åé‡‡é›†æ—¶é—´ï¼š".$lastcjtime."' target=_blank><u>".$fun_r['StartCj']."</u></a>";
+			$lastcjtime=!$r['lasttime']?'´ÓÎ´²É¼¯':date("Y-m-d H:i:s",$r['lasttime']);
+			$cj="<a href='DoCj.php?enews=CjUrl&classid[]=".$r[classid].$ecms_hashur['href']."' title='×îºó²É¼¯Ê±¼ä£º".$lastcjtime."' target=_blank><u>".$fun_r['StartCj']."</u></a>";
 			$emptydb="&nbsp;[<a href=ListInfoClass.php?enews=EmptyCj&classid=$r[classid]".$ecms_hashur['href']." onclick=\"return confirm('".$fun_r['CheckEmptyCjRecord']."');\">".$fun_r['EmptyCjRecord']."</a>]";
-			$loadoutcj="&nbsp;[<a href=ecmscj.php?enews=LoadOutCj&classid=$r[classid]".$ecms_hashur['href']." onclick=\"return confirm('ç¡®è®¤è¦å¯¼å‡º?');\">å¯¼å‡º</a>]";
+			$loadoutcj="&nbsp;[<a href=ecmscj.php?enews=LoadOutCj&classid=$r[classid]".$ecms_hashur['href']." onclick=\"return confirm('È·ÈÏÒªµ¼³ö?');\">µ¼³ö</a>]";
 			$checkbox="<input type=checkbox name=classid[] value=$r[classid]>";
 		}
 		else
@@ -415,7 +415,7 @@ function ShowClass_ListInfoClass($bclassid,$exp){
 			$loadoutcj="";
 			$checkbox="";
 		}
-		//æ ç›®é“¾æ¥
+		//À¸Ä¿Á´½Ó
 		$getcurlr['classid']=$r[newsclassid];
 		$classurl=sys_ReturnBqClassname($getcurlr,9);
 		$returnstr.="<tr bgcolor=".$bgcolor.">
@@ -428,19 +428,19 @@ function ShowClass_ListInfoClass($bclassid,$exp){
     <td height=25><div align=center><a href=CheckCj.php?classid=".$r[classid].$ecms_hashur['ehref'].">".$fun_r['CheckCj']."</a></div></td>
     <td height=25><div align=center>[<a href=AddInfoClass.php?enews=AddInfoClass&docopy=1&classid=".$r[classid]."&newsclassid=".$r[newsclassid].$ecms_hashur['ehref'].">".$fun_r['Copy']."</a>]&nbsp;[<a href=AddInfoClass.php?enews=EditInfoClass&classid=".$r[classid].$ecms_hashur['ehref'].">".$fun_r['edit']."</a>]&nbsp;[<a href=ListInfoClass.php?enews=DelInfoClass&classid=".$r[classid].$ecms_hashur['href']." onclick=\"return confirm('".$fun_r['CheckDelCj']."');\">".$fun_r['del']."</a>]".$emptydb.$loadoutcj."</div></td>
   </tr>";
-		//å–å¾—å­èŠ‚ç‚¹
+		//È¡µÃ×Ó½Úµã
 		$returnstr.=$start_tbody.ShowClass_ListInfoClass($r[classid],$exp).$end_tbody;
 	}
 	return $returnstr;
 }
 
-//æ¸…ç©ºé‡‡é›†è®°å½•
+//Çå¿Õ²É¼¯¼ÇÂ¼
 function EmptyCj($classid,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
 	if(empty($classid))
 	{printerror("NotEmptyCjClassid","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
 	$r=$empire->fetch1("select classid,classname,tbname from {$dbtbpre}enewsinfoclass where classid='$classid'");
 	if(!$r[classid])
@@ -448,7 +448,7 @@ function EmptyCj($classid,$userid,$username){
 		printerror("ErrorUrl","history.go(-1)");
 	}
 	$sql=$empire->query("delete from {$dbtbpre}ecms_infotmp_".$r[tbname]." where classid='$classid' and checked=1");
-	//æ¥æº
+	//À´Ô´
 	if($_GET['from'])
 	{
 		$returnurl="ListPageInfoClass.php";
@@ -459,7 +459,7 @@ function EmptyCj($classid,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("classid=".$classid."<br>classname=".$r[classname]);
 		printerror("EmptyCjSuccess",$returnurl.hReturnEcmsHashStrHref2(1));
 	}
@@ -476,7 +476,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ èŠ‚ç‚¹
+//Ôö¼Ó½Úµã
 if($enews=="AddInfoClass")
 {
 	$bclassid=$_POST[bclassid];
@@ -487,7 +487,7 @@ if($enews=="AddInfoClass")
 	$add['repad']=$_POST['repad'];
 	AddInfoClass($bclassid,$newsclassid,$add,$ztid,$logininid,$loginin);
 }
-//ä¿®æ”¹èŠ‚ç‚¹
+//ĞŞ¸Ä½Úµã
 elseif($enews=="EditInfoClass")
 {
 	$bclassid=$_POST[bclassid];
@@ -498,40 +498,40 @@ elseif($enews=="EditInfoClass")
 	$add['repad']=$_POST['repad'];
 	EditInfoClass($bclassid,$newsclassid,$add,$ztid,$logininid,$loginin);
 }
-//åˆ é™¤èŠ‚ç‚¹
+//É¾³ı½Úµã
 elseif($enews=="DelInfoClass")
 {
 	$classid=$_GET[classid];
 	DelInfoClass($classid,$logininid,$loginin);
 }
-//æ¸…ç©ºé‡‡é›†è®°å½•
+//Çå¿Õ²É¼¯¼ÇÂ¼
 elseif($enews=="EmptyCj")
 {
 	$classid=$_GET['classid'];
 	EmptyCj($classid,$logininid,$loginin);
 }
 
-//å±•å¼€
+//Õ¹¿ª
 if($_GET['doopen'])
 {
 	$open=(int)$_GET['open'];
 	SetDisplayInfoClass($open);
 }
-//å›¾æ ‡
+//Í¼±ê
 if(getcvar('displayinfoclass',1))
 {
-	$img="<a href='ListInfoClass.php?doopen=1&open=0".$ecms_hashur['ehref']."' title='å±•å¼€'><img src='../data/images/displaynoadd.gif' width='15' height='15' border='0'></a>";
+	$img="<a href='ListInfoClass.php?doopen=1&open=0".$ecms_hashur['ehref']."' title='Õ¹¿ª'><img src='../data/images/displaynoadd.gif' width='15' height='15' border='0'></a>";
 }
 else
 {
-	$img="<a href='ListInfoClass.php?doopen=1&open=1".$ecms_hashur['ehref']."' title='æ”¶ç¼©'><img src='../data/images/displayadd.gif' width='15' height='15' border='0'></a>";
+	$img="<a href='ListInfoClass.php?doopen=1&open=1".$ecms_hashur['ehref']."' title='ÊÕËõ'><img src='../data/images/displayadd.gif' width='15' height='15' border='0'></a>";
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†èŠ‚ç‚¹</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí½Úµã</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -557,30 +557,30 @@ var newWindow = null
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
   <tr> 
-    <td width="50%">ä½ç½®ï¼šé‡‡é›† &gt; <a href="ListInfoClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†èŠ‚ç‚¹</a></td>
+    <td width="50%">Î»ÖÃ£º²É¼¯ &gt; <a href="ListInfoClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀí½Úµã</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ èŠ‚ç‚¹" onclick="self.location.href='AddInfoC.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó½Úµã" onclick="self.location.href='AddInfoC.php<?=$ecms_hashur['whehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit52" value="å¯¼å…¥é‡‡é›†è§„åˆ™" onclick="self.location.href='cj/LoadInCj.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit52" value="µ¼Èë²É¼¯¹æÔò" onclick="self.location.href='cj/LoadInCj.php<?=$ecms_hashur['whehref']?>';">
 		&nbsp;&nbsp;
-		<input type="button" name="Submit6" value="æ•°æ®æ›´æ–°ä¸­å¿ƒ" onclick="window.open('ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>#ReIfInfoHtml');">
+		<input type="button" name="Submit6" value="Êı¾İ¸üĞÂÖĞĞÄ" onclick="window.open('ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>#ReIfInfoHtml');">
       </div></td>
   </tr>
 </table>
-<form name=form1 method=get action="DoCj.php" onsubmit="return confirm('ç¡®è®¤è¦é‡‡é›†?');" target=_blank>
+<form name=form1 method=get action="DoCj.php" onsubmit="return confirm('È·ÈÏÒª²É¼¯?');" target=_blank>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
 <?=$ecms_hashur['form']?>
 <input type=hidden name=enews value=DoCj>
   <tr class="header">
     <td width="3%"><div align="center"></div></td>
     <td width="8%" height="25"><div align="center"><?=$img?></div></td>
-    <td width="8%" height="25"> <div align="center">é‡‡é›†</div></td>
-    <td width="27%" height="25"> <div align="center">èŠ‚ç‚¹(ç‚¹å‡»è®¿é—®é‡‡é›†é¡µ)</div></td>
-    <td width="6%" height="25"> <div align="center">é¢„è§ˆ</div></td>
-    <td width="16%" height="25"> <div align="center">ç»‘å®šæ ç›®</div></td>
-    <td width="9%" height="25"> <div align="center">å®¡æ ¸é‡‡é›†</div></td>
+    <td width="8%" height="25"> <div align="center">²É¼¯</div></td>
+    <td width="27%" height="25"> <div align="center">½Úµã(µã»÷·ÃÎÊ²É¼¯Ò³)</div></td>
+    <td width="6%" height="25"> <div align="center">Ô¤ÀÀ</div></td>
+    <td width="16%" height="25"> <div align="center">°ó¶¨À¸Ä¿</div></td>
+    <td width="9%" height="25"> <div align="center">ÉóºË²É¼¯</div></td>
     <td width="24%" height="25"> 
-      <div align="center">æ“ä½œ</div></td>
+      <div align="center">²Ù×÷</div></td>
   </tr>
   <?
 echo ShowClass_ListInfoClass(0,'');
@@ -590,14 +590,14 @@ echo ShowClass_ListInfoClass(0,'');
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr> 
     <td><input type=checkbox name=chkall value=on onClick=CheckAll(this.form)>
-        é€‰ä¸­å…¨éƒ¨ 
-        &nbsp;&nbsp;<input type="submit" name="Submit" value="æ‰¹é‡é‡‡é›†èŠ‚ç‚¹"></td>
+        Ñ¡ÖĞÈ«²¿ 
+        &nbsp;&nbsp;<input type="submit" name="Submit" value="ÅúÁ¿²É¼¯½Úµã"></td>
   </tr>
 </table>
 </form>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr>
-    <td><font color="#666666">å¤‡æ³¨ï¼šå¼¹å‡ºé‡‡é›†çª—å£ï¼Œè¯·æŒ‰ä½&quot;Shift&quot;+ç‚¹å‡»â€å¼€å§‹é‡‡é›†&quot;</font></td>
+    <td><font color="#666666">±¸×¢£ºµ¯³ö²É¼¯´°¿Ú£¬Çë°´×¡&quot;Shift&quot;+µã»÷£¢¿ªÊ¼²É¼¯&quot;</font></td>
   </tr>
 </table>
 </body>

@@ -1,18 +1,18 @@
 <?php
-//å‘è¡¨ç•™è¨€
+//·¢±íÁôÑÔ
 function AddMemberGbook($add){
 	global $empire,$dbtbpre;
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$keyvname='checkspacegbkey';
 	ecmsCheckShowKey($keyvname,$add['key'],1);
-	//ç”¨æˆ·
+	//ÓÃ»§
 	$userid=intval($add['userid']);
 	$ur=$empire->fetch1("select ".eReturnSelectMemberF('userid')." from ".eReturnMemberTable()." where ".egetmf('userid')."='$userid' limit 1");
 	if(empty($ur['userid']))
 	{
 		printerror("NotUsername","",1);
 	}
-	//å‘è¡¨è€…
+	//·¢±íÕß
 	$uid=(int)getcvar('mluserid');
 	if($uid)
 	{
@@ -23,7 +23,7 @@ function AddMemberGbook($add){
 		$uid=0;
 		$uname=trim($add['uname']);
 	}
-	//å®åéªŒè¯
+	//ÊµÃûÑéÖ¤
 	eCheckHaveTruenameCK('msps',0);
 
 	$uname=dgdb_tosave($uname);
@@ -37,7 +37,7 @@ function AddMemberGbook($add){
 	$ip=egetip();
 	$eipport=egetipport();
 	$sql=$empire->query("insert into {$dbtbpre}enewsmembergbook(userid,isprivate,uid,uname,ip,addtime,gbtext,retext,eipport) values($userid,$isprivate,$uid,'$uname','$ip','$addtime','$gbtext','','$eipport');");
-	ecmsEmptyShowKey($keyvname);//æ¸…ç©ºéªŒè¯ç 
+	ecmsEmptyShowKey($keyvname);//Çå¿ÕÑéÖ¤Âë
 	if($sql)
 	{
 		printerror("AddMemberGbookSuccess",EcmsGetReturnUrl(),1);
@@ -48,10 +48,10 @@ function AddMemberGbook($add){
 	}
 }
 
-//å›å¤ç•™è¨€
+//»Ø¸´ÁôÑÔ
 function ReMemberGbook($add){
 	global $empire,$dbtbpre;
-	$user_r=islogin();//æ˜¯å¦ç™»é™†
+	$user_r=islogin();//ÊÇ·ñµÇÂ½
 	$gid=intval($add['gid']);
 	if(!$gid)
 	{
@@ -69,10 +69,10 @@ function ReMemberGbook($add){
 	}
 }
 
-//åˆ é™¤ç•™è¨€
+//É¾³ıÁôÑÔ
 function DelMemberGbook($add){
 	global $empire,$dbtbpre;
-	$user_r=islogin();//æ˜¯å¦ç™»é™†
+	$user_r=islogin();//ÊÇ·ñµÇÂ½
 	$gid=intval($add['gid']);
 	if(!$gid)
 	{
@@ -89,10 +89,10 @@ function DelMemberGbook($add){
 	}
 }
 
-//æ‰¹é‡åˆ é™¤ç•™è¨€
+//ÅúÁ¿É¾³ıÁôÑÔ
 function DelMemberGbook_All($add){
 	global $empire,$dbtbpre;
-	$user_r=islogin();//æ˜¯å¦ç™»é™†
+	$user_r=islogin();//ÊÇ·ñµÇÂ½
 	$gid=$add['gid'];
 	$count=count($gid);
 	if(empty($count))

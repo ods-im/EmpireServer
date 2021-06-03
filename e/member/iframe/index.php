@@ -4,7 +4,7 @@ if(!defined('InEmpireCMS'))
 {
 	exit();
 }
-eCheckCloseMods('member');//å…³é—­æ¨¡å—
+eCheckCloseMods('member');//¹Ø±ÕÄ£¿é
 $myuserid=(int)getcvar('mluserid');
 $r=array();
 $mhavelogin=0;
@@ -16,7 +16,7 @@ if($myuserid)
 	$link=db_connect();
 	$empire=new mysqlquery();
 	$mhavelogin=1;
-	//æ•°æ®
+	//Êı¾İ
 	$myusername=RepPostVar(getcvar('mlusername'));
 	$myrnd=RepPostVar(getcvar('mlrnd'));
 	$qcklgr=qCheckLoginAuthstr();
@@ -34,17 +34,17 @@ if($myuserid)
 			$mhavelogin=0;
 		}
 	}
-	//ä¼šå‘˜ç­‰çº§
+	//»áÔ±µÈ¼¶
 	if(empty($r[groupid]))
 	{$groupid=eReturnMemberDefGroupid();}
 	else
 	{$groupid=$r[groupid];}
 	$groupname=$level_r[$groupid]['groupname'];
-	//ç‚¹æ•°
+	//µãÊı
 	$userfen=$r[userfen];
-	//ä½™é¢
+	//Óà¶î
 	$money=$r[money];
-	//å¤©æ•°
+	//ÌìÊı
 	$userdate=0;
 	if($r[userdate])
 	{
@@ -54,11 +54,11 @@ if($myuserid)
 		else
 		{$userdate=round($userdate/(24*3600));}
 	}
-	//æ˜¯å¦æœ‰çŸ­æ¶ˆæ¯
+	//ÊÇ·ñÓĞ¶ÌÏûÏ¢
 	$havemsg="";
 	if($r[havemsg])
 	{
-		$havemsg="<a href='".$public_r['newsurl']."e/member/msg/' target=_blank><font color=red>æ‚¨æœ‰æ–°æ¶ˆæ¯</font></a>";
+		$havemsg="<a href='".$public_r['newsurl']."e/member/msg/' target=_blank><font color=red>ÄúÓĞĞÂÏûÏ¢</font></a>";
 	}
 	//$myusername=$r[username];
 }
@@ -68,8 +68,8 @@ if($mhavelogin==1)
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç™»é™†</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>µÇÂ½</title>
 <LINK href="../../data/images/qcss.css" rel=stylesheet>
 </head>
 <body bgcolor="#ededed" topmargin="0">
@@ -77,7 +77,7 @@ if($mhavelogin==1)
     <tr>
 	<td height="23" align="center">
 	<div align="left">
-		&raquo;&nbsp;<font color=red><b><?=$myusername?></b></font>&nbsp;&nbsp;<a href="../my/" target="_parent"><?=$groupname?></a>&nbsp;<?=$havemsg?>&nbsp;<a href="/ecms75/e/space/?userid=<?=$myuserid?>" target=_blank>æˆ‘çš„ç©ºé—´</a>&nbsp;&nbsp;<a href="../msg/" target=_blank>çŸ­ä¿¡æ¯</a>&nbsp;&nbsp;<a href="../fava/" target=_blank>æ”¶è—å¤¹</a>&nbsp;&nbsp;<a href="../cp/" target="_parent">æ§åˆ¶é¢æ¿</a>&nbsp;&nbsp;<a href="../../member/doaction.php?enews=exit&prtype=9" onclick="return confirm('ç¡®è®¤è¦é€€å‡º?');">é€€å‡º</a> 
+		&raquo;&nbsp;<font color=red><b><?=$myusername?></b></font>&nbsp;&nbsp;<a href="../my/" target="_parent"><?=$groupname?></a>&nbsp;<?=$havemsg?>&nbsp;<a href="/e/space/?userid=<?=$myuserid?>" target=_blank>ÎÒµÄ¿Õ¼ä</a>&nbsp;&nbsp;<a href="../msg/" target=_blank>¶ÌĞÅÏ¢</a>&nbsp;&nbsp;<a href="../fava/" target=_blank>ÊÕ²Ø¼Ğ</a>&nbsp;&nbsp;<a href="../cp/" target="_parent">¿ØÖÆÃæ°å</a>&nbsp;&nbsp;<a href="../../member/doaction.php?enews=exit&prtype=9" onclick="return confirm('È·ÈÏÒªÍË³ö?');">ÍË³ö</a> 
 	</div>
 	</td>
     </tr>
@@ -93,8 +93,8 @@ else
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç™»é™†</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>µÇÂ½</title>
 <LINK href="../../data/images/qcss.css" rel=stylesheet>
 </head>
 <body bgcolor="#ededed" topmargin="0">
@@ -105,17 +105,17 @@ else
     <tr> 
       <td height="23" align="center">
       <div align="left">
-      ç”¨æˆ·åï¼š<input name="username" type="text" size="8">&nbsp;
-      å¯†ç ï¼š<input name="password" type="password" size="8">
+      ÓÃ»§Ãû£º<input name="username" type="text" size="8">&nbsp;
+      ÃÜÂë£º<input name="password" type="password" size="8">
       <select name="lifetime" id="lifetime">
-         <option value="0">ä¸ä¿å­˜</option>
-         <option value="3600">ä¸€å°æ—¶</option>
-         <option value="86400">ä¸€å¤©</option>
-         <option value="2592000">ä¸€ä¸ªæœˆ</option>
-         <option value="315360000">æ°¸ä¹…</option>
+         <option value="0">²»±£´æ</option>
+         <option value="3600">Ò»Ğ¡Ê±</option>
+         <option value="86400">Ò»Ìì</option>
+         <option value="2592000">Ò»¸öÔÂ</option>
+         <option value="315360000">ÓÀ¾Ã</option>
       </select>&nbsp;
-      <input type="submit" name="Submit" value="ç™»é™†">&nbsp;
-      <input type="button" name="Submit2" value="æ³¨å†Œ" onclick="window.open('../register/');">
+      <input type="submit" name="Submit" value="µÇÂ½">&nbsp;
+      <input type="button" name="Submit2" value="×¢²á" onclick="window.open('../register/');">
       </div>
       </td>
     </tr>

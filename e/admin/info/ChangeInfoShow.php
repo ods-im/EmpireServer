@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -29,7 +29,7 @@ if(!$tbname||!trim($keyboard))
 {
 	exit();
 }
-//è¡¨å
+//±íÃû
 $tbr=$empire->fetch1("select tbname from {$dbtbpre}enewstable where tbname='$tbname' limit 1");
 if(!$tbr['tbname'])
 {
@@ -44,14 +44,14 @@ if($changeinfoid)
 $search="&enews=$enews&changeinfoid=$changeinfoid&keyboard=$keyboard&show=$show&sear=$sear&tbname=$tbname&classid=$classid".$ecms_hashur['ehref'];
 $add='';
 $and=' where ';
-//åˆ†é¡µ
+//·ÖÒ³
 $page=(int)$_POST['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=6;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
-//æ ç›®
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=6;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
+//À¸Ä¿
 if($classid)
 {
 	if($class_r[$classid][islast])
@@ -64,7 +64,7 @@ if($classid)
 	}
 	$and=' and ';
 }
-//æœç´¢
+//ËÑË÷
 if($keyboard)
 {
 	$kbr=explode(' ',$keyboard);
@@ -101,7 +101,7 @@ $totalquery="select count(*) as total from {$dbtbpre}ecms_".$tbr['tbname'].$add;
 $totalnum=(int)$_POST['totalnum'];
 if($totalnum<1)
 {
-	$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+	$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 }
 else
 {
@@ -114,8 +114,8 @@ $returnpage=postpage($num,$line,$page_line,$start,$page,"document.changeinfoform
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>é€‰æ‹©ä¿¡æ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ñ¡ÔñĞÅÏ¢</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -174,7 +174,7 @@ function DelInfoid(id){
 			return "";
 		}
 		num=inid.split(',');
-		//å»æ‰å‰å,
+		//È¥µôÇ°ºó,
 		len=newinid.length;
 		newinid=newinid.substring(1,len-1);
 		document.changeinfoform.changeinfoid.value=newinid;
@@ -216,7 +216,7 @@ while($infor=$empire->fetch($sql))
       <td width="12%"> <div align="center"> 
           <?=$infor['id']?>
         </div></td>
-      <td width="66%"><a href="<?=$titleurl?>" target="_blank" title="å‘å¸ƒæ—¶é—´ï¼š<?=date('Y-m-d H:i:s',$infor['newstime'])?>"> 
+      <td width="66%"><a href="<?=$titleurl?>" target="_blank" title="·¢²¼Ê±¼ä£º<?=date('Y-m-d H:i:s',$infor['newstime'])?>"> 
         <?=stripSlashes($infor['title'])?>
         </a></td>
     </tr>

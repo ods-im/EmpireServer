@@ -5,7 +5,7 @@ if(!defined('InEmpireCMS'))
 }
 ?><html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title><?=ehtmlspecialchars($r[title])?> - <?=ehtmlspecialchars($thisdownname)?></title>
 <meta name="keywords" content="<?=ehtmlspecialchars($r[title])?> - <?=ehtmlspecialchars($thisdownname)?>">
 <meta name="description" content="<?=ehtmlspecialchars($r[title])?> - <?=ehtmlspecialchars($thisdownname)?>">
@@ -19,13 +19,13 @@ if(!defined('InEmpireCMS'))
 <table align="center" width="100%">
   <tr> 
     <td height="32" align=center>
-	<a href="<?=$url?>" title="<?=$r[title]?> О╪█<?=$thisdownname?>">
+	<a href="<?=$url?>" title="<?=$r[title]?> ё╜<?=$thisdownname?>">
 	<img src="../../data/images/download.jpg" border=0>
 	</a>
 	</td>
   </tr>
   <tr> 
-    <td align=center>(Г┌╧Е┤╩Д╦▀Х╫╫)</td>
+    <td align=center>(╣Ц╩Вобть)</td>
   </tr>
 </table>
 <br>

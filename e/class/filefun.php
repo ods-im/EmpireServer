@@ -1,11 +1,11 @@
 <?php
-//åˆ é™¤æ–‡ä»¶
+//É¾³ıÎÄ¼ş
 function DelFile($fileid,$userid,$username){
 	global $empire,$class_r,$dbtbpre;
 	$fileid=(int)$fileid;
 	if(!$fileid)
 	{printerror("NotFileid","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"file");
 	$modtype=(int)$_GET['modtype'];
 	$fstb=(int)$_GET['fstb'];
@@ -14,7 +14,7 @@ function DelFile($fileid,$userid,$username){
 	DoDelFile($r);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("fileid=".$fileid."<br>filename=".$r[filename]);
 		printerror("DelFileSuccess",EcmsGetReturnUrl());
     }
@@ -24,10 +24,10 @@ function DelFile($fileid,$userid,$username){
     }
 }
 
-//æ‰¹é‡åˆ é™¤æ–‡ä»¶
+//ÅúÁ¿É¾³ıÎÄ¼ş
 function DelFile_all($fileid,$userid,$username){
 	global $empire,$dbtbpre,$class_r;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	if($_POST['enews']=='TDelFile_all')
 	{
 		$userid=(int)$userid;
@@ -73,7 +73,7 @@ function DelFile_all($fileid,$userid,$username){
     }
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("DelFileAllSuccess",EcmsGetReturnUrl());
     }
@@ -83,33 +83,33 @@ function DelFile_all($fileid,$userid,$username){
     }
 }
 
-//åˆ é™¤å¤šä½™é™„ä»¶
+//É¾³ı¶àÓà¸½¼ş
 function DelFreeFile($userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"file");
-	//æ¸…ç†ä¿¡æ¯é™„ä»¶
+	//ÇåÀíĞÅÏ¢¸½¼ş
 	DelFileAllTable("cjid<>0 and (id=0 or cjid=id)");
-	//ä¼šå‘˜é™„ä»¶
+	//»áÔ±¸½¼ş
 	DelFileOtherTable("cjid<>0 and (id=0 or cjid=id)","member");
-	//å…¶ä»–é™„ä»¶
+	//ÆäËû¸½¼ş
 	DelFileOtherTable("cjid<>0 and (id=0 or cjid=id)","other");
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("DelFreeFileSuccess",EcmsGetReturnUrl());
 }
 
-//åˆ é™¤ç›®å½•æ–‡ä»¶
+//É¾³ıÄ¿Â¼ÎÄ¼ş
 function DelPathFile($filename,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$efileftp_dr;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"file");
 	$count=count($filename);
 	if(empty($count))
 	{
 		printerror("NotFileid","history.go(-1)");
 	}
-	//åŸºç›®å½•
+	//»ùÄ¿Â¼
 	$basepath=eReturnEcmsMainPortPath()."d/file";//moreport
 	for($i=0;$i<$count;$i++)
 	{
@@ -135,15 +135,15 @@ function DelPathFile($filename,$userid,$username){
 			}
 		}
     }
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("DelFileSuccess",EcmsGetReturnUrl());
 }
 
-//æ‰¹é‡åŠ æ°´å°/ç¼©ç•¥å›¾
+//ÅúÁ¿¼ÓË®Ó¡/ËõÂÔÍ¼
 function DoMarkSmallPic($add,$userid,$username){
 	global $empire,$class_r,$dbtbpre,$public_r,$efileftp_fr;
-	//å¯¼å…¥gdå¤„ç†æ–‡ä»¶
+	//µ¼Èëgd´¦ÀíÎÄ¼ş
 	if($add['getsmall']||$add['getmark'])
 	{
 		@include(ECMS_PATH."e/class/gd.php");
@@ -170,7 +170,7 @@ function DoMarkSmallPic($add,$userid,$username){
 		$fspath=ReturnFileSavePath($r[classid],$r[fpath]);
 		$path=eReturnEcmsMainPortPath().$fspath['filepath'].$rpath;//moreport
 		$yname=$path.$r[filename];
-		//ç¼©ç•¥å›¾
+		//ËõÂÔÍ¼
 		if($add['getsmall'])
 		{
 			$filetype=GetFiletype($r[filename]);
@@ -178,7 +178,7 @@ function DoMarkSmallPic($add,$userid,$username){
 			$name=$path."small".$insertfile;
 			GetMySmallImg($add['classid'],$r[no],$insertfile,$r[path],$yname,$add[width],$add[height],$name,$add['filepass'],$add['filepass'],$userid,$username,$modtype,$fstb);
 		}
-		//æ°´å°
+		//Ë®Ó¡
 		if($add['getmark'])
 		{
 			GetMyMarkImg($yname);
@@ -192,7 +192,7 @@ function DoMarkSmallPic($add,$userid,$username){
 	printerror("DoMarkSmallPicSuccess",EcmsGetReturnUrl());
 }
 
-//ä¸Šä¼ å¤šé™„ä»¶
+//ÉÏ´«¶à¸½¼ş
 function TranMoreFile($file,$file_name,$file_type,$file_size,$no,$type,$userid,$username){
 	global $empire,$public_r,$dbtbpre;
 	$count=count($file_name);
@@ -200,7 +200,7 @@ function TranMoreFile($file,$file_name,$file_type,$file_size,$no,$type,$userid,$
 	{
 		printerror("MustChangeTranOneFile","history.go(-1)");
     }
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"file");
 	$type=(int)$type;
 	for($i=0;$i<$count;$i++)
@@ -209,9 +209,9 @@ function TranMoreFile($file,$file_name,$file_type,$file_size,$no,$type,$userid,$
 		{
 			continue;
 		}
-		//å–å¾—æ–‡ä»¶ç±»å‹
+		//È¡µÃÎÄ¼şÀàĞÍ
 		$filetype=GetFiletype($file_name[$i]);
-		//å¦‚æœæ˜¯.phpæ–‡ä»¶
+		//Èç¹ûÊÇ.phpÎÄ¼ş
 		if(CheckSaveTranFiletype($filetype))
 		{continue;}
 	    $type_r=explode("|".$filetype."|",$public_r['filetype']);
@@ -219,9 +219,9 @@ function TranMoreFile($file,$file_name,$file_type,$file_size,$no,$type,$userid,$
 		{continue;}
 		if($file_size[$i]>$public_r['filesize']*1024)
 		{continue;}
-		//ä¸Šä¼ 
+		//ÉÏ´«
 		$r=DoTranFile($file[$i],$file_name[$i],$file_type[$i],$file_size[$i],$classid);
-		//å†™å…¥æ•°æ®åº“
+		//Ğ´ÈëÊı¾İ¿â
 		$r[filesize]=(int)$r[filesize];
 		$classid=(int)$classid;
 		if(empty($no[$i]))
@@ -229,25 +229,25 @@ function TranMoreFile($file,$file_name,$file_type,$file_size,$no,$type,$userid,$
 
 		eInsertFileTable($r[filename],$r[filesize],$r[filepath],$username,$classid,$no[$i],$type,0,0,$public_r[fpath],0,5,0);
 	}
-	insert_dolog("");//æ“ä½œæ—¥å¿—
+	insert_dolog("");//²Ù×÷ÈÕÖ¾
 	printerror("TranMoreFileSuccess","file/TranMoreFile.php".hReturnEcmsHashStrHref2(1));
 }
 
-//************************************ é™„ä»¶åˆ†è¡¨ç®¡ç† ************************************
+//************************************ ¸½¼ş·Ö±í¹ÜÀí ************************************
 
-//å¢åŠ é™„ä»¶åˆ†è¡¨
+//Ôö¼Ó¸½¼ş·Ö±í
 function AddFileDataTable($add,$userid,$username){
 	echo'This is the Free Version of EmpireCMS.';
 	exit();
 }
 
-//é»˜è®¤é™„ä»¶å­˜æ”¾è¡¨
+//Ä¬ÈÏ¸½¼ş´æ·Å±í
 function DefFileDataTable($add,$userid,$username){
 	echo'This is the Free Version of EmpireCMS.';
 	exit();
 }
 
-//åˆ é™¤é™„ä»¶åˆ†è¡¨
+//É¾³ı¸½¼ş·Ö±í
 function DelFileDataTable($add,$userid,$username){
 	echo'This is the Free Version of EmpireCMS.';
 	exit();

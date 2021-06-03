@@ -36,9 +36,9 @@ while($r=$empire->fetch($sql))
 	{
 		$field=ReturnTheIntroField($r);
 	}
-	//ç®€ä»‹
+	//¼ò½é
 	$smalltext=RepSpeRssStr(sub(strip_tags($r[$field]),0,$sublen,false));
-	//æ ‡é¢˜é“¾æŽ¥
+	//±êÌâÁ´½Ó
 	$titleurl=RepSpeRssStr(sys_ReturnBqTitleLink($r));
 	if(!stristr($titleurl,'://'))
 	{

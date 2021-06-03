@@ -5,7 +5,7 @@ include("../class/db_sql.php");
 include("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -19,55 +19,55 @@ $classid=RepPostStr($_GET['classid'],1);
 $fcjsfile='../data/fc/cmsclass.js';
 $do_class=GetFcfiletext($fcjsfile);
 $do_class=str_replace("<option value='$classid'","<option value='$classid' selected",$do_class);
-//å¢åŠ ä¿¡æ¯é¡µå¯¼èˆª
+//Ôö¼ÓĞÅÏ¢Ò³µ¼º½
 if($ecms==1)
 {
-	//$show="å¢åŠ ä¿¡æ¯ï¼š<select name=\\\"select\\\" onchange=\\\"if(this.options[this.selectedIndex].value!=0){self.location.href='AddNews.php?".$ecms_hashur['ehref']."&bclassid=&classid='+this.options[this.selectedIndex].value+'&enews=AddNews';}\\\"><option value='0'>é€‰æ‹©å¢åŠ ä¿¡æ¯çš„æ ç›®</option>".$do_class."</select>";
+	//$show="Ôö¼ÓĞÅÏ¢£º<select name=\\\"select\\\" onchange=\\\"if(this.options[this.selectedIndex].value!=0){self.location.href='AddNews.php?".$ecms_hashur['ehref']."&bclassid=&classid='+this.options[this.selectedIndex].value+'&enews=AddNews';}\\\"><option value='0'>Ñ¡ÔñÔö¼ÓĞÅÏ¢µÄÀ¸Ä¿</option>".$do_class."</select>";
 	//echo"<script>parent.document.getElementById(\"showclassnav\").innerHTML=\"".$show."\";</script>";
 
 	$show="<select name='copyclassid[]' id='copyclassid[]' size='12' style='width:320' multiple>".$do_class."</select>";
 	echo"<script>parent.document.getElementById(\"copyinfoshowclassnav\").innerHTML=\"".$show."\";</script>";
 }
-//æ‰€æœ‰ä¿¡æ¯åˆ—è¡¨
+//ËùÓĞĞÅÏ¢ÁĞ±í
 elseif($ecms==2)
 {
-	$show="<select name='addclassid' id='addclassid'><option value='0'>é€‰æ‹©å¢åŠ ä¿¡æ¯çš„æ ç›®</option>".$do_class."</select>";
+	$show="<select name='addclassid' id='addclassid'><option value='0'>Ñ¡ÔñÔö¼ÓĞÅÏ¢µÄÀ¸Ä¿</option>".$do_class."</select>";
 	echo"<script>parent.document.getElementById(\"showaddclassnav\").innerHTML=\"".$show."\";";
 
-	$show="<select name='classid' id='classid'><option value='0'>æ‰€æœ‰æ ç›®</option>".$do_class."</select>";
+	$show="<select name='classid' id='classid'><option value='0'>ËùÓĞÀ¸Ä¿</option>".$do_class."</select>";
 	echo"parent.document.getElementById(\"searchclassnav\").innerHTML=\"".$show."\";";
 
-	$show="<select name='to_classid' id='to_classid'><option value='0'>é€‰æ‹©è¦ç§»åŠ¨/å¤åˆ¶çš„ç›®æ ‡æ ç›®</option>".$do_class."</select>";
+	$show="<select name='to_classid' id='to_classid'><option value='0'>Ñ¡ÔñÒªÒÆ¶¯/¸´ÖÆµÄÄ¿±êÀ¸Ä¿</option>".$do_class."</select>";
 	echo"parent.document.getElementById(\"moveclassnav\").innerHTML=\"".$show."\";</script>";
 }
-//ä¿¡æ¯åˆ—è¡¨
+//ĞÅÏ¢ÁĞ±í
 elseif($ecms==3)
 {
-	$show="<select name='to_classid' id='to_classid'><option value='0'>é€‰æ‹©è¦ç§»åŠ¨/å¤åˆ¶çš„ç›®æ ‡æ ç›®</option>".$do_class."</select>";
+	$show="<select name='to_classid' id='to_classid'><option value='0'>Ñ¡ÔñÒªÒÆ¶¯/¸´ÖÆµÄÄ¿±êÀ¸Ä¿</option>".$do_class."</select>";
 	echo"<script>parent.document.getElementById(\"moveclassnav\").innerHTML=\"".$show."\";</script>";
 }
-//æ’å…¥é™„ä»¶
+//²åÈë¸½¼ş
 elseif($ecms==4)
 {
-	$show="<select name='searchclassid' id='searchclassid'><option value='all'>æ‰€æœ‰æ ç›®</option>".$do_class."</select>";
+	$show="<select name='searchclassid' id='searchclassid'><option value='all'>ËùÓĞÀ¸Ä¿</option>".$do_class."</select>";
 	echo"<script>parent.document.getElementById(\"fileclassnav\").innerHTML=\"".$show."\";</script>";
 }
-//ç®¡ç†é™„ä»¶
+//¹ÜÀí¸½¼ş
 elseif($ecms==5)
 {
-	$show="<select name='classid' id='classid'><option value='0'>æ‰€æœ‰æ ç›®</option>".$do_class."</select>";
+	$show="<select name='classid' id='classid'><option value='0'>ËùÓĞÀ¸Ä¿</option>".$do_class."</select>";
 	echo"<script>parent.document.getElementById(\"listfileclassnav\").innerHTML=\"".$show."\";</script>";
 }
-//ç®¡ç†è¯„è®º
+//¹ÜÀíÆÀÂÛ
 elseif($ecms==6)
 {
-	$show="<select name='classid' id='classid'><option value='0'>æ‰€æœ‰æ ç›®</option>".$do_class."</select>";
+	$show="<select name='classid' id='classid'><option value='0'>ËùÓĞÀ¸Ä¿</option>".$do_class."</select>";
 	echo"<script>parent.document.getElementById(\"listplclassnav\").innerHTML=\"".$show."\";</script>";
 }
-//é€‰æ‹©å…³è”å­—æ®µ
+//Ñ¡Ôñ¹ØÁª×Ö¶Î
 elseif($ecms==7)
 {
-	$show="<select name='addclassid' id='addclassid'><option value='0'>é€‰æ‹©å¢åŠ ä¿¡æ¯çš„æ ç›®</option>".$do_class."</select>";
+	$show="<select name='addclassid' id='addclassid'><option value='0'>Ñ¡ÔñÔö¼ÓĞÅÏ¢µÄÀ¸Ä¿</option>".$do_class."</select>";
 	echo"<script>parent.document.getElementById(\"showaddclassnav\").innerHTML=\"".$show."\";</script>";
 }
 db_close();

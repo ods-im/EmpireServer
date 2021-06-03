@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,14 +15,14 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"delinfodata");
-//æ ç›®
+//À¸Ä¿
 $fcfile="../../data/fc/ListEnews.php";
 $class="<script src=../../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
 {$class=ShowClass_AddClass("",0,0,"|-",0,0);}
-//åˆ·æ–°è¡¨
+//Ë¢ÐÂ±í
 $retable="";
 $tsql=$empire->query("select tid,tbname,tname from {$dbtbpre}enewstable order by tid");
 while($tr=$empire->fetch($tsql))
@@ -33,8 +33,8 @@ while($tr=$empire->fetch($tsql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æŒ‰æ¡ä»¶åˆ é™¤ä¿¡æ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>°´Ìõ¼þÉ¾³ýÐÅÏ¢</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 </head>
@@ -42,119 +42,119 @@ while($tr=$empire->fetch($tsql))
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<a href="DelData.php<?=$ecms_hashur['whehref']?>">æŒ‰æ¡ä»¶åˆ é™¤ä¿¡æ¯</a></td>
+    <td height="25">Î»ÖÃ£º<a href="DelData.php<?=$ecms_hashur['whehref']?>">°´Ìõ¼þÉ¾³ýÐÅÏ¢</a></td>
   </tr>
 </table>
-<form action="../ecmsinfo.php" method="get" name="form1" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+<form action="../ecmsinfo.php" method="get" name="form1" onsubmit="return confirm('È·ÈÏÒªÉ¾³ý?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2"> <div align="center">æŒ‰æ¡ä»¶åˆ é™¤ä¿¡æ¯</div></td>
+      <td height="25" colspan="2"> <div align="center">°´Ìõ¼þÉ¾³ýÐÅÏ¢</div></td>
     </tr>
     <tr> 
-      <td width="20%" height="25" bgcolor="#FFFFFF">é€‰æ‹©æ•°æ®è¡¨</td>
+      <td width="20%" height="25" bgcolor="#FFFFFF">Ñ¡ÔñÊý¾Ý±í</td>
       <td width="80%" bgcolor="#FFFFFF"><select name="tbname" id="tbname">
-          <option value=''>------ é€‰æ‹©æ•°æ®è¡¨ ------</option>
+          <option value=''>------ Ñ¡ÔñÊý¾Ý±í ------</option>
           <?=$retable?>
         </select>
         *</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">é€‰æ‹©æ ç›®</td>
+      <td height="25" bgcolor="#FFFFFF">Ñ¡ÔñÀ¸Ä¿</td>
       <td bgcolor="#FFFFFF"><select name="classid" id="select">
-          <option value="0">æ‰€æœ‰æ ç›®</option>
+          <option value="0">ËùÓÐÀ¸Ä¿</option>
           <?=$class?>
-        </select> <font color="#666666">(å¦‚é€‰æ‹©çˆ¶æ ç›®ï¼Œå°†åˆ é™¤æ‰€æœ‰å­æ ç›®)</font></td>
+        </select> <font color="#666666">(ÈçÑ¡Ôñ¸¸À¸Ä¿£¬½«É¾³ýËùÓÐ×ÓÀ¸Ä¿)</font></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <input name="retype" type="radio" value="0" checked>
-        æŒ‰æ—¶é—´åˆ é™¤</td>
-      <td bgcolor="#FFFFFF">ä»Ž 
+        °´Ê±¼äÉ¾³ý</td>
+      <td bgcolor="#FFFFFF">´Ó 
         <input name="startday" type="text" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        åˆ° 
+        µ½ 
         <input name="endday" type="text" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        ä¹‹é—´çš„æ•°æ® <font color="#666666">(ä¸å¡«ä¸ºä¸é™)</font></td>
+        Ö®¼äµÄÊý¾Ý <font color="#666666">(²»ÌîÎª²»ÏÞ)</font></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><input name="retype" type="radio" value="1">
-        æŒ‰IDåˆ é™¤</td>
-      <td bgcolor="#FFFFFF">ä»Ž 
+        °´IDÉ¾³ý</td>
+      <td bgcolor="#FFFFFF">´Ó 
         <input name="startid" type="text" id="startid2" value="0" size="6">
-        åˆ° 
+        µ½ 
         <input name="endid" type="text" id="endid2" value="0" size="6">
-        ä¹‹é—´çš„æ•°æ® <font color="#666666">(ä¸¤ä¸ªå€¼0ä¸ºä¸é™)</font></td>
+        Ö®¼äµÄÊý¾Ý <font color="#666666">(Á½¸öÖµ0Îª²»ÏÞ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ˜¯å¦å®¡æ ¸</td>
+      <td height="25" bgcolor="#FFFFFF">ÊÇ·ñÉóºË</td>
       <td bgcolor="#FFFFFF"><input name="infost" type="radio" value="0" checked>
-        ä¸é™ 
+        ²»ÏÞ 
         <input name="infost" type="radio" value="1">
-        å·²å®¡æ ¸ 
+        ÒÑÉóºË 
         <input name="infost" type="radio" value="2">
-        æœªå®¡æ ¸</td>
+        Î´ÉóºË</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ˜¯å¦ç”¨æˆ·å‘å¸ƒ</td>
+      <td height="25" bgcolor="#FFFFFF">ÊÇ·ñÓÃ»§·¢²¼</td>
       <td bgcolor="#FFFFFF"><input name="ismember" type="radio" value="0" checked>
-        ä¸é™ <input type="radio" name="ismember" value="1">
-        æ¸¸å®¢å‘å¸ƒ 
+        ²»ÏÞ <input type="radio" name="ismember" value="1">
+        ÓÎ¿Í·¢²¼ 
         <input type="radio" name="ismember" value="2">
-        ä¼šå‘˜+ç”¨æˆ·å‘å¸ƒ 
+        »áÔ±+ÓÃ»§·¢²¼ 
         <input type="radio" name="ismember" value="3">
-        ä¼šå‘˜å‘å¸ƒ 
+        »áÔ±·¢²¼ 
         <input type="radio" name="ismember" value="4">
-        ç”¨æˆ·å‘å¸ƒ</td>
+        ÓÃ»§·¢²¼</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ˜¯å¦å¤–éƒ¨é“¾æŽ¥</td>
+      <td height="25" bgcolor="#FFFFFF">ÊÇ·ñÍâ²¿Á´½Ó</td>
       <td bgcolor="#FFFFFF"><input name="isurl" type="radio" value="0" checked>
-        ä¸é™ <input type="radio" name="isurl" value="1">
-        å¤–éƒ¨é“¾æŽ¥ä¿¡æ¯ 
+        ²»ÏÞ <input type="radio" name="isurl" value="1">
+        Íâ²¿Á´½ÓÐÅÏ¢ 
         <input type="radio" name="isurl" value="2">
-        å†…éƒ¨ä¿¡æ¯</td>
+        ÄÚ²¿ÐÅÏ¢</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">è¯„è®ºæ•°å°‘äºŽ</td>
-      <td bgcolor="#FFFFFF"><input name="plnum" type="text" id="plnum" size="38"> <font color="#666666">(ä¸è®¾ç½®ä¸ºä¸é™)</font></td>
+      <td height="25" bgcolor="#FFFFFF">ÆÀÂÛÊýÉÙÓÚ</td>
+      <td bgcolor="#FFFFFF"><input name="plnum" type="text" id="plnum" size="38"> <font color="#666666">(²»ÉèÖÃÎª²»ÏÞ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç‚¹å‡»æ•°å°‘äºŽ</td>
-      <td bgcolor="#FFFFFF"><input name="onclick" type="text" id="onclick" size="38"> <font color="#666666">(ä¸è®¾ç½®ä¸ºä¸é™)</font></td>
+      <td height="25" bgcolor="#FFFFFF">µã»÷ÊýÉÙÓÚ</td>
+      <td bgcolor="#FFFFFF"><input name="onclick" type="text" id="onclick" size="38"> <font color="#666666">(²»ÉèÖÃÎª²»ÏÞ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ä¸‹è½½æ•°å°‘äºŽ</td>
+      <td height="25" bgcolor="#FFFFFF">ÏÂÔØÊýÉÙÓÚ</td>
       <td bgcolor="#FFFFFF"><input name="totaldown" type="text" id="totaldown" size="38"> 
-        <font color="#666666">(ä¸è®¾ç½®ä¸ºä¸é™)</font></td>
+        <font color="#666666">(²»ÉèÖÃÎª²»ÏÞ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ ‡é¢˜åŒ…å«å­—ç¬¦</td>
-      <td bgcolor="#FFFFFF"><input name="title" type="text" id="title" size="38"> <font color="#666666">(å¤šä¸ªå­—ç¬¦ç”¨â€œ|â€éš”å¼€)</font></td>
+      <td height="25" bgcolor="#FFFFFF">±êÌâ°üº¬×Ö·û</td>
+      <td bgcolor="#FFFFFF"><input name="title" type="text" id="title" size="38"> <font color="#666666">(¶à¸ö×Ö·ûÓÃ¡°|¡±¸ô¿ª)</font></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">å‘å¸ƒè€…å¸å·ID</td>
+      <td height="25" bgcolor="#FFFFFF">·¢²¼ÕßÕÊºÅID</td>
       <td bgcolor="#FFFFFF"><select name="usertype" id="usertype">
-          <option value="0">ä¼šå‘˜ID</option>
-          <option value="1">ç”¨æˆ·ID</option>
+          <option value="0">»áÔ±ID</option>
+          <option value="1">ÓÃ»§ID</option>
         </select>
         <input name="userids" type="text" id="userids" size="28">
-        <font color="#666666">(å¤šä¸ªç”¨â€œ,â€é€—å·éš”å¼€)</font></td>
+        <font color="#666666">(¶à¸öÓÃ¡°,¡±¶ººÅ¸ô¿ª)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åˆ é™¤HTMLæ–‡ä»¶</td>
+      <td height="25" bgcolor="#FFFFFF">É¾³ýHTMLÎÄ¼þ</td>
       <td bgcolor="#FFFFFF"><input name="delhtml" type="radio" value="0" checked>
-        åˆ é™¤ 
+        É¾³ý 
         <input type="radio" name="delhtml" value="1">
-        ä¸åˆ é™¤ </td>
+        ²»É¾³ý </td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td bgcolor="#FFFFFF"><input type="submit" name="Submit6" value="æ‰¹é‡åˆ é™¤"> 
+      <td bgcolor="#FFFFFF"><input type="submit" name="Submit6" value="ÅúÁ¿É¾³ý"> 
         <input name="enews" type="hidden" id="enews2" value="DelInfoData"> </td>
     </tr>
   </table>
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
-      <td height="25">è¯´æ˜Ž: ä¼šå‘˜ä¸ºå‰å°æ³¨å†Œä¼šå‘˜ï¼Œç”¨æˆ·ä¸ºåŽå°ç®¡ç†å‘˜ã€‚åˆ é™¤åŽçš„æ•°æ®ä¸èƒ½æ¢å¤,è¯·è°¨æ…Žä½¿ç”¨ã€‚</td>
+      <td height="25">ËµÃ÷: »áÔ±ÎªÇ°Ì¨×¢²á»áÔ±£¬ÓÃ»§ÎªºóÌ¨¹ÜÀíÔ±¡£É¾³ýºóµÄÊý¾Ý²»ÄÜ»Ö¸´,Çë½÷É÷Ê¹ÓÃ¡£</td>
     </tr>
   </table>
 </form>

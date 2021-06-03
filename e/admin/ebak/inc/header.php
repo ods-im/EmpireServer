@@ -12,7 +12,7 @@ require("../../class/functions.php");
 require "../../../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//楠岃瘉鐢ㄦ埛
+//验证用户
 $logininid=getcvar('loginuserid',1);
 $loginin=getcvar('loginusername',1);
 $loginrnd=getcvar('loginrnd',1);
@@ -21,7 +21,7 @@ $editor=3;
 is_login_ebak($logininid,$loginin,$loginrnd);
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//楠岃瘉鏉冮檺
+//验证权限
 //CheckLevel($logininid,$loginin,$classid,"dbdata");
 hCheckEcmsRHash();
 $mydbname=RepPostVar($_GET['mydbname']);
@@ -30,7 +30,7 @@ if(empty($mydbname)||empty($mypath))
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-//缂栫爜
+//编码
 DoSetDbChar($b_dbchar);
 $usql=$empire->usequery("use `$mydbname`");
 ?>

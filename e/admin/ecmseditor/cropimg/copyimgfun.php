@@ -1,8 +1,8 @@
 <?php
-//è£å‰ªå›¾ç‰‡
+//²Ã¼ôÍ¼Æ¬
 function DoCropImage($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$class_r,$ecms_config,$efileftp_fr,$efileftp_dr;
-	//å‚æ•°å¤„ç†
+	//²ÎÊý´¦Àí
 	$pic_x=(int)$add['pic_x'];
 	$pic_y=(int)$add['pic_y'];
 	$pic_w=(int)$add['pic_w'];
@@ -18,7 +18,7 @@ function DoCropImage($add,$userid,$username){
 	{
 		$fstb=GetInfoTranFstb($classid,$infoid,0);
 	}
-	//å–å¾—æ–‡ä»¶åœ°å€
+	//È¡µÃÎÄ¼þµØÖ·
 	if(empty($fileid))
 	{
 		printerror('NotCropImage','history.go(-1)');
@@ -35,19 +35,19 @@ function DoCropImage($add,$userid,$username){
 	{
 		printerror('NotCropImage','history.go(-1)');
 	}
-	$filetype=GetFiletype($filer['filename']);//å–å¾—æ–‡ä»¶ç±»åž‹
+	$filetype=GetFiletype($filer['filename']);//È¡µÃÎÄ¼þÀàÐÍ
 	if(!strstr($ecms_config['sets']['tranpicturetype'],','.$filetype.','))
 	{
 		printerror('CropImageFiletypeFail','history.go(-1)');
 	}
-	//ç›®æ ‡å›¾ç‰‡
+	//Ä¿±êÍ¼Æ¬
 	$new_datepath=FormatFilePath($filer['classid'],'',0);
 	$new_path=$new_datepath?$new_datepath.'/':$new_datepath;
 	$new_insertfile=ReturnDoTranFilename($filer['filename'],0);
 	$new_fspath=ReturnFileSavePath($filer['classid']);
 	$new_savepath=eReturnEcmsMainPortPath().$new_fspath['filepath'].$new_path;//moreport
 	$new_name=$new_savepath.$new_insertfile;
-	//å¤„ç†å›¾ç‰‡
+	//´¦ÀíÍ¼Æ¬
 	$returnr['file']='';
 	$returnr['filetype']='';
     if($temp_img_type = @getimagesize($big_image_name)) {preg_match('/\/([a-z]+)$/i', $temp_img_type[mime], $tpn); $img_type = $tpn[1];}
@@ -65,7 +65,7 @@ function DoCropImage($add,$userid,$username){
 	{
 		printerror('CropImageFiletypeFail','history.go(-1)');
 	}
-	//è¾“å‡º
+	//Êä³ö
     $func_output = $all_type[$img_type]['output'];
     $func_exname = $all_type[$img_type]['exn'];
 	if(($func_exname=='.gif'||$func_exname=='.png'||$func_exname=='.wbmp')&&!function_exists($func_output))
@@ -107,7 +107,7 @@ function DoCropImage($add,$userid,$username){
 				$efileftp_dr[]=$big_image_name;
 			}
 		}
-		//å†™å…¥æ•°æ®åº“
+		//Ð´ÈëÊý¾Ý¿â
 		$no='[CropImg]'.$filer['no'];
 		$filesize=filesize($insert_file);
 		$filesize=(int)$filesize;

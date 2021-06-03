@@ -5,43 +5,43 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='åœ¨çº¿æ”¯ä»˜';
-$url="<a href='../../'>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../member/cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;åœ¨çº¿æ”¯ä»˜";
+$public_diyr['pagetitle']='ÔÚÏßÖ§¸¶';
+$url="<a href='../../'>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../member/cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;ÔÚÏßÖ§¸¶";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <script>
 function ChangeShowBuyFen(amount){
 	var fen;
 	fen=Math.floor(amount)*<?=$pr[paymoneytofen]?>;
-	document.getElementById("showbuyfen").innerHTML=fen+" ç‚¹";
+	document.getElementById("showbuyfen").innerHTML=fen+" µã";
 }
 </script>
 <form name="paytofenform" method="post" action="pay.php">
   <table width="500" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
     <tr class="header"> 
-      <td height="25" colspan="2">è´­ä¹°ç‚¹æ•°ï¼š 
+      <td height="25" colspan="2">¹ºÂòµãÊı£º 
       <input type="hidden" name="phome" value="PayToFen"></td>
     </tr>
     <tr> 
-      <td width="127" height="25" bgcolor="#FFFFFF">è´­ä¹°é‡‘é¢ï¼š</td>
+      <td width="127" height="25" bgcolor="#FFFFFF">¹ºÂò½ğ¶î£º</td>
       <td width="358" bgcolor="#FFFFFF"> <input name="money" type="text" value="" size="8" onchange="ChangeShowBuyFen(document.paytofenform.money.value);">
-        å…ƒ <font color="#333333">( 1å…ƒ = 
+        Ôª <font color="#333333">( 1Ôª = 
         <?=$pr[paymoneytofen]?>
-        ç‚¹æ•°)</font></td>
+        µãÊı)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">è´­ä¹°ç‚¹æ•°ï¼š</td>
-      <td bgcolor="#FFFFFF" id="showbuyfen"> 0 ç‚¹</td>
+      <td height="25" bgcolor="#FFFFFF">¹ºÂòµãÊı£º</td>
+      <td bgcolor="#FFFFFF" id="showbuyfen"> 0 µã</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ”¯ä»˜å¹³å°ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">Ö§¸¶Æ½Ì¨£º</td>
       <td height="25" bgcolor="#FFFFFF"><SELECT name="payid" style="WIDTH: 120px">
           <?=$pays?>
         </SELECT></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"><input type="submit" name="Submit" value="ç¡®å®šè´­ä¹°"></td>
+      <td height="25" bgcolor="#FFFFFF"><input type="submit" name="Submit" value="È·¶¨¹ºÂò"></td>
     </tr>
   </table>
 </form>
@@ -49,23 +49,23 @@ function ChangeShowBuyFen(amount){
 <form name="paytomoneyform" method="post" action="pay.php">
   <table width="500" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
     <tr class="header"> 
-      <td height="25" colspan="2">å­˜é¢„ä»˜æ¬¾ï¼š 
+      <td height="25" colspan="2">´æÔ¤¸¶¿î£º 
       <input name="phome" type="hidden" id="phome" value="PayToMoney"></td>
     </tr>
     <tr> 
-      <td width="127" height="25" bgcolor="#FFFFFF">é‡‘é¢ï¼š</td>
+      <td width="127" height="25" bgcolor="#FFFFFF">½ğ¶î£º</td>
       <td width="358" bgcolor="#FFFFFF"> <input name="money" type="text" value="" size="8">
-        å…ƒ</td>
+        Ôª</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ”¯ä»˜å¹³å°ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">Ö§¸¶Æ½Ì¨£º</td>
       <td height="25" bgcolor="#FFFFFF"><SELECT name="payid" style="WIDTH: 120px">
           <?=$pays?>
         </SELECT></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"><input type="submit" name="Submit3" value="ç¡®å®šæ”¯ä»˜"></td>
+      <td height="25" bgcolor="#FFFFFF"><input type="submit" name="Submit3" value="È·¶¨Ö§¸¶"></td>
     </tr>
   </table>
 </form>

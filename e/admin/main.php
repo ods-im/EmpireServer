@@ -6,7 +6,7 @@ require("../class/functions.php");
 require("../member/class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//验证用户
+//��֤�û�
 $lur=is_login();
 $logininid=(int)$lur['userid'];
 $loginin=$lur['username'];
@@ -15,29 +15,29 @@ $loginlevel=(int)$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//我的状态
+//�ҵ�״̬
 $user_r=$empire->fetch1("select pretime,preip,loginnum,preipport from {$dbtbpre}enewsuser where userid='$logininid'");
 $gr=$empire->fetch1("select groupname from {$dbtbpre}enewsgroup where groupid='$loginlevel'");
-//管理员统计
+//����Աͳ��
 $adminnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsuser");
 $date=date("Y-m-d");
 $noplnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewspl_".$public_r['pldeftb']." where checked=1");
-//未审核会员
+//δ��˻�Ա
 $nomembernum=$empire->gettotal("select count(*) as total from ".eReturnMemberTable()." where ".egetmf('checked')."=0");
-//过期广告
+//���ڹ��
 $outtimeadnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsad where endtime<'$date' and endtime<>'0000-00-00'");
-//签发信息
+//ǩ����Ϣ
 $qfinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewswfinfo where checktno=0 and (groupid like '%,".$lur['groupid'].",%' or userclass like '%,".$lur['classid'].",%' or username like '%,".$lur['username'].",%')");
-//系统信息
+//ϵͳ��Ϣ
 	if(function_exists('ini_get')){
         $onoff = ini_get('register_globals');
     } else {
         $onoff = get_cfg_var('register_globals');
     }
     if($onoff){
-        $onoff="打开";
+        $onoff="��";
     }else{
-        $onoff="关闭";
+        $onoff="�ر�";
     }
     if(function_exists('ini_get')){
         $upload = ini_get('file_uploads');
@@ -45,9 +45,9 @@ $qfinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewswfinf
         $upload = get_cfg_var('file_uploads');
     }
     if ($upload){
-        $upload="可以";
+        $upload="����";
     }else{
-        $upload="不可以";
+        $upload="������";
     }
 	if(function_exists('ini_get')){
         $uploadsize = ini_get('upload_max_filesize');
@@ -59,21 +59,21 @@ $qfinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewswfinf
     } else {
         $uploadpostsize = get_cfg_var('post_max_size');
     }
-//开启
-$register_ok="开启";
+//����
+$register_ok="����";
 if($public_r[register_ok])
-{$register_ok="关闭";}
-$addnews_ok="开启";
+{$register_ok="�ر�";}
+$addnews_ok="����";
 if($public_r[addnews_ok])
-{$addnews_ok="关闭";}
-//版本
+{$addnews_ok="�ر�";}
+//�汾
 @include("../class/EmpireCMS_version.php");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>帝国网站管理系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>�۹���վ����ϵͳ</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -81,29 +81,29 @@ if($public_r[addnews_ok])
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr> 
     <td><div align="center"><strong> 
-        <h3>欢迎使用帝国网站管理系统 (EmpireCMS)</h3>
+        <h3>��ӭʹ�õ۹���վ����ϵͳ (EmpireCMS)</h3>
         </strong></div></td>
   </tr>
   <tr> 
     <td><table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
         <tr class="header"> 
-          <td height="25">我的状态</td>
+          <td height="25">�ҵ�״̬</td>
         </tr>
         <tr> 
           <td height="25" bgcolor="#FFFFFF"> <table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
               <tr> 
-                <td height="22">登录者:&nbsp;<b>
+                <td height="22">��¼��:&nbsp;<b>
                   <?=$loginin?>
-                  </b>&nbsp;&nbsp;,所属用户组:&nbsp;<b>
+                  </b>&nbsp;&nbsp;,�����û���:&nbsp;<b>
                   <?=$gr[groupname]?>
                   </b></td>
               </tr>
               <tr>
-                <td height="22">这是您第 <b>
+                <td height="22">�������� <b>
                   <?=$user_r[loginnum]?>
-                  </b> 次登录，上次登录时间：
+                  </b> �ε�¼���ϴε�¼ʱ�䣺
                   <?=$user_r[pretime]?date('Y-m-d H:i:s',$user_r[pretime]):'---'?>
-                  ，登录IP：
+                  ����¼IP��
                   <?=$user_r[preip]?$user_r[preip].':'.$user_r[preipport]:'---'?>                </td>
               </tr>
             </table>          </td>
@@ -119,33 +119,33 @@ if($public_r[addnews_ok])
           <td width="100%" height="25"> 
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="50%"><strong><a href="#ecms">快捷菜单</a></strong></td>
-                <td><div align="right"><a href="http://www.phome.net/edown25/" target="_blank"><strong>帝国下载系统</strong></a></div></td>
+                <td width="50%"><strong><a href="#ecms">��ݲ˵�</a></strong></td>
+                <td><div align="right"><a href="http://www.phome.net/edown25/" target="_blank"><strong>�۹�����ϵͳ</strong></a></div></td>
               </tr>
             </table></td>
         </tr>
         <tr> 
-          <td height="25" bgcolor="#FFFFFF"><strong>信息操作</strong>：&nbsp;&nbsp;<a href="AddInfoChClass.php<?=$ecms_hashur['whehref']?>">增加信息</a>&nbsp;&nbsp; 
-            <a href="ListAllInfo.php<?=$ecms_hashur['whehref']?>">管理信息</a>&nbsp;&nbsp; <a href="ListAllInfo.php?ecmscheck=1<?=$ecms_hashur['ehref']?>">审核信息</a> 
-            &nbsp;&nbsp; <a href="workflow/ListWfInfo.php<?=$ecms_hashur['whehref']?>">签发信息</a>(<strong><font color="#FF0000"><?=$qfinfonum?></font></strong>)&nbsp;&nbsp; <a href="openpage/AdminPage.php?leftfile=<?=urlencode('../pl/PlNav.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../pl/PlMain.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('管理评论')?><?=$ecms_hashur['ehref']?>">管理评论</a>&nbsp;&nbsp; <a href="sp/UpdateSp.php<?=$ecms_hashur['whehref']?>">更新碎片</a>&nbsp;&nbsp; <a href="special/UpdateZt.php<?=$ecms_hashur['whehref']?>">更新专题</a>&nbsp;&nbsp; <a href="info/InfoMain.php<?=$ecms_hashur['whehref']?>">数据统计</a></td>
+          <td height="25" bgcolor="#FFFFFF"><strong>��Ϣ����</strong>��&nbsp;&nbsp;<a href="AddInfoChClass.php<?=$ecms_hashur['whehref']?>">������Ϣ</a>&nbsp;&nbsp; 
+            <a href="ListAllInfo.php<?=$ecms_hashur['whehref']?>">������Ϣ</a>&nbsp;&nbsp; <a href="ListAllInfo.php?ecmscheck=1<?=$ecms_hashur['ehref']?>">�����Ϣ</a> 
+            &nbsp;&nbsp; <a href="workflow/ListWfInfo.php<?=$ecms_hashur['whehref']?>">ǩ����Ϣ</a>(<strong><font color="#FF0000"><?=$qfinfonum?></font></strong>)&nbsp;&nbsp; <a href="openpage/AdminPage.php?leftfile=<?=urlencode('../pl/PlNav.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../pl/PlMain.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('��������')?><?=$ecms_hashur['ehref']?>">��������</a>&nbsp;&nbsp; <a href="sp/UpdateSp.php<?=$ecms_hashur['whehref']?>">������Ƭ</a>&nbsp;&nbsp; <a href="special/UpdateZt.php<?=$ecms_hashur['whehref']?>">����ר��</a>&nbsp;&nbsp; <a href="info/InfoMain.php<?=$ecms_hashur['whehref']?>">����ͳ��</a></td>
         </tr>
         <tr> 
-          <td height="25" bgcolor="#FFFFFF"><strong>栏目操作</strong>：&nbsp;&nbsp;<a href="ListClass.php<?=$ecms_hashur['whehref']?>">管理栏目</a>&nbsp;&nbsp; 
-            <a href="special/ListZt.php<?=$ecms_hashur['whehref']?>">管理专题</a>&nbsp;&nbsp; <a href="ListInfoClass.php<?=$ecms_hashur['whehref']?>">管理采集</a> 
-            &nbsp;&nbsp; <a href="openpage/AdminPage.php?leftfile=<?=urlencode('../file/FileNav.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('管理附件')?><?=$ecms_hashur['ehref']?>">附件管理</a>&nbsp;&nbsp; 
-            <a href="SetEnews.php<?=$ecms_hashur['whehref']?>">系统参数设置</a>&nbsp;&nbsp; <a href="ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>">数据更新中心</a></td>
+          <td height="25" bgcolor="#FFFFFF"><strong>��Ŀ����</strong>��&nbsp;&nbsp;<a href="ListClass.php<?=$ecms_hashur['whehref']?>">������Ŀ</a>&nbsp;&nbsp; 
+            <a href="special/ListZt.php<?=$ecms_hashur['whehref']?>">����ר��</a>&nbsp;&nbsp; <a href="ListInfoClass.php<?=$ecms_hashur['whehref']?>">�����ɼ�</a> 
+            &nbsp;&nbsp; <a href="openpage/AdminPage.php?leftfile=<?=urlencode('../file/FileNav.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('��������')?><?=$ecms_hashur['ehref']?>">��������</a>&nbsp;&nbsp; 
+            <a href="SetEnews.php<?=$ecms_hashur['whehref']?>">ϵͳ��������</a>&nbsp;&nbsp; <a href="ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>">���ݸ�������</a></td>
         </tr>
         <tr> 
-          <td height="25" bgcolor="#FFFFFF"><strong>用户操作</strong>：&nbsp;&nbsp;<a href="member/ListMember.php?sear=1&schecked=1<?=$ecms_hashur['ehref']?>">审核会员</a>&nbsp;&nbsp; 
-            <a href="member/ListMember.php<?=$ecms_hashur['whehref']?>">管理会员</a> &nbsp; <a href="user/ListLog.php<?=$ecms_hashur['whehref']?>">管理登陆日志</a> 
-            &nbsp;&nbsp; <a href="user/ListDolog.php<?=$ecms_hashur['whehref']?>">管理操作日志</a>&nbsp;&nbsp; <a href="user/EditPassword.php<?=$ecms_hashur['whehref']?>">修改个人资料</a>&nbsp;&nbsp; 
-            <a href="user/UserTotal.php<?=$ecms_hashur['whehref']?>">用户发布统计</a></td>
+          <td height="25" bgcolor="#FFFFFF"><strong>�û�����</strong>��&nbsp;&nbsp;<a href="member/ListMember.php?sear=1&schecked=1<?=$ecms_hashur['ehref']?>">��˻�Ա</a>&nbsp;&nbsp; 
+            <a href="member/ListMember.php<?=$ecms_hashur['whehref']?>">������Ա</a> &nbsp; <a href="user/ListLog.php<?=$ecms_hashur['whehref']?>">������½��־</a> 
+            &nbsp;&nbsp; <a href="user/ListDolog.php<?=$ecms_hashur['whehref']?>">����������־</a>&nbsp;&nbsp; <a href="user/EditPassword.php<?=$ecms_hashur['whehref']?>">�޸ĸ�������</a>&nbsp;&nbsp; 
+            <a href="user/UserTotal.php<?=$ecms_hashur['whehref']?>">�û�����ͳ��</a></td>
         </tr>
         <tr> 
-          <td height="25" bgcolor="#FFFFFF"><strong>反馈管理</strong>：&nbsp;&nbsp;<a href="tool/gbook.php<?=$ecms_hashur['whehref']?>">管理留言</a>&nbsp;&nbsp; 
-            <a href="tool/feedback.php<?=$ecms_hashur['whehref']?>">管理反馈信息</a>&nbsp;&nbsp;<a href="DownSys/ListError.php<?=$ecms_hashur['whehref']?>">管理错误报告</a>&nbsp;&nbsp; 
-            <a href="#empirecms" onclick="window.open('openpage/AdminPage.php?leftfile=<?=urlencode('../ShopSys/pageleft.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../ShopSys/ListDd.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('商城系统管理')?><?=$ecms_hashur['ehref']?>','AdminShopSys','');">管理订单</a>&nbsp;&nbsp;<a href="pay/ListPayRecord.php<?=$ecms_hashur['whehref']?>">管理支付记录</a>&nbsp;&nbsp; 
-            <a href="PathLevel.php<?=$ecms_hashur['whehref']?>">查看目录权限状态</a></td>
+          <td height="25" bgcolor="#FFFFFF"><strong>��������</strong>��&nbsp;&nbsp;<a href="tool/gbook.php<?=$ecms_hashur['whehref']?>">��������</a>&nbsp;&nbsp; 
+            <a href="tool/feedback.php<?=$ecms_hashur['whehref']?>">����������Ϣ</a>&nbsp;&nbsp;<a href="DownSys/ListError.php<?=$ecms_hashur['whehref']?>">�������󱨸�</a>&nbsp;&nbsp; 
+            <a href="#empirecms" onclick="window.open('openpage/AdminPage.php?leftfile=<?=urlencode('../ShopSys/pageleft.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../ShopSys/ListDd.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('�̳�ϵͳ����')?><?=$ecms_hashur['ehref']?>','AdminShopSys','');">��������</a>&nbsp;&nbsp;<a href="pay/ListPayRecord.php<?=$ecms_hashur['whehref']?>">����֧����¼</a>&nbsp;&nbsp; 
+            <a href="PathLevel.php<?=$ecms_hashur['whehref']?>">�鿴Ŀ¼Ȩ��״̬</a></td>
         </tr>
       </table></td>
   </tr>
@@ -162,99 +162,99 @@ if($public_r[addnews_ok])
         <tr class="header"> 
           <td height="25" colspan="2"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr> 
-                <td width="50%"><a href="#"><strong>系统信息</strong></a></td>
-                <td><div align="right"><a href="http://ebak.phome.net" target="_blank"><strong>帝国MYSQL备份王下载</strong></a></div></td>
+                <td width="50%"><a href="#"><strong>ϵͳ��Ϣ</strong></a></td>
+                <td><div align="right"><a href="http://ebak.phome.net" target="_blank"><strong>�۹�MYSQL����������</strong></a></div></td>
               </tr>
             </table></td>
         </tr>
         <tr> 
-          <td width="43%"><strong>网站信息</strong></td>
-          <td width="57%"><strong>服务器信息</strong></td>
+          <td width="43%"><strong>��վ��Ϣ</strong></td>
+          <td width="57%"><strong>��������Ϣ</strong></td>
         </tr>
         <tr> 
           <td valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="1" cellpadding="3">
               <tr> 
-                <td width="28%" height="23">会员注册:</td>
+                <td width="28%" height="23">��Աע��:</td>
                 <td width="72%"> 
                   <?=$register_ok?>                </td>
               </tr>
               <tr> 
-                <td height="23">会员投稿:</td>
+                <td height="23">��ԱͶ��:</td>
                 <td> 
                   <?=$addnews_ok?>                </td>
               </tr>
               <tr> 
-                <td height="23">管理员个数:</td>
-                <td><a href="user/ListUser.php<?=$ecms_hashur['whehref']?>"><?=$adminnum?></a> 人</td>
+                <td height="23">����Ա����:</td>
+                <td><a href="user/ListUser.php<?=$ecms_hashur['whehref']?>"><?=$adminnum?></a> ��</td>
               </tr>
               <tr> 
-                <td height="23">未审核评论:</td>
-                <td><a href="openpage/AdminPage.php?leftfile=<?=urlencode('../pl/PlNav.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../pl/ListAllPl.php?checked=2'.$ecms_hashur['ehref'])?>&title=<?=urlencode('管理评论')?><?=$ecms_hashur['ehref']?>"><?=$noplnum?></a> 条</td>
+                <td height="23">δ�������:</td>
+                <td><a href="openpage/AdminPage.php?leftfile=<?=urlencode('../pl/PlNav.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../pl/ListAllPl.php?checked=2'.$ecms_hashur['ehref'])?>&title=<?=urlencode('��������')?><?=$ecms_hashur['ehref']?>"><?=$noplnum?></a> ��</td>
               </tr>
               <tr> 
-                <td height="23">未审核会员:</td>
-                <td><a href="member/ListMember.php?sear=1&schecked=1<?=$ecms_hashur['ehref']?>"><?=$nomembernum?></a> 人</td>
+                <td height="23">δ��˻�Ա:</td>
+                <td><a href="member/ListMember.php?sear=1&schecked=1<?=$ecms_hashur['ehref']?>"><?=$nomembernum?></a> ��</td>
               </tr>
               <tr> 
-                <td height="23">过期广告:</td>
-                <td><a href="tool/ListAd.php?time=1<?=$ecms_hashur['ehref']?>"><?=$outtimeadnum?></a> 个</td>
+                <td height="23">���ڹ��:</td>
+                <td><a href="tool/ListAd.php?time=1<?=$ecms_hashur['ehref']?>"><?=$outtimeadnum?></a> ��</td>
               </tr>
               <tr> 
-                <td height="23">登陆者IP:</td>
+                <td height="23">��½��IP:</td>
                 <td><? echo egetip();?></td>
               </tr>
               <tr> 
-                <td height="23">程序版本:</td>
+                <td height="23">����汾:</td>
                 <td> <a href="http://www.phome.net" target="_blank"><strong>EmpireCMS 
                   v<?=EmpireCMS_VERSION?> Free</strong></a> <font color="#666666">(<?=EmpireCMS_LASTTIME?>)</font></td>
               </tr>
               <tr>
-                <td height="23">程序编码:</td>
+                <td height="23">�������:</td>
                 <td><?=EmpireCMS_CHARVER?></td>
               </tr>
             </table></td>
           <td valign="top" bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="1" cellpadding="3">
               <tr> 
-                <td width="25%" height="23">服务器软件:</td>
+                <td width="25%" height="23">����������:</td>
                 <td width="75%"> 
                   <?=$_SERVER['SERVER_SOFTWARE']?>                </td>
               </tr>
               <tr> 
-                <td height="23">操作系统:</td>
-                <td><? echo defined('PHP_OS')?PHP_OS:'未知';?></td>
+                <td height="23">����ϵͳ:</td>
+                <td><? echo defined('PHP_OS')?PHP_OS:'δ֪';?></td>
               </tr>
               <tr> 
-                <td height="23">PHP版本:</td>
+                <td height="23">PHP�汾:</td>
                 <td><? echo @phpversion();?></td>
               </tr>
               <tr> 
-                <td height="23">MYSQL版本:</td>
+                <td height="23">MYSQL�汾:</td>
                 <td><? echo do_eGetDBVer(0);?></td>
               </tr>
               <tr> 
-                <td height="23">全局变量:</td>
+                <td height="23">ȫ�ֱ���:</td>
                 <td> 
                   <?=$onoff?>
-                  <font color="#666666">(建议关闭)</font></td>
+                  <font color="#666666">(����ر�)</font></td>
               </tr>
               <tr>
-                <td height="23">魔术引用:</td>
+                <td height="23">ħ������:</td>
                 <td> 
-                  <?=MAGIC_QUOTES_GPC?'开启':'关闭'?>
-                  <font color="#666666">(建议开启)</font></td>
+                  <?=MAGIC_QUOTES_GPC?'����':'�ر�'?>
+                  <font color="#666666">(���鿪��)</font></td>
               </tr>
               <tr> 
-                <td height="23">上传文件:</td>
+                <td height="23">�ϴ��ļ�:</td>
                 <td> 
                   <?=$upload?>
-                  <font color="#666666">(最大文件：<?=$uploadsize?>，表单：<?=$uploadpostsize?>)</font> </td>
+                  <font color="#666666">(����ļ���<?=$uploadsize?>��������<?=$uploadpostsize?>)</font> </td>
               </tr>
               <tr> 
-                <td height="23">当前时间:</td>
+                <td height="23">��ǰʱ��:</td>
                 <td><? echo date("Y-m-d H:i:s");?></td>
               </tr>
               <tr> 
-                <td height="23">使用域名:</td>
+                <td height="23">ʹ������:</td>
                 <td> 
                   <?=$_SERVER['HTTP_HOST']?>                </td>
               </tr>
@@ -268,24 +268,24 @@ if($public_r[addnews_ok])
   <tr> 
     <td><table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
       <tr class="header">
-        <td height="25" colspan="2">官方信息</td>
+        <td height="25" colspan="2">�ٷ���Ϣ</td>
       </tr>
       <tr>
         <td width="43%" bgcolor="#FFFFFF"><table width="100%" border="0" cellpadding="3" cellspacing="1">
             <tr bgcolor="#FFFFFF">
-              <td width="28%" height="25">帝国官方主页</td>
+              <td width="28%" height="25">�۹��ٷ���ҳ</td>
               <td width="72%" height="25"><a href="http://www.phome.net" target="_blank">http://www.phome.net</a></td>
             </tr>
             <tr bgcolor="#FFFFFF">
-              <td height="25">帝国官方论坛</td>
+              <td height="25">�۹��ٷ���̳</td>
               <td height="25"><a href="http://bbs.phome.net" target="_blank">http://bbs.phome.net</a></td>
             </tr>
             <tr bgcolor="#FFFFFF">
-              <td height="25">帝国产品中心</td>
+              <td height="25">�۹���Ʒ����</td>
               <td height="25"><a href="http://www.phome.net/product/" target="_blank">http://www.phome.net/product/</a></td>
             </tr>
             <tr bgcolor="#FFFFFF">
-              <td height="25">公司网站</td>
+              <td height="25">��˾��վ</td>
               <td height="25"><a href="http://www.digod.com" target="_blank">http://www.digod.com</a></td>
             </tr>
         </table></td>
@@ -299,21 +299,21 @@ if($public_r[addnews_ok])
   <tr>
     <td><table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
       <tr class="header">
-        <td height="25">EmpireCMS 开发团队</td>
+        <td height="25">EmpireCMS �����Ŷ�</td>
       </tr>
       <tr>
         <td bgcolor="#FFFFFF"><table width="80%" border="0" cellpadding="3" cellspacing="1">
             <tr bgcolor="#FFFFFF">
-              <td width="15%" height="25">版权所有</td>
-              <td width="85%"><a href="http://www.digod.com" target="_blank">漳州市芗城帝兴软件开发有限公司</a></td>
+              <td width="15%" height="25">��Ȩ����</td>
+              <td width="85%"><a href="http://www.digod.com" target="_blank">������ܼ�ǵ��������������޹�˾</a></td>
             </tr>
             <tr bgcolor="#FFFFFF">
-              <td height="25">开发与支持团队</td>
-              <td>wm_chief、amt、帝兴、小游、zeedy</td>
+              <td height="25">������֧���Ŷ�</td>
+              <td>wm_chief��amt�����ˡ�С�Ρ�zeedy</td>
             </tr>
             <tr bgcolor="#FFFFFF">
-              <td height="25">特别感谢</td>
-              <td>禾火木风、yingnt、hicode、sooden、老鬼、小林、天浪歌、TryLife、5starsgeneral</td>
+              <td height="25">�ر��л</td>
+              <td>�̻�ľ�硢yingnt��hicode��sooden���Ϲ���С�֡����˸衢TryLife��5starsgeneral</td>
             </tr>
         </table></td>
       </tr>

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,30 +15,30 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"pl");
 
-//éªŒè¯æ–‡ä»¶
+//ÑéÖ¤ÎÄ¼ş
 function CheckPlfaceFilename($filename){
 	if(strstr($filename,"\\")||strstr($filename,"/")||strstr($filename,".."))
 	{
 		printerror("FileNotExist","history.go(-1)");
 	}
-	//æ–‡ä»¶æ˜¯å¦å­˜åœ¨
+	//ÎÄ¼şÊÇ·ñ´æÔÚ
 	if(!file_exists("../../data/face/".$filename))
 	{
 		printerror("FileNotExist","history.go(-1)");
 	}
 }
 
-//è¿‡æ»¤å­—ç¬¦
+//¹ıÂË×Ö·û
 function DoRepPlface($str){
 	$str=str_replace('##','',$str);
 	$str=str_replace('||','',$str);
 	return $str;
 }
 
-//------------------å¢åŠ è¡¨æƒ…
+//------------------Ôö¼Ó±íÇé
 function AddPlface($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[facefile]||!$add[faceword])
@@ -63,8 +63,8 @@ function AddPlface($add,$userid,$username){
 	if($sql)
 	{
 		GetPlfaceJs();
-		GetConfig();//æ›´æ–°ç¼“å­˜
-		//æ“ä½œæ—¥å¿—
+		GetConfig();//¸üĞÂ»º´æ
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("$faceword");
 		printerror("AddPlfaceSuccess","plface.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -72,7 +72,7 @@ function AddPlface($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//----------------ä¿®æ”¹è¡¨æƒ…
+//----------------ĞŞ¸Ä±íÇé
 function EditPlface($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$facefile=$add[facefile];
@@ -93,8 +93,8 @@ function EditPlface($add,$userid,$username){
 	if($sql)
 	{
 		GetPlfaceJs();
-		GetConfig();//æ›´æ–°ç¼“å­˜
-		//æ“ä½œæ—¥å¿—
+		GetConfig();//¸üĞÂ»º´æ
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("EditPlfaceSuccess","plface.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -102,7 +102,7 @@ function EditPlface($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//----------------ç”Ÿæˆè¡¨æƒ…JS
+//----------------Éú³É±íÇéJS
 function GetPlfaceJs(){
 	global $empire,$dbtbpre,$public_r;
 	$r=$empire->fetch1("select plface,plfacenum from {$dbtbpre}enewspl_set limit 1");
@@ -139,12 +139,12 @@ if($enews)
 	hCheckEcmsRHash();
 	include('../../class/hplfun.php');
 }
-//å¢åŠ 
+//Ôö¼Ó
 if($enews=="AddPlface")
 {
 	AddPlface($_POST,$logininid,$loginin);
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 elseif($enews=="EditPlface")
 {
 	EditPlface($_POST,$logininid,$loginin);
@@ -156,31 +156,31 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†è¯„è®ºè¡¨æƒ…</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÆÀÂÛ±íÇé</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="ListAllPl.php<?=$ecms_hashur['whehref']?>">ç®¡ç†è¯„è®º</a> &gt; <a href="plface.php<?=$ecms_hashur['whehref']?>">ç®¡ç†è¯„è®ºè¡¨æƒ…</a></td>
+    <td>Î»ÖÃ£º<a href="ListAllPl.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÆÀÂÛ</a> &gt; <a href="plface.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÆÀÂÛ±íÇé</a></td>
   </tr>
 </table>
 <form name="addplfaceform" method="post" action="plface.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="53%" height="25">å¢åŠ è¡¨æƒ…: 
+      <td width="53%" height="25">Ôö¼Ó±íÇé: 
         <input type=hidden name=enews value=AddPlface></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="center">å°†ç¬¦å·:
+      <td height="25" bgcolor="#FFFFFF"><div align="center">½«·ûºÅ:
 <input name="faceword" type="text" id="faceword">
-          æ›¿æ¢æˆå›¾ç‰‡:
+          Ìæ»»³ÉÍ¼Æ¬:
 		  e/data/face/<input name="facefile" type="text" id="facefile" value="">
-          <a href="#ecms" onclick="window.open('ChangePlfaceFile.php?returnform=opener.document.addplfaceform.facefile.value<?=$ecms_hashur['ehref']?>','','width=400,height=500,scrollbars=yes');">[é€‰æ‹©]</a> 
-          &nbsp;<input type="submit" name="Submit" value="å¢åŠ ">
+          <a href="#ecms" onclick="window.open('ChangePlfaceFile.php?returnform=opener.document.addplfaceform.facefile.value<?=$ecms_hashur['ehref']?>','','width=400,height=500,scrollbars=yes');">[Ñ¡Ôñ]</a> 
+          &nbsp;<input type="submit" name="Submit" value="Ôö¼Ó">
         </div></td>
     </tr>
   </table>
@@ -190,7 +190,7 @@ $empire=null;
   <?=$ecms_hashur['form']?>
     <input type=hidden name=enews value=EditPlface>
     <tr class="header"> 
-      <td width="79%" height="25"><div align="center">ç®¡ç†è¡¨æƒ…</div></td>
+      <td width="79%" height="25"><div align="center">¹ÜÀí±íÇé</div></td>
     </tr>
     <?php
 	$facer=explode("||",$r[plface]);
@@ -200,9 +200,9 @@ $empire=null;
 		$face=explode("##",$facer[$i]);
 	?>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"> <div align="center">å°†ç¬¦å· 
+      <td height="25"> <div align="center">½«·ûºÅ 
           <input name="faceword[]" type="text" value="<?=$face[0]?>">
-          æ›¿æ¢æˆ&nbsp;
+          Ìæ»»³É&nbsp;
 		  <img src="../../data/face/<?=$face[1]?>" border=0>&nbsp;(e/data/face/ 
           <input name="facefile[]" type="text" value="<?=$face[1]?>">
           )</div></td>
@@ -212,22 +212,22 @@ $empire=null;
 	?>
   <tr bgcolor="#FFFFFF"> 
     <td height="25"><div align="center"> 
-        <input type="submit" name="Submit3" value="æäº¤">
+        <input type="submit" name="Submit3" value="Ìá½»">
         &nbsp; 
-        <input name="Submit4" type="reset" value="é‡ç½®">
+        <input name="Submit4" type="reset" value="ÖØÖÃ">
       </div></td>
   </tr>
   <tr bgcolor="#FFFFFF">
-    <td height="25"><font color="#666666">è¯´æ˜ï¼šè¦åˆ é™¤çš„è¡¨æƒ…å°†ç¬¦å·è®¾ä¸ºç©ºå³å¯ã€‚</font></td>
+    <td height="25"><font color="#666666">ËµÃ÷£ºÒªÉ¾³ıµÄ±íÇé½«·ûºÅÉèÎª¿Õ¼´¿É¡£</font></td>
   </tr>
   </form>
 </table>
 <br>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr>
-    <td>å‰å°è¯„è®ºè¡¨æƒ…è°ƒç”¨ä»£ç ï¼š
+    <td>Ç°Ì¨ÆÀÂÛ±íÇéµ÷ÓÃ´úÂë£º
       <input name="textfield" type="text" value="&lt;script src=&quot;<?=$public_r['newsurl']?>d/js/js/plface.js&quot;&gt;&lt;/script&gt;" size="60">
-      [<a href="../view/js.php?js=plface&p=js<?=$ecms_hashur['ehref']?>" target="_blank">é¢„è§ˆ</a>]</td>
+      [<a href="../view/js.php?js=plface&p=js<?=$ecms_hashur['ehref']?>" target="_blank">Ô¤ÀÀ</a>]</td>
   </tr>
 </table>
 </body>

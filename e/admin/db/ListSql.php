@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,18 +16,18 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"execsql");
 $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=16;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=25;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=16;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=25;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select id,sqlname from {$dbtbpre}enewssql";
 $totalquery="select count(*) as total from {$dbtbpre}enewssql";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by id desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -35,18 +35,18 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†SQLè¯­å¥</title>
+<title>¹ÜÀíSQLÓï¾ä</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td height="25">ä½ç½®ï¼š<a href="ListSql.php<?=$ecms_hashur['whehref']?>">ç®¡ç†SQLè¯­å¥</a></td>
+    <td height="25">Î»ÖÃ£º<a href="ListSql.php<?=$ecms_hashur['whehref']?>">¹ÜÀíSQLÓï¾ä</a></td>
     <td width="50%"><div align="right" class="emenubutton">
-		<input type="button" name="Submit5" value="å¢åŠ SQLè¯­å¥" onclick="self.location.href='AddSql.php?enews=AddSql<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
-        <input type="button" name="Submit4" value="æ‰§è¡ŒSQLè¯­å¥" onclick="self.location.href='DoSql.php<?=$ecms_hashur['whehref']?>';">    
+		<input type="button" name="Submit5" value="Ôö¼ÓSQLÓï¾ä" onclick="self.location.href='AddSql.php?enews=AddSql<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
+        <input type="button" name="Submit4" value="Ö´ĞĞSQLÓï¾ä" onclick="self.location.href='DoSql.php<?=$ecms_hashur['whehref']?>';">    
       </div></td>
   </tr>
 </table>
@@ -55,8 +55,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="10%" height="25"> <div align="center">ID</div></td>
-    <td width="62%" height="25"> <div align="center">SQLåç§°</div></td>
-    <td width="28%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="62%" height="25"> <div align="center">SQLÃû³Æ</div></td>
+    <td width="28%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
@@ -69,7 +69,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td height="25"> <div align="center"> 
         <?=$r['sqlname']?>
       </div></td>
-    <td height="25"> <div align="center">[<a href="DoSql.php?enews=ExecSql&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦æ‰§è¡ŒSQLï¼Ÿ');">æ‰§è¡Œ</a>] [<a href="AddSql.php?enews=EditSql&id=<?=$r[id]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="DoSql.php?enews=DelSql&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td height="25"> <div align="center">[<a href="DoSql.php?enews=ExecSql&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÖ´ĞĞSQL£¿');">Ö´ĞĞ</a>] [<a href="AddSql.php?enews=EditSql&id=<?=$r[id]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="DoSql.php?enews=DelSql&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

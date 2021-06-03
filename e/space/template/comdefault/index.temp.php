@@ -3,8 +3,8 @@ if(!defined('InEmpireCMS'))
 {
 	exit();
 }
-//ä½ç½®
-$url="$spacename &gt; é¦–é¡µ";
+//Î»ÖÃ
+$url="$spacename &gt; Ê×Ò³";
 include("header.temp.php");
 $registertime=eReturnMemberRegtime($ur['registertime'],"Y-m-d H:i:s");
 //oicq
@@ -12,14 +12,14 @@ if($addur['oicq'])
 {
 	$addur['oicq']="<a href='http://wpa.qq.com/msgrd?V=1&amp;Uin=".$addur['oicq']."&amp;Site=".$public_r['sitename']."&amp;Menu=yes' target='_blank'><img src='http://wpa.qq.com/pa?p=1:".$addur['oicq'].":4'  border='0' alt='QQ' />".$addur['oicq']."</a>";
 }
-//ç®€ä»‹
-$usersay=$addur['saytext']?$addur['saytext']:'æš‚æ— ç®€ä»‹';
+//¼ò½é
+$usersay=$addur['saytext']?$addur['saytext']:'ÔİÎŞ¼ò½é';
 $usersay=RepFieldtextNbsp(stripSlashes($usersay));
 ?>
 <?=$spacegg?>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#96C8F1">
   <tr>
-    <td background="template/default/images/bg_title_sider.gif"><b>å…¬å¸ä»‹ç»</b></td>
+    <td background="template/default/images/bg_title_sider.gif"><b>¹«Ë¾½éÉÜ</b></td>
   </tr>
   <tr>
     <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -34,50 +34,50 @@ $usersay=RepFieldtextNbsp(stripSlashes($usersay));
 <br>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#96C8F1">
   <tr> 
-    <td background="template/default/images/bg_title_sider.gif"><b>è¯¦ç»†ä¿¡æ¯</b></td>
+    <td background="template/default/images/bg_title_sider.gif"><b>ÏêÏ¸ĞÅÏ¢</b></td>
   </tr>
   <tr> 
     <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
-          <td width="18%">ç”¨æˆ·å</td>
+          <td width="18%">ÓÃ»§Ãû</td>
           <td width="82%"><?=$username?></td>
         </tr>
         <tr> 
-          <td>ä¼šå‘˜ç­‰çº§</td>
+          <td>»áÔ±µÈ¼¶</td>
           <td><?=$level_r[$ur['groupid']]['groupname']?></td>
         </tr>
         <tr> 
-          <td>æ³¨å†Œæ—¶é—´</td>
+          <td>×¢²áÊ±¼ä</td>
           <td><?=$registertime?></td>
         </tr>
         <tr> 
-          <td>è”ç³»é‚®ç®±</td>
+          <td>ÁªÏµÓÊÏä</td>
           <td><a href="mailto:<?=$ur['email']?>"><?=$ur['email']?></a></td>
         </tr>
         <tr> 
-          <td>å…¬å¸åç§°</td>
+          <td>¹«Ë¾Ãû³Æ</td>
           <td><?=$addur[company]?></td>
         </tr>
         <tr> 
-          <td>è”ç³»äºº</td>
+          <td>ÁªÏµÈË</td>
           <td>
             <?=$addur[truename]?>
           </td>
         </tr>
         <tr> 
-          <td>è”ç³»ç”µè¯</td>
+          <td>ÁªÏµµç»°</td>
           <td>
             <?=$addur[mycall]?>
           </td>
         </tr>
         <tr> 
-          <td>ä¼ çœŸ</td>
+          <td>´«Õæ</td>
           <td>
             <?=$addur[fax]?>
           </td>
         </tr>
         <tr> 
-          <td>æ‰‹æœº</td>
+          <td>ÊÖ»ú</td>
           <td>
             <?=$addur[phone]?>
           </td>
@@ -95,17 +95,17 @@ $usersay=RepFieldtextNbsp(stripSlashes($usersay));
           </td>
         </tr>
         <tr> 
-          <td>ç½‘ç«™</td>
+          <td>ÍøÕ¾</td>
           <td>
             <a href="<?=$addur[homepage]?>" target="_blank"><?=$addur[homepage]?></a>
           </td>
         </tr>
         <tr> 
-          <td>è”ç³»åœ°å€</td>
+          <td>ÁªÏµµØÖ·</td>
           <td> 
             <?=$addur[address]?>
 			&nbsp;&nbsp;&nbsp;
-            é‚®ç¼–
+            ÓÊ±à
             <?=$addur[zip]?>
           </td>
         </tr>

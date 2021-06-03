@@ -1,25 +1,25 @@
 <?php
-//è¿”å›ç¼–ç 
+//·µ»Ø±àÂë
 function InstallReturnDbChar(){
-	if(EmpireCMS_CHARVER=='UTF-8')//ç®€ä½“UTF-8
+	if(EmpireCMS_CHARVER=='UTF-8')//¼òÌåUTF-8
 	{
 		$ret_r['dbchar']='utf8';
 		$ret_r['setchar']='utf8';
 		$ret_r['headerchar']='utf-8';
 	}
-	elseif(EmpireCMS_CHARVER=='BIG5')//ç¹ä½“BIG5
+	elseif(EmpireCMS_CHARVER=='BIG5')//·±ÌåBIG5
 	{
 		$ret_r['dbchar']='big5';
 		$ret_r['setchar']='big5';
 		$ret_r['headerchar']='big5';
 	}
-	elseif(EmpireCMS_CHARVER=='TC-UTF-8')//ç¹ä½“UTF-8
+	elseif(EmpireCMS_CHARVER=='TC-UTF-8')//·±ÌåUTF-8
 	{
 		$ret_r['dbchar']='utf8';
 		$ret_r['setchar']='utf8';
 		$ret_r['headerchar']='utf-8';
 	}
-	else//ç®€ä½“GBK
+	else//¼òÌåGBK
 	{
 		$ret_r['dbchar']='gbk';
 		$ret_r['setchar']='gbk';
@@ -28,7 +28,7 @@ function InstallReturnDbChar(){
 	return $ret_r;
 }
 
-//å–å¾—éšæœºæ•°
+//È¡µÃËæ»úÊı
 function InstallMakePassword($pw_length){
 	$low_ascii_bound=65;
 	$upper_ascii_bound=90;
@@ -49,23 +49,23 @@ function InstallMakePassword($pw_length){
 	}
 	return $password1;
 }
-//å‡½æ•°æ˜¯å¦å­˜åœ¨
+//º¯ÊıÊÇ·ñ´æÔÚ
 function HaveFun($fun){
 	if(function_exists($fun))
 	{
-		$word="æ”¯æŒ";
+		$word="Ö§³Ö";
 	}
 	else
 	{
-		$word="ä¸æ”¯æŒ";
+		$word="²»Ö§³Ö";
 	}
 	return $word;
 }
-//è¿”å›ç¬¦å·
+//·µ»Ø·ûºÅ
 function ReturnResult($st){
 	if($st==1)
 	{
-		$w="âˆš";
+		$w="¡Ì";
 	}
 	elseif($st==2)
 	{
@@ -73,11 +73,11 @@ function ReturnResult($st){
 	}
 	else
 	{
-		$w="<font color=red>Ã—</font>";
+		$w="<font color=red>¡Á</font>";
 	}
 	return $w;
 }
-//å–å¾—phpç‰ˆæœ¬
+//È¡µÃphp°æ±¾
 function GetPhpVer(){
 	$r['ver']=PHP_VERSION;
 	if($r['ver'])
@@ -91,7 +91,7 @@ function GetPhpVer(){
 	}
 	return $r;
 }
-//å–å¾—phpè¿è¡Œæ¨¡å¼
+//È¡µÃphpÔËĞĞÄ£Ê½
 function GetPhpMod(){
 	$mod=strtoupper(php_sapi_name());
 	if(empty($mod))
@@ -100,28 +100,28 @@ function GetPhpMod(){
 	}
 	return $mod;
 }
-//æ˜¯å¦è¿è¡Œäºå®‰å…¨æ¨¡å¼
+//ÊÇ·ñÔËĞĞÓÚ°²È«Ä£Ê½
 function GetPhpSafemod(){
 	$phpsafemod=get_cfg_var("safe_mode");
 	if($phpsafemod==1)
 	{
-		$r['word']="æ˜¯";
+		$r['word']="ÊÇ";
 		$r['result']=ReturnResult(0);
 	}
 	else
 	{
-		$r['word']="å¦";
+		$r['word']="·ñ";
 		$r['result']=ReturnResult(1);
 	}
 	return $r;
 }
-//æ˜¯å¦æ”¯æŒmysql
+//ÊÇ·ñÖ§³Ömysql
 function CanMysql(){
-	$r['can']=function_exists('mysql_connect')||function_exists('mysqli_connect')?'æ”¯æŒ':'ä¸æ”¯æŒ';
-	$r['result']=$r[can]=="æ”¯æŒ"?ReturnResult(1):ReturnResult(0);
+	$r['can']=function_exists('mysql_connect')||function_exists('mysqli_connect')?'Ö§³Ö':'²»Ö§³Ö';
+	$r['result']=$r[can]=="Ö§³Ö"?ReturnResult(1):ReturnResult(0);
 	return $r;
 }
-//å–å¾—mysqlç‰ˆæœ¬
+//È¡µÃmysql°æ±¾
 function GetMysqlVer(){
 	$r['ver']=do_eGetDBVer(0);
 	if(empty($r['ver']))
@@ -135,13 +135,13 @@ function GetMysqlVer(){
 	}
 	return $r;
 }
-//å–å¾—mysqlç‰ˆæœ¬(æ•°æ®åº“)
+//È¡µÃmysql°æ±¾(Êı¾İ¿â)
 function GetMysqlVerForDb(){
 	$sql=do_dbquery_common("select version() as version",$GLOBALS['link']);
 	$r=do_dbfetch_common($sql);
 	return ReturnMysqlVer($r['version']);
 }
-//è¿”å›mysqlç‰ˆæœ¬
+//·µ»Ømysql°æ±¾
 function ReturnMysqlVer($dbver){
 	if(empty($dbver))
 	{
@@ -165,7 +165,7 @@ function ReturnMysqlVer($dbver){
 	}
 	return $dbver;
 }
-//å–å¾—æ“ä½œç³»ç»Ÿ
+//È¡µÃ²Ù×÷ÏµÍ³
 function GetUseSys(){
 	$phpos=explode(" ",php_uname());
 	$sys=$phpos[0]."&nbsp;".$phpos[1];
@@ -175,7 +175,7 @@ function GetUseSys(){
 	}
 	return $sys;
 }
-//æ˜¯å¦æ”¯æŒzend
+//ÊÇ·ñÖ§³Özend
 function GetZend(){
 	@ob_start();
 	@include("data/zend.php");
@@ -183,17 +183,17 @@ function GetZend(){
 	@ob_end_clean();
 	if($string=="www.phome.net"||strstr($string,"bytes in"))
 	{
-		$r['word']="æ”¯æŒ";
+		$r['word']="Ö§³Ö";
 		$r['result']=ReturnResult(1);
 	}
 	else
 	{
-		$r['word']="ä¸æ”¯æŒ";
+		$r['word']="²»Ö§³Ö";
 		$r['result']=ReturnResult(0);
 	}
 	return $r;
 }
-//æ£€æŸ¥ä¸Šä¼ 
+//¼ì²éÉÏ´«
 function CheckTranMode(){
 	@ob_start();
 	@include("../class/connect.php");
@@ -202,52 +202,52 @@ function CheckTranMode(){
 	@ob_end_clean();
 	if(strstr($string,"bytes in"))
 	{
-		echo"æ‚¨æ²¡æœ‰äºŒè¿›åˆ¶ä¸Šä¼ æ–‡ä»¶ï¼è¯·é‡æ–°äºŒè¿›åˆ¶ä¸Šä¼ æ–‡ä»¶ï¼Œç„¶åå†å®‰è£…ã€‚";
+		echo"ÄúÃ»ÓĞ¶ş½øÖÆÉÏ´«ÎÄ¼ş£¡ÇëÖØĞÂ¶ş½øÖÆÉÏ´«ÎÄ¼ş£¬È»ºóÔÙ°²×°¡£";
 		exit();
 	}
 }
-//æ˜¯å¦æ”¯æŒé‡‡é›†
+//ÊÇ·ñÖ§³Ö²É¼¯
 function GetCj(){
 	$cj=get_cfg_var("allow_url_fopen");
 	if($cj==1)
 	{
-		$r['word']="æ”¯æŒ";
+		$r['word']="Ö§³Ö";
 		$r['result']=ReturnResult(1);
 	}
 	else
 	{
-		$r['word']="ä¸æ”¯æŒ";
+		$r['word']="²»Ö§³Ö";
 		$r['result']=ReturnResult(0);
 	}
 	return $r;
 }
-//æµ‹è¯•é‡‡é›†
+//²âÊÔ²É¼¯
 function TestCj(){
 	$r=@file("http://www.163.com");
 	if($r[5])
 	{
-		echo"<br>æµ‹è¯•ç»“æœï¼š<b>æ”¯æŒé‡‡é›†</b>";
+		echo"<br>²âÊÔ½á¹û£º<b>Ö§³Ö²É¼¯</b>";
 	}
 	else
 	{
-		echo"<br>æµ‹è¯•ç»“æœï¼š<b>ä¸æ”¯æŒé‡‡é›†</b>";
+		echo"<br>²âÊÔ½á¹û£º<b>²»Ö§³Ö²É¼¯</b>";
 	}
 	exit();
 }
-//æ˜¯å¦æ”¯æŒgdåº“
+//ÊÇ·ñÖ§³Ögd¿â
 function GetGd(){
 	$r['can']=HaveFun("gd_info");
-	$r['result']=$r[can]=="æ”¯æŒ"?ReturnResult(1):ReturnResult(0);
+	$r['result']=$r[can]=="Ö§³Ö"?ReturnResult(1):ReturnResult(0);
 	return $r;
 }
-//æ˜¯å¦æ”¯æŒICONVåº“
+//ÊÇ·ñÖ§³ÖICONV¿â
 function GetIconv(){
 	$r['can']=HaveFun("iconv");
-	$r['result']=$r[can]=="æ”¯æŒ"?ReturnResult(1):ReturnResult(0);
+	$r['result']=$r[can]=="Ö§³Ö"?ReturnResult(1):ReturnResult(0);
 	return $r;
 }
 
-//æç¤ºä¿¡æ¯
+//ÌáÊ¾ĞÅÏ¢
 function InstallShowMsg($msg,$url=''){
 	if(empty($url))
 	{
@@ -259,7 +259,7 @@ function InstallShowMsg($msg,$url=''){
 	}
 	exit();
 }
-//è¿”å›ç›®å½•æƒé™ç»“æœ
+//·µ»ØÄ¿Â¼È¨ÏŞ½á¹û
 function ReturnPathLevelResult($path){
 	$testfile=$path."/test.test";
 	$fp=@fopen($testfile,"wb");
@@ -274,25 +274,25 @@ function ReturnPathLevelResult($path){
 		return 0;
 	}
 }
-//è¿”å›æ–‡ä»¶æƒé™ç»“æœ
+//·µ»ØÎÄ¼şÈ¨ÏŞ½á¹û
 function ReturnFileLevelResult($filename){
 	return is_writable($filename);
 }
-//æ£€æµ‹ç›®å½•æƒé™
+//¼ì²âÄ¿Â¼È¨ÏŞ
 function CheckFileMod($filename,$smallfile=""){
-	$succ="âˆš";
-	$error="<font color=red>Ã—</font>";
+	$succ="¡Ì";
+	$error="<font color=red>¡Á</font>";
 	if(!file_exists($filename)||($smallfile&&!file_exists($smallfile)))
 	{
 		return $error;
 	}
-	if(is_dir($filename))//ç›®å½•
+	if(is_dir($filename))//Ä¿Â¼
 	{
 		if(!ReturnPathLevelResult($filename))
 		{
 			return $error;
 		}
-		//å­ç›®å½•
+		//×ÓÄ¿Â¼
 		if($smallfile)
 		{
 			if(is_dir($smallfile))
@@ -302,7 +302,7 @@ function CheckFileMod($filename,$smallfile=""){
 					return $error;
 				}
 			}
-			else//æ–‡ä»¶
+			else//ÎÄ¼ş
 			{
 				if(!ReturnFileLevelResult($smallfile))
 				{
@@ -311,7 +311,7 @@ function CheckFileMod($filename,$smallfile=""){
 			}
 		}
 	}
-	else//æ–‡ä»¶
+	else//ÎÄ¼ş
 	{
 		if(!ReturnFileLevelResult($filename))
 		{
@@ -327,7 +327,7 @@ function CheckFileMod($filename,$smallfile=""){
 	}
 	return $succ;
 }
-//ä¿¡æ¯
+//ĞÅÏ¢
 function InstallSuccessShowInfo(){
 	$time=time();
 	$chkey='ta1-pb2h-b8ot-ftm87ep-fhng-ftt';
@@ -336,14 +336,14 @@ function InstallSuccessShowInfo(){
 	$dourl="http://ecmsuser.phome.net/empirecmsupdate/?ecms=EmpireCMSUpdate&time=$time&key=$key&ver=$getver";
 	echo'<img src="'.$dourl.'" width="0" height="0">';
 }
-//å»ºè¡¨
+//½¨±í
 function DoCreateTable($sql,$mysqlver,$dbcharset){
 	$type=strtoupper(preg_replace("/^\s*CREATE TABLE\s+.+\s+\(.+?\).*(ENGINE|TYPE)\s*=\s*([a-z]+?).*$/isU","\\2",$sql));
 	$type=in_array($type,array('MYISAM','HEAP'))?$type:'MYISAM';
 	return preg_replace("/^\s*(CREATE TABLE\s+.+\s+\(.+?\)).*$/isU","\\1",$sql).
 		($mysqlver>='4.1'?" ENGINE=$type DEFAULT CHARSET=$dbcharset":" TYPE=$type");
 }
-//è¿è¡ŒSQL
+//ÔËĞĞSQL
 function DoRunQuery($sql,$mydbchar,$mydbtbpre,$mydbver){
 	$sql=str_replace("\r","\n",str_replace(' `phome_',' `'.$mydbtbpre,$sql));
 	$ret=array();
@@ -366,7 +366,7 @@ function DoRunQuery($sql,$mydbchar,$mydbtbpre,$mydbver){
 			if(substr($query,0,12)=='CREATE TABLE')
 			{
 				$name=preg_replace("/CREATE TABLE `([a-z0-9_]+)` .*/is","\\1",$query);
-				echo"å»ºç«‹æ•°æ®è¡¨: <b>".$name."</b> å®Œæ¯•......<br>";
+				echo"½¨Á¢Êı¾İ±í: <b>".$name."</b> Íê±Ï......<br>";
 				do_dbquery_common(DoCreateTable($query,$mydbver,$mydbchar),$GLOBALS['link'],1);
 			}
 			else
@@ -383,7 +383,7 @@ function ins_DoEmpireCMSAdminPassword($password,$salt,$salt2){
 	return $pw;
 }
 
-//å–å¾—éšæœºæ•°
+//È¡µÃËæ»úÊı
 function ins_make_password($pw_length){
 	$low_ascii_bound=48;
 	$upper_ascii_bound=122;
@@ -404,7 +404,7 @@ function ins_make_password($pw_length){
 	}
 	return $password1;
 }
-//å–å¾—IP
+//È¡µÃIP
 function ins_egetip(){
 	if(getenv('HTTP_CLIENT_IP')&&strcasecmp(getenv('HTTP_CLIENT_IP'),'unknown')) 
 	{
@@ -426,23 +426,23 @@ function ins_egetip(){
 	return $ip;
 }
 
-//å–å¾—ç«¯å£
+//È¡µÃ¶Ë¿Ú
 function ins_egetipport(){
 	$ipport=(int)$_SERVER['REMOTE_PORT'];
 	return $ipport;
 }
 
-//åˆä½¿åŒ–ç®¡ç†å‘˜
+//³õÊ¹»¯¹ÜÀíÔ±
 function FirstAdmin($add){
 	if(!trim($add['username'])||!trim($add['password']))
 	{
-		InstallShowMsg('è¯·è¾“å…¥ç®¡ç†å‘˜ç”¨æˆ·åä¸å¯†ç ');
+		InstallShowMsg('ÇëÊäÈë¹ÜÀíÔ±ÓÃ»§ÃûÓëÃÜÂë');
 	}
 	if($add['password']!=$add['repassword'])
 	{
-		InstallShowMsg('ä¸¤æ¬¡è¾“å…¥çš„å¯†ç ä¸ä¸€è‡´ï¼Œè¯·é‡æ–°è¾“å…¥');
+		InstallShowMsg('Á½´ÎÊäÈëµÄÃÜÂë²»Ò»ÖÂ£¬ÇëÖØĞÂÊäÈë');
 	}
-	//é“¾æ¥æ•°æ®åº“
+	//Á´½ÓÊı¾İ¿â
 	@include("../config/config.php");
 	$dbver=InstallConnectDb($ecms_config['db']['dbver'],$ecms_config['db']['dbserver'],$ecms_config['db']['dbport'],$ecms_config['db']['dbusername'],$ecms_config['db']['dbpassword'],$ecms_config['db']['dbname'],$ecms_config['db']['setchar'],$ecms_config['db']['dbchar']);
 	$salt=ins_make_password(8);
@@ -457,77 +457,77 @@ function FirstAdmin($add){
 	$sql=do_dbquery_common("INSERT INTO `".$dbtbpre."enewsuser`(userid,username,password,rnd,adminclass,groupid,checked,styleid,filelevel,salt,loginnum,lasttime,lastip,truename,email,classid,pretime,preip,addtime,addip,userprikey,salt2,lastipport,preipport,addipport) VALUES (1,'$username','$password','$rnd','',1,0,1,0,'$salt',0,0,'','','',0,0,'','$addtime','$addip','$userprikey','$salt2','$addipport','$addipport','$addipport');",$GLOBALS['link']);
 	$sql2=do_dbquery_common("INSERT INTO `".$dbtbpre."enewsuseradd` VALUES (1,0,'','','',0);",$GLOBALS['link']);
 	do_dbclose($GLOBALS['link']);
-	//è®¤è¯ç 
+	//ÈÏÖ¤Âë
 	RepEcmsConfigLoginauth($add);
 	if($sql)
 	{
-		echo"åˆå§‹åŒ–ç®¡ç†å‘˜è´¦å·å®Œæ¯•!<script>self.location.href='changedata.php?defaultdata=$add[defaultdata]';</script>";
+		echo"³õÊ¼»¯¹ÜÀíÔ±ÕËºÅÍê±Ï!<script>self.location.href='changedata.php?defaultdata=$add[defaultdata]';</script>";
 		exit();
 	}
 	else
 	{
-		InstallShowMsg('åˆä½¿åŒ–ç®¡ç†å‘˜ä¸æˆåŠŸï¼Œæ„å¤–å‡ºé”™ï¼Œè¯·é‡æ–°å®‰è£…ä¸€æ¬¡.');
+		InstallShowMsg('³õÊ¹»¯¹ÜÀíÔ±²»³É¹¦£¬ÒâÍâ³ö´í£¬ÇëÖØĞÂ°²×°Ò»´Î.');
 	}
 }
-//å¯¼å…¥æµ‹è¯•æ•°æ®
+//µ¼Èë²âÊÔÊı¾İ
 function InstallDefaultData($add){
-	//é“¾æ¥æ•°æ®åº“
+	//Á´½ÓÊı¾İ¿â
 	@include("../config/config.php");
 	$dbver=InstallConnectDb($ecms_config['db']['dbver'],$ecms_config['db']['dbserver'],$ecms_config['db']['dbport'],$ecms_config['db']['dbusername'],$ecms_config['db']['dbpassword'],$ecms_config['db']['dbname'],$ecms_config['db']['setchar'],$ecms_config['db']['dbchar']);
-	//æ‰§è¡ŒSQLè¯­å¥
+	//Ö´ĞĞSQLÓï¾ä
 	DoRunQuery(ReturnInstallSql(1),$ecms_config['db']['dbchar'],$dbtbpre,$ecms_config['db']['dbver']);
 	do_dbclose($GLOBALS['link']);
-	echo"å¯¼å…¥æµ‹è¯•æ•°æ®å®Œæ¯•!<script>self.location.href='index.php?enews=firstadmin&f=5&defaultdata=$add[defaultdata]';</script>";
+	echo"µ¼Èë²âÊÔÊı¾İÍê±Ï!<script>self.location.href='index.php?enews=firstadmin&f=5&defaultdata=$add[defaultdata]';</script>";
 	exit();
 }
-//å¯¼å…¥æ¨¡æ¿æ•°æ®
+//µ¼ÈëÄ£°åÊı¾İ
 function InstallTemplateData($add){
-	//é“¾æ¥æ•°æ®åº“
+	//Á´½ÓÊı¾İ¿â
 	@include("../config/config.php");
 	$dbver=InstallConnectDb($ecms_config['db']['dbver'],$ecms_config['db']['dbserver'],$ecms_config['db']['dbport'],$ecms_config['db']['dbusername'],$ecms_config['db']['dbpassword'],$ecms_config['db']['dbname'],$ecms_config['db']['setchar'],$ecms_config['db']['dbchar']);
-	//æ‰§è¡ŒSQLè¯­å¥
+	//Ö´ĞĞSQLÓï¾ä
 	DoRunQuery(ReturnInstallSql(2),$ecms_config['db']['dbchar'],$dbtbpre,$ecms_config['db']['dbver']);
 	do_dbclose($GLOBALS['link']);
 	if(empty($add['defaultdata']))
 	{
 		InstallDelArticleTxtFile();
-		echo"å¯¼å…¥æ¨¡æ¿æ•°æ®å®Œæ¯•!<script>self.location.href='index.php?enews=firstadmin&f=5&defaultdata=$add[defaultdata]';</script>";
+		echo"µ¼ÈëÄ£°åÊı¾İÍê±Ï!<script>self.location.href='index.php?enews=firstadmin&f=5&defaultdata=$add[defaultdata]';</script>";
 	}
 	else
 	{
-		echo"å¯¼å…¥æ¨¡æ¿æ•°æ®å®Œæ¯•ï¼Œæ­£è¿›å…¥æµ‹è¯•æ•°æ®å¯¼å…¥......<script>self.location.href='index.php?enews=defaultdata&f=4&ok=1&defaultdata=$add[defaultdata]';</script>";
+		echo"µ¼ÈëÄ£°åÊı¾İÍê±Ï£¬Õı½øÈë²âÊÔÊı¾İµ¼Èë......<script>self.location.href='index.php?enews=defaultdata&f=4&ok=1&defaultdata=$add[defaultdata]';</script>";
 	}
 	exit();
 }
-//å¯¼å…¥ç³»ç»Ÿæ¨¡å‹æ•°æ®
+//µ¼ÈëÏµÍ³Ä£ĞÍÊı¾İ
 function InstallModData($add){
-	//é“¾æ¥æ•°æ®åº“
+	//Á´½ÓÊı¾İ¿â
 	@include("../config/config.php");
 	$dbver=InstallConnectDb($ecms_config['db']['dbver'],$ecms_config['db']['dbserver'],$ecms_config['db']['dbport'],$ecms_config['db']['dbusername'],$ecms_config['db']['dbpassword'],$ecms_config['db']['dbname'],$ecms_config['db']['setchar'],$ecms_config['db']['dbchar']);
-	//æ‰§è¡ŒSQLè¯­å¥
+	//Ö´ĞĞSQLÓï¾ä
 	DoRunQuery(ReturnInstallSql(3),$ecms_config['db']['dbchar'],$dbtbpre,$ecms_config['db']['dbver']);
 	do_dbclose($GLOBALS['link']);
-	echo"å¯¼å…¥ç³»ç»Ÿæ¨¡å‹æ•°æ®å®Œæ¯•ï¼Œæ­£è¿›å…¥æ¨¡æ¿æ•°æ®å¯¼å…¥......<script>self.location.href='index.php?enews=templatedata&f=4&ok=1&defaultdata=$add[defaultdata]';</script>";
+	echo"µ¼ÈëÏµÍ³Ä£ĞÍÊı¾İÍê±Ï£¬Õı½øÈëÄ£°åÊı¾İµ¼Èë......<script>self.location.href='index.php?enews=templatedata&f=4&ok=1&defaultdata=$add[defaultdata]';</script>";
 	exit();
 }
-//é“¾æ¥æ•°æ®åº“
+//Á´½ÓÊı¾İ¿â
 function InstallConnectDb($phome_use_dbver,$phome_db_server,$phome_db_port,$phome_db_username,$phome_db_password,$phome_db_dbname,$phome_db_char,$phome_db_dbchar){
 	global $link;
 	$link=do_dbconnect_common($phome_db_server,$phome_db_port,$phome_db_username,$phome_db_password,$phome_db_dbname);
 	if(!$link)
 	{
-		InstallShowMsg('æ‚¨çš„æ•°æ®åº“ç”¨æˆ·åæˆ–å¯†ç æœ‰è¯¯ï¼Œé“¾æ¥ä¸ä¸ŠMYSQLæ•°æ®åº“');
+		InstallShowMsg('ÄúµÄÊı¾İ¿âÓÃ»§Ãû»òÃÜÂëÓĞÎó£¬Á´½Ó²»ÉÏMYSQLÊı¾İ¿â');
 	}
-	//mysqlç‰ˆæœ¬
+	//mysql°æ±¾
 	if($phome_use_dbver=='auto')
 	{
 		$phome_use_dbver=GetMysqlVerForDb();
 		if(!$phome_use_dbver)
 		{
-			InstallShowMsg('ç³»ç»Ÿæ— æ³•è‡ªåŠ¨è¯†åˆ«MYSQLç‰ˆæœ¬ï¼Œè¯·æ‰‹åŠ¨é€‰æ‹©MYSQLç‰ˆæœ¬');
+			InstallShowMsg('ÏµÍ³ÎŞ·¨×Ô¶¯Ê¶±ğMYSQL°æ±¾£¬ÇëÊÖ¶¯Ñ¡ÔñMYSQL°æ±¾');
 		}
 	}
-	//ç¼–ç 
+	//±àÂë
 	if($phome_use_dbver>='4.1')
 	{
 		$q='';
@@ -545,7 +545,7 @@ function InstallConnectDb($phome_use_dbver,$phome_db_server,$phome_db_port,$phom
 		}
 	}
 	$db=do_eUseDb($phome_db_dbname,$link);
-	//æ•°æ®åº“ä¸å­˜åœ¨
+	//Êı¾İ¿â²»´æÔÚ
 	if(!$db)
 	{
 		if($phome_use_dbver>='4.1')
@@ -558,52 +558,52 @@ function InstallConnectDb($phome_use_dbver,$phome_db_server,$phome_db_port,$phom
 		}
 		if(!$createdb)
 		{
-			InstallShowMsg('æ‚¨è¾“å…¥çš„æ•°æ®åº“åä¸å­˜åœ¨');
+			InstallShowMsg('ÄúÊäÈëµÄÊı¾İ¿âÃû²»´æÔÚ');
 		}
 		do_eUseDb($phome_db_dbname,$link);
 	}
 	return $phome_use_dbver;
 }
-//é…ç½®æ•°æ®åº“
+//ÅäÖÃÊı¾İ¿â
 function SetDb($add){
 	global $version;
 	if(!$add['mydbver']||!$add['mydbhost']||!$add['mydbname']||!$add['mydbtbpre']||!$add['mycookievarpre']||!$add['myadmincookievarpre'])
 	{
-		InstallShowMsg('å¸¦*é¡¹ä¸èƒ½ä¸ºç©º');
+		InstallShowMsg('´ø*Ïî²»ÄÜÎª¿Õ');
 	}
-	//é“¾æ¥æ•°æ®åº“
+	//Á´½ÓÊı¾İ¿â
 	$dbver=InstallConnectDb($add['mydbver'],$add['mydbhost'],$add['mydbport'],$add['mydbusername'],$add['mydbpassword'],$add['mydbname'],$add['mysetchar'],$add['mydbchar']);
 	if($add['mydbver']=='auto')
 	{
 		$add['mydbver']=$dbver;
 	}
-	//åˆä½¿åŒ–ç½‘ç«™ä¿¡æ¯
+	//³õÊ¹»¯ÍøÕ¾ĞÅÏ¢
 	$siteurl=ReturnEcmsSiteUrl();
 	$add['keyrnd']=ins_make_password(32);
 	$add['downpass']=ins_make_password(20);
 	$add['hkeyrnd']=ins_make_password(36);
 	$add['ctimernd']=ins_make_password(42);
 	$add['autodopostpass']=ins_make_password(60);
-	//é…ç½®æ–‡ä»¶
+	//ÅäÖÃÎÄ¼ş
 	RepEcmsConfig($add,$siteurl);
-	//æ‰§è¡ŒSQLè¯­å¥
+	//Ö´ĞĞSQLÓï¾ä
 	DoRunQuery(ReturnInstallSql(0),$add['mydbchar'],$add['mydbtbpre'],$add['mydbver']);
 	do_dbquery_common("update ".$add['mydbtbpre']."enewspublic set newsurl='$siteurl',fileurl='".$siteurl."d/file/',softversion='$version',keyrnd='$add[keyrnd]',downpass='$add[downpass]',hkeyrnd='$add[hkeyrnd]' limit 1",$GLOBALS['link']);
 	do_dbquery_common("update ".$add['mydbtbpre']."enewspublicadd set ctimernd='$add[ctimernd]',autodopostpass='$add[autodopostpass]' limit 1",$GLOBALS['link']);
 	do_dbquery_common("update ".$add['mydbtbpre']."enewspl_set set plurl='".$siteurl."e/pl/' limit 1",$GLOBALS['link']);
 	do_dbquery_common("update ".$add['mydbtbpre']."enewsshoppayfs set payurl='".$siteurl."e/payapi/ShopPay.php?paytype=alipay' where payid=3",$GLOBALS['link']);
 	do_dbclose($GLOBALS['link']);
-	echo"é…ç½®æ•°æ®åº“å®Œæ¯•ï¼Œæ­£è¿›å…¥ç³»ç»Ÿæ¨¡å‹æ•°æ®å¯¼å…¥......<script>self.location.href='index.php?enews=moddata&f=4&ok=1&defaultdata=$add[defaultdata]';</script>";
+	echo"ÅäÖÃÊı¾İ¿âÍê±Ï£¬Õı½øÈëÏµÍ³Ä£ĞÍÊı¾İµ¼Èë......<script>self.location.href='index.php?enews=moddata&f=4&ok=1&defaultdata=$add[defaultdata]';</script>";
 	exit();
 }
-//å¤„ç†é…ç½®æ–‡ä»¶
+//´¦ÀíÅäÖÃÎÄ¼ş
 function RepEcmsConfig($add,$siteurl){
 	global $headerchar;
-	//åˆä½¿åŒ–é…ç½®æ–‡ä»¶
+	//³õÊ¹»¯ÅäÖÃÎÄ¼ş
 	$fp=@fopen("data/config.php","r");
 	if(!$fp)
 	{
-		InstallShowMsg('è¯·æ£€æŸ¥ /e/install/data/config.php æ–‡ä»¶æ˜¯å¦å­˜åœ¨!');
+		InstallShowMsg('Çë¼ì²é /e/install/data/config.php ÎÄ¼şÊÇ·ñ´æÔÚ!');
 	}
 	$data=@fread($fp,filesize("data/config.php"));
 	fclose($fp);
@@ -634,37 +634,37 @@ function RepEcmsConfig($add,$siteurl){
 	$data=str_replace('<!--ecms.ctimernd-->',$add['ctimernd'],$data);
 	$data=str_replace('<!--ecms.autodopostpass-->',$add['autodopostpass'],$data);
 	$data=str_replace('<!--ecms.keyrnd-->',$add['keyrnd'],$data);
-	//å†™å…¥é…ç½®æ–‡ä»¶
+	//Ğ´ÈëÅäÖÃÎÄ¼ş
 	$fp1=@fopen("../config/config.php","w");
 	if(!$fp1)
 	{
-		InstallShowMsg(' /e/config/config.php æ–‡ä»¶æƒé™æ²¡æœ‰è®¾ä¸º0777ï¼Œé…ç½®æ•°æ®åº“ä¸æˆåŠŸ');
+		InstallShowMsg(' /e/config/config.php ÎÄ¼şÈ¨ÏŞÃ»ÓĞÉèÎª0777£¬ÅäÖÃÊı¾İ¿â²»³É¹¦');
 	}
 	@fputs($fp1,$data);
 	@fclose($fp1);
 }
-//å¤„ç†è®¤è¯ç 
+//´¦ÀíÈÏÖ¤Âë
 function RepEcmsConfigLoginauth($add){
 	global $headerchar;
-	//åˆä½¿åŒ–é…ç½®æ–‡ä»¶
+	//³õÊ¹»¯ÅäÖÃÎÄ¼ş
 	$fp=@fopen("../config/config.php","r");
 	if(!$fp)
 	{
-		InstallShowMsg('è¯·æ£€æŸ¥ /e/config/config.php æ–‡ä»¶æ˜¯å¦å­˜åœ¨!');
+		InstallShowMsg('Çë¼ì²é /e/config/config.php ÎÄ¼şÊÇ·ñ´æÔÚ!');
 	}
 	$data=@fread($fp,filesize("../config/config.php"));
 	fclose($fp);
 	$data=str_replace('<!--loginauth.phome.net-->',$add['loginauth'],$data);
-	//å†™å…¥é…ç½®æ–‡ä»¶
+	//Ğ´ÈëÅäÖÃÎÄ¼ş
 	$fp1=@fopen("../config/config.php","w");
 	if(!$fp1)
 	{
-		InstallShowMsg(' /e/config/config.php æ–‡ä»¶æƒé™æ²¡æœ‰è®¾ä¸º0777ï¼Œé…ç½®ä¸æˆåŠŸ');
+		InstallShowMsg(' /e/config/config.php ÎÄ¼şÈ¨ÏŞÃ»ÓĞÉèÎª0777£¬ÅäÖÃ²»³É¹¦');
 	}
 	@fputs($fp1,$data);
 	@fclose($fp1);
 }
-//è¿”å›SQLè¯­å¥
+//·µ»ØSQLÓï¾ä
 function ReturnInstallSql($defaultdata=1){
 	if($defaultdata==0)
 	{
@@ -687,23 +687,23 @@ function ReturnInstallSql($defaultdata=1){
 	fclose($fp);
 	if(empty($sql))
 	{
-		InstallShowMsg(' /e/install/'.$sqlfile.' æ–‡ä»¶ä¸¢å¤±,å®‰è£…ä¸æˆåŠŸ','index.php?enews=setdb&f=4');
+		InstallShowMsg(' /e/install/'.$sqlfile.' ÎÄ¼ş¶ªÊ§,°²×°²»³É¹¦','index.php?enews=setdb&f=4');
 	}
-	//æ›¿æ¢æµ‹è¯•æ•°æ®ç½‘å€
+	//Ìæ»»²âÊÔÊı¾İÍøÖ·
 	if($sqlfile=='data/empirecms.data.sql')
 	{
 		$sql=InstallReplaceTestDataUrl($sql);
 	}
 	return $sql;
 }
-//å–å¾—ç½‘ç«™åœ°å€
+//È¡µÃÍøÕ¾µØÖ·
 function ReturnEcmsSiteUrl(){
 	$siteurl=str_replace('e/install/index.php','',$_SERVER['PHP_SELF']);
 	$siteurl=str_replace('e/install/','',$siteurl);
 	$siteurl=str_replace('e/install','',$siteurl);
 	return $siteurl;
 }
-//åˆ é™¤å­˜æ–‡æœ¬æ–‡ä»¶
+//É¾³ı´æÎÄ±¾ÎÄ¼ş
 function InstallDelArticleTxtFile(){
 	@include("../class/delpath.php");
 	$DelPath="../../d/txt/2012";
@@ -711,7 +711,7 @@ function InstallDelArticleTxtFile(){
 	$wm_chief_ok=$wm_chief->wm_chief_delpath($DelPath);
 	return $wm_chief_ok;
 }
-//æ›¿æ¢æµ‹è¯•æ•°æ®ç½‘å€
+//Ìæ»»²âÊÔÊı¾İÍøÖ·
 function InstallReplaceTestDataUrl($text){
 	$baseurl=ReturnEcmsSiteUrl();
 	$text=str_replace('/ecms75/',$baseurl,$text);

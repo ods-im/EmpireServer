@@ -1,13 +1,13 @@
 <?php
 define('InEmpireCMSDbSql',TRUE);
 
-//------------------------- æ•°æ®åº“ -------------------------
+//------------------------- Êý¾Ý¿â -------------------------
 
-//é“¾æŽ¥æ•°æ®åº“
+//Á´½ÓÊý¾Ý¿â
 function do_dbconnect($dbhost,$dbport,$dbusername,$dbpassword,$dbname){
 	global $ecms_config;
 	$dblocalhost=$dbhost;
-	//ç«¯å£
+	//¶Ë¿Ú
 	if($dbport)
 	{
 		$dblocalhost.=':'.$dbport;
@@ -18,7 +18,7 @@ function do_dbconnect($dbhost,$dbport,$dbusername,$dbpassword,$dbname){
 		echo"Cann't connect to DB!";
 		exit();
 	}
-	//ç¼–ç 
+	//±àÂë
 	if($ecms_config['db']['dbver']>='4.1')
 	{
 		$q='';
@@ -39,7 +39,7 @@ function do_dbconnect($dbhost,$dbport,$dbusername,$dbpassword,$dbname){
 	return $dblink;
 }
 
-//å…³é—­æ•°æ®åº“
+//¹Ø±ÕÊý¾Ý¿â
 function do_dbclose($dblink){
 	if($dblink)
 	{
@@ -47,12 +47,12 @@ function do_dbclose($dblink){
 	}
 }
 
-//è®¾ç½®ç¼–ç 
+//ÉèÖÃ±àÂë
 function do_DoSetDbChar($dbchar,$dblink){
 	@mysql_query('set character_set_connection='.$dbchar.',character_set_results='.$dbchar.',character_set_client=binary;',$dblink);
 }
 
-//å–å¾—mysqlç‰ˆæœ¬
+//È¡µÃmysql°æ±¾
 function do_eGetDBVer($selectdb=0){
 	global $empire;
 	if($selectdb&&$empire)
@@ -66,11 +66,11 @@ function do_eGetDBVer($selectdb=0){
 	return $getdbver;
 }
 
-//æ™®é€šæ“ä½œ
+//ÆÕÍ¨²Ù×÷
 function do_dbconnect_common($dbhost,$dbport,$dbusername,$dbpassword,$dbname=''){
 	global $ecms_config;
 	$dblocalhost=$dbhost;
-	//ç«¯å£
+	//¶Ë¿Ú
 	if($dbport)
 	{
 		$dblocalhost.=':'.$dbport;
@@ -108,7 +108,7 @@ function do_dblastid_common($dblink){
 	return $id;
 }
 
-//é€‰æ‹©æ•°æ®åº“
+//Ñ¡ÔñÊý¾Ý¿â
 function do_eUseDb($dbname,$dblink,$query=0){
 	if($query)
 	{
@@ -123,28 +123,28 @@ function do_eUseDb($dbname,$dblink,$query=0){
 
 
 
-//------------------------- æ•°æ®åº“æ“ä½œ -------------------------
+//------------------------- Êý¾Ý¿â²Ù×÷ -------------------------
 
 class mysqlquery
 {
 	var $dblink;
-	var $sql;//sqlè¯­å¥æ‰§è¡Œç»“æžœ
-	var $query;//sqlè¯­å¥
-	var $num;//è¿”å›žè®°å½•æ•°
-	var $r;//è¿”å›žæ•°ç»„
-	var $id;//è¿”å›žæ•°æ®åº“idå·
-	//æ‰§è¡Œmysql_query()è¯­å¥
+	var $sql;//sqlÓï¾äÖ´ÐÐ½á¹û
+	var $query;//sqlÓï¾ä
+	var $num;//·µ»Ø¼ÇÂ¼Êý
+	var $r;//·µ»ØÊý×é
+	var $id;//·µ»ØÊý¾Ý¿âidºÅ
+	//Ö´ÐÐmysql_query()Óï¾ä
 	function query($query){
 		global $ecms_config;
 		$this->sql=mysql_query($query,return_dblink($query)) or die($ecms_config['db']['showerror']==1?str_replace($GLOBALS['dbtbpre'],'***_',mysql_error().'<br>'.$query):'DbError');
 		return $this->sql;
 	}
-	//æ‰§è¡Œmysql_query()è¯­å¥2
+	//Ö´ÐÐmysql_query()Óï¾ä2
 	function query1($query){
 		$this->sql=mysql_query($query,return_dblink($query));
 		return $this->sql;
 	}
-	//æ‰§è¡Œmysql_query()è¯­å¥(é€‰æ‹©æ•°æ®åº“USE)
+	//Ö´ÐÐmysql_query()Óï¾ä(Ñ¡ÔñÊý¾Ý¿âUSE)
 	function usequery($query){
 		global $ecms_config;
 		$this->sql=mysql_query($query,$GLOBALS['link']) or die($ecms_config['db']['showerror']==1?str_replace($GLOBALS['dbtbpre'],'***_',mysql_error().'<br>'.$query):'DbError');
@@ -154,62 +154,62 @@ class mysqlquery
 		}
 		return $this->sql;
 	}
-	//æ‰§è¡Œmysql_query()è¯­å¥(æ“ä½œæ•°æ®åº“)
+	//Ö´ÐÐmysql_query()Óï¾ä(²Ù×÷Êý¾Ý¿â)
 	function updatesql($query){
 		global $ecms_config;
 		$this->sql=mysql_query($query,return_dblink($query)) or die($ecms_config['db']['showerror']==1?str_replace($GLOBALS['dbtbpre'],'***_',mysql_error().'<br>'.$query):'DbError');
 		return $this->sql;
 	}
-	//æ‰§è¡Œmysql_fetch_array()
-	function fetch($sql)//æ­¤æ–¹æ³•çš„å‚æ•°æ˜¯$sqlå°±æ˜¯sqlè¯­å¥æ‰§è¡Œç»“æžœ
+	//Ö´ÐÐmysql_fetch_array()
+	function fetch($sql)//´Ë·½·¨µÄ²ÎÊýÊÇ$sql¾ÍÊÇsqlÓï¾äÖ´ÐÐ½á¹û
 	{
 		$this->r=mysql_fetch_array($sql);
 		return $this->r;
 	}
-	//æ‰§è¡Œfetchone(mysql_fetch_array())
-	//æ­¤æ–¹æ³•ä¸Žfetch()çš„åŒºåˆ«æ˜¯:1ã€æ­¤æ–¹æ³•çš„å‚æ•°æ˜¯$queryå°±æ˜¯sqlè¯­å¥ 
-	//2ã€æ­¤æ–¹æ³•ç”¨äºŽwhile(),for()æ•°æ®åº“æŒ‡é’ˆä¸ä¼šè‡ªåŠ¨ä¸‹ç§»ï¼Œè€Œfetch()å¯ä»¥è‡ªåŠ¨ä¸‹ç§»ã€‚
+	//Ö´ÐÐfetchone(mysql_fetch_array())
+	//´Ë·½·¨Óëfetch()µÄÇø±ðÊÇ:1¡¢´Ë·½·¨µÄ²ÎÊýÊÇ$query¾ÍÊÇsqlÓï¾ä 
+	//2¡¢´Ë·½·¨ÓÃÓÚwhile(),for()Êý¾Ý¿âÖ¸Õë²»»á×Ô¶¯ÏÂÒÆ£¬¶øfetch()¿ÉÒÔ×Ô¶¯ÏÂÒÆ¡£
 	function fetch1($query)
 	{
 		$this->sql=$this->query($query);
 		$this->r=mysql_fetch_array($this->sql);
 		return $this->r;
 	}
-	//æ‰§è¡Œmysql_num_rows()
-	function num($query)//æ­¤ç±»çš„å‚æ•°æ˜¯$queryå°±æ˜¯sqlè¯­å¥
+	//Ö´ÐÐmysql_num_rows()
+	function num($query)//´ËÀàµÄ²ÎÊýÊÇ$query¾ÍÊÇsqlÓï¾ä
 	{
 		$this->sql=$this->query($query);
 		$this->num=mysql_num_rows($this->sql);
 		return $this->num;
 	}
-	//æ‰§è¡Œnumone(mysql_num_rows())
-	//æ­¤æ–¹æ³•ä¸Žnum()çš„åŒºåˆ«æ˜¯ï¼š1ã€æ­¤æ–¹æ³•çš„å‚æ•°æ˜¯$sqlå°±æ˜¯sqlè¯­å¥çš„æ‰§è¡Œç»“æžœã€‚
+	//Ö´ÐÐnumone(mysql_num_rows())
+	//´Ë·½·¨Óënum()µÄÇø±ðÊÇ£º1¡¢´Ë·½·¨µÄ²ÎÊýÊÇ$sql¾ÍÊÇsqlÓï¾äµÄÖ´ÐÐ½á¹û¡£
 	function num1($sql)
 	{
 		$this->num=mysql_num_rows($sql);
 		return $this->num;
 	}
-	//æ‰§è¡Œnumone(mysql_num_rows())
-	//ç»Ÿè®¡è®°å½•æ•°
+	//Ö´ÐÐnumone(mysql_num_rows())
+	//Í³¼Æ¼ÇÂ¼Êý
 	function gettotal($query)
 	{
 		$this->r=$this->fetch1($query);
 		return $this->r['total'];
 	}
-	//æ‰§è¡Œfree(mysql_result_free())
-	//æ­¤æ–¹æ³•çš„å‚æ•°æ˜¯$sqlå°±æ˜¯sqlè¯­å¥çš„æ‰§è¡Œç»“æžœã€‚åªæœ‰åœ¨ç”¨åˆ°mysql_fetch_arrayçš„æƒ…å†µä¸‹ç”¨
+	//Ö´ÐÐfree(mysql_result_free())
+	//´Ë·½·¨µÄ²ÎÊýÊÇ$sql¾ÍÊÇsqlÓï¾äµÄÖ´ÐÐ½á¹û¡£Ö»ÓÐÔÚÓÃµ½mysql_fetch_arrayµÄÇé¿öÏÂÓÃ
 	function free($sql)
 	{
 		mysql_free_result($sql);
 	}
-	//æ‰§è¡Œseek(mysql_data_seek())
-	//æ­¤æ–¹æ³•çš„å‚æ•°æ˜¯$sqlå°±æ˜¯sqlè¯­å¥çš„æ‰§è¡Œç»“æžœ,$pitä¸ºæ‰§è¡ŒæŒ‡é’ˆçš„åç§»æ•°
+	//Ö´ÐÐseek(mysql_data_seek())
+	//´Ë·½·¨µÄ²ÎÊýÊÇ$sql¾ÍÊÇsqlÓï¾äµÄÖ´ÐÐ½á¹û,$pitÎªÖ´ÐÐÖ¸ÕëµÄÆ«ÒÆÊý
 	function seek($sql,$pit)
 	{
 		mysql_data_seek($sql,$pit);
 	}
-	//æ‰§è¡Œid(mysql_insert_id())
-	function lastid()//å–å¾—æœ€åŽä¸€æ¬¡æ‰§è¡Œmysqlæ•°æ®åº“idå·
+	//Ö´ÐÐid(mysql_insert_id())
+	function lastid()//È¡µÃ×îºóÒ»´ÎÖ´ÐÐmysqlÊý¾Ý¿âidºÅ
 	{
 		$this->id=mysql_insert_id($GLOBALS['link']);
 		if($this->id<0)
@@ -218,17 +218,17 @@ class mysqlquery
 		}
 		return $this->id;
 	}
-	//è¿”å›žå½±å“æ•°é‡(mysql_affected_rows())
-	function affectnum()//å–å¾—æ“ä½œæ•°æ®è¡¨åŽå—å½±å“çš„è®°å½•æ•°
+	//·µ»ØÓ°ÏìÊýÁ¿(mysql_affected_rows())
+	function affectnum()//È¡µÃ²Ù×÷Êý¾Ý±íºóÊÜÓ°ÏìµÄ¼ÇÂ¼Êý
 	{
 		return mysql_affected_rows($GLOBALS['link']);
 	}
-	//æ‰§è¡Œescape_string()å‡½æ•°
+	//Ö´ÐÐescape_string()º¯Êý
 	function EDbEscapeStr($str){
 		$str=mysql_real_escape_string($str);
 		return $str;
 	}
-	//å–å¾—æ•°æ®åº“ç‰ˆæœ¬
+	//È¡µÃÊý¾Ý¿â°æ±¾
 	function egetdbver()
 	{
 		$this->r=$this->fetch1('select version() as version');

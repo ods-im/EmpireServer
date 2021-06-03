@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,13 +15,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"changedata");
 
-//æ‰¹é‡æ›´æ–°ä¿¡æ¯é¡µåœ°å€
+//ÅúÁ¿¸üĞÂĞÅÏ¢Ò³µØÖ·
 function ReInfoUrl($start,$classid,$from,$retype,$startday,$endday,$startid,$endid,$tbname,$userid,$username){
 	global $empire,$public_r,$class_r,$fun_r,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"changedata");
 	$start=(int)$start;
 	$tbname=RepPostVar($tbname);
@@ -30,21 +30,21 @@ function ReInfoUrl($start,$classid,$from,$retype,$startday,$endday,$startid,$end
 		printerror("ErrorUrl","history.go(-1)");
     }
 	$add1='';
-	//æŒ‰æ ç›®åˆ·æ–°
+	//°´À¸Ä¿Ë¢ĞÂ
 	$classid=(int)$classid;
 	if($classid)
 	{
-		if(empty($class_r[$classid][islast]))//çˆ¶æ ç›®
+		if(empty($class_r[$classid][islast]))//¸¸À¸Ä¿
 		{
 			$where=ReturnClass($class_r[$classid][sonclass]);
 		}
-		else//ç»ˆææ ç›®
+		else//ÖÕ¼«À¸Ä¿
 		{
 			$where="classid='$classid'";
 		}
 		$add1=" and (".$where.")";
     }
-	//æŒ‰IDåˆ·æ–°
+	//°´IDË¢ĞÂ
 	if($retype)
 	{
 		$startid=(int)$startid;
@@ -69,7 +69,7 @@ function ReInfoUrl($start,$classid,$from,$retype,$startday,$endday,$startid,$end
 	{
 		$b=1;
 		$new_start=$r[id];
-		//è¿”å›è¡¨
+		//·µ»Ø±í
 		$infotb=ReturnInfoMainTbname($tbname,$r['checked']);
 		$infor=$empire->fetch1("select newspath,filename,groupid,isurl,titleurl from ".$infotb." where id='$r[id]' limit 1");
 		$infourl=GotoGetTitleUrl($r['classid'],$r['id'],$infor['newspath'],$infor['filename'],$infor['groupid'],$infor['isurl'],$infor['titleurl']);
@@ -77,7 +77,7 @@ function ReInfoUrl($start,$classid,$from,$retype,$startday,$endday,$startid,$end
 	}
 	if(empty($b))
 	{
-	    insert_dolog("");//æ“ä½œæ—¥å¿—
+	    insert_dolog("");//²Ù×÷ÈÕÖ¾
 		printerror("ReInfoUrlSuccess",$from);
 	}
 	echo $fun_r[OneReInfoUrlSuccess]."(ID:<font color=red><b>".$new_start."</b></font>)<script>self.location.href='ReInfoUrl.php?enews=ReInfoUrl&tbname=$tbname&classid=$classid&start=$new_start&from=".urlencode($from)."&retype=$retype&startday=$startday&endday=$endday&startid=$startid&endid=$endid".hReturnEcmsHashStrHref(0)."';</script>";
@@ -93,7 +93,7 @@ if($enews)
 	@set_time_limit(0);
 	include('../../data/dbcache/class.php');
 }
-if($enews=="ReInfoUrl")//æ‰¹é‡æ›´æ–°ä¿¡æ¯é¡µåœ°å€
+if($enews=="ReInfoUrl")//ÅúÁ¿¸üĞÂĞÅÏ¢Ò³µØÖ·
 {
 	$start=$_GET['start'];
 	$classid=$_GET['classid'];
@@ -107,12 +107,12 @@ if($enews=="ReInfoUrl")//æ‰¹é‡æ›´æ–°ä¿¡æ¯é¡µåœ°å€
 	ReInfoUrl($start,$classid,$from,$retype,$startday,$endday,$startid,$endid,$tbname,$logininid,$loginin);
 }
 
-//æ ç›®
+//À¸Ä¿
 $fcfile="../../data/fc/ListEnews.php";
 $class="<script src=../../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
 {$class=ShowClass_AddClass("",0,0,"|-",0,0);}
-//åˆ·æ–°è¡¨
+//Ë¢ĞÂ±í
 $retable="";
 $selecttable="";
 $i=0;
@@ -131,24 +131,24 @@ while($tr=$empire->fetch($tsql))
 	$retable.="<input type=checkbox name=tbname[] value='$tr[tbname]' checked>$tr[tname]&nbsp;&nbsp;".$br;
 	$selecttable.="<option value='".$tr[tbname]."'>".$tr[tname]."</option>";
 }
-//é€‰æ‹©æ—¥æœŸ
+//Ñ¡ÔñÈÕÆÚ
 $todaydate=date("Y-m-d");
 $todaytime=time();
 $changeday="<select name=selectday onchange=\"document.reform.startday.value=this.value;document.reform.endday.value='".$todaydate."'\">
-<option value='".$todaydate."'>--é€‰æ‹©--</option>
-<option value='".$todaydate."'>ä»Šå¤©</option>
-<option value='".ToChangeTime($todaytime,7)."'>ä¸€å‘¨</option>
-<option value='".ToChangeTime($todaytime,30)."'>ä¸€æœˆ</option>
-<option value='".ToChangeTime($todaytime,90)."'>ä¸‰æœˆ</option>
-<option value='".ToChangeTime($todaytime,180)."'>åŠå¹´</option>
-<option value='".ToChangeTime($todaytime,365)."'>ä¸€å¹´</option>
+<option value='".$todaydate."'>--Ñ¡Ôñ--</option>
+<option value='".$todaydate."'>½ñÌì</option>
+<option value='".ToChangeTime($todaytime,7)."'>Ò»ÖÜ</option>
+<option value='".ToChangeTime($todaytime,30)."'>Ò»ÔÂ</option>
+<option value='".ToChangeTime($todaytime,90)."'>ÈıÔÂ</option>
+<option value='".ToChangeTime($todaytime,180)."'>°ëÄê</option>
+<option value='".ToChangeTime($todaytime,365)."'>Ò»Äê</option>
 </select>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ‰¹é‡æ›´æ–°ä¿¡æ¯é¡µåœ°å€</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÅúÁ¿¸üĞÂĞÅÏ¢Ò³µØÖ·</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 <script>
@@ -167,69 +167,69 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="39%" height="25">ä½ç½®ï¼š<a href="ReInfoUrl.php<?=$ecms_hashur['whehref']?>">æ‰¹é‡æ›´æ–°ä¿¡æ¯é¡µåœ°å€</a></td>
+    <td width="39%" height="25">Î»ÖÃ£º<a href="ReInfoUrl.php<?=$ecms_hashur['whehref']?>">ÅúÁ¿¸üĞÂĞÅÏ¢Ò³µØÖ·</a></td>
     <td width="61%"><div align="right" class="emenubutton">
-      <input type="button" name="Submit52" value="æ•°æ®æ›´æ–°ä¸­å¿ƒ" onclick="self.location.href='ChangeData.php<?=$ecms_hashur['whehref']?>';">
+      <input type="button" name="Submit52" value="Êı¾İ¸üĞÂÖĞĞÄ" onclick="self.location.href='ChangeData.php<?=$ecms_hashur['whehref']?>';">
 	  &nbsp;&nbsp;
-      <input type="button" name="Submit52" value="æ•°æ®æ•´ç†" onclick="self.location.href='DoUpdateData.php<?=$ecms_hashur['whehref']?>';">
+      <input type="button" name="Submit52" value="Êı¾İÕûÀí" onclick="self.location.href='DoUpdateData.php<?=$ecms_hashur['whehref']?>';">
 	  &nbsp;&nbsp;
-      <input type="button" name="Submit522" value="æ›´æ–°åŠ¨æ€é¡µé¢ç¼“å­˜" onclick="self.location.href='ChangePageCache.php<?=$ecms_hashur['whehref']?>';">
+      <input type="button" name="Submit522" value="¸üĞÂ¶¯Ì¬Ò³Ãæ»º´æ" onclick="self.location.href='ChangePageCache.php<?=$ecms_hashur['whehref']?>';">
     </div></td>
   </tr>
 </table>
-<form action="ReInfoUrl.php" method="get" name="form1" target="_blank" onsubmit="return confirm('ç¡®è®¤è¦æ›´æ–°?');">
+<form action="ReInfoUrl.php" method="get" name="form1" target="_blank" onsubmit="return confirm('È·ÈÏÒª¸üĞÂ?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ReInfoUrl">
   <?=$ecms_hashur['form']?>
     <input name="from" type="hidden" id="from" value="ReInfoUrl.php<?=$ecms_hashur['whehref']?>">
     <tr class="header"> 
-      <td height="25"> <div align="center">æ‰¹é‡æ›´æ–°ä¿¡æ¯é¡µåœ°å€</div></td>
+      <td height="25"> <div align="center">ÅúÁ¿¸üĞÂĞÅÏ¢Ò³µØÖ·</div></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <div align="center"> 
           <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
             <tr> 
-              <td height="25">æ•°æ®è¡¨ï¼š</td>
+              <td height="25">Êı¾İ±í£º</td>
               <td height="25"> <select name="tbname" id="tbname">
-                  <option value=''>------ é€‰æ‹©æ•°æ®è¡¨ ------</option>
+                  <option value=''>------ Ñ¡ÔñÊı¾İ±í ------</option>
                   <?=$selecttable?>
                 </select>
                 (*) </td>
             </tr>
             <tr> 
-              <td height="25">æ ç›®</td>
+              <td height="25">À¸Ä¿</td>
               <td height="25"><select name="classid">
-                  <option value="0">æ‰€æœ‰æ ç›®</option>
+                  <option value="0">ËùÓĞÀ¸Ä¿</option>
                   <?=$class?>
                 </select>
-                <font color="#666666">(å¦‚é€‰æ‹©çˆ¶æ ç›®ï¼Œå°†æ›´æ–°æ‰€æœ‰å­æ ç›®)</font></td>
+                <font color="#666666">(ÈçÑ¡Ôñ¸¸À¸Ä¿£¬½«¸üĞÂËùÓĞ×ÓÀ¸Ä¿)</font></td>
             </tr>
             <tr> 
               <td width="23%" height="25"> <input name="retype" type="radio" value="0" checked>
-                æŒ‰æ—¶é—´æ›´æ–°ï¼š</td>
-              <td width="77%" height="25">ä» 
+                °´Ê±¼ä¸üĞÂ£º</td>
+              <td width="77%" height="25">´Ó 
                 <input name="startday" type="text" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-                åˆ° 
+                µ½ 
                 <input name="endday" type="text" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-                ä¹‹é—´çš„ä¿¡æ¯ <font color="#666666">(ä¸å¡«å°†æ›´æ–°æ‰€æœ‰ä¿¡æ¯)</font></td>
+                Ö®¼äµÄĞÅÏ¢ <font color="#666666">(²»Ìî½«¸üĞÂËùÓĞĞÅÏ¢)</font></td>
             </tr>
             <tr> 
               <td height="25"> <input name="retype" type="radio" value="1">
-                æŒ‰IDæ›´æ–°ï¼š</td>
-              <td height="25">ä» 
+                °´ID¸üĞÂ£º</td>
+              <td height="25">´Ó 
                 <input name="startid" type="text" value="0" size="6">
-                åˆ° 
+                µ½ 
                 <input name="endid" type="text" value="0" size="6">
-                ä¹‹é—´çš„ä¿¡æ¯ <font color="#666666">(ä¸¤ä¸ªå€¼ä¸º0å°†æ›´æ–°æ‰€æœ‰ä¿¡æ¯)</font></td>
+                Ö®¼äµÄĞÅÏ¢ <font color="#666666">(Á½¸öÖµÎª0½«¸üĞÂËùÓĞĞÅÏ¢)</font></td>
             </tr>
             <tr> 
               <td height="25">&nbsp;</td>
-              <td height="25"><input type="submit" name="Submit62" value="å¼€å§‹æ›´æ–°"> 
-                <input type="reset" name="Submit72" value="é‡ç½®"> 
+              <td height="25"><input type="submit" name="Submit62" value="¿ªÊ¼¸üĞÂ"> 
+                <input type="reset" name="Submit72" value="ÖØÖÃ"> 
                 <input name="enews" type="hidden" value="ReInfoUrl"> 
               </td>
             </tr>
             <tr> 
-              <td height="25" colspan="2"><font color="#666666">è¯´æ˜ï¼šå½“æ”¹å˜ä¿¡æ¯ç›®å½•å½¢å¼æ—¶ï¼Œè¯·ç”¨æ­¤åŠŸèƒ½æ¥æ‰¹é‡æ›´æ–°å†…å®¹é¡µåœ°å€ã€‚</font></td>
+              <td height="25" colspan="2"><font color="#666666">ËµÃ÷£ºµ±¸Ä±äĞÅÏ¢Ä¿Â¼ĞÎÊ½Ê±£¬ÇëÓÃ´Ë¹¦ÄÜÀ´ÅúÁ¿¸üĞÂÄÚÈİÒ³µØÖ·¡£</font></td>
             </tr>
           </table>
         </div></td>

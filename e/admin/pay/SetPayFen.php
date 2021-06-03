@@ -7,7 +7,7 @@ require("../../member/class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,31 +16,31 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"pay");
 $r=$empire->fetch1("select paymoneytofen,payminmoney from {$dbtbpre}enewspublic limit 1");
-$url="åœ¨çº¿æ”¯ä»˜&gt; <a href=PayApi.php".$ecms_hashur['whehref'].">ç®¡ç†æ”¯ä»˜æ¥å£</a>&nbsp;>&nbsp;æ”¯ä»˜å‚æ•°é…ç½®";
+$url="ÔÚÏßÖ§¸¶&gt; <a href=PayApi.php".$ecms_hashur['whehref'].">¹ÜÀíÖ§¸¶½Ó¿Ú</a>&nbsp;>&nbsp;Ö§¸¶²ÎÊıÅäÖÃ";
 db_close();
 $empire=null;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ”¯ä»˜å‚æ•°é…ç½®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ö§¸¶²ÎÊıÅäÖÃ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="ç®¡ç†æ”¯ä»˜è®°å½•" onclick="self.location.href='ListPayRecord.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀíÖ§¸¶¼ÇÂ¼" onclick="self.location.href='ListPayRecord.php<?=$ecms_hashur['whehref']?>';">
 		&nbsp;&nbsp; 
-        <input type="button" name="Submit52" value="ç®¡ç†æ”¯ä»˜æ¥å£" onclick="self.location.href='PayApi.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit52" value="¹ÜÀíÖ§¸¶½Ó¿Ú" onclick="self.location.href='PayApi.php<?=$ecms_hashur['whehref']?>';">
         </div></td>
   </tr>
 </table>
@@ -48,23 +48,23 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">æ”¯ä»˜å‚æ•°é…ç½® 
+      <td height="25" colspan="2">Ö§¸¶²ÎÊıÅäÖÃ 
         <input name="enews" type="hidden" id="enews" value="SetPayFen"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="23%" height="25"><div align="right">ä¸€å…ƒå¯è´­ä¹°ï¼š</div></td>
+      <td width="23%" height="25"><div align="right">Ò»Ôª¿É¹ºÂò£º</div></td>
       <td width="77%" height="25"><input name="paymoneytofen" type="text" id="paymoneytofen" value="<?=$r[paymoneytofen]?>" size="35">
-        ç‚¹æ•°</td>
+        µãÊı</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><div align="right">æœ€å°æ”¯ä»˜é‡‘é¢ï¼š</div></td>
+      <td height="25"><div align="right">×îĞ¡Ö§¸¶½ğ¶î£º</div></td>
       <td height="25"><input name="payminmoney" type="text" id="payminmoney" value="<?=$r[payminmoney]?>" size="35">
-        å…ƒ</td>
+        Ôª</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value=" è®¾ ç½® "> &nbsp;&nbsp;&nbsp;<input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value=" Éè ÖÃ "> &nbsp;&nbsp;&nbsp;<input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

@@ -5,14 +5,14 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='ä¿®æ”¹èµ„æ–™';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;ä¿®æ”¹èµ„æ–™";
+$public_diyr['pagetitle']='ĞŞ¸Ä×ÊÁÏ';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;ĞŞ¸Ä×ÊÁÏ";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr>
     <td width="50%" height="30" bgcolor="#FFFFFF">&nbsp;</td>
-    <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="EditSafeInfo.php">å¯†ç å®‰å…¨ä¿®æ”¹</a>]&nbsp;&nbsp;</div></td>
+    <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="EditSafeInfo.php">ÃÜÂë°²È«ĞŞ¸Ä</a>]&nbsp;&nbsp;</div></td>
   </tr>
 </table>
 <br>
@@ -20,10 +20,10 @@ require(ECMS_PATH.'e/template/incfile/header.php');
   <form name=userinfoform method=post enctype="multipart/form-data" action=../doaction.php>
     <input type=hidden name=enews value=EditInfo>
     <tr class="header"> 
-      <td height="25" colspan="2">ä¿®æ”¹åŸºæœ¬èµ„æ–™</td>
+      <td height="25" colspan="2">ĞŞ¸Ä»ù±¾×ÊÁÏ</td>
     </tr>
     <tr> 
-      <td width='25%' height="25" bgcolor="#FFFFFF"> <div align='left'>ç”¨æˆ·å </div></td>
+      <td width='25%' height="25" bgcolor="#FFFFFF"> <div align='left'>ÓÃ»§Ãû </div></td>
       <td width='75%' height="25" bgcolor="#FFFFFF"> 
         <?=$user[username]?>
       </td>
@@ -37,7 +37,7 @@ require(ECMS_PATH.'e/template/incfile/header.php');
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"> <input type='submit' name='Submit' value='ä¿®æ”¹ä¿¡æ¯'>
+      <td height="25" bgcolor="#FFFFFF"> <input type='submit' name='Submit' value='ĞŞ¸ÄĞÅÏ¢'>
       </td>
     </tr>
   </form>

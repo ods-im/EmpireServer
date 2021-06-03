@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,49 +15,49 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"table");
-$url="<a href=ListTable.php".$ecms_hashur['whehref'].">ç®¡ç†æ•°æ®è¡¨</a>&nbsp;>&nbsp;å¯¼å…¥ç³»ç»Ÿæ¨¡å‹";
+$url="<a href=ListTable.php".$ecms_hashur['whehref'].">¹ÜÀíÊı¾İ±í</a>&nbsp;>&nbsp;µ¼ÈëÏµÍ³Ä£ĞÍ";
 db_close();
 $empire=null;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¯¼å…¥ç³»ç»Ÿæ¨¡å‹</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>µ¼ÈëÏµÍ³Ä£ĞÍ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td>ä½ç½®ï¼š 
+    <td>Î»ÖÃ£º 
       <?=$url?>
     </td>
   </tr>
 </table>
-<form action="../ecmsmod.php" method="post" enctype="multipart/form-data" name="form1" onsubmit="return confirm('ç¡®è®¤è¦å¯¼å…¥?');">
+<form action="../ecmsmod.php" method="post" enctype="multipart/form-data" name="form1" onsubmit="return confirm('È·ÈÏÒªµ¼Èë?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr> 
-      <td height="25" colspan="2" class="header">å¯¼å…¥ç³»ç»Ÿæ¨¡å‹</td>
+      <td height="25" colspan="2" class="header">µ¼ÈëÏµÍ³Ä£ĞÍ</td>
     </tr>
     <tr> 
-      <td width="28%" height="25" bgcolor="#FFFFFF">å­˜æ”¾çš„æ•°æ®è¡¨å:</td>
+      <td width="28%" height="25" bgcolor="#FFFFFF">´æ·ÅµÄÊı¾İ±íÃû:</td>
       <td width="72%" height="25" bgcolor="#FFFFFF"><strong><?=$dbtbpre?>ecms_</strong> 
         <input name="tbname" type="text" id="tbname">
       </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">é€‰æ‹©å¯¼å…¥æ¨¡å‹æ–‡ä»¶:</td>
+      <td height="25" bgcolor="#FFFFFF">Ñ¡Ôñµ¼ÈëÄ£ĞÍÎÄ¼ş:</td>
       <td height="25" bgcolor="#FFFFFF"><input type="file" name="file">
         *.mod</td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="é©¬ä¸Šå¯¼å…¥"> 
-        <input type="reset" name="Submit2" value="é‡ç½®">
+      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="ÂíÉÏµ¼Èë"> 
+        <input type="reset" name="Submit2" value="ÖØÖÃ">
         <input name="enews" type="hidden" id="enews" value="LoadInMod">
       </td>
     </tr>

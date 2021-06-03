@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,23 +15,23 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"ad");
 
-//å¢åŠ å¹¿å‘Šç±»åˆ«
+//Ôö¼Ó¹ã¸æÀà±ğ
 function AddAdClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[classname])
 	{
 		printerror("EmptyAdClassname","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"ad");
 	$sql=$empire->query("insert into {$dbtbpre}enewsadclass(classname) values('$add[classname]');");
 	$classid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("classid=".$classid."<br>classname=".$add[classname]);
 		printerror("AddAdClassSuccess","AdClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -39,18 +39,18 @@ function AddAdClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹å¹¿å‘Šç±»åˆ«
+//ĞŞ¸Ä¹ã¸æÀà±ğ
 function EditAdClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[classid]=(int)$add[classid];
 	if(!$add[classname]||!$add[classid])
 	{printerror("EmptyAdClassname","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"ad");
 	$sql=$empire->query("update {$dbtbpre}enewsadclass set classname='$add[classname]' where classid='$add[classid]'");
     if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$add[classid]."<br>classname=".$add[classname]);
 		printerror("EditAdClassSuccess","AdClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -58,18 +58,18 @@ function EditAdClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤å¹¿å‘Šç±»åˆ«
+//É¾³ı¹ã¸æÀà±ğ
 function DelAdClass($classid,$userid,$username){
 	global $empire,$public_r,$dbtbpre;
 	$classid=(int)$classid;
 	if(!$classid)
 	{printerror("NotChangeAdClassid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"ad");
 	$c=$empire->fetch1("select classname from {$dbtbpre}enewsadclass where classid='$classid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsadclass where classid='$classid'");
 	/*
-	//åˆ é™¤å¹¿å‘Šå†…å®¹
+	//É¾³ı¹ã¸æÄÚÈİ
 	$a=$empire->query("select adid from {$dbtbpre}enewsad where classid='$classid'");
 	while($r=$empire->fetch($a))
 	{
@@ -79,7 +79,7 @@ function DelAdClass($classid,$userid,$username){
 	*/
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$c[classname]);
 		printerror("DelAdClassSuccess","AdClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -96,19 +96,19 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ å¹¿å‘Šç±»åˆ«
+//Ôö¼Ó¹ã¸æÀà±ğ
 if($enews=="AddAdClass")
 {
 	$add=$_POST['add'];
 	AddAdClass($add,$logininid,$loginin);
 }
-//ä¿®æ”¹å¹¿å‘Šç±»åˆ«
+//ĞŞ¸Ä¹ã¸æÀà±ğ
 elseif($enews=="EditAdClass")
 {
 	$add=$_POST['add'];
 	EditAdClass($add,$logininid,$loginin);
 }
-//åˆ é™¤å¹¿å‘Šç±»å‹
+//É¾³ı¹ã¸æÀàĞÍ
 elseif($enews=="DelAdClass")
 {
 	$classid=$_GET['classid'];
@@ -120,7 +120,7 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewsadclass order 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -128,30 +128,30 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewsadclass order 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="ListAd.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å¹¿å‘Š</a> &gt; <a href="AdClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å¹¿å‘Šç±»åˆ«</a></td>
+    <td>Î»ÖÃ£º<a href="ListAd.php<?=$ecms_hashur['whehref']?>">¹ÜÀí¹ã¸æ</a> &gt; <a href="AdClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀí¹ã¸æÀà±ğ</a></td>
   </tr>
 </table>
 <form name="form1" method="post" action="AdClass.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td height="25">å¢åŠ å¹¿å‘Šç±»åˆ«:
+      <td height="25">Ôö¼Ó¹ã¸æÀà±ğ:
         <input type=hidden name=enews value=AddAdClass>
         </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> ç±»åˆ«åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> Àà±ğÃû³Æ: 
         <input name="add[classname]" type="text" id="add[classname]">
-        <input type="submit" name="Submit" value="å¢åŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header">
     <td width="10%"><div align="center">ID</div></td>
-    <td width="59%" height="25"><div align="center">ç±»åˆ«åç§°</div></td>
-    <td width="31%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="59%" height="25"><div align="center">Àà±ğÃû³Æ</div></td>
+    <td width="31%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -167,9 +167,9 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewsadclass order 
           <input name="add[classname]" type="text" id="add[classname]" value="<?=$r[classname]?>">
         </div></td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="self.location.href='AdClass.php?enews=DelAdClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>';">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="self.location.href='AdClass.php?enews=DelAdClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>';">
         </div></td>
     </tr>
   </form>

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -33,7 +33,7 @@ if($moreportpid)
 }
 $tbname=$add['tbname'];
 $count=count($tbname);
-//åˆ·æ–°æ‰€æœ‰è¡¨
+//Ë¢ĞÂËùÓĞ±í
 if(!$count)
 {
 	$j=0;
@@ -48,12 +48,12 @@ if(!$count)
 esetcookie("retablenum",$count,0,1);
 esetcookie("rechecktablenum",0,0,1);
 $url="../ecmschtml.php?enews=ReNewsHtml&classid=$add[classid]&from=".urlencode($add[from])."&retype=$add[retype]&startday=$add[startday]&endday=$add[endday]&startid=$add[startid]&endid=$add[endid]&havehtml=$havehtml&reallinfotime=".time().$ecms_hashur['href'].$mphref;
-echo"<link href='../adminstyle/".$loginadminstyleid."/adminstyle.css' rel='stylesheet' type='text/css'><center>è¦åˆ·æ–°çš„è¡¨çš„æ€»ä¸ªæ•°ä¸º:<font color=red>$count</font>ä¸ª</center><br>";
+echo"<link href='../adminstyle/".$loginadminstyleid."/adminstyle.css' rel='stylesheet' type='text/css'><center>ÒªË¢ĞÂµÄ±íµÄ×Ü¸öÊıÎª:<font color=red>$count</font>¸ö</center><br>";
 for($i=0;$i<$count;$i++)
 {
 	$tbname[$i]=RepPostVar($tbname[$i]);
 	$trueurl=$url."&tbname=".$tbname[$i];
-	echo"<table width='100%' border=0 align=center cellpadding=3 cellspacing=1 class=tableborder><tr class=header><td>åˆ·æ–°æ•°æ®è¡¨ï¼š".$tbname[$i]."</td></tr><tr><td bgcolor='#ffffff'><iframe frameborder=0 height=35 id='".$tbname[$i]."' scrolling=no 
+	echo"<table width='100%' border=0 align=center cellpadding=3 cellspacing=1 class=tableborder><tr class=header><td>Ë¢ĞÂÊı¾İ±í£º".$tbname[$i]."</td></tr><tr><td bgcolor='#ffffff'><iframe frameborder=0 height=35 id='".$tbname[$i]."' scrolling=no 
             src=\"".$trueurl."\" 
             width=\"100%\"></iframe></td></tr></table>";
 }

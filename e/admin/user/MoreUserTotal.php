@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"totaldata");
 $userid=(int)$_GET['userid'];
 $username=RepPostVar($_GET['username']);
@@ -28,7 +28,7 @@ if(!$userid||!$username||!$tbname)
 {
 	printerror('ErrorUrl','');
 }
-//æ•°æ®è¡¨
+//Êı¾İ±í
 $b=0;
 $htb=0;
 $tbsql=$empire->query("select tbname,tname from {$dbtbpre}enewstable order by tid");
@@ -51,7 +51,7 @@ if($htb==0)
 {
 	printerror('ErrorUrl','');
 }
-//æ—¥æœŸ
+//ÈÕÆÚ
 $year=date("Y");
 $yyear=$year-1;
 $date=RepPostVar($_GET['date']);
@@ -68,7 +68,7 @@ for($i=1;$i<=12;$i++)
 	{
 		$m='0'.$i;
 	}
-	//ä»Šå¹´
+	//½ñÄê
 	$sdate=$year.'-'.$m;
 	$select='';
 	if($sdate==$date)
@@ -76,7 +76,7 @@ for($i=1;$i<=12;$i++)
 		$select=' selected';
 	}
 	$selectdate.="<option value='".$sdate."'".$select.">".$sdate."</option>";
-	//å»å¹´
+	//È¥Äê
 	$ysdate=$yyear.'-'.$m;
 	$yselect='';
 	if($ysdate==$date)
@@ -89,8 +89,8 @@ for($i=1;$i<=12;$i++)
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title><?=$username?> çš„å‘å¸ƒç»Ÿè®¡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title><?=$username?> µÄ·¢²¼Í³¼Æ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -101,7 +101,7 @@ for($i=1;$i<=12;$i++)
 <input type="hidden" name="userid" value="<?=$userid?>">
 <input type="hidden" name="username" value="<?=$username?>">
   <tr> 
-    <td height="25">ä½ç½®ï¼š<a href="MoreUserTotal.php?tbname=<?=$tbname?>&userid=<?=$userid?>&username=<?=$username?><?=$ecms_hashur['ehref']?>"><?=$username?> çš„å‘å¸ƒç»Ÿè®¡</a></td>
+    <td height="25">Î»ÖÃ£º<a href="MoreUserTotal.php?tbname=<?=$tbname?>&userid=<?=$userid?>&username=<?=$username?><?=$ecms_hashur['ehref']?>"><?=$username?> µÄ·¢²¼Í³¼Æ</a></td>
   </tr>
   <tr>
     <td height="30"> <div align="center">
@@ -111,7 +111,7 @@ for($i=1;$i<=12;$i++)
         <select name="tbname" id="tbname">
           <?=$tbstr?>
         </select>
-        <input type="submit" name="Submit" value="æ˜¾ç¤º">
+        <input type="submit" name="Submit" value="ÏÔÊ¾">
       </div></td>
   </tr>
 </form>
@@ -120,16 +120,16 @@ for($i=1;$i<=12;$i++)
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="20%" height="25"> 
-      <div align="center">æ—¥æœŸ</div></td>
+      <div align="center">ÈÕÆÚ</div></td>
     <td width="12%" height="25"> 
-      <div align="center">å‘å¸ƒæ•°</div></td>
+      <div align="center">·¢²¼Êı</div></td>
     <td width="12%">
-<div align="center">æœªå®¡æ ¸æ•°</div></td>
-    <td width="11%"><div align="center">å®¡å‘æ•°</div></td>
-    <td width="11%"><div align="center">å®¡æŠ•æ•°</div></td>
-    <td width="12%"><div align="center">ç‚¹å‡»æ•°</div></td>
-    <td width="11%"><div align="center">è¯„è®ºæ•°</div></td>
-    <td width="11%"><div align="center">ä¸‹è½½æ•°</div></td>
+<div align="center">Î´ÉóºËÊı</div></td>
+    <td width="11%"><div align="center">Éó·¢Êı</div></td>
+    <td width="11%"><div align="center">ÉóÍ¶Êı</div></td>
+    <td width="12%"><div align="center">µã»÷Êı</div></td>
+    <td width="11%"><div align="center">ÆÀÂÛÊı</div></td>
+    <td width="11%"><div align="center">ÏÂÔØÊı</div></td>
   </tr>
   <?php
   $dr=explode('-',$date);
@@ -137,7 +137,7 @@ for($i=1;$i<=12;$i++)
   $dr[1]=(int)$dr[1];
   for($j=1;$j<=31;$j++)
   {
-  	//æ£€æµ‹æ—¥æœŸåˆæ³•æ€§
+  	//¼ì²âÈÕÆÚºÏ·¨ĞÔ
 	if(!checkdate($dr[1],$j,$dr[0]))
 	{
 		continue;
@@ -148,17 +148,17 @@ for($i=1;$i<=12;$i++)
 		$d='0'.$j;
 	}
   	$thisday=$date.'-'.$d;
-	//å‘å¸ƒæ•°
+	//·¢²¼Êı
 	$totalnum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$tbname." where userid='$userid' and ismember=0 and truetime>=".to_time($thisday." 00:00:00")." and truetime<=".to_time($thisday." 23:59:59"));
-	//æœªå®¡æ ¸æ•°
+	//Î´ÉóºËÊı
 	$totalchecknum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$tbname."_check where userid='$userid' and ismember=0 and truetime>=".to_time($thisday." 00:00:00")." and truetime<=".to_time($thisday." 23:59:59"));
-	//ç‚¹å‡»æ•°
+	//µã»÷Êı
 	$totalonclick=$empire->gettotal("select sum(onclick) as total from {$dbtbpre}ecms_".$tbname." where userid='$userid' and ismember=0 and truetime>=".to_time($thisday." 00:00:00")." and truetime<=".to_time($thisday." 23:59:59"));
-	//è¯„è®ºæ•°
+	//ÆÀÂÛÊı
 	$totalplnum=$empire->gettotal("select sum(plnum) as total from {$dbtbpre}ecms_".$tbname." where userid='$userid' and ismember=0 and truetime>=".to_time($thisday." 00:00:00")." and truetime<=".to_time($thisday." 23:59:59"));
-	//ä¸‹è½½æ•°
+	//ÏÂÔØÊı
 	$totaldown=$empire->gettotal("select sum(totaldown) as total from {$dbtbpre}ecms_".$tbname." where userid='$userid' and ismember=0 and truetime>=".to_time($thisday." 00:00:00")." and truetime<=".to_time($thisday." 23:59:59"));
-	//å®¡ç¨¿
+	//Éó¸å
 	$checkhinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$tbname." where truetime>=".to_time($thisday." 00:00:00")." and truetime<=".to_time($thisday." 23:59:59")." and eckuid='$userid' and ismember=0");
 	$checkqinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$tbname." where truetime>=".to_time($thisday." 00:00:00")." and truetime<=".to_time($thisday." 23:59:59")." and eckuid='$userid' and ismember=1");
   ?>

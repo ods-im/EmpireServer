@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -18,7 +18,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 function CheckSpInfoLevel($spid){
 	global $empire,$dbtbpre,$lur;
 	$spr=$empire->fetch1("select spid,spname,varname,sptype,maxnum,groupid,userclass,username from {$dbtbpre}enewssp where spid='$spid'");
@@ -26,12 +26,12 @@ function CheckSpInfoLevel($spid){
 	{
 		printerror('ErrorUrl','');
 	}
-	//éªŒè¯æ“ä½œæƒé™
+	//ÑéÖ¤²Ù×÷È¨ÏŞ
 	CheckDoLevel($lur,$spr[groupid],$spr[userclass],$spr[username]);
 	return $spr;
 }
 
-//å¢åŠ ç¢ç‰‡ä¿¡æ¯
+//Ôö¼ÓËéÆ¬ĞÅÏ¢
 function AddSpInfo($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$spid=(int)$add[spid];
@@ -39,13 +39,13 @@ function AddSpInfo($add,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//éªŒè¯
+	//ÑéÖ¤
 	$spr=CheckSpInfoLevel($spid);
-	if($spr[sptype]==1)//é™æ€ç¢ç‰‡
+	if($spr[sptype]==1)//¾²Ì¬ËéÆ¬
 	{
 		$log=AddSpInfo1($spid,$spr,$add);
 	}
-	elseif($spr[sptype]==2)//åŠ¨æ€ç¢ç‰‡
+	elseif($spr[sptype]==2)//¶¯Ì¬ËéÆ¬
 	{
 		$log=AddSpInfo2($spid,$spr,$add);
 	}
@@ -53,16 +53,16 @@ function AddSpInfo($add,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//åˆ é™¤å¤šä½™ç¢ç‰‡ä¿¡æ¯
+	//É¾³ı¶àÓàËéÆ¬ĞÅÏ¢
 	DelMoreSpInfo($spid,$spr);
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileEditOther(7,$spid,'other');
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog($log);
 	printerror("AddSpInfoSuccess","AddSpInfo.php?enews=AddSpInfo&spid=$spid".hReturnEcmsHashStrHref2(0));
 }
 
-//å¯¼å…¥ç¢ç‰‡ä¿¡æ¯
+//µ¼ÈëËéÆ¬ĞÅÏ¢
 function LoadInSpInfo($add,$userid,$username){
 	global $empire,$dbtbpre,$class_r,$emod_r,$etable_r;
 	$spid=(int)$add[spid];
@@ -70,7 +70,7 @@ function LoadInSpInfo($add,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//éªŒè¯
+	//ÑéÖ¤
 	$spr=CheckSpInfoLevel($spid);
 	$tbname=RepPostVar($add['tbname']);
 	$infoids=$add['infoids'];
@@ -83,7 +83,7 @@ function LoadInSpInfo($add,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//ç®€ä»‹å­—æ®µ
+	//¼ò½é×Ö¶Î
 	$mid=$etable_r[$tbname]['mid'];
 	$smalltextf=$emod_r[$mid]['smalltextf'];
 	$sf='';
@@ -97,7 +97,7 @@ function LoadInSpInfo($add,$userid,$username){
 	{
 		$addf=','.$sf;
 	}
-	//å¯¼å…¥
+	//µ¼Èë
 	$infor=explode(',',$infoids);
 	$count=count($infor);
 	for($i=0;$i<$count;$i++)
@@ -122,11 +122,11 @@ function LoadInSpInfo($add,$userid,$username){
 			$r['smalltext']=$r[$sf];
 		}
 		$r['newstime']=date("Y-m-d H:i:s",$r['newstime']);
-		if($spr[sptype]==1)//é™æ€ç¢ç‰‡
+		if($spr[sptype]==1)//¾²Ì¬ËéÆ¬
 		{
 			$log=AddSpInfo1($spid,$spr,$r);
 		}
-		elseif($spr[sptype]==2)//åŠ¨æ€ç¢ç‰‡
+		elseif($spr[sptype]==2)//¶¯Ì¬ËéÆ¬
 		{
 			$log=AddSpInfo2($spid,$spr,$r,1);
 		}
@@ -135,14 +135,14 @@ function LoadInSpInfo($add,$userid,$username){
 			printerror('ErrorUrl','');
 		}
 	}
-	//åˆ é™¤å¤šä½™ç¢ç‰‡ä¿¡æ¯
+	//É¾³ı¶àÓàËéÆ¬ĞÅÏ¢
 	DelMoreSpInfo($spid,$spr);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("tbname=$tbname<br>id=$infoids");
 	printerror("LoadInSpInfoSuccess","ListSpInfo.php?spid=$spid".hReturnEcmsHashStrHref2(0));
 }
 
-//å¢åŠ é™æ€ç¢ç‰‡ä¿¡æ¯
+//Ôö¼Ó¾²Ì¬ËéÆ¬ĞÅÏ¢
 function AddSpInfo1($spid,$spr,$add){
 	global $empire,$dbtbpre;
 	$add['title']=eDoRepPostComStr($add['title'],1);
@@ -156,7 +156,7 @@ function AddSpInfo1($spid,$spr,$add){
 	return $log;
 }
 
-//å¢åŠ åŠ¨æ€ç¢ç‰‡ä¿¡æ¯
+//Ôö¼Ó¶¯Ì¬ËéÆ¬ĞÅÏ¢
 function AddSpInfo2($spid,$spr,$add,$ecms=0){
 	global $empire,$dbtbpre,$class_r;
 	$add[classid]=(int)$add[classid];
@@ -185,7 +185,7 @@ function AddSpInfo2($spid,$spr,$add,$ecms=0){
 		}
 	}
 	$newstime=$add[newstime]?to_time($add[newstime]):$infor[newstime];
-	//æ˜¯å¦é‡å¤
+	//ÊÇ·ñÖØ¸´
 	$rer=$empire->fetch1("select sid from {$dbtbpre}enewssp_2 where spid='$spid' and id='$add[id]' and classid='$add[classid]' limit 1");
 	if($rer['sid'])
 	{
@@ -204,7 +204,7 @@ function AddSpInfo2($spid,$spr,$add,$ecms=0){
 	return $log;
 }
 
-//åˆ é™¤å¤šä½™ç¢ç‰‡ä¿¡æ¯
+//É¾³ı¶àÓàËéÆ¬ĞÅÏ¢
 function DelMoreSpInfo($spid,$spr){
 	global $empire,$dbtbpre;
 	if(!$spr[maxnum]||$spr[sptype]==3)
@@ -247,7 +247,7 @@ function DelMoreSpInfo($spid,$spr){
 	}
 }
 
-//ä¿®æ”¹ç¢ç‰‡ä¿¡æ¯
+//ĞŞ¸ÄËéÆ¬ĞÅÏ¢
 function EditSpInfo($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$spid=(int)$add[spid];
@@ -256,17 +256,17 @@ function EditSpInfo($add,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//éªŒè¯
+	//ÑéÖ¤
 	$spr=CheckSpInfoLevel($spid);
-	if($spr[sptype]==1)//é™æ€ç¢ç‰‡
+	if($spr[sptype]==1)//¾²Ì¬ËéÆ¬
 	{
 		$log=EditSpInfo1($spid,$spr,$sid,$add);
 	}
-	elseif($spr[sptype]==2)//åŠ¨æ€ç¢ç‰‡
+	elseif($spr[sptype]==2)//¶¯Ì¬ËéÆ¬
 	{
 		$log=EditSpInfo2($spid,$spr,$sid,$add);
 	}
-	elseif($spr[sptype]==3)//ä»£ç ç¢ç‰‡
+	elseif($spr[sptype]==3)//´úÂëËéÆ¬
 	{
 		$log=EditSpInfo3($spid,$spr,$sid,$add);
 	}
@@ -274,16 +274,16 @@ function EditSpInfo($add,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//åˆ é™¤å¤šä½™ç¢ç‰‡ä¿¡æ¯
+	//É¾³ı¶àÓàËéÆ¬ĞÅÏ¢
 	DelMoreSpInfo($spid,$spr);
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileEditOther(7,$spid,'other');
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog($log);
 	printerror("EditSpInfoSuccess","ListSpInfo.php?spid=$spid".hReturnEcmsHashStrHref2(0));
 }
 
-//ä¿®æ”¹é™æ€ç¢ç‰‡ä¿¡æ¯
+//ĞŞ¸Ä¾²Ì¬ËéÆ¬ĞÅÏ¢
 function EditSpInfo1($spid,$spr,$sid,$add){
 	global $empire,$dbtbpre;
 	if(!$sid)
@@ -305,7 +305,7 @@ function EditSpInfo1($spid,$spr,$sid,$add){
 	return $log;
 }
 
-//ä¿®æ”¹åŠ¨æ€ç¢ç‰‡ä¿¡æ¯
+//ĞŞ¸Ä¶¯Ì¬ËéÆ¬ĞÅÏ¢
 function EditSpInfo2($spid,$spr,$sid,$add){
 	global $empire,$dbtbpre,$class_r;
 	if(!$sid)
@@ -329,7 +329,7 @@ function EditSpInfo2($spid,$spr,$sid,$add){
 		printerror('HaveNotInfo','');
 	}
 	$newstime=$add[newstime]?to_time($add[newstime]):$infor[newstime];
-	//æ˜¯å¦é‡å¤
+	//ÊÇ·ñÖØ¸´
 	$rer=$empire->fetch1("select sid from {$dbtbpre}enewssp_2 where spid='$spid' and id='$add[id]' and classid='$add[classid]' and sid<>$sid limit 1");
 	if($rer['sid'])
 	{
@@ -340,7 +340,7 @@ function EditSpInfo2($spid,$spr,$sid,$add){
 	return $log;
 }
 
-//ä¿®æ”¹ä»£ç ç¢ç‰‡ä¿¡æ¯
+//ĞŞ¸Ä´úÂëËéÆ¬ĞÅÏ¢
 function EditSpInfo3($spid,$spr,$sid,$add){
 	global $empire,$dbtbpre;
 	$r=$empire->fetch1("select sid from {$dbtbpre}enewssp_3 where spid='$spid'");
@@ -354,20 +354,20 @@ function EditSpInfo3($spid,$spr,$sid,$add){
 		$empire->query("insert into {$dbtbpre}enewssp_3(spid,sptext) values('$spid','".eaddslashes2($add[sptext])."');");
 		$sid=$empire->lastid();
 	}
-	//å¤‡ä»½
+	//±¸·İ
 	EditSpInfo3_bak($spid,$sid,$add[sptext]);
 	$log="spid=$spid&sid=$sid&sptype=3";
 	return $log;
 }
 
-//å¤‡ä»½ä»£ç ç¢ç‰‡ä¿¡æ¯
+//±¸·İ´úÂëËéÆ¬ĞÅÏ¢
 function EditSpInfo3_bak($spid,$sid,$sptext){
 	global $empire,$dbtbpre,$lur;
-	$baknum=10;	//å¤‡ä»½æœ€å¤§æ•°é‡
+	$baknum=10;	//±¸·İ×î´óÊıÁ¿
 	$username=$lur[username];
 	$time=time();
 	$empire->query("insert into {$dbtbpre}enewssp_3_bak(sid,spid,sptext,lastuser,lasttime) values('$sid','$spid','".eaddslashes2($sptext)."','$username','$time');");
-	//åˆ é™¤å¤šä½™å¤‡ä»½
+	//É¾³ı¶àÓà±¸·İ
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewssp_3_bak where sid='$sid'");
 	if($num>$baknum)
 	{
@@ -384,7 +384,7 @@ function EditSpInfo3_bak($spid,$sid,$sptext){
 	}
 }
 
-//è¿˜åŸç¢ç‰‡ä¿¡æ¯è®°å½•
+//»¹Ô­ËéÆ¬ĞÅÏ¢¼ÇÂ¼
 function SpInfoReBak($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$spid=(int)$add[spid];
@@ -394,7 +394,7 @@ function SpInfoReBak($add,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//éªŒè¯
+	//ÑéÖ¤
 	$spr=CheckSpInfoLevel($spid);
 	if($spr['sptype']!=3)
 	{
@@ -408,7 +408,7 @@ function SpInfoReBak($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewssp_3 set sptext='".StripAddsData($br[sptext])."' where sid='$sid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("spid=".$spid."&spname=".$spr[spname]."<br>sid=$sid&bid=$bid");
 		echo"<script>opener.ReSpInfoBak();window.close();</script>";
 		exit();
@@ -417,7 +417,7 @@ function SpInfoReBak($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ç¢ç‰‡ä¿¡æ¯
+//É¾³ıËéÆ¬ĞÅÏ¢
 function DelSpInfo($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$spid=(int)$add[spid];
@@ -426,9 +426,9 @@ function DelSpInfo($add,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//éªŒè¯
+	//ÑéÖ¤
 	$spr=CheckSpInfoLevel($spid);
-	if($spr[sptype]==1)//é™æ€ç¢ç‰‡
+	if($spr[sptype]==1)//¾²Ì¬ËéÆ¬
 	{
 		$r=$empire->fetch1("select sid,title from {$dbtbpre}enewssp_1 where sid='$sid' and spid='$spid'");
 		if(!$r['sid'])
@@ -438,7 +438,7 @@ function DelSpInfo($add,$userid,$username){
 		$empire->query("delete from {$dbtbpre}enewssp_1 where sid='$sid' and spid='$spid'");
 		$log="spid=$spid&sid=$sid&title=$r[title]";
 	}
-	elseif($spr[sptype]==2)//åŠ¨æ€ç¢ç‰‡
+	elseif($spr[sptype]==2)//¶¯Ì¬ËéÆ¬
 	{
 		$r=$empire->fetch1("select sid,classid,id from {$dbtbpre}enewssp_2 where sid='$sid' and spid='$spid'");
 		if(!$r['sid'])
@@ -452,12 +452,12 @@ function DelSpInfo($add,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog($log);
 	printerror("DelSpInfoSuccess","ListSpInfo.php?spid=$spid".hReturnEcmsHashStrHref2(0));
 }
 
-//æ‰¹é‡ä¿®æ”¹ç¢ç‰‡å‘å¸ƒæ—¶é—´
+//ÅúÁ¿ĞŞ¸ÄËéÆ¬·¢²¼Ê±¼ä
 function EditSpInfoTime($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$spid=(int)$add[spid];
@@ -472,9 +472,9 @@ function EditSpInfoTime($add,$userid,$username){
 	{
 		printerror('EmptySpInfoTime','');
 	}
-	//éªŒè¯
+	//ÑéÖ¤
 	$spr=CheckSpInfoLevel($spid);
-	if($spr[sptype]==1)//é™æ€ç¢ç‰‡
+	if($spr[sptype]==1)//¾²Ì¬ËéÆ¬
 	{
 		for($i=0;$i<$count;$i++)
 		{
@@ -483,7 +483,7 @@ function EditSpInfoTime($add,$userid,$username){
 			$empire->query("update {$dbtbpre}enewssp_1 set newstime='$donewstime' where sid='$dosid' and spid='$spid'");
 		}
 	}
-	elseif($spr[sptype]==2)//åŠ¨æ€ç¢ç‰‡
+	elseif($spr[sptype]==2)//¶¯Ì¬ËéÆ¬
 	{
 		for($i=0;$i<$count;$i++)
 		{
@@ -496,7 +496,7 @@ function EditSpInfoTime($add,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("spid=$spid");
 	printerror("EditSpInfoTimeSuccess","ListSpInfo.php?spid=$spid".hReturnEcmsHashStrHref2(0));
 }
@@ -508,35 +508,35 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="AddSpInfo")//å¢åŠ ç¢ç‰‡ä¿¡æ¯
+if($enews=="AddSpInfo")//Ôö¼ÓËéÆ¬ĞÅÏ¢
 {
 	AddSpInfo($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditSpInfo")//ä¿®æ”¹ç¢ç‰‡ä¿¡æ¯
+elseif($enews=="EditSpInfo")//ĞŞ¸ÄËéÆ¬ĞÅÏ¢
 {
 	EditSpInfo($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelSpInfo")//åˆ é™¤ç¢ç‰‡ä¿¡æ¯
+elseif($enews=="DelSpInfo")//É¾³ıËéÆ¬ĞÅÏ¢
 {
 	DelSpInfo($_GET,$logininid,$loginin);
 }
-elseif($enews=="SpInfoReBak")//è¿˜åŸç¢ç‰‡ä¿¡æ¯è®°å½•
+elseif($enews=="SpInfoReBak")//»¹Ô­ËéÆ¬ĞÅÏ¢¼ÇÂ¼
 {
 	SpInfoReBak($_GET,$logininid,$loginin);
 }
-elseif($enews=="EditSpInfoTime")//æ‰¹é‡ä¿®æ”¹ç¢ç‰‡ä¿¡æ¯æ—¶é—´
+elseif($enews=="EditSpInfoTime")//ÅúÁ¿ĞŞ¸ÄËéÆ¬ĞÅÏ¢Ê±¼ä
 {
 	EditSpInfoTime($_POST,$logininid,$loginin);
 }
-elseif($enews=="LoadInSpInfo")//æ‰¹é‡å¯¼å…¥ç¢ç‰‡ä¿¡æ¯
+elseif($enews=="LoadInSpInfo")//ÅúÁ¿µ¼ÈëËéÆ¬ĞÅÏ¢
 {
 	LoadInSpInfo($_GET,$logininid,$loginin);
 }
 
 $spid=(int)$_GET['spid'];
-//ç¢ç‰‡
+//ËéÆ¬
 $spr=CheckSpInfoLevel($spid);
-//ä»£ç ç¢ç‰‡
+//´úÂëËéÆ¬
 if($spr[sptype]==3)
 {
 	Header("Location:AddSpInfo.php?enews=EditSpInfo&spid=$spid".$ecms_hashur['ehref']);
@@ -546,17 +546,17 @@ if($spr[sptype]==3)
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=50;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=50;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $search="&spid=$spid".$ecms_hashur['ehref'];
-$url="<a href=UpdateSp.php".$ecms_hashur['whehref'].">æ›´æ–°ç¢ç‰‡</a>&nbsp;>&nbsp;".$spr[spname]."&nbsp;>&nbsp;ç®¡ç†ç¢ç‰‡ä¿¡æ¯";
+$url="<a href=UpdateSp.php".$ecms_hashur['whehref'].">¸üĞÂËéÆ¬</a>&nbsp;>&nbsp;".$spr[spname]."&nbsp;>&nbsp;¹ÜÀíËéÆ¬ĞÅÏ¢";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç¢ç‰‡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ËéÆ¬</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function ChangeInfoDoAction(tbname,infoids){
@@ -575,13 +575,13 @@ function ChangeInfoDoAction(tbname,infoids){
 <body>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr> 
-    <td width="50%">ä½ç½®: 
+    <td width="50%">Î»ÖÃ: 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ç¢ç‰‡ä¿¡æ¯" onclick="self.location.href='AddSpInfo.php?enews=AddSpInfo&spid=<?=$spid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓËéÆ¬ĞÅÏ¢" onclick="self.location.href='AddSpInfo.php?enews=AddSpInfo&spid=<?=$spid?><?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-		<input type="button" name="Submit5" value="æ‰¹é‡å¯¼å…¥ç¢ç‰‡ä¿¡æ¯" onclick="window.open('../info/ChangeInfo.php?enews=LoadInSpInfo&spid=<?=$spid?><?=$ecms_hashur['ehref']?>');">
+		<input type="button" name="Submit5" value="ÅúÁ¿µ¼ÈëËéÆ¬ĞÅÏ¢" onclick="window.open('../info/ChangeInfo.php?enews=LoadInSpInfo&spid=<?=$spid?><?=$ecms_hashur['ehref']?>');">
       </div></td>
   </tr>
 </table>
@@ -591,29 +591,29 @@ if($spr[sptype]==1)
 {
 	$query="select spid,sid,title,titlepic,titleurl,titlefont,newstime from {$dbtbpre}enewssp_1 where spid='$spid'";
 	$totalquery="select count(*) as total from {$dbtbpre}enewssp_1 where spid='$spid'";
-	$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+	$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 	$query=$query." order by newstime desc limit $offset,$line";
 	$sql=$empire->query($query);
 	$returnpage=page2($num,$line,$page_line,$start,$page,$search);
 ?>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-	<form action="ListSpInfo.php" method="post" name="spform" id="spform" onsubmit="return confirm('ç¡®è®¤è¦ä¿®æ”¹?');">
+	<form action="ListSpInfo.php" method="post" name="spform" id="spform" onsubmit="return confirm('È·ÈÏÒªĞŞ¸Ä?');">
 	<?=$ecms_hashur['form']?>
     <tr class="header"> 
-    <td width="51%" height="25"><div align="center">æ ‡é¢˜</div></td>
-    <td width="30%"><div align="center">å‘å¸ƒæ—¶é—´</div></td>
-    <td width="19%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="51%" height="25"><div align="center">±êÌâ</div></td>
+    <td width="30%"><div align="center">·¢²¼Ê±¼ä</div></td>
+    <td width="19%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
   {
-		//æ ‡é¢˜å›¾ç‰‡
+		//±êÌâÍ¼Æ¬
 		$showtitlepic="";
 		if($r[titlepic])
 		{
-			$showtitlepic="<a href='".$r[titlepic]."' title='é¢„è§ˆæ ‡é¢˜å›¾ç‰‡' target=_blank><img src='../../data/images/showimg.gif' border=0></a>";
+			$showtitlepic="<a href='".$r[titlepic]."' title='Ô¤ÀÀ±êÌâÍ¼Æ¬' target=_blank><img src='../../data/images/showimg.gif' border=0></a>";
 		}
-		//æ ‡é¢˜
+		//±êÌâ
 		$r[title]=DoTitleFont($r[titlefont],stripSlashes($r[title]));
   ?>
   <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
@@ -625,8 +625,8 @@ if($spr[sptype]==1)
           <input name="sid[]" type="hidden" id="sid[]" value="<?=$r['sid']?>">
           <input name="newstime[]" type="text" value="<?=date('Y-m-d H:i:s',$r[newstime])?>" size="22">
         </div></td>
-    <td height="25"><div align="center">[<a href="AddSpInfo.php?enews=EditSpInfo&spid=<?=$spid?>&sid=<?=$r['sid']?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="ListSpInfo.php?enews=DelSpInfo&spid=<?=$spid?>&sid=<?=$r['sid']?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+    <td height="25"><div align="center">[<a href="AddSpInfo.php?enews=EditSpInfo&spid=<?=$spid?>&sid=<?=$r['sid']?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="ListSpInfo.php?enews=DelSpInfo&spid=<?=$spid?>&sid=<?=$r['sid']?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }
@@ -636,14 +636,14 @@ if($spr[sptype]==1)
       <?=$returnpage?>&nbsp;&nbsp;&nbsp;
 	  <input type="hidden" name="enews" value="EditSpInfoTime">
         <input name="spid" type="hidden" id="spid" value="<?=$spid?>">
-        <input type="submit" name="Submit" value="æ‰¹é‡ä¿®æ”¹æ—¶é—´">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        <input type="submit" name="Submit" value="ÅúÁ¿ĞŞ¸ÄÊ±¼ä">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
   </tr>
   </form>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td height="25"><font color="#666666">è¯´æ˜ï¼šä¿¡æ¯æ˜¯æŒ‰å‘å¸ƒæ—¶é—´æ’åºï¼Œå¦‚æœè¦æ”¹é¡ºåºå¯ä»¥ä¿®æ”¹å‘å¸ƒæ—¶é—´ï¼Œå‘å¸ƒæ—¶é—´è®¾ç½®ç©ºåˆ™æ”¹ä¸ºå½“å‰æ—¶é—´ã€‚</font></td>
+    <td height="25"><font color="#666666">ËµÃ÷£ºĞÅÏ¢ÊÇ°´·¢²¼Ê±¼äÅÅĞò£¬Èç¹ûÒª¸ÄË³Ğò¿ÉÒÔĞŞ¸Ä·¢²¼Ê±¼ä£¬·¢²¼Ê±¼äÉèÖÃ¿ÕÔò¸ÄÎªµ±Ç°Ê±¼ä¡£</font></td>
   </tr>
 </table>
 <?php
@@ -652,19 +652,19 @@ elseif($spr[sptype]==2)
 {
 	$query="select spid,sid,classid,id,newstime from {$dbtbpre}enewssp_2 where spid='$spid'";
 	$totalquery="select count(*) as total from {$dbtbpre}enewssp_2 where spid='$spid'";
-	$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+	$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 	$query=$query." order by newstime desc limit $offset,$line";
 	$sql=$empire->query($query);
 	$returnpage=page2($num,$line,$page_line,$start,$page,$search);
 ?>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-	<form action="ListSpInfo.php" method="post" name="spform" id="spform" onsubmit="return confirm('ç¡®è®¤è¦ä¿®æ”¹?');">
+	<form action="ListSpInfo.php" method="post" name="spform" id="spform" onsubmit="return confirm('È·ÈÏÒªĞŞ¸Ä?');">
 	<?=$ecms_hashur['form']?>
   <tr class="header"> 
-    <td width="46%" height="25"><div align="center">æ ‡é¢˜</div></td>
-    <td width="23%"><div align="center">å‘å¸ƒæ—¶é—´</div></td>
-    <td width="17%"><div align="center">æ‰€å±æ ç›®</div></td>
-    <td width="14%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="46%" height="25"><div align="center">±êÌâ</div></td>
+    <td width="23%"><div align="center">·¢²¼Ê±¼ä</div></td>
+    <td width="17%"><div align="center">ËùÊôÀ¸Ä¿</div></td>
+    <td width="14%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -673,22 +673,22 @@ elseif($spr[sptype]==2)
 		{
 			continue;
 		}
-		//ç´¢å¼•è¡¨
+		//Ë÷Òı±í
 		$index_r=$empire->fetch1("select checked from {$dbtbpre}ecms_".$class_r[$r[classid]][tbname]."_index where id='$r[id]' limit 1");
-		//è¿”å›è¡¨
+		//·µ»Ø±í
 		$infotb=ReturnInfoMainTbname($class_r[$r[classid]][tbname],$index_r['checked']);
   		$infor=$empire->fetch1("select id,classid,isurl,titleurl,isgood,firsttitle,plnum,totaldown,onclick,newstime,titlepic,title from ".$infotb." where id='$r[id]' limit 1");
-		//æ ‡é¢˜å›¾ç‰‡
+		//±êÌâÍ¼Æ¬
 		$showtitlepic="";
 		if($infor[titlepic])
 		{
-			$showtitlepic="<a href='".$infor[titlepic]."' title='é¢„è§ˆæ ‡é¢˜å›¾ç‰‡' target=_blank><img src='../../data/images/showimg.gif' border=0></a>";
+			$showtitlepic="<a href='".$infor[titlepic]."' title='Ô¤ÀÀ±êÌâÍ¼Æ¬' target=_blank><img src='../../data/images/showimg.gif' border=0></a>";
 		}
-		//æ ‡é¢˜
+		//±êÌâ
 		$infor[title]=DoTitleFont($infor[titlefont],stripSlashes($infor[title]));
-		//æ ‡é¢˜é“¾æ¥
+		//±êÌâÁ´½Ó
 		$titleurl=sys_ReturnBqTitleLink($infor);
-		//æ ç›®é“¾æ¥
+		//À¸Ä¿Á´½Ó
 		$classurl=sys_ReturnBqClassname($r,9);
   ?>
   <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
@@ -700,8 +700,8 @@ elseif($spr[sptype]==2)
           <input name="newstime[]" type="text" value="<?=date('Y-m-d H:i:s',$r[newstime])?>" size="22"> 
       </div></td>
     <td><div align="center"><a href="<?=$classurl?>" target="_blank"><?=$class_r[$r[classid]][classname]?></a></div></td>
-    <td height="25"><div align="center">[<a href="AddSpInfo.php?enews=EditSpInfo&spid=<?=$spid?>&sid=<?=$r['sid']?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="ListSpInfo.php?enews=DelSpInfo&spid=<?=$spid?>&sid=<?=$r['sid']?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+    <td height="25"><div align="center">[<a href="AddSpInfo.php?enews=EditSpInfo&spid=<?=$spid?>&sid=<?=$r['sid']?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="ListSpInfo.php?enews=DelSpInfo&spid=<?=$spid?>&sid=<?=$r['sid']?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }
@@ -711,15 +711,15 @@ elseif($spr[sptype]==2)
       <?=$returnpage?>&nbsp;&nbsp;&nbsp;
 	  <input type="hidden" name="enews" value="EditSpInfoTime">
         <input name="spid" type="hidden" id="spid" value="<?=$spid?>">
-        <input type="submit" name="Submit" value="æ‰¹é‡ä¿®æ”¹æ—¶é—´">
-        <input type="reset" name="Submit2" value="é‡ç½®">
+        <input type="submit" name="Submit" value="ÅúÁ¿ĞŞ¸ÄÊ±¼ä">
+        <input type="reset" name="Submit2" value="ÖØÖÃ">
     </td>
   </tr>
   </form>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr> 
-    <td height="25"><font color="#666666">è¯´æ˜ï¼šä¿¡æ¯æ˜¯æŒ‰å‘å¸ƒæ—¶é—´æ’åºï¼Œå¦‚æœè¦æ”¹é¡ºåºå¯ä»¥ä¿®æ”¹å‘å¸ƒæ—¶é—´ï¼Œå‘å¸ƒæ—¶é—´è®¾ç½®ç©ºåˆ™æ”¹ä¸ºå½“å‰æ—¶é—´ã€‚</font></td>
+    <td height="25"><font color="#666666">ËµÃ÷£ºĞÅÏ¢ÊÇ°´·¢²¼Ê±¼äÅÅĞò£¬Èç¹ûÒª¸ÄË³Ğò¿ÉÒÔĞŞ¸Ä·¢²¼Ê±¼ä£¬·¢²¼Ê±¼äÉèÖÃ¿ÕÔò¸ÄÎªµ±Ç°Ê±¼ä¡£</font></td>
   </tr>
 </table>
 <?php

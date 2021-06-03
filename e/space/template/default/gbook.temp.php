@@ -3,14 +3,14 @@ if(!defined('InEmpireCMS'))
 {
 	exit();
 }
-//ä½ç½®
-$url="$spacename &gt; ç•™è¨€";
+//Î»ÖÃ
+$url="$spacename &gt; ÁôÑÔ";
 include("header.temp.php");
 $viewuid=(int)getcvar('mluserid');
 $adminmenu='';
 if($viewuid==$userid)
 {
-	$adminmenu="<a href='../member/mspace/gbook.php' target='_blank'>ç®¡ç†ç•™è¨€</a>";
+	$adminmenu="<a href='../member/mspace/gbook.php' target='_blank'>¹ÜÀíÁôÑÔ</a>";
 }
 ?>
 <?=$spacegg?>
@@ -19,7 +19,7 @@ if($viewuid==$userid)
     <td height="24" background="template/default/images/bg_title_sider.gif">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
-			<td>ç•™è¨€æ¿</td>
+			<td>ÁôÑÔ°å</td>
 			<td align="right"><?=$adminmenu?></td>
 		</tr>
 	  </table>
@@ -35,25 +35,25 @@ if($viewuid==$userid)
 		{
 			$r['uname']="<b><a href='../space/?userid=$r[uid]' target='_blank'>$r[uname]</a></b>";
 		}
-		//ç®¡ç†èœå•
+		//¹ÜÀí²Ëµ¥
 		$adminlink='';
 		$ip='';
 		if($adminmenu)
 		{
 			$ip=' IP: '.$r[ip];
-			$adminlink="[<a href='#ecms' onclick=\"window.open('../member/mspace/ReGbook.php?gid=$r[gid]','','width=600,height=380,scrollbars=yes');\">å›å¤</a>]&nbsp;&nbsp;[<a href='../member/mspace/?enews=DelMemberGbook&gid=$r[gid]' onclick=\"return confirm('ç¡®è®¤è¦åˆ é™¤?');\">åˆ é™¤</a>]";
+			$adminlink="[<a href='#ecms' onclick=\"window.open('../member/mspace/ReGbook.php?gid=$r[gid]','','width=600,height=380,scrollbars=yes');\">»Ø¸´</a>]&nbsp;&nbsp;[<a href='../member/mspace/?enews=DelMemberGbook&gid=$r[gid]' onclick=\"return confirm('È·ÈÏÒªÉ¾³ı?');\">É¾³ı</a>]";
 		}
-		$gbuname=$r[uname]." ç•™è¨€äº".$r[addtime].$ip;
-		//ç§å¯†
+		$gbuname=$r[uname]." ÁôÑÔÓÚ".$r[addtime].$ip;
+		//Ë½ÃÜ
 		if($r['isprivate'])
 		{
 			if($adminmenu||($r[uid]&&$viewuid==$r[uid]))
 			{
-				$r['gbtext']="<font color='blue'>[æ‚„æ‚„è¯] ".$r['gbtext']."</font>";
+				$r['gbtext']="<font color='blue'>[ÇÄÇÄ»°] ".$r['gbtext']."</font>";
 			}
 			else
 			{
-				$r['gbtext']='[æ‚„æ‚„è¯éšè—]';
+				$r['gbtext']='[ÇÄÇÄ»°Òş²Ø]';
 			}
 		}
 	?>
@@ -101,7 +101,7 @@ if($viewuid==$userid)
 <br>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#96C8F1">
   <tr> 
-    <td background="template/default/images/bg_title_sider.gif"><b>æ·»åŠ ç•™è¨€</b></td>
+    <td background="template/default/images/bg_title_sider.gif"><b>Ìí¼ÓÁôÑÔ</b></td>
   </tr>
   <tr> 
     <td bgcolor="#FFFFFF">
@@ -110,28 +110,28 @@ if($viewuid==$userid)
 	  <input type="hidden" name="userid" value="<?=$userid?>">
 	  <input type="hidden" name="enews" value="AddMemberGbook">
         <tr> 
-          <td width="16%">æ˜µç§°ï¼š</td>
+          <td width="16%">êÇ³Æ£º</td>
           <td width="84%"><input name="uname" type="text" id="uname" value="<?=RepPostStr(getcvar('mlusername'),1)?>">
-              ç§å¯†
+              Ë½ÃÜ
               <input name="isprivate" type="checkbox" id="isprivate" value="1"></td>
         </tr>
         <tr> 
-          <td valign="top">å†…å®¹ï¼š</td>
+          <td valign="top">ÄÚÈİ£º</td>
           <td><textarea name="gbtext" cols="60" rows="5" id="gbtext"></textarea></td>
         </tr>
         <tr> 
-          <td>éªŒè¯ç ï¼š</td>
+          <td>ÑéÖ¤Âë£º</td>
             <td> 
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="52"><input name="key" type="text" id="key" size="6" /></td>
-                  <td id="spacegbshowkey"><a href="#EmpireCMS" onclick="edoshowkey('spacegbshowkey','spacegb','<?=$public_r['newsurl']?>');" title="ç‚¹å‡»æ˜¾ç¤ºéªŒè¯ç ">ç‚¹å‡»æ˜¾ç¤ºéªŒè¯ç </a></td>
+                  <td id="spacegbshowkey"><a href="#EmpireCMS" onclick="edoshowkey('spacegbshowkey','spacegb','<?=$public_r['newsurl']?>');" title="µã»÷ÏÔÊ¾ÑéÖ¤Âë">µã»÷ÏÔÊ¾ÑéÖ¤Âë</a></td>
                 </tr>
               </table></td>
         </tr>
         <tr> 
           <td>&nbsp;</td>
-          <td><input type="submit" name="Submit" value="å‘è¡¨ç•™è¨€"></td>
+          <td><input type="submit" name="Submit" value="·¢±íÁôÑÔ"></td>
         </tr>
 		</form>
       </table></td>

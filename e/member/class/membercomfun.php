@@ -1,7 +1,7 @@
 <?php
-//--------------- ä¼šå‘˜ç›¸å…³å¤„ç†å‡½æ•° ---------------
+//--------------- »áÔ±Ïà¹Ø´¦Àíº¯Êý ---------------
 
-//ç‚¹å¡å†²å€¼
+//µã¿¨³åÖµ
 function CardGetFen($username,$reusername,$card_no,$password){
 	global $empire,$dbtbpre;
 	$card_no=RepPostVar($card_no);
@@ -25,7 +25,7 @@ function CardGetFen($username,$reusername,$card_no,$password){
 	{
 		printerror("CardPassError","history.go(-1)",1);
 	}
-	//æ˜¯å¦è¿‡æœŸ
+	//ÊÇ·ñ¹ýÆÚ
 	$buytime=date("Y-m-d H:i:s");
 	$r=$empire->fetch1("select cardfen,money,endtime,carddate,cdgroupid,cdzgroupid from {$dbtbpre}enewscard where card_no='$card_no' limit 1");
 	if($r[endtime]<>"0000-00-00")
@@ -36,10 +36,10 @@ function CardGetFen($username,$reusername,$card_no,$password){
 			printerror("CardOutDate","history.go(-1)",1);
 	    }
     }
-	//å……å€¼
+	//³äÖµ
 	eAddFenToUser($r[cardfen],$r[carddate],$r[cdgroupid],$r[cdzgroupid],$user);
-	$sql1=$empire->query("delete from {$dbtbpre}enewscard where card_no='$card_no'");//åˆ é™¤å¡å·
-	//å¤‡ä»½è´­ä¹°è®°å½•
+	$sql1=$empire->query("delete from {$dbtbpre}enewscard where card_no='$card_no'");//É¾³ý¿¨ºÅ
+	//±¸·Ý¹ºÂò¼ÇÂ¼
 	BakBuy($user['userid'],$username,$card_no,$r[cardfen],$r[money],$r[carddate],0);
 	printerror("CardGetFenSuccess","../member/card/",1);
 }

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=(int)$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 
-//å˜é‡
+//±äÁ¿
 $leftfile=hRepPostStr($_GET['leftfile'],1);
 $mainfile=hRepPostStr($_GET['mainfile'],1);
 $title=hRepPostStr($_GET['title'],1);
@@ -30,7 +30,7 @@ if(empty($mainfile))
 }
 if(empty($title))
 {
-	$title='ç®¡ç†';
+	$title='¹ÜÀí';
 }
 //check
 if(stristr($leftfile,'://'))
@@ -45,7 +45,7 @@ if(stristr($mainfile,'://'))
 ?>
 <HTML>
 <HEAD>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title><?=$title?></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </HEAD>
@@ -84,7 +84,7 @@ document.all("frmTitle").style.display=""
           <TBODY>
             <tr> 
               <TD onclick="switchSysBar()" style="HEIGHT:100%;"> <font style="COLOR:666666;CURSOR:hand;FONT-FAMILY:Webdings;FONT-SIZE:9pt;"> 
-                <SPAN id="switchPoint" title="æ‰“å¼€/å…³é—­å·¦è¾¹å¯¼èˆªæ ">3</SPAN></font> 
+                <SPAN id="switchPoint" title="´ò¿ª/¹Ø±Õ×ó±ßµ¼º½À¸">3</SPAN></font> 
           </TBODY>
         </TABLE></TD>
       <TD style="WIDTH:100%"> 

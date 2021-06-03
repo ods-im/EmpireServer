@@ -1,14 +1,14 @@
 <?php
-//*********************** ä¸“é¢˜ *********************
+//*********************** ×¨Ìâ *********************
 
-//è¿”å›å­—æ®µå€¼
+//·µ»Ø×Ö¶ÎÖµ
 function ReturnZFvalue($value)
 {
 	$value=str_replace("\r\n","|",$value);
 	return $value;
 }
 
-//å–å¾—ä¸“é¢˜è¡¨å•å…ƒç´ htmlä»£ç 
+//È¡µÃ×¨Ìâ±íµ¥ÔªËØhtml´úÂë
 function GetZtFform($type,$f,$fvalue,$fformsize=''){
 	if($type=="select"||$type=="radio"||$type=="checkbox")
 	{
@@ -20,13 +20,13 @@ function GetZtFform($type,$f,$fvalue,$fformsize=''){
 	$r=explode($exp,$data);
 	$string=str_replace("[!--enews.var--]",$f,$r[1]);
 	$string=str_replace("[!--enews.def.val--]",$fvalue,$string);
-	if($type=='editor')//ç¼–è¾‘å™¨
+	if($type=='editor')//±à¼­Æ÷
 	{
 		$editortype='Default';
 		$string=str_replace("[!--editor.type--]",$editortype,$string);
 		$string=str_replace("[!--editor.basepath--]",'../ecmseditor/infoeditor/',$string);
 	}
-	elseif($type=='img'||$type=='flash'||$type=='file')//é™„ä»¶
+	elseif($type=='img'||$type=='flash'||$type=='file')//¸½¼ş
 	{
 		$string=str_replace("[!--enews.modtype--]",'2',$string);
 		$string=str_replace("[!--enews.path--]",'../',$string);
@@ -35,7 +35,7 @@ function GetZtFform($type,$f,$fvalue,$fformsize=''){
 	return fAddAddsData($string);
 }
 
-//å–å¾—select/radioå…ƒç´ ä»£ç 
+//È¡µÃselect/radioÔªËØ´úÂë
 function GetZFformSelect($type,$f,$fvalue,$fformsize=''){
 	$vr=explode("|",$fvalue);
 	$count=count($vr);
@@ -75,7 +75,7 @@ function GetZFformSelect($type,$f,$fvalue,$fformsize=''){
 	return $change;
 }
 
-//æ›¿æ¢è¡¨å•å…ƒç´ é•¿åº¦
+//Ìæ»»±íµ¥ÔªËØ³¤¶È
 function RepZFformSize($f,$string,$type,$fformsize=''){
 	$fformsize=ReturnDefZFformSize($f,$type,$fformsize);
 	if($type=='textarea'||$type=='editor')
@@ -91,7 +91,7 @@ function RepZFformSize($f,$string,$type,$fformsize=''){
 	return $string;
 }
 
-//è¿”å›é»˜è®¤é•¿åº¦
+//·µ»ØÄ¬ÈÏ³¤¶È
 function ReturnDefZFformSize($f,$type,$fformsize){
 	if(empty($fformsize))
 	{
@@ -139,7 +139,7 @@ function ReturnDefZFformSize($f,$type,$fformsize){
 	return $fformsize;
 }
 
-//æ›´æ–°æ ç›®è¡¨å•æ–‡ä»¶
+//¸üĞÂÀ¸Ä¿±íµ¥ÎÄ¼ş
 function ChangeZtForm(){
 	global $empire,$dbtbpre;
 	$file='../data/html/ztaddform.php';
@@ -156,17 +156,17 @@ if(!defined('InEmpireCMS'))
 	WriteFiletext($file,$mtemp);
 }
 
-//å¢åŠ ä¸“é¢˜å­—æ®µ
+//Ôö¼Ó×¨Ìâ×Ö¶Î
 function AddZtF($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"ztf");
 	$add[f]=RepPostVar($add[f]);
 	if(empty($add[f])||empty($add[fname]))
 	{
 		printerror("EmptyF","");
 	}
-	//å­—æ®µæ˜¯å¦é‡å¤
+	//×Ö¶ÎÊÇ·ñÖØ¸´
 	$s=$empire->query("SHOW FIELDS FROM {$dbtbpre}enewsztadd");
 	$b=0;
 	while($r=$empire->fetch($s))
@@ -195,8 +195,8 @@ function AddZtF($add,$userid,$username){
 	{
 		printerror("ReF","");
 	}
-	$add[fvalue]=ReturnZFvalue($add[fvalue]);//åˆå§‹åŒ–å€¼
-	//å­—æ®µç±»å‹
+	$add[fvalue]=ReturnZFvalue($add[fvalue]);//³õÊ¼»¯Öµ
+	//×Ö¶ÎÀàĞÍ
 	if($add[ftype]=="TINYINT"||$add[ftype]=="SMALLINT"||$add[ftype]=="INT"||$add[ftype]=="BIGINT"||$add[ftype]=="FLOAT"||$add[ftype]=="DOUBLE")
 	{
 		$def=" default '0'";
@@ -215,30 +215,30 @@ function AddZtF($add,$userid,$username){
 	{
 		$add[flen]='255';
 	}
-	//å­—æ®µé•¿åº¦
+	//×Ö¶Î³¤¶È
 	if($add[flen]){
 		if($add[ftype]!="TEXT"&&$add[ftype]!="MEDIUMTEXT"&&$add[ftype]!="LONGTEXT"){
 			$type.="(".$add[flen].")";
 		}
 	}
 	$field="`".$add[f]."` ".$type." NOT NULL".$def;
-	//æ–°å¢å­—æ®µ
+	//ĞÂÔö×Ö¶Î
 	$asql=$empire->query("alter table {$dbtbpre}enewsztadd add ".$field);
-	//æ›¿æ¢ä»£ç 
+	//Ìæ»»´úÂë
 	$fhtml=GetZtFform($add[fform],$add[f],$add[fvalue],$add[fformsize]);
 	if($add[fform]=='select'||$add[fform]=='radio'||$add[fform]=='checkbox')
 	{
 		$fhtml=str_replace("\$r[","\$addr[",$fhtml);
 	}
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[myorder]=(int)$add[myorder];
 	$sql=$empire->query("insert into {$dbtbpre}enewsztf(f,fname,fform,fhtml,fzs,myorder,ftype,flen,fvalue,fformsize) values('$add[f]','$add[fname]','$add[fform]','".eaddslashes2($fhtml)."','".eaddslashes($add[fzs])."',$add[myorder],'$add[ftype]','$add[flen]','".eaddslashes2($add[fvalue])."','$add[fformsize]');");
 	$lastid=$empire->lastid();
-	//æ›´æ–°è¡¨å•
+	//¸üĞÂ±íµ¥
 	ChangeZtForm();
 	if($asql&&$sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("fid=".$lastid."<br>f=".$add[f]);
 		printerror("AddFSuccess","special/AddZtF.php?enews=AddZtF".hReturnEcmsHashStrHref2(0));
 	}
@@ -248,10 +248,10 @@ function AddZtF($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ä¸“é¢˜å­—æ®µ
+//ĞŞ¸Ä×¨Ìâ×Ö¶Î
 function EditZtF($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"ztf");
 	$fid=(int)$add['fid'];
 	$add[f]=RepPostVar($add[f]);
@@ -260,7 +260,7 @@ function EditZtF($add,$userid,$username){
 		printerror("EmptyF","history.go(-1)");
 	}
 	if($add[f]<>$add[oldf]){
-		//å­—æ®µæ˜¯å¦é‡å¤
+		//×Ö¶ÎÊÇ·ñÖØ¸´
 		$s=$empire->query("SHOW FIELDS FROM {$dbtbpre}enewsztadd");
 		$b=0;
 		while($r=$empire->fetch($s)){
@@ -287,8 +287,8 @@ function EditZtF($add,$userid,$username){
 			printerror("ReF","");
 		}
 	}
-	$add[fvalue]=ReturnZFvalue($add[fvalue]);//åˆå§‹åŒ–å€¼
-	//å­—æ®µç±»å‹
+	$add[fvalue]=ReturnZFvalue($add[fvalue]);//³õÊ¼»¯Öµ
+	//×Ö¶ÎÀàĞÍ
 	if($add[ftype]=="TINYINT"||$add[ftype]=="SMALLINT"||$add[ftype]=="INT"||$add[ftype]=="BIGINT"||$add[ftype]=="FLOAT"||$add[ftype]=="DOUBLE")
 	{
 		$def=" default '0'";
@@ -307,7 +307,7 @@ function EditZtF($add,$userid,$username){
 	{
 		$add[flen]='255';
 	}
-	//å­—æ®µé•¿åº¦
+	//×Ö¶Î³¤¶È
 	if($add[flen]){
 		if($add[ftype]!="TEXT"&&$add[ftype]!="MEDIUMTEXT"&&$add[ftype]!="LONGTEXT"){
 			$type.="(".$add[flen].")";
@@ -315,7 +315,7 @@ function EditZtF($add,$userid,$username){
 	}
 	$field="`".$add[f]."` ".$type." NOT NULL".$def;
 	$usql=$empire->query("alter table {$dbtbpre}enewsztadd change `".$add[oldf]."` ".$field);
-	//æ›¿æ¢ä»£ç 
+	//Ìæ»»´úÂë
 	if($add[f]<>$add[oldf]||$add[fform]<>$add[oldfform]||$add[fvalue]<>$add[oldfvalue]||$add[fformsize]<>$add[oldfformsize]){
 		$fhtml=GetZtFform($add[fform],$add[f],$add[fvalue],$add[fformsize]);
 		if($add[fform]=='select'||$add[fform]=='radio'||$add[fform]=='checkbox')
@@ -326,24 +326,24 @@ function EditZtF($add,$userid,$username){
 	else{
 		$fhtml=$add[fhtml];
 	}
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[myorder]=(int)$add[myorder];
 	$sql=$empire->query("update {$dbtbpre}enewsztf set f='$add[f]',fname='$add[fname]',fform='$add[fform]',fhtml='".eaddslashes2($fhtml)."',fzs='".eaddslashes($add[fzs])."',myorder=$add[myorder],ftype='$add[ftype]',flen='$add[flen]',fvalue='".eaddslashes2($add[fvalue])."',fformsize='$add[fformsize]' where fid=$fid");
-	//æ›´æ–°è¡¨å•
+	//¸üĞÂ±íµ¥
 	ChangeZtForm();
 	if($usql&&$sql)
 	{
-		insert_dolog("fid=".$fid."<br>f=".$add[f]);//æ“ä½œæ—¥å¿—
+		insert_dolog("fid=".$fid."<br>f=".$add[f]);//²Ù×÷ÈÕÖ¾
 		printerror("EditFSuccess","special/ListZtF.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ä¸“é¢˜å­—æ®µ
+//É¾³ı×¨Ìâ×Ö¶Î
 function DelZtF($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"ztf");
 	$fid=(int)$add['fid'];
 	if(empty($fid)){
@@ -355,21 +355,21 @@ function DelZtF($add,$userid,$username){
 	}
 	$usql=$empire->query("alter table {$dbtbpre}enewsztadd drop COLUMN `".$r[f]."`");
 	$sql=$empire->query("delete from {$dbtbpre}enewsztf where fid='$fid'");
-	//æ›´æ–°è¡¨å•è¡¨
+	//¸üĞÂ±íµ¥±í
 	ChangeZtForm();
 	if($usql&&$sql)
 	{
-		insert_dolog("fid=".$fid."<br>f=".$r[f]);//æ“ä½œæ—¥å¿—
+		insert_dolog("fid=".$fid."<br>f=".$r[f]);//²Ù×÷ÈÕÖ¾
 		printerror("DelFSuccess","special/ListZtF.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ä¸“é¢˜å­—æ®µé¡ºåº
+//ĞŞ¸Ä×¨Ìâ×Ö¶ÎË³Ğò
 function EditZtFOrder($fid,$myorder,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"ztf");
 	for($i=0;$i<count($myorder);$i++)
 	{
@@ -377,18 +377,18 @@ function EditZtFOrder($fid,$myorder,$userid,$username){
 		$newmyorder=(int)$myorder[$i];
 		$usql=$empire->query("update {$dbtbpre}enewsztf set myorder=$newmyorder where fid='$fid[$i]'");
     }
-	//æ›´æ–°è¡¨å•è¡¨
+	//¸üĞÂ±íµ¥±í
 	ChangeZtForm();
 	printerror("EditFOrderSuccess","special/ListZtF.php".hReturnEcmsHashStrHref2(1));
 }
 
-//è¿”å›ä¸“é¢˜å­—æ®µ
+//·µ»Ø×¨Ìâ×Ö¶Î
 function ReturnZtAddF($add,$ecms=0){
 	global $empire,$dbtbpre;
 	$ret_r[0]='';
 	$ret_r[1]='';
 	$fsql=$empire->query("select f from {$dbtbpre}enewsztf");
-	if($ecms==0)//å¢åŠ 
+	if($ecms==0)//Ôö¼Ó
 	{
 		while($fr=$empire->fetch($fsql))
 		{
@@ -399,7 +399,7 @@ function ReturnZtAddF($add,$ecms=0){
 			$ret_r[1].=",'".AddAddsData($fval)."'";
 		}
 	}
-	else//ä¿®æ”¹
+	else//ĞŞ¸Ä
 	{
 		while($fr=$empire->fetch($fsql))
 		{
@@ -413,7 +413,7 @@ function ReturnZtAddF($add,$ecms=0){
 }
 
 
-//å¤„ç†ä¸“é¢˜æäº¤å˜é‡
+//´¦Àí×¨ÌâÌá½»±äÁ¿
 function DoPostZtVar($add){
 	if(empty($add[zttype])){
 		$add[zttype]=".html";
@@ -447,13 +447,13 @@ function DoPostZtVar($add){
 	{
 		$add['usernames']=','.$add['usernames'].',';
 	}
-	//ç›®å½•
+	//Ä¿Â¼
 	$add[ztpath]=$add['pripath'].$add['ztpath'];
 	$add[ztpath]=eaddslashes($add[ztpath]);
 	return $add;
 }
 
-//å¢åŠ ä¸“é¢˜
+//Ôö¼Ó×¨Ìâ
 function AddZt($add,$userid,$username){
 	global $empire,$class_r,$dbtbpre,$public_r;
 	$add[ztpath]=trim($add[ztpath]);
@@ -463,31 +463,31 @@ function AddZt($add,$userid,$username){
 	CheckLevel($userid,$username,$classid,"zt");
 	$add=DoPostZtVar($add);
 	$createpath='../../'.$add[ztpath];
-	//æ£€æµ‹ç›®å½•æ˜¯å¦å­˜åœ¨
+	//¼ì²âÄ¿Â¼ÊÇ·ñ´æÔÚ
 	if(file_exists($createpath)){
 		printerror("ReZtpath","");
 	}
-	CreateZtPath($add[ztpath]);//å»ºç«‹ä¸“é¢˜ç›®å½•
+	CreateZtPath($add[ztpath]);//½¨Á¢×¨ÌâÄ¿Â¼
 	$addtime=time();
-	//å–å¾—è¡¨å
+	//È¡µÃ±íÃû
 	$tabler=GetModTable(GetListtempMid($add[listtempid]));
 	$tabler[tid]=(int)$tabler[tid];
 	$sql=$empire->query("insert into {$dbtbpre}enewszt(ztname,ztnum,listtempid,onclick,ztpath,zttype,zturl,classid,islist,maxnum,reorder,intro,ztimg,zcid,showzt,ztpagekey,classtempid,myorder,usezt,yhid,endtime,closepl,checkpl,restb,usernames,addtime,pltempid) values('$add[ztname]',$add[ztnum],$add[listtempid],0,'$add[ztpath]','$add[zttype]','$add[zturl]',$add[classid],$add[islist],$add[maxnum],'$add[reorder]','$add[intro]','$add[ztimg]',$add[zcid],$add[showzt],'$add[ztpagekey]','$add[classtempid]',$add[myorder],'$add[usezt]','$add[yhid]','$add[endtime]','$add[closepl]','$add[checkpl]','$public_r[pldeftb]','$add[usernames]','$addtime','$add[pltempid]');");
 	$ztid=$empire->lastid();
-	//å‰¯è¡¨
+	//¸±±í
 	$ret_zr=ReturnZtAddF($add,0);
 	$empire->query("replace into {$dbtbpre}enewsztadd(ztid,classtext".$ret_zr[0].") values('$ztid','".eaddslashes2($add[classtext])."'".$ret_zr[1].");");
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileOther(2,$ztid,$add['filepass'],'other');
-	//ç”Ÿæˆé¡µé¢
+	//Éú³ÉÒ³Ãæ
 	if($add[islist]==0||$add[islist]==2)
 	{
 		$classtemp=$add[islist]==2?GetZtText($ztid):GetClassTemp($add['classtempid']);
 		NewsBq($ztid,$classtemp,3,1);
     }
-	GetClass();//æ›´æ–°ç¼“å­˜
+	GetClass();//¸üĞÂ»º´æ
 	if($sql){
-		insert_dolog("ztid=".$ztid."<br>ztname=".$add[ztname]);//æ“ä½œæ—¥å¿—
+		insert_dolog("ztid=".$ztid."<br>ztname=".$add[ztname]);//²Ù×÷ÈÕÖ¾
 		printerror("AddZtSuccess","special/AddZt.php?enews=AddZt".hReturnEcmsHashStrHref2(0));
 	}
 	else{
@@ -495,7 +495,7 @@ function AddZt($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ä¸“é¢˜
+//ĞŞ¸Ä×¨Ìâ
 function EditZt($add,$userid,$username){
 	global $empire,$class_r,$dbtbpre,$loginlevel;
 	$add[ztid]=(int)$add[ztid];
@@ -511,7 +511,7 @@ function EditZt($add,$userid,$username){
 	{
 		$upusernames=",usernames='$add[usernames]'";
 	}
-	//æ”¹å˜ç›®å½•
+	//¸Ä±äÄ¿Â¼
 	if($add[oldztpath]<>$add[ztpath]){
 		$createpath='../../'.$add[ztpath];
 		if(file_exists($createpath)){
@@ -519,28 +519,28 @@ function EditZt($add,$userid,$username){
 		}
 		if($add['oldpripath']==$add['pripath']){
 			$new="../../";
-			@rename($new.$add[oldztpath],$new.$add[ztpath]);//æ”¹å˜ç›®å½•å
+			@rename($new.$add[oldztpath],$new.$add[ztpath]);//¸Ä±äÄ¿Â¼Ãû
 		}
 		else{
-			CreateZtPath($add[ztpath]);//å»ºç«‹ä¸“é¢˜ç›®å½•
+			CreateZtPath($add[ztpath]);//½¨Á¢×¨ÌâÄ¿Â¼
 		}
     }
-	//å–å¾—è¡¨å
+	//È¡µÃ±íÃû
 	$tabler=GetModTable(GetListtempMid($add[listtempid]));
 	$tabler[tid]=(int)$tabler[tid];
 	$sql=$empire->query("update {$dbtbpre}enewszt set ztname='$add[ztname]',ztnum=$add[ztnum],listtempid=$add[listtempid],ztpath='$add[ztpath]',zttype='$add[zttype]',zturl='$add[zturl]',classid=$add[classid],islist=$add[islist],maxnum=$add[maxnum],reorder='$add[reorder]',intro='$add[intro]',ztimg='$add[ztimg]',zcid=$add[zcid],showzt=$add[showzt],ztpagekey='$add[ztpagekey]',classtempid='$add[classtempid]',myorder=$add[myorder],usezt='$add[usezt]',yhid='$add[yhid]',endtime='$add[endtime]',closepl='$add[closepl]',checkpl='$add[checkpl]',pltempid='$add[pltempid]'".$upusernames." where ztid='$add[ztid]'");
-	//å‰¯è¡¨
+	//¸±±í
 	$ret_zr=ReturnZtAddF($add,1);
 	$empire->query("update {$dbtbpre}enewsztadd set classtext='".eaddslashes2($add[classtext])."'".$ret_zr[0]." where ztid='$add[ztid]'");
-	//æ›´æ–°ä¸“é¢˜å­ç±»
+	//¸üĞÂ×¨Ìâ×ÓÀà
 	if($add['endtime']!=$add['oldendtime'])
 	{
 		$empire->query("update {$dbtbpre}enewszttype set endtime='$add[endtime]' where ztid='$add[ztid]'");
 	}
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileEditOther(2,$add['ztid'],'other');
-	GetClass();//æ›´æ–°ç¼“å­˜
-	//ç”Ÿæˆé¡µé¢
+	GetClass();//¸üĞÂ»º´æ
+	//Éú³ÉÒ³Ãæ
 	if($add[islist]==0||$add[islist]==2)
 	{
 		$classtemp=$add[islist]==2?GetZtText($add[ztid]):GetClassTemp($add['classtempid']);
@@ -553,7 +553,7 @@ function EditZt($add,$userid,$username){
 		{
 			$returnurl='special/AddZt.php?enews=EditZt&ztid='.$add[ztid].'&from=1'.hReturnEcmsHashStrHref2(0);
 		}
-		insert_dolog("ztid=".$add[ztid]."<br>ztname=".$add[ztname]);//æ“ä½œæ—¥å¿—
+		insert_dolog("ztid=".$add[ztid]."<br>ztname=".$add[ztname]);//²Ù×÷ÈÕÖ¾
 		printerror("EditZtSuccess",$returnurl);
 	}
 	else
@@ -562,7 +562,7 @@ function EditZt($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤ä¸“é¢˜
+//É¾³ı×¨Ìâ
 function DelZt($ztid,$userid,$username){
 	global $empire,$dbtbpre;
 	$ztid=(int)$ztid;
@@ -574,12 +574,12 @@ function DelZt($ztid,$userid,$username){
 	if(empty($r[ztid])){
 		printerror("NotDelZtid","history.go(-1)");
 	}
-	//åˆ é™¤ä¸“é¢˜
+	//É¾³ı×¨Ìâ
 	$sql=$empire->query("delete from {$dbtbpre}enewszt where ztid='$ztid'");
 	$empire->query("delete from {$dbtbpre}enewsztadd where ztid='$ztid'");
 	$delpath="../../".$r[ztpath];
 	$del=DelPath($delpath);
-	//åˆ é™¤ä¸“é¢˜å­ç±»
+	//É¾³ı×¨Ìâ×ÓÀà
 	$zttypesql=$empire->query("select cid from {$dbtbpre}enewszttype where ztid='$ztid'");
 	while($zttyper=$empire->fetch($zttypesql))
 	{
@@ -587,9 +587,9 @@ function DelZt($ztid,$userid,$username){
 	}
 	$empire->query("delete from {$dbtbpre}enewszttype where ztid='$ztid'");
 	$empire->query("delete from {$dbtbpre}enewsztinfo where ztid='$ztid'");
-	//åˆ é™¤é™„ä»¶
+	//É¾³ı¸½¼ş
 	DelFileOtherTable("id='$ztid' and modtype=2");
-	GetClass();//æ›´æ–°ç¼“å­˜
+	GetClass();//¸üĞÂ»º´æ
 	//moreportdo
 	if($r['ztpath'])
 	{
@@ -597,7 +597,7 @@ function DelZt($ztid,$userid,$username){
 		eAutodo_AddDo('eDelFileZT',0,0,0,0,0,$eautodofname);
 	}
 	if($sql){
-		insert_dolog("ztid=".$ztid."<br>ztname=".$r[ztname]);//æ“ä½œæ—¥å¿—
+		insert_dolog("ztid=".$ztid."<br>ztname=".$r[ztname]);//²Ù×÷ÈÕÖ¾
 		printerror("DelZtSuccess","special/ListZt.php".hReturnEcmsHashStrHref2(1));
 	}
 	else{
@@ -605,7 +605,7 @@ function DelZt($ztid,$userid,$username){
 	}
 }
 
-//ç»„åˆä¸“é¢˜
+//×éºÏ×¨Ìâ
 function TogZt($add,$userid,$username){
 	global $empire,$class_r,$dbtbpre;
 	$ztid=(int)$add['ztid'];
@@ -631,18 +631,18 @@ function TogZt($add,$userid,$username){
 	}
 	$wheresql="";
 	$formvar="";
-	//å…³é”®å­—
+	//¹Ø¼ü×Ö
 	$keyboard=RepPostVar2($add['keyboard']);
 	if($keyboard)
 	{
 		$formvar.=ReturnFormHidden('keyboard',$add['keyboard']);
 		$searchfsql='';
-		if($add['stitle'])//æ ‡é¢˜
+		if($add['stitle'])//±êÌâ
 		{
 			$searchfsql.="title like '%$keyboard%'";
 			$formvar.=ReturnFormHidden('stitle',$add['stitle']);
 		}
-		if($add['susername'])//å¢åŠ è€…
+		if($add['susername'])//Ôö¼ÓÕß
 		{
 			if($searchfsql)
 			{
@@ -656,34 +656,34 @@ function TogZt($add,$userid,$username){
 			$wheresql=" and (".$searchfsql.")";
 		}
 	}
-	//æ˜¯å¦æ¨è
+	//ÊÇ·ñÍÆ¼ö
 	if($add['isgood'])
 	{
 		$wheresql.=" and isgood>0";
 		$formvar.=ReturnFormHidden('isgood',$add['isgood']);
 	}
-	//å¤´æ¡
+	//Í·Ìõ
 	if($add['firsttitle'])
 	{
 		$wheresql.=" and firsttitle>0";
 		$formvar.=ReturnFormHidden('firsttitle',$add['firsttitle']);
 	}
-	//æœ‰æ ‡é¢˜å›¾ç‰‡
+	//ÓĞ±êÌâÍ¼Æ¬
 	if($add['titlepic'])
 	{
 		$wheresql.=" and ispic=1";
 		$formvar.=ReturnFormHidden('titlepic',$add['titlepic']);
 	}
-	//æŒ‰æ ç›®åˆ·æ–°
+	//°´À¸Ä¿Ë¢ĞÂ
 	$classid=(int)$add['classid'];
     if($classid)
 	{
 		$formvar.=ReturnFormHidden('classid',$classid);
-		if(empty($class_r[$classid][islast]))//å¤§æ ç›®
+		if(empty($class_r[$classid][islast]))//´óÀ¸Ä¿
 		{
 			$where=ReturnClass($class_r[$classid][sonclass]);
 		}
-		else//ç»ˆææ ç›®
+		else//ÖÕ¼«À¸Ä¿
 		{
 			$where="classid='$classid'";
 		}
@@ -694,7 +694,7 @@ function TogZt($add,$userid,$username){
 	$startday=RepPostVar($add[startday]);
 	$endday=RepPostVar($add[endday]);
 	$formvar.=ReturnFormHidden('retype',$add['retype']);
-	//æŒ‰ID
+	//°´ID
     if($add['retype'])
 	{
 		if($endid)
@@ -711,11 +711,11 @@ function TogZt($add,$userid,$username){
 			$formvar.=ReturnFormHidden('startday',$add[startday]).ReturnFormHidden('endday',$add[endday]);
 	    }
     }
-	//é™„ä»¶sqlæ¡ä»¶
+	//¸½¼şsqlÌõ¼ş
 	$query=$add['query'];
 	if($query)
 	{
-		$query=ClearAddsData($query);//å»é™¤adds
+		$query=ClearAddsData($query);//È¥³ıadds
 		$wheresql.=" and (".$query.")";
 		$formvar.=ReturnFormHidden('query',$add['query']);
 	}
@@ -727,12 +727,12 @@ function TogZt($add,$userid,$username){
 	if($add['doecmszt'])
 	{
 		$togtype=(int)$add['togtype'];
-		if($togtype==1)//ç»„åˆé€‰ä¸­
+		if($togtype==1)//×éºÏÑ¡ÖĞ
 		{
 			$add['inid']=eReturnInids($add['inid']);
 			$wheresql="id in (".$add['inid'].")";
 		}
-		else//æ’é™¤é€‰ä¸­
+		else//ÅÅ³ıÑ¡ÖĞ
 		{
 			if($add['inid'])
 			{
@@ -741,7 +741,7 @@ function TogZt($add,$userid,$username){
 			}
 		}
 		AddMoreInfoToZt($ztid,$zcid,$tbname,$wheresql);
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("ztid=$ztid&ztname=$r[ztname]");
 		printerror("TogZtSuccess","TogZt.php?ztid=$ztid".hReturnEcmsHashStrHref2(0));
 	}
@@ -752,7 +752,7 @@ function TogZt($add,$userid,$username){
 	return $re;
 }
 
-//ä¿å­˜ä¸“é¢˜ä¿¡æ¯
+//±£´æ×¨ÌâĞÅÏ¢
 function SaveTogZtInfo($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!trim($add[togztname]))
@@ -761,7 +761,7 @@ function SaveTogZtInfo($add,$userid,$username){
 	}
 	$add['doecmszt']=(int)$add['doecmszt'];
 	$add[classid]=(int)$add[classid];
-	//æœç´¢å­—æ®µ
+	//ËÑË÷×Ö¶Î
 	$searchf=',';
 	if($add[stitle]==1)
 	{
@@ -775,7 +775,7 @@ function SaveTogZtInfo($add,$userid,$username){
 	{
 		$searchf.='snewstext,';
 	}
-	//ç‰¹æ®Šå­—æ®µ
+	//ÌØÊâ×Ö¶Î
 	$specialsearch=',';
 	if($add[isgood])
 	{
@@ -806,7 +806,7 @@ function SaveTogZtInfo($add,$userid,$username){
 	}
 	if($sql)
 	{
-		insert_dolog("togid=$togid&togztname=$add[togztname]");//æ“ä½œæ—¥å¿—
+		insert_dolog("togid=$togid&togztname=$add[togztname]");//²Ù×÷ÈÕÖ¾
 		printerror("SaveTogZtInfoSuccess","TogZt.php?ztid=$add[ztid]&togid=$togid".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -815,7 +815,7 @@ function SaveTogZtInfo($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤ä¿å­˜ä¸“é¢˜ä¿¡æ¯
+//É¾³ı±£´æ×¨ÌâĞÅÏ¢
 function DelTogZtInfo($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$togid=intval($add[togid]);
@@ -831,7 +831,7 @@ function DelTogZtInfo($add,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewstogzts where togid='$togid'");
 	if($sql)
 	{
-		insert_dolog("togid=$togid&togztname=$r[togztname]");//æ“ä½œæ—¥å¿—
+		insert_dolog("togid=$togid&togztname=$r[togztname]");//²Ù×÷ÈÕÖ¾
 		printerror('DelTogZtInfoSuccess',EcmsGetReturnUrl());
 	}
 	else
@@ -841,16 +841,16 @@ function DelTogZtInfo($add,$userid,$username){
 }
 
 
-//************************************ æ ç›® ************************************
+//************************************ À¸Ä¿ ************************************
 
-//è¿”å›å­—æ®µå€¼
+//·µ»Ø×Ö¶ÎÖµ
 function ReturnCFvalue($value)
 {
 	$value=str_replace("\r\n","|",$value);
 	return $value;
 }
 
-//å–å¾—æ ç›®è¡¨å•å…ƒç´ htmlä»£ç 
+//È¡µÃÀ¸Ä¿±íµ¥ÔªËØhtml´úÂë
 function GetClassFform($type,$f,$fvalue,$fformsize=''){
 	if($type=="select"||$type=="radio"||$type=="checkbox")
 	{
@@ -862,13 +862,13 @@ function GetClassFform($type,$f,$fvalue,$fformsize=''){
 	$r=explode($exp,$data);
 	$string=str_replace("[!--enews.var--]",$f,$r[1]);
 	$string=str_replace("[!--enews.def.val--]",$fvalue,$string);
-	if($type=='editor')//ç¼–è¾‘å™¨
+	if($type=='editor')//±à¼­Æ÷
 	{
 		$editortype='Default';
 		$string=str_replace("[!--editor.type--]",$editortype,$string);
 		$string=str_replace("[!--editor.basepath--]",'',$string);
 	}
-	elseif($type=='img'||$type=='flash'||$type=='file')//é™„ä»¶
+	elseif($type=='img'||$type=='flash'||$type=='file')//¸½¼ş
 	{
 		$string=str_replace("[!--enews.modtype--]",'1',$string);
 		$string=str_replace("[!--enews.path--]",'',$string);
@@ -877,7 +877,7 @@ function GetClassFform($type,$f,$fvalue,$fformsize=''){
 	return fAddAddsData($string);
 }
 
-//å–å¾—select/radioå…ƒç´ ä»£ç 
+//È¡µÃselect/radioÔªËØ´úÂë
 function GetCFformSelect($type,$f,$fvalue,$fformsize=''){
 	$vr=explode("|",$fvalue);
 	$count=count($vr);
@@ -917,7 +917,7 @@ function GetCFformSelect($type,$f,$fvalue,$fformsize=''){
 	return $change;
 }
 
-//æ›¿æ¢è¡¨å•å…ƒç´ é•¿åº¦
+//Ìæ»»±íµ¥ÔªËØ³¤¶È
 function RepCFformSize($f,$string,$type,$fformsize=''){
 	$fformsize=ReturnDefCFformSize($f,$type,$fformsize);
 	if($type=='textarea'||$type=='editor')
@@ -933,7 +933,7 @@ function RepCFformSize($f,$string,$type,$fformsize=''){
 	return $string;
 }
 
-//è¿”å›é»˜è®¤é•¿åº¦
+//·µ»ØÄ¬ÈÏ³¤¶È
 function ReturnDefCFformSize($f,$type,$fformsize){
 	if(empty($fformsize))
 	{
@@ -981,7 +981,7 @@ function ReturnDefCFformSize($f,$type,$fformsize){
 	return $fformsize;
 }
 
-//æ›´æ–°æ ç›®è¡¨å•æ–‡ä»¶
+//¸üĞÂÀ¸Ä¿±íµ¥ÎÄ¼ş
 function ChangeClassForm(){
 	global $empire,$dbtbpre;
 	$file='../data/html/classaddform.php';
@@ -998,17 +998,17 @@ if(!defined('InEmpireCMS'))
 	WriteFiletext($file,$mtemp);
 }
 
-//å¢åŠ æ ç›®å­—æ®µ
+//Ôö¼ÓÀ¸Ä¿×Ö¶Î
 function AddClassF($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"classf");
 	$add[f]=RepPostVar($add[f]);
 	if(empty($add[f])||empty($add[fname]))
 	{
 		printerror("EmptyF","");
 	}
-	//å­—æ®µæ˜¯å¦é‡å¤
+	//×Ö¶ÎÊÇ·ñÖØ¸´
 	$s=$empire->query("SHOW FIELDS FROM {$dbtbpre}enewsclassadd");
 	$b=0;
 	while($r=$empire->fetch($s))
@@ -1037,8 +1037,8 @@ function AddClassF($add,$userid,$username){
 	{
 		printerror("ReF","");
 	}
-	$add[fvalue]=ReturnCFvalue($add[fvalue]);//åˆå§‹åŒ–å€¼
-	//å­—æ®µç±»å‹
+	$add[fvalue]=ReturnCFvalue($add[fvalue]);//³õÊ¼»¯Öµ
+	//×Ö¶ÎÀàĞÍ
 	if($add[ftype]=="TINYINT"||$add[ftype]=="SMALLINT"||$add[ftype]=="INT"||$add[ftype]=="BIGINT"||$add[ftype]=="FLOAT"||$add[ftype]=="DOUBLE")
 	{
 		$def=" default '0'";
@@ -1057,30 +1057,30 @@ function AddClassF($add,$userid,$username){
 	{
 		$add[flen]='255';
 	}
-	//å­—æ®µé•¿åº¦
+	//×Ö¶Î³¤¶È
 	if($add[flen]){
 		if($add[ftype]!="TEXT"&&$add[ftype]!="MEDIUMTEXT"&&$add[ftype]!="LONGTEXT"){
 			$type.="(".$add[flen].")";
 		}
 	}
 	$field="`".$add[f]."` ".$type." NOT NULL".$def;
-	//æ–°å¢å­—æ®µ
+	//ĞÂÔö×Ö¶Î
 	$asql=$empire->query("alter table {$dbtbpre}enewsclassadd add ".$field);
-	//æ›¿æ¢ä»£ç 
+	//Ìæ»»´úÂë
 	$fhtml=GetClassFform($add[fform],$add[f],$add[fvalue],$add[fformsize]);
 	if($add[fform]=='select'||$add[fform]=='radio'||$add[fform]=='checkbox')
 	{
 		$fhtml=str_replace("\$r[","\$addr[",$fhtml);
 	}
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[myorder]=(int)$add[myorder];
 	$sql=$empire->query("insert into {$dbtbpre}enewsclassf(f,fname,fform,fhtml,fzs,myorder,ftype,flen,fvalue,fformsize) values('$add[f]','$add[fname]','$add[fform]','".eaddslashes2($fhtml)."','".eaddslashes($add[fzs])."',$add[myorder],'$add[ftype]','$add[flen]','".eaddslashes2($add[fvalue])."','$add[fformsize]');");
 	$lastid=$empire->lastid();
-	//æ›´æ–°è¡¨å•
+	//¸üĞÂ±íµ¥
 	ChangeClassForm();
 	if($asql&&$sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("fid=".$lastid."<br>f=".$add[f]);
 		printerror("AddFSuccess","info/AddClassF.php?enews=AddClassF".hReturnEcmsHashStrHref2(0));
 	}
@@ -1090,10 +1090,10 @@ function AddClassF($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹æ ç›®å­—æ®µ
+//ĞŞ¸ÄÀ¸Ä¿×Ö¶Î
 function EditClassF($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"classf");
 	$fid=(int)$add['fid'];
 	$add[f]=RepPostVar($add[f]);
@@ -1102,7 +1102,7 @@ function EditClassF($add,$userid,$username){
 		printerror("EmptyF","history.go(-1)");
 	}
 	if($add[f]<>$add[oldf]){
-		//å­—æ®µæ˜¯å¦é‡å¤
+		//×Ö¶ÎÊÇ·ñÖØ¸´
 		$s=$empire->query("SHOW FIELDS FROM {$dbtbpre}enewsclassadd");
 		$b=0;
 		while($r=$empire->fetch($s)){
@@ -1129,8 +1129,8 @@ function EditClassF($add,$userid,$username){
 			printerror("ReF","");
 		}
 	}
-	$add[fvalue]=ReturnCFvalue($add[fvalue]);//åˆå§‹åŒ–å€¼
-	//å­—æ®µç±»å‹
+	$add[fvalue]=ReturnCFvalue($add[fvalue]);//³õÊ¼»¯Öµ
+	//×Ö¶ÎÀàĞÍ
 	if($add[ftype]=="TINYINT"||$add[ftype]=="SMALLINT"||$add[ftype]=="INT"||$add[ftype]=="BIGINT"||$add[ftype]=="FLOAT"||$add[ftype]=="DOUBLE")
 	{
 		$def=" default '0'";
@@ -1149,7 +1149,7 @@ function EditClassF($add,$userid,$username){
 	{
 		$add[flen]='255';
 	}
-	//å­—æ®µé•¿åº¦
+	//×Ö¶Î³¤¶È
 	if($add[flen]){
 		if($add[ftype]!="TEXT"&&$add[ftype]!="MEDIUMTEXT"&&$add[ftype]!="LONGTEXT"){
 			$type.="(".$add[flen].")";
@@ -1157,7 +1157,7 @@ function EditClassF($add,$userid,$username){
 	}
 	$field="`".$add[f]."` ".$type." NOT NULL".$def;
 	$usql=$empire->query("alter table {$dbtbpre}enewsclassadd change `".$add[oldf]."` ".$field);
-	//æ›¿æ¢ä»£ç 
+	//Ìæ»»´úÂë
 	if($add[f]<>$add[oldf]||$add[fform]<>$add[oldfform]||$add[fvalue]<>$add[oldfvalue]||$add[fformsize]<>$add[oldfformsize]){
 		$fhtml=GetClassFform($add[fform],$add[f],$add[fvalue],$add[fformsize]);
 		if($add[fform]=='select'||$add[fform]=='radio'||$add[fform]=='checkbox')
@@ -1168,24 +1168,24 @@ function EditClassF($add,$userid,$username){
 	else{
 		$fhtml=$add[fhtml];
 	}
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[myorder]=(int)$add[myorder];
 	$sql=$empire->query("update {$dbtbpre}enewsclassf set f='$add[f]',fname='$add[fname]',fform='$add[fform]',fhtml='".eaddslashes2($fhtml)."',fzs='".eaddslashes($add[fzs])."',myorder=$add[myorder],ftype='$add[ftype]',flen='$add[flen]',fvalue='".eaddslashes2($add[fvalue])."',fformsize='$add[fformsize]' where fid=$fid");
-	//æ›´æ–°è¡¨å•
+	//¸üĞÂ±íµ¥
 	ChangeClassForm();
 	if($usql&&$sql)
 	{
-		insert_dolog("fid=".$fid."<br>f=".$add[f]);//æ“ä½œæ—¥å¿—
+		insert_dolog("fid=".$fid."<br>f=".$add[f]);//²Ù×÷ÈÕÖ¾
 		printerror("EditFSuccess","info/ListClassF.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤æ ç›®å­—æ®µ
+//É¾³ıÀ¸Ä¿×Ö¶Î
 function DelClassF($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"classf");
 	$fid=(int)$add['fid'];
 	if(empty($fid)){
@@ -1197,21 +1197,21 @@ function DelClassF($add,$userid,$username){
 	}
 	$usql=$empire->query("alter table {$dbtbpre}enewsclassadd drop COLUMN `".$r[f]."`");
 	$sql=$empire->query("delete from {$dbtbpre}enewsclassf where fid='$fid'");
-	//æ›´æ–°è¡¨å•è¡¨
+	//¸üĞÂ±íµ¥±í
 	ChangeClassForm();
 	if($usql&&$sql)
 	{
-		insert_dolog("fid=".$fid."<br>f=".$r[f]);//æ“ä½œæ—¥å¿—
+		insert_dolog("fid=".$fid."<br>f=".$r[f]);//²Ù×÷ÈÕÖ¾
 		printerror("DelFSuccess","info/ListClassF.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹æ ç›®å­—æ®µé¡ºåº
+//ĞŞ¸ÄÀ¸Ä¿×Ö¶ÎË³Ğò
 function EditClassFOrder($fid,$myorder,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"classf");
 	for($i=0;$i<count($myorder);$i++)
 	{
@@ -1219,18 +1219,18 @@ function EditClassFOrder($fid,$myorder,$userid,$username){
 		$newmyorder=(int)$myorder[$i];
 		$usql=$empire->query("update {$dbtbpre}enewsclassf set myorder=$newmyorder where fid='$fid[$i]'");
     }
-	//æ›´æ–°è¡¨å•è¡¨
+	//¸üĞÂ±íµ¥±í
 	ChangeClassForm();
 	printerror("EditFOrderSuccess","info/ListClassF.php".hReturnEcmsHashStrHref2(1));
 }
 
-//è¿”å›æ ç›®å­—æ®µ
+//·µ»ØÀ¸Ä¿×Ö¶Î
 function ReturnClassAddF($add,$ecms=0){
 	global $empire,$dbtbpre;
 	$ret_r[0]='';
 	$ret_r[1]='';
 	$fsql=$empire->query("select f from {$dbtbpre}enewsclassf");
-	if($ecms==0)//å¢åŠ 
+	if($ecms==0)//Ôö¼Ó
 	{
 		while($fr=$empire->fetch($fsql))
 		{
@@ -1241,7 +1241,7 @@ function ReturnClassAddF($add,$ecms=0){
 			$ret_r[1].=",'".AddAddsData($fval)."'";
 		}
 	}
-	else//ä¿®æ”¹
+	else//ĞŞ¸Ä
 	{
 		while($fr=$empire->fetch($fsql))
 		{
@@ -1255,7 +1255,7 @@ function ReturnClassAddF($add,$ecms=0){
 }
 
 
-//ç»„åˆä¸ç”Ÿæˆçš„æ ç›®ä¿¡æ¯
+//×éºÏ²»Éú³ÉµÄÀ¸Ä¿ĞÅÏ¢
 function TogNotReClass($changecache=0){
 	global $empire,$dbtbpre;
 	$sql=$empire->query("select classid,nreclass,nreinfo,nrejs,nottobq from {$dbtbpre}enewsclass where nreclass=1 or nreinfo=1 or nrejs=1 or nottobq=1");
@@ -1289,7 +1289,7 @@ function TogNotReClass($changecache=0){
 	}
 }
 
-//è¿”å›æŠ•ç¨¿æƒé™
+//·µ»ØÍ¶¸åÈ¨ÏŞ
 function DoPostClassQAddGroupid($groupid){
 	$count=count($groupid);
 	if(!$count)
@@ -1305,7 +1305,7 @@ function DoPostClassQAddGroupid($groupid){
 	return $qg;
 }
 
-//å¤„ç†æ ç›®æäº¤å˜é‡
+//´¦ÀíÀ¸Ä¿Ìá½»±äÁ¿
 function DoPostClassVar($add){
 	if(empty($add[classtype])){
 		$add[classtype]=".html";
@@ -1313,10 +1313,10 @@ function DoPostClassVar($add){
 	$add[classname]=eaddslashes(ehtmlspecialchars($add[classname]));
 	$add[intro]=eaddslashes(RepPhpAspJspcode($add[intro]));
 	$add[classpagekey]=eaddslashes(RepPhpAspJspcode($add[classpagekey]));
-	//è¿‡æ»¤å­—ç¬¦
+	//¹ıÂË×Ö·û
 	$add[listorder]=RepPostVar2($add[listorder]);
 	$add[reorder]=RepPostVar2($add[reorder]);
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[jstempid]=(int)$add['jstempid'];
 	$add[bclassid]=(int)$add[bclassid];
 	$add[link_num]=(int)$add[link_num];
@@ -1412,7 +1412,7 @@ function DoPostClassVar($add){
 	{
 		$add['smallbdinfoid']='';
 	}
-	//è®¾ç½®è®¿é—®æƒé™
+	//ÉèÖÃ·ÃÎÊÈ¨ÏŞ
 	$add[cgroupid]=DoPostClassQAddGroupid($add[cgroupidck]);
 	$add[cgtoinfo]=(int)$add[cgtoinfo];
 	if($add[cgroupid])
@@ -1430,10 +1430,10 @@ function DoPostClassVar($add){
 	return $add;
 }
 
-//å¢åŠ å¤–éƒ¨æ ç›®
+//Ôö¼ÓÍâ²¿À¸Ä¿
 function AddWbClass($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"class");
 	$add=DoPostClassVar($add);
 	if(!$add[classname]||!$add[wburl])
@@ -1443,19 +1443,19 @@ function AddWbClass($add,$userid,$username){
 	$add[islast]=0;
 	$addtime=time();
 	$ecms_fclast=time();
-	//å–å¾—è¡¨å
+	//È¡µÃ±íÃû
 	$tabler=GetModTable($add[modid]);
 	$tabler[tid]=(int)$tabler[tid];
-	if(empty($add[bclassid]))//ä¸»æ ç›®
+	if(empty($add[bclassid]))//Ö÷À¸Ä¿
 	{
 		$sonclass="";
 		$featherclass="";
 	}
-	else//ä¸­çº§æ ç›®
+	else//ÖĞ¼¶À¸Ä¿
 	{
-		//å–å¾—ä¸Šä¸€çº§çˆ¶æ ç›®
+		//È¡µÃÉÏÒ»¼¶¸¸À¸Ä¿
 		$r=$empire->fetch1("select featherclass,islast,wburl from {$dbtbpre}enewsclass where classid='$add[bclassid]'");
-		if($r[islast])//æ˜¯å¦ç»ˆææ ç›®
+		if($r[islast])//ÊÇ·ñÖÕ¼«À¸Ä¿
 		{
 			printerror("BclassNotLast","");
 		}
@@ -1472,24 +1472,24 @@ function AddWbClass($add,$userid,$username){
 	}
 	$sql=$empire->query("insert into {$dbtbpre}enewsclass(bclassid,classname,is_zt,sonclass,lencord,link_num,newstempid,onclick,listtempid,featherclass,islast,classpath,classtype,newspath,filename,filetype,openpl,openadd,newline,hotline,goodline,classurl,groupid,myorder,filename_qz,hotplline,modid,checked,firstline,bname,islist,searchtempid,tid,tbname,maxnum,checkpl,down_num,online_num,listorder,reorder,intro,classimg,jstempid,addinfofen,listdt,showclass,showdt,checkqadd,qaddlist,qaddgroupid,qaddshowkey,adminqinfo,doctime,classpagekey,dtlisttempid,classtempid,nreclass,nreinfo,nrejs,nottobq,ipath,addreinfo,haddlist,sametitle,definfovoteid,wburl,qeditchecked,wapstyleid,repreinfo,pltempid,cgroupid,yhid,wfid,cgtoinfo,bdinfoid,repagenum,keycid,addtime,oneinfo,addsql,wapislist,fclast) values($add[bclassid],'$add[classname]',0,'$sonclass',$add[lencord],$add[link_num],$add[newstempid],0,$add[listtempid],'$featherclass',$add[islast],'$classpath','$add[classtype]','$add[newspath]',$add[filename],'$add[filetype]',$add[openpl],$add[openadd],$add[newline],$add[hotline],$add[goodline],'$add[classurl]',$add[groupid],$add[myorder],'$add[filename_qz]',$add[hotplline],$add[modid],$add[checked],$add[firstline],'$add[bname]',$add[islist],$add[searchtempid],$tabler[tid],'$tabler[tbname]',$add[maxnum],$add[checkpl],$add[down_num],$add[online_num],'$add[listorder]','$add[reorder]','$add[intro]','$add[classimg]',$add[jstempid],$add[addinfofen],$add[listdt],$add[showclass],$add[showdt],$add[checkqadd],$add[qaddlist],'$add[qaddgroupid]',$add[qaddshowkey],$add[adminqinfo],$add[doctime],'$add[classpagekey]','$add[dtlisttempid]','$add[classtempid]',$add[nreclass],$add[nreinfo],$add[nrejs],$add[nottobq],'$add[ipath]',$add[addreinfo],$add[haddlist],$add[sametitle],$add[definfovoteid],'$add[wburl]',$add[qeditchecked],$add[wapstyleid],'$add[repreinfo]','$add[pltempid]','$add[cgroupid]','$add[yhid]','$add[wfid]','$add[cgtoinfo]','$add[bdinfoid]','$add[repagenum]','$add[keycid]','$addtime','$add[oneinfo]','$add[addsql]','$add[wapislist]','$ecms_fclast');");
 	$lastid=$empire->lastid();
-	//å‰¯è¡¨
+	//¸±±í
 	$ret_cr=ReturnClassAddF($add,0);
 	$empire->query("replace into {$dbtbpre}enewsclassadd(classid,classtext,eclasspagetext".$ret_cr[0].") values('$lastid','".eaddslashes2($add[classtext])."','$add[eclasspagetext]'".$ret_cr[1].");");
-	//ç»Ÿè®¡è¡¨
+	//Í³¼Æ±í
 	$empire->query("replace into {$dbtbpre}enewsclass_stats(classid) values('$lastid');");
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileOther(1,$lastid,$add['filepass'],'other');
 	GetClass();
-	//DelListEnews();//åˆ é™¤ç¼“å­˜æ–‡ä»¶
+	//DelListEnews();//É¾³ı»º´æÎÄ¼ş
 	if($sql)
 	{
-		//åˆ é™¤å¯¼èˆªç¼“å­˜
+		//É¾³ıµ¼º½»º´æ
 		$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='listclass'");
 		$cache_enews='doclass';
 		$cache_ecmstourl=urlencode("AddClass.php?enews=AddClass&from=".ehtmlspecialchars($add[from]).hReturnEcmsHashStrHref2(0));
 		$cache_mess='AddClassSuccess';
 		$cache_url="CreateCache.php?enews=$cache_enews&ecmstourl=$cache_ecmstourl&mess=$cache_mess".hReturnEcmsHashStrHref2(0);
-		insert_dolog("classid=".$lastid."<br>classname=".$add[classname]);//æ“ä½œæ—¥å¿—
+		insert_dolog("classid=".$lastid."<br>classname=".$add[classname]);//²Ù×÷ÈÕÖ¾
 		//printerror("AddClassSuccess","AddClass.php?enews=AddClass&from=".ehtmlspecialchars($add[from]).hReturnEcmsHashStrHref2(0));
 		echo'<meta http-equiv="refresh" content="0;url='.$cache_url.'">';
 		db_close();
@@ -1502,10 +1502,10 @@ function AddWbClass($add,$userid,$username){
 	}
 }
 
-//å¢åŠ æ ç›®
+//Ôö¼ÓÀ¸Ä¿
 function AddClass($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//å¢åŠ å¤–éƒ¨æ ç›®
+	//Ôö¼ÓÍâ²¿À¸Ä¿
 	if($add[ecmsclasstype])
 	{
 		AddWbClass($add,$userid,$username);
@@ -1519,10 +1519,10 @@ function AddClass($add,$userid,$username){
 	{
 		printerror("LastMustChange","");
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"class");
 	$add=DoPostClassVar($add);
-	//ç›®å½•å·²å­˜åœ¨
+	//Ä¿Â¼ÒÑ´æÔÚ
 	if(strstr($add[classpath],".")||strstr($add[classpath],"/")||strstr($add[classpath],"\\"))
 	{
 		printerror("badpath","");
@@ -1534,22 +1534,22 @@ function AddClass($add,$userid,$username){
 	}
 	$addtime=time();
 	$ecms_fclast=time();
-	//å–å¾—è¡¨å
+	//È¡µÃ±íÃû
 	$tabler=GetModTable($add[modid]);
 	$tabler[tid]=(int)$tabler[tid];
-	//å¢åŠ å¤§æ ç›®
+	//Ôö¼Ó´óÀ¸Ä¿
 	if(!$add[islast])
 	{
-		if(empty($add[bclassid]))//ä¸»æ ç›®
+		if(empty($add[bclassid]))//Ö÷À¸Ä¿
 		{
 			$sonclass="";
 			$featherclass="";
 	    }
-		else//ä¸­çº§æ ç›®
+		else//ÖĞ¼¶À¸Ä¿
 		{
-			//å–å¾—ä¸Šä¸€çº§çˆ¶æ ç›®
+			//È¡µÃÉÏÒ»¼¶¸¸À¸Ä¿
 			$r=$empire->fetch1("select featherclass,islast,wburl from {$dbtbpre}enewsclass where classid='$add[bclassid]'");
-			if($r[islast])//æ˜¯å¦ç»ˆææ ç›®
+			if($r[islast])//ÊÇ·ñÖÕ¼«À¸Ä¿
 			{
 				printerror("BclassNotLast","");
 			}
@@ -1564,16 +1564,16 @@ function AddClass($add,$userid,$username){
 			$featherclass=$r[featherclass].$add[bclassid]."|";
 			$sonclass="";
 	    }
-		//å»ºç«‹ç›®å½•
+		//½¨Á¢Ä¿Â¼
 		CreateClassPath($classpath);
 		$sql=$empire->query("insert into {$dbtbpre}enewsclass(bclassid,classname,is_zt,sonclass,lencord,link_num,newstempid,onclick,listtempid,featherclass,islast,classpath,classtype,newspath,filename,filetype,openpl,openadd,newline,hotline,goodline,classurl,groupid,myorder,filename_qz,hotplline,modid,checked,firstline,bname,islist,searchtempid,tid,tbname,maxnum,checkpl,down_num,online_num,listorder,reorder,intro,classimg,jstempid,addinfofen,listdt,showclass,showdt,checkqadd,qaddlist,qaddgroupid,qaddshowkey,adminqinfo,doctime,classpagekey,dtlisttempid,classtempid,nreclass,nreinfo,nrejs,nottobq,ipath,addreinfo,haddlist,sametitle,definfovoteid,wburl,qeditchecked,wapstyleid,repreinfo,pltempid,cgroupid,yhid,wfid,cgtoinfo,bdinfoid,repagenum,keycid,addtime,oneinfo,addsql,wapislist,fclast) values($add[bclassid],'$add[classname]',0,'$sonclass',$add[lencord],$add[link_num],$add[newstempid],0,$add[listtempid],'$featherclass',$add[islast],'$classpath','$add[classtype]','$add[newspath]',$add[filename],'$add[filetype]',$add[openpl],$add[openadd],$add[newline],$add[hotline],$add[goodline],'$add[classurl]',$add[groupid],$add[myorder],'$add[filename_qz]',$add[hotplline],$add[modid],$add[checked],$add[firstline],'$add[bname]',$add[islist],$add[searchtempid],$tabler[tid],'$tabler[tbname]',$add[maxnum],$add[checkpl],$add[down_num],$add[online_num],'$add[listorder]','$add[reorder]','$add[intro]','$add[classimg]',$add[jstempid],$add[addinfofen],$add[listdt],$add[showclass],$add[showdt],$add[checkqadd],$add[qaddlist],'$add[qaddgroupid]',$add[qaddshowkey],$add[adminqinfo],$add[doctime],'$add[classpagekey]','$add[dtlisttempid]','$add[classtempid]',$add[nreclass],$add[nreinfo],$add[nrejs],$add[nottobq],'$add[ipath]',$add[addreinfo],$add[haddlist],$add[sametitle],$add[definfovoteid],'',$add[qeditchecked],$add[wapstyleid],'$add[repreinfo]','$add[pltempid]','$add[cgroupid]','$add[yhid]','$add[wfid]','$add[cgtoinfo]','$add[bdinfoid]','$add[repagenum]','$add[keycid]','$addtime','$add[oneinfo]','$add[addsql]','$add[wapislist]','$ecms_fclast');");
 		$lastid=$empire->lastid();
-		//å‰¯è¡¨
+		//¸±±í
 		$ret_cr=ReturnClassAddF($add,0);
 		$empire->query("replace into {$dbtbpre}enewsclassadd(classid,classtext,eclasspagetext".$ret_cr[0].") values('$lastid','".eaddslashes2($add[classtext])."','$add[eclasspagetext]'".$ret_cr[1].");");
-		//ç»Ÿè®¡è¡¨
+		//Í³¼Æ±í
 		$empire->query("replace into {$dbtbpre}enewsclass_stats(classid) values('$lastid');");
-		//æ›´æ–°é™„ä»¶
+		//¸üĞÂ¸½¼ş
 		UpdateTheFileOther(1,$lastid,$add['filepass'],'other');
 		TogNotReClass(1);
 		GetClass();
@@ -1582,15 +1582,15 @@ function AddClass($add,$userid,$username){
 			$classtemp=$add[islist]==2?GetClassText($lastid):GetClassTemp($add['classtempid']);
 			NewsBq($lastid,$classtemp,0,1);
 		}
-		elseif($add[islist]==3)//æ ç›®ç»‘å®šä¿¡æ¯
+		elseif($add[islist]==3)//À¸Ä¿°ó¶¨ĞÅÏ¢
 		{
 			ReClassBdInfo($lastid);
 		}
-		DelListEnews();//åˆ é™¤ç¼“å­˜æ–‡ä»¶
-		//GetSearch($add[modid]);//æ›´æ–°ç¼“å­˜
+		DelListEnews();//É¾³ı»º´æÎÄ¼ş
+		//GetSearch($add[modid]);//¸üĞÂ»º´æ
 		if($sql)
 		{
-			//åˆ é™¤å¯¼èˆªç¼“å­˜
+			//É¾³ıµ¼º½»º´æ
 			$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='listclass' or navtype='listenews' or navtype='jsclass' or (navtype='modclass' and modid='$add[modid]')");
 			DelFiletext("../d/js/js/addinfo".$add[modid].".js");
 			$cache_enews='doclass,doinfo,domod,dostemp';
@@ -1598,7 +1598,7 @@ function AddClass($add,$userid,$username){
 			$cache_mess='AddClassSuccess';
 			$cache_mid=$add[modid];
 			$cache_url="CreateCache.php?enews=$cache_enews&mid=$cache_mid&ecmstourl=$cache_ecmstourl&mess=$cache_mess".hReturnEcmsHashStrHref2(0);
-			insert_dolog("classid=".$lastid."<br>classname=".$add[classname]);//æ“ä½œæ—¥å¿—
+			insert_dolog("classid=".$lastid."<br>classname=".$add[classname]);//²Ù×÷ÈÕÖ¾
 			//printerror("AddClassSuccess","AddClass.php?enews=AddClass&from=".ehtmlspecialchars($add[from]).hReturnEcmsHashStrHref2(0));
 			echo'<meta http-equiv="refresh" content="0;url='.$cache_url.'">';
 			db_close();
@@ -1610,21 +1610,21 @@ function AddClass($add,$userid,$username){
 			printerror("DbError","");
 		}
     }
-	//å¢åŠ ç»ˆçº§æ ç›®
+	//Ôö¼ÓÖÕ¼¶À¸Ä¿
 	else
 	{
-		//æ–‡ä»¶å‰ç¼€
+		//ÎÄ¼şÇ°×º
 		$add[filename_qz]=RepFilenameQz($add[filename_qz]);
-		if(empty($add[bclassid]))//ä¸»ç±»åˆ«ä¸ºç»ˆçº§æ ç›®æ—¶
+		if(empty($add[bclassid]))//Ö÷Àà±ğÎªÖÕ¼¶À¸Ä¿Ê±
 		{
 			$sonclass="";
 			$featherclass="";
 	    }
-		else//å­æ ç›®
+		else//×ÓÀ¸Ä¿
 		{
-			//å–å¾—ä¸Šä¸€çº§çˆ¶æ ç›®
+			//È¡µÃÉÏÒ»¼¶¸¸À¸Ä¿
 			$r=$empire->fetch1("select featherclass,islast,wburl from {$dbtbpre}enewsclass where classid='$add[bclassid]'");
-			//æ˜¯å¦ç»ˆæç±»åˆ«
+			//ÊÇ·ñÖÕ¼«Àà±ğ
 			if($r[islast])
 			{
 				printerror("BclassNotLast","");
@@ -1639,16 +1639,16 @@ function AddClass($add,$userid,$username){
 			$featherclass=$r[featherclass].$add[bclassid]."|";
 			$sonclass="";
 		}
-		//å»ºç«‹æ ç›®ç›®å½•
+		//½¨Á¢À¸Ä¿Ä¿Â¼
 		CreateClassPath($classpath);
 		$sql=$empire->query("insert into {$dbtbpre}enewsclass(bclassid,classname,sonclass,is_zt,lencord,link_num,newstempid,onclick,listtempid,featherclass,islast,classpath,classtype,newspath,filename,filetype,openpl,openadd,newline,hotline,goodline,classurl,groupid,myorder,filename_qz,hotplline,modid,checked,firstline,bname,islist,searchtempid,tid,tbname,maxnum,checkpl,down_num,online_num,listorder,reorder,intro,classimg,jstempid,addinfofen,listdt,showclass,showdt,checkqadd,qaddlist,qaddgroupid,qaddshowkey,adminqinfo,doctime,classpagekey,dtlisttempid,classtempid,nreclass,nreinfo,nrejs,nottobq,ipath,addreinfo,haddlist,sametitle,definfovoteid,wburl,qeditchecked,wapstyleid,repreinfo,pltempid,cgroupid,yhid,wfid,cgtoinfo,bdinfoid,repagenum,keycid,addtime,oneinfo,addsql,wapislist,fclast) values($add[bclassid],'$add[classname]','$sonclass',0,$add[lencord],$add[link_num],$add[newstempid],0,$add[listtempid],'$featherclass',$add[islast],'$classpath','$add[classtype]','$add[newspath]',$add[filename],'$add[filetype]',$add[openpl],$add[openadd],$add[newline],$add[hotline],$add[goodline],'$add[classurl]',$add[groupid],$add[myorder],'$add[filename_qz]',$add[hotplline],$add[modid],$add[checked],$add[firstline],'$add[bname]',$add[islist],$add[searchtempid],$tabler[tid],'$tabler[tbname]',$add[maxnum],$add[checkpl],$add[down_num],$add[online_num],'$add[listorder]','$add[reorder]','$add[intro]','$add[classimg]',$add[jstempid],$add[addinfofen],$add[listdt],$add[showclass],$add[showdt],$add[checkqadd],$add[qaddlist],'$add[qaddgroupid]',$add[qaddshowkey],$add[adminqinfo],$add[doctime],'$add[classpagekey]','$add[dtlisttempid]','$add[classtempid]',$add[nreclass],$add[nreinfo],$add[nrejs],$add[nottobq],'$add[ipath]',$add[addreinfo],$add[haddlist],$add[sametitle],$add[definfovoteid],'',$add[qeditchecked],$add[wapstyleid],'$add[repreinfo]','$add[pltempid]','$add[cgroupid]','$add[yhid]','$add[wfid]','$add[cgtoinfo]','$add[smallbdinfoid]','$add[repagenum]','$add[keycid]','$addtime','$add[oneinfo]','$add[addsql]','$add[wapislist]','$ecms_fclast');");
 		$lastid=$empire->lastid();
-		//å‰¯è¡¨
+		//¸±±í
 		$ret_cr=ReturnClassAddF($add,0);
 		$empire->query("replace into {$dbtbpre}enewsclassadd(classid,classtext,eclasspagetext".$ret_cr[0].") values('$lastid','".eaddslashes2($add[classtext])."','$add[eclasspagetext]'".$ret_cr[1].");");
-		//ç»Ÿè®¡è¡¨
+		//Í³¼Æ±í
 		$empire->query("replace into {$dbtbpre}enewsclass_stats(classid) values('$lastid');");
-		//ä¿®æ”¹çˆ¶æ ç›®çš„å­æ ç›®
+		//ĞŞ¸Ä¸¸À¸Ä¿µÄ×ÓÀ¸Ä¿
 		if($add[bclassid])
 		{
 			$b_r=$empire->fetch1("select sonclass,featherclass from {$dbtbpre}enewsclass where classid='$add[bclassid]'");
@@ -1658,7 +1658,7 @@ function AddClass($add,$userid,$username){
 			}
 			$new_sonclass=$b_r[sonclass].$lastid."|";
 			$update=$empire->query("update {$dbtbpre}enewsclass set sonclass='$new_sonclass' where classid='$add[bclassid]'");
-			//æ›´æ”¹çˆ¶ç±»åˆ«çš„çˆ¶æ ç›®çš„å­æ ç›®
+			//¸ü¸Ä¸¸Àà±ğµÄ¸¸À¸Ä¿µÄ×ÓÀ¸Ä¿
 			$where=ReturnClass($b_r[featherclass]);
 			if(empty($where)){
 				$where="classid=0";
@@ -1674,15 +1674,15 @@ function AddClass($add,$userid,$username){
 				$update=$empire->query("update {$dbtbpre}enewsclass set sonclass='$new_sonclass' where classid='$br[classid]'");
             }
 	    }
-		//æ›´æ–°é™„ä»¶
+		//¸üĞÂ¸½¼ş
 		UpdateTheFileOther(1,$lastid,$add['filepass'],'other');
-		DelListEnews();//åˆ é™¤ç¼“å­˜æ–‡ä»¶
+		DelListEnews();//É¾³ı»º´æÎÄ¼ş
 		TogNotReClass(1);
 		GetClass();
-		//GetSearch($add[modid]);//æ›´æ–°ç¼“å­˜
+		//GetSearch($add[modid]);//¸üĞÂ»º´æ
 		if($sql)
 		{
-			//åˆ é™¤å¯¼èˆªç¼“å­˜
+			//É¾³ıµ¼º½»º´æ
 			$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='listclass' or navtype='listenews' or navtype='jsclass' or (navtype='modclass' and modid='$add[modid]')");
 			DelFiletext("../d/js/js/addinfo".$add[modid].".js");
 			$cache_enews='doclass,doinfo,domod,dostemp';
@@ -1690,7 +1690,7 @@ function AddClass($add,$userid,$username){
 			$cache_mess='AddLastClassSuccess';
 			$cache_mid=$add[modid];
 			$cache_url="CreateCache.php?enews=$cache_enews&mid=$cache_mid&ecmstourl=$cache_ecmstourl&mess=$cache_mess".hReturnEcmsHashStrHref2(0);
-			insert_dolog("classid=".$lastid."<br>classname=".$add[classname]);//æ“ä½œæ—¥å¿—
+			insert_dolog("classid=".$lastid."<br>classname=".$add[classname]);//²Ù×÷ÈÕÖ¾
 			//printerror("AddLastClassSuccess","AddClass.php?enews=AddClass&from=".ehtmlspecialchars($add[from]).hReturnEcmsHashStrHref2(0));
 			echo'<meta http-equiv="refresh" content="0;url='.$cache_url.'">';
 			db_close();
@@ -1704,7 +1704,7 @@ function AddClass($add,$userid,$username){
     }
 }
 
-//ç»‘å®šåŸŸååº”ç”¨äºå­æ ç›®
+//°ó¶¨ÓòÃûÓ¦ÓÃÓÚ×ÓÀ¸Ä¿
 function UpdateSmallClassDomain($classid,$classurl,$classpath){
 	global $empire,$dbtbpre;
 	if(empty($classurl)){
@@ -1716,10 +1716,10 @@ function UpdateSmallClassDomain($classid,$classurl,$classpath){
 	$sql=$empire->query($query);
 }
 
-//æ ç›®ç›®å½•ä¿®æ”¹
+//À¸Ä¿Ä¿Â¼ĞŞ¸Ä
 function AlterClassPath($classid,$islast,$oldclasspath,$classpath){
 	global $empire,$dbtbpre;
-	//æ›´æ–°ç›®å½•å
+	//¸üĞÂÄ¿Â¼Ãû
 	if($oldclasspath!=$classpath)
 	{
 		@rename("../../".$oldclasspath,"../../".$classpath);
@@ -1732,10 +1732,10 @@ function AlterClassPath($classid,$islast,$oldclasspath,$classpath){
 	}
 }
 
-//ä¿®æ”¹å¤–éƒ¨æ ç›®
+//ĞŞ¸ÄÍâ²¿À¸Ä¿
 function EditWbClass($add,$userid,$username){
 	global $empire,$class_r,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"class");
 	$add=DoPostClassVar($add);
 	$add[classid]=(int)$add[classid];
@@ -1745,29 +1745,29 @@ function EditWbClass($add,$userid,$username){
 	}
 	$add[islast]=0;
 	$ecms_fclast=time();
-	//å–å¾—è¡¨å
+	//È¡µÃ±íÃû
 	$tabler=GetModTable($add[modid]);
 	$tabler[tid]=(int)$tabler[tid];
-	//æ”¹å˜å¤§æ ç›®
+	//¸Ä±ä´óÀ¸Ä¿
 	if($add[bclassid]<>$add[oldbclassid])
 	{
-		//è½¬åˆ°ä¸»æ ç›®
+		//×ªµ½Ö÷À¸Ä¿
 		if(empty($add[bclassid]))
 		{
 			$sonclass="";
 			$featherclass="";
 		}
-		//è½¬åˆ°ä¸­çº§æ ç›®
+		//×ªµ½ÖĞ¼¶À¸Ä¿
 		else
 		{
-			//å¤§æ ç›®è·ŸåŸæ ç›®ç›¸åŒ
+			//´óÀ¸Ä¿¸úÔ­À¸Ä¿ÏàÍ¬
 			if($add[classid]==$add[bclassid])
 			{
 				printerror("BclassIsself","");
 			}
-			//å–å¾—ç°åœ¨å¤§æ ç›®çš„å€¼
+			//È¡µÃÏÖÔÚ´óÀ¸Ä¿µÄÖµ
 	 		$b=$empire->fetch1("select featherclass,sonclass,islast,wburl from {$dbtbpre}enewsclass where classid='$add[bclassid]'");
-			//æ£€æµ‹å¤§æ ç›®æ˜¯å¦ä¸ºç»ˆçº§æ ç›®
+			//¼ì²â´óÀ¸Ä¿ÊÇ·ñÎªÖÕ¼¶À¸Ä¿
 			if($b[islast])
 			{
 				printerror("BclassNotLast","");
@@ -1776,7 +1776,7 @@ function EditWbClass($add,$userid,$username){
 			{
 				printerror("BclassNotWb","");
 			}
-			//æ˜¯å¦éæ³•çˆ¶æ ç›®
+			//ÊÇ·ñ·Ç·¨¸¸À¸Ä¿
 			if($b[featherclass])
 			{
 				$c_nb_r=explode("|".$add[classid]."|",$b[featherclass]);
@@ -1793,22 +1793,22 @@ function EditWbClass($add,$userid,$username){
 		}
 		$change=",bclassid=$add[bclassid],featherclass='$featherclass'";
 	}
-	//ä¿®æ”¹æ•°æ®åº“èµ„æ–™
+	//ĞŞ¸ÄÊı¾İ¿â×ÊÁÏ
 	$sql=$empire->query("update {$dbtbpre}enewsclass set classname='$add[classname]',classpath='$classpath',classtype='$add[classtype]',newline=$add[newline],hotline=$add[hotline],goodline=$add[goodline],classurl='$add[classurl]',groupid=$add[groupid],myorder=$add[myorder],filename_qz='$add[filename_qz]',hotplline=$add[hotplline],modid=$add[modid],checked=$add[checked],firstline=$add[firstline],bname='$add[bname]',islist=$add[islist],listtempid=$add[listtempid],lencord=$add[lencord],searchtempid=$add[searchtempid],tid=$tabler[tid],tbname='$tabler[tbname]',maxnum=$add[maxnum],checkpl=$add[checkpl],down_num=$add[down_num],online_num=$add[online_num],listorder='$add[listorder]',reorder='$add[reorder]',intro='$add[intro]',classimg='$add[classimg]',jstempid=$add[jstempid],listdt=$add[listdt],showclass=$add[showclass],showdt=$add[showdt],qaddgroupid='$add[qaddgroupid]',qaddshowkey=$add[qaddshowkey],adminqinfo=$add[adminqinfo],doctime=$add[doctime],classpagekey='$add[classpagekey]',dtlisttempid='$add[dtlisttempid]',classtempid='$add[classtempid]',nreclass=$add[nreclass],nreinfo=$add[nreinfo],nrejs=$add[nrejs],nottobq=$add[nottobq],ipath='$add[ipath]',addreinfo=$add[addreinfo],haddlist=$add[haddlist],sametitle=$add[sametitle],definfovoteid=$add[definfovoteid],wburl='$add[wburl]',qeditchecked=$add[qeditchecked],openadd=$add[openadd],wapstyleid='$add[wapstyleid]',repreinfo='$add[repreinfo]',pltempid='$add[pltempid]',cgroupid='$add[cgroupid]',yhid='$add[yhid]',wfid='$add[wfid]',cgtoinfo='$add[cgtoinfo]',bdinfoid='$add[bdinfoid]',repagenum='$add[repagenum]',keycid='$add[keycid]',oneinfo='$add[oneinfo]',addsql='$add[addsql]',wapislist='$add[wapislist]',fclast='$ecms_fclast'".$change." where classid='$add[classid]'");
-	//å‰¯è¡¨
+	//¸±±í
 	$ret_cr=ReturnClassAddF($add,1);
 	$empire->query("update {$dbtbpre}enewsclassadd set classtext='".eaddslashes2($add[classtext])."',eclasspagetext='$add[eclasspagetext]'".$ret_cr[0]." where classid='$add[classid]'");
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileEditOther(1,$add['classid'],'other');
 	GetClass();
-	//åˆ é™¤ç¼“å­˜æ–‡ä»¶
+	//É¾³ı»º´æÎÄ¼ş
 	$updatecache=0;
 	if($add[oldclassname]<>$add[classname]||$add[bclassid]<>$add[oldbclassid]||$add[wburl]<>$add[oldwburl])
 	{
 		//DelListEnews();
 		$updatecache=1;
     }
-	//æ¥æº
+	//À´Ô´
 	if($add['from'])
 	{
 		$returnurl="ListPageClass.php";
@@ -1819,10 +1819,10 @@ function EditWbClass($add,$userid,$username){
 	}
 	if($sql)
 	{
-		insert_dolog("classid=".$add[classid]."<br>classname=".$add[classname]);//æ“ä½œæ—¥å¿—
+		insert_dolog("classid=".$add[classid]."<br>classname=".$add[classname]);//²Ù×÷ÈÕÖ¾
 		if($updatecache)
 		{
-			//åˆ é™¤å¯¼èˆªç¼“å­˜
+			//É¾³ıµ¼º½»º´æ
 			$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='listclass'");
 			$cache_enews='doclass';
 			$cache_ecmstourl=$returnurl.urlencode(hReturnEcmsHashStrHref2(1));
@@ -1841,10 +1841,10 @@ function EditWbClass($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹æ ç›®
+//ĞŞ¸ÄÀ¸Ä¿
 function EditClass($add,$userid,$username){
 	global $empire,$class_r,$dbtbpre;
-	//ä¿®æ”¹å¤–éƒ¨æ ç›®
+	//ĞŞ¸ÄÍâ²¿À¸Ä¿
 	if($add[ecmsclasstype])
 	{
 		EditWbClass($add,$userid,$username);
@@ -1852,7 +1852,7 @@ function EditClass($add,$userid,$username){
 	$add[classid]=(int)$add[classid];
 	$add[classpath]=trim($add[classpath]);
 	$checkclasspath=$add['classpath'];
-	if($add['oldclasspath']<>$add['pripath'].$add['oldcpath'])//æ›´æ¢çˆ¶æ ç›®
+	if($add['oldclasspath']<>$add['pripath'].$add['oldcpath'])//¸ü»»¸¸À¸Ä¿
 	{
 		$add[classpath]=$add['oldcpath'];
 	}
@@ -1862,32 +1862,32 @@ function EditClass($add,$userid,$username){
 	if($add[islast]&&(!$add[newstempid]||!$add[listtempid])){
 		printerror("LastMustChange","");
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"class");
 	$add=DoPostClassVar($add);
 	$add[oldmodid]=(int)$add[oldmodid];
 	$ecms_fclast=time();
-	//æ”¹å˜ç›®å½•
+	//¸Ä±äÄ¿Â¼
 	$classpath=$add[pripath].$add[classpath];
 	if($add[oldclasspath]<>$classpath&&$checkclasspath==$add['oldcpath']){
-		if(file_exists("../../".$classpath)){//æ£€æµ‹ç›®å½•æ˜¯å¦å­˜åœ¨
+		if(file_exists("../../".$classpath)){//¼ì²âÄ¿Â¼ÊÇ·ñ´æÔÚ
 			printerror("ReClasspath","");
 		}
     }
-	//å–å¾—è¡¨å
+	//È¡µÃ±íÃû
 	$tabler=GetModTable($add[modid]);
 	$tabler[tid]=(int)$tabler[tid];
-	//ä¿®æ”¹å¤§æ ç›®
+	//ĞŞ¸Ä´óÀ¸Ä¿
 	if(!$add[islast]){
-		//æ”¹å˜å¤§æ ç›®
+		//¸Ä±ä´óÀ¸Ä¿
 		if($add[bclassid]<>$add[oldbclassid]){
-			//è½¬åˆ°ä¸»æ ç›®
+			//×ªµ½Ö÷À¸Ä¿
 			if(empty($add[bclassid])){
 				$sonclass="";
 				$featherclass="";
-				//å–å¾—æœ¬æ ç›®çš„å­æ ç›®
+				//È¡µÃ±¾À¸Ä¿µÄ×ÓÀ¸Ä¿
 				$r=$empire->fetch1("select sonclass,featherclass,classpath from {$dbtbpre}enewsclass where classid='$add[classid]'");
-				//æ”¹å˜çˆ¶æ ç›®çš„å­æ ç›®
+				//¸Ä±ä¸¸À¸Ä¿µÄ×ÓÀ¸Ä¿
 				$where=ReturnClass($r[featherclass]);
 				if(empty($where)){
 					$where="classid=0";
@@ -1897,7 +1897,7 @@ function EditClass($add,$userid,$username){
 					$newsonclass=str_replace($r[sonclass],"|",$o[sonclass]);
 					$uosql=$empire->query("update {$dbtbpre}enewsclass set sonclass='$newsonclass' where classid='$o[classid]'");
 				}
-				//ä¿®æ”¹å­æ ç›®çš„çˆ¶æ ç›®
+				//ĞŞ¸Ä×ÓÀ¸Ä¿µÄ¸¸À¸Ä¿
 				$osql=$empire->query("select featherclass,classid,classpath from {$dbtbpre}enewsclass where featherclass like '%|".$add[classid]."|%'");
 				while($o=$empire->fetch($osql)){
 					$newclasspath=str_replace($r[classpath]."/",$classpath."/",$o[classpath]);
@@ -1905,16 +1905,16 @@ function EditClass($add,$userid,$username){
 					$uosql=$empire->query("update {$dbtbpre}enewsclass set featherclass='$newfeatherclass',classpath='$newclasspath' where classid='$o[classid]'");
 				}
 			}
-			//è½¬åˆ°ä¸­çº§æ ç›®
+			//×ªµ½ÖĞ¼¶À¸Ä¿
 			else
 			{
-				//å¤§æ ç›®è·ŸåŸæ ç›®ç›¸åŒ
+				//´óÀ¸Ä¿¸úÔ­À¸Ä¿ÏàÍ¬
 				if($add[classid]==$add[bclassid]){
 				  printerror("BclassIsself","");
 				}
-				//å–å¾—ç°åœ¨å¤§æ ç›®çš„å€¼
+				//È¡µÃÏÖÔÚ´óÀ¸Ä¿µÄÖµ
 	 			$b=$empire->fetch1("select featherclass,sonclass,islast,wburl from {$dbtbpre}enewsclass where classid='$add[bclassid]'");
-				//æ£€æµ‹å¤§æ ç›®æ˜¯å¦ä¸ºç»ˆçº§æ ç›®
+				//¼ì²â´óÀ¸Ä¿ÊÇ·ñÎªÖÕ¼¶À¸Ä¿
 				if($b[islast])
 				{
 					printerror("BclassNotLast","");
@@ -1923,7 +1923,7 @@ function EditClass($add,$userid,$username){
 				{
 					printerror("BclassNotWb","");
 				}
-				//æ˜¯å¦éæ³•çˆ¶æ ç›®
+				//ÊÇ·ñ·Ç·¨¸¸À¸Ä¿
 				if($b[featherclass]){
 					$c_nb_r=explode("|".$add[classid]."|",$b[featherclass]);
 					if(count($c_nb_r)<>1){
@@ -1934,9 +1934,9 @@ function EditClass($add,$userid,$username){
 					$b[featherclass]="|";
 				}
 				$featherclass=$b[featherclass].$add[bclassid]."|";
-				//å–å¾—ç°åœ¨æ ç›®æœ¬èº«çš„å€¼
+				//È¡µÃÏÖÔÚÀ¸Ä¿±¾ÉíµÄÖµ
 				$o=$empire->fetch1("select featherclass,sonclass,classpath from {$dbtbpre}enewsclass where classid='$add[classid]'");
-				//ä¿®æ”¹å­æ ç›®çš„çˆ¶æ ç›®
+				//ĞŞ¸Ä×ÓÀ¸Ä¿µÄ¸¸À¸Ä¿
 				$osql=$empire->query("select featherclass,classid,classpath from {$dbtbpre}enewsclass where featherclass like '%|".$add[classid]."|%'");
 				while($or=$empire->fetch($osql)){
 					$newclasspath=str_replace($o[classpath]."/",$classpath."/",$or[classpath]);
@@ -1948,7 +1948,7 @@ function EditClass($add,$userid,$username){
 					}
 					$uosql=$empire->query("update {$dbtbpre}enewsclass set featherclass='$newfeatherclass',classpath='$newclasspath' where classid='$or[classid]'");
 				}
-				//æ”¹å˜æ—§å¤§æ ç›®çš„æ‰€æœ‰å­æ ç›®
+				//¸Ä±ä¾É´óÀ¸Ä¿µÄËùÓĞ×ÓÀ¸Ä¿
 				$owhere=ReturnClass($o[featherclass]);
 				if(empty($owhere)){
 					$owhere="classid=0";
@@ -1958,7 +1958,7 @@ function EditClass($add,$userid,$username){
 					$newsonclass=str_replace($o[sonclass],"|",$oo[sonclass]);
 					$usql=$empire->query("update {$dbtbpre}enewsclass set sonclass='$newsonclass' where classid='$oo[classid]'");
 				}
-				//æ”¹å˜æ–°å¤§æ ç›®çš„å­æ ç›®
+				//¸Ä±äĞÂ´óÀ¸Ä¿µÄ×ÓÀ¸Ä¿
 				$where=ReturnClass($featherclass);
 				if(empty($where)){
 					$where="classid=0";
@@ -1973,24 +1973,24 @@ function EditClass($add,$userid,$username){
 			}
 			$change=",bclassid=$add[bclassid],featherclass='$featherclass'";
 		}
-		//ç»‘å®šåŸŸååº”ç”¨äºå­æ ç›®
+		//°ó¶¨ÓòÃûÓ¦ÓÃÓÚ×ÓÀ¸Ä¿
 		if($add['UrlToSmall']){
 			UpdateSmallClassDomain($add['classid'],$add['classurl'],$classpath);
 		}
-		//wapæ¨¡æ¿åº”ç”¨äºå­æ ç›®
+		//wapÄ£°åÓ¦ÓÃÓÚ×ÓÀ¸Ä¿
 		if($add['wapstylesclass'])
 		{
 			$empire->query("update {$dbtbpre}enewsclass set wapstyleid='$add[wapstyleid]' where featherclass like '%|".$add[classid]."|%'");
 		}
-		//ä¿®æ”¹æ•°æ®åº“èµ„æ–™
+		//ĞŞ¸ÄÊı¾İ¿â×ÊÁÏ
 		$sql=$empire->query("update {$dbtbpre}enewsclass set classname='$add[classname]',classpath='$classpath',classtype='$add[classtype]',newline=$add[newline],hotline=$add[hotline],goodline=$add[goodline],classurl='$add[classurl]',groupid=$add[groupid],myorder=$add[myorder],filename_qz='$add[filename_qz]',hotplline=$add[hotplline],modid=$add[modid],checked=$add[checked],firstline=$add[firstline],bname='$add[bname]',islist=$add[islist],listtempid=$add[listtempid],lencord=$add[lencord],searchtempid=$add[searchtempid],tid=$tabler[tid],tbname='$tabler[tbname]',maxnum=$add[maxnum],checkpl=$add[checkpl],down_num=$add[down_num],online_num=$add[online_num],listorder='$add[listorder]',reorder='$add[reorder]',intro='$add[intro]',classimg='$add[classimg]',jstempid=$add[jstempid],listdt=$add[listdt],showclass=$add[showclass],showdt=$add[showdt],qaddgroupid='$add[qaddgroupid]',qaddshowkey=$add[qaddshowkey],adminqinfo=$add[adminqinfo],doctime=$add[doctime],classpagekey='$add[classpagekey]',dtlisttempid='$add[dtlisttempid]',classtempid='$add[classtempid]',nreclass=$add[nreclass],nreinfo=$add[nreinfo],nrejs=$add[nrejs],nottobq=$add[nottobq],ipath='$add[ipath]',addreinfo=$add[addreinfo],haddlist=$add[haddlist],sametitle=$add[sametitle],definfovoteid=$add[definfovoteid],wburl='',qeditchecked=$add[qeditchecked],openadd=$add[openadd],wapstyleid='$add[wapstyleid]',repreinfo='$add[repreinfo]',pltempid='$add[pltempid]',cgroupid='$add[cgroupid]',yhid='$add[yhid]',wfid='$add[wfid]',cgtoinfo='$add[cgtoinfo]',bdinfoid='$add[bdinfoid]',repagenum='$add[repagenum]',keycid='$add[keycid]',oneinfo='$add[oneinfo]',addsql='$add[addsql]',wapislist='$add[wapislist]',fclast='$ecms_fclast'".$change." where classid='$add[classid]'");
-		//å‰¯è¡¨
+		//¸±±í
 		$ret_cr=ReturnClassAddF($add,1);
 		$empire->query("update {$dbtbpre}enewsclassadd set classtext='".eaddslashes2($add[classtext])."',eclasspagetext='$add[eclasspagetext]'".$ret_cr[0]." where classid='$add[classid]'");
-		//æ›´æ–°é™„ä»¶
+		//¸üĞÂ¸½¼ş
 		UpdateTheFileEditOther(1,$add['classid'],'other');
 		GetClass();
-		//ç”Ÿæˆæ ç›®æ–‡ä»¶
+		//Éú³ÉÀ¸Ä¿ÎÄ¼ş
 		if($add[islist]==0||$add[islist]==2)
 		{
 			$classtemp=$add[islist]==2?GetClassText($add[classid]):GetClassTemp($add['classtempid']);
@@ -2002,14 +2002,14 @@ function EditClass($add,$userid,$username){
 		}
 		if($add[islist]==2)
 		{
-			//åˆ é™¤åŠ¨æ€æ¨¡æ¿ç¼“å­˜æ–‡ä»¶
+			//É¾³ı¶¯Ì¬Ä£°å»º´æÎÄ¼ş
 			DelOneTempTmpfile('classpage'.$add[classid]);
 		}
 	}
-	//ç»ˆçº§æ ç›®
+	//ÖÕ¼¶À¸Ä¿
 	else
 	{
-		if($add[modid]<>$add[oldmodid])//æ¢ç³»ç»Ÿæ¨¡å‹
+		if($add[modid]<>$add[oldmodid])//»»ÏµÍ³Ä£ĞÍ
 		{
 			$chmtbr=GetModTable($add[oldmodid]);
 			if($chmtbr[tid]<>$tabler[tid]&&$chmtbr[tbname])
@@ -2021,15 +2021,15 @@ function EditClass($add,$userid,$username){
 				}
 			}
 		}
-		//æ”¹å˜å¤§æ ç›®
+		//¸Ä±ä´óÀ¸Ä¿
 		if($add[bclassid]<>$add[oldbclassid]){
-			//è½¬åˆ°ä¸»æ ç›®
+			//×ªµ½Ö÷À¸Ä¿
 			if(empty($add[bclassid])){
 				$sonclass="";
 				$featherclass="";
-				//å–å¾—æ ç›®åŸæœ¬çš„å¤§æ ç›®
+				//È¡µÃÀ¸Ä¿Ô­±¾µÄ´óÀ¸Ä¿
 				$r=$empire->fetch1("select featherclass,classpath from {$dbtbpre}enewsclass where classid='$add[classid]'");
-				//æ”¹å˜åŸæœ¬å¤§æ ç›®çš„å­æ ç›®
+				//¸Ä±äÔ­±¾´óÀ¸Ä¿µÄ×ÓÀ¸Ä¿
 				$where=ReturnClass($r[featherclass]);
 				if(empty($where)){
 					$where="classid=0";
@@ -2040,12 +2040,12 @@ function EditClass($add,$userid,$username){
 					$usql=$empire->query("update {$dbtbpre}enewsclass set sonclass='$newsonclass' where classid='$br[classid]'");
 				}
 			}
-			//è½¬åˆ°ä¸­çº§æ ç›®
+			//×ªµ½ÖĞ¼¶À¸Ä¿
 			else
 			{
-				//å–å¾—ç°åœ¨å¤§æ ç›®çš„å€¼
+				//È¡µÃÏÖÔÚ´óÀ¸Ä¿µÄÖµ
 				$b=$empire->fetch1("select featherclass,islast,wburl from {$dbtbpre}enewsclass where classid='$add[bclassid]'");
-				//æ£€æµ‹å¤§æ ç›®æ˜¯å¦ä¸ºç»ˆçº§æ ç›®
+				//¼ì²â´óÀ¸Ä¿ÊÇ·ñÎªÖÕ¼¶À¸Ä¿
 				if($b[islast])
 				{
 					printerror("BclassNotLast","");
@@ -2058,7 +2058,7 @@ function EditClass($add,$userid,$username){
 					$b[featherclass]="|";
 				}
 				$featherclass=$b[featherclass].$add[bclassid]."|";
-				//æ”¹å˜æ–°å¤§æ ç›®çš„å­æ ç›®
+				//¸Ä±äĞÂ´óÀ¸Ä¿µÄ×ÓÀ¸Ä¿
 				$where=ReturnClass($featherclass);
 				if(empty($where)){
 					$where="classid=0";
@@ -2071,7 +2071,7 @@ function EditClass($add,$userid,$username){
 					$newsonclass=$nb[sonclass].$add[classid]."|";
 					$usql=$empire->query("update {$dbtbpre}enewsclass set sonclass='$newsonclass' where classid='$nb[classid]'");
 				}
-				//æ”¹å˜æ—§å¤§æ ç›®çš„å­æ ç›®
+				//¸Ä±ä¾É´óÀ¸Ä¿µÄ×ÓÀ¸Ä¿
 				$o=$empire->fetch1("select sonclass,featherclass from {$dbtbpre}enewsclass where classid='$add[classid]'");
 				$where=ReturnClass($o[featherclass]);
 				if(empty($where)){
@@ -2085,22 +2085,22 @@ function EditClass($add,$userid,$username){
 			}
 			$change=",bclassid=$add[bclassid],featherclass='$featherclass'";
 		}
-		//åº”ç”¨äºå·²ç”Ÿæˆçš„ä¿¡æ¯
+		//Ó¦ÓÃÓÚÒÑÉú³ÉµÄĞÅÏ¢
 		if($add['tobetempinfo'])
 		{
 			UpdateAllDataTbField($tabler['tbname'],"newstempid='$add[newstempid]'"," where classid='$add[classid]'",1);
 		}
-		//æ–‡ä»¶å‰ç¼€
+		//ÎÄ¼şÇ°×º
 	    $add[filename_qz]=RepFilenameQz($add[filename_qz]);
 		$sql=$empire->query("update {$dbtbpre}enewsclass set classname='$add[classname]',classpath='$classpath',classtype='$add[classtype]',link_num=$add[link_num],lencord=$add[lencord],newstempid=$add[newstempid],listtempid=$add[listtempid],newspath='$add[newspath]',filename=$add[filename],filetype='$add[filetype]',openpl=$add[openpl],openadd=$add[openadd],newline=$add[newline],hotline=$add[hotline],goodline=$add[goodline],classurl='$add[classurl]',groupid=$add[groupid],myorder=$add[myorder],filename_qz='$add[filename_qz]',hotplline=$add[hotplline],modid=$add[modid],checked=$add[checked],firstline=$add[firstline],bname='$add[bname]',searchtempid=$add[searchtempid],tid=$tabler[tid],tbname='$tabler[tbname]',maxnum=$add[maxnum],checkpl=$add[checkpl],down_num=$add[down_num],online_num=$add[online_num],listorder='$add[listorder]',reorder='$add[reorder]',intro='$add[intro]',classimg='$add[classimg]',jstempid=$add[jstempid],addinfofen=$add[addinfofen],listdt=$add[listdt],showclass=$add[showclass],showdt=$add[showdt],checkqadd=$add[checkqadd],qaddlist=$add[qaddlist],qaddgroupid='$add[qaddgroupid]',qaddshowkey=$add[qaddshowkey],adminqinfo=$add[adminqinfo],doctime=$add[doctime],classpagekey='$add[classpagekey]',dtlisttempid='$add[dtlisttempid]',classtempid='$add[classtempid]',nreclass=$add[nreclass],nreinfo=$add[nreinfo],nrejs=$add[nrejs],nottobq=$add[nottobq],ipath='$add[ipath]',addreinfo=$add[addreinfo],haddlist=$add[haddlist],sametitle=$add[sametitle],definfovoteid=$add[definfovoteid],wburl='',qeditchecked=$add[qeditchecked],wapstyleid='$add[wapstyleid]',repreinfo='$add[repreinfo]',pltempid='$add[pltempid]',cgroupid='$add[cgroupid]',yhid='$add[yhid]',wfid='$add[wfid]',cgtoinfo='$add[cgtoinfo]',bdinfoid='$add[smallbdinfoid]',repagenum='$add[repagenum]',keycid='$add[keycid]',oneinfo='$add[oneinfo]',addsql='$add[addsql]',wapislist='$add[wapislist]',fclast='$ecms_fclast'".$change." where classid='$add[classid]'");
-		//å‰¯è¡¨
+		//¸±±í
 		$ret_cr=ReturnClassAddF($add,1);
 		$empire->query("update {$dbtbpre}enewsclassadd set classtext='".eaddslashes2($add[classtext])."',eclasspagetext='$add[eclasspagetext]'".$ret_cr[0]." where classid='$add[classid]'");
-		//æ›´æ–°é™„ä»¶
+		//¸üĞÂ¸½¼ş
 		UpdateTheFileEditOther(1,$add['classid'],'other');
 		GetClass();
 	}
-	//ç§»åŠ¨ç›®å½•
+	//ÒÆ¶¯Ä¿Â¼
 	if($add[bclassid]<>$add[oldbclassid]||($add[oldclasspath]<>$classpath&&$add['classpath']==$add['oldcpath'])){
 		$opath="../../".$add[oldclasspath];
 		$newpath="../../".$classpath;
@@ -2110,15 +2110,15 @@ function EditClass($add,$userid,$username){
 		CopyPath($opath,$npath);
     }
 	else{
-		if($add['oldcpath']<>$add['classpath'])//æ›´æ¢æ ç›®ç›®å½•
+		if($add['oldcpath']<>$add['classpath'])//¸ü»»À¸Ä¿Ä¿Â¼
 		{
 			AlterClassPath($add['classid'],$add['islast'],$add['oldclasspath'],$classpath);
-			//åˆ é™¤å¯¼èˆªç¼“å­˜
+			//É¾³ıµ¼º½»º´æ
 			$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='listclass' or navtype='listenews' or navtype='jsclass' or navtype='userenews'");
 			GetClass();
 		}
 	}
-	//åˆ é™¤ç¼“å­˜æ–‡ä»¶
+	//É¾³ı»º´æÎÄ¼ş
 	$cache_mid=0;
 	$cache_oldmid=0;
 	if($add[oldclassname]<>$add[classname]||$add[bclassid]<>$add[oldbclassid])
@@ -2126,7 +2126,7 @@ function EditClass($add,$userid,$username){
 		DelListEnews();
 		//GetSearch($add[modid]);
 		DelFiletext("../d/js/js/addinfo".$add[modid].".js");
-		//åˆ é™¤å¯¼èˆªç¼“å­˜
+		//É¾³ıµ¼º½»º´æ
 		$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='listclass' or navtype='listenews' or navtype='jsclass' or navtype='userenews' or (navtype='modclass' and modid='$add[modid]')");
 		$cache_mid=$add[modid];
     }
@@ -2135,27 +2135,27 @@ function EditClass($add,$userid,$username){
 		if(($add[oldclasspath]<>$classpath&&$add['classpath']==$add['oldcpath'])||$add[listdt]<>$add[oldlistdt])
 		{
 			DelListEnews();
-			//åˆ é™¤å¯¼èˆªç¼“å­˜
+			//É¾³ıµ¼º½»º´æ
 			$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='listclass' or navtype='listenews' or navtype='jsclass' or navtype='userenews'");
 		}
 		if($add[openadd]<>$add[oldopenadd]||$add[modid]<>$add[oldmodid])
 		{
 			//GetSearch($add[modid]);
 			DelFiletext("../d/js/js/addinfo".$add[modid].".js");
-			//åˆ é™¤å¯¼èˆªç¼“å­˜
+			//É¾³ıµ¼º½»º´æ
 			$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='modclass' and modid='$add[modid]'");
 			$cache_mid=$add[modid];
 			if($add[modid]<>$add[oldmodid])
 			{
 				//GetSearch($add[oldmodid]);
 				DelFiletext("../d/js/js/addinfo".$add[oldmodid].".js");
-				//åˆ é™¤å¯¼èˆªç¼“å­˜
+				//É¾³ıµ¼º½»º´æ
 				$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='modclass' and modid='$add[oldmodid]'");
 				$cache_oldmid=$add[oldmodid];
 			}
 		}
 	}
-	//ä¿®æ”¹æ ç›®æ‰©å±•å
+	//ĞŞ¸ÄÀ¸Ä¿À©Õ¹Ãû
 	if($add[oldclasstype]<>$add[classtype]){
 		$todaytime=date("Y-m-d H:i:s");
 		if($add[islast]){
@@ -2177,7 +2177,7 @@ function EditClass($add,$userid,$username){
 		}
 		RenameListfile($add[classid],$lencord,$num,$add[oldclasstype],$add[classtype],$classpath);
 	}
-	//æ¥æº
+	//À´Ô´
 	if($add['from']){
 		$returnurl="ListPageClass.php";
 	}
@@ -2187,7 +2187,7 @@ function EditClass($add,$userid,$username){
 	TogNotReClass(1);
 	if($sql)
 	{
-		insert_dolog("classid=".$add[classid]."<br>classname=".$add[classname]);//æ“ä½œæ—¥å¿—
+		insert_dolog("classid=".$add[classid]."<br>classname=".$add[classname]);//²Ù×÷ÈÕÖ¾
 		$cache_enews='doclass,doinfo,douserinfo,domod,dostemp';
 		$cache_ecmstourl=urlencode($returnurl.hReturnEcmsHashStrHref2(1));
 		$cache_mess='EditClassSuccess';
@@ -2204,10 +2204,10 @@ function EditClass($add,$userid,$username){
 	}
 }
 
-//ç»ˆææ ç›®ä¸éç»ˆææ ç›®ä¹‹é—´çš„è½¬æ¢
+//ÖÕ¼«À¸Ä¿Óë·ÇÖÕ¼«À¸Ä¿Ö®¼äµÄ×ª»»
 function ChangeClassIslast($reclassid,$userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"class");
 	$count=count($reclassid);
 	$classid=(int)$reclassid[0];
@@ -2215,7 +2215,7 @@ function ChangeClassIslast($reclassid,$userid,$username){
 	{
 		printerror("NotChangeIslastClassid","");
 	}
-	//å–å¾—æœ¬æ ç›®ä¿¡æ¯
+	//È¡µÃ±¾À¸Ä¿ĞÅÏ¢
 	$r=$empire->fetch1("select classid,sonclass,featherclass,islist,islast,classname,modid,tbname,wburl from {$dbtbpre}enewsclass where classid=$classid");
 	if(empty($r[classid]))
 	{
@@ -2225,7 +2225,7 @@ function ChangeClassIslast($reclassid,$userid,$username){
 	{
 		printerror("NotChangeWbClassid","");
 	}
-	//éç»ˆææ ç›®
+	//·ÇÖÕ¼«À¸Ä¿
 	if(!$r[islast])
 	{
 		$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsclass where bclassid=$classid");
@@ -2233,7 +2233,7 @@ function ChangeClassIslast($reclassid,$userid,$username){
 		{
 			printerror("LastTheClassHaveSonclass","history.go(-1)");
 		}
-		//ä¿®æ”¹çˆ¶æ ç›®çš„å­æ ç›®
+		//ĞŞ¸Ä¸¸À¸Ä¿µÄ×ÓÀ¸Ä¿
 		$where=ReturnClass($r[featherclass]);
 		if(empty($where))
 		{
@@ -2252,7 +2252,7 @@ function ChangeClassIslast($reclassid,$userid,$username){
 		$dosql=$empire->query("update {$dbtbpre}enewsclass set islast=1 where classid=$classid");
 		$mess="ChangeClassToLastSuccess";
 	}
-	//ç»ˆææ ç›®
+	//ÖÕ¼«À¸Ä¿
 	else
 	{
 		$num=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$r[tbname]."_index where classid='$classid'");
@@ -2260,7 +2260,7 @@ function ChangeClassIslast($reclassid,$userid,$username){
 		{
 			printerror("LastTheClassHaveInfo","history.go(-1)");
 		}
-		//ä¿®æ”¹çˆ¶æ ç›®çš„å­æ ç›®
+		//ĞŞ¸Ä¸¸À¸Ä¿µÄ×ÓÀ¸Ä¿
 		$where=ReturnClass($r[featherclass]);
 		if(empty($where))
 		{
@@ -2279,14 +2279,14 @@ function ChangeClassIslast($reclassid,$userid,$username){
 		$dosql=$empire->query("update {$dbtbpre}enewsclass set islast=0 where classid=$classid");
 		$mess="ChangeClassToNolastSuccess";
 	}
-	//åˆ é™¤ç¼“å­˜æ–‡ä»¶
+	//É¾³ı»º´æÎÄ¼ş
 	DelListEnews();
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	GetClass();
 	//GetSearch($r[modid]);
 	if($dosql)
 	{
-		//åˆ é™¤å¯¼èˆªç¼“å­˜
+		//É¾³ıµ¼º½»º´æ
 		$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='listclass' or navtype='listenews' or navtype='jsclass' or navtype='userenews' or (navtype='modclass' and modid='$r[modid]')");
 		DelFiletext("../d/js/js/addinfo".$r[modid].".js");
 		$cache_enews='doclass,doinfo,douserinfo,domod,dostemp';
@@ -2294,7 +2294,7 @@ function ChangeClassIslast($reclassid,$userid,$username){
 		$cache_mess=$mess;
 		$cache_mid=$r[modid];
 		$cache_url="CreateCache.php?enews=$cache_enews&mid=$cache_mid&ecmstourl=$cache_ecmstourl&mess=$cache_mess".hReturnEcmsHashStrHref2(0);
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$r[classname]);
 		//printerror($mess,EcmsGetReturnUrl());
 		echo'<meta http-equiv="refresh" content="0;url='.$cache_url.'">';
@@ -2308,7 +2308,7 @@ function ChangeClassIslast($reclassid,$userid,$username){
 	}
 }
 
-//åˆ é™¤æ ç›®
+//É¾³ıÀ¸Ä¿
 function DelClass($classid,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
@@ -2316,7 +2316,7 @@ function DelClass($classid,$userid,$username){
 	{
 		printerror("NotDelClassid","");
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"delclass");
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsclass where classid='$classid'");
 	if(empty($r[classid]))
@@ -2326,20 +2326,20 @@ function DelClass($classid,$userid,$username){
     DelClass1($classid);
     GetClass();
 	//GetSearch($r[modid]);
-	//è¿”å›åœ°å€
+	//·µ»ØµØÖ·
 	if($_GET['from'])
 	{$returnurl="ListPageClass.php";}
 	else
 	{$returnurl="ListClass.php";}
 	TogNotReClass(1);
-	//åˆ é™¤å¯¼èˆªç¼“å­˜
+	//É¾³ıµ¼º½»º´æ
 	$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='listclass' or navtype='listenews' or navtype='jsclass' or navtype='userenews' or (navtype='modclass' and modid='$r[modid]')");
 	$cache_enews='doclass,doinfo,douserinfo,domod,dostemp';
 	$cache_ecmstourl=urlencode($returnurl.hReturnEcmsHashStrHref2(1));
 	$cache_mess='DelClassSuccess';
 	$cache_mid=$r[modid];
 	$cache_url="CreateCache.php?enews=$cache_enews&mid=$cache_mid&ecmstourl=$cache_ecmstourl&mess=$cache_mess".hReturnEcmsHashStrHref2(0);
-	insert_dolog("classid=".$classid."<br>classname=".$r[classname]);//æ“ä½œæ—¥å¿—
+	insert_dolog("classid=".$classid."<br>classname=".$r[classname]);//²Ù×÷ÈÕÖ¾
 	//printerror("DelClassSuccess",$returnurl);
 	echo'<meta http-equiv="refresh" content="0;url='.$cache_url.'">';
 	db_close();
@@ -2347,46 +2347,46 @@ function DelClass($classid,$userid,$username){
 	exit();
 }
 
-//åˆ é™¤æ ç›®,ä¸è¿”å›å€¼
+//É¾³ıÀ¸Ä¿,²»·µ»ØÖµ
 function DelClass1($classid){
 	global $empire,$class_r,$dbtbpre;
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsclass where classid='$classid'");
-	//å¤–éƒ¨æ ç›®
+	//Íâ²¿À¸Ä¿
 	if($r[wburl])
 	{
 		$sql=$empire->query("delete from {$dbtbpre}enewsclass where classid='$classid'");
 		$empire->query("delete from {$dbtbpre}enewsclassadd where classid='$classid'");
 		$empire->query("delete from {$dbtbpre}enewsclass_stats where classid='$classid'");
-		//åˆ é™¤æ ç›®é™„ä»¶
+		//É¾³ıÀ¸Ä¿¸½¼ş
 		DelFileOtherTable("modtype=1 and id='$classid'");
-		//åˆ é™¤ç¼“å­˜
+		//É¾³ı»º´æ
 		DelListEnews();
 		return "";
 	}
-	//åˆ é™¤ç»ˆææ ç›®
+	//É¾³ıÖÕ¼«À¸Ä¿
 	if($r[islast])
 	{
-		//åˆ é™¤ä¸»è¡¨ä¿¡æ¯
+		//É¾³ıÖ÷±íĞÅÏ¢
 		$indexsql=$empire->query("delete from {$dbtbpre}ecms_".$r[tbname]."_index where classid='$classid'");
 		$sql=$empire->query("delete from {$dbtbpre}ecms_".$r[tbname]." where classid='$classid'");
 		$empire->query("delete from {$dbtbpre}ecms_".$r[tbname]."_check where classid='$classid'");
 		$empire->query("delete from {$dbtbpre}ecms_".$r[tbname]."_doc where classid='$classid'");
-		//åˆ é™¤å‰¯è¡¨ä¿¡æ¯
+		//É¾³ı¸±±íĞÅÏ¢
 		DelAllDataTbInfo($r['tbname'],"classid='$classid'",1,1);
-		//åˆ é™¤å­˜æ–‡æœ¬æ–‡ä»¶
+		//É¾³ı´æÎÄ±¾ÎÄ¼ş
 		DelInfoSaveTxtfile($r['modid'],$r['tbname'],"classid='$classid'");
-		//åˆ é™¤ä¿¡æ¯é™„åŠ è¡¨ä¸é™„ä»¶
+		//É¾³ıĞÅÏ¢¸½¼Ó±íÓë¸½¼ş
 		DelMoreInfoOtherData($classid,0,0);
 		$filepath="../../d/file/".$r[classpath];
 		$delf=DelPath($filepath);
 		DelFileOtherTable("modtype=1 and id='$classid'");
-		//åˆ é™¤æ ç›®æœ¬èº«
+		//É¾³ıÀ¸Ä¿±¾Éí
 	    $sql1=$empire->query("delete from {$dbtbpre}enewsclass where classid='$classid'");
 		$empire->query("delete from {$dbtbpre}enewsclassadd where classid='$classid'");
 		$empire->query("delete from {$dbtbpre}enewsclass_stats where classid='$classid'");
 		$delpath="../../".$r[classpath];
 		$del=DelPath($delpath);
-		//æ›´æ–°å¤§æ ç›®çš„å­æ ç›®
+		//¸üĞÂ´óÀ¸Ä¿µÄ×ÓÀ¸Ä¿
 		$where=ReturnClass($r[featherclass]);
 	    if(empty($where))
 		{$where="classid=0";}
@@ -2397,10 +2397,10 @@ function DelClass1($classid){
 			$usql=$empire->query("update {$dbtbpre}enewsclass set sonclass='$newsonclass' where classid='$br[classid]'");
 		}
 	}
-	//åˆ é™¤å¤§æ ç›®
+	//É¾³ı´óÀ¸Ä¿
 	else
 	{
-	    //åˆ é™¤æ ç›®
+	    //É¾³ıÀ¸Ä¿
 		$where=ReturnClass($r[sonclass]);
 		if(empty($where))
 		{$where="classid=0";}
@@ -2409,35 +2409,35 @@ function DelClass1($classid){
 		for($i=1;$i<$count-1;$i++)
 		{
 			$delcid=$delcr[$i];
-			//åˆ é™¤ä¸»è¡¨ä¿¡æ¯
+			//É¾³ıÖ÷±íĞÅÏ¢
 			$indexsql=$empire->query("delete from {$dbtbpre}ecms_".$class_r[$delcid][tbname]."_index where classid='$delcid'");
 			$sql=$empire->query("delete from {$dbtbpre}ecms_".$class_r[$delcid][tbname]." where classid='$delcid'");
 			$empire->query("delete from {$dbtbpre}ecms_".$class_r[$delcid][tbname]."_check where classid='$delcid'");
 			$empire->query("delete from {$dbtbpre}ecms_".$class_r[$delcid][tbname]."_doc where classid='$delcid'");
-			//åˆ é™¤å‰¯è¡¨ä¿¡æ¯
+			//É¾³ı¸±±íĞÅÏ¢
 			DelAllDataTbInfo($class_r[$delcid][tbname],"classid='$delcid'",1,1);
-			//åˆ é™¤å­˜æ–‡æœ¬æ–‡ä»¶
+			//É¾³ı´æÎÄ±¾ÎÄ¼ş
 			DelInfoSaveTxtfile($class_r[$delcid][modid],$class_r[$delcid][tbname],"classid='$delcid'");
-			//åˆ é™¤ä¿¡æ¯é™„åŠ è¡¨ä¸é™„ä»¶
+			//É¾³ıĞÅÏ¢¸½¼Ó±íÓë¸½¼ş
 			DelMoreInfoOtherData($delcid,0,0);
 		}
-		//åˆ é™¤é™„ä»¶
+		//É¾³ı¸½¼ş
 		$filepath="../../d/file/".$r[classpath];
 	    $delf=DelPath($filepath);
 		if($where<>'classid=0')
 		{
 			DelFileOtherTable("modtype=1 and (".str_replace('classid','id',$where).")");
 		}
-		//åˆ é™¤å­æ ç›®å‰¯è¡¨
+		//É¾³ı×ÓÀ¸Ä¿¸±±í
 		$fcsql=$empire->query("select classid from {$dbtbpre}enewsclass where featherclass like '%|".$classid."|%'");
 		while($fcr=$empire->fetch($fcsql))
 		{
 			$empire->query("delete from {$dbtbpre}enewsclassadd where classid='$fcr[classid]'");
 			$empire->query("delete from {$dbtbpre}enewsclass_stats where classid='$fcr[classid]'");
 		}
-		//åˆ é™¤å­æ ç›®
+		//É¾³ı×ÓÀ¸Ä¿
 		$sql1=$empire->query("delete from {$dbtbpre}enewsclass where featherclass like '%|".$classid."|%'");
-		//æ”¹å˜çˆ¶æ ç›®çš„å­ç±»
+		//¸Ä±ä¸¸À¸Ä¿µÄ×ÓÀà
 		$where=ReturnClass($r[featherclass]);
 		if(empty($where))
 		{$where="classid=0";}
@@ -2447,16 +2447,16 @@ function DelClass1($classid){
 			$newsonclass=str_replace($r[sonclass],"|",$bbr[sonclass]);
 			$usql=$empire->query("update {$dbtbpre}enewsclass set sonclass='$newsonclass' where classid='$bbr[classid]'");
 		}
-		//åˆ é™¤æ ç›®æœ¬èº«
+		//É¾³ıÀ¸Ä¿±¾Éí
 		$sql2=$empire->query("delete from {$dbtbpre}enewsclass where classid='$classid'");
 		$empire->query("delete from {$dbtbpre}enewsclassadd where classid='$classid'");
 		$empire->query("delete from {$dbtbpre}enewsclass_stats where classid='$classid'");
-		//åˆ é™¤æ ç›®é™„ä»¶
+		//É¾³ıÀ¸Ä¿¸½¼ş
 		DelFileOtherTable("modtype=1 and id='$classid'");
 		$delpath="../../".$r[classpath];
 		$del=DelPath($delpath);
 	}
-	//åˆ é™¤ç¼“å­˜
+	//É¾³ı»º´æ
 	DelListEnews();
 	//moreportdo
 	if($r['classpath'])
@@ -2466,25 +2466,25 @@ function DelClass1($classid){
 	}
 }
 
-//ä¿®æ”¹æ ç›®é¡ºåº
+//ĞŞ¸ÄÀ¸Ä¿Ë³Ğò
 function EditClassOrder($classid,$myorder,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"class");
 	for($i=0;$i<count($classid);$i++)
 	{
 		$newmyorder=(int)$myorder[$i];
 		$sql=$empire->query("update {$dbtbpre}enewsclass set myorder=$newmyorder where classid='$classid[$i]'");
     }
-	//åˆ é™¤ç¼“å­˜
+	//É¾³ı»º´æ
 	DelListEnews();
-	//åˆ é™¤å¯¼èˆªç¼“å­˜
+	//É¾³ıµ¼º½»º´æ
 	$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='listclass' or navtype='listenews' or navtype='jsclass' or navtype='userenews'");
 	$cache_enews='doclass,doinfo,douserinfo';
 	$cache_ecmstourl=urlencode(EcmsGetReturnUrl());
 	$cache_mess='EditClassOrderSuccess';
 	$cache_url="CreateCache.php?enews=$cache_enews&ecmstourl=$cache_ecmstourl&mess=$cache_mess".hReturnEcmsHashStrHref2(0);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	//printerror("EditClassOrderSuccess",EcmsGetReturnUrl());
 	echo'<meta http-equiv="refresh" content="0;url='.$cache_url.'">';
@@ -2493,10 +2493,10 @@ function EditClassOrder($classid,$myorder,$userid,$username){
 	exit();
 }
 
-//æ›´æ–°æ ç›®å…³ç³»
+//¸üĞÂÀ¸Ä¿¹ØÏµ
 function ChangeSonclass($start,$userid,$username){
 	global $empire,$public_r,$fun_r,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"changedata");
 	$moreportpid=(int)$_GET['moreportpid'];
 	$mphref='';
@@ -2511,7 +2511,7 @@ function ChangeSonclass($start,$userid,$username){
 	{
 		$b=1;
 		$newstart=$r[classid];
-		//å­æ ç›®
+		//×ÓÀ¸Ä¿
 		$sonclass="|";
 		$ssql=$empire->query("select classid from {$dbtbpre}enewsclass where islast=1 and featherclass like '%|".$r[classid]."|%' order by classid");
 		while($sr=$empire->fetch($ssql))
@@ -2520,7 +2520,7 @@ function ChangeSonclass($start,$userid,$username){
 	    }
 		$usql=$empire->query("update {$dbtbpre}enewsclass set sonclass='$sonclass' where classid='$r[classid]'");
     }
-	//å®Œæ¯•
+	//Íê±Ï
 	if(empty($b))
 	{
 		GetClass();
@@ -2530,20 +2530,20 @@ function ChangeSonclass($start,$userid,$username){
 	exit();
 }
 
-//åˆ é™¤æ ç›®ç¼“å­˜æ–‡ä»¶
+//É¾³ıÀ¸Ä¿»º´æÎÄ¼ş
 function DelFcListClass(){
 	global $empire,$dbtbpre,$logininid,$loginin;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($logininid,$loginin,0,"changedata");
 
 	DelListEnews();
-	//åˆ é™¤å¯¼èˆªç¼“å­˜
+	//É¾³ıµ¼º½»º´æ
 	$empire->query("delete from {$dbtbpre}enewsclassnavcache");
 	$cache_enews='doclass,doinfo,douserinfo,domod,dostemp';
 	$cache_ecmstourl=urlencode("history.go(-1)");
 	$cache_mess='DelListEnewsSuccess';
 	$cache_url="CreateCache.php?enews=$cache_enews&ecmstourl=$cache_ecmstourl&mess=$cache_mess".hReturnEcmsHashStrHref2(0);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	//printerror("DelListEnewsSuccess","history.go(-1)");
 	echo'<meta http-equiv="refresh" content="0;url='.$cache_url.'">';
@@ -2552,12 +2552,12 @@ function DelFcListClass(){
 	exit();
 }
 
-//æ‰¹é‡è®¾ç½®æ ç›®
+//ÅúÁ¿ÉèÖÃÀ¸Ä¿
 function SetMoreClass($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"setmclass");
-	//å˜é‡
+	//±äÁ¿
 	$add[classtype]=eaddslashes($add[classtype]);
 	$add[listtempid]=(int)$add[listtempid];
 	$add[dtlisttempid]=(int)$add[dtlisttempid];
@@ -2605,7 +2605,7 @@ function SetMoreClass($add,$userid,$username){
 	$add[goodline]=(int)$add[goodline];
 	$add[hotplline]=(int)$add[hotplline];
 	$add[firstline]=(int)$add[firstline];
-	//æ ç›®
+	//À¸Ä¿
 	$classid=$add['classid'];
 	$count=count($classid);
 	if($count==0)
@@ -2621,7 +2621,7 @@ function SetMoreClass($add,$userid,$username){
 	}
 	$whereclass='classid in ('.$cids.')';
 	$seting='';
-	//åŸºæœ¬å±æ€§
+	//»ù±¾ÊôĞÔ
 	if($add['doclasstype'])
 	{
 		$seting.=",classtype='$add[classtype]'";
@@ -2674,7 +2674,7 @@ function SetMoreClass($add,$userid,$username){
 	{
 		$seting.=",openadd='$add[openadd]'";
 	}
-	//é€‰é¡¹è®¾ç½®[å¤§æ ç›®]
+	//Ñ¡ÏîÉèÖÃ[´óÀ¸Ä¿]
 	if($add['doclasstempid'])
 	{
 		$seting.=",classtempid='$add[classtempid]'";
@@ -2683,7 +2683,7 @@ function SetMoreClass($add,$userid,$username){
 	{
 		$seting.=",islist='$add[islist]'";
 	}
-	//é€‰é¡¹è®¾ç½®[ç»ˆææ ç›®]
+	//Ñ¡ÏîÉèÖÃ[ÖÕ¼«À¸Ä¿]
 	if($add['donewstempid']&&$add[newstempid])
 	{
 		$seting.=",newstempid='$add[newstempid]'";
@@ -2794,7 +2794,7 @@ function SetMoreClass($add,$userid,$username){
 	{
 		$seting.=",doctime='$add[doctime]'";
 	}
-	//ç‰¹æ®Šæ¨¡å‹è®¾ç½®
+	//ÌØÊâÄ£ĞÍÉèÖÃ
 	if($add['dodown_num'])
 	{
 		$seting.=",down_num='$add[down_num]'";
@@ -2803,7 +2803,7 @@ function SetMoreClass($add,$userid,$username){
 	{
 		$seting.=",online_num='$add[online_num]'";
 	}
-	//JSè°ƒç”¨è®¾ç½®
+	//JSµ÷ÓÃÉèÖÃ
 	if($add['dojstempid'])
 	{
 		$seting.=",jstempid='$add[jstempid]'";
@@ -2834,7 +2834,7 @@ function SetMoreClass($add,$userid,$username){
 	}
 	$seting=substr($seting,1);
 	$sql=$empire->query("update {$dbtbpre}enewsclass set ".$seting." where ".$whereclass);
-	//å†…å®¹æ¨¡æ¿åº”ç”¨äºå­ç”Ÿæˆçš„ä¿¡æ¯
+	//ÄÚÈİÄ£°åÓ¦ÓÃÓÚ×ÓÉú³ÉµÄĞÅÏ¢
 	if($donewstemp==1)
 	{
 		$csql=$empire->query("select classid,tbname from {$dbtbpre}enewsclass where (".$whereclass.") and islast=1");
@@ -2846,7 +2846,7 @@ function SetMoreClass($add,$userid,$username){
 	if($sql)
 	{
 		GetClass();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("SetMoreClassSuccess","SetMoreClass.php".hReturnEcmsHashStrHref2(1));
 	}

@@ -5,31 +5,31 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='å¥½å‹åˆ—è¡¨';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;å¥½å‹åˆ—è¡¨";
+$public_diyr['pagetitle']='ºÃÓÑÁĞ±í';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;ºÃÓÑÁĞ±í";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
           <form name="form1" method="post" action="">
             <tr> 
-              <td width="50%" height="30" bgcolor="#FFFFFF">é€‰æ‹©åˆ†ç±»: 
+              <td width="50%" height="30" bgcolor="#FFFFFF">Ñ¡Ôñ·ÖÀà: 
                 <select name="cid" id="select" onchange=window.location='../friend/?cid='+this.options[this.selectedIndex].value>
-                  <option value="0">æ˜¾ç¤ºå…¨éƒ¨</option>
+                  <option value="0">ÏÔÊ¾È«²¿</option>
                   <?=$select?>
                 </select></td>
-              <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="FriendClass/">ç®¡ç†åˆ†ç±»</a>] [<a href="add/?fcid=<?=$cid?>">æ·»åŠ å¥½å‹</a>]&nbsp;&nbsp;</div></td>
+              <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="FriendClass/">¹ÜÀí·ÖÀà</a>] [<a href="add/?fcid=<?=$cid?>">Ìí¼ÓºÃÓÑ</a>]&nbsp;&nbsp;</div></td>
             </tr>
           </form>
         </table>
         <br>
         <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
-          <form name=favaform method=post action="../doaction.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+          <form name=favaform method=post action="../doaction.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
             <input type=hidden value=hy name=enews>
             <tr class="header"> 
               <td width="5%" height="25"><div align="center"></div></td>
-              <td width="30%"><div align="center">ç”¨æˆ·å</div></td>
-              <td width="45%"><div align="center">å¤‡æ³¨</div></td>
-              <td width="20%"><div align="center">æ“ä½œ</div></td>
+              <td width="30%"><div align="center">ÓÃ»§Ãû</div></td>
+              <td width="45%"><div align="center">±¸×¢</div></td>
+              <td width="20%"><div align="center">²Ù×÷</div></td>
             </tr>
             <?php
 			while($r=$empire->fetch($sql))
@@ -43,8 +43,8 @@ require(ECMS_PATH.'e/template/incfile/header.php');
               <td> <div align="center"> 
                   <input name="fsay[]" type="text" id="fsay[]" value="<?=stripSlashes($r[fsay])?>" size="32">
                 </div></td>
-              <td> <div align="center">[<a href="add/?enews=EditFriend&fid=<?=$r[fid]?>&fcid=<?=$cid?>">ä¿®æ”¹</a>] 
-                  [<a href="../doaction.php?enews=DelFriend&fid=<?=$r[fid]?>&fcid=<?=$cid?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+              <td> <div align="center">[<a href="add/?enews=EditFriend&fid=<?=$r[fid]?>&fcid=<?=$cid?>">ĞŞ¸Ä</a>] 
+                  [<a href="../doaction.php?enews=DelFriend&fid=<?=$r[fid]?>&fcid=<?=$cid?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
             </tr>
             <?php
 			}

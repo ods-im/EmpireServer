@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,28 +15,28 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"userjs");
 $enews=ehtmlspecialchars($_GET['enews']);
 $cid=(int)$_GET['cid'];
-$url="<a href=ListUserjs.php".$ecms_hashur['whehref'].">ç®¡ç†ç”¨æˆ·è‡ªå®šä¹‰JS</a> &gt; å¢åŠ è‡ªå®šä¹‰JS";
+$url="<a href=ListUserjs.php".$ecms_hashur['whehref'].">¹ÜÀíÓÃ»§×Ô¶¨ÒåJS</a> &gt; Ôö¼Ó×Ô¶¨ÒåJS";
 $r[jsfilename]="../../d/js/js/".time().".js";
 $r[jssql]="select * from [!db.pre!]ecms_news order by id desc limit 10";
-//å¤åˆ¶
+//¸´ÖÆ
 if($enews=="AddUserjs"&&$_GET['docopy'])
 {
 	$jsid=(int)$_GET['jsid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsuserjs where jsid='$jsid'");
-	$url="<a href=ListUserjs.php".$ecms_hashur['whehref'].">ç®¡ç†ç”¨æˆ·è‡ªå®šä¹‰JS</a> &gt; å¤åˆ¶è‡ªå®šä¹‰JSï¼š<b>".$r[jsname]."</b>";
+	$url="<a href=ListUserjs.php".$ecms_hashur['whehref'].">¹ÜÀíÓÃ»§×Ô¶¨ÒåJS</a> &gt; ¸´ÖÆ×Ô¶¨ÒåJS£º<b>".$r[jsname]."</b>";
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditUserjs")
 {
 	$jsid=(int)$_GET['jsid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsuserjs where jsid='$jsid'");
-	$url="<a href=ListUserjs.php".$ecms_hashur['whehref'].">ç®¡ç†ç”¨æˆ·è‡ªå®šä¹‰JS</a> -&gt; ä¿®æ”¹è‡ªå®šä¹‰JSï¼š<b>".$r[jsname]."</b>";
+	$url="<a href=ListUserjs.php".$ecms_hashur['whehref'].">¹ÜÀíÓÃ»§×Ô¶¨ÒåJS</a> -&gt; ĞŞ¸Ä×Ô¶¨ÒåJS£º<b>".$r[jsname]."</b>";
 }
-//jsæ¨¡æ¿
+//jsÄ£°å
 $jstempsql=$empire->query("select tempid,tempname from ".GetTemptb("enewsjstemp")." order by tempid");
 while($jstempr=$empire->fetch($jstempsql))
 {
@@ -47,9 +47,9 @@ while($jstempr=$empire->fetch($jstempsql))
 	}
 	$jstemp.="<option value='".$jstempr[tempid]."'".$select.">".$jstempr[tempname]."</option>";
 }
-//å½“å‰ä½¿ç”¨çš„æ¨¡æ¿ç»„
+//µ±Ç°Ê¹ÓÃµÄÄ£°å×é
 $thegid=GetDoTempGid();
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewsuserjsclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -67,66 +67,66 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç”¨æˆ·è‡ªå®šä¹‰JS</title>
+<title>ÓÃ»§×Ô¶¨ÒåJS</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListUserjs.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å¢åŠ ç”¨æˆ·è‡ªå®šä¹‰JS 
+      <td height="25" colspan="2">Ôö¼ÓÓÃ»§×Ô¶¨ÒåJS 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="jsid" type="hidden" id="jsid" value="<?=$jsid?>"> 
         <input name="oldjsfilename" type="hidden" id="oldjsfilename" value="<?=$r[jsfilename]?>">
         <input name="cid" type="hidden" id="cid" value="<?=$cid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="18%" height="25">JSåç§°:</td>
+      <td width="18%" height="25">JSÃû³Æ:</td>
       <td width="82%" height="25"> <input name="jsname" type="text" id="jsname" value="<?=$r[jsname]?>" size="42">      </td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ‰€å±åˆ†ç±»</td>
+      <td height="25">ËùÊô·ÖÀà</td>
       <td height="25"><select name="classid" id="classid">
-        <option value="0">ä¸éš¶å±äºä»»ä½•ç±»åˆ«</option>
+        <option value="0">²»Á¥ÊôÓÚÈÎºÎÀà±ğ</option>
         <?=$cstr?>
       </select>
-        <input type="button" name="Submit6222322" value="ç®¡ç†åˆ†ç±»" onclick="window.open('UserjsClass.php<?=$ecms_hashur['whehref']?>');"></td>
+        <input type="button" name="Submit6222322" value="¹ÜÀí·ÖÀà" onclick="window.open('UserjsClass.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">JSå­˜æ”¾åœ°å€ï¼š</td>
+      <td height="25">JS´æ·ÅµØÖ·£º</td>
       <td height="25"><input name="jsfilename" type="text" id="jsfilename" value="<?=$r[jsfilename]?>" size="42"> 
         <font color="#666666"> 
-        <input type="button" name="Submit4" value="é€‰æ‹©ç›®å½•" onclick="window.open('../file/ChangePath.php?<?=$ecms_hashur['ehref']?>&returnform=opener.document.form1.jsfilename.value','','width=400,height=500,scrollbars=yes');">
-        (å¦‚:<strong>&quot;../../1.js</strong>&quot;è¡¨ç¤ºæ ¹ç›®å½•ä¸‹çš„1.js)</font></td>
+        <input type="button" name="Submit4" value="Ñ¡ÔñÄ¿Â¼" onclick="window.open('../file/ChangePath.php?<?=$ecms_hashur['ehref']?>&returnform=opener.document.form1.jsfilename.value','','width=400,height=500,scrollbars=yes');">
+        (Èç:<strong>&quot;../../1.js</strong>&quot;±íÊ¾¸ùÄ¿Â¼ÏÂµÄ1.js)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td rowspan="2">æŸ¥è¯¢SQLè¯­å¥:</td>
+      <td rowspan="2">²éÑ¯SQLÓï¾ä:</td>
       <td height="25"><input name="jssql" type="text" id="jssql" value="<?=ehtmlspecialchars(stripSlashes($r[jssql]))?>" size="72"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><font color="#666666">(å¦‚ï¼šselect * from phome_ecms_news where 
+      <td height="25"><font color="#666666">(Èç£ºselect * from phome_ecms_news where 
         classid=1 order by id desc limit 10)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ä½¿ç”¨JSæ¨¡æ¿ï¼š</td>
+      <td height="25">Ê¹ÓÃJSÄ£°å£º</td>
       <td height="25"><select name="jstempid" id="jstempid">
           <?=$jstemp?>
-        </select> <input type="button" name="Submit62223" value="ç®¡ç†JSæ¨¡æ¿" onclick="window.open('../template/ListJstemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+        </select> <input type="button" name="Submit62223" value="¹ÜÀíJSÄ£°å" onclick="window.open('../template/ListJstemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"> <input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"> <input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25">è¡¨å‰ç¼€å¯ç”¨â€œ<strong>[!db.pre!]</strong>â€è¡¨ç¤º</td>
+      <td height="25">±íÇ°×º¿ÉÓÃ¡°<strong>[!db.pre!]</strong>¡±±íÊ¾</td>
     </tr>
   </table>
 </form>

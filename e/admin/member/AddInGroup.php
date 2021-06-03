@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,17 +15,17 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"ingroup");
 $enews=ehtmlspecialchars($_GET['enews']);
-$postword='å¢åŠ ';
-$url="<a href='ListInGroup.php".$ecms_hashur['whehref']."'>ç®¡ç†ä¼šå‘˜å†…éƒ¨ç»„</a>&nbsp;->&nbsp;å¢åŠ ä¼šå‘˜å†…éƒ¨ç»„";
+$postword='Ôö¼Ó';
+$url="<a href='ListInGroup.php".$ecms_hashur['whehref']."'>¹ÜÀí»áÔ±ÄÚ²¿×é</a>&nbsp;->&nbsp;Ôö¼Ó»áÔ±ÄÚ²¿×é";
 if($enews=="EditInGroup")
 {
 	$gid=(int)$_GET['gid'];
-	$postword='ä¿®æ”¹';
+	$postword='ĞŞ¸Ä';
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsingroup where gid='$gid'");
-	$url="<a href='ListInGroup.php".$ecms_hashur['whehref']."'>ç®¡ç†ä¼šå‘˜å†…éƒ¨ç»„</a>&nbsp;->&nbsp;ä¿®æ”¹ä¼šå‘˜å†…éƒ¨ç»„ï¼š<b>".$r[gname]."</b>";
+	$url="<a href='ListInGroup.php".$ecms_hashur['whehref']."'>¹ÜÀí»áÔ±ÄÚ²¿×é</a>&nbsp;->&nbsp;ĞŞ¸Ä»áÔ±ÄÚ²¿×é£º<b>".$r[gname]."</b>";
 }
 db_close();
 $empire=null;
@@ -33,36 +33,36 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¼šå‘˜å†…éƒ¨ç»„</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>»áÔ±ÄÚ²¿×é</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListInGroup.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="21%" height="25"><?=$postword?>ä¼šå‘˜å†…éƒ¨ç»„</td>
+      <td width="21%" height="25"><?=$postword?>»áÔ±ÄÚ²¿×é</td>
       <td width="79%" height="25"><input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
         <input name="gid" type="hidden" id="gid" value="<?=$gid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç»„åç§°</td>
+      <td height="25">×éÃû³Æ</td>
       <td height="25"> <input name="gname" type="text" id="gname" value="<?=$r[gname]?>" size="30">      </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ˜¾ç¤ºæ’åº</td>
-      <td height="25"> <input name="myorder" type="text" id="myorder" value="<?=$r[myorder]?>" size="30">        <font color="#666666">(å€¼è¶Šå°è¶Šå‰é¢)</font></td>
+      <td height="25">ÏÔÊ¾ÅÅĞò</td>
+      <td height="25"> <input name="myorder" type="text" id="myorder" value="<?=$r[myorder]?>" size="30">        <font color="#666666">(ÖµÔ½Ğ¡Ô½Ç°Ãæ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"> <input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"> <input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

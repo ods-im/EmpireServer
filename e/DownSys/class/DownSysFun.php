@@ -1,17 +1,17 @@
 <?php
-$DownSys_CheckIp=0;	//ä¸‹è½½éªŒè¯ç æ£€æµ‹ç”¨æˆ·IPï¼Œ0ä¸ºä¸å¼€å¯ï¼Œ1ä¸ºå¼€å¯
+$DownSys_CheckIp=0;	//ÏÂÔØÑéÖ¤Âë¼ì²âÓÃ»§IP£¬0Îª²»¿ªÆô£¬1Îª¿ªÆô
 
-//è¿”å›æ£€æµ‹IP
+//·µ»Ø¼ì²âIP
 function ReturnDownSysCheckIp(){
 	global $DownSys_CheckIp;
 	$ip=$DownSys_CheckIp?egetip():'127.0.0.1';
 	return $ip;
 }
 
-//ä¸‹è½½è½¯ä»¶
+//ÏÂÔØÈí¼ş
 function DownSoft($classid,$id,$pathid,$p,$pass){
 	global $empire,$dbtbpre,$public_r,$level_r,$class_r,$emod_r,$ecms_config;
-	//éªŒè¯IP
+	//ÑéÖ¤IP
 	eCheckAccessDoIp('downinfo');
 	$id=(int)$id;
 	$classid=(int)$classid;
@@ -25,13 +25,13 @@ function DownSoft($classid,$id,$pathid,$p,$pass){
 	$userid=$p_r[0];
 	$rnd=$p_r[1];
 	$nockpass=$p_r[2];
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$cpass=md5(md5($classid."-!ecms!".$id."-!ecms!".$pathid).ReturnDownSysCheckIp()."wm_chief".$public_r[downpass].$userid);
 	if('dg'.$cpass<>'dg'.$pass)
 	{
 		printerror("FailDownpass","history.go(-1)",1);
     }
-	//è¡¨ä¸å­˜åœ¨
+	//±í²»´æÔÚ
 	if(empty($class_r[$classid][tbname]))
 	{
 		printerror("ExiestSoftid","history.go(-1)",1);
@@ -44,10 +44,10 @@ function DownSoft($classid,$id,$pathid,$p,$pass){
 	{
 		printerror("ExiestSoftid","history.go(-1)",1);
 	}
-	//å‰¯è¡¨
+	//¸±±í
 	$finfor=$empire->fetch1("select ".ReturnSqlFtextF($mid)." from {$dbtbpre}ecms_".$tbname."_data_".$r[stb]." where id='$r[id]' limit 1");
 	$r=array_merge($r,$finfor);
-	//åŒºåˆ†ä¸‹è½½åœ°å€
+	//Çø·ÖÏÂÔØµØÖ·
 	$path_r=explode("\r\n",$r[downpath]);
 	if(!$path_r[$pathid])
 	{
@@ -55,7 +55,7 @@ function DownSoft($classid,$id,$pathid,$p,$pass){
 	}
 	$showdown_r=explode("::::::",$path_r[$pathid]);
 	$downgroup=$showdown_r[2];
-	//ä¸‹è½½æƒé™
+	//ÏÂÔØÈ¨ÏŞ
 	if($downgroup)
 	{
 		$userid=(int)$userid;
@@ -70,24 +70,24 @@ function DownSoft($classid,$id,$pathid,$p,$pass){
 		{
 			printerror("MustSingleUser","history.go(-1)",1);
 		}
-		//å–å¾—ä¼šå‘˜èµ„æ–™
+		//È¡µÃ»áÔ±×ÊÁÏ
 		$u=$empire->fetch1("select ".eReturnSelectMemberF('*')." from ".eReturnMemberTable()." where ".egetmf('userid')."='$userid' and ".egetmf('rnd')."='$rnd' limit 1");
 		if(empty($u['userid']))
 		{printerror("MustSingleUser","history.go(-1)",1);}
-		//ä¸‹è½½æ¬¡æ•°é™åˆ¶
+		//ÏÂÔØ´ÎÊıÏŞÖÆ
 		$setuserday="";
 		if($level_r[$u['groupid']]['daydown'])
 		{
 			$setuserday=DoCheckMDownNum($userid,$u['groupid']);
 		}
-		if($downgroup>0)//ä¼šå‘˜ç»„
+		if($downgroup>0)//»áÔ±×é
 		{
 			if($level_r[$downgroup][level]>$level_r[$u[groupid]][level])
 			{
 				printerror("NotDownLevel","history.go(-1)",1);
 			}
 		}
-		else//è®¿é—®ç»„
+		else//·ÃÎÊ×é
 		{
 			$vgroupid=0-$downgroup;
 			$ckvgresult=eMember_ReturnCheckViewGroup($u,$vgroupid);
@@ -96,46 +96,46 @@ function DownSoft($classid,$id,$pathid,$p,$pass){
 				printerror("NotDownLevel","history.go(-1)",1);
 			}
 		}
-		//ç‚¹æ•°æ˜¯å¦è¶³å¤Ÿ
+		//µãÊıÊÇ·ñ×ã¹»
 		$showdown_r[3]=intval($showdown_r[3]);
 		if($showdown_r[3])
 		{
-			//---------æ˜¯å¦æœ‰å†å²è®°å½•
+			//---------ÊÇ·ñÓĞÀúÊ·¼ÇÂ¼
 			$bakr=$empire->fetch1("select id,truetime from {$dbtbpre}enewsdownrecord where id='$id' and classid='$classid' and userid='$userid' and pathid='$pathid' and online=0 order by truetime desc limit 1");
 			if($bakr[id]&&(time()-$bakr[truetime]<=$public_r[redodown]*3600))
 			{}
 			else
 			{
-				//åŒ…æœˆå¡
+				//°üÔÂ¿¨
 				if($u['userdate']-time()>0)
 				{}
-				//ç‚¹æ•°
+				//µãÊı
 				else
 				{
 					if($showdown_r[3]>$u['userfen'])
 					{
 						printerror("NotEnoughFen","history.go(-1)",1);
 					}
-					//å»é™¤ç‚¹æ•°
+					//È¥³ıµãÊı
 					$usql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('userfen')."=".egetmf('userfen')."-".$showdown_r[3]." where ".egetmf('userid')."='$userid'");
 				}
-				//å¤‡ä»½ä¸‹è½½è®°å½•
+				//±¸·İÏÂÔØ¼ÇÂ¼
 				$utfusername=$u['username'];
 				BakDown($classid,$id,$pathid,$userid,$utfusername,$r[title],$showdown_r[3],0);
 			}
 		}
-		//æ›´æ–°ç”¨æˆ·ä¸‹è½½æ¬¡æ•°
+		//¸üĞÂÓÃ»§ÏÂÔØ´ÎÊı
 		if($setuserday)
 		{
 			$usql=$empire->query($setuserday);
 		}
 	}
-	//æ€»ä¸‹è½½æ•°æ®å¢ä¸€
+	//×ÜÏÂÔØÊı¾İÔöÒ»
     $usql=$empire->query("update {$dbtbpre}ecms_".$class_r[$classid][tbname]." set totaldown=totaldown+1 where id='$id'");
     $downurl=stripSlashes($showdown_r[1]);
 	$downurlr=ReturnDownQzPath($downurl,$showdown_r[4]);
 	$downurl=$downurlr['repath'];
-	//é˜²ç›—é“¾
+	//·ÀµÁÁ´
 	@include(ECMS_PATH."e/DownSys/class/enpath.php");
 	$downurl=DoEnDownpath($downurl);
     db_close();
@@ -143,7 +143,7 @@ function DownSoft($classid,$id,$pathid,$p,$pass){
 	DoTypeForDownurl($downurl,$downurlr['downtype']);
 }
 
-//ä¸‹è½½æ“ä½œ
+//ÏÂÔØ²Ù×÷
 function DoTypeForDownurl($downurl,$type=0){
 	global $public_r;
 	if($type==1)//meta
@@ -161,7 +161,7 @@ function DoTypeForDownurl($downurl,$type=0){
 	exit();
 }
 
-//ä¸‹è½½
+//ÏÂÔØ
 function QDownLoadFile($file){
 	global $public_r;
 	if(strstr($file,"\\"))
@@ -200,7 +200,7 @@ function QDownLoadFile($file){
 		Header("Location:$file");
 		exit();
 	}
-	//ä¸‹è½½
+	//ÏÂÔØ
 	Header("Content-type: application/octet-stream");
 	//Header("Accept-Ranges: bytes");
 	//Header("Accept-Length: ".$filesize);
@@ -208,7 +208,7 @@ function QDownLoadFile($file){
 	echo ReadFiletext($file);
 }
 
-//å–å¾—ä¸‹è½½æ–‡ä»¶å
+//È¡µÃÏÂÔØÎÄ¼şÃû
 function GetDownurlFilename($file,$expstr){
 	$r=explode($expstr,$file);
 	$count=count($r)-1;
@@ -216,8 +216,8 @@ function GetDownurlFilename($file,$expstr){
 	return $filename;
 }
 
-//----------------------åœ¨çº¿ç”µå½±æ¨¡å‹
-//å–å¾—éªŒè¯ç 
+//----------------------ÔÚÏßµçÓ°Ä£ĞÍ
+//È¡µÃÑéÖ¤Âë
 function GetOnlinePass(){
 	global $public_r;
 	$onlinep=$public_r[downpass]."qweirtydui4opttt.,mvcfvxzzf3dsfm,.dsa";
@@ -226,7 +226,7 @@ function GetOnlinePass(){
 	return $r;
 }
 
-//éªŒè¯éªŒè¯ç 
+//ÑéÖ¤ÑéÖ¤Âë
 function CheckOnlinePass($onlinetime,$onlinepass){
 	global $movtime,$public_r;
 	if($onlinetime+$movtime<time()||$onlinetime>time())
@@ -241,10 +241,10 @@ function CheckOnlinePass($onlinetime,$onlinepass){
 	}
 }
 
-//--------å–å¾—è½¯ä»¶åœ°å€
+//--------È¡µÃÈí¼şµØÖ·
 function GetSofturl($classid,$id,$pathid,$p,$pass,$onlinetime,$onlinepass){
 	global $empire,$dbtbpre,$public_r,$class_r,$emod_r,$level_r,$ecms_config;
-	//éªŒè¯IP
+	//ÑéÖ¤IP
 	eCheckAccessDoIp('onlineinfo');
 	$classid=(int)$classid;
 	$id=(int)$id;
@@ -257,13 +257,13 @@ function GetSofturl($classid,$id,$pathid,$p,$pass,$onlinetime,$onlinepass){
 	$userid=$p_r[0];
 	$rnd=$p_r[1];
 	$nockpass=$p_r[2];
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$cpass=md5(md5($classid."-!ecms!".$id."-!ecms!".$pathid).ReturnDownSysCheckIp()."wm_chief".$public_r[downpass].$userid);
 	if('dg'.$cpass<>'dg'.$pass)
 	{exit();}
-	//éªŒè¯éªŒè¯ç 
+	//ÑéÖ¤ÑéÖ¤Âë
 	CheckOnlinePass($onlinetime,$onlinepass);
-	//è¡¨ä¸å­˜åœ¨
+	//±í²»´æÔÚ
 	if(empty($class_r[$classid][tbname]))
 	{exit();}
 	$mid=$class_r[$classid][modid];
@@ -271,10 +271,10 @@ function GetSofturl($classid,$id,$pathid,$p,$pass,$onlinetime,$onlinepass){
 	$r=$empire->fetch1("select * from {$dbtbpre}ecms_".$tbname." where id='$id' limit 1");
 	if(empty($r['id'])||$r['classid']!=$classid)
 	{exit();}
-	//å‰¯è¡¨
+	//¸±±í
 	$finfor=$empire->fetch1("select ".ReturnSqlFtextF($mid)." from {$dbtbpre}ecms_".$tbname."_data_".$r[stb]." where id='$r[id]' limit 1");
 	$r=array_merge($r,$finfor);
-	//åŒºåˆ†ä¸‹è½½åœ°å€
+	//Çø·ÖÏÂÔØµØÖ·
 	$path_r=explode("\r\n",$r[onlinepath]);
 	if(!$path_r[$pathid])
 	{
@@ -282,7 +282,7 @@ function GetSofturl($classid,$id,$pathid,$p,$pass,$onlinetime,$onlinepass){
 	}
 	$showdown_r=explode("::::::",$path_r[$pathid]);
 	$downgroup=$showdown_r[2];
-	//ä¸‹è½½æƒé™
+	//ÏÂÔØÈ¨ÏŞ
 	if($downgroup)
 	{
 		$userid=(int)$userid;
@@ -297,24 +297,24 @@ function GetSofturl($classid,$id,$pathid,$p,$pass,$onlinetime,$onlinepass){
 		{
 			exit();
 		}
-		//å–å¾—ä¼šå‘˜èµ„æ–™
+		//È¡µÃ»áÔ±×ÊÁÏ
 		$u=$empire->fetch1("select ".eReturnSelectMemberF('*')." from ".eReturnMemberTable()." where ".egetmf('userid')."='$userid' and ".egetmf('rnd')."='$rnd' limit 1");
 		if(empty($u['userid']))
 		{exit();}
-		//ä¸‹è½½æ¬¡æ•°é™åˆ¶
+		//ÏÂÔØ´ÎÊıÏŞÖÆ
 		$setuserday="";
 		if($level_r[$u['groupid']]['daydown'])
 		{
 			$setuserday=DoCheckMDownNum($userid,$u['groupid'],1);
 		}
-		if($downgroup>0)//ä¼šå‘˜ç»„
+		if($downgroup>0)//»áÔ±×é
 		{
 			if($level_r[$downgroup][level]>$level_r[$u[groupid]][level])
 			{
 				exit();
 			}
 		}
-		else//è®¿é—®ç»„
+		else//·ÃÎÊ×é
 		{
 			$vgroupid=0-$downgroup;
 			$ckvgresult=eMember_ReturnCheckViewGroup($u,$vgroupid);
@@ -323,43 +323,43 @@ function GetSofturl($classid,$id,$pathid,$p,$pass,$onlinetime,$onlinepass){
 				exit();
 			}
 		}
-		//ç‚¹æ•°æ˜¯å¦è¶³å¤Ÿ
+		//µãÊıÊÇ·ñ×ã¹»
 		$showdown_r[3]=intval($showdown_r[3]);
 		if($showdown_r[3])
 		{
-			//---------æ˜¯å¦æœ‰å†å²è®°å½•
+			//---------ÊÇ·ñÓĞÀúÊ·¼ÇÂ¼
 		    $bakr=$empire->fetch1("select id,truetime from {$dbtbpre}enewsdownrecord where id='$id' and classid='$classid' and userid='$userid' and pathid='$pathid' and online=1 order by truetime desc limit 1");
 			if($bakr[id]&&(time()-$bakr[truetime]<=$public_r[redodown]*3600))
 			{}
 			else
 			{
-				//åŒ…æœˆå¡
+				//°üÔÂ¿¨
 				if($u['userdate']-time()>0)
 				{}
-				//ç‚¹æ•°
+				//µãÊı
 				else
 				{
 			       if($showdown_r[3]>$u['userfen'])
 			       {
 					   exit();
 			       }
-			       //å»é™¤ç‚¹æ•°
+			       //È¥³ıµãÊı
 				   $usql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('userfen')."=".egetmf('userfen')."-".$showdown_r[3]." where ".egetmf('userid')."='$userid'");
 				}
-				//å¤‡ä»½ä¸‹è½½è®°å½•
+				//±¸·İÏÂÔØ¼ÇÂ¼
 				$utfusername=$u['username'];
 				BakDown($classid,$id,$pathid,$userid,$utfusername,$r[title],$showdown_r[3],1);
 			}
 		}
-		//æ›´æ–°ç”¨æˆ·ä¸‹è½½æ¬¡æ•°
+		//¸üĞÂÓÃ»§ÏÂÔØ´ÎÊı
 		if($setuserday)
 		{
 			$usql=$empire->query($setuserday);
 		}
 	}
-	//æ€»ä¸‹è½½æ•°æ®å¢ä¸€
+	//×ÜÏÂÔØÊı¾İÔöÒ»
     $usql=$empire->query("update {$dbtbpre}ecms_".$class_r[$classid][tbname]." set totaldown=totaldown+1 where id='$id'");
-	//é€‰æ‹©æ’­æ”¾å™¨
+	//Ñ¡Ôñ²¥·ÅÆ÷
 	$ftype=GetFiletype($showdown_r[1]);
 	if(strstr($ecms_config['sets']['realplayertype'],','.$ftype.','))
 	{
@@ -372,7 +372,7 @@ function GetSofturl($classid,$id,$pathid,$p,$pass,$onlinetime,$onlinepass){
     $downurl=stripSlashes($showdown_r[1]);
 	$downurlr=ReturnDownQzPath($downurl,$showdown_r[4]);
 	$downurl=$downurlr['repath'];
-	//é˜²ç›—é“¾
+	//·ÀµÁÁ´
 	@include(ECMS_PATH."e/DownSys/class/enpath.php");
 	$downurl=DoEnOnlinepath($downurl);
     db_close();

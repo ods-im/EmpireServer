@@ -1,6 +1,6 @@
 <?php
 
-//å˜é‡å,å˜é‡å€¼,å·¥å…·æ¡æ¨¡å¼,ç¼–è¾‘å™¨ç›®å½•,é«˜åº¦,å®½åº¦,å…¨é¡µ
+//±äÁ¿Ãû,±äÁ¿Öµ,¹¤¾ßÌõÄ£Ê½,±à¼­Æ÷Ä¿Â¼,¸ß¶È,¿í¶È,È«Ò³
 function ECMS_ShowEditorVar($varname,$varvalue,$toolbar='full',$basepath='',$height='300',$width='100%',$fullpage=0){
 	global $eshoweditorhtml;
 	$toolbar=strtolower($toolbar);
@@ -44,7 +44,7 @@ function ECMS_ShowEditorVar($varname,$varvalue,$toolbar='full',$basepath='',$hei
 	return $echoeditor;
 }
 
-//è¿”å›žåŠ è½½JSæ–‡ä»¶
+//·µ»Ø¼ÓÔØJSÎÄ¼þ
 function ECMS_ShowEditorJS($basepath=''){
 	if(empty($basepath))
 	{
@@ -57,7 +57,7 @@ function ECMS_ShowEditorJS($basepath=''){
 	return $loadjs;
 }
 
-//é™„åŠ å‚æ•°
+//¸½¼Ó²ÎÊý
 function ECMS_ReturnEditorCx(){
 	global $classid,$filepass,$id,$r,$enews,$ecms_hashur;
 	if($enews=='AddClass'||$enews=='EditClass')
@@ -80,7 +80,7 @@ function ECMS_ReturnEditorCx(){
 	return $str;
 }
 
-//ä¸Šä¼ æç¤º
+//ÉÏ´«ÌáÊ¾
 function ECMS_PTEditorShowError($type,$error,$showstr,$add,$ecms=0){
 ?>
 <script type='text/javascript'>
@@ -98,7 +98,7 @@ if($showstr&&$showstr!='####')
 <?php
 }
 
-//è¿”å›žtype
+//·µ»Øtype
 function ECMS_EditorReturnType($page){
 	if(empty($page))
 	{
@@ -137,7 +137,7 @@ function ECMS_EditorReturnType($page){
 	return $r;
 }
 
-//é€‰æ‹©æç¤º
+//Ñ¡ÔñÌáÊ¾
 function ECMS_EditorChFileFun($page){
 	$r=ECMS_EditorReturnType($page);
 	return $r['jsfun'];

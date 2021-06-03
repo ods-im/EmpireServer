@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,15 +15,15 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"template");
-$url="<a href=ChangeListTemp.php".$ecms_hashur['whehref'].">æ‰¹é‡æ›´æ¢æ ç›®åˆ—è¡¨æ¨¡æ¿</a>";
-//æ ç›®
+$url="<a href=ChangeListTemp.php".$ecms_hashur['whehref'].">ÅúÁ¿¸ü»»À¸Ä¿ÁĞ±íÄ£°å</a>";
+//À¸Ä¿
 $fcfile="../../data/fc/ListEnews.php";
 $class="<script src=../../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
 {$class=ShowClass_AddClass("",0,0,"|-",0,0);}
-//åˆ—è¡¨æ¨¡æ¿
+//ÁĞ±íÄ£°å
 $listtemp="";
 $sql=$empire->query("select mname,mid from {$dbtbpre}enewsmod order by myorder,mid");
 while($r=$empire->fetch($sql))
@@ -41,43 +41,43 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ‰¹é‡æ›´æ¢æ ç›®åˆ—è¡¨æ¨¡æ¿</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÅúÁ¿¸ü»»À¸Ä¿ÁĞ±íÄ£°å</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 
-<form name="form1" method="post" action="../ecmstemp.php" onsubmit="return confirm('ç¡®è®¤è¦æ›´æ¢ï¼Ÿ');">
+<form name="form1" method="post" action="../ecmstemp.php" onsubmit="return confirm('È·ÈÏÒª¸ü»»£¿');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">æ‰¹é‡æ›´æ¢æ ç›®åˆ—è¡¨æ¨¡æ¿ 
+      <td height="25" colspan="2">ÅúÁ¿¸ü»»À¸Ä¿ÁĞ±íÄ£°å 
         <input name="enews" type="hidden" id="enews" value="ChangeClassListtemp"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="15%" height="25">æ“ä½œæ ç›®ï¼š</td>
+      <td width="15%" height="25">²Ù×÷À¸Ä¿£º</td>
       <td width="85%" height="25"><select name="classid" size="16" id="classid" style="width:220">
-          <option selected>æ‰€æœ‰æ ç›®</option>
+          <option selected>ËùÓĞÀ¸Ä¿</option>
           <?=$class?>
-        </select> <font color="#666666">ï¼ˆå¦‚é€‰æ‹©çˆ¶æ ç›®ï¼Œå°†åº”ç”¨äºæ‰€æœ‰å­æ ç›®ï¼‰</font> </td>
+        </select> <font color="#666666">£¨ÈçÑ¡Ôñ¸¸À¸Ä¿£¬½«Ó¦ÓÃÓÚËùÓĞ×ÓÀ¸Ä¿£©</font> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ–°çš„åˆ—è¡¨æ¨¡æ¿ï¼š</td>
+      <td height="25">ĞÂµÄÁĞ±íÄ£°å£º</td>
       <td height="25"><select name="listtempid" id="listtempid">
-          <option value=0>é€‰æ‹©åˆ—è¡¨æ¨¡æ¿</option>
+          <option value=0>Ñ¡ÔñÁĞ±íÄ£°å</option>
 		  <?=$listtemp?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

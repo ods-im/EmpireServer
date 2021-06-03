@@ -5,8 +5,8 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='æ³¨å†Œä¼šå‘˜';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;é€‰æ‹©æ³¨å†Œä¼šå‘˜ç±»åž‹";
+$public_diyr['pagetitle']='×¢²á»áÔ±';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../cp/>»áÔ±ÖÐÐÄ</a>&nbsp;>&nbsp;Ñ¡Ôñ×¢²á»áÔ±ÀàÐÍ";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <br>
@@ -14,7 +14,7 @@ require(ECMS_PATH.'e/template/incfile/header.php');
   <form name="ChRegForm" method="GET" action="index.php">
   <input name="tobind" type="hidden" id="tobind" value="<?=$tobind?>">
     <tr class="header"> 
-      <td height="25"><div align="center">é€‰æ‹©æ³¨å†Œä¼šå‘˜ç±»åž‹<?=$tobind?' (ç»‘å®šè´¦å·)':''?></div></td>
+      <td height="25"><div align="center">Ñ¡Ôñ×¢²á»áÔ±ÀàÐÍ<?=$tobind?' (°ó¶¨ÕËºÅ)':''?></div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td width="70%" height="25"><table width="100%" border="0" cellspacing="1" cellpadding="3">
@@ -39,7 +39,7 @@ require(ECMS_PATH.'e/template/incfile/header.php');
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"> &nbsp;<input type="submit" name="button" value="ä¸‹ä¸€æ­¥"></td>
+      <td height="25"> &nbsp;<input type="submit" name="button" value="ÏÂÒ»²½"></td>
     </tr>
   </form>
 </table>

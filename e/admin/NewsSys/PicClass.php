@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,22 +15,22 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"picnews");
 
-//å¢åŠ å›¾ç‰‡ä¿¡æ¯åˆ†ç±»
+//Ôö¼ÓÍ¼Æ¬ĞÅÏ¢·ÖÀà
 function AddPicClass($classname,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$classname)
 	{printerror("EmptyPicNewsClass","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"picnews");
 	$classname=hRepPostStr($classname,1);
 	$sql=$empire->query("insert into {$dbtbpre}enewspicclass(classname) values('$classname');");
 	$classid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$classname);
 		printerror("AddPicNewsClassSuccess","PicClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -38,19 +38,19 @@ function AddPicClass($classname,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹å›¾ç‰‡ä¿¡æ¯åˆ†ç±»
+//ĞŞ¸ÄÍ¼Æ¬ĞÅÏ¢·ÖÀà
 function EditPicClass($classid,$classname,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
 	if(!$classname||!$classid)
 	{printerror("EmptyPicNewsClass","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"picnews");
 	$classname=hRepPostStr($classname,1);
 	$sql=$empire->query("update {$dbtbpre}enewspicclass set classname='$classname' where classid='$classid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$classname);
 		printerror("EditPicNewsClassSuccess","PicClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -58,20 +58,20 @@ function EditPicClass($classid,$classname,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤å›¾ç‰‡ä¿¡æ¯åˆ†ç±»
+//É¾³ıÍ¼Æ¬ĞÅÏ¢·ÖÀà
 function DelPicClass($classid,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
 	if(!$classid)
 	{printerror("NotPicNewsClassid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"picnews");
 	$r=$empire->fetch1("select classname from {$dbtbpre}enewspicclass where classid='$classid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewspicclass where classid='$classid'");
 	$sql1=$empire->query("delete from {$dbtbpre}enewspic where classid='$classid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$r[classname]);
 		printerror("DelPicNewsClassSuccess","PicClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -86,20 +86,20 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ å›¾ç‰‡æ–°é—»åˆ†ç±»
+//Ôö¼ÓÍ¼Æ¬ĞÂÎÅ·ÖÀà
 if($enews=="AddPicClass")
 {
 	$classname=$_POST['classname'];
 	AddPicClass($classname,$logininid,$loginin);
 }
-//ä¿®æ”¹å›¾ç‰‡æ–°é—»åˆ†ç±»
+//ĞŞ¸ÄÍ¼Æ¬ĞÂÎÅ·ÖÀà
 elseif($enews=="EditPicClass")
 {
 	$classname=$_POST['classname'];
 	$classid=$_POST['classid'];
 	EditPicClass($classid,$classname,$logininid,$loginin);
 }
-//åˆ é™¤å›¾ç‰‡æ–°é—»åˆ†ç±»
+//É¾³ıÍ¼Æ¬ĞÂÎÅ·ÖÀà
 elseif($enews=="DelPicClass")
 {
 	$classid=$_GET['classid'];
@@ -111,7 +111,7 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewspicclass order
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -119,7 +119,7 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewspicclass order
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href=ListPicNews.php<?=$ecms_hashur['whehref']?>>ç®¡ç†å›¾ç‰‡ä¿¡æ¯</a>&nbsp;&gt;&nbsp;<a href="PicClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å›¾ç‰‡ä¿¡æ¯åˆ†ç±»</a></td>
+    <td>Î»ÖÃ£º<a href=ListPicNews.php<?=$ecms_hashur['whehref']?>>¹ÜÀíÍ¼Æ¬ĞÅÏ¢</a>&nbsp;&gt;&nbsp;<a href="PicClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÍ¼Æ¬ĞÅÏ¢·ÖÀà</a></td>
   </tr>
 </table>
 <form name="form1" method="post" action="PicClass.php">
@@ -127,21 +127,21 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewspicclass order
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td height="25">å¢åŠ å›¾ç‰‡ä¿¡æ¯ç±»åˆ«:</td>
+      <td height="25">Ôö¼ÓÍ¼Æ¬ĞÅÏ¢Àà±ğ:</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> ç±»åˆ«åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> Àà±ğÃû³Æ: 
         <input name="classname" type="text" id="classname">
-        <input type="submit" name="Submit" value="å¢åŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header">
     <td width="10%"><div align="center">ID</div></td>
-    <td width="59%" height="25"><div align="center">ç±»åˆ«åç§°</div></td>
-    <td width="31%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="59%" height="25"><div align="center">Àà±ğÃû³Æ</div></td>
+    <td width="31%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -157,9 +157,9 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewspicclass order
           <input name="classname" type="text" id="classname" value="<?=$r[classname]?>">
         </div></td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="if(confirm('ç¡®è®¤è¦åˆ é™¤?')){self.location.href='PicClass.php?enews=DelPicClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>';}">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="if(confirm('È·ÈÏÒªÉ¾³ı?')){self.location.href='PicClass.php?enews=DelPicClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>';}">
         </div></td>
     </tr>
   </form>

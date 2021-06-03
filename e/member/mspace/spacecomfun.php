@@ -1,10 +1,10 @@
 <?php
-//--------------- ä¼šå‘˜ç©ºé—´å‡½æ•° ---------------
+//--------------- »áÔ±¿Õ¼äº¯Êý ---------------
 
-//é€‰æ‹©ç©ºé—´æ¨¡æ¿
+//Ñ¡Ôñ¿Õ¼äÄ£°å
 function ChangeSpaceStyle($add){
 	global $empire,$dbtbpre;
-	$user_r=islogin();//æ˜¯å¦ç™»é™†
+	$user_r=islogin();//ÊÇ·ñµÇÂ½
 	$styleid=intval($add['styleid']);
 	if(!$styleid)
 	{
@@ -26,10 +26,10 @@ function ChangeSpaceStyle($add){
 	}
 }
 
-//è®¾ç½®ç©ºé—´
+//ÉèÖÃ¿Õ¼ä
 function DoSetSpace($add){
 	global $empire,$dbtbpre;
-	$user_r=islogin();//æ˜¯å¦ç™»é™†
+	$user_r=islogin();//ÊÇ·ñµÇÂ½
 	$spacename=dgdb_tosave($add['spacename']);
 	$spacegg=dgdb_tosave($add['spacegg']);
 	$sql=$empire->query("update {$dbtbpre}enewsmemberadd set spacename='$spacename',spacegg='$spacegg' where userid='$user_r[userid]' limit 1");

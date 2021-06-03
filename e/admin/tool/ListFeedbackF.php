@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"feedbackf");
 $enews=$_POST['enews'];
 if(empty($enews))
@@ -41,39 +41,39 @@ elseif($enews=="EditFeedbackFOrder")
 {
 	EditFeedbackFOrder($_POST['fid'],$_POST['myorder'],$logininid,$loginin);
 }
-$url="<a href=feedback.php".$ecms_hashur['whehref'].">ç®¡ç†ä¿¡æ¯åé¦ˆ</a>&nbsp;>&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whehref'].">ä¿¡æ¯åé¦ˆåˆ†ç±»ç®¡ç†</a>&nbsp;>&nbsp;<a href=ListFeedbackF.php".$ecms_hashur['whehref'].">ç®¡ç†åé¦ˆå­—æ®µ</a>";
+$url="<a href=feedback.php".$ecms_hashur['whehref'].">¹ÜÀíĞÅÏ¢·´À¡</a>&nbsp;>&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whehref'].">ĞÅÏ¢·´À¡·ÖÀà¹ÜÀí</a>&nbsp;>&nbsp;<a href=ListFeedbackF.php".$ecms_hashur['whehref'].">¹ÜÀí·´À¡×Ö¶Î</a>";
 $sql=$empire->query("select * from {$dbtbpre}enewsfeedbackf order by myorder,fid");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†å­—æ®µ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí×Ö¶Î</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit2" value="æ–°å»ºå­—æ®µ" onclick="self.location.href='AddFeedbackF.php?enews=AddFeedbackF<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit2" value="ĞÂ½¨×Ö¶Î" onclick="self.location.href='AddFeedbackF.php?enews=AddFeedbackF<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
-<form name="form1" method="post" action="ListFeedbackF.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+<form name="form1" method="post" action="ListFeedbackF.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="6%" height="25"><div align="center">é¡ºåº</div></td>
+      <td width="6%" height="25"><div align="center">Ë³Ğò</div></td>
       <td width="27%" height="25">
-<div align="center">å­—æ®µå</div></td>
+<div align="center">×Ö¶ÎÃû</div></td>
       <td width="27%">
-<div align="center">å­—æ®µæ ‡è¯†</div></td>
-      <td width="23%"><div align="center">å­—æ®µç±»å‹</div></td>
-      <td width="17%" height="25"><div align="center">æ“ä½œ</div></td>
+<div align="center">×Ö¶Î±êÊ¶</div></td>
+      <td width="23%"><div align="center">×Ö¶ÎÀàĞÍ</div></td>
+      <td width="17%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -102,7 +102,7 @@ $sql=$empire->query("select * from {$dbtbpre}enewsfeedbackf order by myorder,fid
 	  	  <?=$ftype?>
 	  </div></td>
       <td height="25"><div align="center"> 
-         [<a href='AddFeedbackF.php?enews=EditFeedbackF&fid=<?=$r[fid]?><?=$ecms_hashur['ehref']?>'>ä¿®æ”¹</a>]&nbsp;&nbsp;[<a href='ListFeedbackF.php?enews=DelFeedbackF&fid=<?=$r[fid]?><?=$ecms_hashur['href']?>' onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]
+         [<a href='AddFeedbackF.php?enews=EditFeedbackF&fid=<?=$r[fid]?><?=$ecms_hashur['ehref']?>'>ĞŞ¸Ä</a>]&nbsp;&nbsp;[<a href='ListFeedbackF.php?enews=DelFeedbackF&fid=<?=$r[fid]?><?=$ecms_hashur['href']?>' onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]
         </div></td>
     </tr>
     <?
@@ -110,8 +110,8 @@ $sql=$empire->query("select * from {$dbtbpre}enewsfeedbackf order by myorder,fid
 	?>
     <tr bgcolor="ffffff"> 
       <td height="25">&nbsp;</td>
-      <td height="25" colspan="4"><input type="submit" name="Submit" value="ä¿®æ”¹å­—æ®µé¡ºåº">
-        (å€¼è¶Šå°è¶Šå‰é¢) <input name="enews" type="hidden" id="enews" value="EditFeedbackFOrder"> 
+      <td height="25" colspan="4"><input type="submit" name="Submit" value="ĞŞ¸Ä×Ö¶ÎË³Ğò">
+        (ÖµÔ½Ğ¡Ô½Ç°Ãæ) <input name="enews" type="hidden" id="enews" value="EditFeedbackFOrder"> 
       </td>
     </tr>
   </table>

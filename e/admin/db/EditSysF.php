@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"f");
 $tid=(int)$_GET['tid'];
 $tbname=RepPostVar($_GET['tbname']);
@@ -25,7 +25,7 @@ if(empty($tid)||empty($tbname))
 }
 $enews=RepPostStr($_GET['enews'],1);
 $fid=(int)$_GET['fid'];
-$url="æ•°æ®è¡¨:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListF.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">å­—æ®µç®¡ç†</a>&nbsp;>&nbsp;ä¿®æ”¹ç³»ç»Ÿå­—æ®µ";
+$url="Êý¾Ý±í:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListF.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">×Ö¶Î¹ÜÀí</a>&nbsp;>&nbsp;ÐÞ¸ÄÏµÍ³×Ö¶Î";
 $r=$empire->fetch1("select * from {$dbtbpre}enewsf where fid='$fid' and tid='$tid'");
 if(!$r[fid])
 {
@@ -41,8 +41,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¿®æ”¹ç³»ç»Ÿå­—æ®µ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÐÞ¸ÄÏµÍ³×Ö¶Î</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function ShowFieldFormSet(obj,val){
@@ -73,18 +73,18 @@ function ShowFieldFormSet(obj,val){
 <body onload="ShowFieldFormSet(document.addfform,'<?=$r[fform]?$r[fform]:'text'?>')">
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="addfform" method="post" action="../ecmsmod.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr> 
-      <td height="25" colspan="2" class="header"> ä¿®æ”¹æ•°æ®è¡¨( 
+      <td height="25" colspan="2" class="header"> ÐÞ¸ÄÊý¾Ý±í( 
         <?=$dbtbpre?>
         ecms_ 
         <?=$tbname?>
-        )çš„ç³»ç»Ÿå­—æ®µ 
+        )µÄÏµÍ³×Ö¶Î 
         <input name="fid" type="hidden" id="fid" value="<?=$fid?>"> <input name="enews" type="hidden" id="enews" value="EditSysF"> 
         <input name="oldfform" type="hidden" id="oldfform" value="<?=$r[fform]?>"> 
         <input name="oldf" type="hidden" id="oldf" value="<?=$r[f]?>"> <input name="tbname" type="hidden" id="tbname" value="<?=$tbname?>"> 
@@ -97,17 +97,17 @@ function ShowFieldFormSet(obj,val){
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">åŸºæœ¬è®¾ç½®</td>
+      <td height="25" colspan="2">»ù±¾ÉèÖÃ</td>
     </tr>
     <tr> 
-      <td width="25%" height="25" bgcolor="#FFFFFF">å­—æ®µå</td>
+      <td width="25%" height="25" bgcolor="#FFFFFF">×Ö¶ÎÃû</td>
       <td width="75%" height="25" bgcolor="#FFFFFF"><b> 
         <?=$r[f]?>
         <input name="f" type="hidden" id="f" value="<?=$r[f]?>">
         </b></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å­—æ®µæ ‡è¯†</td>
+      <td height="25" bgcolor="#FFFFFF">×Ö¶Î±êÊ¶</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="fname" type="text" id="fname" value="<?=$r[fname]?>"></td>
     </tr>
 	<?php
@@ -115,12 +115,12 @@ function ShowFieldFormSet(obj,val){
 	{
 	?>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å­—æ®µç±»åž‹</td>
+      <td height="25" bgcolor="#FFFFFF">×Ö¶ÎÀàÐÍ</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="ftype" id="select">
-          <option value="CHAR"<?=$typeCHAR?>>å®šé•¿å­—ç¬¦åž‹0-255å­—èŠ‚(CHAR)</option>
-          <option value="VARCHAR"<?=$typeVARCHAR?>>å­—ç¬¦åž‹0-255å­—èŠ‚(VARCHAR)</option>
+          <option value="CHAR"<?=$typeCHAR?>>¶¨³¤×Ö·ûÐÍ0-255×Ö½Ú(CHAR)</option>
+          <option value="VARCHAR"<?=$typeVARCHAR?>>×Ö·ûÐÍ0-255×Ö½Ú(VARCHAR)</option>
         </select>
-        é•¿åº¦ 
+        ³¤¶È 
         <input name="flen" type="text" id="flen" value="<?=$r[flen]?>" size="6"> 
       </td>
     </tr>
@@ -135,7 +135,7 @@ function ShowFieldFormSet(obj,val){
 	}
 	?>
     <tr> 
-      <td height="25" colspan="2">ç‰¹æ®Šå±žæ€§</td>
+      <td height="25" colspan="2">ÌØÊâÊôÐÔ</td>
     </tr>
 	<?php
 	if($r[f]!='special.field')
@@ -146,11 +146,11 @@ function ShowFieldFormSet(obj,val){
 	{
 	?>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åŠ ç´¢å¼•</td>
+      <td height="25" bgcolor="#FFFFFF">¼ÓË÷Òý</td>
       <td height="25" bgcolor="#FFFFFF"> <input type="radio" name="iskey" value="1"<?=$r[iskey]==1?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="iskey" value="0"<?=$r[iskey]==0?' checked':''?>>
-        å¦</td>
+        ·ñ</td>
     </tr>
 	<?php
 	}
@@ -162,73 +162,73 @@ function ShowFieldFormSet(obj,val){
 	}
 	?>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å€¼å”¯ä¸€</td>
+      <td height="25" bgcolor="#FFFFFF">ÖµÎ¨Ò»</td>
       <td height="25" bgcolor="#FFFFFF"> <input type="radio" name="isonly" value="1"<?=$r[isonly]==1?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="isonly" value="0"<?=$r[isonly]==0?' checked':''?>>
-        å¦</td>
+        ·ñ</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åŽå°å¢žåŠ ä¿¡æ¯å¤„ç†å‡½æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">ºóÌ¨Ôö¼ÓÐÅÏ¢´¦Àíº¯Êý</td>
       <td height="25" bgcolor="#FFFFFF"><input name="adddofun" type="text" id="adddofun" value="<?=$r[adddofun]?>">
-        <font color="#666666">(ä¸€èˆ¬ä¸è®¾ç½®ï¼Œæ ¼å¼â€œå‡½æ•°å##å‚æ•°â€å‚æ•°å¯ä¸è®¾ç½®)</font></td>
+        <font color="#666666">(Ò»°ã²»ÉèÖÃ£¬¸ñÊ½¡°º¯ÊýÃû##²ÎÊý¡±²ÎÊý¿É²»ÉèÖÃ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åŽå°ä¿®æ”¹ä¿¡æ¯å¤„ç†å‡½æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">ºóÌ¨ÐÞ¸ÄÐÅÏ¢´¦Àíº¯Êý</td>
       <td height="25" bgcolor="#FFFFFF"><input name="editdofun" type="text" id="editdofun" value="<?=$r[editdofun]?>">
-        <font color="#666666">(ä¸€èˆ¬ä¸è®¾ç½®ï¼Œæ ¼å¼â€œå‡½æ•°å##å‚æ•°â€å‚æ•°å¯ä¸è®¾ç½®)</font></td>
+        <font color="#666666">(Ò»°ã²»ÉèÖÃ£¬¸ñÊ½¡°º¯ÊýÃû##²ÎÊý¡±²ÎÊý¿É²»ÉèÖÃ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å‰å°å¢žåŠ ä¿¡æ¯å¤„ç†å‡½æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">Ç°Ì¨Ôö¼ÓÐÅÏ¢´¦Àíº¯Êý</td>
       <td height="25" bgcolor="#FFFFFF"><input name="qadddofun" type="text" id="qadddofun" value="<?=$r[qadddofun]?>">
-        <font color="#666666">(ä¸€èˆ¬ä¸è®¾ç½®ï¼Œæ ¼å¼â€œå‡½æ•°å##å‚æ•°â€å‚æ•°å¯ä¸è®¾ç½®)</font></td>
+        <font color="#666666">(Ò»°ã²»ÉèÖÃ£¬¸ñÊ½¡°º¯ÊýÃû##²ÎÊý¡±²ÎÊý¿É²»ÉèÖÃ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å‰å°ä¿®æ”¹ä¿¡æ¯å¤„ç†å‡½æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">Ç°Ì¨ÐÞ¸ÄÐÅÏ¢´¦Àíº¯Êý</td>
       <td height="25" bgcolor="#FFFFFF"><input name="qeditdofun" type="text" id="qeditdofun" value="<?=$r[qeditdofun]?>">
-        <font color="#666666">(ä¸€èˆ¬ä¸è®¾ç½®ï¼Œæ ¼å¼â€œå‡½æ•°å##å‚æ•°â€å‚æ•°å¯ä¸è®¾ç½®)</font></td>
+        <font color="#666666">(Ò»°ã²»ÉèÖÃ£¬¸ñÊ½¡°º¯ÊýÃû##²ÎÊý¡±²ÎÊý¿É²»ÉèÖÃ)</font></td>
     </tr>
 	<?php
 	}	
 	?>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ˜¾ç¤ºé¡ºåº</td>
+      <td height="25" bgcolor="#FFFFFF">ÏÔÊ¾Ë³Ðò</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="myorder" type="text" id="myorder" value="<?=$r[myorder]?>"> 
-        <font color="#666666">(æ•°å­—è¶Šå°è¶Šå‰é¢)</font></td>
+        <font color="#666666">(Êý×ÖÔ½Ð¡Ô½Ç°Ãæ)</font></td>
     </tr>
 	<tr> 
-      <td height="25" colspan="2">è¡¨å•æ˜¾ç¤ºè®¾ç½®</td>
+      <td height="25" colspan="2">±íµ¥ÏÔÊ¾ÉèÖÃ</td>
     </tr>
 	<?php
 	if($r[f]!='special.field')
 	{
 	?>
     <tr> 
-      <td bgcolor="#FFFFFF">è¾“å…¥è¡¨å•æ˜¾ç¤ºå…ƒç´ </td>
+      <td bgcolor="#FFFFFF">ÊäÈë±íµ¥ÏÔÊ¾ÔªËØ</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="fform" id="fform" onchange="ShowFieldFormSet(document.addfform,this.options[this.selectedIndex].value)">
-          <option value="text"<?=$formtext?>>å•è¡Œæ–‡æœ¬æ¡†(text)</option>
-          <option value="img"<?=$formimg?>>å›¾ç‰‡(img)</option>
-          <option value="linkfield"<?=$formlinkfield?>>é€‰æ‹©å¤–è¡¨å…³è”å­—æ®µ(linkfield)</option>
-          <option value="linkfieldselect"<?=$formlinkfieldselect?>>ä¸‹æ‹‰å¤–è¡¨å…³è”å­—æ®µ(linkfieldselect)</option>
+          <option value="text"<?=$formtext?>>µ¥ÐÐÎÄ±¾¿ò(text)</option>
+          <option value="img"<?=$formimg?>>Í¼Æ¬(img)</option>
+          <option value="linkfield"<?=$formlinkfield?>>Ñ¡ÔñÍâ±í¹ØÁª×Ö¶Î(linkfield)</option>
+          <option value="linkfieldselect"<?=$formlinkfieldselect?>>ÏÂÀ­Íâ±í¹ØÁª×Ö¶Î(linkfieldselect)</option>
         </select> </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">é€‰é¡¹</td>
+      <td height="25" bgcolor="#FFFFFF">Ñ¡Ïî</td>
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="1" cellpadding="2">
           <tr id="fsizediv"> 
-            <td height="23"><strong>å…ƒç´ é•¿åº¦</strong><br> <input name="fformsize" type="text" id="fformsize2" value="<?=$r[fformsize]?>"> 
-              <font color="#666666">(ç©ºä¸ºæŒ‰é»˜è®¤)</font></td>
+            <td height="23"><strong>ÔªËØ³¤¶È</strong><br> <input name="fformsize" type="text" id="fformsize2" value="<?=$r[fformsize]?>"> 
+              <font color="#666666">(¿ÕÎª°´Ä¬ÈÏ)</font></td>
           </tr>
           <tr id="flinkfielddiv"> 
-            <td height="23"><strong>é€‰æ‹©æ¨¡åž‹å­—æ®µè®¾ç½®</strong><br>
-              æ•°æ®è¡¨å 
+            <td height="23"><strong>Ñ¡ÔñÄ£ÐÍ×Ö¶ÎÉèÖÃ</strong><br>
+              Êý¾Ý±íÃû 
               <input name="linkfieldtb" type="text" id="linkfieldtb" value="<?=$r[linkfieldtb]?>"> 
               <br>
-              å€¼å­—æ®µå 
+              Öµ×Ö¶ÎÃû 
               <input name="linkfieldval" type="text" id="linkfieldval" value="<?=$r[linkfieldval]?>"> 
               <input name="samedata" type="checkbox" id="samedata" value="1"<?=$r[samedata]==1?' checked':''?>>
-              æ•°æ®åŒæ­¥<br>
-              æ˜¾ç¤ºå­—æ®µ 
+              Êý¾ÝÍ¬²½<br>
+              ÏÔÊ¾×Ö¶Î 
               <input name="linkfieldshow" type="text" id="linkfieldshow" value="<?=$r[linkfieldshow]?>"> 
               <input name="oldlinkfieldtb" type="hidden" id="oldlinkfieldtb" value="<?=$r[linkfieldtb]?>"> 
               <input name="oldlinkfieldshow" type="hidden" id="oldlinkfieldshow" value="<?=$r[linkfieldshow]?>"></td>
@@ -236,28 +236,28 @@ function ShowFieldFormSet(obj,val){
         </table></td>
     </tr>
     <tr> 
-      <td valign="top" bgcolor="#FFFFFF">åˆå§‹å€¼</td>
+      <td valign="top" bgcolor="#FFFFFF">³õÊ¼Öµ</td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="fvalue" cols="65" rows="8" id="fvalue" style="WIDTH: 100%"><?=ehtmlspecialchars(stripSlashes(str_replace("|","\r\n",$r[fvalue])))?></textarea></td>
     </tr>
 	<?php
 	}
 	?>
     <tr> 
-      <td height="25" valign="top" bgcolor="#FFFFFF">è¾“å…¥è¡¨å•æ›¿æ¢htmlä»£ç <br> <font color="#666666">(å¢žåŠ å­—æ®µæ—¶è¯·ç•™ç©º)</font></td>
+      <td height="25" valign="top" bgcolor="#FFFFFF">ÊäÈë±íµ¥Ìæ»»html´úÂë<br> <font color="#666666">(Ôö¼Ó×Ö¶ÎÊ±ÇëÁô¿Õ)</font></td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="fhtml" cols="65" rows="10" id="fhtml" style="WIDTH: 100%"><?=ehtmlspecialchars(stripSlashes($r[fhtml]))?></textarea></td>
     </tr>
     <tr> 
-      <td height="25" valign="top" bgcolor="#FFFFFF">æŠ•ç¨¿è¡¨å•æ›¿æ¢htmlä»£ç <br> <font color="#666666">(å¢žåŠ å­—æ®µæ—¶è¯·ç•™ç©º)</font></td>
+      <td height="25" valign="top" bgcolor="#FFFFFF">Í¶¸å±íµ¥Ìæ»»html´úÂë<br> <font color="#666666">(Ôö¼Ó×Ö¶ÎÊ±ÇëÁô¿Õ)</font></td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="qfhtml" cols="65" rows="10" id="qfhtml" style="WIDTH: 100%"><?=ehtmlspecialchars(stripSlashes($r[qfhtml]))?></textarea></td>
     </tr>
     <tr> 
-      <td height="25" valign="top" bgcolor="#FFFFFF">æ³¨é‡Š</td>
+      <td height="25" valign="top" bgcolor="#FFFFFF">×¢ÊÍ</td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="fzs" cols="65" rows="6" id="fzs" style="WIDTH: 100%"><?=stripSlashes($r[fzs])?></textarea></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="æäº¤"> 
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="Ìá½»"> 
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

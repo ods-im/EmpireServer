@@ -5,7 +5,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 if(file_exists("install.off"))
 {
-	echo"ã€Šå¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿã€‹å®‰è£…ç¨‹åºå·²é”å®šã€‚å¦‚æœè¦é‡æ–°å®‰è£…ï¼Œè¯·åˆ é™¤<b>/e/install/install.off</b>æ–‡ä»¶ï¼";
+	echo"¡¶µÛ¹úÍøÕ¾¹ÜÀíÏµÍ³¡·°²×°³ÌĞòÒÑËø¶¨¡£Èç¹ûÒªÖØĞÂ°²×°£¬ÇëÉ¾³ı<b>/e/install/install.off</b>ÎÄ¼ş£¡";
 	exit();
 }
 
@@ -21,7 +21,7 @@ $empire=new mysqlquery();
 $ecms=$_GET['ecms'];
 $defaultdata=$_GET['defaultdata'];
 
-//----------------ç”Ÿæˆè¡¨æƒ…JS
+//----------------Éú³É±íÇéJS
 function InstallGetPlfaceJs(){
 	global $empire,$dbtbpre,$public_r;
 	$r=$empire->fetch1("select plface,plfacenum from {$dbtbpre}enewspl_set limit 1");
@@ -49,29 +49,29 @@ function InstallGetPlfaceJs(){
 	WriteFiletext_n($filename,$allface);
 }
 
-//æ›´æ–°å…¶å®ƒæ•°æ®
+//¸üĞÂÆäËüÊı¾İ
 if($ecms=='ChangeInstallOtherData')
 {
-	//--- åˆ é™¤ç¼“å­˜æ–‡ä»¶ ---
+	//--- É¾³ı»º´æÎÄ¼ş ---
 	DelListEnews();
-	//--- æ›´æ–°åŠ¨æ€é¡µé¢ ---
-	GetPlTempPage();//è¯„è®ºåˆ—è¡¨æ¨¡æ¿
-	GetPlJsPage();//è¯„è®ºJSæ¨¡æ¿
-	ReCptemp();//æ§åˆ¶é¢æ¿æ¨¡æ¿
-	GetSearch();//ä¸‰æœç´¢è¡¨å•æ¨¡æ¿
-	GetPrintPage();//æ‰“å°æ¨¡æ¿
-	GetDownloadPage();//ä¸‹è½½åœ°å€é¡µé¢
-	ReGbooktemp();//ç•™è¨€æ¿æ¨¡æ¿
-	ReLoginIframe();//ç™»é™†çŠ¶æ€æ¨¡æ¿
-	ReSchAlltemp();//å…¨ç«™æœç´¢æ¨¡æ¿
-	//ç”Ÿæˆé¦–é¡µ
+	//--- ¸üĞÂ¶¯Ì¬Ò³Ãæ ---
+	GetPlTempPage();//ÆÀÂÛÁĞ±íÄ£°å
+	GetPlJsPage();//ÆÀÂÛJSÄ£°å
+	ReCptemp();//¿ØÖÆÃæ°åÄ£°å
+	GetSearch();//ÈıËÑË÷±íµ¥Ä£°å
+	GetPrintPage();//´òÓ¡Ä£°å
+	GetDownloadPage();//ÏÂÔØµØÖ·Ò³Ãæ
+	ReGbooktemp();//ÁôÑÔ°åÄ£°å
+	ReLoginIframe();//µÇÂ½×´Ì¬Ä£°å
+	ReSchAlltemp();//È«Õ¾ËÑË÷Ä£°å
+	//Éú³ÉÊ×Ò³
 	$indextemp=GetIndextemp();
 	NewsBq(0,$indextemp,1,0);
-	//--- æ›´æ–°åé¦ˆè¡¨å• ---
+	//--- ¸üĞÂ·´À¡±íµ¥ ---
 	$sql=$empire->query("select bid,btemp from {$dbtbpre}enewsfeedbackclass order by bid");
 	while($r=$empire->fetch($sql))
 	{
-		//æ›¿æ¢å…¬å…±å˜é‡
+		//Ìæ»»¹«¹²±äÁ¿
 		$btemp=ReplaceTempvar($r['btemp']);
 		$btemp=str_replace("[!--cp.header--]","<? include(\"../../data/template/cp_1.php\");?>",$btemp);
 		$btemp=str_replace("[!--cp.footer--]","<? include(\"../../data/template/cp_2.php\");?>",$btemp);
@@ -84,18 +84,18 @@ if(!defined('InEmpireCMS'))
 ?>".$btemp;
 		WriteFiletext($file,$btemp);
 	}
-	//--- è¯„è®ºè¡¨æƒ…æ–‡ä»¶ ---
+	//--- ÆÀÂÛ±íÇéÎÄ¼ş ---
 	InstallGetPlfaceJs();
-	echo"æ›´æ–°æ–‡ä»¶å®Œæ¯•.<script>self.location.href='index.php?enews=success&f=6&defaultdata=$defaultdata';</script>";
+	echo"¸üĞÂÎÄ¼şÍê±Ï.<script>self.location.href='index.php?enews=success&f=6&defaultdata=$defaultdata';</script>";
 	exit();
 }
-else//æ›´æ–°æ•°æ®åº“ç¼“å­˜
+else//¸üĞÂÊı¾İ¿â»º´æ
 {
-	GetConfig(1);//æ›´æ–°å‚æ•°è®¾ç½®
-	GetClass();//æ›´æ–°æ ç›®
-	GetMemberLevel();//æ›´æ–°ä¼šå‘˜ç»„
-	GetSearchAllTb();//æ›´æ–°å…¨ç«™æœç´¢æ•°æ®è¡¨
-	echo"æ›´æ–°æ•°æ®åº“ç¼“å­˜å®Œæ¯•.<script>self.location.href='changedata.php?ecms=ChangeInstallOtherData&defaultdata=$defaultdata';</script>";
+	GetConfig(1);//¸üĞÂ²ÎÊıÉèÖÃ
+	GetClass();//¸üĞÂÀ¸Ä¿
+	GetMemberLevel();//¸üĞÂ»áÔ±×é
+	GetSearchAllTb();//¸üĞÂÈ«Õ¾ËÑË÷Êı¾İ±í
+	echo"¸üĞÂÊı¾İ¿â»º´æÍê±Ï.<script>self.location.href='changedata.php?ecms=ChangeInstallOtherData&defaultdata=$defaultdata';</script>";
 	exit();
 }
 ?>

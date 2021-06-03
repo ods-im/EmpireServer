@@ -7,8 +7,8 @@ if(!defined('InEmpireCMS'))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>èœå•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²Ëµ¥</title>
 <link href="../../../data/menu/menu.css" rel="stylesheet" type="text/css">
 <script src="../../../data/menu/menu.js" type="text/javascript"></script>
 <SCRIPT lanuage="JScript">
@@ -21,14 +21,14 @@ function tourl(url){
 <table border='0' cellspacing='0' cellpadding='0'>
 	<tr height=20>
 			<td id="home"><img src="../../../data/images/homepage.gif" border=0></td>
-			<td><b>æ‰©å±•é¡¹ç›®</b></td>
+			<td><b>À©Õ¹ÏîÄ¿</b></td>
 	</tr>
 </table>
 
 <table border='0' cellspacing='0' cellpadding='0'>
 <?php
 $b=0;
-//è‡ªå®šä¹‰æ‰©å±•èœå•
+//×Ô¶¨ÒåÀ©Õ¹²Ëµ¥
 $menucsql=$empire->query("select classid,classname from {$dbtbpre}enewsmenuclass where classtype=3 and (groupids='' or groupids like '%,".intval($lur[groupid]).",%') order by myorder,classid");
 while($menucr=$empire->fetch($menucsql))
 {
@@ -77,10 +77,10 @@ while($menucr=$empire->fetch($menucsql))
   </tr>
   <?php
 }
-//æ²¡èœå•
+//Ã»²Ëµ¥
 if(!$b)
 {
-	$notrecordword="æ‚¨è¿˜æœªæ·»åŠ æ‰©å±•èœå•,<br><a href='../../other/MenuClass.php".$ecms_hashur['whehref']."' target='main'><u><b>ç‚¹å‡»è¿™é‡Œ</b></u></a>è¿›è¡Œæ·»åŠ æ“ä½œ";
+	$notrecordword="Äú»¹Î´Ìí¼ÓÀ©Õ¹²Ëµ¥,<br><a href='../../other/MenuClass.php".$ecms_hashur['whehref']."' target='main'><u><b>µã»÷ÕâÀï</b></u></a>½øĞĞÌí¼Ó²Ù×÷";
 	echo"<tr><td>$notrecordword</td></tr>";
 }
 ?>

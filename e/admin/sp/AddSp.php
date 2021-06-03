@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,15 +15,15 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"sp");
 $enews=ehtmlspecialchars($_GET['enews']);
-$postword='å¢åŠ ç¢ç‰‡';
-$noteditword='<font color="#666666">(è®¾ç½®åä¸å¯ä¿®æ”¹)</font>';
+$postword='Ôö¼ÓËéÆ¬';
+$noteditword='<font color="#666666">(ÉèÖÃºó²»¿ÉĞŞ¸Ä)</font>';
 $disabled='';
 $sptypehidden='';
 $r[maxnum]=0;
-$url="<a href=ListSp.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡</a> &gt; å¢åŠ ç¢ç‰‡";
+$url="<a href=ListSp.php".$ecms_hashur['whehref'].">¹ÜÀíËéÆ¬</a> &gt; Ôö¼ÓËéÆ¬";
 $fcid=(int)$_GET['fcid'];
 $fclassid=(int)$_GET['fclassid'];
 $fsptype=(int)$_GET['fsptype'];
@@ -37,25 +37,25 @@ else
 {
 	$filepass=ReturnTranFilepass();
 }
-//å¤åˆ¶
+//¸´ÖÆ
 if($enews=="AddSp"&&$_GET['docopy'])
 {
 	$r=$empire->fetch1("select * from {$dbtbpre}enewssp where spid='$spid'");
-	$url="<a href=ListSp.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡</a> &gt; å¤åˆ¶ç¢ç‰‡ï¼š<b>".$r[spname]."</b>";
+	$url="<a href=ListSp.php".$ecms_hashur['whehref'].">¹ÜÀíËéÆ¬</a> &gt; ¸´ÖÆËéÆ¬£º<b>".$r[spname]."</b>";
 	$username=substr($r[username],1,-1);
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditSp")
 {
 	$r=$empire->fetch1("select * from {$dbtbpre}enewssp where spid='$spid'");
-	$postword='ä¿®æ”¹ç¢ç‰‡';
+	$postword='ĞŞ¸ÄËéÆ¬';
 	$noteditword='';
 	$disabled=' disabled';
 	$sptypehidden='<input type="hidden" name="sptype" value="'.$r[sptype].'">';
-	$url="<a href=ListSp.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡</a> &gt; ä¿®æ”¹ç¢ç‰‡ï¼š<b>".$r[spname]."</b>";
+	$url="<a href=ListSp.php".$ecms_hashur['whehref'].">¹ÜÀíËéÆ¬</a> &gt; ĞŞ¸ÄËéÆ¬£º<b>".$r[spname]."</b>";
 	$username=substr($r[username],1,-1);
 }
-//æ ‡ç­¾æ¨¡æ¿
+//±êÇ©Ä£°å
 $bqtemp='';
 $bqtempsql=$empire->query("select tempid,tempname from ".GetTemptb("enewsbqtemp")." order by tempid");
 while($bqtempr=$empire->fetch($bqtempsql))
@@ -67,9 +67,9 @@ while($bqtempr=$empire->fetch($bqtempsql))
 	}
 	$bqtemp.="<option value='".$bqtempr[tempid]."'".$select.">".$bqtempr[tempname]."</option>";
 }
-//æ ç›®
+//À¸Ä¿
 $options=ShowClass_AddClass("",$r[classid],0,"|-",0,0);
-//åˆ†ç±»
+//·ÖÀà
 $scstr='';
 $scsql=$empire->query("select classid,classname from {$dbtbpre}enewsspclass order by classid");
 while($scr=$empire->fetch($scsql))
@@ -81,7 +81,7 @@ while($scr=$empire->fetch($scsql))
 	}
 	$scstr.="<option value='".$scr[classid]."'".$select.">".$scr[classname]."</option>";
 }
-//ç”¨æˆ·ç»„
+//ÓÃ»§×é
 $group='';
 $groupsql=$empire->query("select groupid,groupname from {$dbtbpre}enewsgroup order by groupid");
 while($groupr=$empire->fetch($groupsql))
@@ -93,7 +93,7 @@ while($groupr=$empire->fetch($groupsql))
 	}
 	$group.="<option value='".$groupr[groupid]."'".$select.">".$groupr[groupname]."</option>";
 }
-//éƒ¨é—¨
+//²¿ÃÅ
 $userclass='';
 $ucsql=$empire->query("select classid,classname from {$dbtbpre}enewsuserclass order by classid");
 while($ucr=$empire->fetch($ucsql))
@@ -105,7 +105,7 @@ while($ucr=$empire->fetch($ucsql))
 	}
 	$userclass.="<option value='".$ucr[classid]."'".$select.">".$ucr[classname]."</option>";
 }
-//å½“å‰ä½¿ç”¨çš„æ¨¡æ¿ç»„
+//µ±Ç°Ê¹ÓÃµÄÄ£°å×é
 $thegid=GetDoTempGid();
 db_close();
 $empire=null;
@@ -113,9 +113,9 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç¢ç‰‡</title>
+<title>ËéÆ¬</title>
 <script>
 function selectalls(doselect,formvar)
 {  
@@ -132,7 +132,7 @@ function selectalls(doselect,formvar)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListSp.php">
@@ -147,122 +147,122 @@ function selectalls(doselect,formvar)
 		<input name="filepass" type="hidden" id="filepass" value="<?=$filepass?>"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç¢ç‰‡ç±»å‹ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">ËéÆ¬ÀàĞÍ£º</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="sptype" id="sptype"<?=$disabled?>>
-          <option value="1"<?=$r[sptype]==1?' selected':''?>>é™æ€ä¿¡æ¯ç¢ç‰‡</option>
-          <option value="2"<?=$r[sptype]==2?' selected':''?>>åŠ¨æ€ä¿¡æ¯ç¢ç‰‡</option>
-          <option value="3"<?=$r[sptype]==3?' selected':''?>>ä»£ç ç¢ç‰‡</option>
+          <option value="1"<?=$r[sptype]==1?' selected':''?>>¾²Ì¬ĞÅÏ¢ËéÆ¬</option>
+          <option value="2"<?=$r[sptype]==2?' selected':''?>>¶¯Ì¬ĞÅÏ¢ËéÆ¬</option>
+          <option value="3"<?=$r[sptype]==3?' selected':''?>>´úÂëËéÆ¬</option>
         </select> 
         <?=$noteditword?>
         <?=$sptypehidden?>
       </td>
     </tr>
     <tr> 
-      <td width="18%" height="25" bgcolor="#FFFFFF">ç¢ç‰‡åç§°:</td>
+      <td width="18%" height="25" bgcolor="#FFFFFF">ËéÆ¬Ãû³Æ:</td>
       <td width="82%" height="25" bgcolor="#FFFFFF"> <input name="spname" type="text" id="spname" value="<?=$r[spname]?>" size="42"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç¢ç‰‡å˜é‡åï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">ËéÆ¬±äÁ¿Ãû£º</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="varname" type="text" id="varname" value="<?=$r[varname]?>" size="42"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ‰€å±åˆ†ç±»ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">ËùÊô·ÖÀà£º</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="cid" id="cid">
-          <option value="0">ä¸éš¶å±äºä»»ä½•ç±»åˆ«</option>
+          <option value="0">²»Á¥ÊôÓÚÈÎºÎÀà±ğ</option>
           <?=$scstr?>
-        </select> <input type="button" name="Submit6222322" value="ç®¡ç†åˆ†ç±»" onclick="window.open('ListSpClass.php<?=$ecms_hashur['whehref']?>');"></td>
+        </select> <input type="button" name="Submit6222322" value="¹ÜÀí·ÖÀà" onclick="window.open('ListSpClass.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">éš¶å±ä¿¡æ¯æ ç›®ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">Á¥ÊôĞÅÏ¢À¸Ä¿£º</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="classid" id="classid">
-          <option value="0">éš¶å±äºæ‰€æœ‰æ ç›®</option>
+          <option value="0">Á¥ÊôÓÚËùÓĞÀ¸Ä¿</option>
           <?=$options?>
-        </select> <input type="button" name="Submit622232" value="ç®¡ç†æ ç›®" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>');"> 
-        <font color="#666666">(é€‰æ‹©çˆ¶æ ç›®ï¼Œå°†åº”ç”¨äºå­æ ç›®)</font></td>
+        </select> <input type="button" name="Submit622232" value="¹ÜÀíÀ¸Ä¿" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>');"> 
+        <font color="#666666">(Ñ¡Ôñ¸¸À¸Ä¿£¬½«Ó¦ÓÃÓÚ×ÓÀ¸Ä¿)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æœ€å¤§ä¿¡æ¯æ•°é‡ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">×î´óĞÅÏ¢ÊıÁ¿£º</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="maxnum" type="text" id="spname3" value="<?=$r[maxnum]?>" size="42"> 
-        <font color="#666666">(0ä¸ºä¸é™)</font></td>
+        <font color="#666666">(0Îª²»ÏŞ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ä½¿ç”¨æ ‡ç­¾æ¨¡æ¿ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">Ê¹ÓÃ±êÇ©Ä£°å£º</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="tempid" id="tempid">
           <?=$bqtemp?>
-        </select> <input type="button" name="Submit6222323" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿" onclick="window.open('../template/ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+        </select> <input type="button" name="Submit6222323" value="¹ÜÀí±êÇ©Ä£°å" onclick="window.open('../template/ListBqtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ˜¯å¦ç”Ÿæˆç¢ç‰‡æ–‡ä»¶ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">ÊÇ·ñÉú³ÉËéÆ¬ÎÄ¼ş£º</td>
       <td height="25" bgcolor="#FFFFFF"><input type="radio" name="refile" value="0"<?=$r[refile]==0?' checked':''?>>
-        ä¸ç”Ÿæˆ 
+        ²»Éú³É 
         <input type="radio" name="refile" value="1"<?=$r[refile]==1?' checked':''?>>
-        ç”Ÿæˆ</td>
+        Éú³É</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç”Ÿæˆç¢ç‰‡æ–‡ä»¶åï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">Éú³ÉËéÆ¬ÎÄ¼şÃû£º</td>
       <td height="25" bgcolor="#FFFFFF">/ 
         <input name="spfile" type="text" id="spfile" value="<?=$r[spfile]?>" size="42">
         <input name="oldspfile" type="hidden" id="oldspfile" value="<?=$r[spfile]?>"> </td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">ç”Ÿæˆç¢ç‰‡æ–‡ä»¶å†…å®¹è®¾ç½®ï¼š</td>
-      <td height="25" bgcolor="#FFFFFF">æ˜¾ç¤ºä¿¡æ¯æ•°é‡ï¼š
+      <td height="25" bgcolor="#FFFFFF">Éú³ÉËéÆ¬ÎÄ¼şÄÚÈİÉèÖÃ£º</td>
+      <td height="25" bgcolor="#FFFFFF">ÏÔÊ¾ĞÅÏ¢ÊıÁ¿£º
         <input name="spfileline" type="text" id="spfileline" value="<?=$r[spfileline]?>" size="6">
-        ï¼Œæ ‡é¢˜æˆªå–å­—æ•°ï¼š
+        £¬±êÌâ½ØÈ¡×ÖÊı£º
         <input name="spfilesub" type="text" id="spfilesub" value="<?=$r[spfilesub]?>" size="6"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç¢ç‰‡æ•ˆæœå›¾ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">ËéÆ¬Ğ§¹ûÍ¼£º</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="sppic" type="text" id="sppic" value="<?=$r[sppic]?>" size="42"> 
-        <a onclick="window.open('../ecmseditor/FileMain.php?<?=$ecms_hashur['ehref']?>&modtype=7&type=1&classid=&doing=2&field=sppic&filepass=<?=$filepass?>&sinfo=1','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../../data/images/changeimg.gif" alt="é€‰æ‹©/ä¸Šä¼ å›¾ç‰‡" width="22" height="22" border="0" align="absbottom"></a></td>
+        <a onclick="window.open('../ecmseditor/FileMain.php?<?=$ecms_hashur['ehref']?>&modtype=7&type=1&classid=&doing=2&field=sppic&filepass=<?=$filepass?>&sinfo=1','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../../data/images/changeimg.gif" alt="Ñ¡Ôñ/ÉÏ´«Í¼Æ¬" width="22" height="22" border="0" align="absbottom"></a></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç¢ç‰‡æè¿°ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">ËéÆ¬ÃèÊö£º</td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="spsay" cols="60" rows="5" id="varname3"><?=ehtmlspecialchars($r[spsay])?></textarea></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å¯è¶Šæƒé™æ¨é€ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">¿ÉÔ½È¨ÏŞÍÆËÍ£º</td>
       <td height="25" bgcolor="#FFFFFF"><input type="radio" name="cladd" value="0"<?=$r[cladd]==0?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="cladd" value="1"<?=$r[cladd]==1?' checked':''?>>
-        å¦ <font color="#666666">(ä¸åœ¨æƒé™è®¾ç½®èŒƒå›´å†…çš„ç”¨æˆ·ä¹Ÿèƒ½æ¨é€ä¿¡æ¯)</font></td>
+        ·ñ <font color="#666666">(²»ÔÚÈ¨ÏŞÉèÖÃ·¶Î§ÄÚµÄÓÃ»§Ò²ÄÜÍÆËÍĞÅÏ¢)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ˜¯å¦å¼€å¯ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">ÊÇ·ñ¿ªÆô£º</td>
       <td height="25" bgcolor="#FFFFFF"><input type="radio" name="isclose" value="0"<?=$r[isclose]==0?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="isclose" value="1"<?=$r[isclose]==1?' checked':''?>>
-        å¦</td>
+        ·ñ</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æƒé™è®¾ç½®</td>
+      <td height="25" colspan="2">È¨ÏŞÉèÖÃ</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç”¨æˆ·ç»„ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">ÓÃ»§×é£º</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="groupid[]" size="5" multiple id="groupidselect" style="width:180">
           <?=$group?>
         </select>
-        [<a href="#empirecms" onclick="selectalls(0,'groupidselect')">å…¨éƒ¨å–æ¶ˆ</a>]</td>
+        [<a href="#empirecms" onclick="selectalls(0,'groupidselect')">È«²¿È¡Ïû</a>]</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">éƒ¨é—¨ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">²¿ÃÅ£º</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="userclass[]" size="5" multiple id="userclassselect" style="width:180">
           <?=$userclass?>
         </select>
-        [<a href="#empirecms" onclick="selectalls(0,'userclassselect')">å…¨éƒ¨å–æ¶ˆ</a>]</td>
+        [<a href="#empirecms" onclick="selectalls(0,'userclassselect')">È«²¿È¡Ïû</a>]</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç”¨æˆ·ï¼š</td>
+      <td height="25" bgcolor="#FFFFFF">ÓÃ»§£º</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="username" type="text" id="username" value="<?=$username?>" size="42"> 
         <font color="#666666"> 
-        <input type="button" name="Submit3" value="é€‰æ‹©" onclick="window.open('../ChangeUser.php?field=username&form=form1<?=$ecms_hashur['ehref']?>','','width=300,height=520,scrollbars=yes');">
-        (å¤šä¸ªç”¨æˆ·ç”¨â€œ,â€é€—å·éš”å¼€)</font></td>
+        <input type="button" name="Submit3" value="Ñ¡Ôñ" onclick="window.open('../ChangeUser.php?field=username&form=form1<?=$ecms_hashur['ehref']?>','','width=300,height=520,scrollbars=yes');">
+        (¶à¸öÓÃ»§ÓÃ¡°,¡±¶ººÅ¸ô¿ª)</font></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="æäº¤"> 
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="Ìá½»"> 
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

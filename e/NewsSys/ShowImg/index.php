@@ -18,7 +18,7 @@ if(empty($r[picid]))
 db_close();
 $empire=null;
 ?>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title><?=$r[title]?></title>
 <style>
 td {
@@ -76,7 +76,7 @@ function bbimg(o){
     <td align="center"><img src="<?=$r[pic_url]?>" border=0 onmousewheel="return bbimg(this)" onload="if(this.width>screen.width-500)this.style.width=screen.width-500;"></td>
   </tr>
   <tr> 
-    <td><div align="center">图片名称： 
+    <td><div align="center">ͼƬ���ƣ� 
         <?=$r[title]?>
       </div></td>
   </tr>
@@ -84,7 +84,7 @@ function bbimg(o){
     <td valign="top"> <div align="center"> 
         <table width="80%" border="0" align="center" cellpadding="3" cellspacing="0">
           <tr> 
-            <td>简介：<br> 
+            <td>��飺<br> 
               <?=nl2br($r[pictext])?>
             </td>
           </tr>
@@ -93,11 +93,11 @@ function bbimg(o){
       </div></td>
   </tr>
   <tr>
-    <td><div align="center">注:支持鼠标滚轮放大&amp;缩小图片.</div></td>
+    <td><div align="center">ע:֧�������ַŴ�&amp;��СͼƬ.</div></td>
   </tr>
   <tr> 
     <td><div align="center"> 
-        <input type="button" name="Submit" value="关闭" onclick="window.close();">
+        <input type="button" name="Submit" value="�ر�" onclick="window.close();">
       </div></td>
   </tr>
 </table>

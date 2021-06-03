@@ -1,40 +1,40 @@
 
 
-//åå°å®‰å…¨è®¾ç½®
-$ecms_config['esafe']['loginauth']='[!@--do_loginauth--@!]';	//ç™»å½•è®¤è¯ç ,å¦‚æœè®¾ç½®ç™»å½•éœ€è¦è¾“å…¥æ­¤è®¤è¯ç æ‰èƒ½é€šè¿‡
-$ecms_config['esafe']['enloginauth']=[!@--do_enloginauth--@!];	//ç™»å½•è®¤è¯ç åŠ å¯†éªŒè¯ä¸²æœ‰æ•ˆæ—¶é—´,å•ä½:ç§’(0ä¸ºä¸å¯ç”¨åŠ å¯†)
-$ecms_config['esafe']['ecookiernd']='[!@--do_ecookiernd--@!]';	//åå°ç™»å½•COOKIEè®¤è¯ç (å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['esafe']['ckhloginip']=[!@--do_ckhloginip--@!];	//åå°æ˜¯å¦éªŒè¯ç™»å½•IP,0ä¸ºä¸éªŒè¯,1ä¸ºéªŒè¯
-$ecms_config['esafe']['ckhsession']=[!@--do_ckhsession--@!];	//åå°æ˜¯å¦å¯ç”¨SESSIONéªŒè¯,0ä¸ºä¸éªŒè¯,1ä¸ºéªŒè¯
-$ecms_config['esafe']['ckhanytime']=[!@--do_ckhanytime--@!];	//åå°éšæ—¶è®¤è¯ç å˜æ›´å‘¨æœŸ,å•ä½:ç§’(0ä¸ºä¸å¯ç”¨)
-$ecms_config['esafe']['theloginlog']=[!@--do_theloginlog--@!];	//æ˜¯å¦è®°å½•ç™»é™†æ—¥å¿—(0ä¸ºè®°å½•,1ä¸ºä¸è®°å½•)
-$ecms_config['esafe']['thedolog']=[!@--do_thedolog--@!];		//æ˜¯å¦è®°å½•æ“ä½œæ—¥å¿—(0ä¸ºè®°å½•,1ä¸ºä¸è®°å½•)
-$ecms_config['esafe']['ckfromurl']=[!@--do_ckfromurl--@!];	//æ˜¯å¦å¯ç”¨æ¥æºåœ°å€éªŒè¯,0ä¸ºä¸éªŒè¯,1ä¸ºå…¨éƒ¨éªŒè¯,2ä¸ºåå°éªŒè¯,3ä¸ºå‰å°éªŒè¯,4ä¸ºå…¨éƒ¨éªŒè¯(ä¸¥æ ¼),5ä¸ºåå°éªŒè¯(ä¸¥æ ¼),6ä¸ºå‰å°éªŒè¯(ä¸¥æ ¼)
-$ecms_config['esafe']['ckhash']=[!@--do_ckhash--@!];	//å¯ç”¨åå°æ¥æºè®¤è¯ç ,0ä¸ºé‡‘åˆšæ¨¡å¼éªŒè¯,1ä¸ºåˆºçŒ¬æ¨¡å¼éªŒè¯,2ä¸ºå…³é—­éªŒè¯
-$ecms_config['esafe']['ckhashename']='[!@--do_ckhashename--@!]';	//åå°æ¥æºè®¤è¯ç è®¿é—®å˜é‡å(å¿…é¡»å­—æ¯å¼€å¤´,å¹¶ä¸”åªèƒ½ç”±å­—æ¯ã€æ•°å­—ã€ä¸‹åˆ’çº¿ç»„æˆ)
-$ecms_config['esafe']['ckhashrname']='[!@--do_ckhashrname--@!]';	//åå°æ¥æºè®¤è¯ç æäº¤å˜é‡å(å¿…é¡»å­—æ¯å¼€å¤´,å¹¶ä¸”åªèƒ½ç”±å­—æ¯ã€æ•°å­—ã€ä¸‹åˆ’çº¿ç»„æˆ)
-$ecms_config['esafe']['ckhuseragent']='[!@--do_ckhuseragent--@!]';	//å…è®¸åå°è®¿é—®çš„UserAgentä¿¡æ¯å¿…é¡»åŒ…å«å­—ç¬¦(åŒºåˆ†å¤§å°å†™),å¤šä¸ªç”¨â€œ||â€åŠè§’åŒç«–çº¿éš”å¼€
+//ºóÌ¨°²È«ÉèÖÃ
+$ecms_config['esafe']['loginauth']='[!@--do_loginauth--@!]';	//µÇÂ¼ÈÏÖ¤Âë,Èç¹ûÉèÖÃµÇÂ¼ĞèÒªÊäÈë´ËÈÏÖ¤Âë²ÅÄÜÍ¨¹ı
+$ecms_config['esafe']['enloginauth']=[!@--do_enloginauth--@!];	//µÇÂ¼ÈÏÖ¤Âë¼ÓÃÜÑéÖ¤´®ÓĞĞ§Ê±¼ä,µ¥Î»:Ãë(0Îª²»ÆôÓÃ¼ÓÃÜ)
+$ecms_config['esafe']['ecookiernd']='[!@--do_ecookiernd--@!]';	//ºóÌ¨µÇÂ¼COOKIEÈÏÖ¤Âë(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['esafe']['ckhloginip']=[!@--do_ckhloginip--@!];	//ºóÌ¨ÊÇ·ñÑéÖ¤µÇÂ¼IP,0Îª²»ÑéÖ¤,1ÎªÑéÖ¤
+$ecms_config['esafe']['ckhsession']=[!@--do_ckhsession--@!];	//ºóÌ¨ÊÇ·ñÆôÓÃSESSIONÑéÖ¤,0Îª²»ÑéÖ¤,1ÎªÑéÖ¤
+$ecms_config['esafe']['ckhanytime']=[!@--do_ckhanytime--@!];	//ºóÌ¨ËæÊ±ÈÏÖ¤Âë±ä¸üÖÜÆÚ,µ¥Î»:Ãë(0Îª²»ÆôÓÃ)
+$ecms_config['esafe']['theloginlog']=[!@--do_theloginlog--@!];	//ÊÇ·ñ¼ÇÂ¼µÇÂ½ÈÕÖ¾(0Îª¼ÇÂ¼,1Îª²»¼ÇÂ¼)
+$ecms_config['esafe']['thedolog']=[!@--do_thedolog--@!];		//ÊÇ·ñ¼ÇÂ¼²Ù×÷ÈÕÖ¾(0Îª¼ÇÂ¼,1Îª²»¼ÇÂ¼)
+$ecms_config['esafe']['ckfromurl']=[!@--do_ckfromurl--@!];	//ÊÇ·ñÆôÓÃÀ´Ô´µØÖ·ÑéÖ¤,0Îª²»ÑéÖ¤,1ÎªÈ«²¿ÑéÖ¤,2ÎªºóÌ¨ÑéÖ¤,3ÎªÇ°Ì¨ÑéÖ¤,4ÎªÈ«²¿ÑéÖ¤(ÑÏ¸ñ),5ÎªºóÌ¨ÑéÖ¤(ÑÏ¸ñ),6ÎªÇ°Ì¨ÑéÖ¤(ÑÏ¸ñ)
+$ecms_config['esafe']['ckhash']=[!@--do_ckhash--@!];	//ÆôÓÃºóÌ¨À´Ô´ÈÏÖ¤Âë,0Îª½ğ¸ÕÄ£Ê½ÑéÖ¤,1Îª´Ìâ¬Ä£Ê½ÑéÖ¤,2Îª¹Ø±ÕÑéÖ¤
+$ecms_config['esafe']['ckhashename']='[!@--do_ckhashename--@!]';	//ºóÌ¨À´Ô´ÈÏÖ¤Âë·ÃÎÊ±äÁ¿Ãû(±ØĞë×ÖÄ¸¿ªÍ·,²¢ÇÒÖ»ÄÜÓÉ×ÖÄ¸¡¢Êı×Ö¡¢ÏÂ»®Ïß×é³É)
+$ecms_config['esafe']['ckhashrname']='[!@--do_ckhashrname--@!]';	//ºóÌ¨À´Ô´ÈÏÖ¤ÂëÌá½»±äÁ¿Ãû(±ØĞë×ÖÄ¸¿ªÍ·,²¢ÇÒÖ»ÄÜÓÉ×ÖÄ¸¡¢Êı×Ö¡¢ÏÂ»®Ïß×é³É)
+$ecms_config['esafe']['ckhuseragent']='[!@--do_ckhuseragent--@!]';	//ÔÊĞíºóÌ¨·ÃÎÊµÄUserAgentĞÅÏ¢±ØĞë°üº¬×Ö·û(Çø·Ö´óĞ¡Ğ´),¶à¸öÓÃ¡°||¡±°ë½ÇË«ÊúÏß¸ô¿ª
 
-//COOKIEè®¾ç½®
-$ecms_config['cks']['ckdomain']='[!@--phome_cookiedomain--@!]';		//cookieä½œç”¨åŸŸ
-$ecms_config['cks']['ckpath']='[!@--phome_cookiepath--@!]';		//cookieä½œç”¨è·¯å¾„
-$ecms_config['cks']['ckhttponly']=[!@--phome_cookiehttponly--@!];	//cookieçš„HttpOnlyå±æ€§(0å…³é—­,1å¼€å¯,2åªåå°å¼€å¯,3åªå‰å°å¼€å¯)
-$ecms_config['cks']['cksecure']=[!@--phome_cookiesecure--@!];		//cookieçš„secureå±æ€§(0ä¸ºè‡ªåŠ¨è¯†åˆ«,1ä¸ºå…³é—­,2ä¸ºå¼€å¯,3åªåå°å¼€å¯,4åªå‰å°å¼€å¯)
-$ecms_config['cks']['ckvarpre']='[!@--phome_cookievarpre--@!]';		//å‰å°cookieå˜é‡å‰ç¼€
-$ecms_config['cks']['ckadminvarpre']='[!@--phome_cookieadminvarpre--@!]';		//åå°cookieå˜é‡å‰ç¼€
-$ecms_config['cks']['ckrnd']='[!@--phome_cookieckrnd--@!]';	//COOKIEéªŒè¯éšæœºç (å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['cks']['ckrndtwo']='[!@--phome_cookieckrndtwo--@!]';	//COOKIEéªŒè¯éšæœºç 2(å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['cks']['ckrndthree']='[!@--phome_cookieckrndthree--@!]';	//COOKIEéªŒè¯éšæœºç 3(å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['cks']['ckrndfour']='[!@--phome_cookieckrndfour--@!]';	//COOKIEéªŒè¯éšæœºç 4(å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['cks']['ckrndfive']='[!@--phome_cookieckrndfive--@!]';	//COOKIEéªŒè¯éšæœºç 5(å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
+//COOKIEÉèÖÃ
+$ecms_config['cks']['ckdomain']='[!@--phome_cookiedomain--@!]';		//cookie×÷ÓÃÓò
+$ecms_config['cks']['ckpath']='[!@--phome_cookiepath--@!]';		//cookie×÷ÓÃÂ·¾¶
+$ecms_config['cks']['ckhttponly']=[!@--phome_cookiehttponly--@!];	//cookieµÄHttpOnlyÊôĞÔ(0¹Ø±Õ,1¿ªÆô,2Ö»ºóÌ¨¿ªÆô,3Ö»Ç°Ì¨¿ªÆô)
+$ecms_config['cks']['cksecure']=[!@--phome_cookiesecure--@!];		//cookieµÄsecureÊôĞÔ(0Îª×Ô¶¯Ê¶±ğ,1Îª¹Ø±Õ,2Îª¿ªÆô,3Ö»ºóÌ¨¿ªÆô,4Ö»Ç°Ì¨¿ªÆô)
+$ecms_config['cks']['ckvarpre']='[!@--phome_cookievarpre--@!]';		//Ç°Ì¨cookie±äÁ¿Ç°×º
+$ecms_config['cks']['ckadminvarpre']='[!@--phome_cookieadminvarpre--@!]';		//ºóÌ¨cookie±äÁ¿Ç°×º
+$ecms_config['cks']['ckrnd']='[!@--phome_cookieckrnd--@!]';	//COOKIEÑéÖ¤Ëæ»úÂë(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['cks']['ckrndtwo']='[!@--phome_cookieckrndtwo--@!]';	//COOKIEÑéÖ¤Ëæ»úÂë2(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['cks']['ckrndthree']='[!@--phome_cookieckrndthree--@!]';	//COOKIEÑéÖ¤Ëæ»úÂë3(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['cks']['ckrndfour']='[!@--phome_cookieckrndfour--@!]';	//COOKIEÑéÖ¤Ëæ»úÂë4(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['cks']['ckrndfive']='[!@--phome_cookieckrndfive--@!]';	//COOKIEÑéÖ¤Ëæ»úÂë5(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
 
-//ç½‘ç«™é˜²ç«å¢™é…ç½®
-$ecms_config['fw']['eopen']=[!@--efw_open--@!];	//å¼€å¯é˜²ç«å¢™(0ä¸ºå…³é—­,1ä¸ºå¼€å¯)
-$ecms_config['fw']['epass']='[!@--efw_pass--@!]';	//é˜²ç«å¢™åŠ å¯†å¯†é’¥(å¡«å†™10~50ä¸ªä»»æ„å­—ç¬¦ï¼Œæœ€å¥½å¤šç§å­—ç¬¦ç»„åˆ)
-$ecms_config['fw']['adminloginurl']='[!@--efw_adminloginurl--@!]';	//å…è®¸åå°ç™»é™†çš„åŸŸå,è®¾ç½®åå¿…é¡»é€šè¿‡è¿™ä¸ªåŸŸåæ‰èƒ½è®¿é—®åå°
-$ecms_config['fw']['adminhour']='[!@--efw_adminhour--@!]';	//å…è®¸ç™»é™†åå°çš„æ—¶é—´ï¼š0~23å°æ—¶ï¼Œå¤šä¸ªæ—¶é—´ç‚¹ç”¨åŠè§’é€—å·æ ¼å¼€
-$ecms_config['fw']['adminweek']='[!@--efw_adminweek--@!]';	//å…è®¸ç™»é™†åå°çš„æ˜ŸæœŸï¼šæ˜ŸæœŸ0~6ï¼Œå¤šä¸ªæ˜ŸæœŸç”¨åŠè§’é€—å·æ ¼å¼€
-$ecms_config['fw']['adminckpassvar']='[!@--efw_adminckpassvar--@!]';	//åå°é¢„ç™»é™†éªŒè¯å˜é‡å
-$ecms_config['fw']['adminckpassval']='[!@--efw_adminckpassval--@!]';	//åå°é¢„ç™»é™†è®¤è¯ç 
-$ecms_config['fw']['cleargettext']='[!@--efw_cleargettext--@!]';	//å±è”½æäº¤æ•æ„Ÿå­—ç¬¦ï¼Œå¤šä¸ªç”¨åŠè§’é€—å·æ ¼å¼€
+//ÍøÕ¾·À»ğÇ½ÅäÖÃ
+$ecms_config['fw']['eopen']=[!@--efw_open--@!];	//¿ªÆô·À»ğÇ½(0Îª¹Ø±Õ,1Îª¿ªÆô)
+$ecms_config['fw']['epass']='[!@--efw_pass--@!]';	//·À»ğÇ½¼ÓÃÜÃÜÔ¿(ÌîĞ´10~50¸öÈÎÒâ×Ö·û£¬×îºÃ¶àÖÖ×Ö·û×éºÏ)
+$ecms_config['fw']['adminloginurl']='[!@--efw_adminloginurl--@!]';	//ÔÊĞíºóÌ¨µÇÂ½µÄÓòÃû,ÉèÖÃºó±ØĞëÍ¨¹ıÕâ¸öÓòÃû²ÅÄÜ·ÃÎÊºóÌ¨
+$ecms_config['fw']['adminhour']='[!@--efw_adminhour--@!]';	//ÔÊĞíµÇÂ½ºóÌ¨µÄÊ±¼ä£º0~23Ğ¡Ê±£¬¶à¸öÊ±¼äµãÓÃ°ë½Ç¶ººÅ¸ñ¿ª
+$ecms_config['fw']['adminweek']='[!@--efw_adminweek--@!]';	//ÔÊĞíµÇÂ½ºóÌ¨µÄĞÇÆÚ£ºĞÇÆÚ0~6£¬¶à¸öĞÇÆÚÓÃ°ë½Ç¶ººÅ¸ñ¿ª
+$ecms_config['fw']['adminckpassvar']='[!@--efw_adminckpassvar--@!]';	//ºóÌ¨Ô¤µÇÂ½ÑéÖ¤±äÁ¿Ãû
+$ecms_config['fw']['adminckpassval']='[!@--efw_adminckpassval--@!]';	//ºóÌ¨Ô¤µÇÂ½ÈÏÖ¤Âë
+$ecms_config['fw']['cleargettext']='[!@--efw_cleargettext--@!]';	//ÆÁ±ÎÌá½»Ãô¸Ğ×Ö·û£¬¶à¸öÓÃ°ë½Ç¶ººÅ¸ñ¿ª
 

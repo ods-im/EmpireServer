@@ -12,7 +12,7 @@ if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
-//瀵煎叆鏂囦欢
+//导入文件
 if($enews=='AddVote'||$enews=='AddInfoVote'||$enews=='AddInfoPfen')
 {
 	include('votefun.php');
@@ -25,7 +25,7 @@ else
 {
 	include('../class/q_functions.php');
 }
-if($enews=='AddVote')//澧炲姞鎶曠エ
+if($enews=='AddVote')//增加投票
 {
 	if($_GET['voteid'])
 	{
@@ -39,7 +39,7 @@ if($enews=='AddVote')//澧炲姞鎶曠エ
 	}
 	AddVote($voteid,$vote);
 }
-elseif($enews=='AddInfoVote')//澧炲姞淇℃伅鎶曠エ
+elseif($enews=='AddInfoVote')//增加信息投票
 {
 	if($_GET['id'])
 	{
@@ -55,7 +55,7 @@ elseif($enews=='AddInfoVote')//澧炲姞淇℃伅鎶曠エ
 	}
 	AddInfoVote($classid,$id,$vote);
 }
-elseif($enews=='AddInfoPfen')//淇℃伅璇勫垎
+elseif($enews=='AddInfoPfen')//信息评分
 {
 	if($_GET['id'])
 	{
@@ -67,20 +67,20 @@ elseif($enews=='AddInfoPfen')//淇℃伅璇勫垎
 	}
 	AddInfoPfen($add);
 }
-elseif($enews=="AddGbook")//澧炲姞鐣欒█
+elseif($enews=="AddGbook")//增加留言
 {
-	eCheckCloseMods('gb');//鍏抽棴妯″潡
+	eCheckCloseMods('gb');//关闭模块
 	AddGbook($_POST);
 }
-elseif($enews=="AddFeedback")//澧炲姞鍙嶉
+elseif($enews=="AddFeedback")//增加反馈
 {
-	eCheckCloseMods('fb');//鍏抽棴妯″潡
+	eCheckCloseMods('fb');//关闭模块
 	$doetran=1;
 	AddFeedback($_POST);
 }
-elseif($enews=="AddError")//澧炲姞閿欒鎶ュ憡
+elseif($enews=="AddError")//增加错误报告
 {
-	eCheckCloseMods('error');//鍏抽棴妯″潡
+	eCheckCloseMods('error');//关闭模块
 	AddError($_POST);
 }
 else

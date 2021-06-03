@@ -5,7 +5,7 @@ require("../class/db_sql.php");
 require("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 $ecms_hashur=hReturnEcmsHashStrAll();
 db_close();
 $empire=null;
-//è¿”å›ç›®å½•æƒé™ç»“æœ
+//·µ»ØÄ¿Â¼È¨ÏŞ½á¹û
 function ReturnPathLevelResult($path){
 	$testfile=$path."/test.test";
 	$fp=@fopen($testfile,"wb");
@@ -31,25 +31,25 @@ function ReturnPathLevelResult($path){
 		return 0;
 	}
 }
-//è¿”å›æ–‡ä»¶æƒé™ç»“æœ
+//·µ»ØÎÄ¼şÈ¨ÏŞ½á¹û
 function ReturnFileLevelResult($filename){
 	return is_writable($filename);
 }
-//æ£€æµ‹ç›®å½•æƒé™
+//¼ì²âÄ¿Â¼È¨ÏŞ
 function CheckFileMod($filename,$smallfile=""){
-	$succ="âˆš";
-	$error="<font color=red>Ã—</font>";
+	$succ="¡Ì";
+	$error="<font color=red>¡Á</font>";
 	if(!file_exists($filename)||($smallfile&&!file_exists($smallfile)))
 	{
 		return $error;
 	}
-	if(is_dir($filename))//ç›®å½•
+	if(is_dir($filename))//Ä¿Â¼
 	{
 		if(!ReturnPathLevelResult($filename))
 		{
 			return $error;
 		}
-		//å­ç›®å½•
+		//×ÓÄ¿Â¼
 		if($smallfile)
 		{
 			if(is_dir($smallfile))
@@ -59,7 +59,7 @@ function CheckFileMod($filename,$smallfile=""){
 					return $error;
 				}
 			}
-			else//æ–‡ä»¶
+			else//ÎÄ¼ş
 			{
 				if(!ReturnFileLevelResult($smallfile))
 				{
@@ -68,7 +68,7 @@ function CheckFileMod($filename,$smallfile=""){
 			}
 		}
 	}
-	else//æ–‡ä»¶
+	else//ÎÄ¼ş
 	{
 		if(!ReturnFileLevelResult($filename))
 		{
@@ -88,8 +88,8 @@ function CheckFileMod($filename,$smallfile=""){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>µÛ¹úÍøÕ¾¹ÜÀíÏµÍ³</title>
 
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -97,18 +97,18 @@ function CheckFileMod($filename,$smallfile=""){
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <form name="form1" method="post" action="">
     <tr class="header"> 
-      <td height="25"> <div align="center">ç›®å½•æƒé™æ£€æµ‹</div></td>
+      <td height="25"> <div align="center">Ä¿Â¼È¨ÏŞ¼ì²â</div></td>
     </tr>
     <tr> 
       <td height="100" bgcolor="#FFFFFF"> <div align="center"> 
           <table width="99%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="D6E0EF">
             <tr> 
-              <td height="23"><strong>æç¤ºä¿¡æ¯</strong></td>
+              <td height="23"><strong>ÌáÊ¾ĞÅÏ¢</strong></td>
             </tr>
             <tr> 
               <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellpadding="3" cellspacing="1">
                   <tr> 
-                    <td height="25"> <li>å°†ä¸‹é¢ç›®å½•æƒé™è®¾ä¸º0777, é™¤äº†çº¢è‰²ç›®å½•å¤–ï¼Œæ˜¯ç›®å½•å…¨éƒ¨è¦æŠŠæƒé™åº”ç”¨äºå­ç›®å½•ä¸æ–‡ä»¶ã€‚<br>
+                    <td height="25"> <li>½«ÏÂÃæÄ¿Â¼È¨ÏŞÉèÎª0777, ³ıÁËºìÉ«Ä¿Â¼Íâ£¬ÊÇÄ¿Â¼È«²¿Òª°ÑÈ¨ÏŞÓ¦ÓÃÓÚ×ÓÄ¿Â¼ÓëÎÄ¼ş¡£<br>
                       </li></td>
                   </tr>
                 </table></td>
@@ -117,81 +117,81 @@ function CheckFileMod($filename,$smallfile=""){
           <br>
           <table width="99%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="D6E0EF">
             <tr> 
-              <td width="34%" height="23"> <div align="center"><strong>ç›®å½•æ–‡ä»¶åç§°</strong></div></td>
-              <td width="42%"> <div align="center"><strong>è¯´æ˜</strong></div></td>
-              <td width="24%"> <div align="center"><strong>æƒé™æ£€æŸ¥</strong></div></td>
+              <td width="34%" height="23"> <div align="center"><strong>Ä¿Â¼ÎÄ¼şÃû³Æ</strong></div></td>
+              <td width="42%"> <div align="center"><strong>ËµÃ÷</strong></div></td>
+              <td width="24%"> <div align="center"><strong>È¨ÏŞ¼ì²é</strong></div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25"> <div align="left"><font color="#FF0000"><strong>/</strong></font></div></td>
-              <td> <div align="center"><font color="#FF0000">ç³»ç»Ÿæ ¹ç›®å½•(ä¸è¦åº”ç”¨äºå­ç›®å½•)</font></div></td>
+              <td> <div align="center"><font color="#FF0000">ÏµÍ³¸ùÄ¿Â¼(²»ÒªÓ¦ÓÃÓÚ×ÓÄ¿Â¼)</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../../");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25"> <div align="left">/d</div></td>
-              <td> <div align="center"><font color="#666666">é™„ä»¶ç›®å½•</font></div></td>
+              <td> <div align="center"><font color="#666666">¸½¼şÄ¿Â¼</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../../d","../../d/txt");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25"> <div align="left">/s</div></td>
-              <td> <div align="center"><font color="#666666">ä¸“é¢˜å­˜æ”¾ç›®å½•</font></div></td>
+              <td> <div align="center"><font color="#666666">×¨Ìâ´æ·ÅÄ¿Â¼</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../../s");?>
                 </div></td>
             </tr>
 			<tr bgcolor="#FFFFFF"> 
               <td height="25"> <div align="left">/t</div></td>
-              <td> <div align="center"><font color="#666666">æ ‡é¢˜åˆ†ç±»å­˜æ”¾ç›®å½•</font></div></td>
+              <td> <div align="center"><font color="#666666">±êÌâ·ÖÀà´æ·ÅÄ¿Â¼</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../../t");?>
                 </div></td>
             </tr>
 			<tr bgcolor="#FFFFFF">
 			  <td height="25">/ecachefiles</td>
-			  <td><div align="center"><font color="#666666">åŠ¨æ€é¡µé¢ç¼“å­˜ç›®å½•</font></div></td>
+			  <td><div align="center"><font color="#666666">¶¯Ì¬Ò³Ãæ»º´æÄ¿Â¼</font></div></td>
 			  <td><div align="center"><?=CheckFileMod("../../ecachefiles","../../ecachefiles/empirecms");?></div></td>
 		    </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25"> <div align="left">/search</div></td>
-              <td> <div align="center"><font color="#666666">æœç´¢è¡¨å•</font></div></td>
+              <td> <div align="center"><font color="#666666">ËÑË÷±íµ¥</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../../search","../../search/test.txt");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25"> <div align="left">/index.html</div></td>
-              <td> <div align="center"><font color="#666666">ç½‘ç«™é¦–é¡µ</font></div></td>
+              <td> <div align="center"><font color="#666666">ÍøÕ¾Ê×Ò³</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../../index.html");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25"> <div align="left">/html</div></td>
-              <td> <div align="center"><font color="#666666">é»˜è®¤å¯é€‰çš„HTMLå­˜æ”¾ç›®å½•</font></div></td>
+              <td> <div align="center"><font color="#666666">Ä¬ÈÏ¿ÉÑ¡µÄHTML´æ·ÅÄ¿Â¼</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../../html");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25">/e/admin/ebak/bdata</td>
-              <td> <div align="center"><font color="#666666">å¤‡ä»½æ•°æ®å­˜æ”¾ç›®å½•</font></div></td>
+              <td> <div align="center"><font color="#666666">±¸·İÊı¾İ´æ·ÅÄ¿Â¼</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("ebak/bdata");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25">/e/admin/ebak/zip</td>
-              <td> <div align="center"><font color="#666666">å¤‡ä»½æ•°æ®å‹ç¼©å­˜æ”¾ç›®å½•</font></div></td>
+              <td> <div align="center"><font color="#666666">±¸·İÊı¾İÑ¹Ëõ´æ·ÅÄ¿Â¼</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("ebak/zip");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25"> <div align="left">/e/config/config.php</div></td>
-              <td> <div align="center"><font color="#666666">æ•°æ®åº“ç­‰å‚æ•°é…ç½®æ–‡ä»¶</font></div></td>
+              <td> <div align="center"><font color="#666666">Êı¾İ¿âµÈ²ÎÊıÅäÖÃÎÄ¼ş</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../config/config.php");?>
                 </div></td>
@@ -199,63 +199,63 @@ function CheckFileMod($filename,$smallfile=""){
             
             <tr bgcolor="#FFFFFF"> 
               <td height="25"> <div align="left">/e/data</div></td>
-              <td> <div align="center"><font color="#666666">éƒ¨åˆ†é…ç½®æ–‡ä»¶å­˜æ”¾ç›®å½•</font></div></td>
+              <td> <div align="center"><font color="#666666">²¿·ÖÅäÖÃÎÄ¼ş´æ·ÅÄ¿Â¼</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../data","../data/tmp");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25">/e/install</td>
-              <td> <div align="center"><font color="#666666">å®‰è£…ç›®å½•</font></div></td>
+              <td> <div align="center"><font color="#666666">°²×°Ä¿Â¼</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../install");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25">/e/member/iframe/index.php</td>
-              <td><div align="center"><font color="#666666">ç™»é™†çŠ¶æ€æ˜¾ç¤º</font></div></td>
+              <td><div align="center"><font color="#666666">µÇÂ½×´Ì¬ÏÔÊ¾</font></div></td>
               <td><div align="center"> 
                   <?=CheckFileMod("../member/iframe/index.php");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25">/e/member/login/loginjs.php</td>
-              <td><div align="center"><font color="#666666">JSç™»é™†çŠ¶æ€æ˜¾ç¤º</font></div></td>
+              <td><div align="center"><font color="#666666">JSµÇÂ½×´Ì¬ÏÔÊ¾</font></div></td>
               <td><div align="center"> 
                   <?=CheckFileMod("../member/login/loginjs.php");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25">/e/pl/more/index.php</td>
-              <td> <div align="center"><font color="#666666">è¯„è®ºJSè°ƒç”¨æ–‡ä»¶</font></div></td>
+              <td> <div align="center"><font color="#666666">ÆÀÂÛJSµ÷ÓÃÎÄ¼ş</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../pl/more/index.php");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25">/e/sch/index.php</td>
-              <td><div align="center"><font color="#666666">å…¨ç«™æœç´¢æ–‡ä»¶</font></div></td>
+              <td><div align="center"><font color="#666666">È«Õ¾ËÑË÷ÎÄ¼ş</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../sch/index.php");?>
                 </div></td>
             </tr>
 			<tr bgcolor="#FFFFFF"> 
               <td height="25">/e/template</td>
-              <td> <div align="center"><font color="#666666">åŠ¨æ€é¡µé¢çš„æ¨¡æ¿ç›®å½•</font></div></td>
+              <td> <div align="center"><font color="#666666">¶¯Ì¬Ò³ÃæµÄÄ£°åÄ¿Â¼</font></div></td>
               <td> <div align="center"> 
                   <?=CheckFileMod("../template");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25">/e/tool/feedback/temp</td>
-              <td><div align="center"><font color="#666666">ä¿¡æ¯åé¦ˆ</font></div></td>
+              <td><div align="center"><font color="#666666">ĞÅÏ¢·´À¡</font></div></td>
               <td><div align="center"> 
                   <?=CheckFileMod("../tool/feedback/temp","../tool/feedback/temp/test.txt");?>
                 </div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25">/e/tool/gbook/index.php</td>
-              <td><div align="center"><font color="#666666">ç•™è¨€æ¿</font></div></td>
+              <td><div align="center"><font color="#666666">ÁôÑÔ°å</font></div></td>
               <td><div align="center"> 
                   <?=CheckFileMod("../tool/gbook/index.php");?>
                 </div></td>

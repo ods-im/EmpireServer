@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -18,7 +18,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 
-//æ¨é€ä¿¡æ¯
+//ÍÆËÍĞÅÏ¢
 function PushInfoToSp($add,$userid,$username){
 	global $empire,$dbtbpre,$lur,$class_r;
 	$classid=(int)$add['classid'];
@@ -35,7 +35,7 @@ function PushInfoToSp($add,$userid,$username){
 	{
 		printerror('NotChangeSp','');
 	}
-	//è¡¨å
+	//±íÃû
 	$tbname='';
 	if($classid)
 	{
@@ -50,7 +50,7 @@ function PushInfoToSp($add,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//ç¢ç‰‡
+	//ËéÆ¬
 	$sps='';
 	$dh='';
 	for($spi=0;$spi<$spcount;$spi++)
@@ -93,16 +93,16 @@ function PushInfoToSp($add,$userid,$username){
 		}
 		$sps.=$dh.$myspid;
 		$dh=',';
-		//åˆ é™¤å¤šä½™ç¢ç‰‡ä¿¡æ¯
+		//É¾³ı¶àÓàËéÆ¬ĞÅÏ¢
 		DelMoreSpInfo($myspid,$spr);
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("classid=$classid&tid=$tid<br>spid=".$sps."<br>id=".$add[ids]);
-	echo"<script>alert('æ¨é€æˆåŠŸ');window.close();</script>";
+	echo"<script>alert('ÍÆËÍ³É¹¦');window.close();</script>";
 	exit();
 }
 
-//åˆ é™¤å¤šä½™ç¢ç‰‡ä¿¡æ¯
+//É¾³ı¶àÓàËéÆ¬ĞÅÏ¢
 function DelMoreSpInfo($spid,$spr){
 	global $empire,$dbtbpre;
 	if(!$spr[maxnum]||$spr[sptype]==3)
@@ -152,12 +152,12 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=='PushInfoToSp')//å¢åŠ ç¢ç‰‡
+if($enews=='PushInfoToSp')//Ôö¼ÓËéÆ¬
 {
 	PushInfoToSp($_POST,$logininid,$loginin);
 }
 
-//å®¡æ ¸è¡¨
+//ÉóºË±í
 $addecmscheck='';
 $ecmscheck=(int)$_GET['ecmscheck'];
 $indexchecked=1;
@@ -168,31 +168,31 @@ if($ecmscheck)
 }
 
 $add='';
-//åˆ†ç±»
+//·ÖÀà
 $cid=(int)$_GET['cid'];
 if($cid)
 {
 	$add.=" and cid='$cid'";
 }
-//æ ç›®
+//À¸Ä¿
 $classid=(int)$_GET['classid'];
 if($classid)
 {
 	$classwhere=ReturnClass($class_r[$classid][featherclass]);
 	$add.=" and (classid=0 or classid='$classid' or (".$classwhere."))";
 }
-//è¡¨ID
+//±íID
 $tid=(int)$_GET['tid'];
 //ID
 $ids=RepPostStr($_GET['id'],1);
 if(!$ids)
 {
-	echo"<script>alert('è¯·é€‰æ‹©ä¿¡æ¯');window.close();</script>";
+	echo"<script>alert('ÇëÑ¡ÔñĞÅÏ¢');window.close();</script>";
 	exit();
 }
 $query="select spid,spname,varname,sppic,spsay from {$dbtbpre}enewssp where sptype=2 and isclose=0 and (cladd=0 or (cladd=1 and (groupid like '%,".$lur[groupid].",%' or userclass like '%,".$lur[classid].",%' or username like '%,".$lur[username].",%')))".$add." order by spid desc";
 $sql=$empire->query($query);
-//åˆ†ç±»
+//·ÖÀà
 $scstr="";
 $scsql=$empire->query("select classid,classname from {$dbtbpre}enewsspclass order by classid");
 while($scr=$empire->fetch($scsql))
@@ -208,15 +208,15 @@ while($scr=$empire->fetch($scsql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ¨é€ä¿¡æ¯åˆ°ç¢ç‰‡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÍÆËÍĞÅÏ¢µ½ËéÆ¬</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr> 
-    <td>ä½ç½®: æ¨é€ä¿¡æ¯åˆ°ç¢ç‰‡ 
+    <td>Î»ÖÃ: ÍÆËÍĞÅÏ¢µ½ËéÆ¬ 
       <div align="right"> </div></td>
   </tr>
 </table>
@@ -224,9 +224,9 @@ while($scr=$empire->fetch($scsql))
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
 <form name="searchform" method="GET" action="PushToSp.php<?=$ecms_hashur['whehref']?>">
   <tr> 
-      <td> é€‰æ‹©åˆ†ç±»ï¼š 
+      <td> Ñ¡Ôñ·ÖÀà£º 
         <select name="select" id="select" onchange=window.location='PushToSp.php?<?=$ecms_hashur['ehref']?>&classid=<?=$classid?>&tid=<?=$tid?>&id=<?=$ids?>&cid='+this.options[this.selectedIndex].value>
-          <option value="0">æ‰€æœ‰åˆ†ç±»</option>
+          <option value="0">ËùÓĞ·ÖÀà</option>
           <?=$scstr?>
         </select></td>
   </tr>
@@ -236,33 +236,33 @@ while($scr=$empire->fetch($scsql))
   <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <?=$ecms_hashur['form']?>
     <tr>
-      <td>æ¨é€ä¿¡æ¯IDï¼š<?=$ids?></td>
+      <td>ÍÆËÍĞÅÏ¢ID£º<?=$ids?></td>
     </tr>
   </table>
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
     <tr class="header"> 
-      <td width="26%"><div align="center">é€‰æ‹©</div></td>
-      <td width="74%" height="25"> <div align="center">ç¢ç‰‡åç§°</div></td>
+      <td width="26%"><div align="center">Ñ¡Ôñ</div></td>
+      <td width="74%" height="25"> <div align="center">ËéÆ¬Ãû³Æ</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
   {
 	if($r[sptype]==1)
 	{
-		$sptype='é™æ€ä¿¡æ¯';
+		$sptype='¾²Ì¬ĞÅÏ¢';
 	}
 	elseif($r[sptype]==2)
 	{
-		$sptype='åŠ¨æ€ä¿¡æ¯';
+		$sptype='¶¯Ì¬ĞÅÏ¢';
 	}
 	else
 	{
-		$sptype='ä»£ç ç¢ç‰‡';
+		$sptype='´úÂëËéÆ¬';
 	}
 	$sppic='';
 	if($r[sppic])
 	{
-		$sppic='<a href="'.$r[sppic].'" title="ç¢ç‰‡æ•ˆæœå›¾" target="_blank"><img src="../../data/images/showimg.gif" border=0></a>';
+		$sppic='<a href="'.$r[sppic].'" title="ËéÆ¬Ğ§¹ûÍ¼" target="_blank"><img src="../../data/images/showimg.gif" border=0></a>';
 	}
   ?>
     <tr bgcolor="#FFFFFF" id="chsp<?=$r[spid]?>"> 
@@ -280,8 +280,8 @@ while($scr=$empire->fetch($scsql))
   ?>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"><div align="center">
-          <input type="submit" name="Submit2" value="ç¡®å®šæ¨é€">
-          &nbsp;&nbsp;<input type="button" name="Submit3" value="å–æ¶ˆ" onclick="window.close();">
+          <input type="submit" name="Submit2" value="È·¶¨ÍÆËÍ">
+          &nbsp;&nbsp;<input type="button" name="Submit3" value="È¡Ïû" onclick="window.close();">
           <input name="enews" type="hidden" id="enews" value="PushInfoToSp">
           <input name="classid" type="hidden" id="classid" value="<?=$classid?>">
           <input name="tid" type="hidden" id="tid" value="<?=$tid?>">

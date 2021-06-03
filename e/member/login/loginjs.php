@@ -4,7 +4,7 @@ if(!defined('InEmpireCMS'))
 {
 	exit();
 }
-eCheckCloseMods('member');//å…³é—­æ¨¡å—
+eCheckCloseMods('member');//¹Ø±ÕÄ£¿é
 $myuserid=(int)getcvar('mluserid');
 $r=array();
 $mhavelogin=0;
@@ -16,7 +16,7 @@ if($myuserid)
 	$link=db_connect();
 	$empire=new mysqlquery();
 	$mhavelogin=1;
-	//æ•°æ®
+	//Êı¾İ
 	$myusername=RepPostVar(getcvar('mlusername'));
 	$myrnd=RepPostVar(getcvar('mlrnd'));
 	$qcklgr=qCheckLoginAuthstr();
@@ -34,17 +34,17 @@ if($myuserid)
 			$mhavelogin=0;
 		}
 	}
-	//ä¼šå‘˜ç­‰çº§
+	//»áÔ±µÈ¼¶
 	if(empty($r[groupid]))
 	{$groupid=eReturnMemberDefGroupid();}
 	else
 	{$groupid=$r[groupid];}
 	$groupname=$level_r[$groupid]['groupname'];
-	//ç‚¹æ•°
+	//µãÊı
 	$userfen=$r[userfen];
-	//ä½™é¢
+	//Óà¶î
 	$money=$r[money];
-	//å¤©æ•°
+	//ÌìÊı
 	$userdate=0;
 	if($r[userdate])
 	{
@@ -54,18 +54,18 @@ if($myuserid)
 		else
 		{$userdate=round($userdate/(24*3600));}
 	}
-	//æ˜¯å¦æœ‰çŸ­æ¶ˆæ¯
+	//ÊÇ·ñÓĞ¶ÌÏûÏ¢
 	$havemsg="";
 	if($r[havemsg])
 	{
-		$havemsg="<a href='".$public_r['newsurl']."e/member/msg/' target=_blank><font color=red>æ‚¨æœ‰æ–°æ¶ˆæ¯</font></a>";
+		$havemsg="<a href='".$public_r['newsurl']."e/member/msg/' target=_blank><font color=red>ÄúÓĞĞÂÏûÏ¢</font></a>";
 	}
 	//$myusername=$r[username];
 }
 if($mhavelogin==1)
 {
 ?>
-document.write("&raquo;&nbsp;<font color=red><b><?=$myusername?></b></font>&nbsp;&nbsp;<a href=\"/ecms75/e/member/my/\" target=\"_parent\"><?=$groupname?></a>&nbsp;<?=$havemsg?>&nbsp;<a href=\"/ecms75/e/space/?userid=<?=$myuserid?>\" target=_blank>æˆ‘çš„ç©ºé—´</a>&nbsp;&nbsp;<a href=\"/ecms75/e/member/msg/\" target=_blank>çŸ­ä¿¡æ¯</a>&nbsp;&nbsp;<a href=\"/ecms75/e/member/fava/\" target=_blank>æ”¶è—å¤¹</a>&nbsp;&nbsp;<a href=\"/ecms75/e/member/cp/\" target=\"_parent\">æ§åˆ¶é¢æ¿</a>&nbsp;&nbsp;<a href=\"/ecms75/e/member/doaction.php?enews=exit&ecmsfrom=9\" onclick=\"return confirm(\'ç¡®è®¤è¦é€€å‡º?\');\">é€€å‡º</a>");
+document.write("&raquo;&nbsp;<font color=red><b><?=$myusername?></b></font>&nbsp;&nbsp;<a href=\"/e/member/my/\" target=\"_parent\"><?=$groupname?></a>&nbsp;<?=$havemsg?>&nbsp;<a href=\"/e/space/?userid=<?=$myuserid?>\" target=_blank>ÎÒµÄ¿Õ¼ä</a>&nbsp;&nbsp;<a href=\"/e/member/msg/\" target=_blank>¶ÌĞÅÏ¢</a>&nbsp;&nbsp;<a href=\"/e/member/fava/\" target=_blank>ÊÕ²Ø¼Ğ</a>&nbsp;&nbsp;<a href=\"/e/member/cp/\" target=\"_parent\">¿ØÖÆÃæ°å</a>&nbsp;&nbsp;<a href=\"/e/member/doaction.php?enews=exit&ecmsfrom=9\" onclick=\"return confirm(\'È·ÈÏÒªÍË³ö?\');\">ÍË³ö</a>");
 <?php
 	db_close();
 	$empire=null;
@@ -73,7 +73,7 @@ document.write("&raquo;&nbsp;<font color=red><b><?=$myusername?></b></font>&nbsp
 else
 {
 ?>
-document.write("<form name=login method=post action=\"/ecms75/e/member/doaction.php\">    <input type=hidden name=enews value=login>    <input type=hidden name=ecmsfrom value=9>    ç”¨æˆ·åï¼š<input name=\"username\" type=\"text\" class=\"inputText\" size=\"16\" />&nbsp;    å¯†ç ï¼š<input name=\"password\" type=\"password\" class=\"inputText\" size=\"16\" />&nbsp;    <input type=\"submit\" name=\"Submit\" value=\"ç™»é™†\" class=\"inputSub\" />&nbsp;    <input type=\"button\" name=\"Submit2\" value=\"æ³¨å†Œ\" class=\"inputSub\" onclick=\"window.open(\'/ecms75/e/member/register/\');\" /></form>");
+document.write("<form name=login method=post action=\"/e/member/doaction.php\">    <input type=hidden name=enews value=login>    <input type=hidden name=ecmsfrom value=9>    ÓÃ»§Ãû£º<input name=\"username\" type=\"text\" class=\"inputText\" size=\"16\" />&nbsp;    ÃÜÂë£º<input name=\"password\" type=\"password\" class=\"inputText\" size=\"16\" />&nbsp;    <input type=\"submit\" name=\"Submit\" value=\"µÇÂ½\" class=\"inputSub\" />&nbsp;    <input type=\"button\" name=\"Submit2\" value=\"×¢²á\" class=\"inputSub\" onclick=\"window.open(\'/e/member/register/\');\" /></form>");
 <?php
 }
 ?>

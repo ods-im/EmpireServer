@@ -5,8 +5,8 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='æ¶ˆæ¯åˆ—è¡¨';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;æ¶ˆæ¯åˆ—è¡¨&nbsp;&nbsp;(<a href='AddMsg/?enews=AddMsg'>å‘é€æ¶ˆæ¯</a>)";
+$public_diyr['pagetitle']='ÏûÏ¢ÁĞ±í';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;ÏûÏ¢ÁĞ±í&nbsp;&nbsp;(<a href='AddMsg/?enews=AddMsg'>·¢ËÍÏûÏ¢</a>)";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <script>
@@ -23,18 +23,18 @@ function CheckAll(form)
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
             <tr>
               <td width="50%" height="30" bgcolor="#FFFFFF">&nbsp;</td>
-              <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="AddMsg/?enews=AddMsg">å‘é€æ¶ˆæ¯</a>]&nbsp;&nbsp;</div></td>
+              <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="AddMsg/?enews=AddMsg">·¢ËÍÏûÏ¢</a>]&nbsp;&nbsp;</div></td>
             </tr>
         </table>
         <br>
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-          <form name="listmsg" method="post" action="../doaction.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+          <form name="listmsg" method="post" action="../doaction.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
             <tr class="header"> 
               <td width="4%" height="23"> <div align="center"></div></td>
-              <td width="45%"><div align="center">æ ‡é¢˜</div></td>
-              <td width="18%"><div align="center">å‘é€è€…</div></td>
-              <td width="23%"><div align="center">å‘é€æ—¶é—´</div></td>
-              <td width="10%"><div align="center">æ“ä½œ</div></td>
+              <td width="45%"><div align="center">±êÌâ</div></td>
+              <td width="18%"><div align="center">·¢ËÍÕß</div></td>
+              <td width="23%"><div align="center">·¢ËÍÊ±¼ä</div></td>
+              <td width="10%"><div align="center">²Ù×÷</div></td>
             </tr>
             <?php
 			while($r=$empire->fetch($sql))
@@ -42,19 +42,19 @@ function CheckAll(form)
 				$img="haveread";
 				if(!$r[haveread])
 				{$img="nohaveread";}
-				//åå°ç®¡ç†å‘˜
+				//ºóÌ¨¹ÜÀíÔ±
 				if($r['isadmin'])
 				{
-					$from_username="<a title='åå°ç®¡ç†å‘˜'><b>".$r[from_username]."</b></a>";
+					$from_username="<a title='ºóÌ¨¹ÜÀíÔ±'><b>".$r[from_username]."</b></a>";
 				}
 				else
 				{
 					$from_username="<a href='../ShowInfo/?userid=".$r[from_userid]."' target='_blank'>".$r[from_username]."</a>";
 				}
-				//ç³»ç»Ÿä¿¡æ¯
+				//ÏµÍ³ĞÅÏ¢
 				if($r['issys'])
 				{
-					$from_username="<b>ç³»ç»Ÿæ¶ˆæ¯</b>";
+					$from_username="<b>ÏµÍ³ÏûÏ¢</b>";
 					$r[title]="<b>".$r[title]."</b>";
 				}
 			?>
@@ -76,7 +76,7 @@ function CheckAll(form)
               <td><div align="center"> 
                   <?=$r[msgtime]?>
                 </div></td>
-              <td> <div align="center">&nbsp;[<a href="../doaction.php?enews=DelMsg&mid=<?=$r[mid]?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+              <td> <div align="center">&nbsp;[<a href="../doaction.php?enews=DelMsg&mid=<?=$r[mid]?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
             </tr>
             <?php
 			}
@@ -85,7 +85,7 @@ function CheckAll(form)
               <td><div align="center"> 
                   <input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
                 </div></td>
-              <td colspan="4"><input type="submit" name="Submit2" value="åˆ é™¤é€‰ä¸­"> 
+              <td colspan="4"><input type="submit" name="Submit2" value="É¾³ıÑ¡ÖĞ"> 
                 <input name="enews" type="hidden" value="DelMsg_all">              </td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
@@ -94,9 +94,9 @@ function CheckAll(form)
                 <?=$returnpage?>              </td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
-              <td height="23" colspan="5"><div align="center">è¯´æ˜ï¼š<img src="../../data/images/nohaveread.gif" width="14" height="11"> 
-                  ä»£è¡¨æœªé˜…è¯»æ¶ˆæ¯ï¼Œ<img src="../../data/images/haveread.gif" width="15" height="12"> 
-                  ä»£è¡¨å·²é˜…è¯»æ¶ˆæ¯.</div></td>
+              <td height="23" colspan="5"><div align="center">ËµÃ÷£º<img src="../../data/images/nohaveread.gif" width="14" height="11"> 
+                  ´ú±íÎ´ÔÄ¶ÁÏûÏ¢£¬<img src="../../data/images/haveread.gif" width="15" height="12"> 
+                  ´ú±íÒÑÔÄ¶ÁÏûÏ¢.</div></td>
             </tr>
           </form>
         </table>

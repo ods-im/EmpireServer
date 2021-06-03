@@ -3,18 +3,18 @@ require('../class/connect.php');
 require('../class/db_sql.php');
 require('../member/class/user.php');
 require('../data/dbcache/MemberLevel.php');
-eCheckCloseMods('member');//鍏抽棴妯″潡
-eCheckCloseMods('mconnect');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
+eCheckCloseMods('mconnect');//关闭模块
 $link=db_connect();
 $empire=new mysqlquery();
-eCheckCloseMemberConnect();//楠岃瘉寮�鍚殑鎺ュ彛
+eCheckCloseMemberConnect();//验证开启的接口
 $enews=$_POST['enews'];
 if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
 include('memberconnectfun.php');
-if($enews=='DelBind')//瑙ｉ櫎缁戝畾
+if($enews=='DelBind')//解除绑定
 {
 	$id=$_GET['id'];
 	MemberConnect_DelBind($id);

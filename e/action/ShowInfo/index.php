@@ -11,7 +11,7 @@ $empire=new mysqlquery();
 $editor=1;
 $classid=(int)$_GET['classid'];
 $id=(int)$_GET['id'];
-//å†…éƒ¨è¡¨
+//ÄÚ²¿±í
 if(!$classid||!$id||!$class_r[$classid]['tbname']||InfoIsInTable($class_r[$classid]['tbname'])||Moreport_ReturnMustDt())//moreport
 {
 	printerror('ErrorUrl','history.go(-1)',1);

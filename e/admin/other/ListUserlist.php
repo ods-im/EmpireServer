@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"userlist");
 
-//å¢åŠ è‡ªå®šä¹‰ä¿¡æ¯åˆ—è¡¨
+//Ôö¼Ó×Ô¶¨ÒåĞÅÏ¢ÁĞ±í
 function AddUserlist($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$cid=(int)$add['cid'];
@@ -36,7 +36,7 @@ function AddUserlist($add,$userid,$username){
 	{
 		printerror("ListSqlError","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"userlist");
 	if(empty($add['pagetitle']))
 	{
@@ -53,12 +53,12 @@ function AddUserlist($add,$userid,$username){
 	$add['filetype']=hRepPostStr($add['filetype'],1);
 	$sql=$empire->query("insert into {$dbtbpre}enewsuserlist(listname,pagetitle,filepath,filetype,totalsql,listsql,maxnum,lencord,listtempid,pagekeywords,pagedescription,classid) values('$add[listname]','".$add[pagetitle]."','$add[filepath]','$add[filetype]','".addslashes($add[totalsql])."','".addslashes($add[listsql])."',$maxnum,$lencord,$listtempid,'".$add[pagekeywords]."','".$add[pagedescription]."','$add[classid]');");
 	$listid=$empire->lastid();
-	//åˆ·æ–°åˆ—è¡¨
+	//Ë¢ĞÂÁĞ±í
 	$add['listid']=$listid;
 	ReUserlist($add,"../");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("listid=$listid&listname=$add[listname]");
 		printerror("AddUserlistSuccess","AddUserlist.php?enews=AddUserlist&classid=$cid".hReturnEcmsHashStrHref2(0));
 	}
@@ -68,7 +68,7 @@ function AddUserlist($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹è‡ªå®šä¹‰ä¿¡æ¯åˆ—è¡¨
+//ĞŞ¸Ä×Ô¶¨ÒåĞÅÏ¢ÁĞ±í
 function EditUserlist($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$cid=(int)$add['cid'];
@@ -86,10 +86,10 @@ function EditUserlist($add,$userid,$username){
 	{
 		printerror("ListSqlError","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"userlist");
 	/*
-	//åˆ é™¤æ—§æ–‡ä»¶
+	//É¾³ı¾ÉÎÄ¼ş
 	if(!($add['oldfilepath']<>$add['filepath']||$add['oldfiletype']<>$add['filetype']))
 	{
 		DelFiletext($add['oldjsfilename']);
@@ -109,12 +109,12 @@ function EditUserlist($add,$userid,$username){
 	$add['filepath']=hRepPostStr($add['filepath'],1);
 	$add['filetype']=hRepPostStr($add['filetype'],1);
 	$sql=$empire->query("update {$dbtbpre}enewsuserlist set listname='$add[listname]',pagetitle='$add[pagetitle]',filepath='$add[filepath]',filetype='$add[filetype]',totalsql='".addslashes($add['totalsql'])."',listsql='".addslashes($add['listsql'])."',maxnum=$maxnum,lencord=$lencord,listtempid=$listtempid,pagekeywords='$add[pagekeywords]',pagedescription='$add[pagedescription]',classid='$add[classid]' where listid='$listid'");
-	//åˆ·æ–°åˆ—è¡¨
+	//Ë¢ĞÂÁĞ±í
 	$add['listid']=$listid;
 	ReUserlist($add,"../");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("listid=$listid&listname=$add[listname]");
 		printerror("EditUserlistSuccess","ListUserlist.php?classid=$cid".hReturnEcmsHashStrHref2(0));
 	}
@@ -124,7 +124,7 @@ function EditUserlist($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤è‡ªå®šä¹‰ä¿¡æ¯åˆ—è¡¨
+//É¾³ı×Ô¶¨ÒåĞÅÏ¢ÁĞ±í
 function DelUserlist($listid,$userid,$username){
 	global $empire,$dbtbpre;
 	$cid=(int)$add['cid'];
@@ -133,13 +133,13 @@ function DelUserlist($listid,$userid,$username){
 	{
 		printerror("NotChangeUserlistid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"userlist");
 	$r=$empire->fetch1("select listname from {$dbtbpre}enewsuserlist where listid=$listid");
 	$sql=$empire->query("delete from {$dbtbpre}enewsuserlist where listid=$listid");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("listid=$listid&listname=$r[listname]");
 		printerror("DelUserlistSuccess","ListUserlist.php?classid=$cid".hReturnEcmsHashStrHref2(0));
 	}
@@ -149,10 +149,10 @@ function DelUserlist($listid,$userid,$username){
 	}
 }
 
-//åˆ·æ–°è‡ªå®šä¹‰åˆ—è¡¨
+//Ë¢ĞÂ×Ô¶¨ÒåÁĞ±í
 function DoReUserlist($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"userlist");
 	$listid=$add['listid'];
 	$count=count($listid);
@@ -170,7 +170,7 @@ function DoReUserlist($add,$userid,$username){
 		$ur=$empire->fetch1("select listid,pagetitle,filepath,filetype,totalsql,listsql,maxnum,lencord,listtempid,pagekeywords,pagedescription from {$dbtbpre}enewsuserlist where listid='".$listid[$i]."'");
 		ReUserlist($ur,"../");
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("DoReUserlistSuccess",EcmsGetReturnUrl());
 }
@@ -207,14 +207,14 @@ else
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=20;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=20;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=20;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=20;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $search='';
 $search.=$ecms_hashur['ehref'];
 $query="select listid,listname,filepath from {$dbtbpre}enewsuserlist";
 $totalquery="select count(*) as total from {$dbtbpre}enewsuserlist";
-//ç±»åˆ«
+//Àà±ğ
 $add="";
 $classid=(int)$_GET['classid'];
 if($classid)
@@ -224,11 +224,11 @@ if($classid)
 }
 $query.=$add;
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by listid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewsuserlistclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -244,9 +244,9 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†è‡ªå®šä¹‰ä¿¡æ¯åˆ—è¡¨</title>
+<title>¹ÜÀí×Ô¶¨ÒåĞÅÏ¢ÁĞ±í</title>
 <script>
 function CheckAll(form)
   {
@@ -263,20 +263,20 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href=ListUserlist.php<?=$ecms_hashur['whehref']?>>ç®¡ç†è‡ªå®šä¹‰ä¿¡æ¯åˆ—è¡¨</a></td>
+    <td width="50%" height="25">Î»ÖÃ£º<a href=ListUserlist.php<?=$ecms_hashur['whehref']?>>¹ÜÀí×Ô¶¨ÒåĞÅÏ¢ÁĞ±í</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit" value="å¢åŠ è‡ªå®šä¹‰åˆ—è¡¨" onclick="self.location.href='AddUserlist.php?enews=AddUserlist<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit" value="Ôö¼Ó×Ô¶¨ÒåÁĞ±í" onclick="self.location.href='AddUserlist.php?enews=AddUserlist<?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit5" value="ç®¡ç†è‡ªå®šä¹‰åˆ—è¡¨åˆ†ç±»" onclick="self.location.href='UserlistClass.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀí×Ô¶¨ÒåÁĞ±í·ÖÀà" onclick="self.location.href='UserlistClass.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
 
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td> é€‰æ‹©ç±»åˆ«ï¼š
+    <td> Ñ¡ÔñÀà±ğ£º
       <select name="classid" id="classid" onchange=window.location='ListUserlist.php?<?=$ecms_hashur['ehref']?>&classid='+this.options[this.selectedIndex].value>
-          <option value="0">æ˜¾ç¤ºæ‰€æœ‰ç±»åˆ«</option>
+          <option value="0">ÏÔÊ¾ËùÓĞÀà±ğ</option>
           <?=$cstr?>
       </select>
     </td>
@@ -292,10 +292,10 @@ function CheckAll(form)
           <input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
         </div></td>
       <td width="7%" height="25"> <div align="center">ID</div></td>
-      <td width="32%" height="25"> <div align="center">åˆ—è¡¨åç§°</div></td>
-      <td width="29%"><div align="center">é¡µé¢åœ°å€</div></td>
-      <td width="10%"><div align="center">é¢„è§ˆ</div></td>
-      <td width="18%" height="25"> <div align="center">æ“ä½œ</div></td>
+      <td width="32%" height="25"> <div align="center">ÁĞ±íÃû³Æ</div></td>
+      <td width="29%"><div align="center">Ò³ÃæµØÖ·</div></td>
+      <td width="10%"><div align="center">Ô¤ÀÀ</div></td>
+      <td width="18%" height="25"> <div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -315,8 +315,8 @@ function CheckAll(form)
       <td><div align="center">
         <input name="textfield" type="text" value="<?=$jspath?>">
       </div></td>
-      <td><div align="center">[<a href="<?=$jspath?>" target="_blank">é¢„è§ˆ</a>]</div></td>
-      <td height="25"> <div align="center">[<a href="AddUserlist.php?enews=EditUserlist&listid=<?=$r[listid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="AddUserlist.php?enews=AddUserlist&docopy=1&listid=<?=$r[listid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>]&nbsp;[<a href="ListUserlist.php?enews=DelUserlist&listid=<?=$r[listid]?>&cid=<?=$classid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+      <td><div align="center">[<a href="<?=$jspath?>" target="_blank">Ô¤ÀÀ</a>]</div></td>
+      <td height="25"> <div align="center">[<a href="AddUserlist.php?enews=EditUserlist&listid=<?=$r[listid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="AddUserlist.php?enews=AddUserlist&docopy=1&listid=<?=$r[listid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>]&nbsp;[<a href="ListUserlist.php?enews=DelUserlist&listid=<?=$r[listid]?>&cid=<?=$classid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
     </tr>
     <?
   }
@@ -324,7 +324,7 @@ function CheckAll(form)
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="6"> 
         <?=$returnpage?>
-        &nbsp;&nbsp;&nbsp; <input type="submit" name="Submit3" value="åˆ·æ–°"> <input name="enews" type="hidden" id="enews" value="DoReUserlist">      </td>
+        &nbsp;&nbsp;&nbsp; <input type="submit" name="Submit3" value="Ë¢ĞÂ"> <input name="enews" type="hidden" id="enews" value="DoReUserlist">      </td>
     </tr>
   </form>
 </table>

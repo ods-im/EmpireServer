@@ -7,11 +7,11 @@ require("../class/ShopSysFun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('shop');//鍏抽棴妯″潡
+eCheckCloseMods('shop');//关闭模块
 $user=islogin();
 $query="select addressid,addressname,isdefault from {$dbtbpre}enewsshop_address where userid='$user[userid]' order by addressid";
 $sql=$empire->query($query);
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/ShopSys/ListAddress.php');
 db_close();
 $empire=null;

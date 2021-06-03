@@ -7,7 +7,7 @@ require '../'.LoadLang('pub/fun.php');
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"zt");
 
-//ä¿®æ”¹æ ç›®é¡ºåº
+//ĞŞ¸ÄÀ¸Ä¿Ë³Ğò
 function EditZtOrder($ztid,$myorder,$userid,$username){
 	global $empire,$dbtbpre;
 	for($i=0;$i<count($ztid);$i++)
@@ -28,7 +28,7 @@ function EditZtOrder($ztid,$myorder,$userid,$username){
 		$ztid[$i]=(int)$ztid[$i];
 		$sql=$empire->query("update {$dbtbpre}enewszt set myorder='$newmyorder' where ztid='$ztid[$i]'");
     }
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("EditZtOrderSuccess",EcmsGetReturnUrl());
 }
@@ -40,7 +40,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//ä¿®æ”¹æ˜¾ç¤ºé¡ºåº
+//ĞŞ¸ÄÏÔÊ¾Ë³Ğò
 if($enews=="EditZtOrder")
 {
 	EditZtOrder($_POST['ztid'],$_POST['myorder'],$logininid,$loginin);
@@ -49,21 +49,21 @@ if($enews=="EditZtOrder")
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $add="";
 $search="";
 $search.=$ecms_hashur['ehref'];
-$url="<a href=ListZt.php".$ecms_hashur['whehref'].">ç®¡ç†ä¸“é¢˜</a>";
-//ç±»åˆ«
+$url="<a href=ListZt.php".$ecms_hashur['whehref'].">¹ÜÀí×¨Ìâ</a>";
+//Àà±ğ
 $zcid=(int)$_GET['zcid'];
 if($zcid)
 {
 	$add=" where zcid=$zcid";
 	$search.="&zcid=$zcid";
 }
-//åˆ†ç±»
+//·ÖÀà
 $zcstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewsztclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -77,7 +77,7 @@ while($cr=$empire->fetch($csql))
 }
 $totalquery="select count(*) as total from {$dbtbpre}enewszt".$add;
 $query="select * from {$dbtbpre}enewszt".$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by myorder,ztid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -85,21 +85,21 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¸“é¢˜</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>×¨Ìâ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit52" value="å¢åŠ ä¸“é¢˜" onclick="self.location.href='AddZt.php?enews=AddZt<?=$ecms_hashur['ehref']?>';"> 
+        <input type="button" name="Submit52" value="Ôö¼Ó×¨Ìâ" onclick="self.location.href='AddZt.php?enews=AddZt<?=$ecms_hashur['ehref']?>';"> 
 		&nbsp;&nbsp;
-        <input type="button" name="Submit6" value="æ•°æ®æ›´æ–°ä¸­å¿ƒ" onclick="window.open('../ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>');">
+        <input type="button" name="Submit6" value="Êı¾İ¸üĞÂÖĞĞÄ" onclick="window.open('../ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>');">
       </div></td>
   </tr>
 </table>
@@ -107,9 +107,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
   <form name="form1" method="get" action="ListZt.php">
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="30">é™åˆ¶æ˜¾ç¤ºï¼š 
+      <td height="30">ÏŞÖÆÏÔÊ¾£º 
         <select name="zcid" id="zcid" onchange="document.form1.submit()">
-          <option value="0">æ˜¾ç¤ºæ‰€æœ‰åˆ†ç±»</option>
+          <option value="0">ÏÔÊ¾ËùÓĞ·ÖÀà</option>
           <?=$zcstr?>
         </select>
       </td>
@@ -121,13 +121,13 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
   <form name="editorder" method="post" action="ListZt.php">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="5%"><div align="center">é¡ºåº</div></td>
+      <td width="5%"><div align="center">Ë³Ğò</div></td>
       <td width="6%" height="25"><div align="center">ID</div></td>
-      <td width="34%" height="25"><div align="center">ä¸“é¢˜å</div></td>
-      <td width="20%"><div align="center">å¢åŠ æ—¶é—´</div></td>
-      <td width="11%"><div align="center">è®¿é—®é‡</div></td>
-      <td width="13%">ä¸“é¢˜ç®¡ç†</td>
-      <td width="11%" height="25"><div align="center">æ“ä½œ</div></td>
+      <td width="34%" height="25"><div align="center">×¨ÌâÃû</div></td>
+      <td width="20%"><div align="center">Ôö¼ÓÊ±¼ä</div></td>
+      <td width="11%"><div align="center">·ÃÎÊÁ¿</div></td>
+      <td width="13%">×¨Ìâ¹ÜÀí</td>
+      <td width="11%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -156,17 +156,17 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
       <td><div align="center"> 
           <?=$r[onclick]?>
         </div></td>
-      <td><a href="AddZt.php?enews=EditZt&ztid=<?=$r[ztid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a> <a href="../ecmschtml.php?enews=ReZtHtml&ztid=<?=$r[ztid]?>&ecms=1<?=$ecms_hashur['href']?>">åˆ·æ–°</a> <a href="AddZt.php?enews=AddZt&ztid=<?=$r[ztid]?>&docopy=1<?=$ecms_hashur['ehref']?>">å¤åˆ¶</a> <a href="../ecmsclass.php?enews=DelZt&ztid=<?=$r[ztid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤æ­¤ä¸“é¢˜ï¼Ÿ');">åˆ é™¤</a></td>
-      <td height="25"><div align="center"><a href="#ecms" onclick="window.open('../openpage/AdminPage.php?leftfile=<?=urlencode('../special/pageleft.php?ztid='.$r[ztid].$ecms_hashur['ehref'])?>&title=<?=urlencode($r[ztname])?><?=$ecms_hashur['ehref']?>','','');">æ›´æ–°ä¸“é¢˜</a></div></td>
+      <td><a href="AddZt.php?enews=EditZt&ztid=<?=$r[ztid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a> <a href="../ecmschtml.php?enews=ReZtHtml&ztid=<?=$r[ztid]?>&ecms=1<?=$ecms_hashur['href']?>">Ë¢ĞÂ</a> <a href="AddZt.php?enews=AddZt&ztid=<?=$r[ztid]?>&docopy=1<?=$ecms_hashur['ehref']?>">¸´ÖÆ</a> <a href="../ecmsclass.php?enews=DelZt&ztid=<?=$r[ztid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı´Ë×¨Ìâ£¿');">É¾³ı</a></td>
+      <td height="25"><div align="center"><a href="#ecms" onclick="window.open('../openpage/AdminPage.php?leftfile=<?=urlencode('../special/pageleft.php?ztid='.$r[ztid].$ecms_hashur['ehref'])?>&title=<?=urlencode($r[ztname])?><?=$ecms_hashur['ehref']?>','','');">¸üĞÂ×¨Ìâ</a></div></td>
     </tr>
     <?
   }
   ?>
     <tr bgcolor="ffffff"> 
       <td height="25" colspan="7"><div align="right">
-        <input type="submit" name="Submit5" value="ä¿®æ”¹ä¸“é¢˜é¡ºåº" onClick="document.editorder.enews.value='EditZtOrder';"> 
+        <input type="submit" name="Submit5" value="ĞŞ¸Ä×¨ÌâË³Ğò" onClick="document.editorder.enews.value='EditZtOrder';"> 
         <input name="enews" type="hidden" id="enews" value="EditZtOrder"> 
-      <font color="#666666">(é¡ºåºå€¼è¶Šå°è¶Šå‰é¢)</font></div></td>
+      <font color="#666666">(Ë³ĞòÖµÔ½Ğ¡Ô½Ç°Ãæ)</font></div></td>
     </tr>
     <tr bgcolor="ffffff">
       <td height="25" colspan="7">&nbsp;&nbsp; 

@@ -1,6 +1,6 @@
 <?php
 
-//å˜é‡å,å˜é‡å€¼,å·¥å…·æ¡æ¨¡å¼,ç¼–è¾‘å™¨ç›®å½•,é«˜åº¦,å®½åº¦,å…¨é¡µ
+//±äÁ¿Ãû,±äÁ¿Öµ,¹¤¾ßÌõÄ£Ê½,±à¼­Æ÷Ä¿Â¼,¸ß¶È,¿í¶È,È«Ò³
 function ECMS_TempShowEditorVar($varname,$varvalue,$toolbar='full',$basepath='',$height='300',$width='100%',$fullpage=0){
 	$toolbar=strtolower($toolbar);
 	if($varvalue)
@@ -39,7 +39,7 @@ function ECMS_TempShowEditorVar($varname,$varvalue,$toolbar='full',$basepath='',
 	return $echoeditor;
 }
 
-//è¿”å›žåŠ è½½JSæ–‡ä»¶
+//·µ»Ø¼ÓÔØJSÎÄ¼þ
 function ECMS_TempShowEditorJS($basepath=''){
 	if(empty($basepath))
 	{
@@ -52,7 +52,7 @@ function ECMS_TempShowEditorJS($basepath=''){
 	return $loadjs;
 }
 
-//é™„åŠ å‚æ•°
+//¸½¼Ó²ÎÊý
 function ECMS_TempReturnEditorCx(){
 	global $filepass,$enews,$ecms_hashur;
 	$filepass=(int)$filepass;
@@ -60,7 +60,7 @@ function ECMS_TempReturnEditorCx(){
 	return $str;
 }
 
-//ä¸Šä¼ æç¤º
+//ÉÏ´«ÌáÊ¾
 function ECMS_TempPTEditorShowError($type,$error,$showstr,$add,$ecms=0){
 ?>
 <script type='text/javascript'>

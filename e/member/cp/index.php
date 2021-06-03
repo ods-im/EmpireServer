@@ -7,14 +7,14 @@ require("../../data/dbcache/MemberLevel.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//å…³é—­æ¨¡å—
-//æ˜¯å¦ç™»é™†
+eCheckCloseMods('member');//¹Ø±ÕÄ£¿é
+//ÊÇ·ñµÇÂ½
 $user=islogin();
 $r=ReturnUserInfo($user[userid]);
 $addr=$empire->fetch1("select * from {$dbtbpre}enewsmemberadd where userid='".$user[userid]."' limit 1");
-//å¤´åƒ
+//Í·Ïñ
 $userpic=$addr['userpic']?$addr['userpic']:$public_r[newsurl].'e/data/images/nouserpic.gif';
-//æœ‰æ•ˆæœŸ
+//ÓĞĞ§ÆÚ
 $userdate=0;
 if($r[userdate])
 {
@@ -28,15 +28,15 @@ if($r[userdate])
 		$userdate=round($userdate/(24*3600));
 	}
 }
-//æ˜¯å¦æœ‰çŸ­æ¶ˆæ¯
-$havemsg="æ— ";
+//ÊÇ·ñÓĞ¶ÌÏûÏ¢
+$havemsg="ÎŞ";
 if($user[havemsg])
 {
-	$havemsg="<a href='".$public_r['newsurl']."e/member/msg' target=_blank><font color=red>æ‚¨æœ‰æ–°æ¶ˆæ¯</font></a>";
+	$havemsg="<a href='".$public_r['newsurl']."e/member/msg' target=_blank><font color=red>ÄúÓĞĞÂÏûÏ¢</font></a>";
 }
-//æ³¨å†Œæ—¶é—´
+//×¢²áÊ±¼ä
 $registertime=eReturnMemberRegtime($r['registertime'],"Y-m-d H:i:s");
-//å¯¼å…¥æ¨¡æ¿
+//µ¼ÈëÄ£°å
 require(ECMS_PATH.'e/template/member/cp.php');
 db_close();
 $empire=null;

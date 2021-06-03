@@ -1,7 +1,7 @@
 <?php
 $editor=1;
 
-//å­—ç¬¦è¿‡æ»¤
+//×Ö·û¹ıÂË
 function escape_str($str){
 	global $public_r;
 	if($public_r['bakescapetype']==2)//real_escape_string
@@ -15,7 +15,7 @@ function escape_str($str){
 	return $str;
 }
 
-//å­—ç¬¦è¿‡è™‘(addslashes)
+//×Ö·û¹ıÂÇ(addslashes)
 function escape_addsstr($str){
 	$str=addslashes($str);
 	$str=str_replace('\\\'','\'\'',$str);
@@ -24,7 +24,7 @@ function escape_addsstr($str){
 	return $str;
 }
 
-//å­—ç¬¦è¿‡è™‘(db)
+//×Ö·û¹ıÂÇ(db)
 function escape_dbstr($str){
 	global $empire,$dbtbpre,$public_r;
 	$str=$empire->EDbEscapeStr($str);
@@ -34,10 +34,10 @@ function escape_dbstr($str){
 	return $str;
 }
 
-//ä¿®å¤è¡¨
+//ĞŞ¸´±í
 function Ebak_Rep($tablename,$dbname,$userid,$username){
 	global $empire,$ecms_config;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$dbname=RepPostVar($dbname);
 	$empire->usequery("use `$dbname`");
@@ -52,15 +52,15 @@ function Ebak_Rep($tablename,$dbname,$userid,$username){
 		$sql4=$empire->query("REPAIR TABLE `$tablename[$i]`;");
     }
 	$empire->usequery("use `".$ecms_config['db']['dbname']."`");
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("dbname=".$dbname);
 	printerror("RepireTableSuccess","ChangeTable.php?mydbname=$dbname".hReturnEcmsHashStrHref2(0));
 }
 
-//ä¼˜åŒ–è¡¨
+//ÓÅ»¯±í
 function Ebak_Opi($tablename,$dbname,$userid,$username){
 	global $empire,$ecms_config;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$dbname=RepPostVar($dbname);
 	$empire->usequery("use `$dbname`");
@@ -72,15 +72,15 @@ function Ebak_Opi($tablename,$dbname,$userid,$username){
 		$sql1=$empire->query("OPTIMIZE TABLE `$tablename[$i]`;");
     }
 	$empire->usequery("use `".$ecms_config['db']['dbname']."`");
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("dbname=".$dbname);
 	printerror("OptimTableSuccess","ChangeTable.php?mydbname=$dbname".hReturnEcmsHashStrHref2(0));
 }
 
-//åˆ é™¤æ•°æ®è¡¨
+//É¾³ıÊı¾İ±í
 function Ebak_Drop($tablename,$dbname,$userid,$username){
 	global $empire,$ecms_config;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$dbname=RepPostVar($dbname);
 	$empire->usequery("use `$dbname`");
@@ -103,15 +103,15 @@ function Ebak_Drop($tablename,$dbname,$userid,$username){
     }
 	$sql1=$empire->query("DROP TABLE IF EXISTS ".$a.";");
 	$empire->usequery("use `".$ecms_config['db']['dbname']."`");
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("dbname=".$dbname);
 	printerror("DelTableSuccess","ChangeTable.php?mydbname=$dbname".hReturnEcmsHashStrHref2(0));
 }
 
-//åˆ é™¤æ•°æ®åº“
+//É¾³ıÊı¾İ¿â
 function Ebak_DropDb($dbname,$userid,$username){
 	global $empire;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$dbname=RepPostVar($dbname);
 	if(empty($dbname))
@@ -119,7 +119,7 @@ function Ebak_DropDb($dbname,$userid,$username){
 	$sql=$empire->query("DROP DATABASE `$dbname`");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("dbname=".$dbname);
 		printerror("DropDbSuccess","ChangeDb.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -127,10 +127,10 @@ function Ebak_DropDb($dbname,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//å»ºç«‹æ•°æ®åº“
+//½¨Á¢Êı¾İ¿â
 function Ebak_CreatDb($dbname,$dbchar,$userid,$username){
 	global $empire,$ecms_config;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$dbname=RepPostVar($dbname);
 	if(!trim($dbname)){
@@ -142,7 +142,7 @@ function Ebak_CreatDb($dbname,$dbchar,$userid,$username){
 	}
 	$sql=$empire->query("CREATE DATABASE IF NOT EXISTS `$dbname`".$a);
 	if($sql){
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("dbname=".$dbname);
 		printerror("AddDbSuccess","ChangeDb.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -150,10 +150,10 @@ function Ebak_CreatDb($dbname,$dbchar,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ¸…ç©ºè¡¨
+//Çå¿Õ±í
 function Ebak_EmptyTable($tablename,$dbname,$userid,$username){
 	global $empire,$ecms_config;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$dbname=RepPostVar($dbname);
 	$empire->usequery("use `$dbname`");
@@ -165,16 +165,16 @@ function Ebak_EmptyTable($tablename,$dbname,$userid,$username){
 		$sql1=$empire->query("TRUNCATE `".$tablename[$i]."`;");
     }
 	$empire->usequery("use `".$ecms_config['db']['dbname']."`");
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("dbname=".$dbname);
 	printerror("EmptyTableSuccess","ChangeTable.php?mydbname=$dbname".hReturnEcmsHashStrHref2(0));
 }
 
-//---------------------------å¤‡ä»½
-//åˆä½¿åŒ–å¤‡ä»½
+//---------------------------±¸·İ
+//³õÊ¹»¯±¸·İ
 function Ebak_DoEbak($add,$userid,$username){
 	global $empire,$public_r,$fun_r,$ecms_config;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$dbname=RepPostVar($add['mydbname']);
 	if(empty($dbname)){
@@ -192,14 +192,14 @@ function Ebak_DoEbak($add,$userid,$username){
 	if((!$add['filesize']&&!$add['baktype'])||(!$add['bakline']&&$add['baktype'])){
 		printerror("FileSizeEmpty","history.go(-1)");
 	}
-	//ç›®å½•å
+	//Ä¿Â¼Ãû
 	$add['mypath']=RepPostStr($add['mypath'],1);
 	$bakpath=$public_r['bakdbpath'];
 	if(empty($add['mypath'])){
 		$add['mypath']=$dbname."_".date("YmdHis");
 	}
     DoMkdir($bakpath."/".$add['mypath']);
-	//ç”Ÿæˆè¯´æ˜æ–‡ä»¶
+	//Éú³ÉËµÃ÷ÎÄ¼ş
 	$readme=$add['readme'];
 	$rfile=$bakpath."/".$add['mypath']."/readme.txt";
 	$readme.="\r\n\r\nBaktime: ".date("Y-m-d H:i:s");
@@ -212,7 +212,7 @@ function Ebak_DoEbak($add,$userid,$username){
 		$b_table.=$tablename[$i].",";
 		$d_table.="\$tb[".$tablename[$i]."]=0;\r\n";
     }
-	//å»æ‰æœ€åä¸€ä¸ª,
+	//È¥µô×îºóÒ»¸ö,
 	$b_table=substr($b_table,0,strlen($b_table)-1);
 	$bakstru=(int)$add['bakstru'];
 	$bakstrufour=(int)$add['bakstrufour'];
@@ -257,10 +257,10 @@ function Ebak_DoEbak($add,$userid,$username){
 	exit();
 }
 
-//æ‰§è¡Œå¤‡ä»½(æŒ‰æ–‡ä»¶å¤§å°)
+//Ö´ĞĞ±¸·İ(°´ÎÄ¼ş´óĞ¡)
 function Ebak_BakExe($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$stime=0,$userid,$username){
 	global $empire,$public_r,$fun_r;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	if(empty($mypath)){
 		printerror("ErrorUrl","history.go(-1)");
@@ -287,18 +287,18 @@ function Ebak_BakExe($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$stime=0,$userid,$
 	$t=(int)$t;
 	$s=(int)$s;
 	$p=(int)$p;
-	//å¤‡ä»½å®Œæ¯•
+	//±¸·İÍê±Ï
 	if($t>=$count)
 	{
-		insert_dolog("dbname=".$b_dbname);//æ“ä½œæ—¥å¿—
+		insert_dolog("dbname=".$b_dbname);//²Ù×÷ÈÕÖ¾
 		$varmessage=$fun_r['BakSuccess']."<br><br>".$fun_r['TotalUseTime'].ToChangeUseTime($stime);
 		$GLOBALS['varmessage']=$varmessage;
 		printerror('VarMessage','ChangeDb.php'.hReturnEcmsHashStrHref2(1),0,1);
     }
 	$dumpsql=Ebak_ReturnVer();
-	//é€‰æ‹©æ•°æ®åº“
+	//Ñ¡ÔñÊı¾İ¿â
 	$u=$empire->usequery("use `$b_dbname`");
-	//ç¼–ç 
+	//±àÂë
 	if($b_dbchar=='auto')
 	{
 		if(empty($s))
@@ -306,7 +306,7 @@ function Ebak_BakExe($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$stime=0,$userid,$
 			$status_r=Ebak_GetTotal($b_dbname,$btb[$t]);
 			$collation=Ebak_GetSetChar($status_r['Collation']);
 			DoSetDbChar($collation);
-			//æ€»è®°å½•æ•°
+			//×Ü¼ÇÂ¼Êı
 			$num=$public_r[limittype]?-1:$status_r['Rows'];
 		}
 		else
@@ -322,7 +322,7 @@ function Ebak_BakExe($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$stime=0,$userid,$
 		DoSetDbChar($b_dbchar);
 		if(empty($s))
 		{
-			//æ€»è®°å½•æ•°
+			//×Ü¼ÇÂ¼Êı
 			if($public_r[limittype])
 			{
 				$num=-1;
@@ -338,13 +338,13 @@ function Ebak_BakExe($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$stime=0,$userid,$
 			$num=(int)$alltotal;
 		}
 	}
-	//å¤‡ä»½æ•°æ®åº“ç»“æ„
+	//±¸·İÊı¾İ¿â½á¹¹
 	if($b_stru&&empty($s))
 	{
 		$dumpsql.=Ebak_Returnstru($btb[$t],$b_strufour);
 	}
 	$sql=$empire->query("select * from `".$btb[$t]."` limit $s,$num");
-	//å–å¾—å­—æ®µæ•°
+	//È¡µÃ×Ö¶ÎÊı
 	if(empty($fnum))
 	{
 		$return_fr=Ebak_ReturnTbfield($b_dbname,$btb[$t],$b_autofield);
@@ -356,13 +356,13 @@ function Ebak_BakExe($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$stime=0,$userid,$
 		$fieldnum=$fnum;
 		$noautof=$thenof;
 	}
-	//å®Œæ•´æ’å…¥
+	//ÍêÕû²åÈë
 	$inf='';
 	if($b_beover==1)
 	{
 		$inf='('.Ebak_ReturnInTbfield($b_dbname,$btb[$t]).')';
 	}
-	//åå…­è¿›åˆ¶
+	//Ê®Áù½øÖÆ
 	$hexf='';
 	if($b_bakdatatype==1)
 	{
@@ -377,7 +377,7 @@ function Ebak_BakExe($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$stime=0,$userid,$
 		$first=1;
 		for($i=0;$i<$fieldnum;$i++)
 		{
-			//é¦–å­—æ®µ
+			//Ê××Ö¶Î
 			if(empty($first))
 			{
 				$dumpsql.=',';
@@ -397,7 +397,7 @@ function Ebak_BakExe($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$stime=0,$userid,$
 			}
 		}
 		$dumpsql.=");\");\r\n";
-		//æ˜¯å¦è¶…è¿‡é™åˆ¶
+		//ÊÇ·ñ³¬¹ıÏŞÖÆ
 		if(strlen($dumpsql)>=$b_filesize*1024)
 		{
 			$p++;
@@ -411,7 +411,7 @@ function Ebak_BakExe($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$stime=0,$userid,$
 			exit();
 		}
 	}
-	//æœ€åä¸€ä¸ªå¤‡ä»½
+	//×îºóÒ»¸ö±¸·İ
 	if(empty($p)||$b==1)
 	{
 		$p++;
@@ -422,17 +422,17 @@ function Ebak_BakExe($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$stime=0,$userid,$
 	Ebak_RepFilenum($p,$btb[$t],$path);
 	$t++;
 	$empire->free($sql);
-	//è¿›å…¥ä¸‹ä¸€ä¸ªè¡¨
+	//½øÈëÏÂÒ»¸ö±í
 	//echo $btb[$t-1].$fun_r['OneTableBakSuccess']."<script>self.location.href='phome.php?phome=BakExe&s=0&p=0&t=$t&mypath=$mypath&stime=$stime".hReturnEcmsHashStrHref(0)."';</script>";
 
 	echo"<meta http-equiv=\"refresh\" content=\"".$waitbaktime.";url=phome.php?phome=BakExe&s=0&p=0&t=$t&mypath=$mypath&stime=$stime&waitbaktime=$waitbaktime".hReturnEcmsHashStrHref(0)."\">".$btb[$t-1].$fun_r['OneTableBakSuccess'];
 	exit();
 }
 
-//æ‰§è¡Œå¤‡ä»½ï¼ˆæŒ‰è®°å½•ï¼‰
+//Ö´ĞĞ±¸·İ£¨°´¼ÇÂ¼£©
 function Ebak_BakExeT($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$auf='',$aufval=0,$stime=0,$userid,$username){
 	global $empire,$public_r,$fun_r;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	if(empty($mypath)){
 		printerror("ErrorUrl","history.go(-1)");
@@ -459,18 +459,18 @@ function Ebak_BakExeT($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$auf='',$aufval=0
 	$t=(int)$t;
 	$s=(int)$s;
 	$p=(int)$p;
-	//å¤‡ä»½å®Œæ¯•
+	//±¸·İÍê±Ï
 	if($t>=$count)
 	{
-		insert_dolog("dbname=".$b_dbname);//æ“ä½œæ—¥å¿—
+		insert_dolog("dbname=".$b_dbname);//²Ù×÷ÈÕÖ¾
 		$varmessage=$fun_r['BakSuccess']."<br><br>".$fun_r['TotalUseTime'].ToChangeUseTime($stime);
 		$GLOBALS['varmessage']=$varmessage;
 		printerror('VarMessage','ChangeDb.php'.hReturnEcmsHashStrHref2(1),0,1);
     }
 	$dumpsql=Ebak_ReturnVer();
-	//é€‰æ‹©æ•°æ®åº“
+	//Ñ¡ÔñÊı¾İ¿â
 	$u=$empire->usequery("use `$b_dbname`");
-	//ç¼–ç 
+	//±àÂë
 	if($b_dbchar=='auto')
 	{
 		if(empty($s))
@@ -478,7 +478,7 @@ function Ebak_BakExeT($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$auf='',$aufval=0
 			$status_r=Ebak_GetTotal($b_dbname,$btb[$t]);
 			$collation=Ebak_GetSetChar($status_r['Collation']);
 			DoSetDbChar($collation);
-			//æ€»è®°å½•æ•°
+			//×Ü¼ÇÂ¼Êı
 			$num=$public_r[limittype]?-1:$status_r['Rows'];
 		}
 		else
@@ -494,7 +494,7 @@ function Ebak_BakExeT($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$auf='',$aufval=0
 		DoSetDbChar($b_dbchar);
 		if(empty($s))
 		{
-			//æ€»è®°å½•æ•°
+			//×Ü¼ÇÂ¼Êı
 			if($public_r[limittype])
 			{
 				$num=-1;
@@ -510,12 +510,12 @@ function Ebak_BakExeT($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$auf='',$aufval=0
 			$num=(int)$alltotal;
 		}
 	}
-	//å¤‡ä»½æ•°æ®åº“ç»“æ„
+	//±¸·İÊı¾İ¿â½á¹¹
 	if($b_stru&&empty($s))
 	{
 		$dumpsql.=Ebak_Returnstru($btb[$t],$b_strufour);
 	}
-	//å–å¾—å­—æ®µæ•°
+	//È¡µÃ×Ö¶ÎÊı
 	if(empty($fnum))
 	{
 		$return_fr=Ebak_ReturnTbfield($b_dbname,$btb[$t],$b_autofield);
@@ -528,7 +528,7 @@ function Ebak_BakExeT($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$auf='',$aufval=0
 		$fieldnum=$fnum;
 		$noautof=$thenof;
 	}
-	//è‡ªåŠ¨è¯†åˆ«è‡ªå¢é¡¹
+	//×Ô¶¯Ê¶±ğ×ÔÔöÏî
 	$aufval=(int)$aufval;
 	if($b_autoauf==1&&$auf)
 	{
@@ -538,13 +538,13 @@ function Ebak_BakExeT($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$auf='',$aufval=0
 	{
 		$sql=$empire->query("select * from `".$btb[$t]."` limit $s,$b_bakline");
 	}
-	//å®Œæ•´æ’å…¥
+	//ÍêÕû²åÈë
 	$inf='';
 	if($b_beover==1)
 	{
 		$inf='('.Ebak_ReturnInTbfield($b_dbname,$btb[$t]).')';
 	}
-	//åå…­è¿›åˆ¶
+	//Ê®Áù½øÖÆ
 	$hexf='';
 	if($b_bakdatatype==1)
 	{
@@ -563,7 +563,7 @@ function Ebak_BakExeT($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$auf='',$aufval=0
 		$first=1;
 		for($i=0;$i<$fieldnum;$i++)
 		{
-			//é¦–å­—æ®µ
+			//Ê××Ö¶Î
 			if(empty($first))
 			{
 				$dumpsql.=',';
@@ -586,7 +586,7 @@ function Ebak_BakExeT($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$auf='',$aufval=0
 	}
 	if(empty($b))
 	{
-		//æœ€åä¸€ä¸ªå¤‡ä»½
+		//×îºóÒ»¸ö±¸·İ
 		if(empty($p))
 		{
 			$p++;
@@ -597,13 +597,13 @@ function Ebak_BakExeT($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$auf='',$aufval=0
 		Ebak_RepFilenum($p,$btb[$t],$path);
 		$t++;
 		$empire->free($sql);
-		//è¿›å…¥ä¸‹ä¸€ä¸ªè¡¨
+		//½øÈëÏÂÒ»¸ö±í
 		//echo $btb[$t-1].$fun_r['OneTableBakSuccess']."<script>self.location.href='phome.php?phome=BakExeT&s=0&p=0&t=$t&mypath=$mypath&stime=$stime".hReturnEcmsHashStrHref(0)."';</script>";
 
 		echo"<meta http-equiv=\"refresh\" content=\"".$waitbaktime.";url=phome.php?phome=BakExeT&s=0&p=0&t=$t&mypath=$mypath&stime=$stime&waitbaktime=$waitbaktime".hReturnEcmsHashStrHref(0)."\">".$btb[$t-1].$fun_r['OneTableBakSuccess'];
 		exit();
 	}
-	//è¿›å…¥ä¸‹ä¸€ç»„
+	//½øÈëÏÂÒ»×é
 	$p++;
 	$sfile=$path."/".$btb[$t]."_".$p.".php";
 	$dumpsql=$header.$dumpsql.$footer;
@@ -615,7 +615,7 @@ function Ebak_BakExeT($t,$s,$p,$mypath,$alltotal,$thenof,$fnum,$auf='',$aufval=0
 	exit();
 }
 
-//è¾“å‡ºå¤‡ä»½è¿›åº¦æ¡
+//Êä³ö±¸·İ½ø¶ÈÌõ
 function Ebak_EchoBakSt($tbname,$tbnum,$tb,$rnum,$r){
 	$table=($tb+1).'/'.$tbnum;
 	$record=$r;
@@ -633,7 +633,7 @@ function Ebak_EchoBakSt($tbname,$tbnum,$tb,$rnum,$r){
 	<?
 }
 
-//è¾“å‡ºæ¢å¤è¿›åº¦æ¡
+//Êä³ö»Ö¸´½ø¶ÈÌõ
 function Ebak_EchoReDataSt($tbname,$tbnum,$tb,$pnum,$p){
 	$table=($tb+1).'/'.$tbnum;
 	$record=$p.'/'.$pnum;
@@ -647,7 +647,7 @@ function Ebak_EchoReDataSt($tbname,$tbnum,$tb,$pnum,$p){
 	<?
 }
 
-//å–å¾—è¡¨è®°å½•æ•°
+//È¡µÃ±í¼ÇÂ¼Êı
 function Ebak_GetTotal($dbname,$tbname){
 	global $empire;
 	/*
@@ -658,7 +658,7 @@ function Ebak_GetTotal($dbname,$tbname){
 	return $tr;
 }
 
-//è¿”å›å­—ç¬¦é›†set
+//·µ»Ø×Ö·û¼¯set
 function Ebak_GetSetChar($char){
 	global $empire;
 	if(empty($char))
@@ -669,13 +669,13 @@ function Ebak_GetSetChar($char){
 	return $r['Charset'];
 }
 
-//è¿”å›è¡¨å­—æ®µä¿¡æ¯
+//·µ»Ø±í×Ö¶ÎĞÅÏ¢
 function Ebak_ReturnTbfield($dbname,$tbname,$autofield){
 	global $empire;
 	$sql=$empire->query("SHOW FIELDS FROM `".$tbname."`");
-	$i=0;//å­—æ®µæ•°
-	$autof=",";//å»é™¤è‡ªå¢å­—æ®µåˆ—è¡¨
-	$f='';//è‡ªå¢å­—æ®µå
+	$i=0;//×Ö¶ÎÊı
+	$autof=",";//È¥³ı×ÔÔö×Ö¶ÎÁĞ±í
+	$f='';//×ÔÔö×Ö¶ÎÃû
 	while($r=$empire->fetch($sql))
 	{
 		$i++;
@@ -694,7 +694,7 @@ function Ebak_ReturnTbfield($dbname,$tbname,$autofield){
 	return $return_r;
 }
 
-//è¿”å›æ’å…¥å­—æ®µ
+//·µ»Ø²åÈë×Ö¶Î
 function Ebak_ReturnInTbfield($dbname,$tbname){
 	global $empire;
 	$sql=$empire->query("SHOW FIELDS FROM `".$tbname."`");
@@ -708,7 +708,7 @@ function Ebak_ReturnInTbfield($dbname,$tbname){
 	return $f;
 }
 
-//è¿”å›å­—ç¬¦å­—æ®µ
+//·µ»Ø×Ö·û×Ö¶Î
 function Ebak_ReturnInStrTbfield($dbname,$tbname){
 	global $empire;
 	$sql=$empire->query("SHOW FIELDS FROM `".$tbname."`");
@@ -732,7 +732,7 @@ function Ebak_ReturnInStrTbfield($dbname,$tbname){
 	return $f;
 }
 
-//è¿”å›å­—æ®µå†…å®¹
+//·µ»Ø×Ö¶ÎÄÚÈİ
 function Ebak_ReSqlFtext($str,$bakdatatype,$i,$tbstrf){
 	if($bakdatatype==1&&!empty($str)&&strstr($tbstrf,','.$i.','))
 	{
@@ -745,7 +745,7 @@ function Ebak_ReSqlFtext($str,$bakdatatype,$i,$tbstrf){
 	return $restr;
 }
 
-//æ›¿æ¢æ–‡ä»¶æ•°
+//Ìæ»»ÎÄ¼şÊı
 function Ebak_RepFilenum($p,$table,$path){
 	if(empty($p))
 	{$p=0;}
@@ -757,19 +757,19 @@ function Ebak_RepFilenum($p,$table,$path){
 	WriteFiletext_n($file,$text);
 }
 
-//æ‰§è¡ŒSQL
+//Ö´ĞĞSQL
 function E_D($sql){
 	global $empire;
 	$empire->query($sql);
 }
 
-//å»ºç«‹è¡¨
+//½¨Á¢±í
 function E_C($sql){
 	global $empire;
 	$empire->query(Ebak_AddDbchar($sql));
 }
 
-//è½¬ä¸ºMysql4.0æ ¼å¼
+//×ªÎªMysql4.0¸ñÊ½
 function Ebak_ToMysqlFour($query){
 	$exp="ENGINE=";
 	if(!strstr($query,$exp))
@@ -778,22 +778,22 @@ function Ebak_ToMysqlFour($query){
 	}
 	$exp1=" ";
 	$r=explode($exp,$query);
-	//å–å¾—è¡¨ç±»å‹
+	//È¡µÃ±íÀàĞÍ
 	$r1=explode($exp1,$r[1]);
 	$returnquery=$r[0]."TYPE=".$r1[0];
 	return $returnquery;
 }
 
-//---------------------è¿”å›æ•°æ®åº“ç»“æ„
+//---------------------·µ»ØÊı¾İ¿â½á¹¹
 function Ebak_Returnstru($table,$strufour){
 	global $empire;
 	$dumpsql.="E_D(\"DROP TABLE IF EXISTS `".$table."`;\");\r\n";
-	//è®¾ç½®å¼•å·
+	//ÉèÖÃÒıºÅ
 	$usql=$empire->query("SET SQL_QUOTE_SHOW_CREATE=1;");
-	//æ•°æ®è¡¨ç»“æ„
+	//Êı¾İ±í½á¹¹
 	$r=$empire->fetch1("SHOW CREATE TABLE `$table`;");
 	$create=str_replace("\"","\\\"",$r[1]);
-	//è½¬ä¸º4.0æ ¼å¼
+	//×ªÎª4.0¸ñÊ½
 	if($strufour)
 	{
 		$create=Ebak_ToMysqlFour($create);
@@ -802,7 +802,7 @@ function Ebak_Returnstru($table,$strufour){
 	return $dumpsql;
 }
 
-//è¿”å›è®¾ç½®ç¼–ç 
+//·µ»ØÉèÖÃ±àÂë
 function Ebak_ReturnSetNames($char){
 	if(empty($char))
 	{
@@ -812,7 +812,7 @@ function Ebak_ReturnSetNames($char){
 	return $dumpsql;
 }
 
-//å»é™¤å­—æ®µä¸­çš„ç¼–ç 
+//È¥³ı×Ö¶ÎÖĞµÄ±àÂë
 function Ebak_ReplaceFieldChar($sql){
 	global $ecms_config;
 	if($ecms_config['db']['dbver']=='4.0'&&strstr($sql,' character set '))
@@ -823,10 +823,10 @@ function Ebak_ReplaceFieldChar($sql){
 	return $sql;
 }
 
-//åŠ ç¼–ç 
+//¼Ó±àÂë
 function Ebak_AddDbchar($sql){
 	global $ecms_config,$b_dbchar;
-	//åŠ ç¼–ç 
+	//¼Ó±àÂë
 	if($ecms_config['db']['dbver']>='4.1'&&!strstr($sql,'ENGINE=')&&($ecms_config['db']['setchar']||$b_dbchar)&&$b_dbchar!='auto')
 	{
 		$dbcharset=$b_dbchar?$b_dbchar:$ecms_config['db']['setchar'];
@@ -836,12 +836,12 @@ function Ebak_AddDbchar($sql){
 	{
 		$sql=Ebak_ToMysqlFour($sql);
 	}
-	//å»é™¤å­—æ®µä¸­çš„ç¼–ç 
+	//È¥³ı×Ö¶ÎÖĞµÄ±àÂë
 	$sql=Ebak_ReplaceFieldChar($sql);
 	return $sql;
 }
 
-//å»ºè¡¨
+//½¨±í
 function Ebak_DoCreateTable($sql,$mysqlver,$dbcharset){
 	$type=strtoupper(preg_replace("/^\s*CREATE TABLE\s+.+\s+\(.+?\).*(ENGINE|TYPE)\s*=\s*([a-z]+?).*$/isU","\\2",$sql));
 	$type=in_array($type,array('MYISAM','HEAP'))?$type:'MYISAM';
@@ -849,7 +849,7 @@ function Ebak_DoCreateTable($sql,$mysqlver,$dbcharset){
 		($mysqlver>='4.1'?" ENGINE=$type DEFAULT CHARSET=$dbcharset":" TYPE=$type");
 }
 
-//è¿”å›ç‰ˆæƒä¿¡æ¯
+//·µ»Ø°æÈ¨ĞÅÏ¢
 function Ebak_ReturnVer()
 {
 	$string="
@@ -863,7 +863,7 @@ function Ebak_ReturnVer()
 	return $string;
 }
 
-//è½¬æ¢å¤§å°
+//×ª»»´óĞ¡
 function Ebak_ChangeSize($size){
 	if($size<1024)
 	{
@@ -884,10 +884,10 @@ function Ebak_ChangeSize($size){
 	return $str;
 }
 
-//å¯¼å…¥æ•°æ®
+//µ¼ÈëÊı¾İ
 function Ebak_ReData($add,$mypath,$userid,$username){
 	global $empire,$public_r;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$mypath=RepPostStr($mypath,1);
 	$add[mydbname]=RepPostStr($add[mydbname],1);
@@ -911,10 +911,10 @@ function Ebak_ReData($add,$mypath,$userid,$username){
 	exit();
 }
 
-//åˆ é™¤å¤‡ä»½ç›®å½•
+//É¾³ı±¸·İÄ¿Â¼
 function Ebak_DelBakpath($path,$userid,$username){
 	global $public_r;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$path=RepPostStr($path,1);
 	if(strstr($path,".."))
@@ -929,25 +929,25 @@ function Ebak_DelBakpath($path,$userid,$username){
     }
 	@include_once("../../class/delpath.php");
 	$delpath=DelPath($delpath);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("path=".$path);
 	printerror("DelPathSuccess","ChangePath.php?change=".RepPostStr($_GET['change'],1).hReturnEcmsHashStrHref2(0));
 }
 
-//æ‰“åŒ…ç›®å½•
+//´ò°üÄ¿Â¼
 function ZipFile($path,$zipname){
 	global $public_r;
 	$bakpath=$public_r['bakdbpath'];
 	$bakzippath=$public_r['bakdbzip'];
 	@include("../../class/phpzip.inc.php");
-	$z=new PHPZip(); //æ–°å»ºç«‹ä¸€ä¸ªzipçš„ç±»
-    $z->Zip($bakpath."/".$path,$bakzippath."/".$zipname); //æ·»åŠ æŒ‡å®šç›®å½•
+	$z=new PHPZip(); //ĞÂ½¨Á¢Ò»¸özipµÄÀà
+    $z->Zip($bakpath."/".$path,$bakzippath."/".$zipname); //Ìí¼ÓÖ¸¶¨Ä¿Â¼
 }
 
-//åˆ é™¤å‹ç¼©åŒ…
+//É¾³ıÑ¹Ëõ°ü
 function Ebak_DelZip($file,$userid,$username){
 	global $public_r;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$file=RepPostStr($file,1);
 	if(strstr($file,".."))
@@ -963,15 +963,15 @@ function Ebak_DelZip($file,$userid,$username){
 		printerror("FileNotExist","history.go(-1)",8);
 	}
 	DelFiletext($filename);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("file=".$file);
 	printerror("DelZipFileSuccess","history.go(-1)",8);
 }
 
-//å‹ç¼©ç›®å½•
+//Ñ¹ËõÄ¿Â¼
 function Ebak_Dozip($path,$userid,$username){
 	global $public_r;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$path=RepPostStr($path,1);
 	if(strstr($path,".."))
@@ -992,10 +992,10 @@ function Ebak_Dozip($path,$userid,$username){
 	echo"<script>self.location.href='DownZip.php?f=$zipname&p=$path".hReturnEcmsHashStrHref2(0)."';</script>";
 }
 
-//è½¬å‘æ¢å¤é¡µé¢
+//×ªÏò»Ö¸´Ò³Ãæ
 function Ebak_PathGotoRedata($path,$userid,$username){
 	global $public_r;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"dbdata");
 	$path=RepPostStr($path,1);
 	if(strstr($path,".."))

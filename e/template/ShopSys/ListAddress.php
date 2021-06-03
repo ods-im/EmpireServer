@@ -5,29 +5,29 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='é…é€åœ°å€åˆ—è¡¨';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../../member/cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;é…é€åœ°å€åˆ—è¡¨&nbsp;&nbsp;(<a href='AddAddress.php?enews=AddAddress'>å¢åŠ é…é€åœ°å€</a>)";
+$public_diyr['pagetitle']='ÅäËÍµØÖ·ÁĞ±í';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../../member/cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;ÅäËÍµØÖ·ÁĞ±í&nbsp;&nbsp;(<a href='AddAddress.php?enews=AddAddress'>Ôö¼ÓÅäËÍµØÖ·</a>)";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <table width="600" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr>
     <td width="50%" height="30" bgcolor="#FFFFFF">&nbsp;</td>
-    <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="AddAddress.php?enews=AddAddress">å¢åŠ é…é€åœ°å€</a>]&nbsp;&nbsp;</div></td>
+    <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="AddAddress.php?enews=AddAddress">Ôö¼ÓÅäËÍµØÖ·</a>]&nbsp;&nbsp;</div></td>
   </tr>
 </table>
 <br>
 <table width="600" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
     <tr class="header">
-      <td width="65%" height="23"><div align="center">åœ°å€åç§°</div></td>
-      <td width="10%"><div align="center">é»˜è®¤</div></td>
-      <td width="25%"><div align="center">æ“ä½œ</div></td>
+      <td width="65%" height="23"><div align="center">µØÖ·Ãû³Æ</div></td>
+      <td width="10%"><div align="center">Ä¬ÈÏ</div></td>
+      <td width="25%"><div align="center">²Ù×÷</div></td>
     </tr>
     <?php
 	while($r=$empire->fetch($sql))
 	{
 		if($r['isdefault'])
 		{
-			$isdefault='æ˜¯';
+			$isdefault='ÊÇ';
 		}
 		else
 		{
@@ -37,7 +37,7 @@ require(ECMS_PATH.'e/template/incfile/header.php');
     <tr bgcolor="#FFFFFF">
       <td height="25"><div align="center"><?=stripSlashes($r['addressname'])?></div></td>
       <td><div align="center"><?=$isdefault?></div></td>
-      <td><div align="center">[<a href="AddAddress.php?enews=EditAddress&addressid=<?=$r['addressid']?>">ä¿®æ”¹</a>] [<a href="../doaction.php?enews=DefAddress&addressid=<?=$r['addressid']?>" onclick="return confirm('ç¡®è®¤è¦è®¾ä¸ºé»˜è®¤?');">é»˜è®¤</a>] [<a href="../doaction.php?enews=DelAddress&addressid=<?=$r['addressid']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+      <td><div align="center">[<a href="AddAddress.php?enews=EditAddress&addressid=<?=$r['addressid']?>">ĞŞ¸Ä</a>] [<a href="../doaction.php?enews=DefAddress&addressid=<?=$r['addressid']?>" onclick="return confirm('È·ÈÏÒªÉèÎªÄ¬ÈÏ?');">Ä¬ÈÏ</a>] [<a href="../doaction.php?enews=DelAddress&addressid=<?=$r['addressid']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
     </tr>
     <?php
 	}

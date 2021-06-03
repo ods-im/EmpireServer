@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"yh");
 
-//è¿”å›å˜é‡å¤„ç†
+//·µ»Ø±äÁ¿´¦Àí
 function ReturnYhVar($add){
 	$add['hlist']=(int)$add['hlist'];
 	$add['qlist']=(int)$add['qlist'];
@@ -40,7 +40,7 @@ function ReturnYhVar($add){
 	return $add;
 }
 
-//å¢åŠ ä¼˜åŒ–æ–¹æ¡ˆ
+//Ôö¼ÓÓÅ»¯·½°¸
 function AddYh($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add=ReturnYhVar($add);
@@ -48,14 +48,14 @@ function AddYh($add,$userid,$username){
 	{
 		printerror("EmptyYhname","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"yh");
 	$sql=$empire->query("insert into {$dbtbpre}enewsyh(yhname,yhtext,hlist,qlist,bqnew,bqhot,bqpl,bqgood,bqfirst,bqdown,otherlink,qmlist,dobq,dojs,dosbq,rehtml) values('$add[yhname]','$add[yhtext]','$add[hlist]','$add[qlist]','$add[bqnew]','$add[bqhot]','$add[bqpl]','$add[bqgood]','$add[bqfirst]','$add[bqdown]','$add[otherlink]','$add[qmlist]','$add[dobq]','$add[dojs]','$add[dosbq]','$add[rehtml]');");
-	GetClass();//æ›´æ–°ç¼“å­˜
+	GetClass();//¸üĞÂ»º´æ
 	if($sql)
 	{
 		$id=$empire->lastid();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id&yhname=$add[yhname]");
 		printerror("AddYhSuccess","AddYh.php?enews=AddYh".hReturnEcmsHashStrHref2(0));
 	}
@@ -65,7 +65,7 @@ function AddYh($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ä¼˜åŒ–æ–¹æ¡ˆ
+//ĞŞ¸ÄÓÅ»¯·½°¸
 function EditYh($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add=ReturnYhVar($add);
@@ -74,13 +74,13 @@ function EditYh($add,$userid,$username){
 	{
 		printerror("EmptyYhname","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"yh");
 	$sql=$empire->query("update {$dbtbpre}enewsyh set yhname='$add[yhname]',yhtext='$add[yhtext]',hlist='$add[hlist]',qlist='$add[qlist]',bqnew='$add[bqnew]',bqhot='$add[bqhot]',bqpl='$add[bqpl]',bqgood='$add[bqgood]',bqfirst='$add[bqfirst]',bqdown='$add[bqdown]',otherlink='$add[otherlink]',qmlist='$add[qmlist]',dobq='$add[dobq]',dojs='$add[dojs]',dosbq='$add[dosbq]',rehtml='$add[rehtml]' where id='$id'");
-	GetClass();//æ›´æ–°ç¼“å­˜
+	GetClass();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("id=$id&yhname=$add[yhname]");
 		printerror("EditYhSuccess","ListYh.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -90,7 +90,7 @@ function EditYh($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤ä¼˜åŒ–æ–¹æ¡ˆ
+//É¾³ıÓÅ»¯·½°¸
 function DelYh($id,$userid,$username){
 	global $empire,$dbtbpre;
 	$id=(int)$id;
@@ -98,14 +98,14 @@ function DelYh($id,$userid,$username){
 	{
 		printerror("NotChangeYhid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"yh");
 	$r=$empire->fetch1("select yhname from {$dbtbpre}enewsyh where id='$id'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsyh where id='$id'");
-	GetClass();//æ›´æ–°ç¼“å­˜
+	GetClass();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id&yhname=$r[yhname]");
 		printerror("DelYhSuccess","ListYh.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -141,12 +141,12 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=20;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=20;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=20;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=20;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select id,yhname from {$dbtbpre}enewsyh";
 $totalquery="select count(*) as total from {$dbtbpre}enewsyh";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by id desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -154,17 +154,17 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ä¼˜åŒ–æ–¹æ¡ˆ</title>
+<title>ÓÅ»¯·½°¸</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href=ListYh.php<?=$ecms_hashur['whehref']?>>ç®¡ç†ä¼˜åŒ–æ–¹æ¡ˆ</a></td>
+    <td width="50%" height="25">Î»ÖÃ£º<a href=ListYh.php<?=$ecms_hashur['whehref']?>>¹ÜÀíÓÅ»¯·½°¸</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit" value="å¢åŠ ä¼˜åŒ–æ–¹æ¡ˆ" onclick="self.location.href='AddYh.php?enews=AddYh<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit" value="Ôö¼ÓÓÅ»¯·½°¸" onclick="self.location.href='AddYh.php?enews=AddYh<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -173,8 +173,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="16%" height="25"> <div align="center">ID</div></td>
-    <td width="51%" height="25"> <div align="center">æ–¹æ¡ˆåç§°</div></td>
-    <td width="33%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="51%" height="25"> <div align="center">·½°¸Ãû³Æ</div></td>
+    <td width="33%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -187,7 +187,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td height="25"> <div align="center"> 
         <?=$r[yhname]?>
       </div></td>
-    <td height="25"> <div align="center">[<a href="AddYh.php?enews=EditYh&id=<?=$r[id]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="AddYh.php?enews=AddYh&docopy=1&id=<?=$r[id]?><?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>]&nbsp;[<a href="ListYh.php?enews=DelYh&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td height="25"> <div align="center">[<a href="AddYh.php?enews=EditYh&id=<?=$r[id]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="AddYh.php?enews=AddYh&docopy=1&id=<?=$r[id]?><?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>]&nbsp;[<a href="ListYh.php?enews=DelYh&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

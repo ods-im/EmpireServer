@@ -1,6 +1,6 @@
 <?php
 require("../../class/connect.php");
-eCheckCloseMods('pl');//鍏抽棴妯″潡
+eCheckCloseMods('pl');//关闭模块
 $id=(int)$_GET['id'];
 $classid=(int)$_GET['classid'];
 $num=(int)$_GET['num'];
@@ -13,14 +13,14 @@ require("../../class/db_sql.php");
 require("../../class/q_functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//涓撻
+//专题
 if($doaction=='dozt')
 {
 	if(empty($classid))
 	{
 		exit();
 	}
-	//淇℃伅
+	//信息
 	$infor=$empire->fetch1("select ztid,restb from {$dbtbpre}enewszt where ztid='$classid' limit 1");
 	if(!$infor['ztid'])
 	{
@@ -39,7 +39,7 @@ else
 	{
 		exit();
 	}
-	//淇℃伅
+	//信息
 	$infor=$empire->fetch1("select classid,restb from {$dbtbpre}ecms_".$class_r[$classid]['tbname']." where id='$id' limit 1");
 	if(!$infor['classid']||$infor['classid']!=$classid)
 	{
@@ -47,7 +47,7 @@ else
 	}
 	$pubid=ReturnInfoPubid($classid,$id);
 }
-//鎺掑簭
+//排序
 $addorder='plid desc';
 $myorder=(int)$_GET['myorder'];
 if($myorder==1)
@@ -63,7 +63,7 @@ while($r=$empire->fetch($sql))
 	$plusername=$r[username];
 	if(empty($r[username]))
 	{
-		$plusername='鍖垮悕';
+		$plusername='匿名';
 	}
 	if($r[userid])
 	{
@@ -73,7 +73,7 @@ while($r=$empire->fetch($sql))
 	//ip
 	$sayip=ToReturnXhIp($r[sayip]);
 	$saytext=str_replace("\r\n","",$r['saytext']);
-	$saytext=addslashes(RepPltextFace(stripSlashes($saytext)));//鏇挎崲琛ㄦ儏
+	$saytext=addslashes(RepPltextFace(stripSlashes($saytext)));//替换表情
 ?>
 document.write("<!--empire.listtemp.center-->");
 <?php

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//验证
+//��֤
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -43,15 +43,15 @@ else
 	$filename="file.php";
 }
 $editor=1;
-//风格
+//���
 $loginadminstyleid=(int)getcvar('loginadminstyleid',1);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>选择文件</title>
+<title>ѡ���ļ�</title>
 <script>
 function ChangeShowMod(obj){
 	var furl,searchstr,dotype;
@@ -77,17 +77,17 @@ function ChangeShowMod(obj){
       <table width="100%" border="0" cellspacing="1" cellpadding="3">
         <form name="FileMainNav" method="get" action="">
           <tr> 
-            <td height="25">显示模式： 
+            <td height="25">��ʾģʽ�� 
               <select name="showmod" id="showmod" onchange="ChangeShowMod(document.FileMainNav);">
-                <option value="0"<?=$showmod==0?' selected':''?>>数据库模式</option>
-                <option value="1"<?=$showmod==1?' selected':''?>>目录模式</option>
+                <option value="0"<?=$showmod==0?' selected':''?>>���ݿ�ģʽ</option>
+                <option value="1"<?=$showmod==1?' selected':''?>>Ŀ¼ģʽ</option>
               </select>
-              文件类型： 
+              �ļ����ͣ� 
               <select name="type" id="type" onchange="ChangeShowMod(document.FileMainNav);">
-                <option value="1"<?=$type==1?' selected':''?>>图片</option>
-                <option value="2"<?=$type==2?' selected':''?>>Flash文件</option>
-                <option value="3"<?=$type==3?' selected':''?>>多媒体文件</option>
-                <option value="0"<?=$type==0?' selected':''?>>其他附件</option>
+                <option value="1"<?=$type==1?' selected':''?>>ͼƬ</option>
+                <option value="2"<?=$type==2?' selected':''?>>Flash�ļ�</option>
+                <option value="3"<?=$type==3?' selected':''?>>��ý���ļ�</option>
+                <option value="0"<?=$type==0?' selected':''?>>��������</option>
               </select>
             </td>
           </tr>

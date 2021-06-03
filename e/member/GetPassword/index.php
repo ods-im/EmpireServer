@@ -6,12 +6,12 @@ require("../class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 if(!$public_r['opengetpass'])
 {
 	printerror('CloseGetPassword','',1);
 }
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/GetPassword.php');
 db_close();
 $empire=null;

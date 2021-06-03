@@ -12,7 +12,7 @@ if($down==2)
 {
 	$classf.=',checkpl';
 }
-if($down==7)//ä¸“é¢˜
+if($down==7)//×¨Ìâ
 {
 	$cr=$empire->fetch1("select restb from {$dbtbpre}enewszt where ztid='$classid' limit 1");
 	if(!$cr['restb'])
@@ -28,7 +28,7 @@ else
 		exit();
 	}
 }
-//æµè§ˆæ•°
+//ä¯ÀÀÊı
 if($down==0)
 {
 	$r=$empire->fetch1("select onclick from {$dbtbpre}ecms_".$cr['tbname']." where id='$id' limit 1");
@@ -38,13 +38,13 @@ if($down==0)
 		$usql=$empire->query("update {$dbtbpre}ecms_".$cr['tbname']." set onclick=onclick+1 where id='$id' limit 1");
 	}
 }
-//ä¸‹è½½æ•°
+//ÏÂÔØÊı
 elseif($down==1)
 {
 	$r=$empire->fetch1("select totaldown from {$dbtbpre}ecms_".$cr['tbname']." where id='$id' limit 1");
 	$shownum=$r['totaldown'];
 }
-//è¯„è®ºæ•°
+//ÆÀÂÛÊı
 elseif($down==2)
 {
 	if($cr['checkpl'])
@@ -63,31 +63,31 @@ elseif($down==2)
 		$shownum=$r['plnum'];
 	}
 }
-//è¯„åˆ†æ•°
+//ÆÀ·ÖÊı
 elseif($down==3)
 {
 	$r=$empire->fetch1("select infopfen,infopfennum from {$dbtbpre}ecms_".$cr['tbname']." where id='$id' limit 1");
 	$shownum=$r[infopfennum]?round($r[infopfen]/$r[infopfennum]):0;
 }
-//è¯„åˆ†äººæ•°
+//ÆÀ·ÖÈËÊı
 elseif($down==4)
 {
 	$r=$empire->fetch1("select infopfennum from {$dbtbpre}ecms_".$cr['tbname']." where id='$id' limit 1");
 	$shownum=$r['infopfennum'];
 }
-//diggé¡¶æ•°
+//digg¶¥Êı
 elseif($down==5)
 {
 	$r=$empire->fetch1("select diggtop from {$dbtbpre}ecms_".$cr['tbname']." where id='$id' limit 1");
 	$shownum=$r['diggtop'];
 }
-//diggè¸©æ•°
+//digg²ÈÊı
 elseif($down==6)
 {
 	$r=$empire->fetch1("select diggdown from {$dbtbpre}ecms_".$cr['tbname']." where id='$id' limit 1");
 	$shownum=$r['diggdown'];
 }
-//ä¸“é¢˜è¯„è®ºæ•°
+//×¨ÌâÆÀÂÛÊı
 elseif($down==7)
 {
 	$pubid='-'.$classid;

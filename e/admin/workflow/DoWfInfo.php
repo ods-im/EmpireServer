@@ -7,7 +7,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -24,7 +24,7 @@ if($isclose)
 	exit();
 }
 
-//å®¡æ ¸
+//ÉóºË
 $ecmscheck=(int)$_GET['ecmscheck'];
 $addecmscheck='';
 $indexchecked=1;
@@ -39,9 +39,9 @@ if(!$id||!$classid||!$class_r[$classid][tbname])
 {
 	printerror('ErrorUrl','');
 }
-//ç´¢å¼•è¡¨
+//Ë÷Òı±í
 $index_r=$empire->fetch1("select checked from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index where id='$id' limit 1");
-//è¿”å›è¡¨
+//·µ»Ø±í
 $infotb=ReturnInfoMainTbname($class_r[$classid][tbname],$index_r['checked']);
 $nr=$empire->fetch1("select id,classid,userid,username,isqf,title from ".$infotb." where id='$id' limit 1");
 if(!$nr['id']||$classid!=$nr[classid]||!$nr[isqf])
@@ -53,7 +53,7 @@ if(!$r['id'])
 {
 	printerror('ErrorUrl','');
 }
-//å·¥ä½œæµ
+//¹¤×÷Á÷
 if($r[tid])
 {
 	$cwfitemr=$empire->fetch1("select wfid,groupid,userclass,username from {$dbtbpre}enewsworkflowitem where tid='$r[tid]'");
@@ -65,9 +65,9 @@ if($r[tid])
 		//printerror("NotDoCheckUserLevel","history.go(-1)");
 	}
 }
-//å·¥ä½œæµ
+//¹¤×÷Á÷
 $wfr=$empire->fetch1("select wfname from {$dbtbpre}enewsworkflow where wfid='$r[wfid]'");
-//èŠ‚ç‚¹
+//½Úµã
 $endwfitem=0;
 $wfitems='';
 $wfitemsql=$empire->query("select tid,tname from {$dbtbpre}enewsworkflowitem where wfid='$r[wfid]' order by tno");
@@ -86,56 +86,56 @@ while($wfitemr=$empire->fetch($wfitemsql))
 	}
 	$wfitems.="<option value='".$wfitemr[tid]."'".$select.">".$wfitemsch.$wfitemr[tname]."</option>";
 }
-//è®°å½•
+//¼ÇÂ¼
 $logsql=$empire->query("select tid,username,checktime,checktext,checknum,checktype from {$dbtbpre}enewswfinfolog where id='$id' and classid='$classid' order by logid desc");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç­¾å‘ä¿¡æ¯</title>
+<title>Ç©·¢ĞÅÏ¢</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="41%">ä¿¡æ¯ï¼š<a href="ShowWfInfo.php?classid=<?=$classid?>&id=<?=$r[id]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>" target=_blank> 
+    <td width="41%">ĞÅÏ¢£º<a href="ShowWfInfo.php?classid=<?=$classid?>&id=<?=$r[id]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>" target=_blank> 
       <?=stripSlashes($nr[title])?>
       </a></td>
-    <td width="59%"><div align="right">å·¥ä½œæµï¼š<?=$wfr[wfname]?>ï¼Œè¿›åº¦ï¼š 
+    <td width="59%"><div align="right">¹¤×÷Á÷£º<?=$wfr[wfname]?>£¬½ø¶È£º 
         <select name="select">
 		<?=$wfitems?>
-		<?=$endwfitem==1?'<option value="0" selected>&gt;å®¡æ ¸é€šè¿‡</option>':'<option value="0">&nbsp;&nbsp;å®¡æ ¸é€šè¿‡</option>'?>
+		<?=$endwfitem==1?'<option value="0" selected>&gt;ÉóºËÍ¨¹ı</option>':'<option value="0">&nbsp;&nbsp;ÉóºËÍ¨¹ı</option>'?>
         </select>
       </div></td>
   </tr>
 </table>
-<form name="wfform" method="post" action="../ecmsinfo.php" onsubmit="return confirm('ç¡®è®¤è¦æäº¤?');">
+<form name="wfform" method="post" action="../ecmsinfo.php" onsubmit="return confirm('È·ÈÏÒªÌá½»?');">
   <table width="100%" border="0" cellspacing="1" cellpadding="3" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td colspan="2">ç­¾å‘</td>
+      <td colspan="2">Ç©·¢</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="20%">æ“ä½œ</td>
+      <td width="20%">²Ù×÷</td>
       <td width="80%"> 
         <input name="doing" type="radio" value="1" checked>
-        é€šè¿‡ 
+        Í¨¹ı 
         <input type="radio" name="doing" value="2">
-        è¿”å·¥ 
+        ·µ¹¤ 
         <input type="radio" name="doing" value="3">
-        å¦å†³</td>
+        ·ñ¾ö</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td>è¯„è¯­</td>
+      <td>ÆÀÓï</td>
       <td> 
         <textarea name="checktext" cols="60" rows="8" id="textarea"></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td>&nbsp;</td>
       <td> 
-        <input type="submit" name="Submit3" value="æäº¤">
+        <input type="submit" name="Submit3" value="Ìá½»">
         <input name="enews" type="hidden" id="enews" value="DoWfInfo">
         <input name="classid" type="hidden" id="classid" value="<?=$classid?>">
         <input name="id" type="hidden" id="id" value="<?=$id?>">
@@ -146,37 +146,37 @@ $logsql=$empire->query("select tid,username,checktime,checktext,checknum,checkty
 </form>
 <table width="98%" border="0" cellspacing="1" cellpadding="3" class="tableborder">
   <tr class="header"> 
-    <td colspan="5">æ“ä½œè®°å½•</td>
+    <td colspan="5">²Ù×÷¼ÇÂ¼</td>
   </tr>
   <tr> 
-    <td width="17%"><div align="center">èŠ‚ç‚¹</div></td>
-    <td width="7%"><div align="center">æ“ä½œ</div></td>
-    <td width="13%"><div align="center">ç­¾å‘è€…</div></td>
-    <td width="18%"><div align="center">æ—¶é—´</div></td>
-    <td width="45%"><div align="center">è¯„è¯­</div></td>
+    <td width="17%"><div align="center">½Úµã</div></td>
+    <td width="7%"><div align="center">²Ù×÷</div></td>
+    <td width="13%"><div align="center">Ç©·¢Õß</div></td>
+    <td width="18%"><div align="center">Ê±¼ä</div></td>
+    <td width="45%"><div align="center">ÆÀÓï</div></td>
   </tr>
   <?php
   while($logr=$empire->fetch($logsql))
   {
-  	//èŠ‚ç‚¹
+  	//½Úµã
 	$itemr=$empire->fetch1("select tname from {$dbtbpre}enewsworkflowitem where tid='$logr[tid]'");
-  	//æ“ä½œ
+  	//²Ù×÷
   	$st='';
   	if($logr['checktype']==1)
 	{
-		$st='é€šè¿‡';
+		$st='Í¨¹ı';
 	}
 	elseif($logr['checktype']==2)
 	{
-		$st='è¿”å·¥';
+		$st='·µ¹¤';
 	}
 	elseif($logr['checktype']==3)
 	{
-		$st='å¦å†³';
+		$st='·ñ¾ö';
 	}
 	elseif($logr['checktype']==0)
 	{
-		$st='é€å®¡';
+		$st='ËÍÉó';
 	}
   ?>
   <tr bgcolor="#FFFFFF"> 

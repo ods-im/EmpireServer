@@ -7,7 +7,7 @@ require('../../class/friendfun.php');
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=2;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 $user=islogin();
 $enews=RepPostStr($_GET['enews'],1);
 if(empty($enews))
@@ -16,14 +16,14 @@ if(empty($enews))
 }
 $r=array();
 $fid=0;
-$word="娣诲姞濂藉弸";
+$word="添加好友";
 $fcid=(int)$_GET['fcid'];
 if($fcid)
 {
 	$r['cid']=$fcid;
 }
 $fname=RepPostStr($_GET['fname'],1);
-//淇敼
+//修改
 if($enews=="EditFriend")
 {
 	$fid=(int)$_GET['fid'];
@@ -37,10 +37,10 @@ if($enews=="EditFriend")
 		printerror("ErrorUrl","",1);
 	}
 	$fname=$r['fname'];
-	$word="淇敼濂藉弸";
+	$word="修改好友";
 }
 $select=ReturnFriendclass($user['userid'],$r['cid']);
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/AddFriend.php');
 db_close();
 $empire=null;

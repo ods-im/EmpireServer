@@ -3,13 +3,13 @@ require('../class/connect.php');
 require('../class/q_functions.php');
 require('../class/db_sql.php');
 require('../data/dbcache/class.php');
-eCheckCloseMods('rss');//å…³é—­æ¨¡å—
+eCheckCloseMods('rss');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
-//å‚æ•°è®¾ç½®
+//²ÎÊýÉèÖÃ
 $pagecode=$ecms_config['sets']['pagechar']?$ecms_config['sets']['pagechar']:'gb2312';
 
-//è¿”å›žç®€ä»‹å­—æ®µå
+//·µ»Ø¼ò½é×Ö¶ÎÃû
 function ReturnTheIntroField($r){
 	global $public_r,$class_r,$emod_r,$tbname;
 	$mid=$class_r[$r[classid]]['modid'];
@@ -34,14 +34,14 @@ function ReturnTheIntroField($r){
 	{
 		$field='newstext';
 	}
-	//å­˜æ–‡æœ¬
+	//´æÎÄ±¾
 	if($stf==$field)
 	{
 		$field='';
 	}
 	return $field;
 }
-//æ›¿æ¢
+//Ìæ»»
 function RepSpeRssStr($str){
 	$str=stripSlashes($str);
 	$str=ehtmlspecialchars($str,ENT_QUOTES);
@@ -49,12 +49,12 @@ function RepSpeRssStr($str){
 	return $str;
 }
 
-//åœ°å€éªŒè¯
+//µØÖ·ÑéÖ¤
 if(!stristr($public_r['newsurl'],'://'))
 {
 	$public_r['newsurl']=eReturnDomain().$public_r['newsurl'];
 }
-$sitedomain=eReturnDomain();//ç½‘ç«™åŸŸå
+$sitedomain=eReturnDomain();//ÍøÕ¾ÓòÃû
 
 $pagetitle=$public_r['sitename'];
 $pageurl=$public_r['newsurl'];
@@ -64,7 +64,7 @@ $tbname='';
 $add='';
 $yhid=0;
 $yhvar='qlist';
-//æ¨¡åž‹ID
+//Ä£ÐÍID
 $mid=(int)$_GET['mid'];
 if($mid)
 {
@@ -75,13 +75,13 @@ if($mid)
 	}
 	$yhid=$etable_r[$tbname][yhid];
 }
-//æ ç›®
+//À¸Ä¿
 $trueclassid=0;
 $classid=$_GET['classid'];
 if($classid)
 {
 	$classid=RepPostVar($classid);
-	if(strstr($classid,','))//å¤šæ ç›®
+	if(strstr($classid,','))//¶àÀ¸Ä¿
 	{
 		$son_r=sys_ReturnMoreClass($classid,1);
 		$trueclassid=$son_r[0];
@@ -90,7 +90,7 @@ if($classid)
 	else
 	{
 		$trueclassid=intval($classid);
-		if($class_r[$trueclassid][islast])//ç»ˆæžæ ç›®
+		if($class_r[$trueclassid][islast])//ÖÕ¼«À¸Ä¿
 		{
 			$add.=" and classid='$trueclassid'";
 		}
@@ -98,7 +98,7 @@ if($classid)
 		{
 			$add.=' and '.ReturnClass($class_r[$trueclassid][sonclass]);
 		}
-		//é¡µé¢æ ‡é¢˜
+		//Ò³Ãæ±êÌâ
 		$pagetitle=$class_r[$trueclassid]['classname'];
 		$this_r['classid']=$trueclassid;
 		$pageurl=sys_ReturnBqClassname($this_r,9);
@@ -116,13 +116,13 @@ if($classid)
 		$yhid=$class_r[$trueclassid][yhid];
 	}
 }
-//æ ‡é¢˜åˆ†ç±»
+//±êÌâ·ÖÀà
 $truettid=0;
 $ttid=$_GET['ttid'];
 if($ttid)
 {
 	$ttid=RepPostVar($ttid);
-	if(strstr($ttid,','))//å¤šæ ‡é¢˜åˆ†ç±»
+	if(strstr($ttid,','))//¶à±êÌâ·ÖÀà
 	{
 		$son_r=sys_ReturnMoreTT($ttid);
 		$truettid=$son_r[0];
@@ -151,7 +151,7 @@ if($ttid)
 		$yhid=$class_tr[$truettid][yhid];
 	}
 }
-//é»˜è®¤è¡¨
+//Ä¬ÈÏ±í
 if(empty($tbname))
 {
 	$tbname=$public_r['tbname'];
@@ -162,29 +162,29 @@ if(empty($tbname)||InfoIsInTable($tbname))
 {
 	printerror('ErrorUrl','',1);
 }
-//æŽ’åº
+//ÅÅÐò
 $order=(int)$_GET['order'];
-if($order==1)//æŒ‰ID
+if($order==1)//°´ID
 {
 	$myorder="id";
 }
-elseif($order==2)//è¯„è®ºæ•°
+elseif($order==2)//ÆÀÂÛÊý
 {
 	$myorder="plnum";
 }
-elseif($order==3)//ç‚¹å‡»æ•°
+elseif($order==3)//µã»÷Êý
 {
 	$myorder="onclick";
 }
-elseif($order==4)//ä¸‹è½½æ•°
+elseif($order==4)//ÏÂÔØÊý
 {
 	$myorder="totaldown";
 }
-else//å‘å¸ƒæ—¶é—´
+else//·¢²¼Ê±¼ä
 {
 	$myorder="newstime";
 }
-//æ˜¾ç¤ºé¡ºåº
+//ÏÔÊ¾Ë³Ðò
 $orderby=(int)$_GET['orderby'];
 if($orderby)
 {
@@ -194,7 +194,7 @@ else
 {
 	$myorderby="DESC";
 }
-//ä¼˜åŒ–
+//ÓÅ»¯
 $yhadd='';
 if($yhid)
 {
@@ -203,7 +203,7 @@ if($yhid)
 $query="select ".ReturnSqlListF($mid)." from {$dbtbpre}ecms_".$tbname.ReturnYhAndSql($yhadd,$add,1)." order by ".$myorder." ".$myorderby." limit ".$public_r['rssnum'];
 $sublen=$public_r['rsssub'];
 $sql=$empire->query($query);
-//æ˜¾ç¤ºæ–‡ä»¶
+//ÏÔÊ¾ÎÄ¼þ
 $type=$_GET['type'];
 if($type=="xml")//xml
 {

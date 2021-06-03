@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"tempvar");
 $gid=(int)$_GET['gid'];
 $gname=CheckTempGroup($gid);
@@ -23,16 +23,16 @@ $urlgname=$gname."&nbsp;>&nbsp;";
 $enews=ehtmlspecialchars($_GET['enews']);
 $cid=ehtmlspecialchars($_GET['cid']);
 $r[myorder]=0;
-$url=$urlgname."<a href=ListTempvar.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†æ¨¡æ¿å˜é‡</a>&nbsp;>&nbsp;å¢åŠ æ¨¡æ¿å˜é‡";
-//ä¿®æ”¹
+$url=$urlgname."<a href=ListTempvar.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀíÄ£°å±äÁ¿</a>&nbsp;>&nbsp;Ôö¼ÓÄ£°å±äÁ¿";
+//ĞŞ¸Ä
 if($enews=="EditTempvar")
 {
 	$varid=(int)$_GET['varid'];
 	$r=$empire->fetch1("select myvar,varname,varvalue,classid,isclose,myorder from ".GetDoTemptb("enewstempvar",$gid)." where varid='$varid'");
 	$r[varvalue]=ehtmlspecialchars(stripSlashes($r[varvalue]));
-	$url=$urlgname."<a href=ListTempvar.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†æ¨¡æ¿å˜é‡</a>&nbsp;>&nbsp;ä¿®æ”¹æ¨¡æ¿å˜é‡ï¼š".$r[myvar];
+	$url=$urlgname."<a href=ListTempvar.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀíÄ£°å±äÁ¿</a>&nbsp;>&nbsp;ĞŞ¸ÄÄ£°å±äÁ¿£º".$r[myvar];
 }
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewstempvarclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -50,8 +50,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ æ¨¡æ¿å˜é‡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼ÓÄ£°å±äÁ¿</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function ReTempBak(){
@@ -63,7 +63,7 @@ function ReTempBak(){
 <body>
 <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <br>
@@ -71,44 +71,44 @@ function ReTempBak(){
   <form name="form1" method="post" action="ListTempvar.php">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å¢åŠ æ¨¡æ¿å˜é‡ 
+      <td height="25" colspan="2">Ôö¼ÓÄ£°å±äÁ¿ 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="varid" type="hidden" value="<?=$varid?>"> 
         <input name="cid" type="hidden" value="<?=$cid?>"> 
         <input name="gid" type="hidden" value="<?=$gid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">å˜é‡å(*)</td>
+      <td width="19%" height="25">±äÁ¿Ãû(*)</td>
       <td width="81%" height="25">[!--temp. 
         <input name="myvar" type="text" value="<?=$r[myvar]?>" size="16">
-        --] <font color="#666666">(å¦‚ï¼šecmsï¼Œå˜é‡å°±æ˜¯[!--temp.ecms--])</font></td>
+        --] <font color="#666666">(Èç£ºecms£¬±äÁ¿¾ÍÊÇ[!--temp.ecms--])</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ‰€å±ç±»åˆ«</td>
+      <td height="25">ËùÊôÀà±ğ</td>
       <td height="25"><select name="classid">
-          <option value="0">ä¸éš¶å±äºä»»ä½•ç±»åˆ«</option>
+          <option value="0">²»Á¥ÊôÓÚÈÎºÎÀà±ğ</option>
           <?=$cstr?>
-        </select> <input type="button" name="Submit6222322" value="ç®¡ç†åˆ†ç±»" onclick="window.open('TempvarClass.php<?=$ecms_hashur['whehref']?>');"></td>
+        </select> <input type="button" name="Submit6222322" value="¹ÜÀí·ÖÀà" onclick="window.open('TempvarClass.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å˜é‡æ ‡è¯†(*)</td>
+      <td height="25">±äÁ¿±êÊ¶(*)</td>
       <td height="25"><input name="varname" type="text" value="<?=$r[varname]?>"> 
-        <font color="#666666">(å¦‚ï¼šå¸å›½CMS)</font></td>
+        <font color="#666666">(Èç£ºµÛ¹úCMS)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ˜¯å¦å¼€å¯å˜é‡</td>
+      <td height="25">ÊÇ·ñ¿ªÆô±äÁ¿</td>
       <td height="25"><input type="radio" name="isclose" value="0"<?=$r[isclose]==0?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="isclose" value="1"<?=$r[isclose]==1?' checked':''?>>
-        å¦<font color="#666666">ï¼ˆå¼€å¯æ‰ä¼šåœ¨æ¨¡æ¿ä¸­ç”Ÿæ•ˆï¼‰</font></td>
+        ·ñ<font color="#666666">£¨¿ªÆô²Å»áÔÚÄ£°åÖĞÉúĞ§£©</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å˜é‡æ’åº</td>
+      <td height="25">±äÁ¿ÅÅĞò</td>
       <td height="25"><input name="myorder" type="text" value="<?=$r[myorder]?>" size="6"> 
-        <font color="#666666">(å€¼è¶Šå¤§ç­‰çº§è¶Šé«˜ï¼Œå¯ä»¥åµŒå…¥æ›´ä½ç­‰çº§çš„å˜é‡)</font></td>
+        <font color="#666666">(ÖµÔ½´óµÈ¼¶Ô½¸ß£¬¿ÉÒÔÇ¶Èë¸üµÍµÈ¼¶µÄ±äÁ¿)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><strong>å˜é‡å€¼</strong>(*)</td>
-      <td height="25">è¯·å°†å˜é‡å†…å®¹<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.varvalue.value);document.form1.varvalue.select()" title="ç‚¹å‡»å¤åˆ¶æ¨¡æ¿å†…å®¹"><strong>å¤åˆ¶åˆ°Dreamweaver(æ¨è)</strong></a>æˆ–è€…ä½¿ç”¨<a href="#ecms" onclick="window.open('editor.php?getvar=opener.document.form1.varvalue.value&returnvar=opener.document.form1.varvalue.value&fun=ReturnHtml&notfullpage=1<?=$ecms_hashur['ehref']?>','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>æ¨¡æ¿åœ¨çº¿ç¼–è¾‘</strong></a>è¿›è¡Œå¯è§†åŒ–ç¼–è¾‘</td>
+      <td height="25"><strong>±äÁ¿Öµ</strong>(*)</td>
+      <td height="25">Çë½«±äÁ¿ÄÚÈİ<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.varvalue.value);document.form1.varvalue.select()" title="µã»÷¸´ÖÆÄ£°åÄÚÈİ"><strong>¸´ÖÆµ½Dreamweaver(ÍÆ¼ö)</strong></a>»òÕßÊ¹ÓÃ<a href="#ecms" onclick="window.open('editor.php?getvar=opener.document.form1.varvalue.value&returnvar=opener.document.form1.varvalue.value&fun=ReturnHtml&notfullpage=1<?=$ecms_hashur['ehref']?>','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>Ä£°åÔÚÏß±à¼­</strong></a>½øĞĞ¿ÉÊÓ»¯±à¼­</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"><div align="center">
@@ -117,12 +117,12 @@ function ReTempBak(){
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> &nbsp;<input type="reset" name="Submit2" value="é‡ç½®">
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> &nbsp;<input type="reset" name="Submit2" value="ÖØÖÃ">
         <?php
 		if($enews=='EditTempvar')
 		{
 		?>
-        &nbsp;&nbsp;[<a href="#empirecms" onclick="window.open('TempBak.php?temptype=tempvar&tempid=<?=$varid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>','ViewTempBak','width=450,height=500,scrollbars=yes,left=300,top=150,resizable=yes');">ä¿®æ”¹è®°å½•</a>] 
+        &nbsp;&nbsp;[<a href="#empirecms" onclick="window.open('TempBak.php?temptype=tempvar&tempid=<?=$varid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>','ViewTempBak','width=450,height=500,scrollbars=yes,left=300,top=150,resizable=yes');">ĞŞ¸Ä¼ÇÂ¼</a>] 
         <?php
 		}
 		?>
@@ -130,10 +130,10 @@ function ReTempBak(){
     </tr>
 	</form>
 	<tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="2">&nbsp;[<a href="#ecms" onclick="window.open('EnewsBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=500,scrollbars=yes,resizable=yes');">æŸ¥çœ‹æ¨¡æ¿æ ‡ç­¾è¯­æ³•</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹JSè°ƒç”¨åœ°å€</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListTempvar.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹å…¬å…±æ¨¡æ¿å˜é‡</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListBqtemp.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹æ ‡ç­¾æ¨¡æ¿</a>]</td>
+      <td height="25" colspan="2">&nbsp;[<a href="#ecms" onclick="window.open('EnewsBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=500,scrollbars=yes,resizable=yes');">²é¿´Ä£°å±êÇ©Óï·¨</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´JSµ÷ÓÃµØÖ·</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListTempvar.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´¹«¹²Ä£°å±äÁ¿</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListBqtemp.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´±êÇ©Ä£°å</a>]</td>
     </tr>
   </table>
 </body>

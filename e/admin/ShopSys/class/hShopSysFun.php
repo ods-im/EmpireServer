@@ -1,9 +1,9 @@
 <?php
 
-//å•†åŸå‚æ•°è®¾ç½®
+//ÉÌ³Ç²ÎÊıÉèÖÃ
 function ShopSys_set($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"public");
 	$add['shopddgroupid']=(int)$add['shopddgroupid'];
 	$add['buycarnum']=(int)$add['buycarnum'];
@@ -19,7 +19,7 @@ function ShopSys_set($add,$userid,$username){
 	$add['cutnumtime']=(int)$add['cutnumtime'];
 	$add['freepstotal']=(int)$add['freepstotal'];
 	$add['singlenum']=(int)$add['singlenum'];
-	//å¿…å¡«é¡¹
+	//±ØÌîÏî
 	$ddmuststr='';
 	$ddmustf=$add['ddmustf'];
 	$mfcount=count($ddmustf);
@@ -35,7 +35,7 @@ function ShopSys_set($add,$userid,$username){
 	{
 		$ddmuststr.=',';
 	}
-	//å•†åŸè¡¨
+	//ÉÌ³Ç±í
 	$shoptbs='';
 	$tbname=$add['tbname'];
 	$tbcount=count($tbname);
@@ -56,7 +56,7 @@ function ShopSys_set($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsshop_set set shopddgroupid='$add[shopddgroupid]',buycarnum='$add[buycarnum]',havefp='$add[havefp]',fpnum='$add[fpnum]',fpname='".eaddslashes($add[fpname])."',ddmust='$ddmuststr',haveatt='$add[haveatt]',shoptbs='$shoptbs',buystep='$add[buystep]',shoppsmust='$add[shoppsmust]',shoppayfsmust='$add[shoppayfsmust]',dddeltime='$add[dddeltime]',cutnumtype='$add[cutnumtype]',cutnumtime='$add[cutnumtime]',freepstotal='$add[freepstotal]',singlenum='$add[singlenum]' limit 1");
 	if($sql)
 	{
-		insert_dolog("");//æ“ä½œæ—¥å¿—
+		insert_dolog("");//²Ù×÷ÈÕÖ¾
 		printerror('SetShopSysSuccess','SetShopSys.php'.hReturnEcmsHashStrHref2(1));
 	}
 	else
@@ -65,17 +65,17 @@ function ShopSys_set($add,$userid,$username){
 	}
 }
 
-//è¿”å›å•†åŸå‚æ•°
+//·µ»ØÉÌ³Ç²ÎÊı
 function ShopSys_hReturnSet(){
 	global $empire,$dbtbpre;
 	$shoppr=$empire->fetch1("select * from {$dbtbpre}enewsshop_set limit 1");
 	return $shoppr;
 }
 
-//åå°è®¢å•å¢åŠ å¤‡æ³¨
+//ºóÌ¨¶©µ¥Ôö¼Ó±¸×¢
 function ShopSys_DdRetext($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shopdd");
 	$ddid=(int)$add['ddid'];
 	$retext=eaddslashes(ehtmlspecialchars($add['retext']));
@@ -93,8 +93,8 @@ function ShopSys_DdRetext($add,$userid,$username){
 	{
 		$log_bz='';
 		$log_addbz="";
-		ShopSys_DdInsertLog($ddid,'DdRetext',$log_bz,$log_addbz);//è®¢å•æ—¥å¿—
-		insert_dolog("ddid=$ddid<br>ddno=$r[ddno]");//æ“ä½œæ—¥å¿—
+		ShopSys_DdInsertLog($ddid,'DdRetext',$log_bz,$log_addbz);//¶©µ¥ÈÕÖ¾
+		insert_dolog("ddid=$ddid<br>ddno=$r[ddno]");//²Ù×÷ÈÕÖ¾
 		printerror('DdRetextSuccess',"ShowDd.php?ddid=$ddid".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -103,10 +103,10 @@ function ShopSys_DdRetext($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ä¼˜æƒ é‡‘é¢
+//ĞŞ¸ÄÓÅ»İ½ğ¶î
 function ShopSys_EditPretotal($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shopdd");
 	$ddid=(int)$add['ddid'];
 	$bz=eaddslashes(ehtmlspecialchars($add['bz']));
@@ -125,8 +125,8 @@ function ShopSys_EditPretotal($add,$userid,$username){
 	{
 		$log_bz=$bz;
 		$log_addbz="oldpre=$r[pretotal]&newpre=$pretotal";
-		ShopSys_DdInsertLog($ddid,'EditPretotal',$log_bz,$log_addbz);//è®¢å•æ—¥å¿—
-		insert_dolog("ddid=$ddid&ddno=$r[ddno]<br>oldpre=$r[pretotal]&newpre=$pretotal");//æ“ä½œæ—¥å¿—
+		ShopSys_DdInsertLog($ddid,'EditPretotal',$log_bz,$log_addbz);//¶©µ¥ÈÕÖ¾
+		insert_dolog("ddid=$ddid&ddno=$r[ddno]<br>oldpre=$r[pretotal]&newpre=$pretotal");//²Ù×÷ÈÕÖ¾
 		printerror('DdEditPretotalSuccess',"ShowDd.php?ddid=$ddid".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -135,10 +135,10 @@ function ShopSys_EditPretotal($add,$userid,$username){
 	}
 }
 
-//å‡å°‘æˆ–æ¢å¤åº“å­˜
+//¼õÉÙ»ò»Ö¸´¿â´æ
 function Shopsys_DoCutMaxnum($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shopdd");
 	$ddid=$add['ddid'];
 	$ecms=(int)$add['cutmaxnum'];
@@ -169,14 +169,14 @@ function Shopsys_DoCutMaxnum($add,$userid,$username){
 		Shopsys_hCutMaxnum($doddid,$ddaddr['buycar'],$ddr['havecutnum'],$shoppr,$ecms);
 		$ids.=$dh.$doddid;
 		$dh=',';
-		//å†™å…¥è®¢å•æ—¥å¿—
+		//Ğ´Èë¶©µ¥ÈÕÖ¾
 		ShopSys_DdInsertLog($doddid,$log_ecms,$log_bz,$log_addbz);
 	}
-	insert_dolog("ddid=$ids<br>ecms=$ecms");//æ“ä½œæ—¥å¿—
+	insert_dolog("ddid=$ids<br>ecms=$ecms");//²Ù×÷ÈÕÖ¾
 	printerror('CutMaxnumSuccess',EcmsGetReturnUrl());
 }
 
-//å‡å°‘åº“å­˜
+//¼õÉÙ¿â´æ
 function Shopsys_hCutMaxnum($ddid,$buycar,$havecut,$shoppr,$ecms=0){
 	global $class_r,$empire,$dbtbpre,$public_r;
 	if(empty($buycar))
@@ -213,7 +213,7 @@ function Shopsys_hCutMaxnum($ddid,$buycar,$havecut,$shoppr,$ecms=0){
 		//ID
 		$classid=(int)$fr[0];
 		$id=(int)$fr[1];
-		//æ•°é‡
+		//ÊıÁ¿
 		$pnum=(int)$pr[3];
 		if($pnum<1)
 		{
@@ -229,7 +229,7 @@ function Shopsys_hCutMaxnum($ddid,$buycar,$havecut,$shoppr,$ecms=0){
 	$empire->query("update {$dbtbpre}enewsshopdd set havecutnum='$newhavecut' where ddid='$ddid'");
 }
 
-//è¿‡æœŸå–æ¶ˆè®¢å•å¹¶è¿˜åŸåº“å­˜
+//¹ıÆÚÈ¡Ïû¶©µ¥²¢»¹Ô­¿â´æ
 function ShopSys_hTimeCutMaxnum($userid,$shoppr){
 	global $empire,$dbtbpre,$class_r;
 	if($shoppr['cutnumtype']==1||$shoppr['cutnumtime']==0)
@@ -248,7 +248,7 @@ function ShopSys_hTimeCutMaxnum($userid,$shoppr){
 	$empire->query("update {$dbtbpre}enewsshopdd set checked=2 where ".$where."haveprice=0 and checked=0 and havecutnum=1 and ddtruetime<$time");
 }
 
-//å†™å…¥è®¢å•æ—¥å¿—
+//Ğ´Èë¶©µ¥ÈÕÖ¾
 function ShopSys_DdInsertLog($ddid,$ecms,$bz,$addbz){
 	global $empire,$dbtbpre,$logininid,$loginin;
 	$ddid=(int)$ddid;

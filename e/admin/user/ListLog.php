@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,13 +16,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"log");
 
-//åˆ é™¤æ—¥å¿—
+//É¾³ıÈÕÖ¾
 function DelLog($loginid,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"log");
 	$loginid=(int)$loginid;
 	if(!$loginid)
@@ -32,7 +32,7 @@ function DelLog($loginid,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewslog where loginid='$loginid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("loginid=".$loginid);
 		printerror("DelLogSuccess","ListLog.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -42,10 +42,10 @@ function DelLog($loginid,$userid,$username){
 	}
 }
 
-//æ‰¹é‡åˆ é™¤æ—¥å¿—
+//ÅúÁ¿É¾³ıÈÕÖ¾
 function DelLog_all($loginid,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"log");
 	$count=count($loginid);
 	if(!$count)
@@ -60,7 +60,7 @@ function DelLog_all($loginid,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewslog where".$add);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("DelLogSuccess","ListLog.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -70,10 +70,10 @@ function DelLog_all($loginid,$userid,$username){
 	}
 }
 
-//æ—¥æœŸåˆ é™¤æ—¥å¿—
+//ÈÕÆÚÉ¾³ıÈÕÖ¾
 function DelLog_date($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"log");
 	$start=RepPostVar($add['startday']);
 	$end=RepPostVar($add['endday']);
@@ -86,7 +86,7 @@ function DelLog_date($add,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewslog where logintime<='$endday' and logintime>='$startday'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("time=".$start."~".$end);
 		printerror("DelLogSuccess","ListLog.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -96,7 +96,7 @@ function DelLog_date($add,$userid,$username){
 	}
 }
 
-//è¡¥é›¶
+//²¹Áã
 function ToAddDateZero($n){
 	if($n<10)
 	{
@@ -105,9 +105,9 @@ function ToAddDateZero($n){
 	return $n;
 }
 
-//è¿”å›æ—¥æœŸ
+//·µ»ØÈÕÆÚ
 function ReturnLogSelectDate($y,$m,$d){
-	//å¹´
+	//Äê
 	if(empty($y))
 	{
 		$y=date("Y");
@@ -121,7 +121,7 @@ function ReturnLogSelectDate($y,$m,$d){
 		}
 		$r['year'].="<option value='".$i."'".$selected.">".$i."</option>";
 	}
-	//æœˆ
+	//ÔÂ
 	if(empty($m))
 	{
 		$m=date("m");
@@ -136,7 +136,7 @@ function ReturnLogSelectDate($y,$m,$d){
 		}
 		$r['month'].="<option value='".$mi."'".$selected.">".$mi."</option>";
 	}
-	//æ—¥
+	//ÈÕ
 	if(empty($d))
 	{
 		$d=date("d");
@@ -161,13 +161,13 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//åˆ é™¤æ—¥å¿—
+//É¾³ıÈÕÖ¾
 if($enews=="DelLog")
 {
 	$loginid=$_GET['loginid'];
 	DelLog($loginid,$logininid,$loginin);
 }
-//æ‰¹é‡åˆ é™¤æ—¥å¿—
+//ÅúÁ¿É¾³ıÈÕÖ¾
 elseif($enews=="DelLog_all")
 {
 	$loginid=$_POST['loginid'];
@@ -178,15 +178,15 @@ elseif($enews=="DelLog_date")
 	DelLog_date($_POST,$logininid,$loginin);
 }
 
-$line=20;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=18;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
+$line=20;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=18;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$offset=$page*$line;//æ€»åç§»é‡
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select loginid,username,loginip,logintime,status,password,loginauth,ipport from {$dbtbpre}enewslog";
 $totalquery="select count(*) as total from {$dbtbpre}enewslog";
-//æœç´¢
+//ËÑË÷
 $search='';
 $search.=$ecms_hashur['ehref'];
 $where='';
@@ -195,7 +195,7 @@ if($_GET['sear']==1)
 	$search.="&sear=1";
 	$a='';
 	$and='';
-	//çŠ¶æ€
+	//×´Ì¬
 	$status=(int)$_GET['status'];
 	if($status)
 	{
@@ -209,7 +209,7 @@ if($_GET['sear']==1)
 		}
 		$search.="&status=$status";
 	}
-	//æ—¶é—´
+	//Ê±¼ä
 	$startday=RepPostVar($_GET['startday']);
 	$endday=RepPostVar($_GET['endday']);
 	if($startday&&$endday)
@@ -218,7 +218,7 @@ if($_GET['sear']==1)
 		$search.="&startday=$startday&endday=$endday";
 		$a.=$and."logintime<='".$endday." 23:59:59' and logintime>='".$startday." 00:00:00'";
 	}
-	//æœç´¢
+	//ËÑË÷
 	$keyboard=RepPostVar($_GET['keyboard']);
 	if($keyboard)
 	{
@@ -246,26 +246,26 @@ if($_GET['sear']==1)
 	$totalquery.=$where;
 }
 $search2=$search;
-//æ’åº
+//ÅÅĞò
 $mydesc=(int)$_GET['mydesc'];
 $desc=$mydesc?'asc':'desc';
 $orderby=(int)$_GET['orderby'];
-if($orderby==1)//ç™»é™†ç”¨æˆ·
+if($orderby==1)//µÇÂ½ÓÃ»§
 {
 	$order="username ".$desc.",loginid desc";
 	$usernamedesc=$mydesc?0:1;
 }
-elseif($orderby==2)//çŠ¶æ€
+elseif($orderby==2)//×´Ì¬
 {
 	$order="status ".$desc.",loginid desc";
 	$statusdesc=$mydesc?0:1;
 }
-elseif($orderby==3)//ç™»é™†IP
+elseif($orderby==3)//µÇÂ½IP
 {
 	$order="loginip ".$desc.",loginid desc";
 	$loginipdesc=$mydesc?0:1;
 }
-elseif($orderby==4)//ç™»é™†æ—¶é—´
+elseif($orderby==4)//µÇÂ½Ê±¼ä
 {
 	$order="logintime ".$desc.",loginid desc";
 	$logintimedesc=$mydesc?0:1;
@@ -276,7 +276,7 @@ else//ID
 	$loginiddesc=$mydesc?0:1;
 }
 $search.="&orderby=$orderby&mydesc=$mydesc";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by ".$order." limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -284,7 +284,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <html>
 <head>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css"> 
-<title>ç®¡ç†ç™»é™†æ—¥å¿—</title>
+<title>¹ÜÀíµÇÂ½ÈÕÖ¾</title>
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 <script>
 function CheckAll(form)
@@ -297,13 +297,13 @@ function CheckAll(form)
     }
   }
 </script>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 </head>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td>ä½ç½®ï¼šæ—¥å¿—ç®¡ç† &gt; <a href="ListLog.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ç™»é™†æ—¥å¿—</a></td>
+    <td>Î»ÖÃ£ºÈÕÖ¾¹ÜÀí &gt; <a href="ListLog.php<?=$ecms_hashur['whehref']?>">¹ÜÀíµÇÂ½ÈÕÖ¾</a></td>
     <td width="50%"><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="ç®¡ç†æ“ä½œæ—¥å¿—" onclick="self.location.href='ListDolog.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀí²Ù×÷ÈÕÖ¾" onclick="self.location.href='ListDolog.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -313,49 +313,49 @@ function CheckAll(form)
   <form name=searchlogform method=get action='ListLog.php'>
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25"> <div align="center">æ—¶é—´ä» 
+      <td height="25"> <div align="center">Ê±¼ä´Ó 
           <input name="startday" type="text" value="<?=$startday?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-          åˆ° 
+          µ½ 
           <input name="endday" type="text" value="<?=$endday?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-          ï¼Œå…³é”®å­—ï¼š 
+          £¬¹Ø¼ü×Ö£º 
           <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
           <select name="show" id="show">
-            <option value="0"<?=$show==0?' selected':''?>>ä¸é™</option>
-            <option value="1"<?=$show==1?' selected':''?>>ç”¨æˆ·å</option>
-            <option value="2"<?=$show==2?' selected':''?>>ç™»é™†IP</option>
+            <option value="0"<?=$show==0?' selected':''?>>²»ÏŞ</option>
+            <option value="1"<?=$show==1?' selected':''?>>ÓÃ»§Ãû</option>
+            <option value="2"<?=$show==2?' selected':''?>>µÇÂ½IP</option>
           </select>
           <select name="status" id="status">
-            <option value="0"<?=$status==0?' selected':''?>>æ‰€æœ‰çŠ¶æ€</option>
-            <option value="1"<?=$status==1?' selected':''?>>ç™»é™†æˆåŠŸæ—¥å¿—</option>
-            <option value="2"<?=$status==2?' selected':''?>>ç™»é™†å¤±è´¥æ—¥å¿—</option>
+            <option value="0"<?=$status==0?' selected':''?>>ËùÓĞ×´Ì¬</option>
+            <option value="1"<?=$status==1?' selected':''?>>µÇÂ½³É¹¦ÈÕÖ¾</option>
+            <option value="2"<?=$status==2?' selected':''?>>µÇÂ½Ê§°ÜÈÕÖ¾</option>
           </select>
-          <input name=submit1 type=submit id="submit12" value=æœç´¢>
+          <input name=submit1 type=submit id="submit12" value=ËÑË÷>
           <input name="sear" type="hidden" id="sear" value="1">
         </div></td>
     </tr>
   </form>
 </table>
-<form name="form2" method="post" action="ListLog.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+<form name="form2" method="post" action="ListLog.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
   <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
       <td width="7%"><div align="center"><a href="ListLog.php?orderby=0&mydesc=<?=$loginiddesc.$search2?>">ID</a></div></td>
-      <td width="28%" height="25"><div align="center"><a href="ListLog.php?orderby=1&mydesc=<?=$usernamedesc.$search2?>">ç™»é™†ç”¨æˆ·</a></div></td>
-      <td width="20%"><div align="center"><a href="ListLog.php?orderby=2&mydesc=<?=$statusdesc.$search2?>">çŠ¶æ€</a></div></td>
-      <td width="17%" height="25"><div align="center"><a href="ListLog.php?orderby=3&mydesc=<?=$loginipdesc.$search2?>">ç™»é™†IP</a></div></td>
-      <td width="17%"><div align="center"><a href="ListLog.php?orderby=4&mydesc=<?=$logintimedesc.$search2?>">ç™»é™†æ—¶é—´</a></div></td>
-      <td width="11%" height="25"><div align="center">åˆ é™¤</div></td>
+      <td width="28%" height="25"><div align="center"><a href="ListLog.php?orderby=1&mydesc=<?=$usernamedesc.$search2?>">µÇÂ½ÓÃ»§</a></div></td>
+      <td width="20%"><div align="center"><a href="ListLog.php?orderby=2&mydesc=<?=$statusdesc.$search2?>">×´Ì¬</a></div></td>
+      <td width="17%" height="25"><div align="center"><a href="ListLog.php?orderby=3&mydesc=<?=$loginipdesc.$search2?>">µÇÂ½IP</a></div></td>
+      <td width="17%"><div align="center"><a href="ListLog.php?orderby=4&mydesc=<?=$logintimedesc.$search2?>">µÇÂ½Ê±¼ä</a></div></td>
+      <td width="11%" height="25"><div align="center">É¾³ı</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
   {
   	if($r['status'])
 	{
-		$status='ç™»é™†æˆåŠŸ';
+		$status='µÇÂ½³É¹¦';
 	}
 	else
 	{
-		$status=$r['loginauth']?'<font color="red">è®¤è¯ç é”™</font>':'<font color="red">å¯†ç é”™</font>';
+		$status=$r['loginauth']?'<font color="red">ÈÏÖ¤Âë´í</font>':'<font color="red">ÃÜÂë´í</font>';
 	}
   ?>
     <tr bgcolor="#FFFFFF" id=log<?=$r[loginid]?>>
@@ -372,7 +372,7 @@ function CheckAll(form)
       <td><div align="center"> 
           <?=$r[logintime]?>
         </div></td>
-      <td height="25"><div align="center">[<a href="ListLog.php?enews=DelLog&loginid=<?=$r[loginid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤æ­¤æ—¥å¿—?');">åˆ é™¤</a> 
+      <td height="25"><div align="center">[<a href="ListLog.php?enews=DelLog&loginid=<?=$r[loginid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı´ËÈÕÖ¾?');">É¾³ı</a> 
           <input name="loginid[]" type="checkbox" id="loginid[]" value="<?=$r[loginid]?>" onclick="if(this.checked){log<?=$r[loginid]?>.style.backgroundColor='#DBEAF5';}else{log<?=$r[loginid]?>.style.backgroundColor='#ffffff';}">
           ]</div></td>
     </tr>
@@ -382,24 +382,24 @@ function CheckAll(form)
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="6"> 
         <?=$returnpage?>
-        &nbsp;&nbsp; <input type="submit" name="Submit" value="æ‰¹é‡åˆ é™¤"> <input name="enews" type="hidden" id="phome" value="DelLog_all"> 
+        &nbsp;&nbsp; <input type="submit" name="Submit" value="ÅúÁ¿É¾³ı"> <input name="enews" type="hidden" id="phome" value="DelLog_all"> 
         &nbsp; <input type=checkbox name=chkall value=on onClick=CheckAll(this.form)>
-        é€‰ä¸­å…¨éƒ¨ </td>
+        Ñ¡ÖĞÈ«²¿ </td>
     </tr>
   </table>
 </form>
-<form action="ListLog.php" method="post" name="dellogform" id="dellogform" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+<form action="ListLog.php" method="post" name="dellogform" id="dellogform" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
   <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <?=$ecms_hashur['form']?>
     <tr> 
       <td><div align="center">
           <input name="enews" type="hidden" id="enews" value="DelLog_date">
-          åˆ é™¤ä» 
+          É¾³ı´Ó 
           <input name="startday" type="text" id="startday" value="<?=$startday?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-          åˆ° 
+          µ½ 
           <input name="endday" type="text" id="endday" value="<?=$endday?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-          ä¹‹é—´çš„æ—¥å¿—
-<input type="submit" name="Submit2" value="æäº¤">
+          Ö®¼äµÄÈÕÖ¾
+<input type="submit" name="Submit2" value="Ìá½»">
           </div></td>
     </tr>
   </table>

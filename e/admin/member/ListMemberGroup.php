@@ -7,7 +7,7 @@ require("../../member/class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,26 +16,26 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"membergroup");
-$url="<a href=ListMemberGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼šå‘˜ç»„</a>";
+$url="<a href=ListMemberGroup.php".$ecms_hashur['whehref'].">¹ÜÀí»áÔ±×é</a>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ä¼šå‘˜ç»„</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí»áÔ±×é</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ä¼šå‘˜ç»„" onclick="self.location.href='AddMemberGroup.php?enews=AddMemberGroup<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó»áÔ±×é" onclick="self.location.href='AddMemberGroup.php?enews=AddMemberGroup<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -43,11 +43,11 @@ $url="<a href=ListMemberGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼šå‘˜ç»„</a>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="6%" height="25"> <div align="center">ID</div></td>
-    <td width="35%" height="25"> <div align="center">ä¼šå‘˜ç»„åç§°</div></td>
-    <td width="11%"><div align="center">çº§åˆ«å€¼</div></td>
-    <td width="16%"><div align="center">å‘é€çŸ­æ¶ˆæ¯</div></td>
-    <td width="14%"><div align="center">æ³¨å†Œåœ°å€</div></td>
-    <td width="18%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="35%" height="25"> <div align="center">»áÔ±×éÃû³Æ</div></td>
+    <td width="11%"><div align="center">¼¶±ğÖµ</div></td>
+    <td width="16%"><div align="center">·¢ËÍ¶ÌÏûÏ¢</div></td>
+    <td width="14%"><div align="center">×¢²áµØÖ·</div></td>
+    <td width="18%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?
   $sql=$empire->query("select * from {$dbtbpre}enewsmembergroup order by groupid");
@@ -64,10 +64,10 @@ $url="<a href=ListMemberGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼šå‘˜ç»„</a>
     <td><div align="center"> 
         <?=$r[level]?>
       </div></td>
-    <td><div align="center"><a href="SendMsg.php?groupid=<?=$r[groupid]?><?=$ecms_hashur['ehref']?>" target=_blank>å‘é€ä¿¡æ¯</a></div></td>
-    <td><div align="center"><a href="../../member/register/?groupid=<?=$r[groupid]?>" target="_blank">æ³¨å†Œåœ°å€</a></div></td>
-    <td height="25"> <div align="center">[<a href="AddMemberGroup.php?enews=EditMemberGroup&groupid=<?=$r[groupid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="../ecmsmember.php?enews=DelMemberGroup&groupid=<?=$r[groupid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤æ­¤ä¼šå‘˜ç»„ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td><div align="center"><a href="SendMsg.php?groupid=<?=$r[groupid]?><?=$ecms_hashur['ehref']?>" target=_blank>·¢ËÍĞÅÏ¢</a></div></td>
+    <td><div align="center"><a href="../../member/register/?groupid=<?=$r[groupid]?>" target="_blank">×¢²áµØÖ·</a></div></td>
+    <td height="25"> <div align="center">[<a href="AddMemberGroup.php?enews=EditMemberGroup&groupid=<?=$r[groupid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="../ecmsmember.php?enews=DelMemberGroup&groupid=<?=$r[groupid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı´Ë»áÔ±×é£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }
@@ -75,7 +75,7 @@ $url="<a href=ListMemberGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼šå‘˜ç»„</a>
   $empire=null;
   ?>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25" colspan="6"><font color="#666666">è¯´æ˜ï¼šçº§åˆ«å€¼è¶Šé«˜ï¼ŒæŸ¥çœ‹ä¿¡æ¯çš„æƒé™è¶Šå¤§</font></td>
+    <td height="25" colspan="6"><font color="#666666">ËµÃ÷£º¼¶±ğÖµÔ½¸ß£¬²é¿´ĞÅÏ¢µÄÈ¨ÏŞÔ½´ó</font></td>
   </tr>
 </table>
 </body>

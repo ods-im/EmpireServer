@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"membergroup");
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href=ListMemberGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼šå‘˜ç»„</a>&nbsp;>&nbsp;å¢åŠ ä¼šå‘˜ç»„";
+$url="<a href=ListMemberGroup.php".$ecms_hashur['whehref'].">¹ÜÀí»áÔ±×é</a>&nbsp;>&nbsp;Ôö¼Ó»áÔ±×é";
 $r[level]=1;
 $r[favanum]=120;
 $r[daydown]=0;
@@ -28,11 +28,11 @@ if($enews=="EditMemberGroup")
 {
 	$groupid=(int)$_GET['groupid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsmembergroup where groupid='$groupid'");
-	$url="<a href=ListMemberGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼šå‘˜ç»„</a>&nbsp;>&nbsp;ä¿®æ”¹ä¼šå‘˜ç»„ï¼š<b>".$r[groupname]."</b>";
+	$url="<a href=ListMemberGroup.php".$ecms_hashur['whehref'].">¹ÜÀí»áÔ±×é</a>&nbsp;>&nbsp;ĞŞ¸Ä»áÔ±×é£º<b>".$r[groupname]."</b>";
 	if($r[checked])
 	{$checked=" checked";}
 }
-//ä¼šå‘˜è¡¨å•
+//»áÔ±±íµ¥
 $memberform='';
 $fsql=$empire->query("select fid,fname from {$dbtbpre}enewsmemberform order by fid");
 while($fr=$empire->fetch($fsql))
@@ -47,7 +47,7 @@ while($fr=$empire->fetch($fsql))
 	}
 	$memberform.="<option value='".$fr[fid]."'".$selected.">".$fr[fname]."</option>";
 }
-//ç©ºé—´æ¨¡æ¿
+//¿Õ¼äÄ£°å
 $spacestyle='';
 $sssql=$empire->query("select styleid,stylename from {$dbtbpre}enewsspacestyle order by styleid");
 while($ssr=$empire->fetch($sssql))
@@ -68,15 +68,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¼šå‘˜ç»„</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>»áÔ±×é</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
   <tr> 
-    <td height="25">ä½ç½®ï¼š 
+    <td height="25">Î»ÖÃ£º 
       <?=$url?>
     </td>
   </tr>
@@ -85,85 +85,85 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="22%" height="25">å¢åŠ ä¼šå‘˜ç»„</td>
+      <td width="22%" height="25">Ôö¼Ó»áÔ±×é</td>
       <td width="78%" height="25"><input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
         <input name="groupid" type="hidden" id="groupid" value="<?=$groupid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ä¼šå‘˜ç»„åç§°</td>
+      <td height="25">»áÔ±×éÃû³Æ</td>
       <td height="25"> <input name="groupname" type="text" id="groupname" value="<?=$r[groupname]?>" size="38"> 
-        <font color="#666666">(æ¯”å¦‚ï¼šVIPä¼šå‘˜,æ™®é€šä¼šå‘˜)</font></td>
+        <font color="#666666">(±ÈÈç£ºVIP»áÔ±,ÆÕÍ¨»áÔ±)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ä¼šå‘˜ç»„çº§åˆ«å€¼</td>
+      <td height="25">»áÔ±×é¼¶±ğÖµ</td>
       <td height="25"> <input name="level" type="text" id="level" value="<?=$r[level]?>" size="38"> 
-        <font color="#666666">(å¦‚ï¼š1,2...ç­‰ï¼Œçº§åˆ«å€¼è¶Šé«˜æƒé™è¶Šå¤§)</font></td>
+        <font color="#666666">(Èç£º1,2...µÈ£¬¼¶±ğÖµÔ½¸ßÈ¨ÏŞÔ½´ó)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æœ€å¤§æ”¶è—å¤¹æ•°</td>
+      <td height="25">×î´óÊÕ²Ø¼ĞÊı</td>
       <td height="25"><input name="favanum" type="text" id="favanum" value="<?=$r[favanum]?>" size="38"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¯å¤©æœ€å¤§ä¸‹è½½æ•°</td>
+      <td height="25">Ã¿Ìì×î´óÏÂÔØÊı</td>
       <td height="25"><input name="daydown" type="text" id="daydown" value="<?=$r[daydown]?>" size="38"> 
-        <font color="#666666">(0ä¸ºä¸é™åˆ¶)</font></td>
+        <font color="#666666">(0Îª²»ÏŞÖÆ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¯å¤©æœ€å¤§æŠ•ç¨¿æ•°</td>
+      <td height="25">Ã¿Ìì×î´óÍ¶¸åÊı</td>
       <td height="25"><input name="dayaddinfo" type="text" id="dayaddinfo" value="<?=$r[dayaddinfo]?>" size="38"> 
-        <font color="#666666">(0ä¸ºä¸é™åˆ¶)</font></td>
+        <font color="#666666">(0Îª²»ÏŞÖÆ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æŠ•ç¨¿ä¿¡æ¯æ˜¯å¦å®¡æ ¸</td>
+      <td height="25">Í¶¸åĞÅÏ¢ÊÇ·ñÉóºË</td>
       <td height="25"><input name="infochecked" type="checkbox" id="infochecked" value="1"<?=$r[infochecked]==1?' checked':''?>>
-        ç›´æ¥é€šè¿‡,ä¸ç”¨å®¡æ ¸</td>
+        Ö±½ÓÍ¨¹ı,²»ÓÃÉóºË</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">è¯„è®ºæ˜¯å¦å®¡æ ¸</td>
+      <td height="25">ÆÀÂÛÊÇ·ñÉóºË</td>
       <td height="25"><input name="plchecked" type="checkbox" id="plchecked" value="1"<?=$r[plchecked]==1?' checked':''?>>
-        ç›´æ¥é€šè¿‡,ä¸ç”¨å®¡æ ¸</td>
+        Ö±½ÓÍ¨¹ı,²»ÓÃÉóºË</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æœ€å¤§çŸ­æ¶ˆæ¯æ•°</td>
+      <td height="25">×î´ó¶ÌÏûÏ¢Êı</td>
       <td height="25"><input name="msgnum" type="text" id="msgnum" value="<?=$r[msgnum]?>" size="38"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">çŸ­æ¶ˆæ¯æœ€å¤§å­—æ•°</td>
+      <td height="25">¶ÌÏûÏ¢×î´ó×ÖÊı</td>
       <td height="25"><input name="msglen" type="text" id="msglen" value="<?=$r[msglen]?>" size="38">
-        ä¸ªå­—èŠ‚</td>
+        ¸ö×Ö½Ú</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ä¿¡æ¯ä½¿ç”¨è¡¨å•</td>
+      <td height="25">ĞÅÏ¢Ê¹ÓÃ±íµ¥</td>
       <td height="25"><select name="formid" id="formid">
           <?=$memberform?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å‰å°å¯æ³¨å†Œ</td>
+      <td height="25">Ç°Ì¨¿É×¢²á</td>
       <td height="25"><input type="radio" name="canreg" value="1"<?=$r[canreg]==1?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="canreg" value="0"<?=$r[canreg]==0?' checked':''?>>
-        å¦</td>
+        ·ñ</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ³¨å†Œéœ€è¦å®¡æ ¸</td>
+      <td height="25">×¢²áĞèÒªÉóºË</td>
       <td height="25"><input type="radio" name="regchecked" value="1"<?=$r[regchecked]==1?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="regchecked" value="0"<?=$r[regchecked]==0?' checked':''?>>
-        å¦</td>
+        ·ñ</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ä¼šå‘˜é»˜è®¤ç©ºé—´æ¨¡æ¿</td>
+      <td height="25">»áÔ±Ä¬ÈÏ¿Õ¼äÄ£°å</td>
       <td height="25"><select name="spacestyleid" id="spacestyleid">
-          <option value=0>ä¸è®¾ç½®</option>
+          <option value=0>²»ÉèÖÃ</option>
           <?=$spacestyle?>
-        </select> <font color="#666666">(ä¸è®¾ç½®åˆ™ä½¿ç”¨é»˜è®¤ç©ºé—´æ¨¡æ¿) </font></td>
+        </select> <font color="#666666">(²»ÉèÖÃÔòÊ¹ÓÃÄ¬ÈÏ¿Õ¼äÄ£°å) </font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"> <input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"> <input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,17 +16,17 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"template");
 
-//å¢åŠ æ‰“å°æ¨¡æ¿
+//Ôö¼Ó´òÓ¡Ä£°å
 function AddPrintTemp($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	if(!$add[tempname]||!$add[temptext])
 	{
 		printerror("EmptyPrintTemp","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$add[tempname]=hRepPostStr($add[tempname],1);
 	$add[temptext]=RepPhpAspJspcode($add[temptext]);
@@ -34,16 +34,16 @@ function AddPrintTemp($add,$userid,$username){
 	$gid=(int)$add['gid'];
 	$sql=$empire->query("insert into ".GetDoTemptb("enewsprinttemp",$gid)."(tempname,temptext,isdefault,showdate,modid) values('".$add[tempname]."','".eaddslashes2($add[temptext])."',0,'".eaddslashes($add[showdate])."','$add[modid]');");
 	$tempid=$empire->lastid();
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('printtemp',$gid,$tempid,$add[tempname],$add[temptext],0,0,'',0,$add[modid],$add[showdate],0,0,0,$userid,$username);
-	//æ›´æ–°é¡µé¢
+	//¸üĞÂÒ³Ãæ
 	if($gid==$public_r['deftempid']||(!$public_r['deftempid']&&($gid==1||$gid==0)))
 	{
 		GetPrintPage($tempid);
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=$tempid&tempname=$add[tempname]&gid=$gid");
 		printerror("AddPrintTempSuccess","AddPrinttemp.php?enews=AddPrintTemp&gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -53,7 +53,7 @@ function AddPrintTemp($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹æ‰“å°æ¨¡æ¿
+//ĞŞ¸Ä´òÓ¡Ä£°å
 function EditPrintTemp($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	$tempid=(int)$add[tempid];
@@ -61,23 +61,23 @@ function EditPrintTemp($add,$userid,$username){
 	{
 		printerror("EmptyPrintTemp","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$add[tempname]=hRepPostStr($add[tempname],1);
 	$add[temptext]=RepPhpAspJspcode($add[temptext]);
 	$add[modid]=(int)$add[modid];
 	$gid=(int)$add['gid'];
 	$sql=$empire->query("update ".GetDoTemptb("enewsprinttemp",$gid)." set tempname='".$add[tempname]."',temptext='".eaddslashes2($add[temptext])."',showdate='".eaddslashes($add[showdate])."',modid='$add[modid]' where tempid='$tempid'");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('printtemp',$gid,$tempid,$add[tempname],$add[temptext],0,0,'',0,$add[modid],$add[showdate],0,0,0,$userid,$username);
-	//æ›´æ–°é¡µé¢
+	//¸üĞÂÒ³Ãæ
 	if($gid==$public_r['deftempid']||(!$public_r['deftempid']&&($gid==1||$gid==0)))
 	{
 		GetPrintPage($tempid);
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=$tempid&tempname=$add[tempname]&gid=$gid");
 		printerror("EditPrintTempSuccess","ListPrinttemp.php?gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -87,7 +87,7 @@ function EditPrintTemp($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤æ‰“å°æ¨¡æ¿
+//É¾³ı´òÓ¡Ä£°å
 function DelPrintTemp($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	$tempid=(int)$add[tempid];
@@ -95,7 +95,7 @@ function DelPrintTemp($add,$userid,$username){
 	{
 		printerror("NotChangePrintTempid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$gid=(int)$add['gid'];
 	$r=$empire->fetch1("select tempname,isdefault from ".GetDoTemptb("enewsprinttemp",$gid)." where tempid=$tempid");
@@ -108,11 +108,11 @@ function DelPrintTemp($add,$userid,$username){
 	{
 		DelFiletext(ECMS_PATH.'e/data/filecache/template/print'.$tempid.'.php');
 	}
-	//åˆ é™¤å¤‡ä»½è®°å½•
+	//É¾³ı±¸·İ¼ÇÂ¼
 	DelEbakTempAll('printtemp',$gid,$tempid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=$tempid&tempname=$r[tempname]&gid=$gid");
 		printerror("DelPrintTempSuccess","ListPrinttemp.php?gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -122,7 +122,7 @@ function DelPrintTemp($add,$userid,$username){
 	}
 }
 
-//è®¾ä¸ºé»˜è®¤æ‰“å°æ¨¡æ¿
+//ÉèÎªÄ¬ÈÏ´òÓ¡Ä£°å
 function DefPrintTemp($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	$tempid=(int)$add[tempid];
@@ -130,7 +130,7 @@ function DefPrintTemp($add,$userid,$username){
 	{
 		printerror("NotChangePrintTempid","history.go(-1)");
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$gid=(int)$add['gid'];
 	$tr=$empire->fetch1("select tempname from ".GetDoTemptb("enewsprinttemp",$gid)." where tempid='$tempid'");
@@ -139,11 +139,11 @@ function DefPrintTemp($add,$userid,$username){
 	if($gid==$public_r['deftempid']||(!$public_r['deftempid']&&($gid==1||$gid==0)))
 	{
 		$empire->query("update {$dbtbpre}enewspublic set defprinttempid='$tempid' limit 1");
-		GetConfig();//æ›´æ–°ç¼“å­˜
+		GetConfig();//¸üĞÂ»º´æ
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=".$tempid."<br>tempname=".$tr[tempname]."&gid=$gid");
 		printerror("DefPrintTempSuccess","ListPrinttemp.php?gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -153,7 +153,7 @@ function DefPrintTemp($add,$userid,$username){
 	}
 }
 
-//æ“ä½œ
+//²Ù×÷
 $enews=$_POST['enews'];
 if(empty($enews))
 {$enews=$_GET['enews'];}
@@ -162,19 +162,19 @@ if($enews)
 	hCheckEcmsRHash();
 	include("../../class/tempfun.php");
 }
-if($enews=="AddPrintTemp")//å¢åŠ æ‰“å°æ¨¡æ¿
+if($enews=="AddPrintTemp")//Ôö¼Ó´òÓ¡Ä£°å
 {
 	AddPrintTemp($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditPrintTemp")//ä¿®æ”¹æ‰“å°æ¨¡æ¿
+elseif($enews=="EditPrintTemp")//ĞŞ¸Ä´òÓ¡Ä£°å
 {
 	EditPrintTemp($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelPrintTemp")//åˆ é™¤æ‰“å°æ¨¡æ¿
+elseif($enews=="DelPrintTemp")//É¾³ı´òÓ¡Ä£°å
 {
 	DelPrintTemp($_GET,$logininid,$loginin);
 }
-elseif($enews=="DefPrintTemp")//é»˜è®¤æ‰“å°æ¨¡æ¿
+elseif($enews=="DefPrintTemp")//Ä¬ÈÏ´òÓ¡Ä£°å
 {
 	DefPrintTemp($_GET,$logininid,$loginin);
 }
@@ -182,17 +182,17 @@ elseif($enews=="DefPrintTemp")//é»˜è®¤æ‰“å°æ¨¡æ¿
 $gid=(int)$_GET['gid'];
 $gname=CheckTempGroup($gid);
 $urlgname=$gname."&nbsp;>&nbsp;";
-$url=$urlgname."<a href=ListPrinttemp.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†æ‰“å°æ¨¡æ¿</a>";
+$url=$urlgname."<a href=ListPrinttemp.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀí´òÓ¡Ä£°å</a>";
 $search="&gid=$gid".$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select tempid,tempname,isdefault from ".GetDoTemptb("enewsprinttemp",$gid);
 $totalquery="select count(*) as total from ".GetDoTemptb("enewsprinttemp",$gid);
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by tempid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -200,19 +200,19 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†æ‰“å°æ¨¡æ¿</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí´òÓ¡Ä£°å</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton"> 
-        <input type="button" name="Submit5" value="å¢åŠ æ‰“å°æ¨¡æ¿" onclick="self.location.href='AddPrinttemp.php?enews=AddPrintTemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó´òÓ¡Ä£°å" onclick="self.location.href='AddPrinttemp.php?enews=AddPrintTemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -221,8 +221,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="10%" height="25"><div align="center">ID</div></td>
-    <td width="61%" height="25"><div align="center">æ¨¡æ¿å</div></td>
-    <td width="29%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="61%" height="25"><div align="center">Ä£°åÃû</div></td>
+    <td width="29%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -237,15 +237,15 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
   ?>
   <tr bgcolor="<?=$color?>"<?=$movejs?>> 
     <td height="25"><div align="center"> 
-        <a href="EditTempid.php?tempno=11&tempid=<?=$r['tempid']?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="_blank" title="ä¿®æ”¹æ¨¡æ¿ID"><?=$r[tempid]?></a>
+        <a href="EditTempid.php?tempno=11&tempid=<?=$r['tempid']?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="_blank" title="ĞŞ¸ÄÄ£°åID"><?=$r[tempid]?></a>
       </div></td>
     <td height="25"><div align="center"> 
         <?=$r[tempname]?>
       </div></td>
-    <td height="25"><div align="center"> [<a href="AddPrinttemp.php?enews=EditPrintTemp&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="AddPrinttemp.php?enews=AddPrintTemp&docopy=1&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>] 
-        [<a href="ListPrinttemp.php?enews=DefPrintTemp&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦é»˜è®¤ï¼Ÿ');">è®¾ä¸ºé»˜è®¤</a>] 
-        [<a href="ListPrinttemp.php?enews=DelPrintTemp&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td height="25"><div align="center"> [<a href="AddPrinttemp.php?enews=EditPrintTemp&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="AddPrinttemp.php?enews=AddPrintTemp&docopy=1&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>] 
+        [<a href="ListPrinttemp.php?enews=DefPrintTemp&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÄ¬ÈÏ£¿');">ÉèÎªÄ¬ÈÏ</a>] 
+        [<a href="ListPrinttemp.php?enews=DelPrintTemp&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

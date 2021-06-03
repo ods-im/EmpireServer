@@ -8,7 +8,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯
+//ÑéÖ¤
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -18,34 +18,34 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 
-//è¿”å›æŒ‰é’®äº‹ä»¶
+//·µ»Ø°´Å¥ÊÂ¼ş
 function ToReturnDoFileButton($doing,$tranfrom,$field,$file,$filename,$fileid,$filesize,$filetype,$no,$type){
-	if($doing==1)//è¿”å›åœ°å€
+	if($doing==1)//·µ»ØµØÖ·
 	{
 		$bturl="ChangeFile1(1,'".$file."');";
-		$button="<input type=button name=button value='é€‰æ‹©' onclick=\"javascript:".$bturl."\">";
+		$button="<input type=button name=button value='Ñ¡Ôñ' onclick=\"javascript:".$bturl."\">";
 	}
-	elseif($doing==2)//è¿”å›åœ°å€
+	elseif($doing==2)//·µ»ØµØÖ·
 	{
 		$bturl="ChangeFile1(2,'".$file."');";
-		$button="<input type=button name=button value='é€‰æ‹©' onclick=\"javascript:".$bturl."\">";
+		$button="<input type=button name=button value='Ñ¡Ôñ' onclick=\"javascript:".$bturl."\">";
 	}
 	else
 	{
-		if($tranfrom==1)//ç¼–è¾‘å™¨é€‰æ‹©
+		if($tranfrom==1)//±à¼­Æ÷Ñ¡Ôñ
 		{
 			$bturl="EditorChangeFile('".$file."','".addslashes($filename)."','".$filetype."','".$filesize."','".addslashes($no)."');";
-			$button="<input type=button name=button value='é€‰æ‹©' onclick=\"javascript:".$bturl."\">";
+			$button="<input type=button name=button value='Ñ¡Ôñ' onclick=\"javascript:".$bturl."\">";
 		}
-		elseif($tranfrom==2)//ç‰¹æ®Šå­—æ®µé€‰æ‹©
+		elseif($tranfrom==2)//ÌØÊâ×Ö¶ÎÑ¡Ôñ
 		{
 			$bturl="SFormIdChangeFile('".addslashes($no)."','$file','$filesize','$filetype','$field');";
-			$button="<input type=button name=button value='é€‰æ‹©' onclick=\"javascript:".$bturl."\">";
+			$button="<input type=button name=button value='Ñ¡Ôñ' onclick=\"javascript:".$bturl."\">";
 		}
 		else
 		{
 			$bturl="InsertFile('".$file."','".addslashes($filename)."','".$fileid."','".$filesize."','".$filetype."','','".$type."');";
-			$button="<input type=button name=button value='æ’å…¥' onclick=\"javascript:".$bturl."\">";
+			$button="<input type=button name=button value='²åÈë' onclick=\"javascript:".$bturl."\">";
 		}
 	}
 	$retr['button']=$button;
@@ -70,46 +70,46 @@ if(empty($field))
 include('eshoweditor.php');
 
 $add='';
-//é™„ä»¶ç±»å‹
+//¸½¼şÀàĞÍ
 $isinfofile=0;
 $fstb=0;
-if($modtype==1)//æ ç›®
+if($modtype==1)//À¸Ä¿
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath from {$dbtbpre}enewsfile_other where modtype=1 and type='$type'";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_other where modtype=1 and type='$type'";
-	$tranname='æ ç›®';
+	$tranname='À¸Ä¿';
 }
-elseif($modtype==2)//ä¸“é¢˜
+elseif($modtype==2)//×¨Ìâ
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath from {$dbtbpre}enewsfile_other where modtype=2 and type='$type'";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_other where modtype=2 and type='$type'";
-	$tranname='ä¸“é¢˜';
+	$tranname='×¨Ìâ';
 }
-elseif($modtype==3)//å¹¿å‘Š
+elseif($modtype==3)//¹ã¸æ
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath from {$dbtbpre}enewsfile_other where modtype=3 and type='$type'";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_other where modtype=3 and type='$type'";
-	$tranname='å¹¿å‘Š';
+	$tranname='¹ã¸æ';
 }
-elseif($modtype==4)//åé¦ˆ
+elseif($modtype==4)//·´À¡
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath from {$dbtbpre}enewsfile_other where modtype=4 and type='$type'";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_other where modtype=4 and type='$type'";
-	$tranname='åé¦ˆ';
+	$tranname='·´À¡';
 }
-elseif($modtype==5)//å…¬å…±
+elseif($modtype==5)//¹«¹²
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath from {$dbtbpre}enewsfile_public where type='$type'";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_public where type='$type'";
-	$tranname='å…¬å…±';
+	$tranname='¹«¹²';
 }
-elseif($modtype==7)//ç¢ç‰‡
+elseif($modtype==7)//ËéÆ¬
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath from {$dbtbpre}enewsfile_other where modtype=7 and type='$type'";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_other where modtype=7 and type='$type'";
-	$tranname='ç¢ç‰‡';
+	$tranname='ËéÆ¬';
 }
-else//ä¿¡æ¯
+else//ĞÅÏ¢
 {
 	$isinfofile=1;
 	if(!$classid||!$class_r[$classid]['tbname'])
@@ -123,8 +123,8 @@ else//ä¿¡æ¯
 		{
 			printerror('ErrorUrl','history.go(-1)');
 		}
-		//ä¸»è¡¨
-		$infotb=ReturnInfoMainTbname($class_r[$classid]['tbname'],$index_r['checked']);//è¿”å›è¡¨
+		//Ö÷±í
+		$infotb=ReturnInfoMainTbname($class_r[$classid]['tbname'],$index_r['checked']);//·µ»Ø±í
 		$infor=$empire->fetch1("select fstb from ".$infotb." where id='$infoid' limit 1");
 		$fstb=$infor['fstb'];
 	}
@@ -135,9 +135,9 @@ else//ä¿¡æ¯
 	$fstb=(int)$fstb;
 	$query="select fileid,filename,filesize,path,filetime,classid,no,fpath from {$dbtbpre}enewsfile_{$fstb} where type='$type'";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_{$fstb} where type='$type'";
-	$tranname='ä¿¡æ¯';
+	$tranname='ĞÅÏ¢';
 }
-//æ ç›®
+//À¸Ä¿
 $searchclassid=0;
 $searchvarclassid='';
 if($isinfofile==1)
@@ -166,7 +166,7 @@ if($isinfofile==1)
 		}
 	}
 }
-//æ—¶é—´èŒƒå›´
+//Ê±¼ä·¶Î§
 $filelday=(int)$_GET['filelday'];
 if(empty($filelday))
 {
@@ -177,7 +177,7 @@ if($filelday&&$filelday!=1)
 	$ckfilelday=time()-$filelday;
 	$add.=" and filetime>$ckfilelday";
 }
-//å½“å‰ä¿¡æ¯
+//µ±Ç°ĞÅÏ¢
 $sinfo=(int)$_GET['sinfo'];
 $select_sinfo='';
 if($isinfofile==1)
@@ -186,7 +186,7 @@ if($isinfofile==1)
 	{
 		$add.=$infoid?" and id='$infoid'":" and id='$filepass'";
 	}
-	$select_sinfo='<input name="sinfo" type="checkbox" id="sinfo" value="1"'.($sinfo?' checked':'').'>å½“å‰ä¿¡æ¯';
+	$select_sinfo='<input name="sinfo" type="checkbox" id="sinfo" value="1"'.($sinfo?' checked':'').'>µ±Ç°ĞÅÏ¢';
 }
 elseif($modtype!=5)
 {
@@ -194,45 +194,45 @@ elseif($modtype!=5)
 	{
 		$add.=" and id='$filepass'";
 	}
-	$select_sinfo='<input name="sinfo" type="checkbox" id="sinfo" value="1"'.($sinfo?' checked':'').'>å½“å‰'.$tranname;
+	$select_sinfo='<input name="sinfo" type="checkbox" id="sinfo" value="1"'.($sinfo?' checked':'').'>µ±Ç°'.$tranname;
 }
-//å…³é”®å­—
+//¹Ø¼ü×Ö
 $keyboard=RepPostVar2($_GET['keyboard']);
 if(!empty($keyboard))
 {
 	$show=RepPostStr($_GET['show'],1);
-	if($show==0)//æœç´¢å…¨éƒ¨
+	if($show==0)//ËÑË÷È«²¿
 	{
 		$add.=" and (filename like '%$keyboard%' or no like '%$keyboard%' or adduser like '%$keyboard%')";
 	}
-	elseif($show==1)//æœç´¢æ–‡ä»¶å
+	elseif($show==1)//ËÑË÷ÎÄ¼şÃû
 	{
 		$add.=" and filename like '%$keyboard%'";
 	}
-	elseif($show==2)//æœç´¢ç¼–å·
+	elseif($show==2)//ËÑË÷±àºÅ
 	{
 		$add.=" and no like '%$keyboard%'";
 	}
-	else//æœç´¢ä¸Šä¼ è€…
+	else//ËÑË÷ÉÏ´«Õß
 	{
 		$add.=" and adduser like '%$keyboard%'";
 	}
 }
 $search="&classid=$classid&infoid=$infoid&filepass=$filepass&type=$type&modtype=$modtype&doing=$doing&tranfrom=$tranfrom&field=$field&show=$show&searchclassid=$searchvarclassid&keyboard=$keyboard&fileno=$fileno&filelday=$filelday&sinfo=$sinfo&doecmspage=$doecmspage".$ecms_hashur['ehref'];
-//åˆ†é¡µ
+//·ÖÒ³
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-if($type==1)//å›¾ç‰‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+if($type==1)//Í¼Æ¬
 {
 	$line=12;
 }
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query.=$add;
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query.=" order by fileid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -240,8 +240,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>é€‰æ‹©æ–‡ä»¶</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ñ¡ÔñÎÄ¼ş</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function InsertFile(filename,fname,fileid,filesize,filetype,fileno,dotype){
@@ -261,7 +261,7 @@ function TInsertFile(vstr){
 	parent.opener.DoFile(vstr);
 	parent.window.close();
 }
-//é€‰æ‹©å­—æ®µ
+//Ñ¡Ôñ×Ö¶Î
 function ChangeFile1(obj,str){
 <?php
 if(strstr($field,'.'))
@@ -286,7 +286,7 @@ else
 ?>
 	parent.window.close();
 }
-//ç¼–è¾‘å™¨é€‰æ‹©
+//±à¼­Æ÷Ñ¡Ôñ
 function EditorChangeFile(fileurl,filename,filetype,filesize,name){
 	var returnstr;
 	returnstr=fileurl;
@@ -302,12 +302,12 @@ function EditorChangeFile(fileurl,filename,filetype,filesize,name){
 	window.parent.opener.<?=$useeditor_r['jsfun']?>(returnstr);
 	parent.window.close();
 }
-//å˜é‡å±‚é€‰æ‹©
+//±äÁ¿²ãÑ¡Ôñ
 function SFormIdChangeFile(name,url,filesize,filetype,idvar){
 	parent.opener.doSpChangeFile(name,url,filesize,filetype,idvar);
 	parent.window.close();
 }
-//å…¨é€‰
+//È«Ñ¡
 function CheckAll(form){
   for(var i=0;i<form.elements.length;i++)
   {
@@ -321,7 +321,7 @@ function CheckAll(form){
     }
 }
 
-//è¿”å›ç¼–å·
+//·µ»Ø±àºÅ
 function ExpStr(str,exp){
 	var pos,len,ext;
 	pos=str.lastIndexOf(exp)+1;
@@ -354,12 +354,12 @@ function ReturnFileNo(obj){
 	filename=ExpStr(str,exp);
 	obj.no.value=filename;
 }
-//é‡æ–°è½½å…¥é¡µé¢
+//ÖØĞÂÔØÈëÒ³Ãæ
 function ReloadChangeFilePage(){
 	self.location.reload();
 }
 
-//ä¸Šä¼ é™„ä»¶æ—¶
+//ÉÏ´«¸½¼şÊ±
 function eTranMoreForFileMain(htmlstr){
 	self.location.reload();
 }
@@ -382,36 +382,36 @@ function eTranMoreForFileMain(htmlstr){
 		  <input type=hidden name=sinfo value="<?=$sinfo?>">
 		  <input type=hidden name=doecmspage value="<?=$doecmspage?>">
           <tr class="header"> 
-            <td colspan="2">ä¸Šä¼ <?=$tranname?>é™„ä»¶</td>
+            <td colspan="2">ÉÏ´«<?=$tranname?>¸½¼ş</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td width="16%">è¿œç¨‹ä¿å­˜</td>
+            <td width="16%">Ô¶³Ì±£´æ</td>
             <td width="84%"><input name="tranurl" type="text" id="tranurl" value="http://" size="36"></td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td>æœ¬åœ°ä¸Šä¼ </td>
+            <td>±¾µØÉÏ´«</td>
             <td><input name="file" type="file" size="32"> </td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td>æ–‡ä»¶åˆ«å</td>
+            <td>ÎÄ¼ş±ğÃû</td>
             <td><input name="no" type="text" id="no" value="<?=RepPostStr($_GET['fileno'],1)?>" size="36"> 
             </td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td>å›¾ç‰‡é€‰é¡¹</td>
+            <td>Í¼Æ¬Ñ¡Ïî</td>
             <td> <input name="getmark" type="checkbox" id="getmark" value="1"> 
-              <a href="../SetEnews.php<?=$ecms_hashur['whehref']?>" target="_blank">åŠ æ°´å°</a> <input name="getsmall" type="checkbox" id="getsmall" value="1">
-              ç”Ÿæˆç¼©ç•¥å›¾ï¼šå®½åº¦ <input name="width" type="text" id="width" value="<?=$public_r['spicwidth']?>" size="6">
-              * é«˜åº¦ <input name="height" type="text" id="height" value="<?=$public_r['spicheight']?>" size="6"></td>
+              <a href="../SetEnews.php<?=$ecms_hashur['whehref']?>" target="_blank">¼ÓË®Ó¡</a> <input name="getsmall" type="checkbox" id="getsmall" value="1">
+              Éú³ÉËõÂÔÍ¼£º¿í¶È <input name="width" type="text" id="width" value="<?=$public_r['spicwidth']?>" size="6">
+              * ¸ß¶È <input name="height" type="text" id="height" value="<?=$public_r['spicheight']?>" size="6"></td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td>&nbsp;</td>
-            <td><input type="submit" name="Submit3" value="ä¸Šä¼ ">
+            <td><input type="submit" name="Submit3" value="ÉÏ´«">
 			<?php
 			if($type==1&&TranmoreIsOpen('filemain'))
 			{
 			?>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="Submit" value="å¤šé€‰ä¸Šä¼ " onclick="window.open('tranmore/tranmore.php?type=<?=$type?>&classid=<?=$classid?>&filepass=<?=$filepass?>&infoid=<?=$infoid?>&modtype=<?=$modtype?>&sinfo=<?=$sinfo?>&doing=<?=$doing?>&fstb=<?=$fstb?>&ecmsdo=ecmstmfilemain&tranfrom=0<?=$ecms_hashur['ehref']?>','ecmstmpage','width=700,height=550,scrollbars=yes');">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="Submit" value="¶àÑ¡ÉÏ´«" onclick="window.open('tranmore/tranmore.php?type=<?=$type?>&classid=<?=$classid?>&filepass=<?=$filepass?>&infoid=<?=$infoid?>&modtype=<?=$modtype?>&sinfo=<?=$sinfo?>&doing=<?=$doing?>&fstb=<?=$fstb?>&ecmsdo=ecmstmfilemain&tranfrom=0<?=$ecms_hashur['ehref']?>','ecmstmpage','width=700,height=550,scrollbars=yes');">
 			<?php
 			}
 			?>
@@ -442,37 +442,37 @@ function eTranMoreForFileMain(htmlstr){
   <input type=hidden name=fileno value="<?=$fileno?>">
   <input type=hidden name=doecmspage value="<?=$doecmspage?>">
     <tr> 
-      <td><div align="center">æœç´¢<?=$tranname?>é™„ä»¶ï¼š 
+      <td><div align="center">ËÑË÷<?=$tranname?>¸½¼ş£º 
           <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
           <select name="show" id="show">
-		  <option value="0">ä¸é™</option>
-		  <option value="1">æ–‡ä»¶å</option>
-		  <option value="2" selected>ç¼–å·</option>
-		  <option value="3">ä¸Šä¼ è€…</option>
+		  <option value="0">²»ÏŞ</option>
+		  <option value="1">ÎÄ¼şÃû</option>
+		  <option value="2" selected>±àºÅ</option>
+		  <option value="3">ÉÏ´«Õß</option>
           </select> 
 		  <span id="fileclassnav"></span> 
           <select name="filelday" id="filelday">
-            <option value="1"<?=$filelday==1?' selected':''?>>å…¨éƒ¨æ—¶é—´</option>
-            <option value="86400"<?=$filelday==86400?' selected':''?>>1 å¤©</option>
+            <option value="1"<?=$filelday==1?' selected':''?>>È«²¿Ê±¼ä</option>
+            <option value="86400"<?=$filelday==86400?' selected':''?>>1 Ìì</option>
             <option value="172800"<?=$filelday==172800?' selected':''?>>2 
-              å¤©</option>
-            <option value="604800"<?=$filelday==604800?' selected':''?>>ä¸€å‘¨</option>
+              Ìì</option>
+            <option value="604800"<?=$filelday==604800?' selected':''?>>Ò»ÖÜ</option>
             <option value="2592000"<?=$filelday==2592000?' selected':''?>>1 
-              ä¸ªæœˆ</option>
+              ¸öÔÂ</option>
             <option value="7948800"<?=$filelday==7948800?' selected':''?>>3 
-              ä¸ªæœˆ</option>
+              ¸öÔÂ</option>
             <option value="15897600"<?=$filelday==15897600?' selected':''?>>6 
-              ä¸ªæœˆ</option>
+              ¸öÔÂ</option>
             <option value="31536000"<?=$filelday==31536000?' selected':''?>>1 
-              å¹´</option>
+              Äê</option>
           </select>
           <?=$select_sinfo?>
-          <input type="submit" name="Submit2" value="æœç´¢">
+          <input type="submit" name="Submit2" value="ËÑË÷">
         </div></td>
     </tr>
   </form>
 </table>
-<form name="dofile" method="post" action="../ecmsfile.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+<form name="dofile" method="post" action="../ecmsfile.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
 <?=$ecms_hashur['form']?>
 <input type=hidden name=enews value="DoMarkSmallPic">
   <input type=hidden name=type value="<?=$type?>">
@@ -487,7 +487,7 @@ function eTranMoreForFileMain(htmlstr){
   <input type=hidden name=sinfo value="<?=$sinfo?>">
   <input type=hidden name=doecmspage value="<?=$doecmspage?>">
 <?
-if($type==1)//å›¾ç‰‡
+if($type==1)//Í¼Æ¬
 {
 	include('fileinc/editorpic.php');
 }
@@ -495,11 +495,11 @@ elseif($type==2)//flash
 {
 	include('fileinc/editorflash.php');
 }
-elseif($type==3)//å¤šåª’ä½“æ–‡ä»¶
+elseif($type==3)//¶àÃ½ÌåÎÄ¼ş
 {
 	include('fileinc/editormedia.php');
 }
-else//é™„ä»¶
+else//¸½¼ş
 {
 	include('fileinc/editorfile.php');
 }

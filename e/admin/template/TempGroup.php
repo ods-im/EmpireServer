@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"tempgroup");
 $enews=$_POST['enews'];
 if(empty($enews))
@@ -25,7 +25,7 @@ if($enews)
 	hCheckEcmsRHash();
 	include("../../class/tempfun.php");
 }
-if($enews=="LoadInTempGroup")//å¯¼å…¥
+if($enews=="LoadInTempGroup")//µ¼Èë
 {
 	include "../".LoadLang("pub/fun.php");
 	$file=$_FILES['file']['tmp_name'];
@@ -34,19 +34,19 @@ if($enews=="LoadInTempGroup")//å¯¼å…¥
     $file_size=$_FILES['file']['size'];
 	LoadInTempGroup($_POST,$file,$file_name,$file_type,$file_size,$logininid,$loginin);
 }
-elseif($enews=="LoadTempGroup")//å¯¼å‡º
+elseif($enews=="LoadTempGroup")//µ¼³ö
 {
 	LoadTempGroup($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditTempGroup")//ä¿®æ”¹
+elseif($enews=="EditTempGroup")//ĞŞ¸Ä
 {
 	EditTempGroup($_POST,$logininid,$loginin);
 }
-elseif($enews=="DefTempGroup")//é»˜è®¤
+elseif($enews=="DefTempGroup")//Ä¬ÈÏ
 {
 	DefTtempGroup($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelTempGroup")//åˆ é™¤
+elseif($enews=="DelTempGroup")//É¾³ı
 {
 	DelTempGroup($_POST,$logininid,$loginin);
 }
@@ -57,12 +57,12 @@ $sql=$empire->query("select gid,gname,isdefault from {$dbtbpre}enewstempgroup or
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ¨¡æ¿ç»„ç®¡ç†</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ä£°å×é¹ÜÀí</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckDel(gid){
-	var ok=confirm("ç¡®è®¤è¦åˆ é™¤?");
+	var ok=confirm("È·ÈÏÒªÉ¾³ı?");
 	if(ok)
 	{
 		self.location.href='TempGroup.php?<?=$ecms_hashur['href']?>&enews=DelTempGroup&gid='+gid;
@@ -74,7 +74,7 @@ function CheckDel(gid){
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="TempGroup.php<?=$ecms_hashur['whehref']?>">æ¨¡æ¿ç»„ç®¡ç†</a></td>
+    <td>Î»ÖÃ£º<a href="TempGroup.php<?=$ecms_hashur['whehref']?>">Ä£°å×é¹ÜÀí</a></td>
   </tr>
 </table>
 <br>
@@ -82,12 +82,12 @@ function CheckDel(gid){
   <tr>
     <td width="48%" valign="top"> 
       <table width="93%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
-	  <form name=tempgroup method=post action=TempGroup.php onsubmit="return confirm('ç¡®è®¤è¦æ‰§è¡Œ?');">
+	  <form name=tempgroup method=post action=TempGroup.php onsubmit="return confirm('È·ÈÏÒªÖ´ĞĞ?');">
 	  <?=$ecms_hashur['form']?>
       <input type=hidden name=enews value=EditTempGroup>
         <tr class="header"> 
           <td width="10%" height="25"> <div align="center"></div></td>
-          <td width="90%" height="25">æ¨¡æ¿ç»„åç§°</td>
+          <td width="90%" height="25">Ä£°å×éÃû³Æ</td>
         </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -108,7 +108,7 @@ function CheckDel(gid){
             <td height="25"> <div align="center"> 
                 <input type="radio" name="changegid" value="<?=$r[gid]?>"<?=$checked?>>
               </div></td>
-            <td height="25"> <input name="gname[]" type="text" id="gname[]" value="<?=$r[gname]?>" size="30">(IDï¼š<?=$r[gid]?>) 
+            <td height="25"> <input name="gname[]" type="text" id="gname[]" value="<?=$r[gname]?>" size="30">(ID£º<?=$r[gid]?>) 
             </td>
           </tr>
   <?
@@ -116,11 +116,11 @@ function CheckDel(gid){
   ?>
   		  <tr bgcolor="#FFFFFF"> 
             <td height="25">&nbsp;</td>
-            <td height="25"><input type="submit" name="Submit3" value="ä¿®æ”¹" onclick="document.tempgroup.enews.value='EditTempGroup';">&nbsp; 
-              <input type="submit" name="Submit4" value="è®¾ä¸ºé»˜è®¤" onclick="document.tempgroup.enews.value='DefTempGroup';">&nbsp;
-              <input type="submit" name="Submit6" value="å¯¼å‡º" onclick="document.tempgroup.enews.value='LoadTempGroup';">&nbsp;
-              <input type="submit" name="Submit7" value="åˆ é™¤" onclick="document.tempgroup.enews.value='DelTempGroup';">&nbsp; 
-              <input type="reset" name="Submit5" value="é‡ç½®">
+            <td height="25"><input type="submit" name="Submit3" value="ĞŞ¸Ä" onclick="document.tempgroup.enews.value='EditTempGroup';">&nbsp; 
+              <input type="submit" name="Submit4" value="ÉèÎªÄ¬ÈÏ" onclick="document.tempgroup.enews.value='DefTempGroup';">&nbsp;
+              <input type="submit" name="Submit6" value="µ¼³ö" onclick="document.tempgroup.enews.value='LoadTempGroup';">&nbsp;
+              <input type="submit" name="Submit7" value="É¾³ı" onclick="document.tempgroup.enews.value='DelTempGroup';">&nbsp; 
+              <input type="reset" name="Submit5" value="ÖØÖÃ">
             </td>
           </tr>
   		</form>
@@ -128,50 +128,50 @@ function CheckDel(gid){
     </td>
     <td width="52%" valign="top"> 
       <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-        <form action=TempGroup.php method=post enctype="multipart/form-data" name=loadform onsubmit="return confirm('ç¡®è®¤è¦æ‰§è¡Œ?');">
+        <form action=TempGroup.php method=post enctype="multipart/form-data" name=loadform onsubmit="return confirm('È·ÈÏÒªÖ´ĞĞ?');">
 		<?=$ecms_hashur['form']?>
           <input type=hidden name=enews value=LoadInTempGroup>
           <tr class="header"> 
-            <td height="25" colspan="2">å¯¼å…¥æ¨¡æ¿ç»„</td>
+            <td height="25" colspan="2">µ¼ÈëÄ£°å×é</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td width="24%" height="32">ä¸Šä¼ æ¨¡æ¿æ–‡ä»¶</td>
+            <td width="24%" height="32">ÉÏ´«Ä£°åÎÄ¼ş</td>
             <td width="76%"> <input type="file" name="file">
-              <font color="#666666">(*.tempæ–‡ä»¶)</font></td>
+              <font color="#666666">(*.tempÎÄ¼ş)</font></td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td height="32">æ¨¡æ¿ç¼–ç </td>
+            <td height="32">Ä£°å±àÂë</td>
             <td> <input name="ChangeChar" type="checkbox" id="ChangeChar" value="1" onclick="if(this.checked){changechardiv.style.display='';}else{changechardiv.style.display='none';}">
-              æ¨¡æ¿éœ€è¦è½¬ç¼–ç  &nbsp;&nbsp;<font color="#666666">(å½“å‰ç«™ç‚¹ç¼–ç ï¼š<b><?=$ecms_config['sets']['pagechar']?></b>)</font></td>
+              Ä£°åĞèÒª×ª±àÂë &nbsp;&nbsp;<font color="#666666">(µ±Ç°Õ¾µã±àÂë£º<b><?=$ecms_config['sets']['pagechar']?></b>)</font></td>
           </tr>
           <tr bgcolor="#FFFFFF" id="changechardiv" style="display:none">
             <td height="32">&nbsp;</td>
-            <td> è¦å¯¼å…¥çš„æ¨¡æ¿ç¼–ç : 
+            <td> Òªµ¼ÈëµÄÄ£°å±àÂë: 
               <select name="tempchar" id="tempchar">
-                <option value="GB2312">ç®€ä½“GB2312</option>
-                <option value="UTF8">ç®€ä½“UTF-8</option>
-                <option value="BIG5">ç¹ä½“BIG5</option>
-                <option value="TCUTF8">ç¹ä½“UTF-8</option>
+                <option value="GB2312">¼òÌåGB2312</option>
+                <option value="UTF8">¼òÌåUTF-8</option>
+                <option value="BIG5">·±ÌåBIG5</option>
+                <option value="TCUTF8">·±ÌåUTF-8</option>
               </select>
             </td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td height="32">è¦†ç›–æ¨¡æ¿ç»„</td>
+            <td height="32">¸²¸ÇÄ£°å×é</td>
             <td> <select name="gid" id="gid">
-                <option value="0">æ–°å»ºæ–°çš„æ¨¡æ¿ç»„</option>
+                <option value="0">ĞÂ½¨ĞÂµÄÄ£°å×é</option>
                 <?=$tempgroup_options?>
               </select> </td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="32">&nbsp;</td>
-            <td height="25"> <input type="submit" name="Submit" value="å¯¼ å…¥">
+            <td height="25"> <input type="submit" name="Submit" value="µ¼ Èë">
               &nbsp;&nbsp; </td>
           </tr>
         </form>
       </table>
       <table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr>
-          <td height="25"><font color="#666666">æŸ¥çœ‹æºæ¨¡æ¿ç¼–ç æŠ€å·§ï¼šç”¨è®°äº‹æœ¬æ‰“å¼€.tempæ–‡ä»¶ï¼Œç„¶åæœç´¢â€œ<strong>charset=</strong>â€å°±èƒ½æŸ¥çœ‹ç¼–ç </font></td>
+          <td height="25"><font color="#666666">²é¿´Ô´Ä£°å±àÂë¼¼ÇÉ£ºÓÃ¼ÇÊÂ±¾´ò¿ª.tempÎÄ¼ş£¬È»ºóËÑË÷¡°<strong>charset=</strong>¡±¾ÍÄÜ²é¿´±àÂë</font></td>
         </tr>
       </table></td>
   </tr>

@@ -6,7 +6,7 @@ require("../class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 $user=islogin();
 $fid=(int)$_GET['fid'];
 $r=$empire->fetch1("select fid,name,company,phone,fax,email,address,zip,title,ftext,userid,ip,uid,uname,addtime,eipport from {$dbtbpre}enewsmemberfeedback where fid='$fid' and userid='$user[userid]'");
@@ -16,13 +16,13 @@ if(!$r['fid'])
 }
 if($r['uid'])
 {
-	$r['uname']="<a href='../../space/?userid=$r[uid]' target='_blank'>$r[uname]</a>&nbsp;&nbsp;(<a href='../msg/AddMsg/?username=$r[uname]' target='_blank'>娑堟伅鍥炲</a>)";
+	$r['uname']="<a href='../../space/?userid=$r[uid]' target='_blank'>$r[uname]</a>&nbsp;&nbsp;(<a href='../msg/AddMsg/?username=$r[uname]' target='_blank'>消息回复</a>)";
 }
 else
 {
-	$r['uname']='娓稿';
+	$r['uname']='游客';
 }
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/mspace/ShowFeedback.php');
 db_close();
 $empire=null;

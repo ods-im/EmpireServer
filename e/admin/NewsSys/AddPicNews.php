@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,11 +15,11 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"picnews");
-$url="<a href=ListPicNews.php".$ecms_hashur['whehref'].">ç®¡ç†å›¾ç‰‡ä¿¡æ¯</a>&nbsp;>&nbsp;å¢åŠ å›¾ç‰‡ä¿¡æ¯";
+$url="<a href=ListPicNews.php".$ecms_hashur['whehref'].">¹ÜÀíÍ¼Æ¬ĞÅÏ¢</a>&nbsp;>&nbsp;Ôö¼ÓÍ¼Æ¬ĞÅÏ¢";
 $enews=ehtmlspecialchars($_GET['enews']);
-//ä¿®æ”¹å›¾ç‰‡ä¿¡æ¯
+//ĞŞ¸ÄÍ¼Æ¬ĞÅÏ¢
 if($enews=="EditPicNews")
 {
 	$picid=(int)$_GET['picid'];
@@ -32,7 +32,7 @@ if($enews=="EditPicNews")
 		$open_pic1=" selected";
 	}
 }
-//å›¾ç‰‡ç±»åˆ«
+//Í¼Æ¬Àà±ğ
 $sql=$empire->query("select classid,classname from {$dbtbpre}enewspicclass order by classid");
 while($cr=$empire->fetch($sql))
 {
@@ -48,15 +48,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†å›¾ç‰‡ä¿¡æ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÍ¼Æ¬ĞÅÏ¢</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?>
+    <td>Î»ÖÃ£º<?=$url?>
     </td>
   </tr>
 </table>
@@ -66,45 +66,45 @@ $empire=null;
 <input type=hidden name=picid value=<?=$picid?>>
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
     <tr class="header"> 
-      <td height="25" colspan="2">å¢åŠ å›¾ç‰‡ä¿¡æ¯</td>
+      <td height="25" colspan="2">Ôö¼ÓÍ¼Æ¬ĞÅÏ¢</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">è¯·é€‰æ‹©ç±»åˆ«ï¼š</td>
+      <td height="25">ÇëÑ¡ÔñÀà±ğ£º</td>
       <td height="25"><select name="add[classid]" id="add[classid]">
           <?=$class?>
         </select>
-        <input type="button" name="Submit6222" value="ç®¡ç†åˆ†ç±»" onclick="window.open('PicClass.php<?=$ecms_hashur['whehref']?>');"></td>
+        <input type="button" name="Submit6222" value="¹ÜÀí·ÖÀà" onclick="window.open('PicClass.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="18%" height="25">å›¾ç‰‡åœ°å€ï¼š</td>
+      <td width="18%" height="25">Í¼Æ¬µØÖ·£º</td>
       <td width="82%" height="25"><input name="pic_url" type="text" id="pic_url" value="<?=$r[pic_url]?>" size="36">
-        <a onclick="window.open('../ecmseditor/FileMain.php?modtype=5&type=1&classid=&doing=2&field=pic_url<?=$ecms_hashur['ehref']?>','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../../data/images/changeimg.gif" width="22" height="22" border="0" align="absbottom"></a> 
-        å®½ 
+        <a onclick="window.open('../ecmseditor/FileMain.php?modtype=5&type=1&classid=&doing=2&field=pic_url<?=$ecms_hashur['ehref']?>','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../../data/images/changeimg.gif" width="22" height="22" border="0" align="absbottom"></a> 
+        ¿í 
         <input name="pic_width" type="text" id="pic_width" value="<?=$r[pic_width]?>" size="4">
-        Ã— é«˜ 
+        ¡Á ¸ß 
         <input name="pic_height" type="text" id="pic_height" value="<?=$r[pic_height]?>" size="4">
-        ï¼Œè¾¹æ¡†ï¼š 
+        £¬±ß¿ò£º 
         <input name="border" type="text" id="border" value="<?=$r[border]?>" size="2"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ä¿¡æ¯æ ‡é¢˜ï¼š</td>
+      <td height="25">ĞÅÏ¢±êÌâ£º</td>
       <td height="25"><input name="title" type="text" id="title" value="<?=$r[title]?>" size="50"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">é“¾æ¥åœ°å€ï¼š</td>
+      <td height="25">Á´½ÓµØÖ·£º</td>
       <td height="25"><input name="url" type="text" id="url" value="<?=$r[url]?>" size="50"> 
         <select name=open_pic id="open_pic">
-          <option value="_blank"<?=$open_pic0?>>åœ¨æ–°çª—å£æ‰“å¼€</option>
-          <option value="_parent"<?=$open_pic1?>>åœ¨åŸçª—å£æ‰“å¼€</option>
+          <option value="_blank"<?=$open_pic0?>>ÔÚĞÂ´°¿Ú´ò¿ª</option>
+          <option value="_parent"<?=$open_pic1?>>ÔÚÔ­´°¿Ú´ò¿ª</option>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">ä¿¡æ¯ç®€ä»‹ï¼š</td>
+      <td height="25" valign="top">ĞÅÏ¢¼ò½é£º</td>
       <td height="25"><textarea name="pictext" cols="65" rows="6" id="pictext"><?=$r[pictext]?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

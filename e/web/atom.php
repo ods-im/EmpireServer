@@ -4,7 +4,7 @@ if(!defined('InEmpireCMS'))
 	exit();
 }
 header("Content-type: application/xml");
-//å–å¾—ç½‘å€
+//È¡µÃÍøÖ·
 $idurl=substr($public_r['newsurl'],7,-1);
 $year=date("Y");
 echo"<?xml version=\"1.0\" encoding=\"$pagecode\"?>\n";
@@ -25,9 +25,9 @@ while($r=$empire->fetch($sql))
 	{
 		$field=ReturnTheIntroField($r);
 	}
-	//ç®€ä»‹
+	//¼ò½é
 	$smalltext=RepSpeRssStr(sub(strip_tags($r[$field]),0,$sublen,false));
-	//æ ‡é¢˜é“¾æ¥
+	//±êÌâÁ´½Ó
 	$titleurl=RepSpeRssStr(sys_ReturnBqTitleLink($r));
 	if(!stristr($titleurl,'://'))
 	{

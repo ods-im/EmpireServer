@@ -1,12 +1,12 @@
 <?php
-//è¿”å›å•†åŸå‚æ•°
+//·µ»ØÉÌ³Ç²ÎÊı
 function ShopSys_ReturnSet(){
 	global $empire,$dbtbpre;
 	$shoppr=$empire->fetch1("select * from {$dbtbpre}enewsshop_set limit 1");
 	return $shoppr;
 }
 
-//éªŒè¯æ˜¯å¦å•†åŸè¡¨
+//ÑéÖ¤ÊÇ·ñÉÌ³Ç±í
 function ShopSys_CheckShopTb($tbname,$shoppr){
 	if(!strstr($shoppr['shoptbs'],','.$tbname.','))
 	{
@@ -14,19 +14,19 @@ function ShopSys_CheckShopTb($tbname,$shoppr){
 	}
 }
 
-//å£°æ˜è´­ç‰©è½¦
+//ÉùÃ÷¹ºÎï³µ
 function SetBuycar($buycar){
 	$set=esetcookie("mybuycar",$buycar,0);
 	return $set;
 }
 
-//æ¸…ç©ºè´­ç‰©è½¦
+//Çå¿Õ¹ºÎï³µ
 function ClearBuycar(){
 	SetBuycar("");
 	Header("Refresh:0; URL=buycar/");
 }
 
-//è¿”å›æ•°é‡
+//·µ»ØÊıÁ¿
 function ReturnBuycarProductNum($num){
 	$num=(int)$num;
 	if($num<1)
@@ -36,7 +36,7 @@ function ReturnBuycarProductNum($num){
 	return $num;
 }
 
-//æ›¿æ¢å‚æ•°
+//Ìæ»»²ÎÊı
 function ShopSys_BuycarRepvar($var){
 	$var=str_replace('!','',$var);
 	$var=str_replace('|','',$var);
@@ -44,14 +44,14 @@ function ShopSys_BuycarRepvar($var){
 	return $var;
 }
 
-//æ›¿æ¢å‚æ•°
+//Ìæ»»²ÎÊı
 function ShopSys_BuycarRepvar2($var){
 	$var=str_replace('!','',$var);
 	$var=str_replace('|','',$var);
 	return $var;
 }
 
-//åº“å­˜æ£€æŸ¥
+//¿â´æ¼ì²é
 function Shopsys_CheckMaxnum($num,$maxnum,$shoppr){
 	if($num>$maxnum)
 	{
@@ -63,7 +63,7 @@ function Shopsys_CheckMaxnum($num,$maxnum,$shoppr){
 	}
 }
 
-//å‡å°‘åº“å­˜
+//¼õÉÙ¿â´æ
 function Shopsys_CutMaxnum($ddid,$buycar,$havecut,$shoppr,$ecms=0){
 	global $class_r,$empire,$dbtbpre,$public_r;
 	$ddid=(int)$ddid;
@@ -101,7 +101,7 @@ function Shopsys_CutMaxnum($ddid,$buycar,$havecut,$shoppr,$ecms=0){
 		//ID
 		$classid=(int)$fr[0];
 		$id=(int)$fr[1];
-		//æ•°é‡
+		//ÊıÁ¿
 		$pnum=(int)$pr[3];
 		if($pnum<1)
 		{
@@ -117,7 +117,7 @@ function Shopsys_CutMaxnum($ddid,$buycar,$havecut,$shoppr,$ecms=0){
 	$empire->query("update {$dbtbpre}enewsshopdd set havecutnum='$newhavecut' where ddid='$ddid'");
 }
 
-//åŠ å…¥è´­ç‰©è½¦
+//¼ÓÈë¹ºÎï³µ
 function AddBuycar($classid,$id,$pn=1,$add){
 	global $class_r,$empire,$dbtbpre,$public_r;
 	$shoppr=ShopSys_ReturnSet();
@@ -128,15 +128,15 @@ function AddBuycar($classid,$id,$pn=1,$add){
 	{
 		printerror("NotChangeProduct","history.go(-1)",1);
     }
-	//éªŒè¯å•†åŸè¡¨
+	//ÑéÖ¤ÉÌ³Ç±í
 	ShopSys_CheckShopTb($class_r[$classid]['tbname'],$shoppr);
-	//éªŒè¯äº§å“æ˜¯å¦å­˜åœ¨
+	//ÑéÖ¤²úÆ·ÊÇ·ñ´æÔÚ
 	$infor=$empire->fetch1("select id,classid,pmaxnum,price,buyfen from {$dbtbpre}ecms_".$class_r[$classid][tbname]." where id='$id' limit 1");
 	if(!$infor['id']||$infor['classid']!=$classid)
 	{
 		printerror("NotChangeProduct","history.go(-1)",1);
 	}
-	//æ— è´§
+	//ÎŞ»õ
 	if($infor['pmaxnum']<1)
 	{
 		printerror("ShopNotProductNum","history.go(-1)",1);
@@ -155,20 +155,20 @@ function AddBuycar($classid,$id,$pn=1,$add){
 	$productid=$classid.",".$id;
 	$addattstr='|'.$addatt;
 	$buycar=getcvar('mybuycar');
-	//é‡å¤
+	//ÖØ¸´
 	if(strstr($buycar,"|".$productid.$addattstr."|"))
 	{
 		$pr=explode("|".$productid.$addattstr."|",$buycar);
 		$pr1=explode("!",$pr[1]);
 		$oldbuycar="|".$productid.$addattstr."|".$pr1[0]."!";
-		//æ•°é‡
+		//ÊıÁ¿
 		$pr1[0]=ReturnBuycarProductNum($pr1[0]);
 		if(empty($pr1[0]))
 		{
 			$pr1[0]=1;
 		}
 		$newnum=$pr1[0]+$pn;
-		//åº“å­˜
+		//¿â´æ
 		Shopsys_CheckMaxnum($newnum,$infor['pmaxnum'],$shoppr);
 		$newbuycar="|".$productid.$addattstr."|".$newnum."!";
 		$buycar=str_replace($oldbuycar,$newbuycar,$buycar);
@@ -184,12 +184,12 @@ function AddBuycar($classid,$id,$pn=1,$add){
 				printerror("ShopBuycarMaxnum","history.go(-1)",1);
 			}
 		}
-		//åªå­˜æ”¾ä¸€ä¸ª
+		//Ö»´æ·ÅÒ»¸ö
 		if($shoppr['buycarnum']==1)
 		{
 			$buycar='';
 		}
-		//åº“å­˜
+		//¿â´æ
 		Shopsys_CheckMaxnum($pn,$infor['pmaxnum'],$shoppr);
 		$buycar.="|".$productid.$addattstr."|".$pn."!";
 	}
@@ -205,7 +205,7 @@ function AddBuycar($classid,$id,$pn=1,$add){
 	Header("Refresh:0; URL=$tourl");
 }
 
-//ä¿®æ”¹è´­ç‰©è½¦
+//ĞŞ¸Ä¹ºÎï³µ
 function EditBuycar($add){
 	global $class_r,$empire,$dbtbpre,$public_r;
 	$shoppr=ShopSys_ReturnSet();
@@ -221,20 +221,20 @@ function EditBuycar($add){
 	for($i=0;$i<$count;$i++)
 	{
 		$productid[$i]=RepPostVar($productid[$i]);
-		//éªŒè¯å•†å“æ˜¯å¦å­˜åœ¨
+		//ÑéÖ¤ÉÌÆ·ÊÇ·ñ´æÔÚ
 		$pr=explode(',',$productid[$i]);
 		$classid=(int)$pr[0];
 		$id=(int)$pr[1];
 		$productid[$i]=$classid.','.$id;
-		//éªŒè¯å•†åŸè¡¨
+		//ÑéÖ¤ÉÌ³Ç±í
 		ShopSys_CheckShopTb($class_r[$classid]['tbname'],$shoppr);
-		//éªŒè¯äº§å“æ˜¯å¦å­˜åœ¨
+		//ÑéÖ¤²úÆ·ÊÇ·ñ´æÔÚ
 		$infor=$empire->fetch1("select id,classid,pmaxnum,price,buyfen from {$dbtbpre}ecms_".$class_r[$classid][tbname]." where id='$id' limit 1");
 		if(!$infor['id']||$infor['classid']!=$classid)
 		{
 			printerror("NotChangeProduct","history.go(-1)",1);
 		}
-		//æ— è´§
+		//ÎŞ»õ
 		if($infor['pmaxnum']<1)
 		{
 			printerror("ShopNotProductNum","history.go(-1)",1);
@@ -248,7 +248,7 @@ function EditBuycar($add){
 			$addatt[$i]='';
 		}
 		$num[$i]=intval($num[$i]);
-		//éªŒè¯æ˜¯å¦åˆ é™¤é¡¹
+		//ÑéÖ¤ÊÇ·ñÉ¾³ıÏî
 		if(empty($num[$i]))
 		{
 			continue;
@@ -267,7 +267,7 @@ function EditBuycar($add){
 			continue;
 		}
 		$num[$i]=ReturnBuycarProductNum($num[$i]);
-		//åº“å­˜
+		//¿â´æ
 		Shopsys_CheckMaxnum($num[$i],$infor['pmaxnum'],$shoppr);
 		$buycar.="|".$productid[$i]."|".$addatt[$i]."|".$num[$i]."!";
     }
@@ -283,7 +283,7 @@ function EditBuycar($add){
 	Header("Refresh:0; URL=$tourl");
 }
 
-//è¿”å›é™„åŠ å±æ€§
+//·µ»Ø¸½¼ÓÊôĞÔ
 function ShopSys_BuycarInfoAdd($addatt){
 	$count=count($addatt);
 	if(!$count)
@@ -305,10 +305,10 @@ function ShopSys_BuycarInfoAdd($addatt){
 	return $attstr;
 }
 
-//éªŒè¯æäº¤æƒé™
+//ÑéÖ¤Ìá½»È¨ÏŞ
 function ShopCheckAddDdGroup($shoppr){
 	global $public_r;
-	//é™åˆ¶ä¸‹å•ä¼šå‘˜
+	//ÏŞÖÆÏÂµ¥»áÔ±
 	if($shoppr['shopddgroupid'])
 	{
 		if(!getcvar('mluserid'))
@@ -321,7 +321,7 @@ function ShopCheckAddDdGroup($shoppr){
 	}
 }
 
-//éªŒè¯è®¢å•å¿…å¡«é¡¹
+//ÑéÖ¤¶©µ¥±ØÌîÏî
 function ShopSys_CheckDdMust($add,$shoppr){
 	$ddmustr=explode(',',$shoppr['ddmust']);
 	$mcount=count($ddmustr)-1;
@@ -347,7 +347,7 @@ function ShopSys_CheckDdMust($add,$shoppr){
     }
 }
 
-//è¿”å›ä¼˜æƒ ç ä¿¡æ¯
+//·µ»ØÓÅ»İÂëĞÅÏ¢
 function ShopSys_GetPre($precode,$totalmoney,$user,$classids){
 	global $empire,$dbtbpre;
 	$premoney=0;
@@ -361,18 +361,18 @@ function ShopSys_GetPre($precode,$totalmoney,$user,$classids){
 	{
 		printerror("EmptyPreCode","history.go(-1)",1);
 	}
-	//æ˜¯å¦è¿‡æœŸ
+	//ÊÇ·ñ¹ıÆÚ
 	$time=time();
 	if($prer['endtime']&&$prer['endtime']<$time)
 	{
 		printerror("PreCodeOuttime","history.go(-1)",1);
 	}
-	//ä¼šå‘˜ç»„
+	//»áÔ±×é
 	if($prer['groupid']&&!strstr($prer['groupid'],','.$user[groupid].','))
 	{
 		printerror("PreCodeNotLevel","history.go(-1)",1);
 	}
-	//æ ç›®
+	//À¸Ä¿
 	if($prer['classid'])
 	{
 		$cr=explode(',',$classids);
@@ -386,7 +386,7 @@ function ShopSys_GetPre($precode,$totalmoney,$user,$classids){
 			}
 		}
 	}
-	//æ»¡é‡‘é¢
+	//Âú½ğ¶î
 	if($totalmoney<$prer['musttotal'])
 	{
 		$GLOBALS['precodemusttotal']=$prer['musttotal'];
@@ -395,7 +395,7 @@ function ShopSys_GetPre($precode,$totalmoney,$user,$classids){
 	return $prer;
 }
 
-//è¿”å›ä¼˜æƒ é‡‘é¢
+//·µ»ØÓÅ»İ½ğ¶î
 function ShopSys_PreMoney($prer,$money){
 	$premoney=0;
 	if($prer['pretype']==1)
@@ -409,7 +409,7 @@ function ShopSys_PreMoney($prer,$money){
 	return $premoney;
 }
 
-//è¿”å›é…é€æ–¹å¼é‡‘é¢
+//·µ»ØÅäËÍ·½Ê½½ğ¶î
 function ShopSys_PrePsTotal($psid,$psprice,$alltotal,$shoppr){
 	if($shoppr['freepstotal']<1)
 	{
@@ -422,19 +422,19 @@ function ShopSys_PrePsTotal($psid,$psprice,$alltotal,$shoppr){
 	return $psprice;
 }
 
-//è¿”å›è®¢å•å·
+//·µ»Ø¶©µ¥ºÅ
 function ShopSys_ReturnDdNo(){
 	$ddno=time().rand(10000,99999);
 	return $ddno;
 }
 
-//å¢åŠ è®¢å•
+//Ôö¼Ó¶©µ¥
 function AddDd($add){
 	global $empire,$public_r,$dbtbpre;
 	$shoppr=ShopSys_ReturnSet();
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	ShopCheckAddDdGroup($shoppr);
-	//è´­ç‰©è½¦æ— å†…å®¹
+	//¹ºÎï³µÎŞÄÚÈİ
 	if(!getcvar('mybuycar'))
 	{
 		printerror("EmptyBuycar","history.go(-1)",1);
@@ -457,23 +457,23 @@ function AddDd($add){
 	$add[psid]=(int)$add[psid];
 	$add[payfsid]=(int)$add[payfsid];
 	$add['precode']=RepPostVar($add['precode']);
-	//åŸºæœ¬å¿…å¡«
+	//»ù±¾±ØÌî
 	if(!$add['ddno'])
 	{
 		printerror("EmptyBuycar","history.go(-1)",1);
 	}
-	//å¿…å¡«é¡¹
+	//±ØÌîÏî
 	ShopSys_CheckDdMust($add,$shoppr);
 	$mess="AddDdSuccess";
 	$haveprice=0;
 	$payby=0;
-	//è¿”å›è´­ç‰©è½¦å­˜æ”¾æ ¼å¼
+	//·µ»Ø¹ºÎï³µ´æ·Å¸ñÊ½
 	$buyr=ReturnBuycardd($shoppr);
 	$alltotal=$buyr[2];
 	$alltotalfen=$buyr[1];
 	$buycar=$buyr[3];
 	$classids=$buyr['classids'];
-	//é…é€æ–¹å¼
+	//ÅäËÍ·½Ê½
 	$pr=array();
 	if($shoppr['shoppsmust'])
 	{
@@ -483,7 +483,7 @@ function AddDd($add){
 			printerror("NotPsid","history.go(-1)",1);
 		}
 	}
-	//æ”¯ä»˜æ–¹å¼
+	//Ö§¸¶·½Ê½
 	$payr=array();
 	if($shoppr['shoppayfsmust'])
 	{
@@ -493,7 +493,7 @@ function AddDd($add){
 			printerror("NotPayfsid","history.go(-1)",1);
 		}
 	}
-	//å–å¾—ç”¨æˆ·ä¿¡æ¯
+	//È¡µÃÓÃ»§ĞÅÏ¢
 	$user=array();
 	$userid=(int)getcvar('mluserid');
 	$username=RepPostVar(getcvar('mlusername'));
@@ -507,7 +507,7 @@ function AddDd($add){
 			printerror("MustSingleUser","history.go(-1)",1);
 		}
 	}
-	//ä¼˜æƒ 
+	//ÓÅ»İ
 	$prer=array();
 	$pretotal=0;
 	if($add['precode'])
@@ -515,19 +515,19 @@ function AddDd($add){
 		$prer=ShopSys_GetPre($add['precode'],$alltotal,$user,$classids);
 		$pretotal=ShopSys_PreMoney($prer,$alltotal);
 	}
-	//è¿è´¹
+	//ÔË·Ñ
 	$truetotalmoney=$alltotal-$pretotal;
 	if($pr['pid'])
 	{
 		$pr['price']=ShopSys_PrePsTotal($pr['pid'],$pr['price'],$truetotalmoney,$shoppr);
 	}
-	//å‘ç¥¨
+	//·¢Æ±
 	$fptotal=0;
 	if($add[fp])
 	{
 		$fptotal=($alltotal-$pretotal)*($shoppr['fpnum']/100);
 	}
-	//æ”¯ä»˜é‡‘é¢
+	//Ö§¸¶½ğ¶î
 	$buyallfen=$alltotalfen+$pr['price'];
 	$buyallmoney=$alltotal+$pr['price']+$fptotal-$pretotal;
 	if($buyallmoney<0)
@@ -535,7 +535,7 @@ function AddDd($add){
 		$buyallmoney=0;
 	}
 	$location="buycar/";
-	if($payr[userfen])	//ç›´æ¥æ‰£ç‚¹
+	if($payr[userfen])	//Ö±½Ó¿Ûµã
 	{
 		if($buyr[0])
 		{
@@ -550,7 +550,7 @@ function AddDd($add){
 				{
 					printerror("NotEnoughFenBuy","history.go(-1)",1);
 				}
-				//æ‰£é™¤ç‚¹æ•°
+				//¿Û³ıµãÊı
 				$usql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('userfen')."=".egetmf('userfen')."-".$buyallfen." where ".egetmf('userid')."='$userid'");
 				if($usql)
 				{
@@ -565,7 +565,7 @@ function AddDd($add){
 			}
 		}
 	}
-	elseif($payr[userpay])	//å¸å·ä½™é¢æ‰£é™¤
+	elseif($payr[userpay])	//ÕÊºÅÓà¶î¿Û³ı
 	{
 		    if($userid)
 			{
@@ -578,7 +578,7 @@ function AddDd($add){
 				{
 					printerror("NotEnoughMoneyBuy","history.go(-1)",1);
 				}
-				//æ‰£é™¤é‡‘é¢
+				//¿Û³ı½ğ¶î
 				$usql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('money')."=".egetmf('money')."-".$buyallmoney." where ".egetmf('userid')."='$userid'");
 				if($usql)
 				{
@@ -592,7 +592,7 @@ function AddDd($add){
 				printerror("NotLoginTobuy","history.go(-1)",1);
 			}
 	}
-	elseif($payr[payurl])	//åœ¨çº¿æ”¯ä»˜
+	elseif($payr[payurl])	//ÔÚÏßÖ§¸¶
 	{
 		$mess="AddDdAndToPaySuccess";
 		$location=$payr[payurl];
@@ -610,7 +610,7 @@ function AddDd($add){
 	$sql=$empire->query("insert into {$dbtbpre}enewsshopdd(ddno,ddtime,userid,username,outproduct,haveprice,checked,truename,oicq,msn,email,`mycall`,phone,address,zip,psid,psname,pstotal,alltotal,payfsid,payfsname,payby,alltotalfen,fp,fptt,fptotal,fpname,userip,signbuild,besttime,pretotal,ddtruetime) values('$add[ddno]','$ddtime',$userid,'$username',0,'$haveprice',0,'$add[truename]','$add[oicq]','$add[msn]','$add[email]','$add[mycall]','$add[phone]','$add[address]','$add[zip]','$add[psid]','$pr[pname]',$pr[price],$alltotal,'$add[payfsid]','$payr[payname]','$payby',$alltotalfen,$add[fp],'$add[fptt]',$fptotal,'$add[fpname]','$ip','$add[signbuild]','$add[besttime]','$pretotal','$ddtruetime');");
 	$ddid=$empire->lastid();
 	$sqladd=$empire->query("insert into {$dbtbpre}enewsshopdd_add(ddid,buycar,bz,retext) values('$ddid','".addslashes($buycar)."','$add[bz]','');");
-	//å‡åº“å­˜
+	//¼õ¿â´æ
 	if($shoppr['cutnumtype']==0)
 	{
 		Shopsys_CutMaxnum($ddid,$buycar,0,$shoppr,0);
@@ -622,7 +622,7 @@ function AddDd($add){
 			Shopsys_CutMaxnum($ddid,$buycar,0,$shoppr,0);
 		}
 	}
-	//ä¼˜æƒ ç 
+	//ÓÅ»İÂë
 	if($prer['id'])
 	{
 		$prer['id']=(int)$prer['id'];
@@ -654,7 +654,7 @@ function AddDd($add){
 	}
 }
 
-//è¿”å›è´­ç‰©è½¦æ•°æ®
+//·µ»Ø¹ºÎï³µÊı¾İ
 function ReturnBuycardd($shoppr){
 	global $empire,$class_r,$dbtbpre;
 	$buycar=getcvar('mybuycar');
@@ -662,11 +662,11 @@ function ReturnBuycardd($shoppr){
 	$field="|";
 	$r=explode($record,$buycar);
 	$alltotal=0;
-	$return[0]=0;//æ˜¯å¦å…¨éƒ¨ç§¯åˆ†
-	$return[1]=0;//è´­ä¹°æ€»ç§¯åˆ†
-	$return[2]=0;//è´­ä¹°æ€»é‡‘é¢
-	$return[3]="";//å­˜æ”¾æ ¼å¼
-	$return['classids']="";//æ ç›®é›†åˆ
+	$return[0]=0;//ÊÇ·ñÈ«²¿»ı·Ö
+	$return[1]=0;//¹ºÂò×Ü»ı·Ö
+	$return[2]=0;//¹ºÂò×Ü½ğ¶î
+	$return[3]="";//´æ·Å¸ñÊ½
+	$return['classids']="";//À¸Ä¿¼¯ºÏ
 	$cdh='';
 	$newbuycar="";
 	for($i=0;$i<count($r)-1;$i++)
@@ -681,9 +681,9 @@ function ReturnBuycardd($shoppr){
 		{
 			continue;
 		}
-		//éªŒè¯å•†åŸè¡¨
+		//ÑéÖ¤ÉÌ³Ç±í
 		ShopSys_CheckShopTb($class_r[$classid]['tbname'],$shoppr);
-		//é™„åŠ å±æ€§
+		//¸½¼ÓÊôĞÔ
 		if($shoppr['haveatt'])
 		{
 			$addattstr=dgdb_tosave(ShopSys_BuycarRepvar2(RepPostStr($pr[2])));
@@ -692,26 +692,26 @@ function ReturnBuycardd($shoppr){
 		{
 			$addattstr='';
 		}
-		//æ•°é‡
+		//ÊıÁ¿
 		$num=ReturnBuycarProductNum($pr[3]);
 		if(empty($num))
 		{
 			$num=1;
 		}
-		//å–å¾—äº§å“ä¿¡æ¯
+		//È¡µÃ²úÆ·ĞÅÏ¢
 		$productr=$empire->fetch1("select title,tprice,price,isurl,titleurl,classid,id,titlepic,buyfen,pmaxnum from {$dbtbpre}ecms_".$class_r[$classid][tbname]." where id='$id' limit 1");
 		if(!$productr['id']||$productr['classid']!=$classid)
 		{
 			continue;
 		}
-		//æ— è´§
+		//ÎŞ»õ
 		if($productr['pmaxnum']<1)
 		{
 			printerror("ShopNotProductNum","history.go(-1)",1);
 		}
-		//åº“å­˜
+		//¿â´æ
 		Shopsys_CheckMaxnum($num,$productr['pmaxnum'],$shoppr);
-		//æ˜¯å¦å…¨éƒ¨ç§¯åˆ†
+		//ÊÇ·ñÈ«²¿»ı·Ö
 		if(!$productr[buyfen])
 		{
 			$return[0]=1;
@@ -719,10 +719,10 @@ function ReturnBuycardd($shoppr){
 		$return[1]+=$productr[buyfen]*$num;
 		$thistotal=$productr[price]*$num;
 		$alltotal+=$thistotal;
-		//æ ç›®é›†åˆ
+		//À¸Ä¿¼¯ºÏ
 		$return['classids'].=$cdh.$productr['classid'];
 		$cdh=',';
-		//ç»„æˆå­˜æ”¾çš„æ ¼å¼
+		//×é³É´æ·ÅµÄ¸ñÊ½
 		$title=str_replace("!","",$productr[title]);
 		$title=str_replace("|","",$title);
 		$title=str_replace(",","",$title);
@@ -736,7 +736,7 @@ function ReturnBuycardd($shoppr){
 	return $return;
 }
 
-//æœªä»˜æ¬¾çš„ç»§ç»­æ”¯ä»˜
+//Î´¸¶¿îµÄ¼ÌĞøÖ§¸¶
 function ShopDdToPay($ddid){
 	global $empire,$dbtbpre;
 	$ddid=(int)$ddid;
@@ -744,7 +744,7 @@ function ShopDdToPay($ddid){
 	{
 		printerror("NotShopDdId","history.go(-1)",1);
 	}
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$r=$empire->fetch1("select ddid,payfsid,haveprice,checked,ddtime from {$dbtbpre}enewsshopdd where ddid='$ddid' and userid='$user_r[userid]' limit 1");
 	if(!$r['ddid'])
@@ -763,7 +763,7 @@ function ShopDdToPay($ddid){
 	{
 		printerror("NotPayfsid","history.go(-1)",1);
 	}
-	//æ”¯ä»˜æ–¹å¼
+	//Ö§¸¶·½Ê½
 	$payr=$empire->fetch1("select payid,payurl from {$dbtbpre}enewsshoppayfs where payid='$r[payfsid]' and isclose=0");
 	if(!$payr['payid']||!$payr['payurl'])
 	{
@@ -774,11 +774,11 @@ function ShopDdToPay($ddid){
 	Header("Refresh:0; URL=$location");
 }
 
-//åˆ é™¤è®¢å•
+//É¾³ı¶©µ¥
 function ShopSys_qDelDd($add){
 	global $empire,$dbtbpre,$public_r;
 	$shoppr=ShopSys_ReturnSet();
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$ddid=(int)$add['ddid'];
 	if(!$ddid)
@@ -790,18 +790,18 @@ function ShopSys_qDelDd($add){
 	{
 		printerror("NotChangeShopDdid","history.go(-1)",1);
 	}
-	//è®¢å•ä¸èƒ½åˆ é™¤
+	//¶©µ¥²»ÄÜÉ¾³ı
 	if($r['checked']||$r['outproduct']||$r['haveprice'])
 	{
 		printerror("NotDelShopDd","history.go(-1)",1);
 	}
-	//è¶…è¿‡æ—¶é—´ä¸èƒ½åˆ é™¤
+	//³¬¹ıÊ±¼ä²»ÄÜÉ¾³ı
 	$dddeltime=$shoppr['dddeltime']*60;
 	if(time()-$dddeltime>to_time($r['ddtime']))
 	{
 		printerror("OuttimeNotDelShopDd","history.go(-1)",1);
 	}
-	//è¿˜åŸåº“å­˜
+	//»¹Ô­¿â´æ
 	if($shoppr['cutnumtype']==0)
 	{
 		$buycarr=$empire->fetch1("select buycar from {$dbtbpre}enewsshopdd_add where ddid='$ddid'");
@@ -819,7 +819,7 @@ function ShopSys_qDelDd($add){
 	}
 }
 
-//è¿‡æœŸå–æ¶ˆè®¢å•å¹¶è¿˜åŸåº“å­˜
+//¹ıÆÚÈ¡Ïû¶©µ¥²¢»¹Ô­¿â´æ
 function ShopSys_TimeCutMaxnum($userid,$shoppr){
 	global $empire,$dbtbpre,$class_r;
 	if($shoppr['cutnumtype']==1||$shoppr['cutnumtime']==0)
@@ -838,10 +838,10 @@ function ShopSys_TimeCutMaxnum($userid,$shoppr){
 	$empire->query("update {$dbtbpre}enewsshopdd set checked=2 where ".$where."haveprice=0 and checked=0 and havecutnum=1 and ddtruetime<$time");
 }
 
-//æ–°å¢åœ°å€
+//ĞÂÔöµØÖ·
 function ShopSys_AddAddress($add){
 	global $empire,$dbtbpre,$public_r;
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$add['addressname']=dgdb_tosave($add['addressname']);
 	$add['truename']=dgdb_tosave($add['truename']);
@@ -871,10 +871,10 @@ function ShopSys_AddAddress($add){
 	}
 }
 
-//ä¿®æ”¹åœ°å€
+//ĞŞ¸ÄµØÖ·
 function ShopSys_EditAddress($add){
 	global $empire,$dbtbpre,$public_r;
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$addressid=(int)$add['addressid'];
 	$add['addressname']=dgdb_tosave($add['addressname']);
@@ -903,10 +903,10 @@ function ShopSys_EditAddress($add){
 	}
 }
 
-//åˆ é™¤åœ°å€
+//É¾³ıµØÖ·
 function ShopSys_DelAddress($add){
 	global $empire,$dbtbpre,$public_r;
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$addressid=(int)$add['addressid'];
 	if(!$addressid)
@@ -924,10 +924,10 @@ function ShopSys_DelAddress($add){
 	}
 }
 
-//é»˜è®¤åœ°å€
+//Ä¬ÈÏµØÖ·
 function ShopSys_DefAddress($add){
 	global $empire,$dbtbpre,$public_r;
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$addressid=(int)$add['addressid'];
 	if(!$addressid)
@@ -946,10 +946,10 @@ function ShopSys_DefAddress($add){
 	}
 }
 
-//è·å–åœ°å€
+//»ñÈ¡µØÖ·
 function ShopSys_GetAddress($addressid){
 	global $empire,$dbtbpre,$public_r;
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$addressid=(int)$addressid;
 	if($addressid)

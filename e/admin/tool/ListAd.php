@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,20 +16,20 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"ad");
 
-//å¢åŠ å¹¿å‘Š
+//Ôö¼Ó¹ã¸æ
 function AddAd($add,$titlefont,$titlecolor,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[classid]||!$add[title]||!$add[adtype])
 	{printerror("EmptyAd","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"ad");
 	$add[htmlcode]=AddAddsData(RepPhpAspJspcodeText($add[htmlcode]));
 	$add[reptext]=AddAddsData(RepPhpAspJspcodeText($add[reptext]));
 	$ttitlefont=TitleFont($titlefont,'no');
-	//å˜é‡å¤„ç†
+	//±äÁ¿´¦Àí
 	$add['title']=hRepPostStr($add['title'],1);
 	$add[pic_width]=(int)$add[pic_width];
 	$add[pic_height]=(int)$add[pic_height];
@@ -49,12 +49,12 @@ function AddAd($add,$titlefont,$titlecolor,$userid,$username){
 	$titlecolor=AddAddsData($titlecolor);
 	$sql=$empire->query("insert into {$dbtbpre}enewsad(picurl,url,pic_width,pic_height,onclick,classid,adtype,title,target,alt,starttime,endtime,adsay,titlefont,titlecolor,htmlcode,t,ylink,reptext) values('$add[picurl]','$add[url]',$add[pic_width],$add[pic_height],0,$add[classid],$add[adtype],'$add[title]','$add[target]','$add[alt]','$add[starttime]','$add[endtime]','$add[adsay]','$ttitlefont','$titlecolor','$add[htmlcode]',$add[t],$add[ylink],'$add[reptext]');");
 	$adid=$empire->lastid();
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileOther(3,$adid,$add['filepass'],'other');
 	GetAdJs($adid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("adid=".$adid."<br>title=".$add[title]);
 		printerror("AddAdSuccess","AddAd.php?enews=AddAd&t=".$add[t].hReturnEcmsHashStrHref2(0));
 	}
@@ -62,21 +62,21 @@ function AddAd($add,$titlefont,$titlecolor,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹å¹¿å‘Š
+//ĞŞ¸Ä¹ã¸æ
 function EditAd($add,$titlefont,$titlecolor,$userid,$username){
 	global $empire,$time,$dbtbpre;
 	$add[adid]=(int)$add[adid];
 	if(!$add[classid]||!$add[title]||!$add[adtype]||!$add[adid])
 	{printerror("EmptyAd","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"ad");
 	$add[htmlcode]=AddAddsData(RepPhpAspJspcodeText($add[htmlcode]));
 	$add[reptext]=AddAddsData(RepPhpAspJspcodeText($add[reptext]));
 	$ttitlefont=TitleFont($titlefont,'no');
-	//é‡ç½®
+	//ÖØÖÃ
 	if($add[reset])
 	{$a=",onclick=0";}
-	//å˜é‡å¤„ç†
+	//±äÁ¿´¦Àí
 	$add['title']=hRepPostStr($add['title'],1);
 	$add[pic_width]=(int)$add[pic_width];
 	$add[pic_height]=(int)$add[pic_height];
@@ -99,7 +99,7 @@ function EditAd($add,$titlefont,$titlecolor,$userid,$username){
 	GetAdJs($add[adid]);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("adid=".$add[adid]."<br>title=".$add[title]);
 		printerror("EditAdSuccess","ListAd.php?time=$time".hReturnEcmsHashStrHref2(0));
 	}
@@ -107,23 +107,23 @@ function EditAd($add,$titlefont,$titlecolor,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤å¹¿å‘Š
+//É¾³ı¹ã¸æ
 function DelAd($adid,$userid,$username){
 	global $empire,$time,$public_r,$dbtbpre;
 	$adid=(int)$adid;
 	if(!$adid)
 	{printerror("NotDelAdid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"ad");
 	$r=$empire->fetch1("select title from {$dbtbpre}enewsad where adid='$adid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsad where adid='$adid'");
 	$file="../../../d/js/acmsd/".$public_r[adfile].$adid.".js";
 	DelFiletext($file);
-	//åˆ é™¤é™„ä»¶
+	//É¾³ı¸½¼ş
 	DelFileOtherTable("modtype=3 and id='$adid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("adid=".$adid."<br>title=".$r[title]);
 		printerror("DelAdSuccess","ListAd.php?time=$time".hReturnEcmsHashStrHref2(0));
 	}
@@ -131,7 +131,7 @@ function DelAd($adid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ‰¹é‡ç”Ÿæˆå¹¿å‘Š
+//ÅúÁ¿Éú³É¹ã¸æ
 function ReAdJs_all($start=0,$from,$userid,$username){
 	global $empire,$public_r,$fun_r,$dbtbpre;
 	$moreportpid=(int)$_GET['moreportpid'];
@@ -155,7 +155,7 @@ function ReAdJs_all($start=0,$from,$userid,$username){
 	}
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("ReAdJsSuccess",$from);
 	}
@@ -163,7 +163,7 @@ function ReAdJs_all($start=0,$from,$userid,$username){
 	exit();
 }
 
-//æ¸…é™¤æ³¨é‡Š
+//Çå³ı×¢ÊÍ
 function ClearHtmlZs($text){
 	$text=str_replace('<!--','',$text);
 	$text=str_replace('//-->','',$text);
@@ -171,12 +171,12 @@ function ClearHtmlZs($text){
 	return $text;
 }
 
-//ç”Ÿæˆå¹¿å‘Šjs
+//Éú³É¹ã¸æjs
 function GetAdJs($adid){
 	global $empire,$public_r,$dbtbpre;
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsad where adid='$adid'");
 	$file=eReturnTrueEcmsPath()."d/js/acmsd/".$public_r[adfile].$adid.".js";
-	//åˆ°æœŸ
+	//µ½ÆÚ
 	if($r['endtime']<>'0000-00-00'&&time()>to_time($r['endtime']))
 	{
 		$r[reptext]=ClearHtmlZs($r[reptext]);
@@ -191,63 +191,63 @@ function GetAdJs($adid){
 	}
 	else
 	{
-		$ad_url=$public_r[newsurl]."e/public/ClickAd?adid=".$adid;//å¹¿å‘Šé“¾æ¥
+		$ad_url=$public_r[newsurl]."e/public/ClickAd?adid=".$adid;//¹ã¸æÁ´½Ó
 	}
-	//----------------------æ–‡å­—å¹¿å‘Š
+	//----------------------ÎÄ×Ö¹ã¸æ
 	if($r[t]==1)
 	{
 		$r[titlefont]=$r[titlecolor].','.$r[titlefont];
-		$picurl=DoTitleFont($r[titlefont],$r[picurl]);//æ–‡å­—å±æ€§
+		$picurl=DoTitleFont($r[titlefont],$r[picurl]);//ÎÄ×ÖÊôĞÔ
 		$h="<a href='".$ad_url."' target=".$r[target]." title='".$r[alt]."'>".addslashes($picurl)."</a>";
-		//æ™®é€šæ˜¾ç¤º
+		//ÆÕÍ¨ÏÔÊ¾
 		if($r[adtype]==1)
 		{
 			$html="document.write(\"".$h."\")";
 	    }
-		//å¯ç§»åŠ¨é€æ˜å¯¹è¯æ¡†
+		//¿ÉÒÆ¶¯Í¸Ã÷¶Ô»°¿ò
 		else
 		{
 			$html="document.write(\"<script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_dialog.js></script>\"); 
-document.write(\"<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >å…³é—­>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>\");";
+document.write(\"<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >¹Ø±Õ>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>\");";
 	    }
     }
-	//------------------htmlå¹¿å‘Š
+	//------------------html¹ã¸æ
 	elseif($r[t]==2)
 	{
 		$r[htmlcode]=ClearHtmlZs($r[htmlcode]);
 		$h=addslashes(str_replace("\r\n","",$r[htmlcode]));
-		//æ™®é€šæ˜¾ç¤º
+		//ÆÕÍ¨ÏÔÊ¾
 		if($r[adtype]==1)
 		{
 			$html="document.write(\"".$h."\")";
 		}
-		//å¯ç§»åŠ¨é€æ˜å¯¹è¯æ¡†
+		//¿ÉÒÆ¶¯Í¸Ã÷¶Ô»°¿ò
 		else
 		{
 			$html="document.write(\"<script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_dialog.js></script>\"); 
-document.write(\"<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >å…³é—­>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>\");";
+document.write(\"<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >¹Ø±Õ>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>\");";
 		}
     }
-	//------------------å¼¹å‡ºå¹¿å‘Š
+	//------------------µ¯³ö¹ã¸æ
 	elseif($r[t]==3)
 	{
-		//æ‰“å¼€æ–°çª—å£
+		//´ò¿ªĞÂ´°¿Ú
 		if($r[adtype]==8)
 		{
 			$html="window.open('".$r[url]."');";
 		}
-		//å¼¹å‡ºçª—å£
+		//µ¯³ö´°¿Ú
 	    elseif($r[adtype]==9)
 		{
 			$html="window.open('".$r[url]."','','width=".$r[pic_width].",height=".$r[pic_height].",scrollbars=yes');";
 		}
-		//æ™®èƒ½ç½‘é¡µçª—å£
+		//ÆÕÄÜÍøÒ³´°¿Ú
 		else
 		{
 			$html="window.showModalDialog('".$r[url]."','','dialogWidth:".$r[pic_width]."px;dialogHeight:".$r[pic_height]."px;scroll:no;status:no;help:no');";
 		}
     }
-	//---------------------å›¾ç‰‡ä¸flashå¹¿å‘Š
+	//---------------------Í¼Æ¬Óëflash¹ã¸æ
 	else
 	{
 	$filetype=GetFiletype($r[picurl]);
@@ -261,12 +261,12 @@ document.write(\"<div style='position:absolute;left:300px;top:150px;width:".$r[p
 		{
 		$h="<a href='".$ad_url."' target=".$r[target]."><img src='".$r[picurl]."' border=0 width='".$r[pic_width]."' height='".$r[pic_height]."' alt='".$r[alt]."'></a>";
 	    }
-		//æ™®é€šæ˜¾ç¤º
+		//ÆÕÍ¨ÏÔÊ¾
 			if($r[adtype]==1)
 		{
 			$html="document.write(\"".$h."\");";
 		}
-		//æ»¡å±æµ®åŠ¨æ˜¾ç¤º
+		//ÂúÆÁ¸¡¶¯ÏÔÊ¾
 		elseif($r[adtype]==4)
 		{
 			$html="ns4=(document.layers)?true:false;
@@ -275,7 +275,7 @@ if(ns4){document.write(\"<layer id=DGbanner2 width=".$r[pic_width]." height=".$r
 else{document.write(\"<div id=DGbanner2 style='position:absolute; width:".$r[pic_width]."px; height:".$r[pic_height]."px; z-index:9; filter: Alpha(Opacity=90)' onmouseover=stopme('DGbanner2') onmouseout=movechip('DGbanner2')>".$h."</div>\");}
 document.write(\"<script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_float_fullscreen.js></script>\");";
 		}
-		//ä¸Šä¸‹æµ®åŠ¨æ˜¾ç¤º - å³
+		//ÉÏÏÂ¸¡¶¯ÏÔÊ¾ - ÓÒ
 		elseif($r[adtype]==5)
 		{
 			$html="if (navigator.appName == 'Netscape')
@@ -283,7 +283,7 @@ document.write(\"<script language=javascript src=".$public_r[newsurl]."d/js/acms
 else{document.write(\"<div id=DGbanner3 style='position: absolute;width:".$r[pic_height].";top:150;visibility: visible;z-index: 1'>".$h."</div>\");}
 document.write(\"<script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_float_upanddown.js></script>\");";
 		}
-		//ä¸Šä¸‹æµ®åŠ¨æ˜¾ç¤º - å·¦
+		//ÉÏÏÂ¸¡¶¯ÏÔÊ¾ - ×ó
 		elseif($r[adtype]==6)
 		{
 			$html="if(navigator.appName == 'Netscape')
@@ -291,7 +291,7 @@ document.write(\"<script language=javascript src=".$public_r[newsurl]."d/js/acms
 else{document.write(\"<div id=DGbanner10 style='position: absolute;width:".$r[pic_width].";top:150;visibility: visible;z-index: 1'>".$h."</div>\");}
 document.write(\"<script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_float_upanddown_L.js></script>\");";
 		}
-		//å…¨å±å¹•æ¸éšæ¶ˆå¤±
+		//È«ÆÁÄ»½¥ÒşÏûÊ§
 		elseif($r[adtype]==7)
 		{
 			$html="ns4=(document.layers)?true:false;
@@ -299,11 +299,11 @@ if(ns4){document.write(\"<layer id=DGbanner4Cont onLoad='moveToAbsolute(layer1.p
 else{document.write(\"<div id=DGbanner4 style='position:absolute;top:0; left:0;'><div id=DGbanner4Cont style='position:absolute;width:".$r[pic_width].";height:".$r[pic_height].";clip:rect(0,".$r[pic_width].",".$r[pic_height].",0)'><div id=DGbanner4News style='position:absolute;top:0;left:0;right:820'>".$h."</div></div></div>\");} 
 document.write(\"<script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_fullscreen.js></script>\");";
 		}
-		//å¯ç§»åŠ¨é€æ˜å¯¹è¯æ¡†
+		//¿ÉÒÆ¶¯Í¸Ã÷¶Ô»°¿ò
 		elseif($r[adtype]==3)
 		{
 			$html="document.write(\"<script language=javascript src=".$public_r[newsurl]."d/js/acmsd/ecms_dialog.js></script>\"); 
-document.write(\"<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >å…³é—­>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>\");";
+document.write(\"<div style='position:absolute;left:300px;top:150px;width:".$r[pic_width]."; height:".$r[pic_height].";z-index:1;solid;filter:alpha(opacity=90)' id=DGbanner5 onmousedown='down1(this)' onmousemove='move()' onmouseup='down=false'><table cellpadding=0 border=0 cellspacing=1 width=".$r[pic_width]." height=".$r[pic_height]." bgcolor=#000000><tr><td height=18 bgcolor=#5A8ACE align=right style='cursor:move;'><a href=# style='font-size: 9pt; color: #eeeeee; text-decoration: none' onClick=clase('DGbanner5') >¹Ø±Õ>>><img border='0' src='".$public_r[newsurl]."d/js/acmsd/close_o.gif'></a>&nbsp;</td></tr><tr><td bgcolor=f4f4f4 >&nbsp;".$h."</td></tr></table></div>\");";
 		}
 		else
 		{
@@ -321,13 +321,13 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//è®¾ç½®è®¿é—®ç«¯
+//ÉèÖÃ·ÃÎÊ¶Ë
 $moreportpid=0;
 if($enews=='ReAdJs_all')
 {
 	$moreportpid=Moreport_hDoSetSelfPath(0);
 }
-//å¢åŠ å¹¿å‘Š
+//Ôö¼Ó¹ã¸æ
 if($enews=="AddAd")
 {
 	$add=$_POST['add'];
@@ -337,7 +337,7 @@ if($enews=="AddAd")
 	$add['filepass']=$_POST['filepass'];
 	AddAd($add,$titlefont,$titlecolor,$logininid,$loginin);
 }
-//ä¿®æ”¹å¹¿å‘Š
+//ĞŞ¸Ä¹ã¸æ
 elseif($enews=="EditAd")
 {
 	$add=$_POST['add'];
@@ -348,14 +348,14 @@ elseif($enews=="EditAd")
 	$add['filepass']=$_POST['filepass'];
 	EditAd($add,$titlefont,$titlecolor,$logininid,$loginin);
 }
-//åˆ é™¤å¹¿å‘Š
+//É¾³ı¹ã¸æ
 elseif($enews=="DelAd")
 {
 	$adid=$_GET['adid'];
 	$time=$_POST['time'];
 	DelAd($adid,$logininid,$loginin);
 }
-//æ‰¹é‡åˆ·æ–°å¹¿å‘ŠJS
+//ÅúÁ¿Ë¢ĞÂ¹ã¸æJS
 elseif($enews=="ReAdJs_all")
 {
 	ReAdJs_all($_GET['start'],$_GET['from'],$logininid,$loginin);
@@ -364,12 +364,12 @@ elseif($enews=="ReAdJs_all")
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=20;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=20;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $totalquery="select count(*) as total from {$dbtbpre}enewsad";
 $query="select * from {$dbtbpre}enewsad";
-//è¿‡æœŸå¹¿å‘Š
+//¹ıÆÚ¹ã¸æ
 $search='';
 $search.=$ecms_hashur['ehref'];
 $where='';
@@ -382,7 +382,7 @@ if($time)
 	$and=' and ';
 	$search.="&time=$time";
 }
-//æœç´¢
+//ËÑË÷
 $sear=(int)$_GET['sear'];
 if($sear)
 {
@@ -423,26 +423,26 @@ if($where)
 	$totalquery.=' where '.$where;
 	$query.=' where '.$where;
 }
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by adid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-$ty[1]="æ™®é€šæ˜¾ç¤º";
+$ty[1]="ÆÕÍ¨ÏÔÊ¾";
 $ty[2]="";
-$ty[3]="å¯ç§»åŠ¨é€æ˜å¯¹è¯æ¡†";
-$ty[4]="æ»¡å±æµ®åŠ¨æ˜¾ç¤º";
-$ty[5]="ä¸Šä¸‹æµ®åŠ¨æ˜¾ç¤º - å³";
-$ty[6]="ä¸Šä¸‹æµ®åŠ¨æ˜¾ç¤º - å·¦";
-$ty[7]="å…¨å±å¹•æ¸éšæ¶ˆå¤±";
-$ty[8]="æ‰“å¼€æ–°çª—å£";
-$ty[9]="å¼¹å‡ºçª—å£";
-$ty[10]="æ™®é€šç½‘é¡µå¯¹è¯æ¡†";
-$ty[11]="å¯¹è”å¼å¹¿å‘Š";
-$myt[1]="æ–‡å­—å¹¿å‘Š";
-$myt[2]="htmlå¹¿å‘Š";
-$myt[3]="å¼¹å‡ºå¹¿å‘Š";
-$myt[0]="å›¾ç‰‡ä¸flashå¹¿å‘Š";
-//å¹¿å‘Šç±»åˆ«
+$ty[3]="¿ÉÒÆ¶¯Í¸Ã÷¶Ô»°¿ò";
+$ty[4]="ÂúÆÁ¸¡¶¯ÏÔÊ¾";
+$ty[5]="ÉÏÏÂ¸¡¶¯ÏÔÊ¾ - ÓÒ";
+$ty[6]="ÉÏÏÂ¸¡¶¯ÏÔÊ¾ - ×ó";
+$ty[7]="È«ÆÁÄ»½¥ÒşÏûÊ§";
+$ty[8]="´ò¿ªĞÂ´°¿Ú";
+$ty[9]="µ¯³ö´°¿Ú";
+$ty[10]="ÆÕÍ¨ÍøÒ³¶Ô»°¿ò";
+$ty[11]="¶ÔÁªÊ½¹ã¸æ";
+$myt[1]="ÎÄ×Ö¹ã¸æ";
+$myt[2]="html¹ã¸æ";
+$myt[3]="µ¯³ö¹ã¸æ";
+$myt[0]="Í¼Æ¬Óëflash¹ã¸æ";
+//¹ã¸æÀà±ğ
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewsadclass");
 while($cr=$empire->fetch($csql))
 {
@@ -457,9 +457,9 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†å¹¿å‘Š</title>
+<title>¹ÜÀí¹ã¸æ</title>
 <script>
 function eCopyAdStr(adid,isjs){
 	var str='';
@@ -479,11 +479,11 @@ function eCopyAdStr(adid,isjs){
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="20%" height="25">ä½ç½®ï¼š<a href="ListAd.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å¹¿å‘Š</a></td>
+    <td width="20%" height="25">Î»ÖÃ£º<a href="ListAd.php<?=$ecms_hashur['whehref']?>">¹ÜÀí¹ã¸æ</a></td>
     <td width="80%"><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ å¹¿å‘Š" onclick="self.location.href='AddAd.php?enews=AddAd<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
-        <input type="button" name="Submit52" value="ç®¡ç†è¿‡æœŸå¹¿å‘Š" onclick="self.location.href='ListAd.php?time=1<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
-        <input type="button" name="Submit522" value="ç®¡ç†å¹¿å‘Šåˆ†ç±»" onclick="self.location.href='AdClass.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó¹ã¸æ" onclick="self.location.href='AddAd.php?enews=AddAd<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
+        <input type="button" name="Submit52" value="¹ÜÀí¹ıÆÚ¹ã¸æ" onclick="self.location.href='ListAd.php?time=1<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
+        <input type="button" name="Submit522" value="¹ÜÀí¹ã¸æ·ÖÀà" onclick="self.location.href='AdClass.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -491,39 +491,39 @@ function eCopyAdStr(adid,isjs){
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
 			<?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å…³é”®å­—ï¼š 
+      <td height="25" bgcolor="#FFFFFF">¹Ø¼ü×Ö£º 
         <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
         <select name="show">
-		<option value="0"<?=$show==0?' selected':''?>>ä¸é™</option>
-		<option value="1"<?=$show==1?' selected':''?>>å¹¿å‘Šåç§° </option>
-		<option value="2"<?=$show==2?' selected':''?>>å¤‡æ³¨</option>
+		<option value="0"<?=$show==0?' selected':''?>>²»ÏŞ</option>
+		<option value="1"<?=$show==1?' selected':''?>>¹ã¸æÃû³Æ </option>
+		<option value="2"<?=$show==2?' selected':''?>>±¸×¢</option>
         </select>
         <select name="classid" id="classid">
-          <option value="0">ä¸é™ç±»åˆ«</option>
+          <option value="0">²»ÏŞÀà±ğ</option>
           <?=$options?>
         </select> <select name="t" id="t">
-          <option value="9"<?=$sear&&$t==9?' selected':''?>>ä¸é™å¹¿å‘Šç±»å‹</option>
-          <option value="0"<?=$sear&&$t==0?' selected':''?>>å›¾ç‰‡ä¸flashå¹¿å‘Š</option>
-          <option value="1"<?=$sear&&$t==1?' selected':''?>>æ–‡å­—å¹¿å‘Š</option>
-          <option value="2"<?=$sear&&$t==2?' selected':''?>>htmlå¹¿å‘Š</option>
-          <option value="3"<?=$sear&&$t==3?' selected':''?>>å¼¹å‡ºå¹¿å‘Š</option>
+          <option value="9"<?=$sear&&$t==9?' selected':''?>>²»ÏŞ¹ã¸æÀàĞÍ</option>
+          <option value="0"<?=$sear&&$t==0?' selected':''?>>Í¼Æ¬Óëflash¹ã¸æ</option>
+          <option value="1"<?=$sear&&$t==1?' selected':''?>>ÎÄ×Ö¹ã¸æ</option>
+          <option value="2"<?=$sear&&$t==2?' selected':''?>>html¹ã¸æ</option>
+          <option value="3"<?=$sear&&$t==3?' selected':''?>>µ¯³ö¹ã¸æ</option>
         </select>
         <input name="time" type="checkbox" id="time" value="1"<?=$time==1?' checked':''?>>
-        è¿‡æœŸå¹¿å‘Š 
-        <input type="submit" name="Submit" value="æœç´¢"> <input name="sear" type="hidden" id="sear" value="1"></td>
+        ¹ıÆÚ¹ã¸æ 
+        <input type="submit" name="Submit" value="ËÑË÷"> <input name="sear" type="hidden" id="sear" value="1"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" cellspacing="1" cellpadding="3" class="tableborder">
   <tr class="header"> 
     <td width="4%" height="25"><div align="center">ID</div></td>
-    <td width="20%"><div align="center">å¹¿å‘Šåç§°</div></td>
-    <td width="11%"><div align="center">å¹¿å‘Šç±»å‹</div></td>
-    <td width="7%"><div align="center">è¿‡æœŸæ—¶é—´</div></td>
-    <td width="18%"><div align="center">JSè°ƒç”¨</div></td>
-    <td width="5%"><div align="center">ç‚¹å‡»</div></td>
-    <td width="18%"><div align="center">å¤‡æ³¨</div></td>
-    <td width="17%"><div align="center">æ“ä½œ</div></td>
+    <td width="20%"><div align="center">¹ã¸æÃû³Æ</div></td>
+    <td width="11%"><div align="center">¹ã¸æÀàĞÍ</div></td>
+    <td width="7%"><div align="center">¹ıÆÚÊ±¼ä</div></td>
+    <td width="18%"><div align="center">JSµ÷ÓÃ</div></td>
+    <td width="5%"><div align="center">µã»÷</div></td>
+    <td width="18%"><div align="center">±¸×¢</div></td>
+    <td width="17%"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -546,7 +546,7 @@ function eCopyAdStr(adid,isjs){
     <td> <div align="center"> 
         <input name="textfield" type="text" value="<?=$public_r[newsurl]?>d/js/acmsd/<?=$public_r['adfile']?><?=$r[adid]?>.js" size="26">
         <br>
-        <a href="#ecms" onclick="eCopyAdStr(<?=$r[adid]?>,1);" title="ç‚¹å‡»å¤åˆ¶JSè°ƒç”¨ä»£ç ">JSè°ƒç”¨</a> | <a href="#ecms" onclick="eCopyAdStr(<?=$r[adid]?>,0);" title="ç‚¹å‡»å¤åˆ¶æ ‡ç­¾è°ƒç”¨ä»£ç ">æ ‡ç­¾è°ƒç”¨</a><br>
+        <a href="#ecms" onclick="eCopyAdStr(<?=$r[adid]?>,1);" title="µã»÷¸´ÖÆJSµ÷ÓÃ´úÂë">JSµ÷ÓÃ</a> | <a href="#ecms" onclick="eCopyAdStr(<?=$r[adid]?>,0);" title="µã»÷¸´ÖÆ±êÇ©µ÷ÓÃ´úÂë">±êÇ©µ÷ÓÃ</a><br>
       </div></td>
     <td> <div align="center"> 
         <?=$r[onclick]?>
@@ -554,7 +554,7 @@ function eCopyAdStr(adid,isjs){
     <td> <div align="center"> 
         <textarea name="textarea" cols="20" rows="3"><?=$r[adsay]?></textarea>
       </div></td>
-    <td> <div align="center"><a href="../view/js.php?js=<?=$public_r['adfile']?><?=$r[adid]?>&p=acmsd<?=$ecms_hashur['ehref']?>" target="_blank">é¢„è§ˆ</a> | <a href="AddAd.php?enews=EditAd&adid=<?=$r[adid]?>&time=<?=$time?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a> | <a href="ListAd.php?enews=DelAd&adid=<?=$r[adid]?>&time=<?=$time?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a></div></td>
+    <td> <div align="center"><a href="../view/js.php?js=<?=$public_r['adfile']?><?=$r[adid]?>&p=acmsd<?=$ecms_hashur['ehref']?>" target="_blank">Ô¤ÀÀ</a> | <a href="AddAd.php?enews=EditAd&adid=<?=$r[adid]?>&time=<?=$time?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a> | <a href="ListAd.php?enews=DelAd&adid=<?=$r[adid]?>&time=<?=$time?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a></div></td>
   </tr>
   <?
   }
@@ -567,7 +567,7 @@ function eCopyAdStr(adid,isjs){
 </table>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr>
-    <td height="25"><font color="#666666">è¯´æ˜ï¼šè°ƒç”¨æ–¹å¼ï¼š&lt;script src=å¹¿å‘Šjsåœ°å€&gt;&lt;/script&gt;æˆ–ç”¨æ ‡ç­¾è°ƒç”¨</font></td>
+    <td height="25"><font color="#666666">ËµÃ÷£ºµ÷ÓÃ·½Ê½£º&lt;script src=¹ã¸æjsµØÖ·&gt;&lt;/script&gt;»òÓÃ±êÇ©µ÷ÓÃ</font></td>
   </tr>
 </table>
 </body>

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,18 +15,18 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"public");
 
-//è®¾ç½®ä¼ªé™æ€å‚æ•°
+//ÉèÖÃÎ±¾²Ì¬²ÎÊı
 function SetRewrite($add,$userid,$username){
 	global $empire,$dbtbpre;
-	CheckLevel($userid,$username,$classid,"public");//éªŒè¯æƒé™
+	CheckLevel($userid,$username,$classid,"public");//ÑéÖ¤È¨ÏŞ
 	$sql=$empire->query("update {$dbtbpre}enewspublic set rewriteinfo='".eaddslashes($add[rewriteinfo])."',rewriteclass='".eaddslashes($add[rewriteclass])."',rewriteinfotype='".eaddslashes($add[rewriteinfotype])."',rewritetags='".eaddslashes($add[rewritetags])."',rewritepl='".eaddslashes($add[rewritepl])."' limit 1");
 	if($sql)
 	{
 		GetConfig();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("SetRewriteSuccess","SetRewrite.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -41,7 +41,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="SetRewrite")//è®¾ç½®ä¼ªé™æ€å‚æ•°
+if($enews=="SetRewrite")//ÉèÖÃÎ±¾²Ì¬²ÎÊı
 {
 	SetRewrite($_POST,$logininid,$loginin);
 }
@@ -53,15 +53,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>è®¾ç½®ä¼ªé™æ€</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÉèÖÃÎ±¾²Ì¬</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td><p>ä½ç½®ï¼š<a href="SetRewrite.php<?=$ecms_hashur['whehref']?>">ä¼ªé™æ€è®¾ç½®</a></p>
+    <td><p>Î»ÖÃ£º<a href="SetRewrite.php<?=$ecms_hashur['whehref']?>">Î±¾²Ì¬ÉèÖÃ</a></p>
     </td>
   </tr>
 </table>
@@ -69,62 +69,62 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="4">ä¼ªé™æ€å‚æ•°è®¾ç½® 
+      <td height="25" colspan="4">Î±¾²Ì¬²ÎÊıÉèÖÃ 
         <input name="enews" type="hidden" value="SetRewrite"></td>
     </tr>
     <tr>
-      <td width="135" height="25">é¡µé¢</td>
-      <td width="302" height="25">æ ‡è®°</td>
-      <td width="554">æ ¼å¼</td>
-      <td width="323">å¯¹åº”é¡µé¢</td>
+      <td width="135" height="25">Ò³Ãæ</td>
+      <td width="302" height="25">±ê¼Ç</td>
+      <td width="554">¸ñÊ½</td>
+      <td width="323">¶ÔÓ¦Ò³Ãæ</td>
     </tr>
 	<tr bgcolor="#FFFFFF">
-      <td height="25">ä¿¡æ¯å†…å®¹é¡µ</td>
+      <td height="25">ĞÅÏ¢ÄÚÈİÒ³</td>
       <td height="25">[!--classid--],[!--id--],[!--page--]</td>
       <td>/
         <input name="rewriteinfo" type="text" id="rewriteinfo" value="<?=$r[rewriteinfo]?>" size="55">
-[<a href="#empirecms" onclick="document.setpublic.rewriteinfo.value='showinfo-[!--classid--]-[!--id--]-[!--page--].html';">é»˜è®¤</a>]</td>
-      <td>/e/action/ShowInfo.php?classid=æ ç›®ID&amp;id=ä¿¡æ¯ID&amp;page=åˆ†é¡µå·</td>
+[<a href="#empirecms" onclick="document.setpublic.rewriteinfo.value='showinfo-[!--classid--]-[!--id--]-[!--page--].html';">Ä¬ÈÏ</a>]</td>
+      <td>/e/action/ShowInfo.php?classid=À¸Ä¿ID&amp;id=ĞÅÏ¢ID&amp;page=·ÖÒ³ºÅ</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">ä¿¡æ¯åˆ—è¡¨é¡µ</td>
+      <td height="25">ĞÅÏ¢ÁĞ±íÒ³</td>
       <td height="25">[!--classid--],[!--page--]</td>
       <td>/
         <input name="rewriteclass" type="text" id="rewriteclass" value="<?=$r[rewriteclass]?>" size="55">
-      [<a href="#empirecms" onclick="document.setpublic.rewriteclass.value='listinfo-[!--classid--]-[!--page--].html';">é»˜è®¤</a>]</td>
-      <td>/e/action/ListInfo/index.php?classid=æ ç›®ID&amp;page=åˆ†é¡µå·</td>
+      [<a href="#empirecms" onclick="document.setpublic.rewriteclass.value='listinfo-[!--classid--]-[!--page--].html';">Ä¬ÈÏ</a>]</td>
+      <td>/e/action/ListInfo/index.php?classid=À¸Ä¿ID&amp;page=·ÖÒ³ºÅ</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ ‡é¢˜åˆ†ç±»åˆ—è¡¨é¡µ</td>
+      <td height="25">±êÌâ·ÖÀàÁĞ±íÒ³</td>
       <td height="25">[!--ttid--],[!--page--]</td>
       <td>/
         <input name="rewriteinfotype" type="text" id="rewriteinfotype" value="<?=$r[rewriteinfotype]?>" size="55">
-[<a href="#empirecms" onclick="document.setpublic.rewriteinfotype.value='infotype-[!--ttid--]-[!--page--].html';">é»˜è®¤</a>]</td>
-      <td>/e/action/InfoType/index.php?ttid=æ ‡é¢˜åˆ†ç±»ID&amp;page=åˆ†é¡µå·</td>
+[<a href="#empirecms" onclick="document.setpublic.rewriteinfotype.value='infotype-[!--ttid--]-[!--page--].html';">Ä¬ÈÏ</a>]</td>
+      <td>/e/action/InfoType/index.php?ttid=±êÌâ·ÖÀàID&amp;page=·ÖÒ³ºÅ</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">TAGSä¿¡æ¯åˆ—è¡¨é¡µ</td>
+      <td height="25">TAGSĞÅÏ¢ÁĞ±íÒ³</td>
       <td height="25">[!--tagname--],[!--page--]</td>
       <td>/
         <input name="rewritetags" type="text" id="rewritetags" value="<?=$r[rewritetags]?>" size="55">
-[<a href="#empirecms" onclick="document.setpublic.rewritetags.value='tags-[!--tagname--]-[!--page--].html';">é»˜è®¤</a>]</td>
-      <td>/e/tags/index.php?tagname=TAGSåç§°&amp;page=åˆ†é¡µå·</td>
+[<a href="#empirecms" onclick="document.setpublic.rewritetags.value='tags-[!--tagname--]-[!--page--].html';">Ä¬ÈÏ</a>]</td>
+      <td>/e/tags/index.php?tagname=TAGSÃû³Æ&amp;page=·ÖÒ³ºÅ</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">è¯„è®ºåˆ—è¡¨é¡µ</td>
+      <td height="25">ÆÀÂÛÁĞ±íÒ³</td>
       <td height="25">[!--doaction--],[!--classid--],[!--id--],<br>
       [!--page--],[!--myorder--],[!--tempid--]</td>
       <td>/
         <input name="rewritepl" type="text" id="rewritepl" value="<?=$r[rewritepl]?>" size="55">
-[<a href="#empirecms" onclick="document.setpublic.rewritepl.value='comment-[!--doaction--]-[!--classid--]-[!--id--]-[!--page--]-[!--myorder--]-[!--tempid--].html';">é»˜è®¤</a>]</td>
-      <td>/e/pl/index.php?doaction=äº‹ä»¶&amp;classid=æ ç›®ID&amp;id=ä¿¡æ¯ID&amp;page=åˆ†é¡µå·&amp;myorder=æ’åº&amp;tempid=è¯„è®ºæ¨¡æ¿ID</td>
+[<a href="#empirecms" onclick="document.setpublic.rewritepl.value='comment-[!--doaction--]-[!--classid--]-[!--id--]-[!--page--]-[!--myorder--]-[!--tempid--].html';">Ä¬ÈÏ</a>]</td>
+      <td>/e/pl/index.php?doaction=ÊÂ¼ş&amp;classid=À¸Ä¿ID&amp;id=ĞÅÏ¢ID&amp;page=·ÖÒ³ºÅ&amp;myorder=ÅÅĞò&amp;tempid=ÆÀÂÛÄ£°åID</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25" colspan="3"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25" colspan="3"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
 	<tr bgcolor="#FFFFFF">
-      <td height="25" colspan="4">è¯´æ˜ï¼šé‡‡ç”¨é™æ€é¡µé¢æ—¶ä¸éœ€è¦è®¾ç½®ï¼Œåªæœ‰å½“é‡‡ç”¨åŠ¨æ€é¡µé¢æ—¶å¯é€šè¿‡è®¾ç½®ä¼ªé™æ€æ¥æé«˜SEOä¼˜åŒ–ï¼Œå¦‚æœä¸å¯ç”¨è¯·ç•™ç©ºã€‚æ³¨æ„ï¼šä¼ªé™æ€ä¼šå¢åŠ æœåŠ¡å™¨è´Ÿæ‹…ï¼Œä¿®æ”¹ä¼ªé™æ€æ ¼å¼åä½ éœ€è¦ä¿®æ”¹æœåŠ¡å™¨çš„ Rewrite è§„åˆ™è®¾ç½®ã€‚</td>
+      <td height="25" colspan="4">ËµÃ÷£º²ÉÓÃ¾²Ì¬Ò³ÃæÊ±²»ĞèÒªÉèÖÃ£¬Ö»ÓĞµ±²ÉÓÃ¶¯Ì¬Ò³ÃæÊ±¿ÉÍ¨¹ıÉèÖÃÎ±¾²Ì¬À´Ìá¸ßSEOÓÅ»¯£¬Èç¹û²»ÆôÓÃÇëÁô¿Õ¡£×¢Òâ£ºÎ±¾²Ì¬»áÔö¼Ó·şÎñÆ÷¸ºµ££¬ĞŞ¸ÄÎ±¾²Ì¬¸ñÊ½ºóÄãĞèÒªĞŞ¸Ä·şÎñÆ÷µÄ Rewrite ¹æÔòÉèÖÃ¡£</td>
     </tr>
   </table>
 </form>

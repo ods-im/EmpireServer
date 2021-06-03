@@ -1,7 +1,7 @@
 <?php
-//--------------- ç«™å†…æ¶ˆæ¯å‡½æ•° ---------------
+//--------------- Õ¾ÄÚÏûÏ¢º¯Êı ---------------
 
-//å‘é€çŸ­æ¶ˆæ¯
+//·¢ËÍ¶ÌÏûÏ¢
 function AddMsg($add){
 	global $empire,$level_r,$dbtbpre;
 	$user=islogin();
@@ -12,19 +12,19 @@ function AddMsg($add){
 	{printerror("EmptyMsg","",1);}
 	if($user['username']==$to_username)
 	{printerror("MsgToself","",1);}
-	//å­—æ•°
+	//×ÖÊı
 	$len=strlen($msgtext);
 	if($len>$level_r[$user[groupid]][msglen])
 	{
 		printerror("MoreMsglen","",1);
 	}
-	//æ¥æ”¶æ–¹æ˜¯å¦å­˜åœ¨
+	//½ÓÊÕ·½ÊÇ·ñ´æÔÚ
 	$r=$empire->fetch1("select ".eReturnSelectMemberF('userid,groupid')." from ".eReturnMemberTable()." where ".egetmf('username')."='$to_username' limit 1");
 	if(!$r['userid'])
 	{
 		printerror("MsgNotToUsername","",1);
     }
-	//å¯¹æ–¹çŸ­æ¶ˆæ¯æ˜¯å¦æ»¡
+	//¶Ô·½¶ÌÏûÏ¢ÊÇ·ñÂú
 	$mnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsqmsg where to_username='$to_username'");
 	if($mnum+1>$level_r[$r[groupid]][msgnum])
 	{
@@ -42,7 +42,7 @@ function AddMsg($add){
 	{printerror("DbError","",1);}
 }
 
-//åˆ é™¤çŸ­æ¶ˆæ¯
+//É¾³ı¶ÌÏûÏ¢
 function DelMsg($mid){
 	global $empire,$dbtbpre;
 	$user=islogin();
@@ -65,7 +65,7 @@ function DelMsg($mid){
 	{printerror("DbError","",1);}
 }
 
-//æ‰¹é‡åˆ é™¤çŸ­æ¶ˆæ¯
+//ÅúÁ¿É¾³ı¶ÌÏûÏ¢
 function DelMsg_all($mid){
 	global $empire,$dbtbpre;
 	$user=islogin();

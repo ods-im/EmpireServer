@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,16 +15,16 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"dttemp");
-//å…³é—­
+//¹Ø±Õ
 if(!$ecms_config['esafe']['openeditdttemp'])
 {
-	echo"æ²¡æœ‰å¼€å¯åœ¨çº¿ä¿®æ”¹åŠ¨æ€é¡µé¢æ¨¡æ¿";
+	echo"Ã»ÓĞ¿ªÆôÔÚÏßĞŞ¸Ä¶¯Ì¬Ò³ÃæÄ£°å";
 	exit();
 }
 
-//å–å¾—åŠ¨æ€æ¨¡æ¿å†…å®¹
+//È¡µÃ¶¯Ì¬Ä£°åÄÚÈİ
 function GetDtTempFiletext($tempid){
 	global $empire,$dbtbpre;
 	$tempid=(int)$tempid;
@@ -46,10 +46,10 @@ function GetDtTempFiletext($tempid){
 	return $tempr;
 }
 
-//ä¿®æ”¹åŠ¨æ€æ¨¡æ¿å†…å®¹
+//ĞŞ¸Ä¶¯Ì¬Ä£°åÄÚÈİ
 function EditDtTempFiletext($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,'dttemp');
 	$tempid=(int)$add['tempid'];
 	if(!$tempid)
@@ -68,12 +68,12 @@ function EditDtTempFiletext($add,$userid,$username){
 	}
 	$temptext=ClearAddsData($add['temptext']);
 	WriteFiletext_n($file,$temptext);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("tempid=".$tempid."<br>tempname=".$tempr['tempname']);
 	printerror("EditDttempSuccess","EditDttemp.php?tempid=$tempid".hReturnEcmsHashStrHref2(0));
 }
 
-//æ“ä½œ
+//²Ù×÷
 $enews=$_POST['enews'];
 if(empty($enews))
 {$enews=$_GET['enews'];}
@@ -82,7 +82,7 @@ if($enews)
 	hCheckEcmsRHash();
 	include("../../class/tempfun.php");
 }
-//å¢åŠ æ¨¡æ¿
+//Ôö¼ÓÄ£°å
 if($enews=="EditDtTempFiletext")
 {
 	EditDtTempFiletext($_POST,$logininid,$loginin);
@@ -90,18 +90,18 @@ if($enews=="EditDtTempFiletext")
 else
 {}
 
-//ä¿®æ”¹
+//ĞŞ¸Ä
 $tempid=(int)$_GET['tempid'];
 $r=GetDtTempFiletext($tempid);
-$url="ä¿®æ”¹åŠ¨æ€é¡µé¢æ¨¡æ¿: ".$r['tempname'];
+$url="ĞŞ¸Ä¶¯Ì¬Ò³ÃæÄ£°å: ".$r['tempname'];
 db_close();
 $empire=null;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¿®æ”¹åŠ¨æ€é¡µé¢æ¨¡æ¿</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ĞŞ¸Ä¶¯Ì¬Ò³ÃæÄ£°å</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function ReturnHtml(html)
@@ -130,7 +130,7 @@ function ReTempBak(){
 <body>
 <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <br>
@@ -139,21 +139,21 @@ function ReTempBak(){
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
       <td height="25" colspan="2"> 
-        ä¿®æ”¹åŠ¨æ€é¡µé¢æ¨¡æ¿
+        ĞŞ¸Ä¶¯Ì¬Ò³ÃæÄ£°å
         <input name="enews" type="hidden" id="enews" value="EditDtTempFiletext"> <input name="tempid" type="hidden" id="tempid" value="<?=$tempid?>"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">æ¨¡æ¿åç§°(*)</td>
+      <td width="19%" height="25">Ä£°åÃû³Æ(*)</td>
       <td width="81%" height="25"> <input name="tempname" type="text" id="tempname" value="<?=$r[tempname]?>" size="30">      </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¨¡æ¿æ–‡ä»¶åœ°å€</td>
+      <td height="25">Ä£°åÎÄ¼şµØÖ·</td>
       <td height="25">/<?=$r[tempfile]?></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><strong>æ¨¡æ¿å†…å®¹</strong>(*)</td>
-      <td height="25">è¯·å°†æ¨¡æ¿å†…å®¹<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.temptext.value);document.form1.temptext.select()" title="ç‚¹å‡»å¤åˆ¶æ¨¡æ¿å†…å®¹"><strong>å¤åˆ¶åˆ°Dreamweaver(æ¨è)</strong></a></td>
+      <td height="25"><strong>Ä£°åÄÚÈİ</strong>(*)</td>
+      <td height="25">Çë½«Ä£°åÄÚÈİ<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.temptext.value);document.form1.temptext.select()" title="µã»÷¸´ÖÆÄ£°åÄÚÈİ"><strong>¸´ÖÆµ½Dreamweaver(ÍÆ¼ö)</strong></a></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"><div align="center"> 
@@ -162,7 +162,7 @@ function ReTempBak(){
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="ä¿å­˜æ¨¡æ¿"> &nbsp;<input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="±£´æÄ£°å"> &nbsp;<input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
 	</form>
   </table>

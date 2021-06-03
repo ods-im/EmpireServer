@@ -1,14 +1,14 @@
 <?php
-//**********************************  ä¼šå‘˜å­—æ®µ  **********************************
+//**********************************  »áÔ±×Ö¶Î  **********************************
 
-//è¿”å›å­—æ®µå€¼
+//·µ»Ø×Ö¶ÎÖµ
 function ReturnMFvalue($value)
 {
 	$value=str_replace("\r\n","|",$value);
 	return $value;
 }
 
-//å–å¾—ä¼šå‘˜è¡¨å•å…ƒç´ htmlä»£ç 
+//È¡µÃ»áÔ±±íµ¥ÔªËØhtml´úÂë
 function GetMemberFform($type,$f,$fvalue,$fformsize=''){
 	if($type=="select"||$type=="radio"||$type=="checkbox")
 	{
@@ -24,7 +24,7 @@ function GetMemberFform($type,$f,$fvalue,$fformsize=''){
 	return fAddAddsData($string);
 }
 
-//å–å¾—select/radioå…ƒç´ ä»£ç 
+//È¡µÃselect/radioÔªËØ´úÂë
 function GetMFformSelect($type,$f,$fvalue,$fformsize=''){
 	$vr=explode("|",$fvalue);
 	$count=count($vr);
@@ -64,7 +64,7 @@ function GetMFformSelect($type,$f,$fvalue,$fformsize=''){
 	return $change;
 }
 
-//æ›¿æ¢è¡¨å•å…ƒç´ é•¿åº¦
+//Ìæ»»±íµ¥ÔªËØ³¤¶È
 function RepMFformSize($f,$string,$type,$fformsize=''){
 	$fformsize=ReturnDefMFformSize($f,$type,$fformsize);
 	if($type=='textarea')
@@ -80,7 +80,7 @@ function RepMFformSize($f,$string,$type,$fformsize=''){
 	return $string;
 }
 
-//è¿”å›é»˜è®¤é•¿åº¦
+//·µ»ØÄ¬ÈÏ³¤¶È
 function ReturnDefMFformSize($f,$type,$fformsize){
 	if(empty($fformsize))
 	{
@@ -124,17 +124,17 @@ function ReturnDefMFformSize($f,$type,$fformsize){
 	return $fformsize;
 }
 
-//å¢åŠ ä¼šå‘˜å­—æ®µ
+//Ôö¼Ó»áÔ±×Ö¶Î
 function AddMemberF($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"memberf");
 	$add[f]=RepPostVar($add[f]);
 	if(empty($add[f])||empty($add[fname]))
 	{
 		printerror("EmptyF","");
 	}
-	//å­—æ®µæ˜¯å¦é‡å¤
+	//×Ö¶ÎÊÇ·ñÖØ¸´
 	$s=$empire->query("SHOW FIELDS FROM {$dbtbpre}enewsmemberadd");
 	$b=0;
 	while($r=$empire->fetch($s))
@@ -163,8 +163,8 @@ function AddMemberF($add,$userid,$username){
 	{
 		printerror("ReF","");
 	}
-	$add[fvalue]=ReturnMFvalue($add[fvalue]);//åˆå§‹åŒ–å€¼
-	//å­—æ®µç±»å‹
+	$add[fvalue]=ReturnMFvalue($add[fvalue]);//³õÊ¼»¯Öµ
+	//×Ö¶ÎÀàĞÍ
 	if($add[ftype]=="TINYINT"||$add[ftype]=="SMALLINT"||$add[ftype]=="INT"||$add[ftype]=="BIGINT"||$add[ftype]=="FLOAT"||$add[ftype]=="DOUBLE")
 	{
 		$def=" default '0'";
@@ -183,28 +183,28 @@ function AddMemberF($add,$userid,$username){
 	{
 		$add[flen]='255';
 	}
-	//å­—æ®µé•¿åº¦
+	//×Ö¶Î³¤¶È
 	if($add[flen]){
 		if($add[ftype]!="TEXT"&&$add[ftype]!="MEDIUMTEXT"&&$add[ftype]!="LONGTEXT"){
 			$type.="(".$add[flen].")";
 		}
 	}
 	$field="`".$add[f]."` ".$type." NOT NULL".$def;
-	//æ–°å¢å­—æ®µ
+	//ĞÂÔö×Ö¶Î
 	$asql=$empire->query("alter table {$dbtbpre}enewsmemberadd add ".$field);
-	//æ›¿æ¢ä»£ç 
+	//Ìæ»»´úÂë
 	$fhtml=GetMemberFform($add[fform],$add[f],$add[fvalue],$add[fformsize]);
 	if($add[fform]=='select'||$add[fform]=='radio'||$add[fform]=='checkbox')
 	{
 		$fhtml=str_replace("\$r[","\$addr[",$fhtml);
 	}
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[myorder]=(int)$add[myorder];
 	$sql=$empire->query("insert into {$dbtbpre}enewsmemberf(f,fname,fform,fhtml,fzs,myorder,ftype,flen,fvalue,fformsize) values('$add[f]','$add[fname]','$add[fform]','".eaddslashes2($fhtml)."','".eaddslashes($add[fzs])."',$add[myorder],'$add[ftype]','$add[flen]','".eaddslashes2($add[fvalue])."','$add[fformsize]');");
 	$lastid=$empire->lastid();
 	if($asql&&$sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("fid=".$lastid."<br>f=".$add[f]);
 		printerror("AddFSuccess","member/AddMemberF.php?enews=AddMemberF".hReturnEcmsHashStrHref2(0));
 	}
@@ -214,10 +214,10 @@ function AddMemberF($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ä¼šå‘˜å­—æ®µ
+//ĞŞ¸Ä»áÔ±×Ö¶Î
 function EditMemberF($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"memberf");
 	$fid=(int)$add['fid'];
 	$add[f]=RepPostVar($add[f]);
@@ -226,7 +226,7 @@ function EditMemberF($add,$userid,$username){
 		printerror("EmptyF","history.go(-1)");
 	}
 	if($add[f]<>$add[oldf]){
-		//å­—æ®µæ˜¯å¦é‡å¤
+		//×Ö¶ÎÊÇ·ñÖØ¸´
 		$s=$empire->query("SHOW FIELDS FROM {$dbtbpre}enewsmemberadd");
 		$b=0;
 		while($r=$empire->fetch($s)){
@@ -253,8 +253,8 @@ function EditMemberF($add,$userid,$username){
 			printerror("ReF","");
 		}
 	}
-	$add[fvalue]=ReturnMFvalue($add[fvalue]);//åˆå§‹åŒ–å€¼
-	//å­—æ®µç±»å‹
+	$add[fvalue]=ReturnMFvalue($add[fvalue]);//³õÊ¼»¯Öµ
+	//×Ö¶ÎÀàĞÍ
 	if($add[ftype]=="TINYINT"||$add[ftype]=="SMALLINT"||$add[ftype]=="INT"||$add[ftype]=="BIGINT"||$add[ftype]=="FLOAT"||$add[ftype]=="DOUBLE")
 	{
 		$def=" default '0'";
@@ -273,7 +273,7 @@ function EditMemberF($add,$userid,$username){
 	{
 		$add[flen]='255';
 	}
-	//å­—æ®µé•¿åº¦
+	//×Ö¶Î³¤¶È
 	if($add[flen]){
 		if($add[ftype]!="TEXT"&&$add[ftype]!="MEDIUMTEXT"&&$add[ftype]!="LONGTEXT"){
 			$type.="(".$add[flen].")";
@@ -281,7 +281,7 @@ function EditMemberF($add,$userid,$username){
 	}
 	$field="`".$add[f]."` ".$type." NOT NULL".$def;
 	$usql=$empire->query("alter table {$dbtbpre}enewsmemberadd change `".$add[oldf]."` ".$field);
-	//æ›¿æ¢ä»£ç 
+	//Ìæ»»´úÂë
 	if($add[f]<>$add[oldf]||$add[fform]<>$add[oldfform]||$add[fvalue]<>$add[oldfvalue]||$add[fformsize]<>$add[oldfformsize]){
 		$fhtml=GetMemberFform($add[fform],$add[f],$add[fvalue],$add[fformsize]);
 		if($add[fform]=='select'||$add[fform]=='radio'||$add[fform]=='checkbox')
@@ -292,10 +292,10 @@ function EditMemberF($add,$userid,$username){
 	else{
 		$fhtml=$add[fhtml];
 	}
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[myorder]=(int)$add[myorder];
 	$sql=$empire->query("update {$dbtbpre}enewsmemberf set f='$add[f]',fname='$add[fname]',fform='$add[fform]',fhtml='".eaddslashes2($fhtml)."',fzs='".eaddslashes($add[fzs])."',myorder=$add[myorder],ftype='$add[ftype]',flen='$add[flen]',fvalue='".eaddslashes2($add[fvalue])."',fformsize='$add[fformsize]' where fid=$fid");
-	//æ›´æ–°è¡¨å•
+	//¸üĞÂ±íµ¥
 	$record="<!--record-->";
 	$field="<!--field--->";
 	$like=$field.$add[oldf].$record;
@@ -337,22 +337,22 @@ function EditMemberF($add,$userid,$username){
 			$setf.=",checkboxf=REPLACE(checkboxf,'$slike','$newslike')";
 		}
 		$cusql=$empire->query("update {$dbtbpre}enewsmemberform set enter=REPLACE(enter,'$like','$newlike')".$setf." where fid='$cr[fid]'");
-		//ç”Ÿæˆè¡¨å•é¡µé¢
+		//Éú³É±íµ¥Ò³Ãæ
 		ChangeMemberForm($cr[fid],$newftemp);
 	}
 	if($usql&&$sql)
 	{
-		insert_dolog("fid=".$fid."<br>f=".$add[f]);//æ“ä½œæ—¥å¿—
+		insert_dolog("fid=".$fid."<br>f=".$add[f]);//²Ù×÷ÈÕÖ¾
 		printerror("EditFSuccess","member/ListMemberF.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ä¼šå‘˜å­—æ®µ
+//É¾³ı»áÔ±×Ö¶Î
 function DelMemberF($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"memberf");
 	$fid=(int)$add['fid'];
 	if(empty($fid)){
@@ -364,7 +364,7 @@ function DelMemberF($add,$userid,$username){
 	}
 	$usql=$empire->query("alter table {$dbtbpre}enewsmemberadd drop COLUMN `".$r[f]."`");
 	$sql=$empire->query("delete from {$dbtbpre}enewsmemberf where fid=$fid");
-	//æ›´æ–°è¡¨å•è¡¨
+	//¸üĞÂ±íµ¥±í
 	$record="<!--record-->";
 	$field="<!--field--->";
 	$like=$field.$r[f].$record;
@@ -389,7 +389,7 @@ function DelMemberF($add,$userid,$username){
 		{
 			$setf.=",tobrf=REPLACE(tobrf,'$slike',',')";
 		}
-		//å½•å…¥é¡¹
+		//Â¼ÈëÏî
 		$enter="";
 		$re1=explode($record,$cr[enter]);
 		for($i=0;$i<count($re1)-1;$i++)
@@ -398,7 +398,7 @@ function DelMemberF($add,$userid,$username){
 			{continue;}
 			$enter.=$re1[$i].$record;
 		}
-		//å‰å°æ˜¾ç¤º
+		//Ç°Ì¨ÏÔÊ¾
 		if(strstr($cr[viewenter],$like)){
 			$viewenter='';
 			$re2=explode($record,$cr[viewenter]);
@@ -410,22 +410,22 @@ function DelMemberF($add,$userid,$username){
 			}
 			$setf.=",viewenter='".$viewenter."'";
 		}
-		//æœç´¢é¡¹
+		//ËÑË÷Ïî
 		if(strstr($cr['searchvar'],$slike))
 		{
 			$setf.=",searchvar=REPLACE(searchvar,'$slike',',')";
 		}
-		//å¢åŠ é¡¹
+		//Ôö¼ÓÏî
 		if(strstr($cr['canaddf'],$slike))
 		{
 			$setf.=",canaddf=REPLACE(canaddf,'$slike',',')";
 		}
-		//ä¿®æ”¹é¡¹
+		//ĞŞ¸ÄÏî
 		if(strstr($cr['caneditf'],$slike))
 		{
 			$setf.=",caneditf=REPLACE(caneditf,'$slike',',')";
 		}
-		//å¤é€‰æ¡†
+		//¸´Ñ¡¿ò
 		if(strstr($cr['checkboxf'],$slike))
 		{
 			$setf.=",checkboxf=REPLACE(checkboxf,'$slike',',')";
@@ -434,17 +434,17 @@ function DelMemberF($add,$userid,$username){
 	}
 	if($usql&&$sql)
 	{
-		insert_dolog("fid=".$fid."<br>f=".$r[f]);//æ“ä½œæ—¥å¿—
+		insert_dolog("fid=".$fid."<br>f=".$r[f]);//²Ù×÷ÈÕÖ¾
 		printerror("DelFSuccess","member/ListMemberF.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ä¼šå‘˜å­—æ®µé¡ºåº
+//ĞŞ¸Ä»áÔ±×Ö¶ÎË³Ğò
 function EditMemberFOrder($fid,$myorder,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"memberf");
 	for($i=0;$i<count($myorder);$i++)
 	{
@@ -456,9 +456,9 @@ function EditMemberFOrder($fid,$myorder,$userid,$username){
 }
 
 
-//**********************************  ä¼šå‘˜è¡¨å•  **********************************
+//**********************************  »áÔ±±íµ¥  **********************************
 
-//è¿”å›è‡ªåŠ¨ç”Ÿæˆä¼šå‘˜è¡¨å•æ¨¡æ¿
+//·µ»Ø×Ô¶¯Éú³É»áÔ±±íµ¥Ä£°å
 function ReturnMemberFtemp($cname,$center){
 	$temp="<tr><td width='16%' height=25 bgcolor='ffffff'>enews.name</td><td bgcolor='ffffff'>[!--enews.var--]</td></tr>";
 	for($i=0;$i<count($center);$i++){
@@ -468,7 +468,7 @@ function ReturnMemberFtemp($cname,$center){
 	return "<table width='100%' align='center' cellpadding=3 cellspacing=1 bgcolor='#DBEAF5'>".$data."</table>";
 }
 
-//æ›´æ–°ä¼šå‘˜è¡¨å•æ–‡ä»¶
+//¸üĞÂ»áÔ±±íµ¥ÎÄ¼ş
 function ChangeMemberForm($fid,$mtemp){
 	global $empire,$dbtbpre;
 	$file="../data/html/memberform".$fid.".php";
@@ -483,7 +483,7 @@ if(!defined('InEmpireCMS'))
 	WriteFiletext($file,$mtemp);
 }
 
-//ç»„åˆæŠ•ç¨¿é¡¹
+//×éºÏÍ¶¸åÏî
 function TogMemberqenter($cname,$cqenter){
 	$record="<!--record-->";
 	$field="<!--field--->";
@@ -498,7 +498,7 @@ function TogMemberqenter($cname,$cqenter){
 	return $c;
 }
 
-//ç»„åˆå¿…å¡«é¡¹
+//×éºÏ±ØÌîÏî
 function TogMemberMustf($cname,$menter){
 	$c="";
 	for($i=0;$i<count($menter);$i++)
@@ -513,44 +513,44 @@ function TogMemberMustf($cname,$menter){
 	return $c;
 }
 
-//å¢åŠ ä¼šå‘˜è¡¨å•
+//Ôö¼Ó»áÔ±±íµ¥
 function AddMemberForm($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add[fname]))
 	{
 		printerror("EmptyMemberForm","");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"memberf");
-	$enter=TogMemberqenter($add['cname'],$add['center']);//å½•å…¥é¡¹
-	$viewenter=TogMemberqenter($add['cname'],$add['venter']);//æ˜¾ç¤ºé¡¹
-	$mustenter=TogMemberMustf($add['cname'],$add['menter']);//å¿…å¡«é¡¹
-	$canaddf=TogMemberMustf($add['cname'],$add['canadd']);//å¢åŠ é¡¹
-	$caneditf=TogMemberMustf($add['cname'],$add['canedit']);//ä¿®æ”¹é¡¹
-	$searchvar=TogMemberMustf($add['cname'],$add['schange']);//æœç´¢é¡¹
+	$enter=TogMemberqenter($add['cname'],$add['center']);//Â¼ÈëÏî
+	$viewenter=TogMemberqenter($add['cname'],$add['venter']);//ÏÔÊ¾Ïî
+	$mustenter=TogMemberMustf($add['cname'],$add['menter']);//±ØÌîÏî
+	$canaddf=TogMemberMustf($add['cname'],$add['canadd']);//Ôö¼ÓÏî
+	$caneditf=TogMemberMustf($add['cname'],$add['canedit']);//ĞŞ¸ÄÏî
+	$searchvar=TogMemberMustf($add['cname'],$add['schange']);//ËÑË÷Ïî
 	$filef=ReturnMFileF($enter,$dbtbpre."enewsmemberf",0,"file");
 	$imgf=ReturnMFileF($enter,$dbtbpre."enewsmemberf",0,"img");
 	$tobrf=ReturnMFileF($enter,$dbtbpre."enewsmemberf",0,"textarea");
 	$checkboxf=ReturnMFileF($enter,$dbtbpre."enewsmemberf",0,"checkbox");
-	//è‡ªåŠ¨ç”Ÿæˆè¡¨å•
+	//×Ô¶¯Éú³É±íµ¥
 	if($add[ftype])
 	{
 		$add[ftemp]=ReturnMemberFtemp($add['cname'],$add['center']);
 	}
 	$sql=$empire->query("insert into {$dbtbpre}enewsmemberform(fname,ftemp,fzs,enter,mustenter,filef,imgf,tobrf,viewenter,searchvar,canaddf,caneditf,checkboxf) values('$add[fname]','".eaddslashes2($add[ftemp])."','".addslashes($add[fzs])."','$enter','$mustenter','$filef','$imgf','$tobrf','$viewenter','$searchvar','$canaddf','$caneditf','$checkboxf');");
 	$fid=$empire->lastid();
-	//ç”Ÿæˆè¡¨å•é¡µé¢
+	//Éú³É±íµ¥Ò³Ãæ
 	ChangeMemberForm($fid,$add[ftemp]);
 	if($sql)
 	{
-	    insert_dolog("fid=".$fid."<br>fname=".$add[fname]);//æ“ä½œæ—¥å¿—
+	    insert_dolog("fid=".$fid."<br>fname=".$add[fname]);//²Ù×÷ÈÕÖ¾
 		printerror("AddMemberFormSuccess","member/AddMemberForm.php?enews=AddMemberForm".hReturnEcmsHashStrHref2(0));
 	}
 	else
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ä¼šå‘˜è¡¨å•
+//ĞŞ¸Ä»áÔ±±íµ¥
 function EditMemberForm($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$fid=(int)$add['fid'];
@@ -558,36 +558,36 @@ function EditMemberForm($add,$userid,$username){
 	{
 		printerror("EmptyMemberForm","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"memberf");
-	$enter=TogMemberqenter($add['cname'],$add['center']);//å½•å…¥é¡¹
-	$viewenter=TogMemberqenter($add['cname'],$add['venter']);//æ˜¾ç¤ºé¡¹
-	$mustenter=TogMemberMustf($add['cname'],$add['menter']);//å¿…å¡«é¡¹
-	$canaddf=TogMemberMustf($add['cname'],$add['canadd']);//å¢åŠ é¡¹
-	$caneditf=TogMemberMustf($add['cname'],$add['canedit']);//ä¿®æ”¹é¡¹
-	$searchvar=TogMemberMustf($add['cname'],$add['schange']);//æœç´¢é¡¹
+	$enter=TogMemberqenter($add['cname'],$add['center']);//Â¼ÈëÏî
+	$viewenter=TogMemberqenter($add['cname'],$add['venter']);//ÏÔÊ¾Ïî
+	$mustenter=TogMemberMustf($add['cname'],$add['menter']);//±ØÌîÏî
+	$canaddf=TogMemberMustf($add['cname'],$add['canadd']);//Ôö¼ÓÏî
+	$caneditf=TogMemberMustf($add['cname'],$add['canedit']);//ĞŞ¸ÄÏî
+	$searchvar=TogMemberMustf($add['cname'],$add['schange']);//ËÑË÷Ïî
 	$filef=ReturnMFileF($enter,$dbtbpre."enewsmemberf",0,"file");
 	$imgf=ReturnMFileF($enter,$dbtbpre."enewsmemberf",0,"img");
 	$tobrf=ReturnMFileF($enter,$dbtbpre."enewsmemberf",0,"textarea");
 	$checkboxf=ReturnMFileF($enter,$dbtbpre."enewsmemberf",0,"checkbox");
-	//è‡ªåŠ¨ç”Ÿæˆè¡¨å•
+	//×Ô¶¯Éú³É±íµ¥
 	if($add[ftype])
 	{
 		$add[ftemp]=ReturnMemberFtemp($add['cname'],$add['center']);
 	}
 	$sql=$empire->query("update {$dbtbpre}enewsmemberform set fname='$add[fname]',ftemp='".eaddslashes2($add[ftemp])."',fzs='".addslashes($add[fzs])."',enter='$enter',mustenter='$mustenter',filef='$filef',imgf='$imgf',tobrf='$tobrf',viewenter='$viewenter',searchvar='$searchvar',canaddf='$canaddf',caneditf='$caneditf',checkboxf='$checkboxf' where fid=$fid");
-	//ç”Ÿæˆè¡¨å•é¡µé¢
+	//Éú³É±íµ¥Ò³Ãæ
 	ChangeMemberForm($fid,$add[ftemp]);
 	if($sql)
 	{
-	    insert_dolog("fid=".$fid."<br>fname=".$add[fname]);//æ“ä½œæ—¥å¿—
+	    insert_dolog("fid=".$fid."<br>fname=".$add[fname]);//²Ù×÷ÈÕÖ¾
 		printerror("EditMemberFormSuccess","member/ListMemberForm.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ä¼šå‘˜è¡¨å•
+//É¾³ı»áÔ±±íµ¥
 function DelMemberForm($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$fid=(int)$add['fid'];
@@ -595,7 +595,7 @@ function DelMemberForm($add,$userid,$username){
 	{
 		printerror("EmptyMemberFormId","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"memberf");
 	$r=$empire->fetch1("select fid,fname from {$dbtbpre}enewsmemberform where fid=$fid;");
 	if(!$r['fid'])
@@ -603,12 +603,12 @@ function DelMemberForm($add,$userid,$username){
 		printerror("EmptyMemberFormId","history.go(-1)");
 	}
 	$sql=$empire->query("delete from {$dbtbpre}enewsmemberform where fid=$fid;");
-	//åˆ é™¤è¡¨å•æ–‡ä»¶
+	//É¾³ı±íµ¥ÎÄ¼ş
 	$file="../data/html/memberform".$fid.".php";
 	DelFiletext($file);
 	if($sql)
 	{
-	    insert_dolog("fid=".$fid."<br>fname=".$r[fname]);//æ“ä½œæ—¥å¿—
+	    insert_dolog("fid=".$fid."<br>fname=".$r[fname]);//²Ù×÷ÈÕÖ¾
 		printerror("DelMemberFormSuccess","member/ListMemberForm.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
@@ -616,16 +616,16 @@ function DelMemberForm($add,$userid,$username){
 }
 
 
-//**********************************  ä¼šå‘˜ç»„  **********************************
+//**********************************  »áÔ±×é  **********************************
 
-//å¢åŠ ä¼šå‘˜ç»„
+//Ôö¼Ó»áÔ±×é
 function AddMemberGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add[groupname])||empty($add[level]))
 	{printerror("EmptyMemberGroupname","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"membergroup");
-	//å¤„ç†æ–‡ä»¶
+	//´¦ÀíÎÄ¼ş
 	$add[level]=(int)$add[level];
 	$add[checked]=(int)$add[checked];
 	$add[favanum]=(int)$add[favanum];
@@ -641,11 +641,11 @@ function AddMemberGroup($add,$userid,$username){
 	$add[plchecked]=(int)$add[plchecked];
 	$sql=$empire->query("insert into {$dbtbpre}enewsmembergroup(groupname,level,checked,favanum,daydown,msglen,msgnum,canreg,formid,regchecked,spacestyleid,dayaddinfo,infochecked,plchecked) values('$add[groupname]',$add[level],$add[checked],$add[favanum],$add[daydown],$msglen,$msgnum,$canreg,$formid,$regchecked,$spacestyleid,'$add[dayaddinfo]','$add[infochecked]','$add[plchecked]');");
 	$groupid=$empire->lastid();
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	GetMemberLevel();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("groupid=".$groupid."<br>groupname=".$add[groupname]);
 		printerror("AddMemberGroupSuccess","member/AddMemberGroup.php?enews=AddMemberGroup".hReturnEcmsHashStrHref2(0));
 	}
@@ -653,15 +653,15 @@ function AddMemberGroup($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ä¼šå‘˜ç»„
+//ĞŞ¸Ä»áÔ±×é
 function EditMemberGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[groupid]=(int)$add[groupid];
 	if(empty($add[groupid])||empty($add[groupname])||empty($add[level]))
 	{printerror("EmptyMemberGroupname","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"membergroup");
-	//å¤„ç†æ–‡ä»¶
+	//´¦ÀíÎÄ¼ş
 	$add[level]=(int)$add[level];
 	$add[checked]=(int)$add[checked];
 	$add[favanum]=(int)$add[favanum];
@@ -676,11 +676,11 @@ function EditMemberGroup($add,$userid,$username){
 	$add[infochecked]=(int)$add[infochecked];
 	$add[plchecked]=(int)$add[plchecked];
 	$sql=$empire->query("update {$dbtbpre}enewsmembergroup set groupname='$add[groupname]',level=$add[level],checked=$add[checked],favanum=$add[favanum],daydown=$add[daydown],msglen=$msglen,msgnum=$msgnum,canreg=$canreg,formid=$formid,regchecked=$regchecked,spacestyleid=$spacestyleid,dayaddinfo='$add[dayaddinfo]',infochecked='$add[infochecked]',plchecked='$add[plchecked]' where groupid='$add[groupid]'");
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	GetMemberLevel();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("groupid=".$add[groupid]."<br>groupname=".$add[groupname]);
 		printerror("EditMemberGroupSuccess","member/ListMemberGroup.php".hReturnEcmsHashStrHref2(1));
     }
@@ -688,21 +688,21 @@ function EditMemberGroup($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ä¼šå‘˜ç»„
+//É¾³ı»áÔ±×é
 function DelMemberGroup($groupid,$userid,$username){
 	global $empire,$dbtbpre;
 	$groupid=(int)$groupid;
 	if(empty($groupid))
 	{printerror("NotDelMemberGroupid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"membergroup");
 	$r=$empire->fetch1("select groupname from {$dbtbpre}enewsmembergroup where groupid='$groupid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsmembergroup where groupid='$groupid'");
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	GetMemberLevel();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("groupid=".$groupid."<br>groupname=".$r[groupname]);
 		printerror("DelMemberGroupSuccess","member/ListMemberGroup.php".hReturnEcmsHashStrHref2(1));
     }

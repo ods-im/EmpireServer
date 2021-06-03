@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,13 +16,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"pay");
 
-//æ‰¹é‡åˆ é™¤
+//ÅúÁ¿É¾³ı
 function DelPayRecord_all($id,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"pay");
 	$count=count($id);
 	if(!$count)
@@ -37,7 +37,7 @@ function DelPayRecord_all($id,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewspayrecord where".$add);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("DelPayRecordSuccess","ListPayRecord.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -54,22 +54,22 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//æ‰¹é‡åˆ é™¤
+//ÅúÁ¿É¾³ı
 if($enews=="DelPayRecord_all")
 {
 	$id=$_POST['id'];
 	DelPayRecord_all($id,$logininid,$loginin);
 }
 
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=18;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=18;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$offset=$page*$line;//æ€»åç§»é‡
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select id,userid,username,orderid,money,posttime,paybz,type,payip from {$dbtbpre}enewspayrecord";
 $totalquery="select count(*) as total from {$dbtbpre}enewspayrecord";
-//æœç´¢
+//ËÑË÷
 $search='';
 $search.=$ecms_hashur['ehref'];
 $where='';
@@ -114,7 +114,7 @@ if($_GET['sear']==1)
 	$query.=$where;
 	$totalquery.=$where;
 }
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by id desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -122,8 +122,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <html>
 <head>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css"> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>åœ¨çº¿æ”¯ä»˜</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÔÚÏßÖ§¸¶</title>
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 <script>
 function CheckAll(form)
@@ -139,11 +139,11 @@ function CheckAll(form)
 </head>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td>ä½ç½®ï¼šåœ¨çº¿æ”¯ä»˜&gt; <a href="ListPayRecord.php<?=$ecms_hashur['whehref']?>">ç®¡ç†æ”¯ä»˜è®°å½•</a></td>
+    <td>Î»ÖÃ£ºÔÚÏßÖ§¸¶&gt; <a href="ListPayRecord.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÖ§¸¶¼ÇÂ¼</a></td>
     <td width="50%"><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="ç®¡ç†æ”¯ä»˜æ¥å£" onclick="self.location.href='PayApi.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀíÖ§¸¶½Ó¿Ú" onclick="self.location.href='PayApi.php<?=$ecms_hashur['whehref']?>';">
 		&nbsp;&nbsp;
-		<input type="button" name="Submit5" value="æ”¯ä»˜å‚æ•°è®¾ç½®" onclick="self.location.href='SetPayFen.php<?=$ecms_hashur['whehref']?>';">
+		<input type="button" name="Submit5" value="Ö§¸¶²ÎÊıÉèÖÃ" onclick="self.location.href='SetPayFen.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -153,38 +153,38 @@ function CheckAll(form)
   <form name=searchlogform method=get action='ListPayRecord.php'>
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25"> <div align="center">æ—¶é—´ä» 
+      <td height="25"> <div align="center">Ê±¼ä´Ó 
           <input name="startday" type="text" value="<?=$startday?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-          åˆ° 
+          µ½ 
           <input name="endday" type="text" value="<?=$endday?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-          ï¼Œå…³é”®å­—ï¼š 
+          £¬¹Ø¼ü×Ö£º 
           <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
           <select name="show" id="show">
-            <option value="0"<?=$show==0?' selected':''?>>è®¢å•å·</option>
-            <option value="1"<?=$show==1?' selected':''?>>æ±‡æ¬¾è€…</option>
-            <option value="2"<?=$show==2?' selected':''?>>æ±‡æ¬¾IP</option>
-			<option value="3"<?=$show==3?' selected':''?>>å¤‡æ³¨</option>
+            <option value="0"<?=$show==0?' selected':''?>>¶©µ¥ºÅ</option>
+            <option value="1"<?=$show==1?' selected':''?>>»ã¿îÕß</option>
+            <option value="2"<?=$show==2?' selected':''?>>»ã¿îIP</option>
+			<option value="3"<?=$show==3?' selected':''?>>±¸×¢</option>
           </select>
-          <input name=submit1 type=submit id="submit12" value=æœç´¢>
+          <input name=submit1 type=submit id="submit12" value=ËÑË÷>
           <input name="sear" type="hidden" id="sear" value="1">
         </div></td>
     </tr>
   </form>
 </table>
-<form name="form2" method="post" action="ListPayRecord.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+<form name="form2" method="post" action="ListPayRecord.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
   <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
       <td width="3%"><div align="center"> 
           <input type=checkbox name=chkall value=on onClick="CheckAll(this.form)">
         </div></td>
-      <td width="19%"><div align="center">è®¢å•å·</div></td>
-      <td width="13%"><div align="center">æ±‡æ¬¾è€…</div></td>
-      <td width="10%" height="25"><div align="center">é‡‘é¢</div></td>
-      <td width="15%"><div align="center">æ±‡æ¬¾æ—¶é—´</div></td>
-      <td width="12%" height="25"><div align="center">æ±‡æ¬¾IP</div></td>
-      <td width="20%"><div align="center">å¤‡æ³¨</div></td>
-      <td width="8%" height="25"><div align="center">æ¥å£</div></td>
+      <td width="19%"><div align="center">¶©µ¥ºÅ</div></td>
+      <td width="13%"><div align="center">»ã¿îÕß</div></td>
+      <td width="10%" height="25"><div align="center">½ğ¶î</div></td>
+      <td width="15%"><div align="center">»ã¿îÊ±¼ä</div></td>
+      <td width="12%" height="25"><div align="center">»ã¿îIP</div></td>
+      <td width="20%"><div align="center">±¸×¢</div></td>
+      <td width="8%" height="25"><div align="center">½Ó¿Ú</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -195,7 +195,7 @@ function CheckAll(form)
 	}
 	else
 	{
-		$username="æ¸¸å®¢(".$r[username].")";
+		$username="ÓÎ¿Í(".$r[username].")";
 	}
   ?>
     <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
@@ -228,7 +228,7 @@ function CheckAll(form)
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="8">&nbsp;
         <?=$returnpage?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="submit" name="Submit" value="æ‰¹é‡åˆ é™¤"> <input name="enews" type="hidden" id="enews" value="DelPayRecord_all"></td>
+        <input type="submit" name="Submit" value="ÅúÁ¿É¾³ı"> <input name="enews" type="hidden" id="enews" value="DelPayRecord_all"></td>
     </tr>
   </table>
 </form>

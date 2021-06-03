@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,34 +16,34 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 
-//è¿”å›æŒ‰é’®äº‹ä»¶
+//·µ»Ø°´Å¥ÊÂ¼ş
 function ToReturnDoFilepButton($doing,$tranfrom,$field,$file,$filename,$fileid,$filesize,$filetype,$no,$type){
-	if($doing==1)//è¿”å›åœ°å€
+	if($doing==1)//·µ»ØµØÖ·
 	{
 		$bturl="ChangeFile1(1,'".$file."');";
-		$button="<input type=button name=button value='é€‰æ‹©' onclick=\"javascript:".$bturl."\">";
+		$button="<input type=button name=button value='Ñ¡Ôñ' onclick=\"javascript:".$bturl."\">";
 	}
-	elseif($doing==2)//è¿”å›åœ°å€
+	elseif($doing==2)//·µ»ØµØÖ·
 	{
 		$bturl="ChangeFile1(2,'".$file."');";
-		$button="<input type=button name=button value='é€‰æ‹©' onclick=\"javascript:".$bturl."\">";
+		$button="<input type=button name=button value='Ñ¡Ôñ' onclick=\"javascript:".$bturl."\">";
 	}
 	else
 	{
-		if($tranfrom==1)//ç¼–è¾‘å™¨é€‰æ‹©
+		if($tranfrom==1)//±à¼­Æ÷Ñ¡Ôñ
 		{
 			$bturl="EditorChangeFile('".$file."','".addslashes($filename)."','".$filetype."','".$filesize."','".addslashes($no)."');";
-			$button="<input type=button name=button value='é€‰æ‹©' onclick=\"javascript:".$bturl."\">";
+			$button="<input type=button name=button value='Ñ¡Ôñ' onclick=\"javascript:".$bturl."\">";
 		}
-		elseif($tranfrom==2)//ç‰¹æ®Šå­—æ®µé€‰æ‹©
+		elseif($tranfrom==2)//ÌØÊâ×Ö¶ÎÑ¡Ôñ
 		{
 			$bturl="SFormIdChangeFile('".addslashes($no)."','$file','$filesize','$filetype','$field');";
-			$button="<input type=button name=button value='é€‰æ‹©' onclick=\"javascript:".$bturl."\">";
+			$button="<input type=button name=button value='Ñ¡Ôñ' onclick=\"javascript:".$bturl."\">";
 		}
 		else
 		{
 			$bturl="InsertFile('".$file."','".addslashes($filename)."','".$fileid."','".$filesize."','".$filetype."','','".$type."');";
-			$button="<input type=button name=button value='æ’å…¥' onclick=\"javascript:".$bturl."\">";
+			$button="<input type=button name=button value='²åÈë' onclick=\"javascript:".$bturl."\">";
 		}
 	}
 	$retr['button']=$button;
@@ -70,7 +70,7 @@ include('eshoweditor.php');
 
 $search="&classid=$classid&infoid=$infoid&filepass=$filepass&type=$type&modtype=$modtype&fstb=$fstb&doing=$doing&tranfrom=$tranfrom&field=$field&fileno=$fileno&doecmspage=$doecmspage".$ecms_hashur['ehref'];
 
-//åŸºç›®å½•
+//»ùÄ¿Â¼
 $basepath=eReturnEcmsMainPortPath()."d/file";//moreport
 $filepath=ehtmlspecialchars($_GET['filepath']);
 if(strstr($filepath,".."))
@@ -90,8 +90,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>é€‰æ‹©æ–‡ä»¶</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ñ¡ÔñÎÄ¼ş</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function InsertFile(filename,fname,fileid,filesize,filetype,fileno,dotype){
@@ -111,7 +111,7 @@ function TInsertFile(vstr){
 	parent.opener.DoFile(vstr);
 	parent.window.close();
 }
-//é€‰æ‹©å­—æ®µ
+//Ñ¡Ôñ×Ö¶Î
 function ChangeFile1(obj,str){
 <?php
 if(strstr($field,'.'))
@@ -136,7 +136,7 @@ else
 ?>
 	parent.window.close();
 }
-//ç¼–è¾‘å™¨é€‰æ‹©
+//±à¼­Æ÷Ñ¡Ôñ
 function EditorChangeFile(fileurl,filename,filetype,filesize,name){
 	var returnstr;
 	returnstr=fileurl;
@@ -152,12 +152,12 @@ function EditorChangeFile(fileurl,filename,filetype,filesize,name){
 	window.parent.opener.<?=$useeditor_r['jsfun']?>(returnstr);
 	parent.window.close();
 }
-//å˜é‡å±‚é€‰æ‹©
+//±äÁ¿²ãÑ¡Ôñ
 function SFormIdChangeFile(name,url,filesize,filetype,idvar){
 	parent.opener.doSpChangeFile(name,url,filesize,filetype,idvar);
 	parent.window.close();
 }
-//å…¨é€‰
+//È«Ñ¡
 function CheckAll(form){
   for(var i=0;i<form.elements.length;i++)
   {
@@ -166,7 +166,7 @@ function CheckAll(form){
        e.checked = form.chkall.checked;
     }
 }
-//é‡æ–°è½½å…¥é¡µé¢
+//ÖØĞÂÔØÈëÒ³Ãæ
 function ReloadChangeFilePage(){
 	self.location.reload();
 }
@@ -176,9 +176,9 @@ function ReloadChangeFilePage(){
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td> å½“å‰ç›®å½•ï¼š<strong>/ 
+    <td> µ±Ç°Ä¿Â¼£º<strong>/ 
       <?=$filepath?>
-      </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="javascript:history.go(-1);">è¿”å›ä¸Šä¸€é¡µ</a>]</td>
+      </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="javascript:history.go(-1);">·µ»ØÉÏÒ»Ò³</a>]</td>
   </tr>
 </table>
 <br>
@@ -189,11 +189,11 @@ function ReloadChangeFilePage(){
     <input name="enews" type="hidden" id="enews" value="DelPathFile">
 	<input type=hidden name=doecmspage value="<?=$doecmspage?>">
     <tr class="header">
-      <td><div align="center">é€‰æ‹©</div></td>
-      <td height="25"><div align="center">æ–‡ä»¶å</div></td>
-      <td><div align="center">å¤§å°</div></td>
-      <td><div align="center">ç±»å‹</div></td>
-      <td><div align="center">ä¿®æ”¹æ—¶é—´</div></td>
+      <td><div align="center">Ñ¡Ôñ</div></td>
+      <td height="25"><div align="center">ÎÄ¼şÃû</div></td>
+      <td><div align="center">´óĞ¡</div></td>
+      <td><div align="center">ÀàĞÍ</div></td>
+      <td><div align="center">ĞŞ¸ÄÊ±¼ä</div></td>
     </tr>
     <?php
 	$efileurl=eReturnFileUrl(1);
@@ -211,7 +211,7 @@ function ReloadChangeFilePage(){
 		{
 			continue;
 		}
-		//ç›®å½•
+		//Ä¿Â¼
 		$pathfile=$openpath."/".$file;
 		if(is_dir($pathfile))
 		{
@@ -219,14 +219,14 @@ function ReloadChangeFilePage(){
 			$filename=$file;
 			$img="../../data/images/dir/folder.gif";
 			$target="";
-			//å‘å¸ƒæ—¶é—´
+			//·¢²¼Ê±¼ä
 			$ftime=@filemtime($pathfile);
 			$filetime=date("Y-m-d H:i:s",$ftime);
-			$filesize='<ç›®å½•>';
-			$filetype='æ–‡ä»¶å¤¹';
+			$filesize='<Ä¿Â¼>';
+			$filetype='ÎÄ¼ş¼Ğ';
 			$button="";
 		}
-		//æ–‡ä»¶
+		//ÎÄ¼ş
 		else
 		{
 			$filelink="'".eReturnFileUrl().$truefile."'";
@@ -238,16 +238,16 @@ function ReloadChangeFilePage(){
 				$img='../../data/images/dir/unknown_icon.gif';
 			}
 			$target=" target='_blank'";
-			//å‘å¸ƒæ—¶é—´
+			//·¢²¼Ê±¼ä
 			$ftime=@filemtime($pathfile);
 			$filetime=date("Y-m-d H:i:s",$ftime);
-			//æ–‡ä»¶å¤§å°
+			//ÎÄ¼ş´óĞ¡
 			$fsize=@filesize($pathfile);
 			$filesize=ChTheFilesize($fsize);
-			//æ–‡ä»¶ç±»å‹
+			//ÎÄ¼şÀàĞÍ
 			if(strstr($ecms_config['sets']['tranpicturetype'],','.$ftype.','))
 			{
-				$filetype='å›¾ç‰‡';
+				$filetype='Í¼Æ¬';
 			}
 			elseif(strstr($ecms_config['sets']['tranflashtype'],','.$ftype.','))
 			{
@@ -255,11 +255,11 @@ function ReloadChangeFilePage(){
 			}
 			elseif(strstr($ecms_config['sets']['mediaplayertype'],','.$ftype.',')||strstr($ecms_config['sets']['realplayertype'],','.$ftype.','))
 			{
-				$filetype='è§†é¢‘';
+				$filetype='ÊÓÆµ';
 			}
 			else
 			{
-				$filetype='é™„ä»¶';
+				$filetype='¸½¼ş';
 			}
 			$furl=$efileurl.$truefile;
 			$buttonr=ToReturnDoFilepButton($doing,$tranfrom,$field,$furl,$file,0,$filesize,$ftype,'',$type);

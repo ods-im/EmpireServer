@@ -1,5 +1,5 @@
 <?php
-//å¢åŠ æŠ•ç¥¨
+//Ôö¼ÓÍ¶Æ±
 function AddVote($voteid,$vote){
 	global $empire,$dbtbpre,$public_r;
 	$voteid=(int)$voteid;
@@ -24,7 +24,7 @@ function AddVote($voteid,$vote){
 	$sql=$empire->query("update {$dbtbpre}enewsvote set votetext='".addslashes($re['votetext'])."',voteip='$re[voteip]',votenum=votenum+".$re['votetotal']." where voteid='$voteid'");
 	if($sql)
 	{
-		esetcookie("lastvotetime",time(),time()+3600*24);//è®¾ç½®æœ€åå‘è¡¨æ—¶é—´
+		esetcookie("lastvotetime",time(),time()+3600*24);//ÉèÖÃ×îºó·¢±íÊ±¼ä
 		printerror("VoteSuccess","../tool/vote/?voteid=".$voteid,1);
 	}
 	else
@@ -33,7 +33,7 @@ function AddVote($voteid,$vote){
 	}
 }
 
-//æ·»åŠ ä¿¡æ¯æŠ•ç¥¨
+//Ìí¼ÓĞÅÏ¢Í¶Æ±
 function AddInfoVote($classid,$id,$vote){
 	global $empire,$dbtbpre,$class_r,$public_r;
 	$classid=(int)$classid;
@@ -60,7 +60,7 @@ function AddInfoVote($classid,$id,$vote){
 	$sql=$empire->query("update {$dbtbpre}enewsinfovote set votetext='".addslashes($re['votetext'])."',voteip='$re[voteip]',votenum=votenum+".$re['votetotal']." where pubid='$pubid' limit 1");
 	if($sql)
 	{
-		esetcookie("lastivotetime",time(),time()+3600*24);//è®¾ç½®æœ€åå‘è¡¨æ—¶é—´
+		esetcookie("lastivotetime",time(),time()+3600*24);//ÉèÖÃ×îºó·¢±íÊ±¼ä
 		printerror("VoteSuccess","../public/vote/?classid=$classid&id=$id",1);
 	}
 	else
@@ -69,9 +69,9 @@ function AddInfoVote($classid,$id,$vote){
 	}
 }
 
-//å¤„ç†æŠ•ç¥¨
+//´¦ÀíÍ¶Æ±
 function DoVote($r,$vote){
-	//æŠ•ç¥¨æœŸé™
+	//Í¶Æ±ÆÚÏŞ
 	if($r['dotime']<>"0000-00-00")
 	{
 		$endtime=to_date($r['dotime']);
@@ -80,7 +80,7 @@ function DoVote($r,$vote){
 			printerror("VoteOutDate","history.go(-1)",1);
 		}
 	}
-	//IPé™åˆ¶
+	//IPÏŞÖÆ
 	if(empty($r['voteip']))
 	{
 		$r['voteip']='|';
@@ -98,7 +98,7 @@ function DoVote($r,$vote){
 	$VoteRecord="\r\n";
 	$vote_r=explode($VoteRecord,$r['votetext']);
 	$new_vote_total=0;
-	if($r['voteclass'])//å¤šé€‰
+	if($r['voteclass'])//¶àÑ¡
 	{
 		$vote_count=count($vote);
 		if(empty($vote_count))
@@ -117,7 +117,7 @@ function DoVote($r,$vote){
 			$vote_r[$vote[$j]-1]=$v_r[0].$VoteField.$vote_num;
 		}
 	}
-	else//å•é€‰
+	else//µ¥Ñ¡
 	{
 		if(empty($vote))
 		{
@@ -136,15 +136,15 @@ function DoVote($r,$vote){
 	{
 		$new_votetext.=$vote_r[$n].$VoteRecord;
 	}
-	$new_votetext=substr($new_votetext,0,strlen($new_votetext)-2);//å»æ‰æœ€åçš„å­—ç¬¦
-	//è¿”å›æ•°ç»„
+	$new_votetext=substr($new_votetext,0,strlen($new_votetext)-2);//È¥µô×îºóµÄ×Ö·û
+	//·µ»ØÊı×é
 	$re['votetotal']=(int)$new_vote_total;
 	$re['votetext']=$new_votetext;
 	$re['voteip']=addslashes($r['voteip']);
 	return $re;
 }
 
-//è¯„åˆ†
+//ÆÀ·Ö
 function AddInfoPfen($add){
 	global $empire,$dbtbpre,$class_r;
 	$id=(int)$add['id'];
@@ -155,12 +155,12 @@ function AddInfoPfen($add){
 	{
 		$doajax==1?ajax_printerror('','','ErrorUrl',1):printerror('ErrorUrl','',1);
 	}
-	//è¿ç»­å‘è¡¨
+	//Á¬Ğø·¢±í
 	if(getcvar('lastforfenid')==$classid.'n'.$id)
 	{
 		$doajax==1?ajax_printerror('','','ReDoForPl',1):printerror('ReDoForPl','',1);
 	}
-	//å­—æ®µ
+	//×Ö¶Î
 	$fnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsf where tbname='".$class_r[$classid]['tbname']."' and (f='infopfen' or f='infopfennum')");
 	if(empty($fnum))
 	{
@@ -177,7 +177,7 @@ function AddInfoPfen($add){
 	$sql=$empire->query("update {$dbtbpre}ecms_".$class_r[$classid]['tbname']." set infopfen=infopfen+$fen,infopfennum=infopfennum+1 where id='$id' and classid='$classid' limit 1");
 	if($sql)
 	{
-		esetcookie('lastforfenid',$classid.'n'.$id,time()+30*24*3600);	//æœ€åå‘å¸ƒ
+		esetcookie('lastforfenid',$classid.'n'.$id,time()+30*24*3600);	//×îºó·¢²¼
 		if($doajax==1)
 		{
 			$nr=$empire->fetch1("select infopfen,infopfennum from {$dbtbpre}ecms_".$class_r[$classid]['tbname']." where id='$id' and classid='$classid' limit 1");

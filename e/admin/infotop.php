@@ -6,7 +6,7 @@ require("../class/functions.php");
 require("../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 
-//æ’è¡Œæ˜¾ç¤º
+//ÅÅĞĞÏÔÊ¾
 function ecmsShowInfoTop($query,$where,$field,$topnum,$day){
 	global $empire,$dbtbpre,$class_r;
 	if($day)
@@ -26,30 +26,30 @@ function ecmsShowInfoTop($query,$where,$field,$topnum,$day){
 	}
 	if($field=='plnum')
 	{
-		$word='è¯„è®ºæ•°';
+		$word='ÆÀÂÛÊı';
 	}
 	elseif($field=='totaldown')
 	{
-		$word='ä¸‹è½½æ•°';
+		$word='ÏÂÔØÊı';
 	}
 	elseif($field=='onclick')
 	{
-		$word='ç‚¹å‡»æ•°';
+		$word='µã»÷Êı';
 	}
 	$query.=" order by ".$field." desc limit ".$topnum;
-	echo"<table width='100%' border='0' cellpadding='3' cellspacing='1' class='tableborder'><tr><td width='85%'>æ ‡é¢˜</td><td width='15%'>$word</td></tr>";
+	echo"<table width='100%' border='0' cellpadding='3' cellspacing='1' class='tableborder'><tr><td width='85%'>±êÌâ</td><td width='15%'>$word</td></tr>";
 	$sql=$empire->query($query);
 	while($r=$empire->fetch($sql))
 	{
 		$classurl=sys_ReturnBqClassname($r,9);
 		$titleurl=sys_ReturnBqTitleLink($r);
-		echo"<tr bgcolor='#ffffff' height='23'><td>[<a href='".$classurl."' target='_blank'>".$class_r[$r[classid]][classname]."</a>] <a href='$titleurl' target='_blank' title='å‘å¸ƒæ—¶é—´ï¼š".date("Y-m-d H:i:s",$r[newstime])."'>".stripSlashes($r[title])."</a></td><td>".$r[$field]."</td></tr>";
+		echo"<tr bgcolor='#ffffff' height='23'><td>[<a href='".$classurl."' target='_blank'>".$class_r[$r[classid]][classname]."</a>] <a href='$titleurl' target='_blank' title='·¢²¼Ê±¼ä£º".date("Y-m-d H:i:s",$r[newstime])."'>".stripSlashes($r[title])."</a></td><td>".$r[$field]."</td></tr>";
 	}
 	echo"</table>";
 }
 
 $where='';
-//æ•°æ®è¡¨
+//Êı¾İ±í
 $tbname=RepPostVar($_GET['tbname']);
 if(empty($tbname))
 {
@@ -71,7 +71,7 @@ if($htb==0)
 {
 	printerror('ErrorUrl','');
 }
-//æ ç›®
+//À¸Ä¿
 $classid=(int)$_GET['classid'];
 if($classid)
 {
@@ -85,7 +85,7 @@ if($classid)
 		$where.=$and."(".ReturnClass($class_r[$classid][sonclass]).")";
 	}
 }
-//æ ‡é¢˜åˆ†ç±»
+//±êÌâ·ÖÀà
 $ttid=(int)$_GET['ttid'];
 if($ttid)
 {
@@ -103,7 +103,7 @@ while($tt_r=$empire->fetch($tt_sql))
 	}
 	$ttclass.="<option value='".$tt_r[typeid]."'".$selected.">".$tt_r[tname]."</option>";
 }
-//å­—æ®µ
+//×Ö¶Î
 $myorder=(int)$_GET['myorder'];
 if($myorder==1)
 {
@@ -117,22 +117,22 @@ else
 {
 	$field='onclick';
 }
-//æœç´¢
+//ËÑË÷
 if($_GET['keyboard'])
 {
 	$and=$where?' and ':' where ';
 	$keyboard=RepPostVar2($_GET['keyboard']);
 	$show=RepPostStr($_GET['show'],1);
-	if($show==0)//æœç´¢æ ‡é¢˜
+	if($show==0)//ËÑË÷±êÌâ
 	{
 		$where.=$and."title like '%$keyboard%'";
 	}
-	else//æœç´¢ä½œè€…
+	else//ËÑË÷×÷Õß
 	{
 		$where.=$and."username like '%$keyboard%'";
 	}
 }
-//æ˜¾ç¤ºæ¡æ•°
+//ÏÔÊ¾ÌõÊı
 $topnum=(int)$_GET['topnum'];
 if($topnum<1||$topnum>100)
 {
@@ -144,14 +144,14 @@ $query="select id,title,classid,newstime,isurl,titleurl,".$field." from {$dbtbpr
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¿¡æ¯æ’è¡Œ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ĞÅÏ¢ÅÅĞĞ</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td>ä½ç½®ï¼š<a href="infotop.php<?=$ecms_hashur['whehref']?>">ä¿¡æ¯æ’è¡Œ</a></td>
+    <td>Î»ÖÃ£º<a href="infotop.php<?=$ecms_hashur['whehref']?>">ĞÅÏ¢ÅÅĞĞ</a></td>
   </tr>
 </table>
 <br>
@@ -159,30 +159,30 @@ $query="select id,title,classid,newstime,isurl,titleurl,".$field." from {$dbtbpr
 <form name="searchform" method="GET" action="infotop.php">
 <?=$ecms_hashur['eform']?>
   <tr>
-      <td>æ•°æ®è¡¨ 
+      <td>Êı¾İ±í 
         <select name="tbname" id="tbname">
 		<?=$tbs?>
         </select>
-        ï¼Œæ ç›® <span id="listfileclassnav"></span> ï¼Œæ ‡é¢˜åˆ†ç±» 
+        £¬À¸Ä¿ <span id="listfileclassnav"></span> £¬±êÌâ·ÖÀà 
         <select name="ttid" id="ttid">
-            <option value="0">æ‰€æœ‰æ ‡é¢˜åˆ†ç±»</option>
+            <option value="0">ËùÓĞ±êÌâ·ÖÀà</option>
             <?=$ttclass?>
         </select>
-        ï¼Œæ’è¡Œ 
+        £¬ÅÅĞĞ 
         <select name="myorder" id="myorder">
-          <option value="0"<?=$myorder==0?' selected':''?>>ç‚¹å‡»æ’è¡Œ</option>
-          <option value="1"<?=$myorder==1?' selected':''?>>è¯„è®ºæ’è¡Œ</option>
-          <option value="2"<?=$myorder==2?' selected':''?>>ä¸‹è½½æ’è¡Œ</option>
+          <option value="0"<?=$myorder==0?' selected':''?>>µã»÷ÅÅĞĞ</option>
+          <option value="1"<?=$myorder==1?' selected':''?>>ÆÀÂÛÅÅĞĞ</option>
+          <option value="2"<?=$myorder==2?' selected':''?>>ÏÂÔØÅÅĞĞ</option>
         </select>
-        ï¼Œæ˜¾ç¤º 
+        £¬ÏÔÊ¾ 
         <input name="topnum" type="text" id="topnum" value="<?=$topnum?>" size="6">
-        ï¼Œå…³é”®å­—
+        £¬¹Ø¼ü×Ö
 <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
         <select name="show" id="show">
-          <option value="0"<?=$show==0?' selected':''?>>æ ‡é¢˜</option>
-          <option value="1"<?=$show==1?' selected':''?>>å‘å¸ƒè€…</option>
+          <option value="0"<?=$show==0?' selected':''?>>±êÌâ</option>
+          <option value="1"<?=$show==1?' selected':''?>>·¢²¼Õß</option>
         </select> 
-        <input type="submit" name="Submit" value="æ˜¾ç¤ºæ’è¡Œ"></td>
+        <input type="submit" name="Submit" value="ÏÔÊ¾ÅÅĞĞ"></td>
   </tr>
 </form>
 </table>
@@ -192,7 +192,7 @@ $query="select id,title,classid,newstime,isurl,titleurl,".$field." from {$dbtbpr
     <td width="50%"> 
       <table width="98%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
         <tr class="header"> 
-          <td height="25">24å°æ—¶æ’è¡Œ</td>
+          <td height="25">24Ğ¡Ê±ÅÅĞĞ</td>
         </tr>
         <tr> 
           <td height="25" bgcolor="#FFFFFF">
@@ -202,7 +202,7 @@ $query="select id,title,classid,newstime,isurl,titleurl,".$field." from {$dbtbpr
       </table></td>
     <td width="50%"><table width="98%" border="0" align="right" cellpadding="3" cellspacing="1" class="tableborder">
         <tr class="header"> 
-          <td height="25">ä¸€å‘¨æ’è¡Œ</td>
+          <td height="25">Ò»ÖÜÅÅĞĞ</td>
         </tr>
         <tr> 
           <td height="25" bgcolor="#FFFFFF"> 
@@ -215,7 +215,7 @@ $query="select id,title,classid,newstime,isurl,titleurl,".$field." from {$dbtbpr
     <td> 
       <table width="98%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
         <tr class="header"> 
-          <td height="25">ä¸€ä¸ªæœˆæ’è¡Œ</td>
+          <td height="25">Ò»¸öÔÂÅÅĞĞ</td>
         </tr>
         <tr> 
           <td height="25" bgcolor="#FFFFFF">
@@ -225,7 +225,7 @@ $query="select id,title,classid,newstime,isurl,titleurl,".$field." from {$dbtbpr
       </table></td>
     <td><table width="98%" border="0" align="right" cellpadding="3" cellspacing="1" class="tableborder">
         <tr class="header"> 
-          <td height="25">ä¸‰ä¸ªæœˆæ’è¡Œ</td>
+          <td height="25">Èı¸öÔÂÅÅĞĞ</td>
         </tr>
         <tr> 
           <td height="25" bgcolor="#FFFFFF">
@@ -239,7 +239,7 @@ $query="select id,title,classid,newstime,isurl,titleurl,".$field." from {$dbtbpr
   <tr valign="top"> 
     <td><table width="98%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
         <tr class="header"> 
-          <td height="25">ä¸€å¹´æ’è¡Œ</td>
+          <td height="25">Ò»ÄêÅÅĞĞ</td>
         </tr>
         <tr> 
           <td height="25" bgcolor="#FFFFFF"> 
@@ -249,7 +249,7 @@ $query="select id,title,classid,newstime,isurl,titleurl,".$field." from {$dbtbpr
       </table> </td>
     <td><table width="98%" border="0" align="right" cellpadding="3" cellspacing="1" class="tableborder">
         <tr class="header"> 
-          <td height="25">æ‰€æœ‰æ’è¡Œ</td>
+          <td height="25">ËùÓĞÅÅĞĞ</td>
         </tr>
         <tr> 
           <td height="25" bgcolor="#FFFFFF">

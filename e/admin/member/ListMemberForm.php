@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,18 +16,18 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"memberf");
 $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=23;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=23;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select fid,fname from {$dbtbpre}enewsmemberform";
 $totalquery="select count(*) as total from {$dbtbpre}enewsmemberform";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by fid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -35,7 +35,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -43,11 +43,11 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š<a href="ListMemberForm.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¼šå‘˜è¡¨å•</a></td>
+    <td width="50%">Î»ÖÃ£º<a href="ListMemberForm.php<?=$ecms_hashur['whehref']?>">¹ÜÀí»áÔ±±íµ¥</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ä¼šå‘˜è¡¨å•" onclick="self.location.href='AddMemberForm.php?enews=AddMemberForm<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó»áÔ±±íµ¥" onclick="self.location.href='AddMemberForm.php?enews=AddMemberForm<?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-		<input type="button" name="Submit5" value="ç®¡ç†ä¼šå‘˜å­—æ®µ" onclick="self.location.href='ListMemberF.php<?=$ecms_hashur['whehref']?>';">
+		<input type="button" name="Submit5" value="¹ÜÀí»áÔ±×Ö¶Î" onclick="self.location.href='ListMemberF.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -55,8 +55,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="8%"><div align="center">ID</div></td>
-    <td width="64%" height="25"><div align="center">è¡¨å•åç§°</div></td>
-    <td width="28%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="64%" height="25"><div align="center">±íµ¥Ãû³Æ</div></td>
+    <td width="28%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -69,9 +69,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td height="25"> <div align="center"> 
         <?=$r[fname]?>
       </div></td>
-    <td height="25"><div align="center">[<a href="AddMemberForm.php?enews=EditMemberForm&fid=<?=$r[fid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="AddMemberForm.php?enews=AddMemberForm&fid=<?=$r[fid]?>&docopy=1<?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>] 
-        [<a href="../ecmsmember.php?enews=DelMemberForm&fid=<?=$r[fid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>] 
+    <td height="25"><div align="center">[<a href="AddMemberForm.php?enews=EditMemberForm&fid=<?=$r[fid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="AddMemberForm.php?enews=AddMemberForm&fid=<?=$r[fid]?>&docopy=1<?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>] 
+        [<a href="../ecmsmember.php?enews=DelMemberForm&fid=<?=$r[fid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>] 
       </div></td>
   </tr>
   <?

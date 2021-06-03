@@ -7,7 +7,7 @@ require("../../class/com_functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"feedback");
 $id=(int)$_GET['id'];
 $r=$empire->fetch1("select * from {$dbtbpre}enewsfeedback where id='$id' limit 1");
@@ -25,13 +25,13 @@ if(!$r[id])
 	printerror('ErrorUrl','');
 }
 $bidr=ReturnAdminFeedbackClass($r['bid'],$logininid,$loginin);
-//æ˜¯å¦å·²è¯»
+//ÊÇ·ñÒÑ¶Á
 if(empty($r['haveread']))
 {
 	$empire->query("update {$dbtbpre}enewsfeedback set haveread=1 where id='$id' limit 1");
 }
 $br=$empire->fetch1("select bname,enter,filef from {$dbtbpre}enewsfeedbackclass where bid='$r[bid]'");
-$username="æ¸¸å®¢";
+$username="ÓÎ¿Í";
 if($r['userid'])
 {
 	$username="<a href='../member/AddMember.php?enews=EditMember&userid=".$r['userid'].$ecms_hashur['ehref']."' target=_blank>".$r['username']."</a>";
@@ -45,7 +45,7 @@ $count=count($er);
 for($i=0;$i<$count-1;$i++)
 {
 	$er1=explode($field,$er[$i]);
-	//é™„ä»¶
+	//¸½¼ş
 	if(strstr($br['filef'],",".$er1[1].","))
 	{
 		if($r[$er1[1]])
@@ -59,7 +59,7 @@ for($i=0;$i<$count-1;$i++)
 			}
 			$fspath=ReturnFileSavePath(0,$fpath);
 			$fileurl=$fspath['fileurl'].$r[$er1[1]];
-			$val="<b>é™„ä»¶ï¼š</b><a href='".$fileurl."' target=_blank>".$r[$er1[1]]."</a>";
+			$val="<b>¸½¼ş£º</b><a href='".$fileurl."' target=_blank>".$r[$er1[1]]."</a>";
 		}
 		else
 		{
@@ -76,38 +76,38 @@ for($i=0;$i<$count-1;$i++)
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æŸ¥çœ‹åé¦ˆä¿¡æ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²é¿´·´À¡ĞÅÏ¢</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class=tableborder style="WORD-BREAK: break-all; WORD-WRAP: break-word">
   <tr class=header> 
-    <td height="25" colspan="2">æ‰€å±åˆ†ç±»ï¼š<?=$br[bname]?></td>
+    <td height="25" colspan="2">ËùÊô·ÖÀà£º<?=$br[bname]?></td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td width="19%" height="25">æäº¤è€…:</td>
+    <td width="19%" height="25">Ìá½»Õß:</td>
     <td width="81%" height="25"> 
       <?=$username?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">å‘å¸ƒæ—¶é—´:</td>
+    <td height="25">·¢²¼Ê±¼ä:</td>
     <td height="25"> 
       <?=$r[saytime]?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">IPåœ°å€:</td>
+    <td height="25">IPµØÖ·:</td>
     <td height="25"> 
       <?=$r[ip]?>:<?=$r[eipport]?>
     </td>
   </tr>
   <?=$feedbackinfo?>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25" colspan="2"><div align="center">[ <a href="javascript:window.close();">å…³ 
-        é—­</a> ]</div></td>
+    <td height="25" colspan="2"><div align="center">[ <a href="javascript:window.close();">¹Ø 
+        ±Õ</a> ]</div></td>
   </tr>
 </table>
 </body>

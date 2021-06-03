@@ -1,5 +1,5 @@
 <?php
-//è´­ä¹°ç‚¹æ•°å¤„ç†
+//¹ºÂòµãÊý´¦Àí
 function PayApiBuyFen($fen,$money,$paybz,$orderid,$userid,$username,$ecms_paytype){
 	global $empire,$dbtbpre;
 	$fen=(int)$fen;
@@ -8,12 +8,12 @@ function PayApiBuyFen($fen,$money,$paybz,$orderid,$userid,$username,$ecms_paytyp
 	$userid=(int)$userid;
 	$username=RepPostVar($username);
 	$ecms_paytype=RepPostVar($ecms_paytype);
-	//éªŒè¯æ˜¯å¦é‡å¤æäº¤
+	//ÑéÖ¤ÊÇ·ñÖØ¸´Ìá½»
 	$orderid=RepPostVar($orderid);
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewspayrecord where orderid='$orderid' limit 1");
 	if($num)
 	{
-		printerror('æ‚¨å·²æˆåŠŸè´­ä¹° '.$fen.' ç‚¹','../../../',1,0,1);
+		printerror('ÄúÒÑ³É¹¦¹ºÂò '.$fen.' µã','../../../',1,0,1);
 	}
 	if($fen)
 	{
@@ -21,13 +21,13 @@ function PayApiBuyFen($fen,$money,$paybz,$orderid,$userid,$username,$ecms_paytyp
 		$posttime=date("Y-m-d H:i:s");
 		$payip=egetip();
 		$empire->query("insert into {$dbtbpre}enewspayrecord(id,userid,username,orderid,money,posttime,paybz,type,payip) values(NULL,'$userid','$username','$orderid','$money','$posttime','$paybz','$ecms_paytype','$payip');");
-		//å¤‡ä»½å……å€¼è®°å½•
+		//±¸·Ý³äÖµ¼ÇÂ¼
 		BakBuy($userid,$username,$orderid,$fen,$money,0,2);
 	}
-	printerror('æ‚¨å·²æˆåŠŸè´­ä¹° '.$fen.' ç‚¹','../../../',1,0,1);
+	printerror('ÄúÒÑ³É¹¦¹ºÂò '.$fen.' µã','../../../',1,0,1);
 }
 
-//é¢„ä»˜æ¬¾å¤„ç†
+//Ô¤¸¶¿î´¦Àí
 function PayApiPayMoney($money,$paybz,$orderid,$userid,$username,$ecms_paytype){
 	global $empire,$dbtbpre;
 	$money=(float)$money;
@@ -35,12 +35,12 @@ function PayApiPayMoney($money,$paybz,$orderid,$userid,$username,$ecms_paytype){
 	$userid=(int)$userid;
 	$username=RepPostVar($username);
 	$ecms_paytype=RepPostVar($ecms_paytype);
-	//éªŒè¯æ˜¯å¦é‡å¤æäº¤
+	//ÑéÖ¤ÊÇ·ñÖØ¸´Ìá½»
 	$orderid=RepPostVar($orderid);
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewspayrecord where orderid='$orderid' limit 1");
 	if($num)
 	{
-		printerror('æ‚¨å·²æˆåŠŸå­˜é¢„ä»˜æ¬¾ '.$money.' å…ƒ','../../../',1,0,1);
+		printerror('ÄúÒÑ³É¹¦´æÔ¤¸¶¿î '.$money.' Ôª','../../../',1,0,1);
 	}
 	if($money)
 	{
@@ -48,25 +48,25 @@ function PayApiPayMoney($money,$paybz,$orderid,$userid,$username,$ecms_paytype){
 		$posttime=date("Y-m-d H:i:s");
 		$payip=egetip();
 		$empire->query("insert into {$dbtbpre}enewspayrecord(id,userid,username,orderid,money,posttime,paybz,type,payip) values(NULL,'$userid','$username','$orderid','$money','$posttime','$paybz','$ecms_paytype','$payip');");
-		//å¤‡ä»½å……å€¼è®°å½•
+		//±¸·Ý³äÖµ¼ÇÂ¼
 		BakBuy($userid,$username,$orderid,0,$money,0,3);
 	}
-	printerror('æ‚¨å·²æˆåŠŸå­˜é¢„ä»˜æ¬¾ '.$money.' å…ƒ','../../../',1,0,1);
+	printerror('ÄúÒÑ³É¹¦´æÔ¤¸¶¿î '.$money.' Ôª','../../../',1,0,1);
 }
 
-//å•†åŸŽæ”¯ä»˜
+//ÉÌ³ÇÖ§¸¶
 function PayApiShopPay($ddid,$money,$paybz,$orderid,$userid,$username,$ecms_paytype){
 	global $empire,$dbtbpre;
 	$ddid=(int)$ddid;
 	$userid=(int)$userid;
 	$username=RepPostVar($username);
 	$ecms_paytype=RepPostVar($ecms_paytype);
-	//éªŒè¯æ˜¯å¦é‡å¤æäº¤
+	//ÑéÖ¤ÊÇ·ñÖØ¸´Ìá½»
 	$orderid=RepPostVar($orderid);
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewspayrecord where orderid='$orderid' limit 1");
 	if($num)
 	{
-		printerror('æ‚¨å·²æˆåŠŸè´­ä¹°æ­¤è®¢å•','../../ShopSys/buycar/',1,0,1);
+		printerror('ÄúÒÑ³É¹¦¹ºÂò´Ë¶©µ¥','../../ShopSys/buycar/',1,0,1);
 	}
 	$ddr=PayApiShopDdMoney($ddid);
 	if($money==$ddr['tmoney'])
@@ -74,7 +74,7 @@ function PayApiShopPay($ddid,$money,$paybz,$orderid,$userid,$username,$ecms_payt
 		include('../../ShopSys/class/ShopSysFun.php');
 		$money=(float)$money;
 		$sql=$empire->query("update {$dbtbpre}enewsshopdd set haveprice=1 where ddid='$ddid'");
-		//å‡å°‘åº“å­˜
+		//¼õÉÙ¿â´æ
 		$shoppr=ShopSys_ReturnSet();
 		if($shoppr['cutnumtype']==1)
 		{
@@ -90,32 +90,32 @@ function PayApiShopPay($ddid,$money,$paybz,$orderid,$userid,$username,$ecms_payt
 		$paybz=dgdb_tosave($paybz);
 		$empire->query("insert into {$dbtbpre}enewspayrecord(id,userid,username,orderid,money,posttime,paybz,type,payip) values(NULL,'$userid','$username','$orderid','$money','$posttime','$paybz','$ecms_paytype','$payip');");
 	}
-	printerror('æ‚¨å·²æˆåŠŸè´­ä¹°æ­¤è®¢å•','../../ShopSys/buycar/',1,0,1);
+	printerror('ÄúÒÑ³É¹¦¹ºÂò´Ë¶©µ¥','../../ShopSys/buycar/',1,0,1);
 }
 
-//å•†åŸŽè®¢å•é‡‘é¢
+//ÉÌ³Ç¶©µ¥½ð¶î
 function PayApiShopDdMoney($ddid){
 	global $empire,$dbtbpre;
 	$ddid=(int)$ddid;
 	if(empty($ddid))
 	{
-		printerror('è®¢å•ä¸å­˜åœ¨','../../../',1,0,1);
+		printerror('¶©µ¥²»´æÔÚ','../../../',1,0,1);
 	}
 	$r=$empire->fetch1("select ddid,ddno,userid,username,truename,pstotal,alltotal,fptotal,pretotal,fp,payby,havecutnum from {$dbtbpre}enewsshopdd where ddid='$ddid'");
 	if(empty($r['ddid']))
 	{
-		printerror('è®¢å•ä¸å­˜åœ¨','../../../',1,0,1);
+		printerror('¶©µ¥²»´æÔÚ','../../../',1,0,1);
 	}
-	//æ˜¯å¦çŽ°é‡‘è´­ä¹°
+	//ÊÇ·ñÏÖ½ð¹ºÂò
 	if($r['payby']!=0)
 	{
-		printerror('æ­¤è®¢å•ä¸ºéžçŽ°é‡‘æ”¯ä»˜','../../../',1,0,1);
+		printerror('´Ë¶©µ¥Îª·ÇÏÖ½ðÖ§¸¶','../../../',1,0,1);
 	}
 	$r['tmoney']=$r['alltotal']+$r['pstotal']+$r['fptotal']-$r['pretotal'];
 	return $r;
 }
 
-//å……å€¼ç±»åž‹æ”¯ä»˜
+//³äÖµÀàÐÍÖ§¸¶
 function PayApiBuyGroupPay($bgid,$money,$orderid,$userid,$username,$groupid,$ecms_paytype){
 	global $empire,$dbtbpre,$level_r;
 	$bgid=(int)$bgid;
@@ -123,28 +123,28 @@ function PayApiBuyGroupPay($bgid,$money,$orderid,$userid,$username,$groupid,$ecm
 	$username=RepPostVar($username);
 	$groupid=(int)$groupid;
 	$ecms_paytype=RepPostVar($ecms_paytype);
-	//éªŒè¯æ˜¯å¦é‡å¤æäº¤
+	//ÑéÖ¤ÊÇ·ñÖØ¸´Ìá½»
 	$orderid=RepPostVar($orderid);
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewspayrecord where orderid='$orderid' limit 1");
 	if($num)
 	{
-		printerror('æ‚¨å·²æˆåŠŸå……å€¼','../../../',1,0,1);
+		printerror('ÄúÒÑ³É¹¦³äÖµ','../../../',1,0,1);
 	}
 	$buyr=$empire->fetch1("select * from {$dbtbpre}enewsbuygroup where id='$bgid'");
 	if($buyr['id']&&$money==$buyr['gmoney']&&$level_r[$buyr[buygroupid]][level]<=$level_r[$groupid][level])
 	{
 		$money=(float)$money;
-		//å……å€¼
+		//³äÖµ
 		$user=$empire->fetch1("select ".eReturnSelectMemberF('userdate,userid,username,groupid')." from ".eReturnMemberTable()." where ".egetmf('userid')."='$userid'");
 		eAddFenToUser($buyr['gfen'],$buyr['gdate'],$buyr['ggroupid'],$buyr['gzgroupid'],$user);
 		$posttime=date("Y-m-d H:i:s");
 		$payip=egetip();
-		$paybz="å……å€¼ç±»åž‹:".addslashes($buyr['gname']);
+		$paybz="³äÖµÀàÐÍ:".addslashes($buyr['gname']);
 		$paybz=dgdb_tosave($paybz);
 		$empire->query("insert into {$dbtbpre}enewspayrecord(id,userid,username,orderid,money,posttime,paybz,type,payip) values(NULL,'$userid','$username','$orderid','$money','$posttime','$paybz','$ecms_paytype','$payip');");
-		//å¤‡ä»½å……å€¼è®°å½•
+		//±¸·Ý³äÖµ¼ÇÂ¼
 		BakBuy($userid,$username,$buyr['gname'],$buyr['gfen'],$money,$buyr['gdate'],1);
 	}
-	printerror('æ‚¨å·²æˆåŠŸå……å€¼','../../../',1,0,1);
+	printerror('ÄúÒÑ³É¹¦³äÖµ','../../../',1,0,1);
 }
 ?>

@@ -1,9 +1,9 @@
 <?php
-//è¿”å›žå‚æ•°å†…å®¹
+//·µ»Ø²ÎÊýÄÚÈÝ
 function ReturnSettingString($r){
 	$filename='data/setting.txt';
 	$text=ReadFiletext($filename);
-	//åŽå°å®‰å…¨
+	//ºóÌ¨°²È«
 	$text=str_replace('[!@--do_loginauth--@!]',addslashes($r[do_loginauth]),$text);
 	$text=str_replace('[!@--do_enloginauth--@!]',intval($r[do_enloginauth]),$text);
 	$text=str_replace('[!@--do_ecookiernd--@!]',addslashes($r[do_ecookiernd]),$text);
@@ -29,7 +29,7 @@ function ReturnSettingString($r){
 	$text=str_replace('[!@--phome_cookieckrndthree--@!]',addslashes($r[phome_cookieckrndthree]),$text);
 	$text=str_replace('[!@--phome_cookieckrndfour--@!]',addslashes($r[phome_cookieckrndfour]),$text);
 	$text=str_replace('[!@--phome_cookieckrndfive--@!]',addslashes($r[phome_cookieckrndfive]),$text);
-	//é˜²ç«å¢™
+	//·À»ðÇ½
 	$text=str_replace('[!@--efw_open--@!]',intval($r[efw_open]),$text);
 	$text=str_replace('[!@--efw_pass--@!]',addslashes($r[efw_pass]),$text);
 	$text=str_replace('[!@--efw_adminloginurl--@!]',addslashes($r[efw_adminloginurl]),$text);
@@ -41,7 +41,7 @@ function ReturnSettingString($r){
 	return $text;
 }
 
-//ç”Ÿæˆé…ç½®æ–‡ä»¶
+//Éú³ÉÅäÖÃÎÄ¼þ
 function GetSettingConfig($string){
 	$filename=ECMS_PATH."e/config/config.php";
 	$exp='//-------EmpireCMS.Seting.area-------';
@@ -56,13 +56,13 @@ function GetSettingConfig($string){
 	WriteFiletext_n($filename,$setting);
 }
 
-//é˜²ç«å¢™è®¾ç½®
+//·À»ðÇ½ÉèÖÃ
 function SetFirewall($add,$userid,$username){
 	global $ecms_config;
 	$r[efw_open]=(int)$add[fw_open];
 	$r[efw_pass]=$add[fw_pass];
 	$r[efw_adminloginurl]=$add[fw_adminloginurl];
-	//æ—¶é—´ç‚¹
+	//Ê±¼äµã
 	$hour=$add['fw_adminhour'];
 	$hcount=count($hour);
 	$adminhour='';
@@ -76,7 +76,7 @@ function SetFirewall($add,$userid,$username){
 		}
 	}
 	$r[efw_adminhour]=$adminhour;
-	//æ˜ŸæœŸ
+	//ÐÇÆÚ
 	$week=$add['fw_adminweek'];
 	$wcount=count($week);
 	$adminweek='';
@@ -93,7 +93,7 @@ function SetFirewall($add,$userid,$username){
 	$r[efw_adminckpassvar]=$add[fw_adminckpassvar];
 	$r[efw_adminckpassval]=$add[fw_adminckpassval];
 	$r[efw_cleargettext]=$add[fw_cleargettext];
-	//åŽŸæ¥è®¾ç½®
+	//Ô­À´ÉèÖÃ
 	$r[do_loginauth]=$ecms_config['esafe']['loginauth'];
 	$r[do_enloginauth]=$ecms_config['esafe']['enloginauth'];
 	$r[do_ecookiernd]=$ecms_config['esafe']['ecookiernd'];
@@ -121,7 +121,7 @@ function SetFirewall($add,$userid,$username){
 	$r[phome_cookieckrndfive]=$ecms_config['cks']['ckrndfive'];
 	$string=ReturnSettingString($r);
 	GetSettingConfig($string);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog('');
 	if(($r[efw_open]&&!$ecms_config['fw']['eopen'])||$ecms_config['fw']['epass']!=$r[efw_pass]||$ecms_config['fw']['adminckpassvar']!=$r[efw_adminckpassvar]||$ecms_config['fw']['adminckpassval']!=$r[efw_adminckpassval])
 	{
@@ -130,7 +130,7 @@ function SetFirewall($add,$userid,$username){
 	printerror('SetFirewallSuccess','SetFirewall.php'.hReturnEcmsHashStrHref2(1));
 }
 
-//å®‰å…¨è®¾ç½®
+//°²È«ÉèÖÃ
 function SetSafe($add,$userid,$username){
 	global $ecms_config;
 	$r[do_loginauth]=$add[loginauth];
@@ -158,7 +158,7 @@ function SetSafe($add,$userid,$username){
 	$r[phome_cookieckrndthree]=$add[cookieckrndthree];
 	$r[phome_cookieckrndfour]=$add[cookieckrndfour];
 	$r[phome_cookieckrndfive]=$add[cookieckrndfive];
-	//åŽŸæ¥è®¾ç½®
+	//Ô­À´ÉèÖÃ
 	$r[efw_open]=$ecms_config['fw']['eopen'];
 	$r[efw_pass]=$ecms_config['fw']['epass'];
 	$r[efw_adminloginurl]=$ecms_config['fw']['adminloginurl'];
@@ -169,7 +169,7 @@ function SetSafe($add,$userid,$username){
 	$r[efw_cleargettext]=$ecms_config['fw']['cleargettext'];
 	$string=ReturnSettingString($r);
 	GetSettingConfig($string);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog('');
 	if($ecms_config['esafe']['ecookiernd']!=$r[do_ecookiernd]||$ecms_config['cks']['ckadminvarpre']!=$r[phome_cookieadminvarpre]||$ecms_config['esafe']['ckhanytime']!=$r[do_ckhanytime]||$ecms_config['esafe']['ckhashename']!=$r[do_ckhashename]||$ecms_config['esafe']['ckhashrname']!=$r[do_ckhashrname])
 	{

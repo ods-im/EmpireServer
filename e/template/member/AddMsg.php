@@ -5,36 +5,36 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='å‘é€æ¶ˆæ¯';
-$url="<a href=../../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;<a href=../../msg/>æ¶ˆæ¯åˆ—è¡¨</a>&nbsp;>&nbsp;å‘é€æ¶ˆæ¯";
+$public_diyr['pagetitle']='·¢ËÍÏûÏ¢';
+$url="<a href=../../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../../cp/>»áÔ±ÖÐÐÄ</a>&nbsp;>&nbsp;<a href=../../msg/>ÏûÏ¢ÁÐ±í</a>&nbsp;>&nbsp;·¢ËÍÏûÏ¢";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
           <form action="../../doaction.php" method="post" name="sendmsg" id="sendmsg">
             <tr class="header"> 
-              <td height="23" colspan="2">å‘é€æ¶ˆæ¯</td>
+              <td height="23" colspan="2">·¢ËÍÏûÏ¢</td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
-              <td width="21%" height="25">æ ‡é¢˜</td>
+              <td width="21%" height="25">±êÌâ</td>
               <td width="79%" height="25"><input name="title" type="text" id="title2" value="<?=ehtmlspecialchars(stripSlashes($title))?>" size="43">
                 *</td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
-              <td height="25">æŽ¥æ”¶è€…</td>
+              <td height="25">½ÓÊÕÕß</td>
               <td height="25"><input name="to_username" type="text" id="to_username2" value="<?=$username?>">
-                [<a href="#EmpireCMS" onclick="window.open('../../friend/change/?fm=sendmsg&f=to_username','','width=250,height=360');">é€‰æ‹©å¥½å‹</a>] 
+                [<a href="#EmpireCMS" onclick="window.open('../../friend/change/?fm=sendmsg&f=to_username','','width=250,height=360');">Ñ¡ÔñºÃÓÑ</a>] 
                 *</td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
-              <td height="25" valign="top">å†…å®¹</td>
+              <td height="25" valign="top">ÄÚÈÝ</td>
               <td height="25"><textarea name="msgtext" cols="60" rows="12" id="textarea"><?=ehtmlspecialchars(stripSlashes($msgtext))?></textarea>
                 *</td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td height="25">&nbsp;</td>
-              <td height="25"><input type="submit" name="Submit" value="å‘é€">
+              <td height="25"><input type="submit" name="Submit" value="·¢ËÍ">
                 &nbsp; 
-                <input type="reset" name="Submit2" value="é‡ç½®"> <input name="enews" type="hidden" id="enews" value="AddMsg">              </td>
+                <input type="reset" name="Submit2" value="ÖØÖÃ"> <input name="enews" type="hidden" id="enews" value="AddMsg">              </td>
             </tr>
           </form>
         </table>

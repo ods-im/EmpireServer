@@ -11,13 +11,13 @@ $userid=0;
 $username='';
 $spacestyle='';
 $search='';
-require('CheckUser.php');//楠岃瘉鐢ㄦ埛
-//鐢ㄦ埛
+require('CheckUser.php');//验证用户
+//用户
 $search.="&userid=$userid";
 $start=0;
 $page=intval($_GET['page']);
 $page=RepPIntvar($page);
-$line=12;//姣忚鏄剧ず
+$line=12;//每行显示
 $page_line=10;
 $offset=$page*$line;
 $totalquery="select count(*) as total from {$dbtbpre}enewsmembergbook where userid='$userid'";

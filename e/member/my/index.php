@@ -7,12 +7,12 @@ require("../../data/dbcache/MemberLevel.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//å…³é—­æ¨¡å—
-//æ˜¯å¦ç™»é™†
+eCheckCloseMods('member');//¹Ø±ÕÄ£¿é
+//ÊÇ·ñµÇÂ½
 $user=islogin();
 $r=ReturnUserInfo($user[userid]);
 $userdate=0;
-//æ—¶é—´
+//Ê±¼ä
 if($r[userdate])
 {
 	$userdate=$r[userdate]-time();
@@ -25,15 +25,15 @@ if($r[userdate])
 		$userdate=round($userdate/(24*3600));
 	}
 }
-//æ˜¯å¦æœ‰çŸ­æ¶ˆæ¯
-$havemsg="æ— ";
+//ÊÇ·ñÓĞ¶ÌÏûÏ¢
+$havemsg="ÎŞ";
 if($user[havemsg])
 {
-	$havemsg="<a href='".$public_r['newsurl']."e/member/msg/' target=_blank><font color=red>æ‚¨æœ‰æ–°æ¶ˆæ¯</font></a>";
+	$havemsg="<a href='".$public_r['newsurl']."e/member/msg/' target=_blank><font color=red>ÄúÓĞĞÂÏûÏ¢</font></a>";
 }
-//æ³¨å†Œæ—¶é—´
+//×¢²áÊ±¼ä
 $registertime=eReturnMemberRegtime($r['registertime'],"Y-m-d H:i:s");
-//å¯¼å…¥æ¨¡æ¿
+//µ¼ÈëÄ£°å
 require(ECMS_PATH.'e/template/member/my.php');
 db_close();
 $empire=null;

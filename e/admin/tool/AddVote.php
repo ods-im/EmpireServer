@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"vote");
 $enews=ehtmlspecialchars($_GET['enews']);
 $r[width]=500;
@@ -23,27 +23,27 @@ $r[height]=300;
 $voteclass0=" checked";
 $doip0=" checked";
 $editnum=8;
-$url="<a href=ListVote.php".$ecms_hashur['whehref'].">ç®¡ç†æŠ•ç¥¨</a>&nbsp;>&nbsp;å¢åŠ æŠ•ç¥¨";
-//å¤åˆ¶
+$url="<a href=ListVote.php".$ecms_hashur['whehref'].">¹ÜÀíÍ¶Æ±</a>&nbsp;>&nbsp;Ôö¼ÓÍ¶Æ±";
+//¸´ÖÆ
 $docopy=RepPostStr($_GET['docopy'],1);
 if($docopy&&$enews=="AddVote")
 {
 	$copyvote=1;
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditVote"||$copyvote)
 {
 	if($copyvote)
 	{
-		$thisdo="å¤åˆ¶";
+		$thisdo="¸´ÖÆ";
 	}
 	else
 	{
-		$thisdo="ä¿®æ”¹";
+		$thisdo="ĞŞ¸Ä";
 	}
 	$voteid=(int)$_GET['voteid'];
 	$r=$empire->fetch1("select voteid,title,votetext,voteclass,doip,dotime,width,height,tempid from {$dbtbpre}enewsvote where voteid='$voteid'");
-	$url="<a href=ListVote.php".$ecms_hashur['whehref'].">ç®¡ç†æŠ•ç¥¨</a>&nbsp;>&nbsp;".$thisdo."æŠ•ç¥¨ï¼š<b>".$r[title]."</b>";
+	$url="<a href=ListVote.php".$ecms_hashur['whehref'].">¹ÜÀíÍ¶Æ±</a>&nbsp;>&nbsp;".$thisdo."Í¶Æ±£º<b>".$r[title]."</b>";
 	$str="dotime".$r[dotime];
 	$$str=" selected";
 	if($r[voteclass]==1)
@@ -61,12 +61,12 @@ if($enews=="EditVote"||$copyvote)
 	{
 		$j=$i+1;
 		$d_field=explode("::::::",$d_record[$i]);
-		$allv.="<tr><td width=9%><div align=center>".$j."</div></td><td width=65%><input name=votename[] type=text id=votename[] value='".$d_field[0]."' size=30></td><td width=26%><input name=votenum[] type=text id=votenum[] value='".$d_field[1]."' size=6><input type=hidden name=vid[] value=".$j."><input type=checkbox name=delvid[] value=".$j.">åˆ é™¤</td></tr>";
+		$allv.="<tr><td width=9%><div align=center>".$j."</div></td><td width=65%><input name=votename[] type=text id=votename[] value='".$d_field[0]."' size=30></td><td width=26%><input name=votenum[] type=text id=votenum[] value='".$d_field[1]."' size=6><input type=hidden name=vid[] value=".$j."><input type=checkbox name=delvid[] value=".$j.">É¾³ı</td></tr>";
 	}
 	$editnum=$j;
 	$allv="<table width=100% border=0 cellspacing=1 cellpadding=3>".$allv."</table>";
 }
-//æ¨¡æ¿
+//Ä£°å
 $votetemp="";
 $tsql=$empire->query("select tempid,tempname from ".GetTemptb("enewsvotetemp")." order by tempid");
 while($tr=$empire->fetch($tsql))
@@ -81,7 +81,7 @@ while($tr=$empire->fetch($tsql))
 	}
 	$votetemp.="<option value='".$tr[tempid]."'".$select.">".$tr[tempname]."</option>";
 }
-//å½“å‰ä½¿ç”¨çš„æ¨¡æ¿ç»„
+//µ±Ç°Ê¹ÓÃµÄÄ£°å×é
 $thegid=GetDoTempGid();
 db_close();
 $empire=null;
@@ -89,8 +89,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ æŠ•ç¥¨</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼ÓÍ¶Æ±</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function doadd()
@@ -113,30 +113,30 @@ document.getElementById("addvote").innerHTML="<table width=100% border=0 cellspa
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="add" method="post" action="ListVote.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="AddVotetb">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2"><p>å¢åŠ æŠ•ç¥¨</p></td>
+      <td height="25" colspan="2"><p>Ôö¼ÓÍ¶Æ±</p></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="21%" height="25">ä¸»é¢˜æ ‡é¢˜(æœ€å¤§60ä¸ªæ±‰å­—)</td>
+      <td width="21%" height="25">Ö÷Ìâ±êÌâ(×î´ó60¸öºº×Ö)</td>
       <td width="79%" height="25"><input name="title" type="text" id="title" size="50" value="<?=$r[title]?>"> 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="voteid" type="hidden" id="voteid" value="<?=$r[voteid]?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top"><p>æŠ•ç¥¨é¡¹ç›®<br>
+      <td height="25" valign="top"><p>Í¶Æ±ÏîÄ¿<br>
         </p></td>
       <td height="25"><table width="100%" border="0" cellspacing="1" cellpadding="3">
           <tr> 
             <td><table width="100%" border="0" cellspacing="1" cellpadding="3">
                 <tr bgcolor="#DBEAF5"> 
-                  <td width="9%" height="20"> <div align="center">ç¼–å·</div></td>
-                  <td width="65%"> <div align="center">é¡¹ç›®åç§°</div></td>
-                  <td width="26%"> <div align="center">æŠ•ç¥¨æ•°</div></td>
+                  <td width="9%" height="20"> <div align="center">±àºÅ</div></td>
+                  <td width="65%"> <div align="center">ÏîÄ¿Ãû³Æ</div></td>
+                  <td width="26%"> <div align="center">Í¶Æ±Êı</div></td>
                 </tr>
               </table>
               <?
@@ -225,9 +225,9 @@ document.getElementById("addvote").innerHTML="<table width=100% border=0 cellspa
             </td>
           </tr>
           <tr> 
-            <td>æŠ•ç¥¨æ‰©å±•æ•°é‡: 
+            <td>Í¶Æ±À©Õ¹ÊıÁ¿: 
               <input name="vote_num" type="text" id="vote_num" value="1" size="6"> 
-              <input type="button" name="Submit52" value="è¾“å‡ºåœ°å€" onclick="javascript:doadd();"> 
+              <input type="button" name="Submit52" value="Êä³öµØÖ·" onclick="javascript:doadd();"> 
               <input name="editnum" type="hidden" id="editnum" value="<?=$editnum?>"> 
             </td>
           </tr>
@@ -237,43 +237,43 @@ document.getElementById("addvote").innerHTML="<table width=100% border=0 cellspa
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æŠ•ç¥¨ç±»å‹:</td>
+      <td height="25">Í¶Æ±ÀàĞÍ:</td>
       <td height="25"><input name="voteclass" type="radio" value="0"<?=$voteclass0?>>
-        å•é€‰ 
+        µ¥Ñ¡ 
         <input type="radio" name="voteclass" value="1"<?=$voteclass1?>>
-        å¤é€‰</td>
+        ¸´Ñ¡</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">é™åˆ¶IP:</td>
+      <td height="25">ÏŞÖÆIP:</td>
       <td height="25"><input type="radio" name="doip" value="0"<?=$doip0?>>
-        ä¸é™åˆ¶ 
+        ²»ÏŞÖÆ 
         <input name="doip" type="radio" value="1"<?=$doip1?>>
-        é™åˆ¶<font color="#666666">(é™åˆ¶ååŒä¸€IPåªèƒ½æŠ•ä¸€æ¬¡ç¥¨)</font></td>
+        ÏŞÖÆ<font color="#666666">(ÏŞÖÆºóÍ¬Ò»IPÖ»ÄÜÍ¶Ò»´ÎÆ±)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">è¿‡æœŸæ—¶é—´:</td>
+      <td height="25">¹ıÆÚÊ±¼ä:</td>
       <td height="25"> <input name=olddotime type=hidden value="<?=$r[dotime]?>"> 
         <input name="dotime" type="text" id="dotime2" value="<?=$r[dotime]?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        <font color="#666666">(è¶…è¿‡æ­¤æœŸé™,å°†ä¸èƒ½æŠ•ç¥¨,0000-00-00ä¸ºä¸é™åˆ¶)</font></td>
+        <font color="#666666">(³¬¹ı´ËÆÚÏŞ,½«²»ÄÜÍ¶Æ±,0000-00-00Îª²»ÏŞÖÆ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æŸ¥çœ‹æŠ•ç¥¨çª—å£:</td>
-      <td height="25">å®½åº¦: 
+      <td height="25">²é¿´Í¶Æ±´°¿Ú:</td>
+      <td height="25">¿í¶È: 
         <input name="width" type="text" id="width" value="<?=$r[width]?>" size="6">
-        é«˜åº¦: 
+        ¸ß¶È: 
         <input name="height" type="text" id="height" value="<?=$r[height]?>" size="6"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">é€‰æ‹©æ¨¡æ¿ï¼š</td>
+      <td height="25">Ñ¡ÔñÄ£°å£º</td>
       <td height="25"><select name="tempid" id="tempid">
 	  <?=$votetemp?>
         </select>
-        <input type="button" name="Submit62223" value="ç®¡ç†æŠ•ç¥¨æ¨¡æ¿" onclick="window.open('../template/ListVotetemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"> 
+        <input type="button" name="Submit62223" value="¹ÜÀíÍ¶Æ±Ä£°å" onclick="window.open('../template/ListVotetemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

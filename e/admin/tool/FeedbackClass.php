@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -24,7 +24,7 @@ if($enews)
 	hCheckEcmsRHash();
 	include("../../class/com_functions.php");
 }
-//è®¾ç½®è®¿é—®ç«¯
+//ÉèÖÃ·ÃÎÊ¶Ë
 $moreportpid=0;
 if($enews=='ReMoreFeedbackClassFile')
 {
@@ -34,7 +34,7 @@ if($enews=="ReMoreFeedbackClassFile")
 {
 	ReMoreFeedbackClassFile(0,$logininid,$loginin);
 }
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"feedbackf");
 include "../".LoadLang("pub/fun.php");
 if($enews=="AddFeedbackClass")
@@ -54,12 +54,12 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=23;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=23;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select bid,bname from {$dbtbpre}enewsfeedbackclass";
 $totalquery="select count(*) as total from {$dbtbpre}enewsfeedbackclass";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by bid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -67,7 +67,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -75,10 +75,10 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š<a href="feedback.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¿¡æ¯åé¦ˆ</a>&nbsp;&gt;&nbsp;<a href="FeedbackClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†åé¦ˆåˆ†ç±»</a></td>
+    <td width="50%">Î»ÖÃ£º<a href="feedback.php<?=$ecms_hashur['whehref']?>">¹ÜÀíĞÅÏ¢·´À¡</a>&nbsp;&gt;&nbsp;<a href="FeedbackClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀí·´À¡·ÖÀà</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ åé¦ˆåˆ†ç±»" onclick="self.location.href='AddFeedbackClass.php?enews=AddFeedbackClass<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
-        <input type="button" name="Submit52" value="ç®¡ç†åé¦ˆå­—æ®µ" onclick="self.location.href='ListFeedbackF.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó·´À¡·ÖÀà" onclick="self.location.href='AddFeedbackClass.php?enews=AddFeedbackClass<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
+        <input type="button" name="Submit52" value="¹ÜÀí·´À¡×Ö¶Î" onclick="self.location.href='ListFeedbackF.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -86,9 +86,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="6%"><div align="center">ID</div></td>
-    <td width="32%" height="25"><div align="center">åˆ†ç±»åç§°</div></td>
-    <td width="42%"><div align="center">åé¦ˆæäº¤åœ°å€</div></td>
-    <td width="20%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="32%" height="25"><div align="center">·ÖÀàÃû³Æ</div></td>
+    <td width="42%"><div align="center">·´À¡Ìá½»µØÖ·</div></td>
+    <td width="20%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -100,13 +100,13 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
           <?=$r[bid]?>
         </div></td>
       <td height="25"> <div align="center"> 
-          <a href="feedback.php?bid=<?=$r[bid]?><?=$ecms_hashur['ehref']?>" target="_blank" title="ç®¡ç†åˆ†ç±»ä¸‹çš„åé¦ˆä¿¡æ¯"><?=$r[bname]?></a>
+          <a href="feedback.php?bid=<?=$r[bid]?><?=$ecms_hashur['ehref']?>" target="_blank" title="¹ÜÀí·ÖÀàÏÂµÄ·´À¡ĞÅÏ¢"><?=$r[bname]?></a>
         </div></td>
       <td><div align="center"> 
           <input name="textfield" type="text" size="38" value="<?=$gourl?>">
-          [<a href="<?=$gourl?>" target="_blank">è®¿é—®</a>]</div></td>
-      <td height="25"><div align="center">[<a href="AddFeedbackClass.php?enews=EditFeedbackClass&bid=<?=$r[bid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="AddFeedbackClass.php?enews=AddFeedbackClass&bid=<?=$r[bid]?>&docopy=1<?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>] [<a href="FeedbackClass.php?enews=DelFeedbackClass&bid=<?=$r[bid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>] </div></td>
+          [<a href="<?=$gourl?>" target="_blank">·ÃÎÊ</a>]</div></td>
+      <td height="25"><div align="center">[<a href="AddFeedbackClass.php?enews=EditFeedbackClass&bid=<?=$r[bid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="AddFeedbackClass.php?enews=AddFeedbackClass&bid=<?=$r[bid]?>&docopy=1<?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>] [<a href="FeedbackClass.php?enews=DelFeedbackClass&bid=<?=$r[bid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>] </div></td>
     </tr>
   <?
   }

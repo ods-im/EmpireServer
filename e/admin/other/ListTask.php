@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"task");
 
-//è¿”å›ç§’ç»„åˆ
+//·µ»ØÃë×éºÏ
 function ReturnTogMins($min){
 	$count=count($min);
 	if($count==0)
@@ -34,14 +34,14 @@ function ReturnTogMins($min){
 	return $str;
 }
 
-//å¢åŠ è®¡åˆ’ä»»åŠ¡
+//Ôö¼Ó¼Æ»®ÈÎÎñ
 function AddTask($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add['taskname'])||empty($add['filename']))
 	{
 		printerror('EmptyTaskname','');
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"task");
 	if(strstr($add['filename'],'/')||strstr($add['filename'],"\\"))
 	{
@@ -60,7 +60,7 @@ function AddTask($add,$userid,$username){
 	if($sql)
 	{
 		$id=$empire->lastid();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id&taskname=$add[taskname]&filename=$add[filename]");
 		printerror('AddTaskSuccess','AddTask.php?enews=AddTask'.hReturnEcmsHashStrHref2(0));
 	}
@@ -70,7 +70,7 @@ function AddTask($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹è®¡åˆ’ä»»åŠ¡
+//ĞŞ¸Ä¼Æ»®ÈÎÎñ
 function EditTask($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$id=(int)$add['id'];
@@ -78,7 +78,7 @@ function EditTask($add,$userid,$username){
 	{
 		printerror('EmptyTaskname','');
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"task");
 	if(strstr($add['filename'],'/')||strstr($add['filename'],"\\"))
 	{
@@ -96,7 +96,7 @@ function EditTask($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewstask set taskname='$add[taskname]',userid=$userid,isopen=$isopen,filename='$add[filename]',doweek='$add[doweek]',doday='$add[doday]',dohour='$add[dohour]',dominute='$add[dominute]' where id=$id");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id&taskname=$add[taskname]&filename=$add[filename]");
 		printerror('EditTaskSuccess','ListTask.php'.hReturnEcmsHashStrHref2(1));
 	}
@@ -106,7 +106,7 @@ function EditTask($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤è®¡åˆ’ä»»åŠ¡
+//É¾³ı¼Æ»®ÈÎÎñ
 function DelTask($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$id=(int)$add['id'];
@@ -114,13 +114,13 @@ function DelTask($add,$userid,$username){
 	{
 		printerror('EmptyDelTaskId','');
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"task");
 	$r=$empire->fetch1("select taskname,filename from {$dbtbpre}enewstask where id=$id");
 	$sql=$empire->query("delete from {$dbtbpre}enewstask where id=$id");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id&taskname=$r[taskname]&filename=$r[filename]");
 		printerror('DelTaskSuccess','ListTask.php'.hReturnEcmsHashStrHref2(1));
 	}
@@ -157,12 +157,12 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=20;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=20;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=20;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=20;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select id,taskname,isopen,lastdo,doweek,doday,dohour,dominute from {$dbtbpre}enewstask";
 $totalquery="select count(*) as total from {$dbtbpre}enewstask";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by id desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -170,18 +170,18 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†è®¡åˆ’ä»»åŠ¡</title>
+<title>¹ÜÀí¼Æ»®ÈÎÎñ</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href='ListTask.php<?=$ecms_hashur['whehref']?>'>ç®¡ç†è®¡åˆ’ä»»åŠ¡</a></td>
+    <td width="50%" height="25">Î»ÖÃ£º<a href='ListTask.php<?=$ecms_hashur['whehref']?>'>¹ÜÀí¼Æ»®ÈÎÎñ</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit" value="å¢åŠ è®¡åˆ’ä»»åŠ¡" onclick="self.location.href='AddTask.php?enews=AddTask<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
-		<input type="button" name="Submit" value="è¿è¡Œè®¡åˆ’ä»»åŠ¡é¡µé¢" onclick="window.open('../task.php<?=$ecms_hashur['whhref']?>');">
+        <input type="button" name="Submit" value="Ôö¼Ó¼Æ»®ÈÎÎñ" onclick="self.location.href='AddTask.php?enews=AddTask<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
+		<input type="button" name="Submit" value="ÔËĞĞ¼Æ»®ÈÎÎñÒ³Ãæ" onclick="window.open('../task.php<?=$ecms_hashur['whhref']?>');">
       </div></td>
   </tr>
 </table>
@@ -190,17 +190,17 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="6%" height="25"> <div align="center">ID</div></td>
-    <td width="25%" height="25"> <div align="center">ä»»åŠ¡åç§°</div></td>
+    <td width="25%" height="25"> <div align="center">ÈÎÎñÃû³Æ</div></td>
     <td width="15%" height="25"> 
-      <div align="center">åˆ†é’Ÿ</div></td>
+      <div align="center">·ÖÖÓ</div></td>
     <td width="5%">
-<div align="center">å°æ—¶</div></td>
+<div align="center">Ğ¡Ê±</div></td>
     <td width="5%">
-<div align="center">æ˜ŸæœŸ</div></td>
-    <td width="5%"><div align="center">æ—¥</div></td>
-    <td width="17%"><div align="center">æœ€åæ‰§è¡Œæ—¶é—´</div></td>
-    <td width="5%"><div align="center">çŠ¶æ€</div></td>
-    <td width="17%" height="25"> <div align="center">æ“ä½œ</div></td>
+<div align="center">ĞÇÆÚ</div></td>
+    <td width="5%"><div align="center">ÈÕ</div></td>
+    <td width="17%"><div align="center">×îºóÖ´ĞĞÊ±¼ä</div></td>
+    <td width="5%"><div align="center">×´Ì¬</div></td>
+    <td width="17%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
@@ -224,9 +224,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td><div align="center"><?=$r['doweek']?></div></td>
     <td><div align="center"><?=$r['doday']?></div></td>
     <td><div align="center"><?=$lastdo?></div></td>
-    <td><div align="center"><?=$r['isopen']==1?'å¼€å¯':'å…³é—­'?></div></td>
-    <td height="25"> <div align="center">[<a href="../task.php?ecms=TodoTask&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦æ‰§è¡Œ?');">æ‰§è¡Œ</a>] 
-        [<a href="AddTask.php?enews=EditTask&id=<?=$r[id]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="ListTask.php?enews=DelTask&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td><div align="center"><?=$r['isopen']==1?'¿ªÆô':'¹Ø±Õ'?></div></td>
+    <td height="25"> <div align="center">[<a href="../task.php?ecms=TodoTask&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÖ´ĞĞ?');">Ö´ĞĞ</a>] 
+        [<a href="AddTask.php?enews=EditTask&id=<?=$r[id]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="ListTask.php?enews=DelTask&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

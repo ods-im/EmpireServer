@@ -5,7 +5,7 @@ require("../class/db_sql.php");
 require("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,12 +16,12 @@ hCheckEcmsRHash();
 db_close();
 $empire=null;
 
-//å–å¾—æ±‰å­—
+//È¡µÃºº×Ö
 $hz=ehtmlspecialchars($_GET['hz']);
 $returnform=RepPostVar($_GET['returnform']);
 if(empty($hz)||empty($returnform))
 {
-	echo"<script>alert('æ²¡è¾“å…¥æ±‰å­—!');window.close();</script>";
+	echo"<script>alert('Ã»ÊäÈëºº×Ö!');window.close();</script>";
 	exit();
 }
 

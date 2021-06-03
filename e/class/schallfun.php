@@ -1,20 +1,20 @@
 <?php
-//åŒºä½ç 
+//ÇøÎ»Âë
 function SearchReturnQwm($t){
 	return sprintf("%02d%02d",ord($t[0])-160,ord($t[1])-160);
 }
 
-//è½¬æ¢å­—ç¬¦ä¸²
+//×ª»»×Ö·û´®
 function SearchReturnSaveStr($str){
-	//æ‰€æœ‰æ±‰å­—åæ·»åŠ ASCIIçš„0å­—ç¬¦,æ­¤æ³•æ˜¯ä¸ºäº†æ’é™¤ç‰¹æ®Šä¸­æ–‡æ‹†åˆ†é”™è¯¯çš„é—®é¢˜
+	//ËùÓĞºº×ÖºóÌí¼ÓASCIIµÄ0×Ö·û,´Ë·¨ÊÇÎªÁËÅÅ³ıÌØÊâÖĞÎÄ²ğ·Ö´íÎóµÄÎÊÌâ
 	$str=preg_replace("/[\x80-\xff]{2}/","\\0".chr(0x00),$str);
-	//æ‹†åˆ†çš„åˆ†å‰²ç¬¦
-	$search = array(",", "/", "\\", ".", ";", ":", "\"", "!", "~", "`", "^", "(", ")", "?", "-", "\t", "\n", "'", "<", ">", "\r", "\r\n", "$", "&", "%", "#", "@", "+", "=", "{", "}", "[", "]", "ï¼š", "ï¼‰", "ï¼ˆ", "ï¼", "ã€‚", "ï¼Œ", "ï¼", "ï¼›", "â€œ", "â€", "â€˜", "â€™", "ã€”", "ã€•", "ã€", "â€”", "ã€€", "ã€Š", "ã€‹", "ï¼", "â€¦", "ã€", "ã€‘",);
-	//æ›¿æ¢æ‰€æœ‰çš„åˆ†å‰²ç¬¦ä¸ºç©ºæ ¼
+	//²ğ·ÖµÄ·Ö¸î·û
+	$search = array(",", "/", "\\", ".", ";", ":", "\"", "!", "~", "`", "^", "(", ")", "?", "-", "\t", "\n", "'", "<", ">", "\r", "\r\n", "$", "&", "%", "#", "@", "+", "=", "{", "}", "[", "]", "£º", "£©", "£¨", "£®", "¡£", "£¬", "£¡", "£»", "¡°", "¡±", "¡®", "¡¯", "£Û", "£İ", "¡¢", "¡ª", "¡¡", "¡¶", "¡·", "£­", "¡­", "¡¾", "¡¿",);
+	//Ìæ»»ËùÓĞµÄ·Ö¸î·ûÎª¿Õ¸ñ
 	$str = str_replace($search,' ',$str);
-	//ç”¨æ­£åˆ™åŒ¹é…åŠè§’å•ä¸ªå­—ç¬¦æˆ–è€…å…¨è§’å•ä¸ªå­—ç¬¦,å­˜å…¥æ•°ç»„$ar
+	//ÓÃÕıÔòÆ¥Åä°ë½Çµ¥¸ö×Ö·û»òÕßÈ«½Çµ¥¸ö×Ö·û,´æÈëÊı×é$ar
 	preg_match_all("/[\x80-\xff]?./",$str,$ar);$ar=$ar[0];
-	//å»æ‰$arä¸­ASCIIä¸º0å­—ç¬¦çš„é¡¹ç›®
+	//È¥µô$arÖĞASCIIÎª0×Ö·ûµÄÏîÄ¿
 	for($i=0;$i<count($ar);$i++)
 	{
 		if($ar[$i]!=chr(0x00))
@@ -25,7 +25,7 @@ function SearchReturnSaveStr($str){
 	$ar=$ar_new;
 	unset($ar_new);
 	$oldsw=0;
-	//æŠŠè¿ç»­çš„åŠè§’å­˜æˆä¸€ä¸ªæ•°ç»„ä¸‹æ ‡,æˆ–è€…å…¨è§’çš„æ¯2ä¸ªå­—ç¬¦å­˜æˆä¸€ä¸ªæ•°ç»„çš„ä¸‹æ ‡
+	//°ÑÁ¬ĞøµÄ°ë½Ç´æ³ÉÒ»¸öÊı×éÏÂ±ê,»òÕßÈ«½ÇµÄÃ¿2¸ö×Ö·û´æ³ÉÒ»¸öÊı×éµÄÏÂ±ê
 	for($ar_str='',$i=0;$i<count($ar);$i++)
 	{
 		$sw=strlen($ar[$i]);
@@ -50,22 +50,22 @@ function SearchReturnSaveStr($str){
 		}
 		$oldsw=$sw;
 	}
-	//å»æ‰è¿ç»­çš„ç©ºæ ¼
+	//È¥µôÁ¬ĞøµÄ¿Õ¸ñ
 	$ar_str=trim(preg_replace("# {1,}#i"," ",$ar_str));
-	//è¿”å›æ‹†åˆ†åçš„ç»“æœ
+	//·µ»Ø²ğ·ÖºóµÄ½á¹û
 	return $ar_str;
 }
 
-//å…¨ç«™æœç´¢å»é™¤html
+//È«Õ¾ËÑË÷È¥³ıhtml
 function ClearSearchAllHtml($value){
 	$value=str_replace(array("\r\n","&nbsp;","[!--empirenews.page--]","[/!--empirenews.page--]"),array("","","",""),$value);
 	$value=strip_tags($value);
 	$value=trim($value,"\r\n");
-	$value=SearchAllChangeChar($value);//è½¬ç¼–ç 
+	$value=SearchAllChangeChar($value);//×ª±àÂë
 	return $value;
 }
 
-//è½¬æ¢ç¼–ç 
+//×ª»»±àÂë
 function SearchAllChangeChar($value){
 	global $ecms_config,$char,$targetchar,$iconv;
 	if($ecms_config['sets']['pagechar']!='gb2312')
@@ -75,7 +75,7 @@ function SearchAllChangeChar($value){
 	return $value;
 }
 
-//å¯¼å…¥æ•°æ®
+//µ¼ÈëÊı¾İ
 function LoadSearchAll($lid,$start,$userid,$username){
 	global $empire,$dbtbpre,$class_r,$fun_r,$public_r,$emod_r;
 	$lid=(int)$lid;
@@ -88,7 +88,7 @@ function LoadSearchAll($lid,$start,$userid,$username){
 	{
 		printerror('ErrorUrl','');
 	}
-	//ä¸å¯¼å…¥æ ç›®
+	//²»µ¼ÈëÀ¸Ä¿
 	$pr=$empire->fetch1("select schallnotcid from {$dbtbpre}enewspublic limit 1");
 	$line=$lr['loadnum'];
 	if(empty($line))
@@ -100,7 +100,7 @@ function LoadSearchAll($lid,$start,$userid,$username){
 	{
 		$start=$lr['lastid'];
 	}
-	//å­—æ®µ
+	//×Ö¶Î
 	$selectdtf='';
 	$selectf='';
 	$savetxtf='';
@@ -138,19 +138,19 @@ function LoadSearchAll($lid,$start,$userid,$username){
 		{
 			continue;
 		}
-		//é‡å¤
+		//ÖØ¸´
 		$havenum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewssearchall where id='$r[id]' and classid='$r[classid]' limit 1");
 		if($havenum)
 		{
 			continue;
 		}
-		//å‰¯è¡¨
+		//¸±±í
 		if($selectdtf)
 		{
 			$finfor=$empire->fetch1("select id".$selectdtf." from {$dbtbpre}ecms_".$lr['tbname']."_data_".$r[stb]." where id='$r[id]'");
 			$r=array_merge($r,$finfor);
 		}
-		//å­˜æ–‡æœ¬
+		//´æÎÄ±¾
 		if($savetxtf)
 		{
 			$r[$savetxtf]=GetTxtFieldText($r[$savetxtf]);
@@ -179,15 +179,15 @@ function LoadSearchAll($lid,$start,$userid,$username){
 	exit();
 }
 
-//è¿”å›æœç´¢SQL
+//·µ»ØËÑË÷SQL
 function ReturnSearchAllSql($add){
 	global $public_r,$class_r;
-	//å…³é—­
+	//¹Ø±Õ
 	if(empty($public_r['openschall']))
 	{
 		printerror("SchallClose",'',1);
 	}
-	//å…³é”®å­—
+	//¹Ø¼ü×Ö
 	$keyboard=RepPostVar2($add['keyboard']);
 	if(!trim($keyboard))
 	{
@@ -200,13 +200,13 @@ function ReturnSearchAllSql($add){
 	}
 	$returnr['keyboard']=ehtmlspecialchars($keyboard);
 	$returnr['search']="&keyboard=".$keyboard;
-	//å­—æ®µ
+	//×Ö¶Î
 	$field=(int)$add['field'];
 	if($field)
 	{
 		$returnr['search'].="&field=".$field;
 	}
-	if($field==1)//æ ‡é¢˜å’Œå…¨æ–‡
+	if($field==1)//±êÌâºÍÈ«ÎÄ
 	{
 		if($public_r['schallfield']!=1)
 		{
@@ -214,7 +214,7 @@ function ReturnSearchAllSql($add){
 		}
 		$sf="title,infotext";
 	}
-	elseif($field==2)//æ ‡é¢˜
+	elseif($field==2)//±êÌâ
 	{
 		if($public_r['schallfield']==3)
 		{
@@ -222,7 +222,7 @@ function ReturnSearchAllSql($add){
 		}
 		$sf="title";
 	}
-	elseif($field==3)//å…¨æ–‡
+	elseif($field==3)//È«ÎÄ
 	{
 		if($public_r['schallfield']==2)
 		{
@@ -235,12 +235,12 @@ function ReturnSearchAllSql($add){
 		$sf=ReturnSearchAllField(0);
 	}
 	$where='';
-	//æ ç›®
+	//À¸Ä¿
 	$classid=RepPostVar($add['classid']);
 	if($classid)
 	{
 		$returnr['search'].="&classid=".$classid;
-		if(strstr($classid,","))//å¤šæ ç›®
+		if(strstr($classid,","))//¶àÀ¸Ä¿
 		{
 			$son_r=sys_ReturnMoreClass($classid,1);
 			$where.='('.$son_r[1].') and ';
@@ -251,7 +251,7 @@ function ReturnSearchAllSql($add){
 			$where.=$class_r[$classid][islast]?"classid='$classid' and ":ReturnClass($class_r[$classid][sonclass]).' and ';
 		}
 	}
-	//å…³é”®å­—
+	//¹Ø¼ü×Ö
 	if(strstr($keyboard,' '))
 	{
 		$andkey='';
@@ -263,7 +263,7 @@ function ReturnSearchAllSql($add){
 			{
 				continue;
 			}
-			$kb=SearchAllChangeChar($keyr[$i]);//è½¬ç 
+			$kb=SearchAllChangeChar($keyr[$i]);//×ªÂë
 			$kb=SearchReturnSaveStr($kb);
 			$kb=RepPostVar2($kb);
 			if(!trim($kb))
@@ -280,7 +280,7 @@ function ReturnSearchAllSql($add){
 	}
 	else
 	{
-		$keyboard=SearchAllChangeChar($keyboard);//è½¬ç 
+		$keyboard=SearchAllChangeChar($keyboard);//×ªÂë
 		$keyboard=SearchReturnSaveStr($keyboard);
 		$keyboard=RepPostVar2($keyboard);
 		if(!trim($keyboard))
@@ -293,7 +293,7 @@ function ReturnSearchAllSql($add){
 	return $returnr;
 }
 
-//è¿”å›æœç´¢å­—æ®µ
+//·µ»ØËÑË÷×Ö¶Î
 function ReturnSearchAllField($field){
 	global $public_r;
 	if($public_r['schallfield']==1)

@@ -4,7 +4,7 @@ if(!defined('InEmpireCMS'))
 	exit();
 }
 $r=ReturnLeftLevel($loginlevel);
-//图片识别
+//ͼƬʶ��
 if(stristr($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0'))
 {
 	$menufiletype='.gif';
@@ -16,8 +16,8 @@ else
 ?>
 <HTML>
 <HEAD>
-<META http-equiv=Content-Type content="text/html; charset=utf-8">
-<TITLE>帝国CMS － 稳定可靠、安全省心</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<TITLE>�۹�CMS �� �ȶ��ɿ�����ȫʡ��</TITLE>
 <LINK href="adminstyle/2/adminmain.css" rel=stylesheet>
 <STYLE>
 .flyoutLink A {
@@ -129,7 +129,7 @@ function tododisplay(ss){
   <TABLE width="100%" height="60" border=0 cellpadding="0" cellSpacing=0 background="adminstyle/2/images/topbg.gif">
     <TBODY>
       <TR> 
-        <TD width="180"><div align="center"><a href="main.php<?=$ecms_hashur['whehref']?>" target="main" title="帝国网站管理系统"><img src="adminstyle/2/images/logo.gif" border="0"></a></div></TD>
+        <TD width="180"><div align="center"><a href="main.php<?=$ecms_hashur['whehref']?>" target="main" title="�۹���վ����ϵͳ"><img src="adminstyle/2/images/logo.gif" border="0"></a></div></TD>
 		<TD height=60> 
 			<TABLE width=480 height="60" border=0 cellpadding="0" cellSpacing=0>
                 <TBODY>
@@ -137,22 +137,22 @@ function tododisplay(ss){
                     <TD width=80 onmouseout="this.style.backgroundColor=''" onmouseover="this.style.backgroundColor='#8CBDEF';tododisplay('ecmsinfomenu');" onclick="switchSysBarInfo();JumpToLeftMenu('ListEnews.php<?=$ecms_hashur['whehref']?>');" style="CURSOR: hand"> 
                       <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><IMG height=32 src="adminstyle/2/images/info<?=$menufiletype?>" width=32 border=0 title="信息管理"></div></td>
+                          <td><div align="center"><IMG height=32 src="adminstyle/2/images/info<?=$menufiletype?>" width=32 border=0 title="��Ϣ����"></div></td>
                         </tr>
                         <tr> 
-                          <td height="23"><div align="center"><font color="#FFFFFF"><strong>信息管理</strong></font></div></td>
+                          <td height="23"><div align="center"><font color="#FFFFFF"><strong>��Ϣ����</strong></font></div></td>
                         </tr>
                       </table></TD>
                     <TD width=80 onmouseout="this.style.backgroundColor=''" onmouseover="this.style.backgroundColor='#8CBDEF';tododisplay('ecmssysmenu');" onclick="return false;" style="CURSOR: hand"> 
                       <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><IMG height=32 src="adminstyle/2/images/other<?=$menufiletype?>" width=32 border=0 title="功能菜单"></div></td>
+                          <td><div align="center"><IMG height=32 src="adminstyle/2/images/other<?=$menufiletype?>" width=32 border=0 title="���ܲ˵�"></div></td>
                         </tr>
                         <tr> 
-                          <td height="23"><div align="center"><font color="#FFFFFF"><strong>功能菜单</strong></font></div></td>
+                          <td height="23"><div align="center"><font color="#FFFFFF"><strong>���ܲ˵�</strong></font></div></td>
                         </tr>
                       </table></TD>
-                    <TD width="351"><div align="right"><font color="#ffffff">用户：<a href="user/EditPassword.php<?=$ecms_hashur['whehref']?>" target="main"><font color="#ffffff"><b><?=$loginin?></b></font></a>&nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="if(confirm('确认要退出?')){JumpToMain('enews.php?enews=exit<?=$ecms_hashur['href']?>');}"><font color="#ffffff">退出</font></a>]&nbsp;&nbsp;</font></div></TD>
+                    <TD width="351"><div align="right"><font color="#ffffff">�û���<a href="user/EditPassword.php<?=$ecms_hashur['whehref']?>" target="main"><font color="#ffffff"><b><?=$loginin?></b></font></a>&nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="if(confirm('ȷ��Ҫ�˳�?')){JumpToMain('enews.php?enews=exit<?=$ecms_hashur['href']?>');}"><font color="#ffffff">�˳�</font></a>]&nbsp;&nbsp;</font></div></TD>
                   </TR>
                 </TBODY>
               </TABLE>
@@ -166,7 +166,7 @@ function tododisplay(ss){
 <tr><td height="22">
 
   <TABLE width="100%" height="22" border=0 cellpadding="0" cellSpacing=0>
-  <form name="chmpform" method="post" action="enews.php" onsubmit="return confirm('确认要切换访问端？');">
+  <form name="chmpform" method="post" action="enews.php" onsubmit="return confirm('ȷ��Ҫ�л����ʶˣ�');">
     <TBODY>
       <TR> 
         <TD class=flyoutMenu width="1%"> </TD>   
@@ -174,43 +174,43 @@ function tododisplay(ss){
               <TABLE class=flyoutMenu border=0 id="ecmsinfomenu">
                 <TBODY>
                   <TR align=middle> 
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('AddInfoChClass.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">增加信息</TD>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListAllInfo.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">管理信息</TD>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListAllInfo.php?ecmscheck=1<?=$ecms_hashur['ehref']?>');" onmouseover="over(this)" onmouseout="out(this)">审核信息</TD>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('workflow/ListWfInfo.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">签发信息</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('AddInfoChClass.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">������Ϣ</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListAllInfo.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">������Ϣ</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListAllInfo.php?ecmscheck=1<?=$ecms_hashur['ehref']?>');" onmouseover="over(this)" onmouseout="out(this)">�����Ϣ</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('workflow/ListWfInfo.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">ǩ����Ϣ</TD>
 					<?php
 					if($r[dopl])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('openpage/AdminPage.php?leftfile=<?=urlencode('../pl/PlNav.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../pl/PlMain.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('管理评论')?><?=$ecms_hashur['ehref']?>');" onmouseover="over(this)" onmouseout="out(this)">管理评论</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('openpage/AdminPage.php?leftfile=<?=urlencode('../pl/PlNav.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../pl/PlMain.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('��������')?><?=$ecms_hashur['ehref']?>');" onmouseover="over(this)" onmouseout="out(this)">��������</TD>
 					<?php
 					}
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('sp/UpdateSp.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">更新碎片</TD>
-					<TD width="60" class="flyoutLink" onclick="JumpToMain('special/UpdateZt.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">更新专题</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('sp/UpdateSp.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">������Ƭ</TD>
+					<TD width="60" class="flyoutLink" onclick="JumpToMain('special/UpdateZt.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">����ר��</TD>
 					<?php
 					if($r[dochangedata])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">数据更新</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">���ݸ���</TD>
 					<?php
 					}
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('main.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">后台首页</TD>
-                    <TD width="60" class="flyoutLink" onclick="window.open('../../');" onmouseover="over(this)" onmouseout="out(this)">网站首页</TD>
-                    <TD width="60" class="flyoutLink" onclick="window.open('map.php<?=$ecms_hashur['whehref']?>','','width=1250,height=760,scrollbars=yes,resizable=yes,top=80,left=120');" onmouseover="over(this)" onmouseout="out(this)">后台地图</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('main.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">��̨��ҳ</TD>
+                    <TD width="60" class="flyoutLink" onclick="window.open('../../');" onmouseover="over(this)" onmouseout="out(this)">��վ��ҳ</TD>
+                    <TD width="60" class="flyoutLink" onclick="window.open('map.php<?=$ecms_hashur['whehref']?>','','width=1250,height=760,scrollbars=yes,resizable=yes,top=80,left=120');" onmouseover="over(this)" onmouseout="out(this)">��̨��ͼ</TD>
                   </TR>
                 </TBODY>
               </TABLE>
               <TABLE class=flyoutMenu border=0 id="ecmssysmenu" style="display:none">
                 <TBODY>
                   <TR align=middle> 
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('user/EditPassword.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">修改资料</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('user/EditPassword.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">�޸�����</TD>
 					<?php
 					if($r[doclass])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListClass.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">管理栏目</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListClass.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">������Ŀ</TD>
 					<?php
 					}
 					?>
@@ -218,7 +218,7 @@ function tododisplay(ss){
 					if($r[dozt])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('special/ListZt.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">管理专题</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('special/ListZt.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">����ר��</TD>
 					<?php
 					}
 					?>
@@ -226,7 +226,7 @@ function tododisplay(ss){
 					if($r[docj])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListInfoClass.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">管理采集</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListInfoClass.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">�����ɼ�</TD>
 					<?php
 					}
 					?>
@@ -234,7 +234,7 @@ function tododisplay(ss){
 					if($r[dofile])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('file/ListFile.php?type=9<?=$ecms_hashur['ehref']?>');" onmouseover="over(this)" onmouseout="out(this)">管理附件</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('file/ListFile.php?type=9<?=$ecms_hashur['ehref']?>');" onmouseover="over(this)" onmouseout="out(this)">��������</TD>
 					<?php
 					}
 					?>
@@ -242,7 +242,7 @@ function tododisplay(ss){
 					if($r[dosp])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('sp/ListSp.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">管理碎片</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('sp/ListSp.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">������Ƭ</TD>
 					<?php
 					}
 					?>
@@ -250,7 +250,7 @@ function tododisplay(ss){
 					if($r[dotags])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('tags/ListTags.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">管理TAGS</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('tags/ListTags.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">����TAGS</TD>
 					<?php
 					}
 					?>
@@ -258,7 +258,7 @@ function tododisplay(ss){
 					if($r[dogbook])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('tool/gbook.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">管理留言</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('tool/gbook.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">��������</TD>
 					<?php
 					}
 					?>
@@ -266,7 +266,7 @@ function tododisplay(ss){
 					if($r[dofeedback])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('tool/feedback.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">管理反馈</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('tool/feedback.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">��������</TD>
 					<?php
 					}
 					?>
@@ -274,7 +274,7 @@ function tododisplay(ss){
 					if($r[dodownerror])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('DownSys/ListError.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">错误报告</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('DownSys/ListError.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">���󱨸�</TD>
 					<?php
 					}
 					?>
@@ -286,9 +286,9 @@ function tododisplay(ss){
 if($r['dochmoreport']&&$public_r['ckhavemoreport'])
 {
 ?>
-  访问端:
+  ���ʶ�:
   <?=Moreport_eReturnMoreportSelect($ecms_config['sets']['selfmoreportid'])?>
-  <input type="submit" name="Submit" value="切换">
+  <input type="submit" name="Submit" value="�л�">
   <input name="enews" type="hidden" id="enews" value="ChangeMoreportAdmin">
   <?=$ecms_hashur['form']?>
 	&nbsp;&nbsp;
@@ -318,7 +318,7 @@ if($r['dochmoreport']&&$public_r['ckhavemoreport'])
           <TBODY>
             <tr> 
               <TD onclick="switchSysBar()" style="HEIGHT:100%;"> <font style="COLOR:666666;CURSOR:hand;FONT-FAMILY:Webdings;FONT-SIZE:9pt;"> 
-                <SPAN id="switchPoint" title="打开/关闭左边导航栏">3</SPAN></font> 
+                <SPAN id="switchPoint" title="��/�ر���ߵ�����">3</SPAN></font> 
           </TBODY>
         </TABLE>
       </TD>

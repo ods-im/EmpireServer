@@ -8,7 +8,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 $user=islogin();
 $line=25;
 $page_line=10;
@@ -29,9 +29,9 @@ $query="select fid,fname,fsay from {$dbtbpre}enewshy where userid='$user[userid]
 $query.=" order by fid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page1($num,$line,$page_line,$start,$page,$search);
-//杩斿洖鍒嗙被
+//返回分类
 $select=ReturnFriendclass($user[userid],$cid);
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/friend.php');
 db_close();
 $empire=null;

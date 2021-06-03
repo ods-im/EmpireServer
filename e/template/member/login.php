@@ -5,8 +5,8 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='ä¼šå‘˜ç™»å½•';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;ä¼šå‘˜ç™»å½•";
+$public_diyr['pagetitle']='»áÔ±µÇÂ¼';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;»áÔ±µÇÂ¼";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <br>
@@ -16,52 +16,52 @@ require(ECMS_PATH.'e/template/incfile/header.php');
     <input type=hidden name=enews value=login>
 	<input name="tobind" type="hidden" id="tobind" value="<?=$tobind?>">
     <tr class="header"> 
-      <td height="25" colspan="2"><div align="center">ä¼šå‘˜ç™»å½•<?=$tobind?' (ç»‘å®šè´¦å·)':''?></div></td>
+      <td height="25" colspan="2"><div align="center">»áÔ±µÇÂ¼<?=$tobind?' (°ó¶¨ÕËºÅ)':''?></div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="23%" height="25">ç”¨æˆ·åï¼š</td>
+      <td width="23%" height="25">ÓÃ»§Ãû£º</td>
       <td width="77%" height="25"><input name="username" type="text" id="username" size="30">
 	  	<?php
 		if($public_r['regacttype']==1)
 		{
 		?>
-        &nbsp;&nbsp;<a href="../register/regsend.php" target="_blank">å¸å·æœªæ¿€æ´»ï¼Ÿ</a>
+        &nbsp;&nbsp;<a href="../register/regsend.php" target="_blank">ÕÊºÅÎ´¼¤»î£¿</a>
 		<?php
 		}
 		?>
 		</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å¯†ç ï¼š</td>
+      <td height="25">ÃÜÂë£º</td>
       <td height="25"><input name="password" type="password" id="password" size="30">
-        &nbsp;&nbsp;<a href="../GetPassword/" target="_blank">å¿˜è®°å¯†ç ï¼Ÿ</a></td>
+        &nbsp;&nbsp;<a href="../GetPassword/" target="_blank">Íü¼ÇÃÜÂë£¿</a></td>
     </tr>
 	 <tr bgcolor="#FFFFFF">
-      <td height="25">ä¿å­˜æ—¶é—´ï¼š</td>
+      <td height="25">±£´æÊ±¼ä£º</td>
       <td height="25">
 	  <input name=lifetime type=radio value=0 checked>
-        ä¸ä¿å­˜
+        ²»±£´æ
 	    <input type=radio name=lifetime value=3600>
-        ä¸€å°æ—¶ 
+        Ò»Ğ¡Ê± 
         <input type=radio name=lifetime value=86400>
-        ä¸€å¤© 
+        Ò»Ìì 
         <input type=radio name=lifetime value=2592000>
-        ä¸€ä¸ªæœˆ
+        Ò»¸öÔÂ
 <input type=radio name=lifetime value=315360000>
-        æ°¸ä¹… </td>
+        ÓÀ¾Ã </td>
     </tr>
     <?php
 	if($public_r['loginkey_ok'])
 	{
 	?>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">éªŒè¯ç ï¼š</td>
+      <td height="25">ÑéÖ¤Âë£º</td>
       <td height="25">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr> 
                   <td width="52"><input name="key" type="text" id="key" size="6"> 
                   </td>
-                  <td id="loginshowkey"><a href="#EmpireCMS" onclick="edoshowkey('loginshowkey','login','<?=$public_r['newsurl']?>');" title="ç‚¹å‡»æ˜¾ç¤ºéªŒè¯ç ">ç‚¹å‡»æ˜¾ç¤ºéªŒè¯ç </a></td>
+                  <td id="loginshowkey"><a href="#EmpireCMS" onclick="edoshowkey('loginshowkey','login','<?=$public_r['newsurl']?>');" title="µã»÷ÏÔÊ¾ÑéÖ¤Âë">µã»÷ÏÔÊ¾ÑéÖ¤Âë</a></td>
                 </tr>
             </table>
       </td>
@@ -71,7 +71,7 @@ require(ECMS_PATH.'e/template/incfile/header.php');
 	?>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value=" ç™» å½• ">&nbsp;&nbsp;&nbsp; <input type="button" name="button" value="é©¬ä¸Šæ³¨å†Œ" onclick="parent.location.href='../register/<?=$tobind?'?tobind=1':''?>';"></td>
+      <td height="25"><input type="submit" name="Submit" value=" µÇ Â¼ ">&nbsp;&nbsp;&nbsp; <input type="button" name="button" value="ÂíÉÏ×¢²á" onclick="parent.location.href='../register/<?=$tobind?'?tobind=1':''?>';"></td>
     </tr>
 	</form>
   </table>

@@ -7,7 +7,7 @@ require '../'.LoadLang('pub/fun.php');
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,28 +16,28 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 //CheckLevel($logininid,$loginin,$classid,"zt");
 
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $add="";
 $search="";
 $search.=$ecms_hashur['ehref'];
-$url="<a href=UpdateZt.php".$ecms_hashur['whehref'].">æ›´æ–°ä¸“é¢˜</a>";
+$url="<a href=UpdateZt.php".$ecms_hashur['whehref'].">¸üĞÂ×¨Ìâ</a>";
 $time=time();
-//ç±»åˆ«
+//Àà±ğ
 $zcid=(int)$_GET['zcid'];
 if($zcid)
 {
 	$add=" and zcid=$zcid";
 	$search.="&zcid=$zcid";
 }
-//åˆ†ç±»
+//·ÖÀà
 $zcstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewsztclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -51,7 +51,7 @@ while($cr=$empire->fetch($csql))
 }
 $totalquery="select count(*) as total from {$dbtbpre}enewszt where usernames like '%$loginin%' and (endtime=0 or endtime>$time)".$add;
 $query="select * from {$dbtbpre}enewszt where usernames like '%$loginin%' and (endtime=0 or endtime>$time)".$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by myorder,ztid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -59,15 +59,15 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ›´æ–°ä¸“é¢˜</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¸üĞÂ×¨Ìâ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton"></div></td>
@@ -77,9 +77,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
   <form name="form1" method="get" action="UpdateZt.php">
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="30">é™åˆ¶æ˜¾ç¤ºï¼š 
+      <td height="30">ÏŞÖÆÏÔÊ¾£º 
         <select name="zcid" id="zcid" onchange="document.form1.submit()">
-          <option value="0">æ˜¾ç¤ºæ‰€æœ‰åˆ†ç±»</option>
+          <option value="0">ÏÔÊ¾ËùÓĞ·ÖÀà</option>
           <?=$zcstr?>
         </select>
       </td>
@@ -90,8 +90,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="600" border="0" cellpadding="3" cellspacing="1" class="tableborder">
     <tr class="header"> 
       <td width="13%" height="25"><div align="center">ID</div></td>
-      <td width="58%" height="25"><div align="center">ä¸“é¢˜å</div></td>
-      <td width="29%" height="25"><div align="center">æ“ä½œ</div></td>
+      <td width="58%" height="25"><div align="center">×¨ÌâÃû</div></td>
+      <td width="29%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -112,7 +112,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
       <td height="25"><div align="center"> 
           <a href="<?=$ztlink?>" target="_blank"><?=$r[ztname]?></a>
         </div></td>
-      <td height="25"><div align="center"><a href="#ecms" onclick="window.open('../openpage/AdminPage.php?leftfile=<?=urlencode('../special/pageleft.php?ztid='.$r[ztid].$ecms_hashur['ehref'])?>&title=<?=urlencode($r[ztname])?><?=$ecms_hashur['ehref']?>','','');">æ›´æ–°ä¸“é¢˜</a> <a href="../ecmschtml.php?enews=ReZtHtml&ztid=<?=$r[ztid]?>&ecms=1<?=$ecms_hashur['href']?>">åˆ·æ–°</a></div></td>
+      <td height="25"><div align="center"><a href="#ecms" onclick="window.open('../openpage/AdminPage.php?leftfile=<?=urlencode('../special/pageleft.php?ztid='.$r[ztid].$ecms_hashur['ehref'])?>&title=<?=urlencode($r[ztname])?><?=$ecms_hashur['ehref']?>','','');">¸üĞÂ×¨Ìâ</a> <a href="../ecmschtml.php?enews=ReZtHtml&ztid=<?=$r[ztid]?>&ecms=1<?=$ecms_hashur['href']?>">Ë¢ĞÂ</a></div></td>
     </tr>
     <?
   }

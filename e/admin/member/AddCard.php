@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"card");
 $enews=ehtmlspecialchars($_GET['enews']);
 $time=ehtmlspecialchars($_GET['time']);
@@ -25,14 +25,14 @@ $r[carddate]=0;
 $r[endtime]="0000-00-00";
 $r[card_no]=time();
 $r[password]=strtolower(no_make_password(6));
-$url="<a href=ListCard.php".$ecms_hashur['whehref'].">ç®¡ç†ç‚¹å¡</a> &gt; å¢åŠ ç‚¹å¡";
+$url="<a href=ListCard.php".$ecms_hashur['whehref'].">¹ÜÀíµã¿¨</a> &gt; Ôö¼Óµã¿¨";
 if($enews=="EditCard")
 {
 	$cardid=(int)$_GET['cardid'];
 	$r=$empire->fetch1("select card_no,password,money,cardfen,endtime,carddate,cdgroupid,cdzgroupid from {$dbtbpre}enewscard where cardid='$cardid' limit 1");
-	$url="<a href=ListCard.php".$ecms_hashur['whehref'].">ç®¡ç†ç‚¹å¡</a> &gt; ä¿®æ”¹ç‚¹å¡ï¼š<b>".$r[card_no]."</b>";
+	$url="<a href=ListCard.php".$ecms_hashur['whehref'].">¹ÜÀíµã¿¨</a> &gt; ĞŞ¸Äµã¿¨£º<b>".$r[card_no]."</b>";
 }
-//----------ä¼šå‘˜ç»„
+//----------»áÔ±×é
 $sql=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($level_r=$empire->fetch($sql))
 {
@@ -52,8 +52,8 @@ $href="AddCard.php?enews=$enews&cardid=$cardid".$ecms_hashur['ehref'];
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ ç‚¹å¡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼Óµã¿¨</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 </head>
@@ -61,71 +61,71 @@ $href="AddCard.php?enews=$enews&cardid=$cardid".$ecms_hashur['ehref'];
 <body>
 <table width="98%%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListCard.php" autocomplete="off">
   <table width="60%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2"><div align="center">å¢åŠ ç‚¹å¡ 
+      <td height="25" colspan="2"><div align="center">Ôö¼Óµã¿¨ 
           <input name="enews" type="hidden" id="enews" value="<?=$enews?>">
           <input name="add[cardid]" type="hidden" id="add[cardid]" value="<?=$cardid?>">
           <input name="time" type="hidden" id="time" value="<?=$time?>">
         </div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="36%" height="25">ç‚¹å¡å¸å·ï¼š</td>
+      <td width="36%" height="25">µã¿¨ÕÊºÅ£º</td>
       <td width="64%" height="25"><input name="add[card_no]" type="text" id="add[card_no]" value="<?=$r[card_no]?>">
-        <font color="#666666">(&lt;30ä½ï¼Œæ”¯æŒè‹±æ–‡ä¸æ•°å­—ç»„åˆ)</font></td>
+        <font color="#666666">(&lt;30Î»£¬Ö§³ÖÓ¢ÎÄÓëÊı×Ö×éºÏ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç‚¹å¡å¯†ç ï¼š</td>
+      <td height="25">µã¿¨ÃÜÂë£º</td>
       <td height="25"><input name="add[password]" type="text" id="add[password]" value="<?=$r[password]?>">
-        <font color="#666666">(&lt;20ä½ï¼Œæ”¯æŒè‹±æ–‡ä¸æ•°å­—ç»„åˆ)</font></td>
+        <font color="#666666">(&lt;20Î»£¬Ö§³ÖÓ¢ÎÄÓëÊı×Ö×éºÏ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç‚¹å¡é‡‘é¢ï¼š</td>
+      <td height="25">µã¿¨½ğ¶î£º</td>
       <td height="25"><input name="add[money]" type="text" id="add[money]" value="<?=$r[money]?>" size="6">
-        å…ƒ</td>
+        Ôª</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç‚¹æ•°ï¼š</td>
+      <td height="25">µãÊı£º</td>
       <td height="25"><input name="add[cardfen]" type="text" id="add[cardfen]" value="<?=$r[cardfen]?>" size="6">
-        ç‚¹</td>
+        µã</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td rowspan="3">å……å€¼æœ‰æ•ˆæœŸ:</td>
+      <td rowspan="3">³äÖµÓĞĞ§ÆÚ:</td>
       <td height="25"><input name="add[carddate]" type="text" id="add[carddate]" value="<?=$r[carddate]?>" size="6">
-        å¤©</td>
+        Ìì</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å……å€¼è®¾ç½®è½¬å‘ä¼šå‘˜ç»„:
+      <td height="25">³äÖµÉèÖÃ×ªÏò»áÔ±×é:
         <select name="add[cdgroupid]" id="add[cdgroupid]">
-		<option value=0>ä¸è®¾ç½®</option>
+		<option value=0>²»ÉèÖÃ</option>
 		<?=$group?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">åˆ°æœŸåè½¬å‘çš„ä¼šå‘˜ç»„:
+      <td height="25">µ½ÆÚºó×ªÏòµÄ»áÔ±×é:
 	  	<select name="add[cdzgroupid]" id="add[cdzgroupid]">
-		<option value=0>ä¸è®¾ç½®</option>
+		<option value=0>²»ÉèÖÃ</option>
 		<?=$zgroup?>
         </select>
 	  </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">åˆ°æœŸæ—¶é—´ï¼š</td>
+      <td height="25">µ½ÆÚÊ±¼ä£º</td>
       <td height="25"><input name="add[endtime]" type="text" id="add[endtime]" value="<?=$r[endtime]?>" size="20" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        <font color="#666666">(0000-00-00ä¸ºä¸é™åˆ¶)</font></td>
+        <font color="#666666">(0000-00-00Îª²»ÏŞÖÆ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"><div align="center"> 
-          <input type="submit" name="Submit" value="æäº¤">
+          <input type="submit" name="Submit" value="Ìá½»">
           &nbsp; 
-          <input type="reset" name="Submit2" value="é‡ç½®">
+          <input type="reset" name="Submit2" value="ÖØÖÃ">
           &nbsp; 
-          <input type="button" name="Submit3" value="å¯†ç éšæœº" onclick="javascript:self.location.href='<?=$href?>'">
+          <input type="button" name="Submit3" value="ÃÜÂëËæ»ú" onclick="javascript:self.location.href='<?=$href?>'">
         </div></td>
     </tr>
   </table>

@@ -1,12 +1,12 @@
 <?php
-//å‘è¡¨ç•™è¨€
+//·¢±íÁôÑÔ
 function AddGbook($add){
 	global $empire,$dbtbpre,$level_r,$public_r;
-	//éªŒè¯æœ¬æ—¶é—´å…è®¸æ“ä½œ
+	//ÑéÖ¤±¾Ê±¼äÔÊĞí²Ù×÷
 	eCheckTimeCloseDo('gbook');
-	//éªŒè¯IP
+	//ÑéÖ¤IP
 	eCheckAccessDoIp('gbook');
-	CheckCanPostUrl();//éªŒè¯æ¥æº
+	CheckCanPostUrl();//ÑéÖ¤À´Ô´
 	if($add['bid'])
 	{
 		$bid=(int)$add['bid'];
@@ -27,7 +27,7 @@ function AddGbook($add){
 	{
 		printerror("EmailFail","history.go(-1)",1);
 	}
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$keyvname='checkgbookkey';
 	if($public_r['gbkey_ok'])
 	{
@@ -41,13 +41,13 @@ function AddGbook($add){
 			printerror("GbOutTime","",1);
 		}
 	}
-	//ç‰ˆé¢æ˜¯å¦å­˜åœ¨
+	//°æÃæÊÇ·ñ´æÔÚ
 	$br=$empire->fetch1("select bid,checked,groupid from {$dbtbpre}enewsgbookclass where bid='$bid';");
 	if(empty($br[bid]))
 	{
 		printerror("EmptyGbook","history.go(-1)",1);
 	}
-	//æƒé™
+	//È¨ÏŞ
 	$user=array();
 	if($br['groupid'])
 	{
@@ -57,7 +57,7 @@ function AddGbook($add){
 			printerror("HaveNotEnLevel","history.go(-1)",1);
 		}
 	}
-	//å®åéªŒè¯
+	//ÊµÃûÑéÖ¤
 	eCheckHaveTruename('gb',$user['userid'],$user['username'],$user['isern'],$user['checked'],0);
 
 	$lytime=date("Y-m-d H:i:s");
@@ -66,10 +66,10 @@ function AddGbook($add){
 	$userid=(int)getcvar('mluserid');
 	$username=RepPostVar(getcvar('mlusername'));
 	$sql=$empire->query("insert into {$dbtbpre}enewsgbook(name,email,`mycall`,lytime,lytext,retext,bid,ip,checked,userid,username,eipport) values('$name','$email','$mycall','$lytime','$lytext','','$bid','$ip','$br[checked]','$userid','$username','$eipport');");
-	ecmsEmptyShowKey($keyvname);//æ¸…ç©ºéªŒè¯ç 
+	ecmsEmptyShowKey($keyvname);//Çå¿ÕÑéÖ¤Âë
 	if($sql)
 	{
-		esetcookie("lastgbooktime",time(),time()+3600*24);//è®¾ç½®æœ€åå‘è¡¨æ—¶é—´
+		esetcookie("lastgbooktime",time(),time()+3600*24);//ÉèÖÃ×îºó·¢±íÊ±¼ä
 		$reurl=DoingReturnUrl("../tool/gbook/?bid=$bid",$add['ecmsfrom']);
 		printerror("AddGbookSuccess",$reurl,1);
 	}

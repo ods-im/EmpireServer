@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,17 +16,17 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"shoppayfs");
 
-//å¢åŠ æ”¯ä»˜æ–¹å¼
+//Ôö¼ÓÖ§¸¶·½Ê½
 function AddPayfs($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add[payname]))
 	{
 		printerror("EmptyPayname","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shoppayfs");
 	$add[userpay]=(int)$add[userpay];
 	$add[userfen]=(int)$add[userfen];
@@ -36,7 +36,7 @@ function AddPayfs($add,$userid,$username){
 	$payid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("payid=".$payid."<br>payname=".$add[payname]);
 		printerror("AddPayfsSuccess","AddPayfs.php?enews=AddPayfs".hReturnEcmsHashStrHref2(0));
 	}
@@ -46,7 +46,7 @@ function AddPayfs($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹æ”¯ä»˜æ–¹å¼
+//ĞŞ¸ÄÖ§¸¶·½Ê½
 function EditPayfs($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[payid]=(int)$add[payid];
@@ -54,7 +54,7 @@ function EditPayfs($add,$userid,$username){
 	{
 		printerror("EmptyPayname","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shoppayfs");
 	$add[userpay]=(int)$add[userpay];
 	$add[userfen]=(int)$add[userfen];
@@ -63,7 +63,7 @@ function EditPayfs($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsshoppayfs set payname='".eaddslashes($add[payname])."',payurl='".eaddslashes($add[payurl])."',paysay='".eaddslashes($add[paysay])."',userpay='$add[userpay]',userfen='$add[userfen]',isclose='$add[isclose]' where payid='$add[payid]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("payid=".$add[payid]."<br>payname=".$add[payname]);
 		printerror("EditPayfsSuccess","ListPayfs.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -73,7 +73,7 @@ function EditPayfs($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤æ”¯ä»˜æ–¹å¼
+//É¾³ıÖ§¸¶·½Ê½
 function DelPayfs($payid,$userid,$username){
 	global $empire,$dbtbpre;
 	$payid=(int)$payid;
@@ -81,13 +81,13 @@ function DelPayfs($payid,$userid,$username){
 	{
 		printerror("EmptyPayfsid","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shoppayfs");
 	$r=$empire->fetch1("select payname from {$dbtbpre}enewsshoppayfs where payid='$payid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsshoppayfs where payid='$payid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("payid=".$payid."<br>payname=".$r[payname]);
 		printerror("DelPayfsSuccess","ListPayfs.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -97,7 +97,7 @@ function DelPayfs($payid,$userid,$username){
 	}
 }
 
-//è®¾ç½®ä¸ºé»˜è®¤æ”¯ä»˜æ–¹å¼
+//ÉèÖÃÎªÄ¬ÈÏÖ§¸¶·½Ê½
 function DefPayfs($payid,$userid,$username){
 	global $empire,$dbtbpre;
 	$payid=(int)$payid;
@@ -105,14 +105,14 @@ function DefPayfs($payid,$userid,$username){
 	{
 		printerror("EmptyPayfsid","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shoppayfs");
 	$r=$empire->fetch1("select payname from {$dbtbpre}enewsshoppayfs where payid='$payid'");
 	$upsql=$empire->query("update {$dbtbpre}enewsshoppayfs set isdefault=0");
 	$sql=$empire->query("update {$dbtbpre}enewsshoppayfs set isdefault=1 where payid='$payid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("payid=".$payid."<br>payname=".$r[payname]);
 		printerror("DefPayfsSuccess","ListPayfs.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -154,11 +154,11 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=16;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=18;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=16;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=18;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select * from {$dbtbpre}enewsshoppayfs";
-$num=$empire->num($query);//å–å¾—æ€»æ¡æ•°
+$num=$empire->num($query);//È¡µÃ×ÜÌõÊı
 $query=$query." order by payid limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -166,18 +166,18 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†æ”¯ä»˜æ–¹å¼</title>
+<title>¹ÜÀíÖ§¸¶·½Ê½</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href="ListPayfs.php<?=$ecms_hashur['whehref']?>">ç®¡ç†æ”¯ä»˜æ–¹å¼</a>&nbsp;&nbsp;&nbsp; 
+    <td width="50%" height="25">Î»ÖÃ£º<a href="ListPayfs.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÖ§¸¶·½Ê½</a>&nbsp;&nbsp;&nbsp; 
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit" value="å¢åŠ æ”¯ä»˜æ–¹å¼" onclick="self.location.href='AddPayfs.php?enews=AddPayfs<?=$ecms_hashur['ehref']?>'">
+        <input type="button" name="Submit" value="Ôö¼ÓÖ§¸¶·½Ê½" onclick="self.location.href='AddPayfs.php?enews=AddPayfs<?=$ecms_hashur['ehref']?>'">
       </div></td>
   </tr>
 </table>
@@ -186,10 +186,10 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="5%" height="25"> <div align="center">ID</div></td>
-    <td width="41%" height="25"> <div align="center">æ”¯ä»˜æ–¹å¼</div></td>
-    <td width="16%"><div align="center">é»˜è®¤</div></td>
-    <td width="16%"><div align="center">å¼€å¯</div></td>
-    <td width="22%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="41%" height="25"> <div align="center">Ö§¸¶·½Ê½</div></td>
+    <td width="16%"><div align="center">Ä¬ÈÏ</div></td>
+    <td width="16%"><div align="center">¿ªÆô</div></td>
+    <td width="22%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -202,9 +202,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td height="25"> <div align="center"> 
         <?=$r[payname]?>
       </div></td>
-    <td><div align="center"><?=$r[isdefault]==1?'æ˜¯':'--'?></div></td>
-    <td><div align="center"><?=$r[isclose]==1?'å…³é—­':'å¼€å¯'?></div></td>
-    <td height="25"> <div align="center">[<a href="AddPayfs.php?enews=EditPayfs&payid=<?=$r[payid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] [<a href="ListPayfs.php?enews=DefPayfs&payid=<?=$r[payid]?><?=$ecms_hashur['href']?>">è®¾ä¸ºé»˜è®¤</a>] [<a href="ListPayfs.php?enews=DelPayfs&payid=<?=$r[payid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td><div align="center"><?=$r[isdefault]==1?'ÊÇ':'--'?></div></td>
+    <td><div align="center"><?=$r[isclose]==1?'¹Ø±Õ':'¿ªÆô'?></div></td>
+    <td height="25"> <div align="center">[<a href="AddPayfs.php?enews=EditPayfs&payid=<?=$r[payid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] [<a href="ListPayfs.php?enews=DefPayfs&payid=<?=$r[payid]?><?=$ecms_hashur['href']?>">ÉèÎªÄ¬ÈÏ</a>] [<a href="ListPayfs.php?enews=DelPayfs&payid=<?=$r[payid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

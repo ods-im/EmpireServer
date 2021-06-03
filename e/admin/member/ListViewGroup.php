@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"viewgroup");
 
-//è¿”å›ä¼šå‘˜ç»„
+//·µ»Ø»áÔ±×é
 function ReturnAddViewMemberGroup($membergroup){
 	$count=count($membergroup);
 	if($count==0)
@@ -38,7 +38,7 @@ function ReturnAddViewMemberGroup($membergroup){
 	return $mg;
 }
 
-//å¢åŠ ä¼šå‘˜è®¿é—®ç»„
+//Ôö¼Ó»áÔ±·ÃÎÊ×é
 function AddViewGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add['gname']))
@@ -53,7 +53,7 @@ function AddViewGroup($add,$userid,$username){
 	if($sql)
 	{
 		$vgid=$empire->lastid();
-		insert_dolog("vgid=$vgid&gname=$gname");//æ“ä½œæ—¥å¿—
+		insert_dolog("vgid=$vgid&gname=$gname");//²Ù×÷ÈÕÖ¾
 		printerror("AddViewGroupSuccess","AddViewGroup.php?enews=AddViewGroup".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -62,7 +62,7 @@ function AddViewGroup($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ä¼šå‘˜è®¿é—®ç»„
+//ĞŞ¸Ä»áÔ±·ÃÎÊ×é
 function EditViewGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$vgid=intval($add['vgid']);
@@ -74,13 +74,13 @@ function EditViewGroup($add,$userid,$username){
 	$gids=ReturnAddViewMemberGroup($add['membergroup']);
 	$ingids=ReturnAddViewMemberGroup($add['ingroup']);
 	$agids=ReturnAddViewMemberGroup($add['madmingroup']);
-	//ä¼šå‘˜ç™½åå•
+	//»áÔ±°×Ãûµ¥
 	$membernum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsvglist where vgid='$vgid'");
 	$mlist=$membernum?1:0;
 	$sql=$empire->query("update {$dbtbpre}enewsvg set gname='$gname',gids='$gids',ingids='$ingids',agids='$agids',mlist='$mlist' where vgid='$vgid'");
 	if($sql)
 	{
-		insert_dolog("vgid=$vgid&gname=$gname");//æ“ä½œæ—¥å¿—
+		insert_dolog("vgid=$vgid&gname=$gname");//²Ù×÷ÈÕÖ¾
 		printerror("EditViewGroupSuccess","ListViewGroup.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
@@ -89,7 +89,7 @@ function EditViewGroup($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤ä¼šå‘˜è®¿é—®ç»„
+//É¾³ı»áÔ±·ÃÎÊ×é
 function DelViewGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$vgid=intval($add['vgid']);
@@ -106,7 +106,7 @@ function DelViewGroup($add,$userid,$username){
 	$msql=$empire->query("delete from {$dbtbpre}enewsvglist where vgid='$vgid'");
 	if($sql)
 	{
-		insert_dolog("vgid=$vgid&gname=$r[gname]");//æ“ä½œæ—¥å¿—
+		insert_dolog("vgid=$vgid&gname=$r[gname]");//²Ù×÷ÈÕÖ¾
 		printerror("DelViewGroupSuccess","ListViewGroup.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
@@ -140,12 +140,12 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=16;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=25;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=16;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=25;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select * from {$dbtbpre}enewsvg";
 $totalquery="select count(*) as total from {$dbtbpre}enewsvg";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by vgid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -153,17 +153,17 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ä¼šå‘˜è®¿é—®ç»„</title>
+<title>»áÔ±·ÃÎÊ×é</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href="ListViewGroup.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¼šå‘˜è®¿é—®ç»„</a></td>
+    <td width="50%" height="25">Î»ÖÃ£º<a href="ListViewGroup.php<?=$ecms_hashur['whehref']?>">¹ÜÀí»áÔ±·ÃÎÊ×é</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ä¼šå‘˜è®¿é—®ç»„" onclick="self.location.href='AddViewGroup.php?enews=AddViewGroup<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó»áÔ±·ÃÎÊ×é" onclick="self.location.href='AddViewGroup.php?enews=AddViewGroup<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -172,9 +172,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="6%" height="25"> <div align="center">ID</div></td>
-    <td width="39%" height="25"> <div align="center">ç»„åç§°</div></td>
-    <td width="38%"><div align="center">å…è®¸ä¼šå‘˜ç™½åå•</div></td>
-    <td width="17%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="39%" height="25"> <div align="center">×éÃû³Æ</div></td>
+    <td width="38%"><div align="center">ÔÊĞí»áÔ±°×Ãûµ¥</div></td>
+    <td width="17%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
@@ -190,8 +190,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td height="25"> <div align="center"> 
         <?=$r['gname']?>
       </div></td>
-    <td><div align="center"><a href="ListVgMember.php?vgid=<?=$r['vgid']?><?=$ecms_hashur['ehref']?>" target="_blank">ç®¡ç†ä¼šå‘˜ç™½åå•(æ•°é‡ï¼š<strong><?=$membernum?></strong>)</a></div></td>
-    <td height="25"> <div align="center"> [<a href="AddViewGroup.php?enews=EditViewGroup&vgid=<?=$r['vgid']?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="ListViewGroup.php?enews=DelViewGroup&vgid=<?=$r['vgid']?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td><div align="center"><a href="ListVgMember.php?vgid=<?=$r['vgid']?><?=$ecms_hashur['ehref']?>" target="_blank">¹ÜÀí»áÔ±°×Ãûµ¥(ÊıÁ¿£º<strong><?=$membernum?></strong>)</a></div></td>
+    <td height="25"> <div align="center"> [<a href="AddViewGroup.php?enews=EditViewGroup&vgid=<?=$r['vgid']?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="ListViewGroup.php?enews=DelViewGroup&vgid=<?=$r['vgid']?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

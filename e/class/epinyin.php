@@ -1,5 +1,5 @@
 <?php
-//è¿”å›žæ‹¼éŸ³
+//·µ»ØÆ´Òô
 function rpyd(){
 $d=array(  
 array("a",-20319),  

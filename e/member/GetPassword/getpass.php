@@ -7,14 +7,14 @@ require("../class/member_actfun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 if(!$public_r['opengetpass'])
 {
 	printerror('CloseGetPassword','',1);
 }
 $r=CheckGetPassword($_GET,1);
 $username=$r['username'];
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/getpass.php');
 db_close();
 $empire=null;

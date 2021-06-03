@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//楠岃瘉鐢ㄦ埛
+//验证用户
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -21,5 +21,5 @@ $pic_width=ehtmlspecialchars($_GET['pic_width']);
 $pic_height=ehtmlspecialchars($_GET['pic_height']);
 $url=ehtmlspecialchars($_GET['url']);
 ?>
-<title>骞垮憡棰勮</title>
+<title>广告预览</title>
 <a href="<?=$url?>" target=_blank><img src="<?=$picurl?>" border=0 width="<?=$pic_width?>" height="<?=$pic_height?>"></a>

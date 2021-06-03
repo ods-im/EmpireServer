@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"user");
 
-//------------------------å¢åŠ ç”¨æˆ·
+//------------------------Ôö¼ÓÓÃ»§
 function AddUser($username,$password,$repassword,$groupid,$adminclass,$checked,$styleid,$loginuserid,$loginusername){
 	global $empire,$class_r,$dbtbpre;
 	$username=str_replace(',','',$username);
@@ -34,17 +34,17 @@ function AddUser($username,$password,$repassword,$groupid,$adminclass,$checked,$
 	{
 		printerror("LessPassword","history.go(-1)");
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($loginuserid,$loginusername,$classid,"user");
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsuser where username='$username' limit 1");
 	if($num)
 	{printerror("ReUsername","history.go(-1)");}
-	//ç®¡ç†ç›®å½•
+	//¹ÜÀíÄ¿Â¼
 	$insert_class='';
 	for($i=0;$i<count($adminclass);$i++)
 	{
 		$adminclass[$i]=(int)$adminclass[$i];
-		//å¤§æ ç›®
+		//´óÀ¸Ä¿
 		if(empty($class_r[$adminclass[$i]][islast]))
 		{
 			if(empty($class_r[$adminclass[$i]][sonclass])||$class_r[$adminclass[$i]][sonclass]=="|")
@@ -86,7 +86,7 @@ function AddUser($username,$password,$repassword,$groupid,$adminclass,$checked,$
 	$insert_class=hRepPostStr2($insert_class);
 	$sql=$empire->query("insert into {$dbtbpre}enewsuser(username,password,rnd,groupid,adminclass,checked,styleid,filelevel,salt,loginnum,lasttime,lastip,truename,email,classid,addtime,addip,userprikey,salt2,lastipport,preipport,addipport,wname,tel,wxno,qq) values('$username','$password','$rnd','$groupid','$insert_class','$checked','$styleid','$filelevel','$salt',0,0,'','$truename','$email','$classid','$addtime','$addip','$userprikey','$salt2','$addipport','$addipport','$addipport','$wname','$tel','$wxno','$qq');");
 	$userid=$empire->lastid();
-	//å®‰å…¨æé—®
+	//°²È«ÌáÎÊ
 	$equestion=(int)$_POST['equestion'];
 	$eanswer=$_POST['eanswer'];
 	if($equestion)
@@ -110,7 +110,7 @@ function AddUser($username,$password,$repassword,$groupid,$adminclass,$checked,$
 		$cache_mess='AddUserSuccess';
 		$cache_uid=$userid;
 		$cache_url="../CreateCache.php?enews=$cache_enews&uid=$cache_uid&ecmstourl=$cache_ecmstourl&mess=$cache_mess".hReturnEcmsHashStrHref2(0);
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("userid=".$userid."<br>username=".$username);
 		//printerror("AddUserSuccess","AddUser.php?enews=AddUser".hReturnEcmsHashStrHref2(0));
 		echo'<meta http-equiv="refresh" content="0;url='.$cache_url.'">';
@@ -122,7 +122,7 @@ function AddUser($username,$password,$repassword,$groupid,$adminclass,$checked,$
 	{printerror("DbError","history.go(-1)");}
 }
 
-//------------------------ä¿®æ”¹ç”¨æˆ·
+//------------------------ĞŞ¸ÄÓÃ»§
 function EditUser($userid,$username,$password,$repassword,$groupid,$adminclass,$oldusername,$checked,$styleid,$loginuserid,$loginusername){
 	global $empire,$class_r,$dbtbpre;
 	$userid=(int)$userid;
@@ -134,21 +134,21 @@ function EditUser($userid,$username,$password,$repassword,$groupid,$adminclass,$
 	$add='';
 	if(!$userid||!$username)
 	{printerror("EnterUsername","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($loginuserid,$loginusername,$classid,"user");
-	//ä¿®æ”¹ç”¨æˆ·å
+	//ĞŞ¸ÄÓÃ»§Ãû
 	if($oldusername<>$username)
 	{
 		$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsuser where username='$username' and userid<>$userid limit 1");
 		if($num)
 		{printerror("ReUsername","history.go(-1)");}
-		//ä¿®æ”¹ä¿¡æ¯
+		//ĞŞ¸ÄĞÅÏ¢
 		//$nsql=$empire->query("update {$dbtbpre}enewsnews set username='$username' where username='$oldusername'");
-		//ä¿®æ”¹æ—¥å¿—
+		//ĞŞ¸ÄÈÕÖ¾
 		$lsql=$empire->query("update {$dbtbpre}enewslog set username='$username' where username='$oldusername'");
 		$lsql=$empire->query("update {$dbtbpre}enewsdolog set username='$username' where username='$oldusername'");
 	}
-	//ä¿®æ”¹å¯†ç 
+	//ĞŞ¸ÄÃÜÂë
 	if($password)
 	{
 		if($password!=$repassword)
@@ -162,12 +162,12 @@ function EditUser($userid,$username,$password,$repassword,$groupid,$adminclass,$
 		$password=DoEmpireCMSAdminPassword($password,$salt,$salt2);
 		$add=",password='$password',salt='$salt',salt2='$salt2'";
 	}
-	//ç®¡ç†ç›®å½•
+	//¹ÜÀíÄ¿Â¼
 	$insert_class='';
 	for($i=0;$i<count($adminclass);$i++)
 	{
 		$adminclass[$i]=(int)$adminclass[$i];
-		//å¤§æ ç›®
+		//´óÀ¸Ä¿
 		if(empty($class_r[$adminclass[$i]][islast]))
 		{
 			if(empty($class_r[$adminclass[$i]][sonclass])||$class_r[$adminclass[$i]][sonclass]=="|")
@@ -200,7 +200,7 @@ function EditUser($userid,$username,$password,$repassword,$groupid,$adminclass,$
 	$qq=hRepPostStr($_POST['qq'],1);
 	$insert_class=hRepPostStr2($insert_class);
 	$sql=$empire->query("update {$dbtbpre}enewsuser set username='$username',groupid='$groupid',adminclass='$insert_class',checked='$checked',styleid='$styleid',filelevel='$filelevel',truename='$truename',email='$email',classid='$classid',wname='$wname',tel='$tel',wxno='$wxno',qq='$qq'".$add." where userid='$userid'");
-	//å®‰å…¨æé—®
+	//°²È«ÌáÎÊ
 	$equestion=(int)$_POST['equestion'];
 	$eanswer=$_POST['eanswer'];
 	$uadd='';
@@ -223,13 +223,13 @@ function EditUser($userid,$username,$password,$repassword,$groupid,$adminclass,$
 	$empire->query("update {$dbtbpre}enewsuseradd set equestion='$equestion',openip='$openip'".$uadd." where userid='$userid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("userid=".$userid."<br>username=".$username);
 		if($_POST['oldadminclass']<>$insert_class)
 		{
 			DelFiletext('../../data/fc/ListEnews'.$userid.'.php');
 			DelFiletext('../../data/fc/userclass'.$userid.'.js');
-			//åˆ é™¤å¯¼èˆªç¼“å­˜
+			//É¾³ıµ¼º½»º´æ
 			$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='userenews' and userid='$userid'");
 			$cache_enews='douserinfo';
 			$cache_ecmstourl=urlencode('user/ListUser.php'.hReturnEcmsHashStrHref2(1));
@@ -247,15 +247,15 @@ function EditUser($userid,$username,$password,$repassword,$groupid,$adminclass,$
 	{printerror("DbError","history.go(-1)");}
 }
 
-//-----------------------åˆ é™¤ç”¨æˆ·
+//-----------------------É¾³ıÓÃ»§
 function DelUser($userid,$loginuserid,$loginusername){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;
 	if(!$userid)
 	{printerror("NotDelUserid","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($loginuserid,$loginusername,$classid,"user");
-	//éªŒè¯æ˜¯å¦æœ€åä¸€ä¸ªç®¡ç†å‘˜
+	//ÑéÖ¤ÊÇ·ñ×îºóÒ»¸ö¹ÜÀíÔ±
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsuser");
 	if($num<=1)
 	{
@@ -268,9 +268,9 @@ function DelUser($userid,$loginuserid,$loginusername){
 	{
 		DelFiletext('../../data/fc/ListEnews'.$userid.'.php');
 		DelFiletext('../../data/fc/userclass'.$userid.'.js');
-		//åˆ é™¤å¯¼èˆªç¼“å­˜
+		//É¾³ıµ¼º½»º´æ
 		$empire->query("delete from {$dbtbpre}enewsclassnavcache where navtype='userenews' and userid='$userid'");
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("userid=".$userid."<br>username=".$r[username]);
 		printerror("DelUserSuccess","ListUser.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -286,7 +286,7 @@ if($enews)
 	hCheckEcmsRHash();
 	include('../../data/dbcache/class.php');
 }
-//å¢åŠ ç”¨æˆ·
+//Ôö¼ÓÓÃ»§
 if($enews=="AddUser")
 {
 	$username=$_POST['username'];
@@ -298,7 +298,7 @@ if($enews=="AddUser")
 	$styleid=$_POST['styleid'];
 	AddUser($username,$password,$repassword,$groupid,$adminclass,$checked,$styleid,$logininid,$loginin);
 }
-//ä¿®æ”¹ç”¨æˆ·
+//ĞŞ¸ÄÓÃ»§
 elseif($enews=="EditUser")
 {
 	$userid=$_POST['userid'];
@@ -312,7 +312,7 @@ elseif($enews=="EditUser")
 	$styleid=$_POST['styleid'];
 	EditUser($userid,$username,$password,$repassword,$groupid,$adminclass,$oldusername,$checked,$styleid,$logininid,$loginin);
 }
-//åˆ é™¤ç”¨æˆ·
+//É¾³ıÓÃ»§
 elseif($enews=="DelUser")
 {
 	$userid=$_GET['userid'];
@@ -322,47 +322,47 @@ elseif($enews=="DelUser")
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
-$url="<a href=ListUser.php".$ecms_hashur['whehref'].">ç®¡ç†ç”¨æˆ·</a>";
-//æ’åº
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
+$url="<a href=ListUser.php".$ecms_hashur['whehref'].">¹ÜÀíÓÃ»§</a>";
+//ÅÅĞò
 $mydesc=(int)$_GET['mydesc'];
 $desc=$mydesc?'asc':'desc';
 $orderby=(int)$_GET['orderby'];
-if($orderby==1)//ç”¨æˆ·å
+if($orderby==1)//ÓÃ»§Ãû
 {
 	$order="username ".$desc.",userid desc";
 	$usernamedesc=$mydesc?0:1;
 }
-elseif($orderby==2)//ç”¨æˆ·ç»„
+elseif($orderby==2)//ÓÃ»§×é
 {
 	$order="groupid ".$desc.",userid desc";
 	$groupiddesc=$mydesc?0:1;
 }
-elseif($orderby==3)//çŠ¶æ€
+elseif($orderby==3)//×´Ì¬
 {
 	$order="checked ".$desc.",userid desc";
 	$checkeddesc=$mydesc?0:1;
 }
-elseif($orderby==4)//ç™»é™†æ¬¡æ•°
+elseif($orderby==4)//µÇÂ½´ÎÊı
 {
 	$order="loginnum ".$desc.",userid desc";
 	$loginnumdesc=$mydesc?0:1;
 }
-elseif($orderby==5)//æœ€åç™»é™†
+elseif($orderby==5)//×îºóµÇÂ½
 {
 	$order="lasttime ".$desc.",userid desc";
 	$lasttimedesc=$mydesc?0:1;
 }
-else//ç”¨æˆ·ID
+else//ÓÃ»§ID
 {
 	$order="userid ".$desc;
 	$useriddesc=$mydesc?0:1;
 }
 $search="&orderby=$orderby&mydesc=$mydesc".$ecms_hashur['ehref'];
 $query="select * from {$dbtbpre}enewsuser";
-$num=$empire->num($query);//å–å¾—æ€»æ¡æ•°
+$num=$empire->num($query);//È¡µÃ×ÜÌõÊı
 $query=$query." order by ".$order." limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -370,20 +370,20 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ç”¨æˆ·</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÓÃ»§</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ç”¨æˆ·" onclick="self.location.href='AddUser.php?enews=AddUser<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
-		<input type="button" name="Submit52" value="ç®¡ç†éƒ¨é—¨" onclick="self.location.href='UserClass.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓÓÃ»§" onclick="self.location.href='AddUser.php?enews=AddUser<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
+		<input type="button" name="Submit52" value="¹ÜÀí²¿ÃÅ" onclick="self.location.href='UserClass.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -391,13 +391,13 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="4%" height="25"><div align="center"><a href="ListUser.php?orderby=0&mydesc=<?=$useriddesc?><?=$ecms_hashur['ehref']?>">ID</a></div></td>
-    <td width="22%" height="25"><div align="center"><a href="ListUser.php?orderby=1&mydesc=<?=$usernamedesc?><?=$ecms_hashur['ehref']?>">ç”¨æˆ·å</a></div></td>
-    <td width="20%"><div align="center"><a href="ListUser.php?orderby=2&mydesc=<?=$groupiddesc?><?=$ecms_hashur['ehref']?>">ç­‰çº§</a></div></td>
-    <td width="6%"><div align="center"><a href="ListUser.php?orderby=3&mydesc=<?=$checkeddesc?><?=$ecms_hashur['ehref']?>">çŠ¶æ€</a></div></td>
-    <td width="8%"><div align="center">è¯ä¹¦</div></td>
-    <td width="8%"><div align="center"><a href="ListUser.php?orderby=4&mydesc=<?=$loginnumdesc?><?=$ecms_hashur['ehref']?>">ç™»é™†æ¬¡æ•°</a></div></td>
-    <td width="19%"><div align="center"><a href="ListUser.php?orderby=5&mydesc=<?=$lasttimedesc?><?=$ecms_hashur['ehref']?>">æœ€åç™»é™†</a></div></td>
-    <td width="13%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="22%" height="25"><div align="center"><a href="ListUser.php?orderby=1&mydesc=<?=$usernamedesc?><?=$ecms_hashur['ehref']?>">ÓÃ»§Ãû</a></div></td>
+    <td width="20%"><div align="center"><a href="ListUser.php?orderby=2&mydesc=<?=$groupiddesc?><?=$ecms_hashur['ehref']?>">µÈ¼¶</a></div></td>
+    <td width="6%"><div align="center"><a href="ListUser.php?orderby=3&mydesc=<?=$checkeddesc?><?=$ecms_hashur['ehref']?>">×´Ì¬</a></div></td>
+    <td width="8%"><div align="center">Ö¤Êé</div></td>
+    <td width="8%"><div align="center"><a href="ListUser.php?orderby=4&mydesc=<?=$loginnumdesc?><?=$ecms_hashur['ehref']?>">µÇÂ½´ÎÊı</a></div></td>
+    <td width="19%"><div align="center"><a href="ListUser.php?orderby=5&mydesc=<?=$lasttimedesc?><?=$ecms_hashur['ehref']?>">×îºóµÇÂ½</a></div></td>
+    <td width="13%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -410,9 +410,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 	}
 	$gr=$empire->fetch1("select groupname from {$dbtbpre}enewsgroup where groupid='$r[groupid]'");
   	if($r[checked])
-  	{$zt="ç¦ç”¨";}
+  	{$zt="½ûÓÃ";}
   	else
-  	{$zt="å¼€å¯";}
+  	{$zt="¿ªÆô";}
   	$lasttime='---';
   	if($r[lasttime])
   	{
@@ -427,10 +427,10 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td height="25"><div align="center"> 
         <?=$r[username]?>
       </div></td>
-    <td> <div align="left">ç”¨æˆ·ç»„ï¼š
+    <td> <div align="left">ÓÃ»§×é£º
         <?=$gr[groupname]?>
         <br>
-        éƒ¨é—¨&nbsp;&nbsp;&nbsp;ï¼š
+        ²¿ÃÅ&nbsp;&nbsp;&nbsp;£º
         <?=$classname?>
       </div></td>
     <td><div align="center"> 
@@ -440,14 +440,14 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td><div align="center">
         <?=$r[loginnum]?>
       </div></td>
-    <td> æ—¶é—´ï¼š
+    <td> Ê±¼ä£º
       <?=$lasttime?>
       <br>
-      IP&nbsp;&nbsp;&nbsp;ï¼š
+      IP&nbsp;&nbsp;&nbsp;£º
       <?=$r[lastip]?$r[lastip].':'.$r[lastipport]:'---'?>
     </td>
-    <td height="25"><div align="center">[<a href="AddUser.php?enews=EditUser&userid=<?=$r[userid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="ListUser.php?enews=DelUser&userid=<?=$r[userid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td height="25"><div align="center">[<a href="AddUser.php?enews=EditUser&userid=<?=$r[userid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="ListUser.php?enews=DelUser&userid=<?=$r[userid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

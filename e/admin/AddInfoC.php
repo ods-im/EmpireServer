@@ -5,7 +5,7 @@ require("../class/db_sql.php");
 require("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -14,9 +14,9 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"cj");
-//--------------------æ“ä½œçš„æ ç›®
+//--------------------²Ù×÷µÄÀ¸Ä¿
 $fcfile="../data/fc/ListEnews.php";
 $do_class="<script src=../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
@@ -35,15 +35,15 @@ else
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ é‡‡é›†èŠ‚ç‚¹</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼Ó²É¼¯½Úµã</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function changecj(obj)
 {
 	if(obj.newsclassid.value=="nono")
 	{
-		alert("è¯·é€‰æ‹©æ ç›®");
+		alert("ÇëÑ¡ÔñÀ¸Ä¿");
 	}
 	else
 	{
@@ -56,7 +56,7 @@ function changecj(obj)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼šé‡‡é›†&nbsp;&gt;&nbsp;<a href='<?=$listclasslink?><?=$ecms_hashur['whehref']?>'>ç®¡ç†èŠ‚ç‚¹</a>&nbsp;&gt;&nbsp;å¢åŠ èŠ‚ç‚¹</td>
+    <td height="25">Î»ÖÃ£º²É¼¯&nbsp;&gt;&nbsp;<a href='<?=$listclasslink?><?=$ecms_hashur['whehref']?>'>¹ÜÀí½Úµã</a>&nbsp;&gt;&nbsp;Ôö¼Ó½Úµã</td>
   </tr>
 </table>
 
@@ -64,19 +64,19 @@ function changecj(obj)
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['eform']?>
     <tr class="header"> 
-      <td height="25"><div align="center">è¯·é€‰æ‹©è¦å¢åŠ é‡‡é›†çš„æ ç›®</div></td>
+      <td height="25"><div align="center">ÇëÑ¡ÔñÒªÔö¼Ó²É¼¯µÄÀ¸Ä¿</div></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><div align="center"> 
           <select name="newsclassid" id="newsclassid" onchange='javascript:changecj(document.form1);'>
-            <option value=''>é€‰æ‹©æ ç›®</option>
-            <option value='0'>éé‡‡é›†èŠ‚ç‚¹(çˆ¶èŠ‚ç‚¹)</option>
+            <option value=''>Ñ¡ÔñÀ¸Ä¿</option>
+            <option value='0'>·Ç²É¼¯½Úµã(¸¸½Úµã)</option>
             <?=$do_class?>
           </select>
         </div></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF"><div align="center"><font color="#666666">(é‡‡é›†èŠ‚ç‚¹è¦é€‰æ‹©ç»ˆææ ç›®)</font></div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="center"><font color="#666666">(²É¼¯½ÚµãÒªÑ¡ÔñÖÕ¼«À¸Ä¿)</font></div></td>
     </tr>
   </table>
 </form>

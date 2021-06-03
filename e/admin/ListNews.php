@@ -7,7 +7,7 @@ require LoadLang("pub/fun.php");
 require("../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -19,12 +19,12 @@ $ecms_hashur=hReturnEcmsHashStrAll();
 
 $classid=(int)$_GET['classid'];
 $bclassid=(int)$class_r[$classid]['bclassid'];
-//å–å¾—æ ç›®å
+//È¡µÃÀ¸Ä¿Ãû
 if(!$class_r[$classid][classid]||!$class_r[$classid][tbname])
 {
 	printerror('ErrorUrl','history.go(-1)');
 }
-//æ ç›®
+//À¸Ä¿
 $thiscr=$empire->fetch1("select tbname,listorder,allinfos,infos from {$dbtbpre}enewsclass where classid='$classid'");
 if(!$thiscr['tbname'])
 {
@@ -33,12 +33,12 @@ if(!$thiscr['tbname'])
 $classallinfos=$thiscr['allinfos'];
 $classinfos=$thiscr['infos'];
 $classckinfos=$classallinfos-$classinfos;
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 $doselfinfo=CheckLevel($logininid,$loginin,$classid,"news");
-//å–å¾—æ¨¡å‹è¡¨
+//È¡µÃÄ£ĞÍ±í
 $fieldexp="<!--field--->";
 $recordexp="<!--record-->";
-//è¿”å›æœç´¢å­—æ®µåˆ—è¡¨
+//·µ»ØËÑË÷×Ö¶ÎÁĞ±í
 function ReturnSearchOptions($enter,$field,$record){
 	global $modid,$emod_r;
 	$r=explode($record,$enter);
@@ -75,9 +75,9 @@ if(empty($infomod_r['tbname']))
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-$infomod_r['enter'].='å‘å¸ƒè€…<!--field--->username<!--record-->ID<!--field--->id<!--record-->å…³é”®å­—<!--field--->keyboard<!--record-->';
+$infomod_r['enter'].='·¢²¼Õß<!--field--->username<!--record-->ID<!--field--->id<!--record-->¹Ø¼ü×Ö<!--field--->keyboard<!--record-->';
 $searchoptions_r=ReturnSearchOptions($infomod_r['enter'],$fieldexp,$recordexp);
-//å®¡æ ¸è¡¨
+//ÉóºË±í
 $search='';
 $search.=$ecms_hashur['ehref'];
 $addecmscheck='';
@@ -90,18 +90,18 @@ if($ecmscheck)
 	$indexchecked=0;
 }
 $infotb=ReturnInfoMainTbname($class_r[$classid]['tbname'],$indexchecked);
-//å¯¼èˆª
-$url=AdminReturnClassLink($classid).'&nbsp;>&nbsp;ä¿¡æ¯åˆ—è¡¨';
+//µ¼º½
+$url=AdminReturnClassLink($classid).'&nbsp;>&nbsp;ĞÅÏ¢ÁĞ±í';
 $start=0;
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
-$line=intval($public_r['hlistinfonum']);//æ¯é¡µæ˜¾ç¤º
+$line=intval($public_r['hlistinfonum']);//Ã¿Ò³ÏÔÊ¾
 $page_line=12;
 $offset=$page*$line;
 $search.="&bclassid=$bclassid&classid=$classid";
 $add='';
 $ewhere='';
-//æœç´¢
+//ËÑË÷
 $showisgood=(int)$_GET['showisgood'];
 $showfirsttitle=(int)$_GET['showfirsttitle'];
 $sear=(int)$_GET['sear'];
@@ -109,48 +109,48 @@ if($sear)
 {
 	$keyboard=RepPostVar2($_GET['keyboard']);
 	$show=RepPostVar($_GET['show']);
-	//å…³é”®å­—
+	//¹Ø¼ü×Ö
 	if($keyboard)
 	{
-		//æœç´¢å…¨éƒ¨
+		//ËÑË÷È«²¿
 		if(!$show)
 		{
 			$add=" and (".str_replace("[!--key--]",$keyboard,$searchoptions_r['searchallfield']).")";
 		}
-		//æœç´¢å­—æ®µ
+		//ËÑË÷×Ö¶Î
 		elseif($show&&strstr($infomod_r['enter'],"<!--field--->".$show."<!--record-->"))
 		{
 			$add=$show!="id"?" and (".$show." like '%$keyboard%')":" and (".$show."='$keyboard')";
 			$searchoptions_r['select']=str_replace(" value=\"".$show."\">"," value=\"".$show."\" selected>",$searchoptions_r['select']);
 		}
 	}
-	//ç‰¹æ®Šå±æ€§
+	//ÌØÊâÊôĞÔ
 	$showspecial=(int)$_GET['showspecial'];
-	if($showspecial==1)//ç½®é¡¶
+	if($showspecial==1)//ÖÃ¶¥
 	{
 		$add.=' and istop>0';
 	}
-	elseif($showspecial==2)//æ¨è
+	elseif($showspecial==2)//ÍÆ¼ö
 	{
 		$add.=' and isgood>0';
 	}
-	elseif($showspecial==3)//å¤´æ¡
+	elseif($showspecial==3)//Í·Ìõ
 	{
 		$add.=' and firsttitle>0';
 	}
-	elseif($showspecial==5)//ç­¾å‘
+	elseif($showspecial==5)//Ç©·¢
 	{
 		$add.=' and isqf=1';
 	}
-	elseif($showspecial==7)//æŠ•ç¨¿
+	elseif($showspecial==7)//Í¶¸å
 	{
 		$add.=' and ismember=1';
 	}
-	elseif($showspecial==8)//æˆ‘çš„ä¿¡æ¯
+	elseif($showspecial==8)//ÎÒµÄĞÅÏ¢
 	{
 		$add.=" and userid='$logininid' and ismember=0";
 	}
-	//æ¨è
+	//ÍÆ¼ö
 	if($showisgood)
 	{
 		if($showisgood>0)
@@ -162,7 +162,7 @@ if($sear)
 			$add.=' and isgood>0';
 		}
 	}
-	//å¤´æ¡
+	//Í·Ìõ
 	if($showfirsttitle)
 	{
 		if($showfirsttitle>0)
@@ -174,7 +174,7 @@ if($sear)
 			$add.=' and firsttitle>0';
 		}
 	}
-	//æ ‡é¢˜åˆ†ç±»
+	//±êÌâ·ÖÀà
 	$ttid=(int)$_GET['ttid'];
 	if($ttid)
 	{
@@ -182,7 +182,7 @@ if($sear)
 	}
 	$search.="&sear=1&keyboard=$keyboard&show=$show&showspecial=$showspecial&ttid=$ttid&showisgood=$showisgood&showfirsttitle=$showfirsttitle";
 }
-//æ˜¾ç¤ºé‡å¤æ ‡é¢˜
+//ÏÔÊ¾ÖØ¸´±êÌâ
 if($_GET['showretitle']==1)
 {
 	$search.="&showretitle=1&srt=".intval($_GET['srt']);
@@ -220,12 +220,12 @@ if($_GET['showretitle']==1)
 		printerror("HaveNotReInfo","ListNews.php?bclassid=$bclassid&classid=$classid".$addecmscheck.$ecms_hashur['ehref']);
 	}
 }
-//åªèƒ½ç¼–è¾‘è‡ªå·±çš„ä¿¡æ¯
+//Ö»ÄÜ±à¼­×Ô¼ºµÄĞÅÏ¢
 if($doselfinfo['doselfinfo'])
 {
 	$add.=" and userid='$logininid' and ismember=0";
 }
-//ä¼˜åŒ–
+//ÓÅ»¯
 $yhadd='';
 $yhid=$class_r[$classid][yhid];
 $yhvar='hlist';
@@ -235,7 +235,7 @@ if($yhid)
 }
 if(empty($yhadd))
 {
-	//æ—¶é—´èŒƒå›´
+	//Ê±¼ä·¶Î§
 	$infolday=(int)$_GET['infolday'];
 	if(empty($infolday))
 	{
@@ -252,7 +252,7 @@ if(empty($yhadd))
 		$search.="&infolday=$infolday";
 	}
 }
-//å•æ ç›®å•è¡¨
+//µ¥À¸Ä¿µ¥±í
 $singletable=0;
 if($infomod_r[sonclass]=='|'.$classid.'|')
 {
@@ -281,7 +281,7 @@ else
 		$ewhere=" where classid='$classid'".$add;
 	}
 }
-//ç»Ÿè®¡
+//Í³¼Æ
 $totalquery="select count(*) as total from ".$infotb.$ewhere;
 $totalnum=(int)$_GET['totalnum'];
 if($totalnum<1)
@@ -292,24 +292,24 @@ if($totalnum<1)
 	}
 	else
 	{
-		$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+		$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 	}
 }
 else
 {
 	$num=$totalnum;
 }
-//æ’åº
+//ÅÅĞò
 $myorder=RepPostStr($_GET['myorder'],1);
-if($myorder==1)//æ—¶é—´
+if($myorder==1)//Ê±¼ä
 {$doorder="newstime desc";}
-elseif($myorder==2)//è¯„è®ºæ•°
+elseif($myorder==2)//ÆÀÂÛÊı
 {$doorder="plnum desc";}
-elseif($myorder==3)//äººæ°”
+elseif($myorder==3)//ÈËÆø
 {$doorder="onclick desc";}
-elseif($myorder==4)//IDå·
+elseif($myorder==4)//IDºÅ
 {$doorder="id desc";}
-else//é»˜è®¤æ’åº
+else//Ä¬ÈÏÅÅĞò
 {
 	if(empty($thiscr['listorder']))
 	{
@@ -325,7 +325,7 @@ $search1=$search;
 $search.="&myorder=$myorder";
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 $phpmyself=urlencode(eReturnSelfPage(1));
-//æ ‡é¢˜åˆ†ç±»
+//±êÌâ·ÖÀà
 $tts='';
 $ttsql=$empire->query("select typeid,tname from {$dbtbpre}enewsinfotype where mid='$modid' order by myorder");
 while($ttr=$empire->fetch($ttsql))
@@ -337,11 +337,11 @@ while($ttr=$empire->fetch($ttsql))
 	}
 	$tts.="<option value='$ttr[typeid]'".$select.">$ttr[tname]</option>";
 }
-$stts=$tts?"<select name='ttid'><option value='0'>æ ‡é¢˜åˆ†ç±»</option>$tts</select>":"";
-//æ ç›®é“¾æ¥
+$stts=$tts?"<select name='ttid'><option value='0'>±êÌâ·ÖÀà</option>$tts</select>":"";
+//À¸Ä¿Á´½Ó
 $getcurlr['classid']=$classid;
 $classurl=sys_ReturnBqClassname($getcurlr,9);
-//å¯¼å…¥é¡µé¢
+//µ¼ÈëÒ³Ãæ
 $deftempfile=ECMS_PATH.'e/data/html/list/listinfo.php';
 if($infomod_r[listfile])
 {

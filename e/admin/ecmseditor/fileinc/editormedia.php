@@ -6,7 +6,7 @@ if(!defined('InEmpireCMS'))
 ?>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">å¤šåª’ä½“æ–‡ä»¶</td>
+    <td height="25">¶àÃ½ÌåÎÄ¼ş</td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
@@ -14,24 +14,24 @@ if(!defined('InEmpireCMS'))
     <td width="4%"><div align="center"></div></td>
     <td width="8%"><div align="center">ID</div></td>
     <td width="42%">
-<div align="center">æ–‡ä»¶å</div></td>
+<div align="center">ÎÄ¼şÃû</div></td>
     <td width="15%">
-<div align="center">å¤§å°</div></td>
+<div align="center">´óĞ¡</div></td>
     <td width="21%">
-<div align="center">ä¸Šä¼ æ—¶é—´</div></td>
+<div align="center">ÉÏ´«Ê±¼ä</div></td>
     <td width="10%">
-<div align="center">é€‰æ‹©</div></td>
+<div align="center">Ñ¡Ôñ</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
   {
 	$filesize=ChTheFilesize($r[filesize]);
-	$filetype=GetFiletype($r[filename]);//å–å¾—æ–‡ä»¶æ‰©å±•å
-	//æ–‡ä»¶
+	$filetype=GetFiletype($r[filename]);//È¡µÃÎÄ¼şÀ©Õ¹Ãû
+	//ÎÄ¼ş
 	$fspath=ReturnFileSavePath($r[classid],$r[fpath]);
 	$filepath=$r[path]?$r[path].'/':$r[path];
 	$file=$fspath['fileurl'].$filepath.$r[filename];
-	//æ’­æ”¾å™¨
+	//²¥·ÅÆ÷
 	if(strstr($ecms_config['sets']['mediaplayertype'],",".$filetype.","))//mediaplayer
 	{
 		$fileimg="<img src='../../data/type/mywmv.gif' border=0>";
@@ -72,8 +72,8 @@ if(!defined('InEmpireCMS'))
     <td bgcolor="#FFFFFF"></td>
     <td colspan="5" bgcolor="#FFFFFF">&nbsp;&nbsp;
       <?=$returnpage?>
-      &nbsp;&nbsp; <input type="submit" name="Submit33" value="åˆ é™¤é€‰ä¸­" onclick="document.dofile.enews.value='TDelFile_all';"> 
+      &nbsp;&nbsp; <input type="submit" name="Submit33" value="É¾³ıÑ¡ÖĞ" onclick="document.dofile.enews.value='TDelFile_all';"> 
       <input type="checkbox" name="chkall" value="on" onclick="CheckAll(this.form)">
-      å…¨é€‰</td>
+      È«Ñ¡</td>
   </tr>
 </table>

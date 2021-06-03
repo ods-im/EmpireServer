@@ -5,8 +5,8 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='ç®¡ç†ç•™è¨€';
-$url="<a href='../../../'>é¦–é¡µ</a>&nbsp;>&nbsp;<a href='../cp/'>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;ç®¡ç†ç•™è¨€";
+$public_diyr['pagetitle']='¹ÜÀíÁôÑÔ';
+$url="<a href='../../../'>Ê×Ò³</a>&nbsp;>&nbsp;<a href='../cp/'>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;¹ÜÀíÁôÑÔ";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <script>
@@ -21,7 +21,7 @@ function CheckAll(form)
   }
 </script>
         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-		<form name="gbookform" method="post" action="index.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+		<form name="gbookform" method="post" action="index.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
 		<?php
 		while($r=$empire->fetch($sql))
 		{
@@ -34,16 +34,16 @@ function CheckAll(form)
 			$private='';
 			if($r['isprivate'])
 			{
-				$private='*æ‚„æ‚„è¯* / ';
+				$private='*ÇÄÇÄ»°* / ';
 			}
 			$r[uname]=stripSlashes($r[uname]);
 			$msg='';
 			if($r['uid'])
 			{
-				$msg=" / <a href='../msg/AddMsg/?username=$r[uname]' target='_blank'>æ¶ˆæ¯å›å¤</a>";
+				$msg=" / <a href='../msg/AddMsg/?username=$r[uname]' target='_blank'>ÏûÏ¢»Ø¸´</a>";
 				$r['uname']="<b><a href='../../space/?userid=$r[uid]' target='_blank'>$r[uname]</a></b>";
 			}
-			$gbuname=$private.$r[uname]." / ç•™è¨€äº ".$r[addtime]." / ip: ".$r[ip].":".$r[eipport].$msg;
+			$gbuname=$private.$r[uname]." / ÁôÑÔÓÚ ".$r[addtime]." / ip: ".$r[ip].":".$r[eipport].$msg;
 		?>
           <tr> 
             <td height="25">
@@ -54,7 +54,7 @@ function CheckAll(form)
                     </div></td>
                   <td width="78%">
                     <?=$gbuname?>                  </td>
-                  <td width="17%"><div align="center">[<a href="#ecms" onclick="window.open('ReGbook.php?gid=<?=$r[gid]?>','','width=600,height=380,scrollbars=yes');">å›å¤</a>]&nbsp;&nbsp;[<a href="index.php?enews=DelMemberGbook&gid=<?=$r[gid]?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+                  <td width="17%"><div align="center">[<a href="#ecms" onclick="window.open('ReGbook.php?gid=<?=$r[gid]?>','','width=600,height=380,scrollbars=yes');">»Ø¸´</a>]&nbsp;&nbsp;[<a href="index.php?enews=DelMemberGbook&gid=<?=$r[gid]?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
                 </tr>
                 <tr> 
                   <td>&nbsp;</td>
@@ -70,7 +70,7 @@ function CheckAll(form)
 					?>
                     <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
                       <tr> 
-                        <td><img src="../../data/images/regb.gif" width="18" height="18"><strong><font color="#FF0000">å›å¤:</font></strong>
+                        <td><img src="../../data/images/regb.gif" width="18" height="18"><strong><font color="#FF0000">»Ø¸´:</font></strong>
                           <?=nl2br(stripSlashes($r['retext']))?>                        </td>
                       </tr>
                     </table>
@@ -90,7 +90,7 @@ function CheckAll(form)
                 <tr>
                   <td width="5%"><div align="center"><input type='checkbox' name='chkall' value='on' onClick='CheckAll(this.form)'></div></td>
                   <td width="95%">
-                    <?=$returnpage?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='submit' name='submit' value='æ‰¹é‡åˆ é™¤'>
+                    <?=$returnpage?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='submit' name='submit' value='ÅúÁ¿É¾³ı'>
                     <input name="enews" type="hidden" id="enews" value="DelMemberGbook_All"> </td>
                 </tr>
               </table></td>

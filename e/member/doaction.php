@@ -11,13 +11,13 @@ if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
-eCheckCloseMods('member');//å…³é—­æ¨¡å—
-//ç»‘å®šå¸å·
+eCheckCloseMods('member');//¹Ø±ÕÄ£¿é
+//°ó¶¨ÕÊºÅ
 $tobind=(int)$_POST['tobind'];
 if($tobind&&($enews=='login'||$enews=='register'))
 {
-	eCheckCloseMods('mconnect');//å…³é—­æ¨¡å—
-	eCheckCloseMemberConnect();//éªŒè¯å¼€å¯çš„æ¥å£
+	eCheckCloseMods('mconnect');//¹Ø±ÕÄ£¿é
+	eCheckCloseMemberConnect();//ÑéÖ¤¿ªÆôµÄ½Ó¿Ú
 	session_start();
 	include('../memberconnect/memberconnectfun.php');
 }
@@ -57,27 +57,27 @@ elseif($enews=='SendPassword'||$enews=='DoGetPassword'||$enews=='DoActUser'||$en
 	include('class/member_actfun.php');
 }
 
-if($enews=="login")//ç™»é™†
+if($enews=="login")//µÇÂ½
 {
 	qlogin($_POST);
 }
-elseif($enews=="exit")//é€€å‡ºç™»é™†
+elseif($enews=="exit")//ÍË³öµÇÂ½
 {
 	qloginout($myuserid,$myusername,$myrnd);
 }
-elseif($enews=="register")//æ³¨å†Œ
+elseif($enews=="register")//×¢²á
 {
 	register($_POST);
 }
-elseif($enews=="EditSafeInfo")//ä¿®æ”¹å®‰å…¨ä¿¡æ¯
+elseif($enews=="EditSafeInfo")//ĞŞ¸Ä°²È«ĞÅÏ¢
 {
 	EditSafeInfo($_POST);
 }
-elseif($enews=="EditInfo")//ä¿®æ”¹ä¿¡æ¯
+elseif($enews=="EditInfo")//ĞŞ¸ÄĞÅÏ¢
 {
 	EditInfo($_POST);
 }
-elseif($enews=="AddFava")//å¢åŠ æ”¶è—
+elseif($enews=="AddFava")//Ôö¼ÓÊÕ²Ø
 {
 	$cid=$_POST['cid'];
 	$id=$_POST['id'];
@@ -85,17 +85,17 @@ elseif($enews=="AddFava")//å¢åŠ æ”¶è—
 	$from=$_POST['from'];
 	AddFava($id,$classid,$cid,$from);
 }
-elseif($enews=="DelFava_All")//åˆ é™¤æ”¶è—
+elseif($enews=="DelFava_All")//É¾³ıÊÕ²Ø
 {
 	$favaid=$_POST['favaid'];
 	DelFava_All($favaid);
 }
-elseif($enews=="DelFava")//åˆ é™¤æ”¶è—
+elseif($enews=="DelFava")//É¾³ıÊÕ²Ø
 {
 	$favaid=$_GET['favaid'];
 	DelFava($favaid);
 }
-elseif($enews=="CardGetFen")//ç‚¹å¡å†²å€¼
+elseif($enews=="CardGetFen")//µã¿¨³åÖµ
 {
 	$username=$_POST['username'];
 	$reusername=$_POST['reusername'];
@@ -103,74 +103,74 @@ elseif($enews=="CardGetFen")//ç‚¹å¡å†²å€¼
 	$password=$_POST['password'];
 	CardGetFen($username,$reusername,$card_no,$password);
 }
-elseif($enews=="AddFavaClass")//å¢åŠ æ”¶è—å¤¹åˆ†ç±»
+elseif($enews=="AddFavaClass")//Ôö¼ÓÊÕ²Ø¼Ğ·ÖÀà
 {
 	AddFavaClass($_POST);
 }
-elseif($enews=="EditFavaClass")//ä¿®æ”¹æ”¶è—å¤¹åˆ†ç±»
+elseif($enews=="EditFavaClass")//ĞŞ¸ÄÊÕ²Ø¼Ğ·ÖÀà
 {
 	EditFavaClass($_POST);
 }
-elseif($enews=="DelFavaClass")//åˆ é™¤æ”¶è—å¤¹åˆ†ç±»
+elseif($enews=="DelFavaClass")//É¾³ıÊÕ²Ø¼Ğ·ÖÀà
 {
 	$cid=$_GET['cid'];
 	DelFavaClass($cid);
 }
-elseif($enews=="MoveFava_All")//ç§»åŠ¨æ”¶è—å¤¹
+elseif($enews=="MoveFava_All")//ÒÆ¶¯ÊÕ²Ø¼Ğ
 {
 	$favaid=$_POST['favaid'];
 	$cid=$_POST['cid'];
 	MoveFava_All($favaid,$cid);
 }
-elseif($enews=="AddMsg")//å‘é€çŸ­æ¶ˆæ¯
+elseif($enews=="AddMsg")//·¢ËÍ¶ÌÏûÏ¢
 {
 	AddMsg($_POST);
 }
-elseif($enews=="DelMsg")//åˆ é™¤çŸ­æ¶ˆæ¯
+elseif($enews=="DelMsg")//É¾³ı¶ÌÏûÏ¢
 {
 	DelMsg($_GET['mid']);
 }
-elseif($enews=="DelMsg_all")//æ‰¹é‡åˆ é™¤çŸ­æ¶ˆæ¯
+elseif($enews=="DelMsg_all")//ÅúÁ¿É¾³ı¶ÌÏûÏ¢
 {
 	DelMsg_all($_POST['mid']);
 }
-elseif($enews=="AddFriend")//æ·»åŠ å¥½å‹
+elseif($enews=="AddFriend")//Ìí¼ÓºÃÓÑ
 {
 	AddFriend($_POST);
 }
-elseif($enews=="EditFriend")//ä¿®æ”¹å¥½å‹
+elseif($enews=="EditFriend")//ĞŞ¸ÄºÃÓÑ
 {
 	EditFriend($_POST);
 }
-elseif($enews=="DelFriend")//åˆ é™¤å¥½å‹
+elseif($enews=="DelFriend")//É¾³ıºÃÓÑ
 {
 	DelFriend($_GET);
 }
-elseif($enews=="AddFriendClass")//æ·»åŠ å¥½å‹åˆ†ç±»
+elseif($enews=="AddFriendClass")//Ìí¼ÓºÃÓÑ·ÖÀà
 {
 	AddFriendClass($_POST);
 }
-elseif($enews=="EditFriendClass")//ä¿®æ”¹å¥½å‹åˆ†ç±»
+elseif($enews=="EditFriendClass")//ĞŞ¸ÄºÃÓÑ·ÖÀà
 {
 	EditFriendClass($_POST);
 }
-elseif($enews=="DelFriendClass")//åˆ é™¤å¥½å‹åˆ†ç±»
+elseif($enews=="DelFriendClass")//É¾³ıºÃÓÑ·ÖÀà
 {
 	DelFriendClass($_GET['cid']);
 }
-elseif($enews=='SendPassword')//å‘é€å–å›å¯†ç é‚®ä»¶
+elseif($enews=='SendPassword')//·¢ËÍÈ¡»ØÃÜÂëÓÊ¼ş
 {
 	SendGetPasswordEmail($_POST);
 }
-elseif($enews=='DoGetPassword')//é‡è®¾å¯†ç 
+elseif($enews=='DoGetPassword')//ÖØÉèÃÜÂë
 {
 	DoGetPassword($_POST);
 }
-elseif($enews=='DoActUser')//æ¿€æ´»å¸å·
+elseif($enews=='DoActUser')//¼¤»îÕÊºÅ
 {
 	DoActUser($_GET);
 }
-elseif($enews=='RegSend')//é‡å‘æ¿€æ´»é‚®ä»¶
+elseif($enews=='RegSend')//ÖØ·¢¼¤»îÓÊ¼ş
 {
 	DoRegSend($_POST);
 }

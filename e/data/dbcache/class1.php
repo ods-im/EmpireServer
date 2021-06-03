@@ -1,7 +1,7 @@
 <?php
 $class_r[2]=Array('classid'=>2,
 'bclassid'=>0,
-'classname'=>'æ–°é—»ä¸­å¿ƒ',
+'classname'=>'ÐÂÎÅÖÐÐÄ',
 'sonclass'=>'|34|35|36|37|',
 'featherclass'=>'',
 'islast'=>0,
@@ -16,7 +16,7 @@ $class_r[2]=Array('classid'=>2,
 'modid'=>1);
 $class_r[3]=Array('classid'=>3,
 'bclassid'=>0,
-'classname'=>'ä¸‹è½½ä¸­å¿ƒ',
+'classname'=>'ÏÂÔØÖÐÐÄ',
 'sonclass'=>'|38|39|40|41|',
 'featherclass'=>'',
 'islast'=>0,
@@ -31,7 +31,7 @@ $class_r[3]=Array('classid'=>3,
 'modid'=>2);
 $class_r[4]=Array('classid'=>4,
 'bclassid'=>0,
-'classname'=>'å½±è§†é¢‘é“',
+'classname'=>'Ó°ÊÓÆµµÀ',
 'sonclass'=>'|42|43|44|45|',
 'featherclass'=>'',
 'islast'=>0,
@@ -46,7 +46,7 @@ $class_r[4]=Array('classid'=>4,
 'modid'=>5);
 $class_r[5]=Array('classid'=>5,
 'bclassid'=>0,
-'classname'=>'ç½‘ä¸Šå•†åŸŽ',
+'classname'=>'ÍøÉÏÉÌ³Ç',
 'sonclass'=>'|46|47|48|49|',
 'featherclass'=>'',
 'islast'=>0,
@@ -61,7 +61,7 @@ $class_r[5]=Array('classid'=>5,
 'modid'=>6);
 $class_r[6]=Array('classid'=>6,
 'bclassid'=>0,
-'classname'=>'FLASHé¢‘é“',
+'classname'=>'FLASHÆµµÀ',
 'sonclass'=>'|50|51|',
 'featherclass'=>'',
 'islast'=>0,
@@ -76,7 +76,7 @@ $class_r[6]=Array('classid'=>6,
 'modid'=>4);
 $class_r[7]=Array('classid'=>7,
 'bclassid'=>0,
-'classname'=>'å›¾ç‰‡é¢‘é“',
+'classname'=>'Í¼Æ¬ÆµµÀ',
 'sonclass'=>'|52|53|54|',
 'featherclass'=>'',
 'islast'=>0,
@@ -95,7 +95,7 @@ $class_r[7]=Array('classid'=>7,
 'dtlisttempid'=>3);
 $class_r[8]=Array('classid'=>8,
 'bclassid'=>0,
-'classname'=>'æ–‡ç« ä¸­å¿ƒ',
+'classname'=>'ÎÄÕÂÖÐÐÄ',
 'sonclass'=>'|55|56|57|',
 'featherclass'=>'',
 'islast'=>0,
@@ -110,7 +110,7 @@ $class_r[8]=Array('classid'=>8,
 'modid'=>7);
 $class_r[9]=Array('classid'=>9,
 'bclassid'=>0,
-'classname'=>'åˆ†ç±»ä¿¡æ¯',
+'classname'=>'·ÖÀàÐÅÏ¢',
 'sonclass'=>'|11|12|13|14|15|16|18|19|20|21|23|24|25|26|28|29|30|31|',
 'featherclass'=>'',
 'islast'=>0,
@@ -129,7 +129,7 @@ $class_r[9]=Array('classid'=>9,
 'dtlisttempid'=>8);
 $class_r[10]=Array('classid'=>10,
 'bclassid'=>9,
-'classname'=>'æˆ¿å±‹ä¿¡æ¯',
+'classname'=>'·¿ÎÝÐÅÏ¢',
 'sonclass'=>'|11|12|13|14|15|16|',
 'featherclass'=>'|9|',
 'islast'=>0,
@@ -148,7 +148,7 @@ $class_r[10]=Array('classid'=>10,
 'dtlisttempid'=>8);
 $class_r[11]=Array('classid'=>11,
 'bclassid'=>10,
-'classname'=>'æˆ¿å±‹æ±‚ç§Ÿ',
+'classname'=>'·¿ÎÝÇó×â',
 'sonclass'=>'',
 'featherclass'=>'|9|10|',
 'islast'=>1,
@@ -169,13 +169,13 @@ $class_r[11]=Array('classid'=>11,
 
 
 'checked'=>1,
-'bname'=>'æˆ¿å±‹æ±‚ç§Ÿ',
+'bname'=>'·¿ÎÝÇó×â',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[12]=Array('classid'=>12,
 'bclassid'=>10,
-'classname'=>'æˆ¿å±‹å‡ºç§Ÿ',
+'classname'=>'·¿ÎÝ³ö×â',
 'sonclass'=>'',
 'featherclass'=>'|9|10|',
 'islast'=>1,
@@ -196,13 +196,13 @@ $class_r[12]=Array('classid'=>12,
 
 
 'checked'=>1,
-'bname'=>'æˆ¿å±‹å‡ºç§Ÿ',
+'bname'=>'·¿ÎÝ³ö×â',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[13]=Array('classid'=>13,
 'bclassid'=>10,
-'classname'=>'æˆ¿å±‹æ±‚è´­',
+'classname'=>'·¿ÎÝÇó¹º',
 'sonclass'=>'',
 'featherclass'=>'|9|10|',
 'islast'=>1,
@@ -223,13 +223,13 @@ $class_r[13]=Array('classid'=>13,
 
 
 'checked'=>1,
-'bname'=>'æˆ¿å±‹æ±‚è´­',
+'bname'=>'·¿ÎÝÇó¹º',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[14]=Array('classid'=>14,
 'bclassid'=>10,
-'classname'=>'æˆ¿å±‹å‡ºå”®',
+'classname'=>'·¿ÎÝ³öÊÛ',
 'sonclass'=>'',
 'featherclass'=>'|9|10|',
 'islast'=>1,
@@ -250,13 +250,13 @@ $class_r[14]=Array('classid'=>14,
 
 
 'checked'=>1,
-'bname'=>'æˆ¿å±‹å‡ºå”®',
+'bname'=>'·¿ÎÝ³öÊÛ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[15]=Array('classid'=>15,
 'bclassid'=>10,
-'classname'=>'åŠžå…¬ç”¨æˆ¿',
+'classname'=>'°ì¹«ÓÃ·¿',
 'sonclass'=>'',
 'featherclass'=>'|9|10|',
 'islast'=>1,
@@ -277,13 +277,13 @@ $class_r[15]=Array('classid'=>15,
 
 
 'checked'=>1,
-'bname'=>'åŠžå…¬ç”¨æˆ¿',
+'bname'=>'°ì¹«ÓÃ·¿',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[16]=Array('classid'=>16,
 'bclassid'=>10,
-'classname'=>'æ—ºé“ºé—¨é¢',
+'classname'=>'ÍúÆÌÃÅÃæ',
 'sonclass'=>'',
 'featherclass'=>'|9|10|',
 'islast'=>1,
@@ -304,13 +304,13 @@ $class_r[16]=Array('classid'=>16,
 
 
 'checked'=>1,
-'bname'=>'æ—ºé“ºé—¨é¢',
+'bname'=>'ÍúÆÌÃÅÃæ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[17]=Array('classid'=>17,
 'bclassid'=>9,
-'classname'=>'è·³èš¤å¸‚åœº',
+'classname'=>'ÌøÔéÊÐ³¡',
 'sonclass'=>'|18|19|20|21|',
 'featherclass'=>'|9|',
 'islast'=>0,
@@ -329,7 +329,7 @@ $class_r[17]=Array('classid'=>17,
 'dtlisttempid'=>8);
 $class_r[18]=Array('classid'=>18,
 'bclassid'=>17,
-'classname'=>'ç”µè„‘é…ä»¶',
+'classname'=>'µçÄÔÅä¼þ',
 'sonclass'=>'',
 'featherclass'=>'|9|17|',
 'islast'=>1,
@@ -350,13 +350,13 @@ $class_r[18]=Array('classid'=>18,
 
 
 'checked'=>1,
-'bname'=>'ç”µè„‘é…ä»¶',
+'bname'=>'µçÄÔÅä¼þ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[19]=Array('classid'=>19,
 'bclassid'=>17,
-'classname'=>'ç”µå™¨æ•°ç ',
+'classname'=>'µçÆ÷ÊýÂë',
 'sonclass'=>'',
 'featherclass'=>'|9|17|',
 'islast'=>1,
@@ -377,13 +377,13 @@ $class_r[19]=Array('classid'=>19,
 
 
 'checked'=>1,
-'bname'=>'ç”µå™¨æ•°ç ',
+'bname'=>'µçÆ÷ÊýÂë',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[20]=Array('classid'=>20,
 'bclassid'=>17,
-'classname'=>'é€šè®¯äº§å“',
+'classname'=>'Í¨Ñ¶²úÆ·',
 'sonclass'=>'',
 'featherclass'=>'|9|17|',
 'islast'=>1,
@@ -404,13 +404,13 @@ $class_r[20]=Array('classid'=>20,
 
 
 'checked'=>1,
-'bname'=>'é€šè®¯äº§å“',
+'bname'=>'Í¨Ñ¶²úÆ·',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[21]=Array('classid'=>21,
 'bclassid'=>17,
-'classname'=>'å±…å®¶ç”¨å“',
+'classname'=>'¾Ó¼ÒÓÃÆ·',
 'sonclass'=>'',
 'featherclass'=>'|9|17|',
 'islast'=>1,
@@ -431,13 +431,13 @@ $class_r[21]=Array('classid'=>21,
 
 
 'checked'=>1,
-'bname'=>'å±…å®¶ç”¨å“',
+'bname'=>'¾Ó¼ÒÓÃÆ·',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[22]=Array('classid'=>22,
 'bclassid'=>9,
-'classname'=>'åŒåŸŽç”Ÿæ´»',
+'classname'=>'Í¬³ÇÉú»î',
 'sonclass'=>'|23|24|25|26|',
 'featherclass'=>'|9|',
 'islast'=>0,
@@ -456,7 +456,7 @@ $class_r[22]=Array('classid'=>22,
 'dtlisttempid'=>8);
 $class_r[23]=Array('classid'=>23,
 'bclassid'=>22,
-'classname'=>'æœ¬åœ°æ–°é—»',
+'classname'=>'±¾µØÐÂÎÅ',
 'sonclass'=>'',
 'featherclass'=>'|9|22|',
 'islast'=>1,
@@ -477,13 +477,13 @@ $class_r[23]=Array('classid'=>23,
 
 
 'checked'=>1,
-'bname'=>'æœ¬åœ°æ–°é—»',
+'bname'=>'±¾µØÐÂÎÅ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[24]=Array('classid'=>24,
 'bclassid'=>22,
-'classname'=>'è´­ç‰©æ‰“æŠ˜',
+'classname'=>'¹ºÎï´òÕÛ',
 'sonclass'=>'',
 'featherclass'=>'|9|22|',
 'islast'=>1,
@@ -504,13 +504,13 @@ $class_r[24]=Array('classid'=>24,
 
 
 'checked'=>1,
-'bname'=>'è´­ç‰©æ‰“æŠ˜',
+'bname'=>'¹ºÎï´òÕÛ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[25]=Array('classid'=>25,
 'bclassid'=>22,
-'classname'=>'æ—…æ¸¸æ´»åŠ¨',
+'classname'=>'ÂÃÓÎ»î¶¯',
 'sonclass'=>'',
 'featherclass'=>'|9|22|',
 'islast'=>1,
@@ -531,13 +531,13 @@ $class_r[25]=Array('classid'=>25,
 
 
 'checked'=>1,
-'bname'=>'æ—…æ¸¸æ´»åŠ¨',
+'bname'=>'ÂÃÓÎ»î¶¯',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[26]=Array('classid'=>26,
 'bclassid'=>22,
-'classname'=>'ä¾¿æ°‘å‘Šç¤º',
+'classname'=>'±ãÃñ¸æÊ¾',
 'sonclass'=>'',
 'featherclass'=>'|9|22|',
 'islast'=>1,
@@ -558,13 +558,13 @@ $class_r[26]=Array('classid'=>26,
 
 
 'checked'=>1,
-'bname'=>'ä¾¿æ°‘å‘Šç¤º',
+'bname'=>'±ãÃñ¸æÊ¾',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[27]=Array('classid'=>27,
 'bclassid'=>9,
-'classname'=>'æ±‚èŒæ‹›è˜',
+'classname'=>'ÇóÖ°ÕÐÆ¸',
 'sonclass'=>'|28|29|30|31|',
 'featherclass'=>'|9|',
 'islast'=>0,
@@ -583,7 +583,7 @@ $class_r[27]=Array('classid'=>27,
 'dtlisttempid'=>8);
 $class_r[28]=Array('classid'=>28,
 'bclassid'=>27,
-'classname'=>'å·¥ç¨‹æŠ€æœ¯',
+'classname'=>'¹¤³Ì¼¼Êõ',
 'sonclass'=>'',
 'featherclass'=>'|9|27|',
 'islast'=>1,
@@ -604,13 +604,13 @@ $class_r[28]=Array('classid'=>28,
 
 
 'checked'=>1,
-'bname'=>'å·¥ç¨‹æŠ€æœ¯',
+'bname'=>'¹¤³Ì¼¼Êõ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[29]=Array('classid'=>29,
 'bclassid'=>27,
-'classname'=>'è´¢åŠ¡ä¼šè®¡',
+'classname'=>'²ÆÎñ»á¼Æ',
 'sonclass'=>'',
 'featherclass'=>'|9|27|',
 'islast'=>1,
@@ -631,13 +631,13 @@ $class_r[29]=Array('classid'=>29,
 
 
 'checked'=>1,
-'bname'=>'è´¢åŠ¡ä¼šè®¡',
+'bname'=>'²ÆÎñ»á¼Æ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[30]=Array('classid'=>30,
 'bclassid'=>27,
-'classname'=>'é¤é¥®è¡Œä¸š',
+'classname'=>'²ÍÒûÐÐÒµ',
 'sonclass'=>'',
 'featherclass'=>'|9|27|',
 'islast'=>1,
@@ -658,13 +658,13 @@ $class_r[30]=Array('classid'=>30,
 
 
 'checked'=>1,
-'bname'=>'é¤é¥®è¡Œä¸š',
+'bname'=>'²ÍÒûÐÐÒµ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[31]=Array('classid'=>31,
 'bclassid'=>27,
-'classname'=>'ç»è¥ç®¡ç†',
+'classname'=>'¾­Óª¹ÜÀí',
 'sonclass'=>'',
 'featherclass'=>'|9|27|',
 'islast'=>1,
@@ -685,13 +685,13 @@ $class_r[31]=Array('classid'=>31,
 
 
 'checked'=>1,
-'bname'=>'ç»è¥ç®¡ç†',
+'bname'=>'¾­Óª¹ÜÀí',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>8);
 $class_r[34]=Array('classid'=>34,
 'bclassid'=>2,
-'classname'=>'å›½å†…æ–°é—»',
+'classname'=>'¹úÄÚÐÂÎÅ',
 'sonclass'=>'',
 'featherclass'=>'|2|',
 'islast'=>1,
@@ -712,13 +712,13 @@ $class_r[34]=Array('classid'=>34,
 
 
 'checked'=>1,
-'bname'=>'å›½å†…',
+'bname'=>'¹úÄÚ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>1);
 $class_r[35]=Array('classid'=>35,
 'bclassid'=>2,
-'classname'=>'å›½é™…æ–°é—»',
+'classname'=>'¹ú¼ÊÐÂÎÅ',
 'sonclass'=>'',
 'featherclass'=>'|2|',
 'islast'=>1,
@@ -739,13 +739,13 @@ $class_r[35]=Array('classid'=>35,
 
 
 'checked'=>1,
-'bname'=>'å›½é™…',
+'bname'=>'¹ú¼Ê',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>1);
 $class_r[36]=Array('classid'=>36,
 'bclassid'=>2,
-'classname'=>'å¨±ä¹æ–°é—»',
+'classname'=>'ÓéÀÖÐÂÎÅ',
 'sonclass'=>'',
 'featherclass'=>'|2|',
 'islast'=>1,
@@ -766,13 +766,13 @@ $class_r[36]=Array('classid'=>36,
 
 
 'checked'=>1,
-'bname'=>'å¨±ä¹',
+'bname'=>'ÓéÀÖ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>1);
 $class_r[37]=Array('classid'=>37,
 'bclassid'=>2,
-'classname'=>'ä½“è‚²æ–°é—»',
+'classname'=>'ÌåÓýÐÂÎÅ',
 'sonclass'=>'',
 'featherclass'=>'|2|',
 'islast'=>1,
@@ -793,13 +793,13 @@ $class_r[37]=Array('classid'=>37,
 
 
 'checked'=>1,
-'bname'=>'ä½“è‚²',
+'bname'=>'ÌåÓý',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>1);
 $class_r[38]=Array('classid'=>38,
 'bclassid'=>3,
-'classname'=>'ç³»ç»Ÿè½¯ä»¶',
+'classname'=>'ÏµÍ³Èí¼þ',
 'sonclass'=>'',
 'featherclass'=>'|3|',
 'islast'=>1,
@@ -820,13 +820,13 @@ $class_r[38]=Array('classid'=>38,
 
 
 'checked'=>1,
-'bname'=>'ç³»ç»Ÿè½¯ä»¶',
+'bname'=>'ÏµÍ³Èí¼þ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>2);
 $class_r[39]=Array('classid'=>39,
 'bclassid'=>3,
-'classname'=>'ç½‘ç»œå·¥å…·',
+'classname'=>'ÍøÂç¹¤¾ß',
 'sonclass'=>'',
 'featherclass'=>'|3|',
 'islast'=>1,
@@ -847,13 +847,13 @@ $class_r[39]=Array('classid'=>39,
 
 
 'checked'=>1,
-'bname'=>'ç½‘ç»œå·¥å…·',
+'bname'=>'ÍøÂç¹¤¾ß',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>2);
 $class_r[40]=Array('classid'=>40,
 'bclassid'=>3,
-'classname'=>'å®‰å…¨ç›¸å…³',
+'classname'=>'°²È«Ïà¹Ø',
 'sonclass'=>'',
 'featherclass'=>'|3|',
 'islast'=>1,
@@ -874,13 +874,13 @@ $class_r[40]=Array('classid'=>40,
 
 
 'checked'=>1,
-'bname'=>'å®‰å…¨ç›¸å…³',
+'bname'=>'°²È«Ïà¹Ø',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>2);
 $class_r[41]=Array('classid'=>41,
 'bclassid'=>3,
-'classname'=>'åª’ä½“å·¥å…·',
+'classname'=>'Ã½Ìå¹¤¾ß',
 'sonclass'=>'',
 'featherclass'=>'|3|',
 'islast'=>1,
@@ -901,13 +901,13 @@ $class_r[41]=Array('classid'=>41,
 
 
 'checked'=>1,
-'bname'=>'åª’ä½“å·¥å…·',
+'bname'=>'Ã½Ìå¹¤¾ß',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>2);
 $class_r[42]=Array('classid'=>42,
 'bclassid'=>4,
-'classname'=>'åŠ¨ä½œç‰‡',
+'classname'=>'¶¯×÷Æ¬',
 'sonclass'=>'',
 'featherclass'=>'|4|',
 'islast'=>1,
@@ -928,13 +928,13 @@ $class_r[42]=Array('classid'=>42,
 'openadd'=>1,
 
 'checked'=>1,
-'bname'=>'åŠ¨ä½œ',
+'bname'=>'¶¯×÷',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>5);
 $class_r[43]=Array('classid'=>43,
 'bclassid'=>4,
-'classname'=>'çˆ±æƒ…ç‰‡',
+'classname'=>'°®ÇéÆ¬',
 'sonclass'=>'',
 'featherclass'=>'|4|',
 'islast'=>1,
@@ -955,13 +955,13 @@ $class_r[43]=Array('classid'=>43,
 'openadd'=>1,
 
 'checked'=>1,
-'bname'=>'çˆ±æƒ…',
+'bname'=>'°®Çé',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>5);
 $class_r[44]=Array('classid'=>44,
 'bclassid'=>4,
-'classname'=>'å–œå‰§ç‰‡',
+'classname'=>'Ï²¾çÆ¬',
 'sonclass'=>'',
 'featherclass'=>'|4|',
 'islast'=>1,
@@ -982,13 +982,13 @@ $class_r[44]=Array('classid'=>44,
 'openadd'=>1,
 
 'checked'=>1,
-'bname'=>'å–œå‰§',
+'bname'=>'Ï²¾ç',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>5);
 $class_r[45]=Array('classid'=>45,
 'bclassid'=>4,
-'classname'=>'è¿žç»­å‰§',
+'classname'=>'Á¬Ðø¾ç',
 'sonclass'=>'',
 'featherclass'=>'|4|',
 'islast'=>1,
@@ -1009,13 +1009,13 @@ $class_r[45]=Array('classid'=>45,
 'openadd'=>1,
 
 'checked'=>1,
-'bname'=>'è¿žç»­å‰§',
+'bname'=>'Á¬Ðø¾ç',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>5);
 $class_r[46]=Array('classid'=>46,
 'bclassid'=>5,
-'classname'=>'æ‰‹æœºæ•°ç ',
+'classname'=>'ÊÖ»úÊýÂë',
 'sonclass'=>'',
 'featherclass'=>'|5|',
 'islast'=>1,
@@ -1036,13 +1036,13 @@ $class_r[46]=Array('classid'=>46,
 'openadd'=>1,
 
 'checked'=>1,
-'bname'=>'æ‰‹æœºæ•°ç ',
+'bname'=>'ÊÖ»úÊýÂë',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>6);
 $class_r[47]=Array('classid'=>47,
 'bclassid'=>5,
-'classname'=>'å®¶ç”¨ç”µå™¨',
+'classname'=>'¼ÒÓÃµçÆ÷',
 'sonclass'=>'',
 'featherclass'=>'|5|',
 'islast'=>1,
@@ -1063,13 +1063,13 @@ $class_r[47]=Array('classid'=>47,
 'openadd'=>1,
 
 'checked'=>1,
-'bname'=>'å®¶ç”¨ç”µå™¨',
+'bname'=>'¼ÒÓÃµçÆ÷',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>6);
 $class_r[48]=Array('classid'=>48,
 'bclassid'=>5,
-'classname'=>'å“ç‰Œç”µè„‘',
+'classname'=>'Æ·ÅÆµçÄÔ',
 'sonclass'=>'',
 'featherclass'=>'|5|',
 'islast'=>1,
@@ -1090,13 +1090,13 @@ $class_r[48]=Array('classid'=>48,
 'openadd'=>1,
 
 'checked'=>1,
-'bname'=>'å“ç‰Œç”µè„‘',
+'bname'=>'Æ·ÅÆµçÄÔ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>6);
 $class_r[49]=Array('classid'=>49,
 'bclassid'=>5,
-'classname'=>'å›¾ä¹¦æ‚å¿—',
+'classname'=>'Í¼ÊéÔÓÖ¾',
 'sonclass'=>'',
 'featherclass'=>'|5|',
 'islast'=>1,
@@ -1117,13 +1117,13 @@ $class_r[49]=Array('classid'=>49,
 'openadd'=>1,
 
 'checked'=>1,
-'bname'=>'å›¾ä¹¦æ‚å¿—',
+'bname'=>'Í¼ÊéÔÓÖ¾',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>6);
 $class_r[50]=Array('classid'=>50,
 'bclassid'=>6,
-'classname'=>'æ¸¸æˆ',
+'classname'=>'ÓÎÏ·',
 'sonclass'=>'',
 'featherclass'=>'|6|',
 'islast'=>1,
@@ -1144,13 +1144,13 @@ $class_r[50]=Array('classid'=>50,
 
 
 'checked'=>1,
-'bname'=>'æ¸¸æˆ',
+'bname'=>'ÓÎÏ·',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>4);
 $class_r[51]=Array('classid'=>51,
 'bclassid'=>6,
-'classname'=>'éŸ³ä¹MV',
+'classname'=>'ÒôÀÖMV',
 'sonclass'=>'',
 'featherclass'=>'|6|',
 'islast'=>1,
@@ -1171,13 +1171,13 @@ $class_r[51]=Array('classid'=>51,
 
 
 'checked'=>1,
-'bname'=>'éŸ³ä¹MV',
+'bname'=>'ÒôÀÖMV',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>4);
 $class_r[52]=Array('classid'=>52,
 'bclassid'=>7,
-'classname'=>'æ˜Žæ˜Ÿé£Žé‡‡',
+'classname'=>'Ã÷ÐÇ·ç²É',
 'sonclass'=>'',
 'featherclass'=>'|7|',
 'islast'=>1,
@@ -1198,13 +1198,13 @@ $class_r[52]=Array('classid'=>52,
 
 
 'checked'=>1,
-'bname'=>'æ˜Žæ˜Ÿé£Žé‡‡',
+'bname'=>'Ã÷ÐÇ·ç²É',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>3);
 $class_r[53]=Array('classid'=>53,
 'bclassid'=>7,
-'classname'=>'è‡ªç„¶é£Žæ™¯',
+'classname'=>'×ÔÈ»·ç¾°',
 'sonclass'=>'',
 'featherclass'=>'|7|',
 'islast'=>1,
@@ -1225,13 +1225,13 @@ $class_r[53]=Array('classid'=>53,
 
 
 'checked'=>1,
-'bname'=>'è‡ªç„¶é£Žæ™¯',
+'bname'=>'×ÔÈ»·ç¾°',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>3);
 $class_r[54]=Array('classid'=>54,
 'bclassid'=>7,
-'classname'=>'åŠ¨æ¼«å›¾ç‰‡',
+'classname'=>'¶¯ÂþÍ¼Æ¬',
 'sonclass'=>'',
 'featherclass'=>'|7|',
 'islast'=>1,
@@ -1252,13 +1252,13 @@ $class_r[54]=Array('classid'=>54,
 
 
 'checked'=>1,
-'bname'=>'åŠ¨æ¼«å›¾ç‰‡',
+'bname'=>'¶¯ÂþÍ¼Æ¬',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>3);
 $class_r[55]=Array('classid'=>55,
 'bclassid'=>8,
-'classname'=>'å°è¯´',
+'classname'=>'Ð¡Ëµ',
 'sonclass'=>'',
 'featherclass'=>'|8|',
 'islast'=>1,
@@ -1279,13 +1279,13 @@ $class_r[55]=Array('classid'=>55,
 
 
 'checked'=>1,
-'bname'=>'å°è¯´',
+'bname'=>'Ð¡Ëµ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>7);
 $class_r[56]=Array('classid'=>56,
 'bclassid'=>8,
-'classname'=>'æ•£æ–‡',
+'classname'=>'É¢ÎÄ',
 'sonclass'=>'',
 'featherclass'=>'|8|',
 'islast'=>1,
@@ -1306,13 +1306,13 @@ $class_r[56]=Array('classid'=>56,
 
 
 'checked'=>1,
-'bname'=>'æ•£æ–‡',
+'bname'=>'É¢ÎÄ',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>7);
 $class_r[57]=Array('classid'=>57,
 'bclassid'=>8,
-'classname'=>'è¯—æ­Œ',
+'classname'=>'Ê«¸è',
 'sonclass'=>'',
 'featherclass'=>'|8|',
 'islast'=>1,
@@ -1333,7 +1333,7 @@ $class_r[57]=Array('classid'=>57,
 
 
 'checked'=>1,
-'bname'=>'è¯—æ­Œ',
+'bname'=>'Ê«¸è',
 
 'reorder'=>'newstime DESC',
 'dtlisttempid'=>7);

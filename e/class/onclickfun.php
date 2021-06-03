@@ -1,5 +1,5 @@
 <?php
-//淇℃伅缁熻
+//信息统计
 function InfoOnclick($classid,$id){
 	global $empire,$dbtbpre,$public_r;
 	if(!$classid||!$id)
@@ -29,7 +29,7 @@ function InfoOnclick($classid,$id){
 	}
 }
 
-//鏍忕洰缁熻
+//栏目统计
 function ClassOnclick($classid){
 	global $empire,$dbtbpre,$public_r;
 	if(!$classid)
@@ -54,7 +54,7 @@ function ClassOnclick($classid){
 	}
 }
 
-//涓撻缁熻
+//专题统计
 function ZtOnclick($ztid){
 	global $empire,$dbtbpre,$public_r;
 	if(!$ztid)
@@ -79,7 +79,7 @@ function ZtOnclick($ztid){
 	}
 }
 
-//鍔犲叆鐐瑰嚮缂撳瓨
+//加入点击缓存
 function eAddUpdateOnclick($id,$filename){
 	if(@$fp=fopen($filename,'a'))
 	{
@@ -88,7 +88,7 @@ function eAddUpdateOnclick($id,$filename){
 	}
 }
 
-//鏇存柊鐐瑰嚮缂撳瓨
+//更新点击缓存
 function eDoUpdateOnclick($table,$idf,$onclickf,$filename){
 	global $empire,$dbtbpre,$public_r;
 	if(!file_exists($filename))
@@ -121,7 +121,7 @@ function eDoUpdateOnclick($table,$idf,$onclickf,$filename){
 	}
 }
 
-//COOKIE鐐瑰嚮楠岃瘉
+//COOKIE点击验证
 function eCheckOnclickCookie($var,$val){
 	$doupdate=1;
 	$onclickrecord=getcvar($var);

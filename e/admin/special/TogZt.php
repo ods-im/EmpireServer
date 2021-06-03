@@ -6,7 +6,7 @@ require('../../class/functions.php');
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -21,7 +21,7 @@ if(empty($ztid))
 {
 	$ztid=(int)$_POST['ztid'];
 }
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 //CheckLevel($logininid,$loginin,$classid,"zt");
 $returnandlevel=CheckAndUsernamesLevel('dozt',$ztid,$logininid,$loginin,$loginlevel);
 
@@ -52,8 +52,8 @@ elseif($enews=='DelTogZtInfo')
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç»„åˆä¸“é¢˜</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>×éºÏ×¨Ìâ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -65,7 +65,7 @@ if($enews=="TogZt")
 	$start=0;
 	$page=(int)$_POST['page'];
 	$page=RepPIntvar($page);
-	$line=(int)$_POST['pline'];//æ¯è¡Œæ˜¾ç¤º
+	$line=(int)$_POST['pline'];//Ã¿ĞĞÏÔÊ¾
 	$page_line=12;
 	$offset=$page*$line;
 	$addsql='';
@@ -77,7 +77,7 @@ if($enews=="TogZt")
 	$totalquery="select count(*) as total from {$dbtbpre}ecms_".$re[2]." where ".$re[0].$addsql;
 	if($totalnum<1)
 	{
-		$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+		$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 	}
 	else
 	{
@@ -85,7 +85,7 @@ if($enews=="TogZt")
 	}
 	$query.=" order by newstime desc limit $offset,$line";
 	$sql=$empire->query($query);
-	//ä¸“é¢˜å­ç±»
+	//×¨Ìâ×ÓÀà
 	$zcurl='';
 	$zcid=(int)$_POST['zcid'];
 	if($zcid)
@@ -93,7 +93,7 @@ if($enews=="TogZt")
 		$zcr=$empire->fetch1("select cname from {$dbtbpre}enewszttype where cid='$zcid'");
 		$zcurl='&nbsp;->&nbsp;<b>'.$zcr[cname].'</b>';
 	}
-	$url="ä¸“é¢˜: <b>".$re[3]."</b>".$zcurl."&nbsp;->&nbsp;<a href='TogZt.php?ztid=".$ztid.$ecms_hashur['ehref']."'>ç»„åˆä¸“é¢˜</a>&nbsp;(".$dbtbpre."ecms_".$re[2].")";
+	$url="×¨Ìâ: <b>".$re[3]."</b>".$zcurl."&nbsp;->&nbsp;<a href='TogZt.php?ztid=".$ztid.$ecms_hashur['ehref']."'>×éºÏ×¨Ìâ</a>&nbsp;(".$dbtbpre."ecms_".$re[2].")";
 	$returnpage=postpage($num,$line,$page_line,$start,$page,"document.ListZtInfo");
 ?>
 <script>
@@ -129,7 +129,7 @@ function ReInfoid(id){
 			document.ListZtInfo.inid.value="";
 			return "";
 		}
-		//å»æ‰å‰å,
+		//È¥µôÇ°ºó,
 		len=newinid.length;
 		newinid=newinid.substring(1,len-1);
 		document.ListZtInfo.inid.value=newinid;
@@ -142,7 +142,7 @@ function DoTogzt(){
 </script>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
   
@@ -155,20 +155,20 @@ function DoTogzt(){
 	<input type=hidden name=start value="<?=$start?>">
 	<?=$re[1]?>
     <tr class="header"> 
-      <td width="6%" height="25"> <div align="center">é€‰æ‹©</div></td>
-      <td width="55%"><div align="center">æ ‡é¢˜</div></td>
-      <td width="18%"><div align="center">å‘å¸ƒè€…</div></td>
-      <td width="21%"><div align="center">å‘å¸ƒæ—¶é—´</div></td>
+      <td width="6%" height="25"> <div align="center">Ñ¡Ôñ</div></td>
+      <td width="55%"><div align="center">±êÌâ</div></td>
+      <td width="18%"><div align="center">·¢²¼Õß</div></td>
+      <td width="21%"><div align="center">·¢²¼Ê±¼ä</div></td>
     </tr>
 	<?
 	while($r=$empire->fetch($sql))
 	{
-		//æ—¶é—´
+		//Ê±¼ä
 		$truetime=date_time($r[truetime],"Y-m-d H:i:s");
 		$lastdotime=date_time($r[lastdotime],"Y-m-d H:i:s");
 		$oldtitle=$r[title];
 		$r[title]=stripSlashes(sub($r[title],0,45,false));
-		//ä¼šå‘˜æŠ•ç¨¿
+		//»áÔ±Í¶¸å
 		if($r[ismember])
 		{
 			$r[username]="<font color=red>".$r[username]."</font>";
@@ -181,7 +181,7 @@ function DoTogzt(){
 			$bgcolor="#DBEAF5";
 			$checked=" checked";
 		}
-		//æ˜¯å¦å·²åŠ å…¥ä¸“é¢˜
+		//ÊÇ·ñÒÑ¼ÓÈë×¨Ìâ
 		$checkbox='<input name="checkid" type="checkbox" id="checkid" onClick="if(this.checked){DelInfoid('.$r[id].');news'.$r[id].'.style.backgroundColor=\'#DBEAF5\';}else{ReInfoid('.$r[id].');news'.$r[id].'.style.backgroundColor=\'#ffffff\';}" value="'.$r[id].'"'.$checked.'>';
 		if(empty($addsql))
 		{
@@ -202,7 +202,7 @@ function DoTogzt(){
         </a>
 	  </td>
       <td><div align="center"><?=$r[username]?></div></td>
-      <td><div align="center"><a href="../AddNews.php?enews=EditNews&id=<?=$r[id]?>&classid=<?=$r[classid]?><?=$ecms_hashur['ehref']?>" title="<? echo"å¢åŠ æ—¶é—´ï¼š".$truetime."\r\næœ€åä¿®æ”¹ï¼š".$lastdotime;?>" target=_blank><?=date("Y-m-d H:i:s",$r[newstime])?></a></div></td>
+      <td><div align="center"><a href="../AddNews.php?enews=EditNews&id=<?=$r[id]?>&classid=<?=$r[classid]?><?=$ecms_hashur['ehref']?>" title="<? echo"Ôö¼ÓÊ±¼ä£º".$truetime."\r\n×îºóĞŞ¸Ä£º".$lastdotime;?>" target=_blank><?=date("Y-m-d H:i:s",$r[newstime])?></a></div></td>
     </tr>
 	<?
 	}
@@ -214,10 +214,10 @@ function DoTogzt(){
     <tr bgcolor="ffffff"> 
       <td height="25"> <div align="center"></div></td>
       <td colspan="3"><input name="togtype" type="radio" value="0" checked>
-      æ’é™¤é€‰ä¸­
+      ÅÅ³ıÑ¡ÖĞ
         <input type="radio" name="togtype" value="1">
-        ç»„åˆé€‰ä¸­
-        <input type="button" name="Submit3" value="å¼€å§‹ç»„åˆä¸“é¢˜" onclick="javascript:DoTogzt();"></td>
+        ×éºÏÑ¡ÖĞ
+        <input type="button" name="Submit3" value="¿ªÊ¼×éºÏ×¨Ìâ" onclick="javascript:DoTogzt();"></td>
     </tr>
   </form>
 </table>
@@ -234,14 +234,14 @@ else
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//åˆå§‹å€¼
+	//³õÊ¼Öµ
 	$togr[startid]=0;
 	$togr[endid]=0;
 	$togr[pline]=50;
 	$togr[searchf]=",stitle,";
 	$togr[doecmszt]=0;
-	$url="ä¸“é¢˜: <b>".$r[ztname]."</b>&nbsp;->&nbsp;ç»„åˆä¸“é¢˜";
-	//--------------------æ“ä½œçš„æ ç›®
+	$url="×¨Ìâ: <b>".$r[ztname]."</b>&nbsp;->&nbsp;×éºÏ×¨Ìâ";
+	//--------------------²Ù×÷µÄÀ¸Ä¿
 	$fcjsfile='../../data/fc/cmsclass.js';
 	$class=GetFcfiletext($fcjsfile);
 	$togid=(int)$_GET['togid'];
@@ -250,7 +250,7 @@ else
 		$togr=$empire->fetch1("select * from {$dbtbpre}enewstogzts where togid='$togid'");
 		$class=str_replace("<option value='$togr[classid]'","<option value='$togr[classid]' selected",$class);
 	}
-	//å‚æ•°
+	//²ÎÊı
 	$togsql=$empire->query("select togid,togztname from {$dbtbpre}enewstogzts order by togid");
 	while($tgr=$empire->fetch($togsql))
 	{
@@ -261,14 +261,14 @@ else
 		}
 		$togzts.="<option value='".$tgr[togid]."'".$selected.">".$tgr[togztname]."</option>";
 	}
-	//æ•°æ®è¡¨
+	//Êı¾İ±í
 	$tables='';
 	$tsql=$empire->query("select tid,tbname,tname from {$dbtbpre}enewstable order by tid");
 	while($tr=$empire->fetch($tsql))
 	{
 		$tables.="<option value='".$tr[tbname]."'>".$tr[tname]."(".$tr[tbname].")</option>";
 	}
-	//ä¸“é¢˜å­ç±»
+	//×¨Ìâ×ÓÀà
 	$zttypes='';
 	$zttypesql=$empire->query("select cid,cname from {$dbtbpre}enewszttype where ztid='$ztid'");
 	while($zttyper=$empire->fetch($zttypesql))
@@ -281,17 +281,17 @@ else
 <form name="loadtogzt" method="get" action="TogZt.php">
 	<?=$ecms_hashur['form']?>
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š 
+    <td width="50%" height="25">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right">
           <select name="togid" id="togid">
-		  <option name="">é€‰æ‹©ç»„åˆå‚æ•°</option>
+		  <option name="">Ñ¡Ôñ×éºÏ²ÎÊı</option>
 		  <?=$togzts?>
           </select>
-          <input type="submit" name="Submit5" value="å¯¼å…¥å‚æ•°" onclick="document.loadtogzt.enews.value='';">
+          <input type="submit" name="Submit5" value="µ¼Èë²ÎÊı" onclick="document.loadtogzt.enews.value='';">
           &nbsp; 
-          <input type="submit" name="Submit6" value="åˆ é™¤" onclick="document.loadtogzt.enews.value='DelTogZtInfo';">
+          <input type="submit" name="Submit6" value="É¾³ı" onclick="document.loadtogzt.enews.value='DelTogZtInfo';">
           <input name="enews" type="hidden" id="enews" value="">
           <input name="ztid" type="hidden" id="ztid" value="<?=$ztid?>">
         </div></td>
@@ -300,102 +300,102 @@ else
 </table>
 <br>
 <table width="100%" border="0" align="center" cellpadding="5" cellspacing="1" class=tableborder>
-  <form name="form1" method="post" action="TogZt.php" onsubmit="if(document.form1.doecmszt.checked){return confirm('ç¡®è®¤è¦æ‰§è¡Œæ­¤æ“ä½œï¼Ÿ');}else{return true;}">
+  <form name="form1" method="post" action="TogZt.php" onsubmit="if(document.form1.doecmszt.checked){return confirm('È·ÈÏÒªÖ´ĞĞ´Ë²Ù×÷£¿');}else{return true;}">
     <tr class=header> 
 			  <?=$ecms_hashur['form']?>
-      <td height="27" colspan="2">ç»„åˆä¸“é¢˜</td>
+      <td height="27" colspan="2">×éºÏ×¨Ìâ</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="27">åŠ å…¥ä¸“é¢˜</td>
+      <td height="27">¼ÓÈë×¨Ìâ</td>
       <td height="27"><b><?=$r[ztname]?></b></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="27">åŠ å…¥ä¸“é¢˜å­ç±»</td>
+      <td height="27">¼ÓÈë×¨Ìâ×ÓÀà</td>
       <td height="27"><select name="zcid" id="zcid">
-        <option value="0">ä¸å±ä¸“é¢˜å­ç±»</option>
+        <option value="0">²»Êô×¨Ìâ×ÓÀà</option>
 		<?=$zttypes?>
       </select>
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="22%" height="27">é€‰æ‹©æ•°æ®è¡¨(*)</td>
+      <td width="22%" height="27">Ñ¡ÔñÊı¾İ±í(*)</td>
       <td width="78%" height="27"><select name="tbname" id="tbname">
           <?=$tables?>
         </select></td>
     </tr>
 	<tr bgcolor="#FFFFFF"> 
-      <td height="27">æŸ¥è¯¢æ ç›®</td>
+      <td height="27">²éÑ¯À¸Ä¿</td>
       <td height="27"> <select name="classid" id="select">
-          <option value="0">æ‰€æœ‰æ ç›®</option>
+          <option value="0">ËùÓĞÀ¸Ä¿</option>
           <?=$class?>
-        </select> <font color="#666666">ï¼ˆå¦‚é€‰æ‹©å¤§æ ç›®ï¼Œå°†æŸ¥è¯¢æ‰€æœ‰å­æ ç›®ï¼‰</font></td>
+        </select> <font color="#666666">£¨ÈçÑ¡Ôñ´óÀ¸Ä¿£¬½«²éÑ¯ËùÓĞ×ÓÀ¸Ä¿£©</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="27">ç»„åˆå…³é”®å­—</td>
+      <td height="27">×éºÏ¹Ø¼ü×Ö</td>
       <td height="27"> <input name="keyboard" type="text" id="keyboard2" size="38" value="<?=stripSlashes($togr[keyboard])?>"> 
-        <font color="#666666">(ä¸å¡«ä¸ºä¸é™åˆ¶)</font></td>
+        <font color="#666666">(²»ÌîÎª²»ÏŞÖÆ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="27">æŸ¥è¯¢å­—æ®µ</td>
+      <td height="27">²éÑ¯×Ö¶Î</td>
       <td height="27"> <input name="stitle" type="checkbox" id="stitle3" value="1"<?=strstr($togr[searchf],',stitle,')?' checked':''?>>
-        æ ‡é¢˜ 
+        ±êÌâ 
         <input name="susername" type="checkbox" id="susername2" value="1"<?=strstr($togr[searchf],',susername,')?' checked':''?>>
-        å‘å¸ƒè€…</td>
+        ·¢²¼Õß</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="27">é™„åŠ SQLæ¡ä»¶</td>
+      <td height="27">¸½¼ÓSQLÌõ¼ş</td>
       <td height="27"><input name="query" type="text" id="query" value="<?=stripSlashes($togr[query])?>" size="60"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="27">&nbsp;</td>
-      <td height="27"><font color="#666666">(æ ¼å¼å¦‚ï¼šâ€œwriter='ä½œè€…'â€)</font></td>
+      <td height="27"><font color="#666666">(¸ñÊ½Èç£º¡°writer='×÷Õß'¡±)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="27">ç‰¹æ®Šæ¡ä»¶</td>
+      <td height="27">ÌØÊâÌõ¼ş</td>
       <td height="27"> <input name="isgood" type="checkbox" id="isgood3" value="1"<?=strstr($togr[specialsearch],',isgood,')?' checked':''?>>
-        æ¨è 
+        ÍÆ¼ö 
         <input name="firsttitle" type="checkbox" id="firsttitle2" value="1"<?=strstr($togr[specialsearch],',firsttitle,')?' checked':''?>>
-        å¤´æ¡ 
+        Í·Ìõ 
         <input name="titlepic" type="checkbox" id="titlepic2" value="1"<?=strstr($togr[specialsearch],',titlepic,')?' checked':''?>>
-        æœ‰æ ‡é¢˜å›¾ç‰‡<font color="#666666">(ä¸é€‰ä¸ºä¸é™åˆ¶)</font></td>
+        ÓĞ±êÌâÍ¼Æ¬<font color="#666666">(²»Ñ¡Îª²»ÏŞÖÆ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="27"> <input name="retype" type="radio" value="0"<?=$togr[retype]==0?' checked':''?>>
-        æŒ‰æ—¶é—´æŸ¥è¯¢</td>
-      <td height="27">ä» 
+        °´Ê±¼ä²éÑ¯</td>
+      <td height="27">´Ó 
         <input name="startday" type="text" value="<?=$togr[startday]?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        åˆ° 
+        µ½ 
         <input name="endday" type="text" value="<?=$togr[endday]?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        ä¹‹é—´çš„æ•°æ®<font color="#666666">(ä¸å¡«å°†æŸ¥è¯¢æ‰€æœ‰ä¿¡æ¯)</font></td>
+        Ö®¼äµÄÊı¾İ<font color="#666666">(²»Ìî½«²éÑ¯ËùÓĞĞÅÏ¢)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="27"> <input name="retype" type="radio" value="1"<?=$togr[retype]==1?' checked':''?>>
-        æŒ‰IDæŸ¥è¯¢</td>
-      <td height="27">ä» 
+        °´ID²éÑ¯</td>
+      <td height="27">´Ó 
         <input name="startid" type="text" id="startid2" value="<?=$togr[startid]?>" size="6">
-        åˆ° 
+        µ½ 
         <input name="endid" type="text" id="endid2" value="<?=$togr[endid]?>" size="6">
-        ä¹‹é—´çš„æ•°æ®<font color="#666666">(å¦‚ä¸¤ä¸ªå€¼ä¸º0å°†æŸ¥è¯¢æ‰€æœ‰ä¿¡æ¯)</font></td>
+        Ö®¼äµÄÊı¾İ<font color="#666666">(ÈçÁ½¸öÖµÎª0½«²éÑ¯ËùÓĞĞÅÏ¢)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="27">æ¯é¡µæ˜¾ç¤ºè¡Œæ•°</td>
+      <td height="27">Ã¿Ò³ÏÔÊ¾ĞĞÊı</td>
       <td height="27"><input name="pline" type="text" id="pline" value="<?=$togr[pline]?>" size="6"> 
         <input name="doecmszt" type="checkbox" id="doecmszt" value="1"<?=$togr[doecmszt]==1?' checked':''?>>
-        ç›´æ¥ç»„åˆä¸“é¢˜<font color="#666666">(ä¸æ˜¾ç¤ºåˆ—è¡¨)</font></td>
+        Ö±½Ó×éºÏ×¨Ìâ<font color="#666666">(²»ÏÔÊ¾ÁĞ±í)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="27">&nbsp;</td>
-      <td height="27"> <input type="submit" name="Submit" value=" å¼€å§‹ç»„åˆ " onclick="document.form1.enews.value='TogZt';"> <input type="reset" name="Submit2" value="é‡ç½®"> 
+      <td height="27"> <input type="submit" name="Submit" value=" ¿ªÊ¼×éºÏ " onclick="document.form1.enews.value='TogZt';"> <input type="reset" name="Submit2" value="ÖØÖÃ"> 
         <input name="enews" type="hidden" id="enews2" value="TogZt"> <input name="ztid" type="hidden" id="ztid" value="<?=$ztid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
       <td height="27">&nbsp;</td>
-      <td height="27">å‚æ•°å: 
+      <td height="27">²ÎÊıÃû: 
         <input name="togztname" type="text" id="togztname" value="<?=$togr[togztname]?>">
-        <input type="submit" name="Submit4" value="ä¿å­˜å‚æ•°" onclick="document.form1.enews.value='SaveTogZtInfo';"></td>
+        <input type="submit" name="Submit4" value="±£´æ²ÎÊı" onclick="document.form1.enews.value='SaveTogZtInfo';"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="27" colspan="2"><font color="#666666">è¯´æ˜ï¼šæ­¤åŠŸèƒ½æ˜¯å°†æŸ¥è¯¢çš„ä¿¡æ¯åŠ å…¥ä¸“é¢˜ã€‚</font></td>
+      <td height="27" colspan="2"><font color="#666666">ËµÃ÷£º´Ë¹¦ÄÜÊÇ½«²éÑ¯µÄĞÅÏ¢¼ÓÈë×¨Ìâ¡£</font></td>
     </tr>
 	</form>
   </table>

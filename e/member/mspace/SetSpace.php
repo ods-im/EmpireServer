@@ -6,10 +6,10 @@ require("../class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 $user=islogin();
 $addr=$empire->fetch1("select spacename,spacegg from {$dbtbpre}enewsmemberadd where userid='$user[userid]' limit 1");
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/mspace/SetSpace.php');
 db_close();
 $empire=null;

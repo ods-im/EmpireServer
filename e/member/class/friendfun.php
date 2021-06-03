@@ -1,10 +1,10 @@
 <?php
-//--------------- 浼氬憳濂藉弸鍑芥暟 ---------------
+//--------------- 会员好友函数 ---------------
 
-//澧炲姞濂藉弸
+//增加好友
 function AddFriend($add){
 	global $empire,$dbtbpre;
-	//鏄惁鐧婚檰
+	//是否登陆
 	$user_r=islogin();
 	$fname=RepPostVar(trim($add['fname']));
 	$add['fcid']=(int)$add['fcid'];
@@ -12,7 +12,7 @@ function AddFriend($add){
 	{
 		printerror("EmptyFriend","",1);
 	}
-	//鍔犺嚜宸变负濂藉弸
+	//加自己为好友
 	if($fname==$user_r['username'])
 	{
 		printerror("NotAddFriendSelf","",1);
@@ -22,7 +22,7 @@ function AddFriend($add){
 	{
 		printerror("NotFriendUsername","",1);
 	}
-	//閲嶅鎻愪氦
+	//重复提交
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewshy where fname='$fname' and userid='$user_r[userid]' limit 1");
 	if($num)
 	{
@@ -41,10 +41,10 @@ function AddFriend($add){
 	}
 }
 
-//淇敼濂藉弸
+//修改好友
 function EditFriend($add){
 	global $empire,$dbtbpre;
-	//鏄惁鐧婚檰
+	//是否登陆
 	$user_r=islogin();
 	$fid=(int)$add['fid'];
 	$fname=RepPostVar(trim($add['fname']));
@@ -53,7 +53,7 @@ function EditFriend($add){
 	{
 		printerror("EmptyFriend","",1);
 	}
-	//鍔犺嚜宸变负濂藉弸
+	//加自己为好友
 	if($fname==$user_r['username'])
 	{
 		printerror("NotAddFriendSelf","",1);
@@ -63,7 +63,7 @@ function EditFriend($add){
 	{
 		printerror("NotFriendUsername","",1);
 	}
-	//閲嶅鎻愪氦
+	//重复提交
 	if($fname!=$add['oldfname'])
 	{
 		$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewshy where fname='$fname' and userid='$user_r[userid]' limit 1");
@@ -85,10 +85,10 @@ function EditFriend($add){
 	}
 }
 
-//鍒犻櫎濂藉弸
+//删除好友
 function DelFriend($add){
 	global $empire,$dbtbpre;
-	//鏄惁鐧婚檰
+	//是否登陆
 	$user_r=islogin();
 	$fid=(int)$add['fid'];
 	$add['fcid']=(int)$add['fcid'];
@@ -112,14 +112,14 @@ function DelFriend($add){
 	}
 }
 
-//澧炲姞濂藉弸鍒嗙被
+//增加好友分类
 function AddFriendClass($add){
 	global $empire,$dbtbpre;
 	if(!trim($add[cname]))
 	{
 		printerror('EmptyFavaClassname','history.go(-1)',1);
     }
-	//鏄惁鐧婚檰
+	//是否登陆
 	$user_r=islogin();
 	$add[cname]=dgdb_tosave($add[cname]);
 	$sql=$empire->query("insert into {$dbtbpre}enewshyclass(cname,userid) values('$add[cname]','$user_r[userid]');");
@@ -133,7 +133,7 @@ function AddFriendClass($add){
 	}
 }
 
-//淇敼濂藉弸鍒嗙被
+//修改好友分类
 function EditFriendClass($add){
 	global $empire,$dbtbpre;
 	$add[cid]=(int)$add[cid];
@@ -141,7 +141,7 @@ function EditFriendClass($add){
 	{
 		printerror('EmptyFavaClassname','history.go(-1)',1);
     }
-	//鏄惁鐧婚檰
+	//是否登陆
 	$user_r=islogin();
 	$add[cname]=dgdb_tosave($add[cname]);
 	$sql=$empire->query("update {$dbtbpre}enewshyclass set cname='$add[cname]' where cid='$add[cid]' and userid='$user_r[userid]'");
@@ -155,7 +155,7 @@ function EditFriendClass($add){
 	}
 }
 
-//鍒犻櫎濂藉弸鍒嗙被
+//删除好友分类
 function DelFriendClass($cid){
 	global $empire,$dbtbpre;
 	$cid=(int)$cid;
@@ -163,7 +163,7 @@ function DelFriendClass($cid){
 	{
 		printerror('EmptyFavaClassid','history.go(-1)',1);
     }
-	//鏄惁鐧婚檰
+	//是否登陆
 	$user_r=islogin();
 	$sql=$empire->query("delete from {$dbtbpre}enewshyclass where cid='$cid' and userid='$user_r[userid]'");
 	if($sql)
@@ -176,7 +176,7 @@ function DelFriendClass($cid){
 	}
 }
 
-//杩斿洖濂藉弸鍒嗙被
+//返回好友分类
 function ReturnFriendclass($userid,$cid){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;

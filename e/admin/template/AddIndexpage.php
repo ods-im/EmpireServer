@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,24 +15,24 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"template");
 $gid=(int)$_GET['gid'];
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href=ListIndexpage.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†é¦–é¡µæ–¹æ¡ˆ</a>&nbsp;>&nbsp;å¢åŠ é¦–é¡µæ–¹æ¡ˆ";
-//å¤åˆ¶
+$url="<a href=ListIndexpage.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀíÊ×Ò³·½°¸</a>&nbsp;>&nbsp;Ôö¼ÓÊ×Ò³·½°¸";
+//¸´ÖÆ
 if($enews=="AddIndexpage"&&$_GET['docopy'])
 {
 	$tempid=(int)$_GET['tempid'];
 	$r=$empire->fetch1("select tempid,tempname,temptext from {$dbtbpre}enewsindexpage where tempid='$tempid'");
-	$url="<a href=ListIndexpage.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†é¦–é¡µæ–¹æ¡ˆ</a>&nbsp;>&nbsp;å¤åˆ¶é¦–é¡µæ–¹æ¡ˆï¼š<b>".$r[tempname]."</b>";
+	$url="<a href=ListIndexpage.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀíÊ×Ò³·½°¸</a>&nbsp;>&nbsp;¸´ÖÆÊ×Ò³·½°¸£º<b>".$r[tempname]."</b>";
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditIndexpage")
 {
 	$tempid=(int)$_GET['tempid'];
 	$r=$empire->fetch1("select tempid,tempname,temptext from {$dbtbpre}enewsindexpage where tempid='$tempid'");
-	$url="<a href=ListIndexpage.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†é¦–é¡µæ–¹æ¡ˆ</a>&nbsp;>&nbsp;ä¿®æ”¹é¦–é¡µæ–¹æ¡ˆï¼š<b>".$r[tempname]."</b>";
+	$url="<a href=ListIndexpage.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀíÊ×Ò³·½°¸</a>&nbsp;>&nbsp;ĞŞ¸ÄÊ×Ò³·½°¸£º<b>".$r[tempname]."</b>";
 }
 db_close();
 $empire=null;
@@ -40,8 +40,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ é¦–é¡µæ–¹æ¡ˆ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼ÓÊ×Ò³·½°¸</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <SCRIPT lanuage="JScript">
 <!--
@@ -64,7 +64,7 @@ function ReTempBak(){
 <body>
 <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <br>
@@ -72,18 +72,18 @@ function ReTempBak(){
   <form name="form1" method="post" action="ListIndexpage.php">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å¢åŠ é¦–é¡µæ–¹æ¡ˆ <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
+      <td height="25" colspan="2">Ôö¼ÓÊ×Ò³·½°¸ <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
         <input name="tempid" type="hidden" id="tempid" value="<?=$tempid?>"> <input name="gid" type="hidden" id="gid" value="<?=$gid?>"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">æ–¹æ¡ˆåç§°</td>
+      <td width="19%" height="25">·½°¸Ãû³Æ</td>
       <td width="81%" height="25"> <input name="tempname" type="text" id="tempname" value="<?=$r[tempname]?>"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><strong>æ¨¡æ¿å†…å®¹</strong>(*)</td>
-      <td height="25">è¯·å°†æ¨¡æ¿å†…å®¹<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.temptext.value);document.form1.temptext.select()" title="ç‚¹å‡»å¤åˆ¶æ¨¡æ¿å†…å®¹"><strong>å¤åˆ¶åˆ°Dreamweaver(æ¨è)</strong></a>æˆ–è€…ä½¿ç”¨<a href="#ecms" onclick="window.open('editor.php?getvar=opener.document.form1.temptext.value&returnvar=opener.document.form1.temptext.value&fun=ReturnHtml&notfullpage=1<?=$ecms_hashur['ehref']?>','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>æ¨¡æ¿åœ¨çº¿ç¼–è¾‘</strong></a>è¿›è¡Œå¯è§†åŒ–ç¼–è¾‘</td>
+      <td height="25"><strong>Ä£°åÄÚÈİ</strong>(*)</td>
+      <td height="25">Çë½«Ä£°åÄÚÈİ<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.temptext.value);document.form1.temptext.select()" title="µã»÷¸´ÖÆÄ£°åÄÚÈİ"><strong>¸´ÖÆµ½Dreamweaver(ÍÆ¼ö)</strong></a>»òÕßÊ¹ÓÃ<a href="#ecms" onclick="window.open('editor.php?getvar=opener.document.form1.temptext.value&returnvar=opener.document.form1.temptext.value&fun=ReturnHtml&notfullpage=1<?=$ecms_hashur['ehref']?>','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>Ä£°åÔÚÏß±à¼­</strong></a>½øĞĞ¿ÉÊÓ»¯±à¼­</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"><div align="center"> 
@@ -92,12 +92,12 @@ function ReTempBak(){
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"> 
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"> 
         <?php
 		if($enews=='EditIndexpage')
 		{
 		?>
-        &nbsp;&nbsp;[<a href="#empirecms" onclick="window.open('TempBak.php?temptype=indexpage&tempid=<?=$tempid?>&gid=1<?=$ecms_hashur['ehref']?>','ViewTempBak','width=450,height=500,scrollbars=yes,left=300,top=150,resizable=yes');">ä¿®æ”¹è®°å½•</a>] 
+        &nbsp;&nbsp;[<a href="#empirecms" onclick="window.open('TempBak.php?temptype=indexpage&tempid=<?=$tempid?>&gid=1<?=$ecms_hashur['ehref']?>','ViewTempBak','width=450,height=500,scrollbars=yes,left=300,top=150,resizable=yes');">ĞŞ¸Ä¼ÇÂ¼</a>] 
         <?php
 		}
 		?>
@@ -105,32 +105,32 @@ function ReTempBak(){
     </tr>
 	</form>
 	<tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="2">&nbsp;&nbsp;[<a href="#ecms" onclick="tempturnit(showtempvar);">æ˜¾ç¤ºæ¨¡æ¿å˜é‡è¯´æ˜</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('EnewsBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=500,scrollbars=yes,resizable=yes');">æŸ¥çœ‹æ¨¡æ¿æ ‡ç­¾è¯­æ³•</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹JSè°ƒç”¨åœ°å€</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListTempvar.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹å…¬å…±æ¨¡æ¿å˜é‡</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListBqtemp.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹æ ‡ç­¾æ¨¡æ¿</a>]</td>
+      <td height="25" colspan="2">&nbsp;&nbsp;[<a href="#ecms" onclick="tempturnit(showtempvar);">ÏÔÊ¾Ä£°å±äÁ¿ËµÃ÷</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('EnewsBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=500,scrollbars=yes,resizable=yes');">²é¿´Ä£°å±êÇ©Óï·¨</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´JSµ÷ÓÃµØÖ·</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListTempvar.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´¹«¹²Ä£°å±äÁ¿</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListBqtemp.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´±êÇ©Ä£°å</a>]</td>
     </tr>
     <tr bgcolor="#FFFFFF" id="showtempvar" style="display:none"> 
-      <td height="25" colspan="2"><strong>é¦–é¡µæ¨¡æ¿æ”¯æŒçš„å˜é‡è¯´æ˜</strong> <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
+      <td height="25" colspan="2"><strong>Ê×Ò³Ä£°åÖ§³ÖµÄ±äÁ¿ËµÃ÷</strong> <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
           <tr bgcolor="#FFFFFF"> 
             <td width="50%" height="25"> <input name="textfield" type="text" value="[!--pagetitle--]">
-              :ç½‘ç«™åç§°</td>
+              :ÍøÕ¾Ãû³Æ</td>
             <td width="50%"> <input name="textfield2" type="text" value="[!--news.url--]">
-              :ç½‘ç«™åœ°å€</td>
+              :ÍøÕ¾µØÖ·</td>
             <td width="50%"><input name="textfield923" type="text" value="[!--class.menu--]">
-              :ä¸€çº§æ ç›®å¯¼èˆª</td>
+              :Ò»¼¶À¸Ä¿µ¼º½</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"><input name="textfield72" type="text" value="[!--pagekey--]">
-              :é¡µé¢å…³é”®å­—</td>
+              :Ò³Ãæ¹Ø¼ü×Ö</td>
             <td><input name="textfield73" type="text" value="[!--pagedes--]">
-              :é¡µé¢æè¿°</td>
+              :Ò³ÃæÃèÊö</td>
             <td>&nbsp;</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td height="25"><strong>æ”¯æŒå…¬å…±æ¨¡æ¿å˜é‡</strong></td>
-            <td><strong>æ”¯æŒæ‰€æœ‰æ¨¡æ¿æ ‡ç­¾</strong></td>
+            <td height="25"><strong>Ö§³Ö¹«¹²Ä£°å±äÁ¿</strong></td>
+            <td><strong>Ö§³ÖËùÓĞÄ£°å±êÇ©</strong></td>
             <td>&nbsp;</td>
           </tr>
         </table></td>

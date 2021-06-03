@@ -1,5 +1,5 @@
 <?php
-//ç”Ÿæˆæ‰€æœ‰å†…å®¹é¡µé¢
+//Éú³ÉËùÓĞÄÚÈİÒ³Ãæ
 function ReNewsHtml($start,$classid,$from,$retype,$startday,$endday,$startid,$endid,$tbname,$havehtml){
 	global $empire,$public_r,$class_r,$fun_r,$dbtbpre,$etable_r,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -14,7 +14,7 @@ function ReNewsHtml($start,$classid,$from,$retype,$startday,$endday,$startid,$en
 		printerror("ErrorUrl","history.go(-1)");
     }
 	$start=(int)$start;
-	//æŒ‰ID
+	//°´ID
 	if($retype)
 	{
 		$startid=(int)$startid;
@@ -27,23 +27,23 @@ function ReNewsHtml($start,$classid,$from,$retype,$startday,$endday,$startid,$en
 		$endday=RepPostVar($endday);
 		$add1=$startday&&$endday?' and truetime>='.to_time($startday.' 00:00:00').' and truetime<='.to_time($endday.' 23:59:59'):'';
     }
-	//æŒ‰æ ç›®
+	//°´À¸Ä¿
 	$classid=(int)$classid;
 	if($classid)
 	{
 		$where=empty($class_r[$classid][islast])?ReturnClass($class_r[$classid][sonclass]):"classid='$classid'";
 		$add1.=' and '.$where;
     }
-	//ä¸ç”Ÿæˆ
+	//²»Éú³É
 	$add1.=ReturnNreInfoWhere();
-	//æ˜¯å¦é‡å¤ç”Ÿæˆ
+	//ÊÇ·ñÖØ¸´Éú³É
 	$updatehavehtml='havehtml=0';
 	if($havehtml!=1)
 	{
 		$add1.=' and havehtml=0';
 		$updatehavehtml='';
 	}
-	//ä¼˜åŒ–
+	//ÓÅ»¯
 	$yhadd='';
 	$yhid=$etable_r[$tbname][yhid];
 	$yhvar='rehtml';
@@ -61,11 +61,11 @@ function ReNewsHtml($start,$classid,$from,$retype,$startday,$endday,$startid,$en
 		{
 			continue;
 		}
-		GetHtml($r['classid'],$r['id'],'',0,1);//ç”Ÿæˆä¿¡æ¯æ–‡ä»¶
+		GetHtml($r['classid'],$r['id'],'',0,1);//Éú³ÉĞÅÏ¢ÎÄ¼ş
 	}
 	if(empty($b))
 	{
-		//æ›´æ–°çŠ¶æ€
+		//¸üĞÂ×´Ì¬
 		if($yhadd.$add1=='')
 		{
 			$empire->query("update {$dbtbpre}ecms_".$tbname."_index set havehtml=1 where havehtml=0 and checked=1");
@@ -104,7 +104,7 @@ function ReNewsHtml($start,$classid,$from,$retype,$startday,$endday,$startid,$en
 	exit();
 }
 
-//åˆ·æ–°æ‰€æœ‰åˆ—è¡¨
+//Ë¢ĞÂËùÓĞÁĞ±í
 function ReListHtml_all($start,$do,$from){
 	global $empire,$public_r,$fun_r,$class_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -117,21 +117,21 @@ function ReListHtml_all($start,$do,$from){
 	$b=0;
 	if($do=="all")
 	{
-		insert_dolog("");//æ“ä½œæ—¥å¿—
+		insert_dolog("");//²Ù×÷ÈÕÖ¾
 		printerror("ReClassidAllSuccess",$from);
     }
-	//æ ç›®
+	//À¸Ä¿
 	$sql=$empire->query("select classid,classtempid,islast,islist from {$dbtbpre}enewsclass where classid>$start and nreclass=0 order by classid limit ".$public_r[relistnum]);
 	while($r=$empire->fetch($sql))
 	{
 		$b=1;
-		if(!$r[islast])//å¤§æ ç›®
+		if(!$r[islast])//´óÀ¸Ä¿
 		{
 			if($r[islist]==1)
 			{
 				ListHtml($r[classid],$ret_r,3);
 			}
-			elseif($r[islist]==3)//æ ç›®ç»‘å®šä¿¡æ¯
+			elseif($r[islist]==3)//À¸Ä¿°ó¶¨ĞÅÏ¢
 			{
 				ReClassBdInfo($r[classid]);
 			}
@@ -141,7 +141,7 @@ function ReListHtml_all($start,$do,$from){
 				NewsBq($r[classid],$classtemp,0,0);
 			}
 		}
-		else//å­æ ç›®
+		else//×ÓÀ¸Ä¿
 		{
 			ListHtml($r[classid],$ret_r,0);
 		}
@@ -157,7 +157,7 @@ function ReListHtml_all($start,$do,$from){
 	exit();
 }
 
-//åˆ·æ–°ä¸“é¢˜åˆ—è¡¨
+//Ë¢ĞÂ×¨ÌâÁĞ±í
 function ReZtListHtml_all($start,$do,$from){
 	global $empire,$public_r,$fun_r,$class_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -171,10 +171,10 @@ function ReZtListHtml_all($start,$do,$from){
 	$time=time();
 	if($do=="all")
 	{
-		insert_dolog("");//æ“ä½œæ—¥å¿—
+		insert_dolog("");//²Ù×÷ÈÕÖ¾
 		printerror("ReZtidAllSuccess",$from);
     }
-	elseif($do=="ztc")//åˆ·æ–°ä¸“é¢˜å­ç±»
+	elseif($do=="ztc")//Ë¢ĞÂ×¨Ìâ×ÓÀà
 	{
 		$zcsql=$empire->query("select cid from {$dbtbpre}enewszttype where cid>$start and (endtime=0 or endtime>$time) order by cid limit ".$public_r['relistnum']);
 		while($c_r=$empire->fetch($zcsql))
@@ -207,11 +207,11 @@ function ReZtListHtml_all($start,$do,$from){
 	exit();
 }
 
-//åˆ·æ–°å•ä¸ªä¸“é¢˜
+//Ë¢ĞÂµ¥¸ö×¨Ìâ
 function DoReZtListHtml($ztid,$ecms=0){
 	global $empire,$dbtbpre,$public_r;
 	ListHtmlIndex($ztid,$ret_r,0);
-	//åˆ·æ–°ä¸“é¢˜å­ç±»
+	//Ë¢ĞÂ×¨Ìâ×ÓÀà
 	if($ecms==1)
 	{
 		$csql=$empire->query("select cid from {$dbtbpre}enewszttype where ztid='$ztid'");
@@ -222,7 +222,7 @@ function DoReZtListHtml($ztid,$ecms=0){
 	}
 }
 
-//åˆ·æ–°æ ‡é¢˜åˆ†ç±»
+//Ë¢ĞÂ±êÌâ·ÖÀà
 function ReTtListHtml_all($start,$do,$from){
 	global $empire,$public_r,$fun_r,$class_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -242,14 +242,14 @@ function ReTtListHtml_all($start,$do,$from){
 	}
 	if(empty($b))
 	{
-		insert_dolog("");//æ“ä½œæ—¥å¿—
+		insert_dolog("");//²Ù×÷ÈÕÖ¾
 		printerror("ReTtidAllSuccess",$from);
 	}
 	echo"<meta http-equiv=\"refresh\" content=\"".$public_r['realltime'].";url=ecmschtml.php?enews=ReTtListHtml_all&start=$end_classid&do=tt&from=".urlencode($from).hReturnEcmsHashStrHref(0).$mphref."\">".$fun_r[OneReTtListNewsSuccess]."(ZtID:<font color=red><b>".$end_classid."</b></font>)";
 	exit();
 }
 
-//åˆ·æ–°æ‰€æœ‰js
+//Ë¢ĞÂËùÓĞjs
 function ReAllNewsJs($start,$do,$from){
 	global $empire,$public_r,$fun_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -264,23 +264,23 @@ function ReAllNewsJs($start,$do,$from){
 	if($do=="all")
 	{
 		$pr=$empire->fetch1("select hotnum,newnum,goodnum,hotplnum,firstnum,jstempid from {$dbtbpre}enewspublic limit 1");
-		$jstemptext=GetTheJstemp($pr['jstempid']);//jsæ¨¡æ¿
-		//åˆ·æ–°å…¨éƒ¨js
+		$jstemptext=GetTheJstemp($pr['jstempid']);//jsÄ£°å
+		//Ë¢ĞÂÈ«²¿js
 		GetNewsJs($classid,$pr[newnum],$pr[sub_new],$pr[newshowdate],3,$jstemptext);
 		GetNewsJs($classid,$pr[hotnum],$pr[sub_hot],$pr[hotshowdate],4,$jstemptext);
 		GetNewsJs($classid,$pr[goodnum],$pr[sub_good],$pr[goodshowdate],5,$jstemptext);
 		GetNewsJs($classid,$pr[hotplnum],$pr[sub_hotpl],$pr[hotplshowdate],10,$jstemptext);
 		GetNewsJs($classid,$pr[firstnum],$pr[sub_first],$pr[firstshowdate],13,$jstemptext);
-		insert_dolog("");//æ“ä½œæ—¥å¿—
+		insert_dolog("");//²Ù×÷ÈÕÖ¾
 		printerror("ReAllJsSuccess",$from);
 	}
-	elseif($do=="tt")//åˆ·æ–°æ ‡é¢˜åˆ†ç±»js
+	elseif($do=="tt")//Ë¢ĞÂ±êÌâ·ÖÀàjs
 	{
 		//$from=urlencode($from);
 		$sql=$empire->query("select typeid,newline,hotline,goodline,hotplline,firstline,jstempid from {$dbtbpre}enewsinfotype where typeid>$start and nrejs=0 order by typeid limit $line");
 		while($r=$empire->fetch($sql))
 		{
-			$jstemptext=GetTheJstemp($r[jstempid]);//jsæ¨¡æ¿
+			$jstemptext=GetTheJstemp($r[jstempid]);//jsÄ£°å
 			$b=1;
 			GetNewsJs($r[typeid],$r[newline],$r[newstrlen],$r[newshowdate],25,$jstemptext);
 			GetNewsJs($r[typeid],$r[hotline],$r[hotstrlen],$r[hotshowdate],26,$jstemptext);
@@ -289,7 +289,7 @@ function ReAllNewsJs($start,$do,$from){
 			GetNewsJs($r[typeid],$r[firstline],$r[firststrlen],$r[firstshowdate],29,$jstemptext);
 			$newstart=$r[typeid];
 		}
-		//åˆ·æ–°å®Œæ¯•
+		//Ë¢ĞÂÍê±Ï
 		if(empty($b))
 		{
 			echo $fun_r[ReTtNewsJsSuccess]."<script>self.location.href='ecmschtml.php?enews=ReAllNewsJs&do=all&start=0&from=".urlencode($from).hReturnEcmsHashStrHref(0).$mphref."';</script>";
@@ -299,13 +299,13 @@ function ReAllNewsJs($start,$do,$from){
 		echo"<meta http-equiv=\"refresh\" content=\"".$public_r['realltime'].";url=ecmschtml.php?enews=ReAllNewsJs&do=tt&start=$newstart&from=".urlencode($from).hReturnEcmsHashStrHref(0).$mphref."\">".$fun_r[OneReTtNewsJsSuccess]."(ZtID:<font color=red><b>".$newstart."</b></font>)";
 		exit();
 	}
-	else//åˆ·æ–°æ ç›®js
+	else//Ë¢ĞÂÀ¸Ä¿js
 	{
 		//$from=urlencode($from);
 		$sql=$empire->query("select classid,newline,hotline,goodline,hotplline,firstline,jstempid from {$dbtbpre}enewsclass where classid>$start and nrejs=0 and wburl='' order by classid limit $line");
 		while($r=$empire->fetch($sql))
 		{
-			$jstemptext=GetTheJstemp($r[jstempid]);//jsæ¨¡æ¿
+			$jstemptext=GetTheJstemp($r[jstempid]);//jsÄ£°å
 			$b=1;
 			GetNewsJs($r[classid],$r[newline],$r[newstrlen],$r[newshowdate],0,$jstemptext);
 			GetNewsJs($r[classid],$r[hotline],$r[hotstrlen],$r[hotshowdate],1,$jstemptext);
@@ -314,7 +314,7 @@ function ReAllNewsJs($start,$do,$from){
 			GetNewsJs($r[classid],$r[firstline],$r[firststrlen],$r[firstshowdate],12,$jstemptext);
 			$newstart=$r[classid];
 		}
-		//åˆ·æ–°å®Œæ¯•
+		//Ë¢ĞÂÍê±Ï
 		if(empty($b))
 		{
 			echo $fun_r[ReClassNewsJsSuccess]."<script>self.location.href='ecmschtml.php?enews=ReAllNewsJs&do=tt&start=0&from=".urlencode($from).hReturnEcmsHashStrHref(0).$mphref."';</script>";
@@ -326,21 +326,21 @@ function ReAllNewsJs($start,$do,$from){
 	}
 }
 
-//åˆ·æ–°æœ€æ–°æ–‡ç« ä¸çƒ­é—¨æ–‡ç« 
+//Ë¢ĞÂ×îĞÂÎÄÕÂÓëÈÈÃÅÎÄÕÂ
 function ReHot_NewNews(){
 	global $empire,$dbtbpre;
 	$public_r=$empire->fetch1("select hotnum,newnum,goodnum,hotplnum,firstnum,jstempid from {$dbtbpre}enewspublic limit 1");
-	$jstemptext=GetTheJstemp($public_r['jstempid']);//å–å¾—jsæ¨¡æ¿
+	$jstemptext=GetTheJstemp($public_r['jstempid']);//È¡µÃjsÄ£°å
 	GetNewsJs($classid,$public_r[newnum],$public_r[sub_new],$public_r[newshowdate],3,$jstemptext);
 	GetNewsJs($classid,$public_r[hotnum],$public_r[sub_hot],$public_r[hotshowdate],4,$jstemptext);
 	GetNewsJs($classid,$public_r[goodnum],$public_r[sub_good],$public_r[goodshowdate],5,$jstemptext);
 	GetNewsJs($classid,$public_r[hotplnum],$public_r[sub_hotpl],$public_r[hotplshowdate],10,$jstemptext);
 	GetNewsJs($classid,$public_r[firstnum],$public_r[sub_first],$public_r[firstshowdate],13,$jstemptext);
-	insert_dolog("");//æ“ä½œæ—¥å¿—
+	insert_dolog("");//²Ù×÷ÈÕÖ¾
 	printerror("ReNewHotSuccess","history.go(-1)");
 }
 
-//åˆ·æ–°ä¸“é¢˜
+//Ë¢ĞÂ×¨Ìâ
 function ReZtHtml($ztid,$ecms=0){
 	global $class_zr;
 	$ztid=(int)$ztid;
@@ -349,11 +349,11 @@ function ReZtHtml($ztid,$ecms=0){
 		printerror("NotChangeReZtid","history.go(-1)");
 	}
 	DoReZtListHtml($ztid,$ecms);
-	insert_dolog("ztid=$ztid");//æ“ä½œæ—¥å¿—
+	insert_dolog("ztid=$ztid");//²Ù×÷ÈÕÖ¾
 	printerror("ReZtidSuccess","history.go(-1)");
 }
 
-//åˆ·æ–°æ ‡é¢˜åˆ†ç±»
+//Ë¢ĞÂ±êÌâ·ÖÀà
 function ReTtHtml($typeid){
 	global $class_tr;
 	$typeid=(int)$typeid;
@@ -362,29 +362,29 @@ function ReTtHtml($typeid){
 		printerror("NotChangeReTtid","history.go(-1)");
 	}
 	ListHtml($typeid,$ret_r,5);
-	insert_dolog("typeid=$typeid");//æ“ä½œæ—¥å¿—
+	insert_dolog("typeid=$typeid");//²Ù×÷ÈÕÖ¾
 	printerror("ReTtidSuccess","history.go(-1)");
 }
 
-//åˆ·æ–°å•ä¸ªæ ç›®
+//Ë¢ĞÂµ¥¸öÀ¸Ä¿
 function ReSingleJs($classid,$doing=0){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
-	//åˆ·æ–°æ ç›®
+	//Ë¢ĞÂÀ¸Ä¿
 	if($doing==0)
 	{
 		$r=$empire->fetch1("select classid,newline,hotline,goodline,hotplline,firstline,jstempid from {$dbtbpre}enewsclass where classid='$classid'");
-		$jstemptext=GetTheJstemp($r[jstempid]);//jsæ¨¡æ¿
+		$jstemptext=GetTheJstemp($r[jstempid]);//jsÄ£°å
 		GetNewsJs($r[classid],$r[newline],$r[newstrlen],$r[newshowdate],0,$jstemptext);
 		GetNewsJs($r[classid],$r[hotline],$r[hotstrlen],$r[hotshowdate],1,$jstemptext);
 		GetNewsJs($r[classid],$r[goodline],$r[goodstrlen],$r[goodshowdate],2,$jstemptext);
 		GetNewsJs($r[classid],$r[hotplline],$r[hotplstrlen],$r[hotplshowdate],9,$jstemptext);
 		GetNewsJs($r[classid],$r[firstline],$r[firststrlen],$r[firstshowdate],12,$jstemptext);
 	}
-	elseif($doing==1)//åˆ·æ–°æ ‡é¢˜åˆ†ç±»js
+	elseif($doing==1)//Ë¢ĞÂ±êÌâ·ÖÀàjs
 	{
 		$r=$empire->fetch1("select typeid,newline,hotline,goodline,hotplline,firstline,jstempid from {$dbtbpre}enewsinfotype where typeid='$classid'");
-		$jstemptext=GetTheJstemp($r[jstempid]);//jsæ¨¡æ¿
+		$jstemptext=GetTheJstemp($r[jstempid]);//jsÄ£°å
 		GetNewsJs($r[typeid],$r[newline],$r[newstrlen],$r[newshowdate],25,$jstemptext);
 		GetNewsJs($r[typeid],$r[hotline],$r[hotstrlen],$r[hotshowdate],26,$jstemptext);
 		GetNewsJs($r[typeid],$r[goodline],$r[goodstrlen],$r[goodshowdate],27,$jstemptext);
@@ -393,29 +393,29 @@ function ReSingleJs($classid,$doing=0){
     }
 	else
 	{}
-	insert_dolog("");//æ“ä½œæ—¥å¿—
+	insert_dolog("");//²Ù×÷ÈÕÖ¾
 	printerror("ReJsSuccess","history.go(-1)");
 }
 
-//æ‰¹é‡ç”ŸæˆåŠ¨æ€é¡µé¢
+//ÅúÁ¿Éú³É¶¯Ì¬Ò³Ãæ
 function ReDtPage($userid,$username){
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"changedata");
-	GetPlTempPage();//è¯„è®ºåˆ—è¡¨æ¨¡æ¿
-	GetPlJsPage();//è¯„è®ºJSæ¨¡æ¿
-	ReCptemp();//æ§åˆ¶é¢æ¿æ¨¡æ¿
-	GetSearch();//ä¸‰æœç´¢è¡¨å•æ¨¡æ¿
-	GetPrintPage();//æ‰“å°æ¨¡æ¿
-	GetDownloadPage();//ä¸‹è½½åœ°å€é¡µé¢
-	ReGbooktemp();//ç•™è¨€æ¿æ¨¡æ¿
-	ReLoginIframe();//ç™»é™†çŠ¶æ€æ¨¡æ¿
-	ReSchAlltemp();//å…¨ç«™æœç´¢æ¨¡æ¿
-	//æ“ä½œæ—¥å¿—
+	GetPlTempPage();//ÆÀÂÛÁĞ±íÄ£°å
+	GetPlJsPage();//ÆÀÂÛJSÄ£°å
+	ReCptemp();//¿ØÖÆÃæ°åÄ£°å
+	GetSearch();//ÈıËÑË÷±íµ¥Ä£°å
+	GetPrintPage();//´òÓ¡Ä£°å
+	GetDownloadPage();//ÏÂÔØµØÖ·Ò³Ãæ
+	ReGbooktemp();//ÁôÑÔ°åÄ£°å
+	ReLoginIframe();//µÇÂ½×´Ì¬Ä£°å
+	ReSchAlltemp();//È«Õ¾ËÑË÷Ä£°å
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("ReDtPageSuccess","history.go(-1)");
 }
 
-//æ‰¹é‡åˆ·æ–°è‡ªå®šä¹‰é¡µé¢
+//ÅúÁ¿Ë¢ĞÂ×Ô¶¨ÒåÒ³Ãæ
 function ReUserpageAll($start=0,$from,$userid,$username){
 	global $empire,$public_r,$fun_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -433,10 +433,10 @@ function ReUserpageAll($start=0,$from,$userid,$username){
 		$newstart=$r[id];
 		ReUserpage($r[id],$r[pagetext],$r[path],$r[title],$r[pagetitle],$r[pagekeywords],$r[pagedescription],$r[tempid]);
 	}
-	//å®Œæ¯•
+	//Íê±Ï
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("");
 		printerror("ReUserpageAllSuccess",$from);
 	}
@@ -444,7 +444,7 @@ function ReUserpageAll($start=0,$from,$userid,$username){
 	exit();
 }
 
-//æ‰¹é‡åˆ·æ–°è‡ªå®šä¹‰ä¿¡æ¯åˆ—è¡¨
+//ÅúÁ¿Ë¢ĞÂ×Ô¶¨ÒåĞÅÏ¢ÁĞ±í
 function ReUserlistAll($start=0,$from,$userid,$username){
 	global $empire,$public_r,$fun_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -462,10 +462,10 @@ function ReUserlistAll($start=0,$from,$userid,$username){
 		$newstart=$r[listid];
 		ReUserlist($r,"");
 	}
-	//å®Œæ¯•
+	//Íê±Ï
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("");
 		printerror("ReUserlistAllSuccess",$from);
 	}
@@ -473,7 +473,7 @@ function ReUserlistAll($start=0,$from,$userid,$username){
 	exit();
 }
 
-//æ‰¹é‡åˆ·æ–°è‡ªå®šä¹‰JS
+//ÅúÁ¿Ë¢ĞÂ×Ô¶¨ÒåJS
 function ReUserjsAll($start=0,$from,$userid,$username){
 	global $empire,$public_r,$fun_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -491,10 +491,10 @@ function ReUserjsAll($start=0,$from,$userid,$username){
 		$newstart=$r[jsid];
 		ReUserjs($r,"");
 	}
-	//å®Œæ¯•
+	//Íê±Ï
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("");
 		printerror("ReUserjsAllSuccess",$from);
 	}
@@ -502,7 +502,7 @@ function ReUserjsAll($start=0,$from,$userid,$username){
 	exit();
 }
 
-//æ‰¹é‡åˆ·æ–°ç¢ç‰‡æ–‡ä»¶
+//ÅúÁ¿Ë¢ĞÂËéÆ¬ÎÄ¼ş
 function ReSpAll($start=0,$from,$userid,$username){
 	global $empire,$public_r,$fun_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -520,10 +520,10 @@ function ReSpAll($start=0,$from,$userid,$username){
 		$newstart=$r['spid'];
 		DoSpReFile($r,0);
 	}
-	//å®Œæ¯•
+	//Íê±Ï
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("");
 		printerror("ReSpAllSuccess",$from);
 	}
@@ -531,10 +531,10 @@ function ReSpAll($start=0,$from,$userid,$username){
 	exit();
 }
 
-//ç”Ÿæˆå•ç¢ç‰‡æ–‡ä»¶
+//Éú³Éµ¥ËéÆ¬ÎÄ¼ş
 function ReSp($add,$userid,$username,$ecms=0){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	if($ecms==0)
 	{
 		CheckLevel($userid,$username,$classid,"sp");
@@ -554,12 +554,12 @@ function ReSp($add,$userid,$username,$ecms=0){
 		}
 		DoSpReFile($r,$spid[$i]);
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("ReSpSuccess",EcmsGetReturnUrl());
 }
 
-//è½¬å‘å¤„ç†æ–‡ä»¶
+//×ªÏò´¦ÀíÎÄ¼ş
 function GoReListHtmlMore($classid,$gore,$from,$ecms=0){
 	global $empire,$class_r,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -586,16 +586,16 @@ function GoReListHtmlMore($classid,$gore,$from,$ecms=0){
 		}
 		$cid.=$fh.$classid[$i];
 	}
-	//æ ç›®
+	//À¸Ä¿
 	if(empty($gore))
 	{
 		$phome="ReListHtmlMore";
 	}
-	elseif($gore==2)//æ ‡é¢˜åˆ†ç±»
+	elseif($gore==2)//±êÌâ·ÖÀà
 	{
 		$phome="ReListTtHtmlMore";
 	}
-	else//ä¸“é¢˜
+	else//×¨Ìâ
 	{
 		$phome="ReListZtHtmlMore";
 	}
@@ -603,7 +603,7 @@ function GoReListHtmlMore($classid,$gore,$from,$ecms=0){
 	exit();
 }
 
-//åˆ·æ–°å¤šåˆ—è¡¨
+//Ë¢ĞÂ¶àÁĞ±í
 function ReListHtmlMore($start,$classid,$from){
 	global $empire,$public_r,$fun_r,$class_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -623,14 +623,14 @@ function ReListHtmlMore($start,$classid,$from){
 	while($r=$empire->fetch($sql))
 	{
 		$b=1;
-		//å¤§æ ç›®
+		//´óÀ¸Ä¿
 		if(!$r[islast])
 		{
 			if($r[islist]==1)
 			{
 				ListHtml($r[classid],$ret_r,3);
 			}
-			elseif($r[islist]==3)//æ ç›®ç»‘å®šä¿¡æ¯
+			elseif($r[islist]==3)//À¸Ä¿°ó¶¨ĞÅÏ¢
 			{
 				ReClassBdInfo($r[classid]);
 			}
@@ -640,7 +640,7 @@ function ReListHtmlMore($start,$classid,$from){
 				NewsBq($r[classid],$classtemp,0,0);
 			}
 		}
-		//å­æ ç›®
+		//×ÓÀ¸Ä¿
 		else
 		{
 			ListHtml($r[classid],$ret_r,0);
@@ -649,7 +649,7 @@ function ReListHtmlMore($start,$classid,$from){
 	}
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("ReClassidAllSuccess",$from);
     }
@@ -657,7 +657,7 @@ function ReListHtmlMore($start,$classid,$from){
 	exit();
 }
 
-//åˆ·æ–°å¤šä¸“é¢˜åˆ—è¡¨
+//Ë¢ĞÂ¶à×¨ÌâÁĞ±í
 function ReListZtHtmlMore($start,$classid,$from,$ecms=0){
 	global $empire,$public_r,$fun_r,$class_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -673,7 +673,7 @@ function ReListZtHtmlMore($start,$classid,$from,$ecms=0){
 		printerror("ErrorUrl",$from);
     }
 	$b=0;
-	//åˆ·æ–°ä¸“é¢˜
+	//Ë¢ĞÂ×¨Ìâ
 	$zsql=$empire->query("select ztid from {$dbtbpre}enewszt where ztid>$start and ztid in (".$classid.") order by ztid limit ".$public_r[relistnum]);
     while($z_r=$empire->fetch($zsql))
 	{
@@ -683,7 +683,7 @@ function ReListZtHtmlMore($start,$classid,$from,$ecms=0){
     }
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("ReZtidAllSuccess",$from);
     }
@@ -691,7 +691,7 @@ function ReListZtHtmlMore($start,$classid,$from,$ecms=0){
     exit();
 }
 
-//åˆ·æ–°å¤šæ ‡é¢˜åˆ†ç±»
+//Ë¢ĞÂ¶à±êÌâ·ÖÀà
 function ReListTtHtmlMore($start,$classid,$from){
 	global $empire,$public_r,$fun_r,$class_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -707,7 +707,7 @@ function ReListTtHtmlMore($start,$classid,$from){
 		printerror("ErrorUrl",$from);
     }
 	$b=0;
-	//åˆ·æ–°æ ‡é¢˜åˆ†ç±»
+	//Ë¢ĞÂ±êÌâ·ÖÀà
 	$tsql=$empire->query("select typeid from {$dbtbpre}enewsinfotype where typeid>$start and typeid in (".$classid.") order by typeid limit ".$public_r[relistnum]);
     while($t_r=$empire->fetch($tsql))
 	{
@@ -717,7 +717,7 @@ function ReListTtHtmlMore($start,$classid,$from){
     }
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("ReTtidAllSuccess",$from);
     }
@@ -725,7 +725,7 @@ function ReListTtHtmlMore($start,$classid,$from){
     exit();
 }
 
-//ç”Ÿæˆå•ä¿¡æ¯
+//Éú³Éµ¥ĞÅÏ¢
 function ReSingleInfo($userid,$username){
 	global $empire,$public_r,$class_r,$dbtbpre;
 	if($_GET['classid'])
@@ -756,14 +756,14 @@ function ReSingleInfo($userid,$username){
 	$sql=$empire->query("select * from {$dbtbpre}ecms_".$class_r[$classid][tbname]." where ".$add);
 	while($r=$empire->fetch($sql))
 	{
-		GetHtml($r['classid'],$r['id'],$r,1);//ç”Ÿæˆä¿¡æ¯æ–‡ä»¶
+		GetHtml($r['classid'],$r['id'],$r,1);//Éú³ÉĞÅÏ¢ÎÄ¼ş
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("classid=".$classid);
 	printerror("ReSingleInfoSuccess",EcmsGetReturnUrl());
 }
 
-//æ¢å¤æ ç›®ç›®å½•
+//»Ö¸´À¸Ä¿Ä¿Â¼
 function ReClassPath($start=0){
 	global $empire,$public_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -782,7 +782,7 @@ function ReClassPath($start=0){
 		$returnpath=FormatClassPath($r[classpath],$r[islast]);
 		echo "Create Path:".$returnpath." success!<br>";
     }
-	//æ¢å¤ä¸“é¢˜ç›®å½•
+	//»Ö¸´×¨ÌâÄ¿Â¼
 	if(empty($b))
 	{
 		$zsql=$empire->query("select ztid,ztpath from {$dbtbpre}enewszt order by ztid");
@@ -790,7 +790,7 @@ function ReClassPath($start=0){
 		{
 			CreateZtPath($zr[ztpath]);
 		}
-		//æ¢å¤æ ‡é¢˜åˆ†ç±»ç›®å½•
+		//»Ö¸´±êÌâ·ÖÀàÄ¿Â¼
 		$tsql=$empire->query("select typeid,tpath from {$dbtbpre}enewsinfotype order by typeid");
 		while($tr=$empire->fetch($tsql))
 		{
@@ -799,7 +799,7 @@ function ReClassPath($start=0){
 	}
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("");
 		printerror("ReClassPathSuccess","ReHtml/ChangeData.php?".hReturnEcmsHashStrHref2(0).$mphref);
 	}
@@ -807,15 +807,15 @@ function ReClassPath($start=0){
 	exit();
 }
 
-//åˆ·æ–°é¦–é¡µ
+//Ë¢ĞÂÊ×Ò³
 function ReIndex(){
-	$indextemp=GetIndextemp();//å–å¾—æ¨¡æ¿
+	$indextemp=GetIndextemp();//È¡µÃÄ£°å
 	NewsBq($classid,$indextemp,1,0);
-	insert_dolog("");//æ“ä½œæ—¥å¿—
+	insert_dolog("");//²Ù×÷ÈÕÖ¾
 	printerror("ReIndexSuccess","history.go(-1)");
 }
 
-//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 function UpdateClassInfosAll($add){
 	global $empire,$public_r,$fun_r,$class_r,$dbtbpre,$moreportpid;
 	$moreportpid=(int)$moreportpid;
@@ -827,7 +827,7 @@ function UpdateClassInfosAll($add){
 	$start=(int)$add['start'];
 	$from=$add['from'];
 	$b=0;
-	//æ ç›®
+	//À¸Ä¿
 	$sql=$empire->query("select classid from {$dbtbpre}enewsclass where classid>$start and islast=1 order by classid limit ".$public_r[relistnum]);
 	while($r=$empire->fetch($sql))
 	{
@@ -837,7 +837,7 @@ function UpdateClassInfosAll($add){
 	}
 	if(empty($b))
 	{
-		insert_dolog('');//æ“ä½œæ—¥å¿—
+		insert_dolog('');//²Ù×÷ÈÕÖ¾
 		printerror('UpdateClassInfosAllSuccess',$from);
     }
 	echo"<meta http-equiv=\"refresh\" content=\"".$public_r['realltime'].";url=ecmschtml.php?enews=UpdateClassInfosAll&start=$end_classid&from=".urlencode($from).hReturnEcmsHashStrHref(0).$mphref."\">".$fun_r[OneUpdateClassInfosSuccess]."(ID:<font color=red><b>".$end_classid."</b></font>)";

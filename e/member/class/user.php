@@ -5,28 +5,28 @@ if(!defined('InEmpireCMS'))
 }
 define('InEmpireCMSUser',TRUE);
 
-//--------------- æ‰©å±•å‡½æ•° ---------------
+//--------------- À©Õ¹º¯Êı ---------------
 
-//ç™»å½•é™„åŠ cookie
+//µÇÂ¼¸½¼Ócookie
 function AddLoginCookie($r){
 }
 
-//--------------- ä¼šå‘˜è¡¨ä¿¡æ¯å‡½æ•° ---------------
+//--------------- »áÔ±±íĞÅÏ¢º¯Êı ---------------
 
-//è¿”å›ä¼šå‘˜è¡¨
+//·µ»Ø»áÔ±±í
 function eReturnMemberTable(){
 	global $ecms_config;
 	return $ecms_config['member']['tablename'];
 }
 
-//è¿”å›é»˜è®¤ä¼šå‘˜ç»„ID
+//·µ»ØÄ¬ÈÏ»áÔ±×éID
 function eReturnMemberDefGroupid(){
 	global $ecms_config,$public_r;
 	$groupid=$ecms_config['member']['defgroupid']?$ecms_config['member']['defgroupid']:$public_r['defaultgroupid'];
 	return intval($groupid);
 }
 
-//è¿”å›æŸ¥è¯¢ä¼šå‘˜å­—æ®µåˆ—è¡¨
+//·µ»Ø²éÑ¯»áÔ±×Ö¶ÎÁĞ±í
 function eReturnSelectMemberF($f,$tb=''){
 	global $ecms_config;
 	if(empty($ecms_config['member']['chmember']))
@@ -61,7 +61,7 @@ function eReturnSelectMemberF($f,$tb=''){
 	return $selectf;
 }
 
-//è¿”å›æ’å…¥ä¼šå‘˜å­—æ®µåˆ—è¡¨
+//·µ»Ø²åÈë»áÔ±×Ö¶ÎÁĞ±í
 function eReturnInsertMemberF($f){
 	global $ecms_config;
 	if(empty($ecms_config['member']['chmember']))
@@ -81,7 +81,7 @@ function eReturnInsertMemberF($f){
 	return $insertf;
 }
 
-//å–å¾—å®é™…ä¼šå‘˜å­—æ®µ
+//È¡µÃÊµ¼Ê»áÔ±×Ö¶Î
 function egetmf($f){
 	global $ecms_config;
 	if(empty($ecms_config['member']['chmember']))
@@ -91,33 +91,33 @@ function egetmf($f){
 	return $ecms_config['memberf'][$f]?$ecms_config['memberf'][$f]:$f;
 }
 
-//å¯†ç 
+//ÃÜÂë
 function eDoMemberPw($password,$salt){
 	global $ecms_config;
-	if($ecms_config['member']['pwtype']==0)//å•é‡md5
+	if($ecms_config['member']['pwtype']==0)//µ¥ÖØmd5
 	{
 		$pw=md5($password);
 	}
-	elseif($ecms_config['member']['pwtype']==1)//æ˜ç 
+	elseif($ecms_config['member']['pwtype']==1)//Ã÷Âë
 	{
 		$pw=$password;
 	}
-	elseif($ecms_config['member']['pwtype']==3)//16ä½md5
+	elseif($ecms_config['member']['pwtype']==3)//16Î»md5
 	{
 		$pw=substr(md5($password),8,16);
 	}
-	else//åŒé‡md5
+	else//Ë«ÖØmd5
 	{
 		$pw=md5(md5($password).$salt);
 	}
 	return $pw;
 }
 
-//éªŒè¯å¯†ç 
+//ÑéÖ¤ÃÜÂë
 function eDoCkMemberPw($oldpw,$pw,$salt){
 	global $ecms_config;
 	$istrue=0;
-	if($ecms_config['member']['pwtype']==0)//å•é‡md5
+	if($ecms_config['member']['pwtype']==0)//µ¥ÖØmd5
 	{
 		$oldpw=md5($oldpw);
 		if('dg'.$oldpw=='dg'.$pw)
@@ -125,14 +125,14 @@ function eDoCkMemberPw($oldpw,$pw,$salt){
 			$istrue=1;
 		}
 	}
-	elseif($ecms_config['member']['pwtype']==1)//æ˜ç 
+	elseif($ecms_config['member']['pwtype']==1)//Ã÷Âë
 	{
 		if('dg'.$oldpw=='dg'.$pw)
 		{
 			$istrue=1;
 		}
 	}
-	elseif($ecms_config['member']['pwtype']==3)//16ä½md5
+	elseif($ecms_config['member']['pwtype']==3)//16Î»md5
 	{
 		$oldpw=substr(md5($oldpw),8,16);
 		if('dg'.$oldpw=='dg'.$pw)
@@ -140,7 +140,7 @@ function eDoCkMemberPw($oldpw,$pw,$salt){
 			$istrue=1;
 		}
 	}
-	else//åŒé‡md5
+	else//Ë«ÖØmd5
 	{
 		$oldpw=md5(md5($oldpw).$salt);
 		if('dg'.$oldpw=='dg'.$pw)
@@ -151,37 +151,37 @@ function eDoCkMemberPw($oldpw,$pw,$salt){
 	return $istrue;
 }
 
-//è¿”å›æ³¨å†Œæ—¶é—´
+//·µ»Ø×¢²áÊ±¼ä
 function eReturnMemberRegtime($regtime,$format){
 	global $ecms_config;
 	return empty($ecms_config['member']['regtimetype'])?$regtime:date($format,$regtime);
 }
 
-//è¿”å›æ³¨å†Œæ—¶é—´(int)
+//·µ»Ø×¢²áÊ±¼ä(int)
 function eReturnMemberIntRegtime($regtime){
 	global $ecms_config;
 	return empty($ecms_config['member']['regtimetype'])?to_time($regtime):$regtime;
 }
 
-//è¿”å›å½“å‰æ³¨å†Œæ—¶é—´
+//·µ»Øµ±Ç°×¢²áÊ±¼ä
 function eReturnAddMemberRegtime(){
 	global $ecms_config;
 	return empty($ecms_config['member']['regtimetype'])?date('Y-m-d H:i:s'):time();
 }
 
-//è¿”å›SALT
+//·µ»ØSALT
 function eReturnMemberSalt(){
 	global $ecms_config;
 	return make_password($ecms_config['member']['saltnum']);
 }
 
-//è¿”å›UserKey
+//·µ»ØUserKey
 function eReturnMemberUserKey(){
 	global $ecms_config;
 	return make_password(12);
 }
 
-//å¯åŠ¨æ˜“é€šè¡Œç³»ç»Ÿ
+//Æô¶¯Ò×Í¨ĞĞÏµÍ³
 function DoEpassport($ecms,$userid,$username,$password,$salt,$email,$groupid,$retime){
 	global $ecms_config;
 	return '';
@@ -195,7 +195,7 @@ function DoEpassport($ecms,$userid,$username,$password,$salt,$email,$groupid,$re
 	epassport_doaction($r,$ecms);
 }
 
-//æ˜“é€šè¡Œç³»ç»Ÿå˜é‡
+//Ò×Í¨ĞĞÏµÍ³±äÁ¿
 function DoEpassportVar($userid,$username,$password,$salt,$email,$groupid,$retime){
 	$r['userid']=$userid;
 	$r['username']=$username;
@@ -207,31 +207,31 @@ function DoEpassportVar($userid,$username,$password,$salt,$email,$groupid,$retim
 	return $r;
 }
 
-//--------------- ä¼šå‘˜å…¬å…±å‡½æ•° ---------------
+//--------------- »áÔ±¹«¹²º¯Êı ---------------
 
-//è¿”å›è®¾ç½®çŸ­æ¶ˆæ¯
+//·µ»ØÉèÖÃ¶ÌÏûÏ¢
 function eReturnSetHavemsg($havemsg,$ecms=0){
 	$newhavemsg=1;
-	if($havemsg==3)//å…¨éƒ¨ä¿¡æ¯
+	if($havemsg==3)//È«²¿ĞÅÏ¢
 	{
 		$newhavemsg=3;
 	}
-	elseif($havemsg==2)//é€šçŸ¥
+	elseif($havemsg==2)//Í¨Öª
 	{
 		$newhavemsg=$ecms==1?2:3;
 	}
-	elseif($havemsg==1)//æ¶ˆæ¯
+	elseif($havemsg==1)//ÏûÏ¢
 	{
 		$newhavemsg=$ecms==1?3:1;
 	}
-	else //æ— çŠ¶æ€
+	else //ÎŞ×´Ì¬
 	{
 		$newhavemsg=$ecms==1?2:1;
 	}
 	return $newhavemsg;
 }
 
-//å–å¾—è¡¨å•id
+//È¡µÃ±íµ¥id
 function GetMemberFormId($groupid){
 	global $empire,$dbtbpre;
 	$groupid=(int)$groupid;
@@ -239,7 +239,7 @@ function GetMemberFormId($groupid){
 	return $r['formid'];
 }
 
-//å–å¾—é‚®ä»¶åœ°å€
+//È¡µÃÓÊ¼şµØÖ·
 function GetUserEmail($userid,$username){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;
@@ -247,7 +247,7 @@ function GetUserEmail($userid,$username){
 	return $r['email'];
 }
 
-//è¿”å›ä¿®æ”¹èµ„æ–™
+//·µ»ØĞŞ¸Ä×ÊÁÏ
 function ReturnUserInfo($userid){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;
@@ -255,7 +255,7 @@ function ReturnUserInfo($userid){
 	return $r;
 }
 
-//è¿”å›æ˜¯å¦å®¡æ ¸
+//·µ»ØÊÇ·ñÉóºË
 function ReturnGroupChecked($groupid){
 	global $level_r;
 	if($level_r[$groupid]['regchecked']==1)
@@ -269,14 +269,14 @@ function ReturnGroupChecked($groupid){
 	return $checked;
 }
 
-//è¿”å›ä½¿ç”¨ç©ºé—´æ¨¡æ¿
+//·µ»ØÊ¹ÓÃ¿Õ¼äÄ£°å
 function ReturnGroupSpaceStyleid($groupid){
 	global $level_r;
 	$spacestyleid=$level_r[$groupid]['spacestyleid']?$level_r[$groupid]['spacestyleid']:0;
 	return intval($spacestyleid);
 }
 
-//æ¸…ç©ºCOOKIE
+//Çå¿ÕCOOKIE
 function EmptyEcmsCookie(){
 	$set1=esetcookie("mlusername","",0);
 	$set2=esetcookie("mluserid","",0);
@@ -285,7 +285,7 @@ function EmptyEcmsCookie(){
 	$set5=esetcookie("mlauth","",0);
 }
 
-//ç™»å½•åŠ å¯†éªŒè¯2
+//µÇÂ¼¼ÓÃÜÑéÖ¤2
 function qReturnLoginPassNoCK($userid,$username,$rnd,$ecms=0){
 	global $ecms_config;
 	if(!$userid||!$rnd)
@@ -296,14 +296,14 @@ function qReturnLoginPassNoCK($userid,$username,$rnd,$ecms=0){
 	return $checkpass;
 }
 
-//ç™»å½•éªŒè¯ç¬¦
+//µÇÂ¼ÑéÖ¤·û
 function qGetLoginAuthstr($userid,$username,$rnd,$groupid,$cookietime=0){
 	global $ecms_config;
 	$checkpass=md5(md5($rnd.'--d-i!'.$userid.'-(g*od-'.$username.$ecms_config['cks']['ckrndtwo'].'-'.$groupid).'-#empire.cms!--p)h-o!me-'.$ecms_config['cks']['ckrndtwo']);
 	esetcookie('mlauth',$checkpass,$cookietime);
 }
 
-//éªŒè¯ç™»å½•éªŒè¯ç¬¦
+//ÑéÖ¤µÇÂ¼ÑéÖ¤·û
 function qCheckLoginAuthstr(){
 	global $ecms_config;
 	$re['userid']='';
@@ -336,7 +336,7 @@ function qCheckLoginAuthstr(){
 	}
 }
 
-//æ˜¯å¦ç™»å½•
+//ÊÇ·ñµÇÂ¼
 function islogin($uid=0,$uname='',$urnd=''){
 	global $empire,$dbtbpre,$public_r,$ecmsreurl,$ecms_config;
 	if($uid)
@@ -439,14 +439,14 @@ function islogin($uid=0,$uname='',$urnd=''){
 		}
 		printerror("NotCheckedUser",'',$petype);
 	}
-	//é»˜è®¤ä¼šå‘˜ç»„
+	//Ä¬ÈÏ»áÔ±×é
 	if(empty($cr['groupid']))
 	{
 		$user_groupid=eReturnMemberDefGroupid();
 		$usql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('groupid')."='$user_groupid' where ".egetmf('userid')."='".$cr[userid]."'");
 		$cr['groupid']=$user_groupid;
 	}
-	//æ˜¯å¦è¿‡æœŸ
+	//ÊÇ·ñ¹ıÆÚ
 	if($cr['userdate'])
 	{
 		if($cr['userdate']-time()<=0)
@@ -478,18 +478,18 @@ function islogin($uid=0,$uname='',$urnd=''){
 	return $re;
 }
 
-//ä¼šå‘˜ç™»å½•
+//»áÔ±µÇÂ¼
 function DoEcmsMemberLogin($r,$lifetime=0){
 	global $empire,$dbtbpre,$ecms_config;
-	$rnd=make_password(20);//å–å¾—éšæœºå¯†ç 
-	//é»˜è®¤ä¼šå‘˜ç»„
+	$rnd=make_password(20);//È¡µÃËæ»úÃÜÂë
+	//Ä¬ÈÏ»áÔ±×é
 	if(empty($r['groupid']))
 	{
 		$r['groupid']=eReturnMemberDefGroupid();
 	}
 	$r['groupid']=(int)$r['groupid'];
 	$empire->query("update ".eReturnMemberTable()." set ".egetmf('rnd')."='$rnd',".egetmf('groupid')."='$r[groupid]' where ".egetmf('userid')."='$r[userid]'");
-	//è®¾ç½®cookie
+	//ÉèÖÃcookie
 	$lifetime=(int)$lifetime;
 	$logincookie=0;
 	if($lifetime)
@@ -500,13 +500,13 @@ function DoEcmsMemberLogin($r,$lifetime=0){
 	esetcookie("mluserid",$r['userid'],$logincookie);
 	esetcookie("mlgroupid",$r['groupid'],$logincookie);
 	esetcookie("mlrnd",$rnd,$logincookie);
-	//éªŒè¯ç¬¦
+	//ÑéÖ¤·û
 	qGetLoginAuthstr($r['userid'],$r['username'],$rnd,$r['groupid'],$logincookie);
-	//ç™»å½•é™„åŠ cookie
+	//µÇÂ¼¸½¼Ócookie
 	AddLoginCookie($r);
 }
 
-//éªŒè¯ä¼šå‘˜å¸å·å’Œå¯†ç 
+//ÑéÖ¤»áÔ±ÕÊºÅºÍÃÜÂë
 function DoEcmsMemberCheckUserPass($add){
 	global $empire,$dbtbpre,$ecms_config;
 	$dopr=1;
@@ -539,7 +539,7 @@ function DoEcmsMemberCheckUserPass($add){
 	return $r;
 }
 
-//è¿”å›ç®¡ç†ç»„çº§åˆ«
+//·µ»Ø¹ÜÀí×é¼¶±ğ
 function eMember_ReturnAgidLevel($userid,$agid){
 	global $empire,$dbtbpre,$public_r,$ecms_config,$aglevel_r;
 	$userid=(int)$userid;
@@ -577,7 +577,7 @@ function eMember_ReturnAgidLevel($userid,$agid){
 	return $glevel;
 }
 
-//è¿”å›éªŒè¯è®¿é—®ç»„æƒé™
+//·µ»ØÑéÖ¤·ÃÎÊ×éÈ¨ÏŞ
 function eMember_ReturnCheckViewGroup($ckuser,$vgid){
 	global $empire,$dbtbpre,$public_r,$ecms_config,$class_r;
 	$esuccess='empire.cms';
@@ -593,7 +593,7 @@ function eMember_ReturnCheckViewGroup($ckuser,$vgid){
 		return 'NotVgid';
 	}
 	$thistime=time();
-	//ä¼šå‘˜ç»„éªŒè¯
+	//»áÔ±×éÑéÖ¤
 	if($vgr['gids'])
 	{
 		$ckuser['groupid']=(int)$ckuser['groupid'];
@@ -602,7 +602,7 @@ function eMember_ReturnCheckViewGroup($ckuser,$vgid){
 			return $esuccess;
 		}
 	}
-	//å†…éƒ¨ç»„éªŒè¯
+	//ÄÚ²¿×éÑéÖ¤
 	if($vgr['ingids'])
 	{
 		$ckuser['ingid']=(int)$ckuser['ingid'];
@@ -611,7 +611,7 @@ function eMember_ReturnCheckViewGroup($ckuser,$vgid){
 			return $esuccess;
 		}
 	}
-	//ä¼šå‘˜ç®¡ç†ç»„éªŒè¯
+	//»áÔ±¹ÜÀí×éÑéÖ¤
 	if($vgr['agids'])
 	{
 		$ckuser['agid']=(int)$ckuser['agid'];
@@ -620,7 +620,7 @@ function eMember_ReturnCheckViewGroup($ckuser,$vgid){
 			return $esuccess;
 		}
 	}
-	//ä¼šå‘˜ç™½åå•
+	//»áÔ±°×Ãûµ¥
 	if($vgr['mlist'])
 	{
 		$vgmember=$empire->fetch1("select userid,outtime from {$dbtbpre}enewsvglist where vgid='$vgid' and userid='".$ckuser['userid']."' limit 1");
@@ -641,9 +641,9 @@ function eMember_ReturnCheckViewGroup($ckuser,$vgid){
 }
 
 
-//--------------- ä¼šå‘˜å®åå‡½æ•° ---------------
+//--------------- »áÔ±ÊµÃûº¯Êı ---------------
 
-//å®åéªŒè¯
+//ÊµÃûÑéÖ¤
 function eCheckHaveTruename($mod,$userid,$username,$isern,$checked,$ecms=0){
 	global $empire,$dbtbpre,$public_r,$ecms_config,$ecms_topagesetr,$enews;
 	if(empty($public_r['openern']))
@@ -667,7 +667,7 @@ function eCheckHaveTruename($mod,$userid,$username,$isern,$checked,$ecms=0){
 	}
 }
 
-//å®åéªŒè¯2
+//ÊµÃûÑéÖ¤2
 function eCheckHaveTruenameCK($mod,$ecms=0){
 	global $empire,$dbtbpre,$public_r,$ecms_config,$ecms_topagesetr,$enews;
 	if(empty($public_r['openern']))
@@ -696,7 +696,7 @@ function eCheckHaveTruenameCK($mod,$ecms=0){
 	}
 }
 
-//è¿”å›æ˜¯å¦å®å
+//·µ»ØÊÇ·ñÊµÃû
 function eReturnHaveTruename($userid,$username='',$ecms=0){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;
@@ -711,24 +711,24 @@ function eReturnHaveTruename($userid,$username='',$ecms=0){
 	}
 }
 
-//æ›´æ–°å®åçŠ¶æ€
+//¸üĞÂÊµÃû×´Ì¬
 function eUpdateTruenameStatus($userid,$username,$checked,$isern,$ecms=0){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;
 	$checked=(int)$checked;
 	$isern=(int)$isern;
 	$username=RepPostVar($username);
-	//æ›´æ–°å®¡æ ¸å’Œå®åçŠ¶æ€
+	//¸üĞÂÉóºËºÍÊµÃû×´Ì¬
 	$upstr='';
 	if($ecms==2)
 	{
 		$upstr="".egetmf('checked')."='$checked',".egetmf('isern')."='$isern'";
 	}
-	elseif($ecms==1)//å®¡æ ¸
+	elseif($ecms==1)//ÉóºË
 	{
 		$upstr="".egetmf('checked')."='$checked'";
 	}
-	else//å®å
+	else//ÊµÃû
 	{
 		$upstr="".egetmf('isern')."='$isern'";
 	}
@@ -741,9 +741,9 @@ function eUpdateTruenameStatus($userid,$username,$checked,$isern,$ecms=0){
 }
 
 
-//--------------- å…¶ä»–å‡½æ•° ---------------
+//--------------- ÆäËûº¯Êı ---------------
 
-//å¢åŠ ç‚¹æ•°
+//Ôö¼ÓµãÊı
 function AddInfoFen($cardfen,$userid,$checkfen=1){
 	global $empire,$dbtbpre;
 	$cardfen=(int)$cardfen;
@@ -774,7 +774,7 @@ function AddInfoFen($cardfen,$userid,$checkfen=1){
 	$sql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('userfen')."=".egetmf('userfen')."+".$cardfen." where ".egetmf('userid')."='$userid'");
 }
 
-//è½¬å‘ä¼šå‘˜ç»„
+//×ªÏò»áÔ±×é
 function OutTimeZGroup($userid,$zgroupid){
 	global $empire,$dbtbpre;
 	if($zgroupid)
@@ -787,24 +787,24 @@ function OutTimeZGroup($userid,$zgroupid){
 	}
 }
 
-//å……å€¼æœ‰æ•ˆæœŸåˆ¤æ–­
+//³äÖµÓĞĞ§ÆÚÅĞ¶Ï
 function eCardCheckUserdate($userdate,$usergroupid,$buygroupid){
 	global $public_r;
 	if($usergroupid==$buygroupid)
 	{
 		return $userdate;
 	}
-	//å·²æœ‰æœ‰æ•ˆæœŸ
+	//ÒÑÓĞÓĞĞ§ÆÚ
 	if($userdate&&$userdate>=time())
 	{
-		if($public_r['mhavedatedo']==1)//è¦†ç›–
+		if($public_r['mhavedatedo']==1)//¸²¸Ç
 		{
 			$userdate=0;
 		}
-		elseif($public_r['mhavedatedo']==2)//å åŠ 
+		elseif($public_r['mhavedatedo']==2)//µş¼Ó
 		{
 		}
-		else//ä¸è®©å……å€¼
+		else//²»ÈÃ³äÖµ
 		{
 			printerror('CardHaveUserdate','history.go(-1)',1);
 		}
@@ -812,7 +812,7 @@ function eCardCheckUserdate($userdate,$usergroupid,$buygroupid){
 	return $userdate;
 }
 
-//å……å€¼
+//³äÖµ
 function eAddFenToUser($fen,$date,$groupid,$zgroupid,$user){
 	global $empire,$dbtbpre,$public_r;
 	if(!($fen||$date))
@@ -820,15 +820,15 @@ function eAddFenToUser($fen,$date,$groupid,$zgroupid,$user){
 		return '';
 	}
 	$update='';
-	//ç§¯åˆ†
+	//»ı·Ö
 	if($fen)
 	{
 		$update.=egetmf('userfen')."=".egetmf('userfen')."+$fen";
 	}
-	//æœ‰æ•ˆæœŸ
+	//ÓĞĞ§ÆÚ
 	if($date)
 	{
-		$user[userdate]=eCardCheckUserdate($user[userdate],$user[groupid],$groupid);//æœ‰æ•ˆæœŸéªŒè¯
+		$user[userdate]=eCardCheckUserdate($user[userdate],$user[groupid],$groupid);//ÓĞĞ§ÆÚÑéÖ¤
 		$dh='';
 		if($update)
 		{
@@ -843,7 +843,7 @@ function eAddFenToUser($fen,$date,$groupid,$zgroupid,$user){
 			$userdate=$user[userdate]+$date*24*3600;
 		}
 		$update.=$dh.egetmf('userdate')."='$userdate'";
-		//è½¬å‘ä¼šå‘˜ç»„
+		//×ªÏò»áÔ±×é
 		if($groupid)
 		{
 			$update.=",".egetmf('groupid')."='$groupid'";
@@ -860,7 +860,7 @@ function eAddFenToUser($fen,$date,$groupid,$zgroupid,$user){
 	}
 }
 
-//æ£€æŸ¥ä¸‹è½½æ•°
+//¼ì²éÏÂÔØÊı
 function DoCheckMDownNum($userid,$groupid,$ecms=0){
 	global $empire,$dbtbpre,$level_r;
 	$ur=$empire->fetch1("select userid,todaydate,todaydown from {$dbtbpre}enewsmemberpub where userid='$userid' limit 1");
@@ -898,7 +898,7 @@ function DoCheckMDownNum($userid,$groupid,$ecms=0){
 	return $query;
 }
 
-//æ›´æ–°æ¿€æ´»è®¤è¯ç 
+//¸üĞÂ¼¤»îÈÏÖ¤Âë
 function DoUpdateMemberAuthstr($userid,$authstr){
 	global $empire,$dbtbpre;
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsmemberpub where userid='$userid' limit 1");

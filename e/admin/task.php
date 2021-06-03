@@ -11,7 +11,7 @@ require("../data/dbcache/class.php");
 require("../data/dbcache/MemberLevel.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -23,43 +23,43 @@ $ecms_hashur=hReturnEcmsHashStrAll();
 
 @set_time_limit(0);
 
-//åŠ è½½
+//¼ÓÔØ
 $incftp=0;
 if($public_r['phpmode'])
 {
 	include("../class/ftp.php");
 	$incftp=1;
 }
-//é˜²é‡‡é›†
+//·À²É¼¯
 if($public_r['opennotcj'])
 {
 	@include("../data/dbcache/notcj.php");
 }
 
-//éªŒè¯æ˜¯å¦æ‰§è¡Œ
+//ÑéÖ¤ÊÇ·ñÖ´ĞĞ
 function CheckDoTask($r){
 	global $logininid;
-	if($r['userid']&&$r['userid']!=$logininid)//æ‰§è¡Œç”¨æˆ·
+	if($r['userid']&&$r['userid']!=$logininid)//Ö´ĞĞÓÃ»§
 	{
 		return false;
 	}
 	$time=time();
 	$date=date("j,w,G,i,Y,m");
 	$dr=explode(',',$date);
-	if(','.$r['doday'].','!=',*,'&&$r['doday']!=$dr[0])//æ—¥æœŸ
+	if(','.$r['doday'].','!=',*,'&&$r['doday']!=$dr[0])//ÈÕÆÚ
 	{
 		return false;
 	}
-	if(','.$r['doweek'].','!=',*,'&&$r['doweek']!=$dr[1])//æ˜ŸæœŸ
+	if(','.$r['doweek'].','!=',*,'&&$r['doweek']!=$dr[1])//ĞÇÆÚ
 	{
 		return false;
 	}
-	if(','.$r['dohour'].','!=',*,'&&$r['dohour']!=$dr[2])//å°æ—¶
+	if(','.$r['dohour'].','!=',*,'&&$r['dohour']!=$dr[2])//Ğ¡Ê±
 	{
 		return false;
 	}
 	$min=(int)$dr[3];
-	if($r['dominute']!=''&&$r['dominute']!=','&&!strstr($r['dominute'],','.$min.','))//åˆ†é’Ÿ
+	if($r['dominute']!=''&&$r['dominute']!=','&&!strstr($r['dominute'],','.$min.','))//·ÖÖÓ
 	{
 		return false;
 	}
@@ -73,7 +73,7 @@ function CheckDoTask($r){
 	return $time;
 }
 
-//éªŒè¯æ—¶é—´
+//ÑéÖ¤Ê±¼ä
 function TogTaskTime($r,$dr){
 	$re['chdate']=$dr[4].'-'.$dr[5].'-';
 	$re['date']='Y-m-';
@@ -110,9 +110,9 @@ $tasksql="select id,filename,lastdo,doweek,doday,dohour,dominute,userid,taskname
 
 $ecms=RepPostStr($_GET['ecms'],1);
 
-echo"<title>æ‰§è¡Œè®¡åˆ’ä»»åŠ¡</title><link href='adminstyle/".$loginadminstyleid."/adminstyle.css' rel='stylesheet' type='text/css'>";
+echo"<title>Ö´ĞĞ¼Æ»®ÈÎÎñ</title><link href='adminstyle/".$loginadminstyleid."/adminstyle.css' rel='stylesheet' type='text/css'>";
 
-//æ‰§è¡Œ
+//Ö´ĞĞ
 if($ecms=='dotask')
 {
 	$id=(int)$_GET['id'];
@@ -129,13 +129,13 @@ if($ecms=='dotask')
 	$lasttime=CheckDoTask($r);
 	if($lasttime)
 	{
-		echo"<script>parent.WriteTaskLog('ä»»åŠ¡ <".$r['taskname']."> å¼€å§‹æ‰§è¡Œ......');</script>";
+		echo"<script>parent.WriteTaskLog('ÈÎÎñ <".$r['taskname']."> ¿ªÊ¼Ö´ĞĞ......');</script>";
 		include_once($file);
 		$usql=$empire->query("update {$dbtbpre}enewstask set lastdo='$lasttime' where id=$id");
-		echo"<script>parent.WriteTaskLog('ä»»åŠ¡ <".$r['taskname']."> æ‰§è¡Œå®Œæ¯•ï¼Œæœ€åæ‰§è¡Œæ—¶é—´ï¼š".date("Y-m-d H:i:s",$lasttime)."');</script>";
+		echo"<script>parent.WriteTaskLog('ÈÎÎñ <".$r['taskname']."> Ö´ĞĞÍê±Ï£¬×îºóÖ´ĞĞÊ±¼ä£º".date("Y-m-d H:i:s",$lasttime)."');</script>";
 	}
 }
-//æ›´æ–°
+//¸üĞÂ
 elseif($ecms=='retask')
 {
 	echo"<meta http-equiv=\"refresh\" content=\"".$retasktime.";url=task.php?ecms=retask".$ecms_hashur['href']."\">";
@@ -166,7 +166,7 @@ elseif($ecms=='retask')
 	</script>
 	<?php
 }
-//è¿è¡Œ
+//ÔËĞĞ
 elseif($ecms=='TodoTask')
 {
 	$id=(int)$_GET['id'];
@@ -174,7 +174,7 @@ elseif($ecms=='TodoTask')
 	{
 		exit();
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($logininid,$loginin,$classid,"task");
 	$r=$empire->fetch1("select id,filename,taskname from {$dbtbpre}enewstask where id=$id limit 1");
 	$file='../tasks/'.$r['filename'];
@@ -182,7 +182,7 @@ elseif($ecms=='TodoTask')
 	{
 		include_once($file);
 		$enews=$ecms;
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id&taskname=$r[taskname]&filename=$r[filename]");
 	}
 	printerror('TodoTaskSuccess','');
@@ -201,9 +201,9 @@ else
 	<IFRAME frameBorder="0" id="retaskfile" name="retaskfile" scrolling="no" src="task.php?ecms=retask<?=$ecms_hashur['href']?>" style="HEIGHT:0;VISIBILITY:inherit;WIDTH:0;Z-INDEX:1"></IFRAME>
 	<table width='100%' border=0 align=center cellpadding=3 cellspacing=1 class='tableborder'>
 		<form name="tasklogform" method="post">
-		<tr class=header><td>ä»»åŠ¡æ—¥å¿—&nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="ClearTaskLog();">æ¸…é™¤æ—¥å¿—å†…å®¹</a>]</td></tr>
+		<tr class=header><td>ÈÎÎñÈÕÖ¾&nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="ClearTaskLog();">Çå³ıÈÕÖ¾ÄÚÈİ</a>]</td></tr>
 		<tr><td bgcolor='#ffffff'>
-			<textarea name="tasklog" cols="80" rows="30" id="tasklog" style="width:100%">  è®¡åˆ’ä»»åŠ¡å¼€å§‹è¿è¡Œæ—¶é—´ï¼š<?=date("Y-m-d H:i:s")?></textarea>
+			<textarea name="tasklog" cols="80" rows="30" id="tasklog" style="width:100%">  ¼Æ»®ÈÎÎñ¿ªÊ¼ÔËĞĞÊ±¼ä£º<?=date("Y-m-d H:i:s")?></textarea>
 		</td></tr>
 		</form>
 	</table>

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"table");
 $tid=(int)$_GET['tid'];
 $tbname=RepPostVar($_GET['tbname']);
@@ -29,28 +29,28 @@ if(!$r[tid])
 	printerror("ErrorUrl","history.go(-1)");
 }
 $tr=explode(',',$r[datatbs]);
-$url="æ•°æ®è¡¨:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListDataTable.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">ç®¡ç†å‰¯è¡¨åˆ†è¡¨</a>";
+$url="Êı¾İ±í:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListDataTable.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">¹ÜÀí¸±±í·Ö±í</a>";
 $datatbname=$dbtbpre.'ecms_'.$tbname.'_data_';
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†å‰¯è¡¨åˆ†è¡¨</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí¸±±í·Ö±í</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
-<form name="adddatatableform" method="post" action="../ecmsmod.php" onsubmit="return confirm('ç¡®è®¤è¦å¢åŠ ?');">
+<form name="adddatatableform" method="post" action="../ecmsmod.php" onsubmit="return confirm('È·ÈÏÒªÔö¼Ó?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td>å¢åŠ å‰¯è¡¨åˆ†è¡¨
+      <td>Ôö¼Ó¸±±í·Ö±í
         <input name="enews" type="hidden" id="enews" value="AddDataTable">
         <input name="tid" type="hidden" id="tid" value="<?=$tid?>"> <input name="tbname" type="hidden" id="tbname" value="<?=$tbname?>"></td>
     </tr>
@@ -58,16 +58,16 @@ $datatbname=$dbtbpre.'ecms_'.$tbname.'_data_';
       <td bgcolor="#FFFFFF">
         <?=$datatbname?>
         <input name="datatb" type="text" id="datatb" value="0" size="6">
-        <input type="submit" name="Submit" value="å¢åŠ ">
-        <font color="#666666">(è¡¨åè¦ç”¨æ•°å­—)</font></td>
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <font color="#666666">(±íÃûÒªÓÃÊı×Ö)</font></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td width="38%" height="25"><div align="center">è¡¨å</div></td>
-    <td width="33%" height="25"><div align="center">è®°å½•æ•°</div></td>
-    <td width="29%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="38%" height="25"><div align="center">±íÃû</div></td>
+    <td width="33%" height="25"><div align="center">¼ÇÂ¼Êı</div></td>
+    <td width="29%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   $count=count($tr)-1;
@@ -86,7 +86,7 @@ $datatbname=$dbtbpre.'ecms_'.$tbname.'_data_';
 	{
 		$maxtb=$tr[$i];
 	}
-	$dostr=$tr[$i]==1?"":"&nbsp;&nbsp;&nbsp;[<a href=\"../ecmsmod.php?tid=$tid&tbname=$tbname&enews=DelDataTable&datatb=".$tr[$i].$ecms_hashur['href']."\" onclick=\"return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Œåˆ é™¤ä¼šåˆ é™¤è¡¨é‡Œçš„æ‰€æœ‰ä¿¡æ¯?');\">åˆ é™¤</a>]";
+	$dostr=$tr[$i]==1?"":"&nbsp;&nbsp;&nbsp;[<a href=\"../ecmsmod.php?tid=$tid&tbname=$tbname&enews=DelDataTable&datatb=".$tr[$i].$ecms_hashur['href']."\" onclick=\"return confirm('È·ÈÏÒªÉ¾³ı£¬É¾³ı»áÉ¾³ı±íÀïµÄËùÓĞĞÅÏ¢?');\">É¾³ı</a>]";
   ?>
   <tr bgcolor="<?=$bgcolor?>"<?=$movejs?>> 
     <td height="25"> 
@@ -95,7 +95,7 @@ $datatbname=$dbtbpre.'ecms_'.$tbname.'_data_';
     <td height="25"><div align="center"> 
         <?=$total_r['Rows']?>
       </div></td>
-    <td height="25"><div align="center">[<a href="../ecmsmod.php?tid=<?=$tid?>&tbname=<?=$tbname?>&enews=DefDataTable&datatb=<?=$tr[$i]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦å°†è¿™ä¸ªè¡¨è®¾ä¸ºå½“å‰å­˜æ”¾è¡¨?');">è®¾ä¸ºå½“å‰å­˜æ”¾è¡¨</a>]<?=$dostr?></div></td>
+    <td height="25"><div align="center">[<a href="../ecmsmod.php?tid=<?=$tid?>&tbname=<?=$tbname?>&enews=DefDataTable&datatb=<?=$tr[$i]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒª½«Õâ¸ö±íÉèÎªµ±Ç°´æ·Å±í?');">ÉèÎªµ±Ç°´æ·Å±í</a>]<?=$dostr?></div></td>
   </tr>
   <?php
 	}

@@ -7,7 +7,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,7 +17,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 
-//å®¡æ ¸
+//ÉóºË
 $ecmscheck=(int)$_GET['ecmscheck'];
 $addecmscheck='';
 $indexchecked=1;
@@ -26,7 +26,7 @@ if($ecmscheck)
 	$addecmscheck='&ecmscheck='.$ecmscheck;
 	$indexchecked=0;
 }
-//æ˜¯å¦å…³é—­
+//ÊÇ·ñ¹Ø±Õ
 $isclose=(int)$_GET['isclose'];
 if($isclose)
 {
@@ -45,82 +45,82 @@ if(empty($class_r[$classid][classid]))
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 $doselfinfo=CheckLevel($logininid,$loginin,$classid,"news");
 if(!$class_r[$classid][tbname]||!$class_r[$classid][classid])
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-//éç»ˆææ ç›®
+//·ÇÖÕ¼«À¸Ä¿
 if(!$class_r[$classid]['islast'])
 {
 	printerror("AddInfoErrorClassid","history.go(-1)");
 }
 $bclassid=$class_r[$classid][bclassid];
 $id=(int)$_GET['id'];
-//é™„ä»¶éªŒè¯ç 
-if(!$doselfinfo['doeditinfo'])//ç¼–è¾‘æƒé™
+//¸½¼şÑéÖ¤Âë
+if(!$doselfinfo['doeditinfo'])//±à¼­È¨ÏŞ
 {
 	printerror("NotEditInfoLevel","EditInfoSimple.php?isclose=1".$ecms_hashur['ehref']);
 }
 $filepass=$id;
 $ecmsfirstpost=0;
-//æ¨¡å‹
+//Ä£ĞÍ
 $modid=$class_r[$classid][modid];
 $enter=$emod_r[$modid]['enter'];
-//ä¼šå‘˜ç»„
+//»áÔ±×é
 $sql1=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($l_r=$empire->fetch($sql1))
 {
 	$ygroup.="<option value=".$l_r[groupid].">".$l_r[groupname]."</option>";
 }
-//åˆå§‹åŒ–æ•°æ®
+//³õÊ¼»¯Êı¾İ
 $r=array();
 $todaytime=date("Y-m-d H:i:s");
 
-//-----------------------------------------ä¿®æ”¹ä¿¡æ¯
-//ç´¢å¼•è¡¨
+//-----------------------------------------ĞŞ¸ÄĞÅÏ¢
+//Ë÷Òı±í
 $index_r=$empire->fetch1("select classid,id,checked from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index where id='$id' limit 1");
 if(!$index_r['id']||$index_r['classid']!=$classid)
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-//è¿”å›è¡¨
+//·µ»Ø±í
 $infotb=ReturnInfoMainTbname($class_r[$classid][tbname],$index_r['checked']);
-//ä¸»è¡¨
+//Ö÷±í
 $r=$empire->fetch1("select * from ".$infotb." where id='$id' limit 1");
-//è¿”å›è¡¨ä¿¡æ¯
+//·µ»Ø±íĞÅÏ¢
 $infodatatb=ReturnInfoDataTbname($class_r[$classid][tbname],$index_r['checked'],$r['stb']);
-//å‰¯è¡¨
+//¸±±í
 $finfor=$empire->fetch1("select closepl from ".$infodatatb." where id='$id'");
 $r=array_merge($r,$finfor);
-//ç­¾å‘è¡¨
+//Ç©·¢±í
 if($r[isqf])
 {
 	$wfinfor=$empire->fetch1("select tstatus,checktno from {$dbtbpre}enewswfinfo where id='$id' and classid='$classid' limit 1");
 }
-//åªèƒ½ç¼–è¾‘è‡ªå·±çš„ä¿¡æ¯
+//Ö»ÄÜ±à¼­×Ô¼ºµÄĞÅÏ¢
 if($doselfinfo['doselfinfo']&&($r[userid]<>$logininid||$r[ismember]))
 {
 	printerror("NotDoSelfinfo","EditInfoSimple.php?isclose=1".$ecms_hashur['ehref']);
 }
-//å·²å®¡æ ¸ä¿¡æ¯ä¸å¯ä¿®æ”¹
+//ÒÑÉóºËĞÅÏ¢²»¿ÉĞŞ¸Ä
 if($doselfinfo['docheckedit']&&$index_r['checked'])
 {
 	printerror("NotEditCheckInfoLevel","EditInfoSimple.php?isclose=1".$ecms_hashur['ehref']);
 }
-//æ—¶é—´
+//Ê±¼ä
 $newstime=$r['newstime'];
 $r['newstime']=date("Y-m-d H:i:s",$r['newstime']);
-//é“¾æ¥åœ°å€
+//Á´½ÓµØÖ·
 $titleurl=$r['titleurl'];
 if(!$r['isurl'])
 {
 	$r['titleurl']='';
 }
-//ä¼šå‘˜ç»„
+//»áÔ±×é
 $group=str_replace(" value=".$r[groupid].">"," value=".$r[groupid]." selected>",$ygroup);
-//æ ‡é¢˜å±æ€§
+//±êÌâÊôĞÔ
 if(strstr($r[titlefont],','))
 {
 	$tfontr=explode(',',$r[titlefont]);
@@ -139,7 +139,7 @@ if(strstr($r[titlefont],"s|"))
 {
 	$titlefonts=" checked";
 }
-//æ ‡é¢˜åˆ†ç±»
+//±êÌâ·ÖÀà
 $cttidswhere='';
 $tts='';
 $caddr=$empire->fetch1("select ttids from {$dbtbpre}enewsclassadd where classid='$classid'");
@@ -160,18 +160,18 @@ if($caddr['ttids']!='-')
 		$tts.="<option value='$ttr[typeid]'".$select.">$ttr[tname]</option>";
 	}
 }
-//æ ç›®é“¾æ¥
+//À¸Ä¿Á´½Ó
 $getcurlr['classid']=$classid;
 $classurl=sys_ReturnBqClassname($getcurlr,9);
-//å½“å‰ä½¿ç”¨çš„æ¨¡æ¿ç»„
+//µ±Ç°Ê¹ÓÃµÄÄ£°å×é
 $thegid=GetDoTempGid();
 $phpmyself=urlencode(eReturnSelfPage(1));
-//è¿”å›å¤´æ¡å’Œæ¨èçº§åˆ«åç§°
+//·µ»ØÍ·ÌõºÍÍÆ¼ö¼¶±ğÃû³Æ
 $ftnr=ReturnFirsttitleNameList($r['firsttitle'],$r['isgood']);
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title><?=stripSlashes($r[title])?></title>
 <link rel="stylesheet" href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" type="text/css">
 <script>
@@ -191,7 +191,7 @@ function foreColor(){
   <form name="add" method="post" action="../ecmsinfo.php">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2"> å¿«é€Ÿä¿®æ”¹ä¿¡æ¯åŸºæœ¬å±æ€§ 
+      <td height="25" colspan="2"> ¿ìËÙĞŞ¸ÄĞÅÏ¢»ù±¾ÊôĞÔ 
         <input type=hidden value=EditInfoSimple name=enews> <input type=hidden value=<?=$classid?> name=classid> 
         <input type=hidden value=<?=$bclassid?> name=bclassid> <input name=id type=hidden value=<?=$id?>> 
         <input type=hidden value="<?=$r[newspath]?>" name=newspath> <input type=hidden value="<?=$r[ztid]?>" name=oldztid> 
@@ -204,22 +204,22 @@ function foreColor(){
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="16%" height="25">æ ‡é¢˜</td>
+      <td width="16%" height="25">±êÌâ</td>
       <td><table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#DBEAF5">
           <tr> 
             <td height="25" bgcolor="#FFFFFF"> 
-              <?=$tts?"<select name='ttid'><option value='0'>æ ‡é¢˜åˆ†ç±»</option>$tts</select>":""?>
+              <?=$tts?"<select name='ttid'><option value='0'>±êÌâ·ÖÀà</option>$tts</select>":""?>
               <input type=text name=title value="<?=ehtmlspecialchars(stripSlashes($r[title]))?>" size="60"> 
             </td>
           </tr>
           <tr> 
-            <td height="25" bgcolor="#FFFFFF">å±æ€§: 
+            <td height="25" bgcolor="#FFFFFF">ÊôĞÔ: 
               <input name="titlefont[b]" type="checkbox" value="b"<?=$titlefontb?>>
-              ç²—ä½“ 
+              ´ÖÌå 
               <input name="titlefont[i]" type="checkbox" value="i"<?=$titlefonti?>>
-              æ–œä½“ 
+              Ğ±Ìå 
               <input name="titlefont[s]" type="checkbox" value="s"<?=$titlefonts?>>
-              åˆ é™¤çº¿ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;é¢œè‰²: 
+              É¾³ıÏß &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÑÕÉ«: 
               <input name="titlecolor" type="text" value="<?=stripSlashes($r[titlecolor])?>" size="10" class="color"> 
                
             </td>
@@ -227,70 +227,70 @@ function foreColor(){
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç‰¹æ®Šå±æ€§</td>
+      <td height="25">ÌØÊâÊôĞÔ</td>
       <td><table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#DBEAF5">
           <tr> 
-            <td height="25" bgcolor="#FFFFFF">ä¿¡æ¯å±æ€§: 
+            <td height="25" bgcolor="#FFFFFF">ĞÅÏ¢ÊôĞÔ: 
               <input name="checked" type="checkbox" value="1"<?=$index_r[checked]?' checked':''?>>
-              å®¡æ ¸ &nbsp;&nbsp; æ¨è
+              ÉóºË &nbsp;&nbsp; ÍÆ¼ö
               <select name="isgood" id="isgood">
-                <option value="0"<?=$r[isgood]==0?' selected':''?>>ä¸æ¨è</option>
+                <option value="0"<?=$r[isgood]==0?' selected':''?>>²»ÍÆ¼ö</option>
                 <?=$ftnr['igname']?>
               </select>
-              &nbsp;&nbsp; å¤´æ¡ 
+              &nbsp;&nbsp; Í·Ìõ 
               <select name="firsttitle" id="firsttitle">
-                <option value="0"<?=$r[firsttitle]==0?' selected':''?>>éå¤´æ¡</option>
+                <option value="0"<?=$r[firsttitle]==0?' selected':''?>>·ÇÍ·Ìõ</option>
                 <?=$ftnr['ftname']?>
               </select> </td>
           </tr>
           <tr> 
-            <td height="25" bgcolor="#FFFFFF">å¤–éƒ¨é“¾æ¥: 
+            <td height="25" bgcolor="#FFFFFF">Íâ²¿Á´½Ó: 
               <input name="titleurl" type="text" value="<?=stripSlashes($r[titleurl])?>" size="49"> 
             </td>
           </tr>
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å‘å¸ƒæ—¶é—´</td>
+      <td height="25">·¢²¼Ê±¼ä</td>
       <td><input name="newstime" type="text" value="<?=$r[newstime]?>" size="28" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd HH:mm:ss'})"> 
-      <input type=button name=button2 value="è®¾ä¸ºå½“å‰æ—¶é—´" onclick="document.add.newstime.value='<?=$todaytime?>'"></td>
+      <input type=button name=button2 value="ÉèÎªµ±Ç°Ê±¼ä" onclick="document.add.newstime.value='<?=$todaytime?>'"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ ‡é¢˜å›¾ç‰‡</td>
+      <td height="25">±êÌâÍ¼Æ¬</td>
       <td><input name="titlepic" type="text" id="titlepic" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[titlepic]))?>" size="45"> 
-        <a onclick="window.open('../ecmseditor/FileMain.php?type=1&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&doing=1&field=titlepic&sinfo=1<?=$ecms_hashur['ehref']?>','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../../data/images/changeimg.gif" border="0" align="absbottom"></a> 
+        <a onclick="window.open('../ecmseditor/FileMain.php?type=1&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&doing=1&field=titlepic&sinfo=1<?=$ecms_hashur['ehref']?>','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../../data/images/changeimg.gif" border="0" align="absbottom"></a> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td rowspan="2">å…¶å®ƒé€‰é¡¹</td>
-      <td height="25">ç½®é¡¶çº§åˆ«: 
+      <td rowspan="2">ÆäËüÑ¡Ïî</td>
+      <td height="25">ÖÃ¶¥¼¶±ğ: 
         <select name="istop">
-          <option value="0"<?=$r[istop]==0?' selected':''?>>ä¸ç½®é¡¶</option>
-          <option value="1"<?=$r[istop]==1?' selected':''?>>ä¸€çº§ç½®é¡¶</option>
-          <option value="2"<?=$r[istop]==2?' selected':''?>>äºŒçº§ç½®é¡¶</option>
-          <option value="3"<?=$r[istop]==3?' selected':''?>>ä¸‰çº§ç½®é¡¶</option>
-          <option value="4"<?=$r[istop]==4?' selected':''?>>å››çº§ç½®é¡¶</option>
-          <option value="5"<?=$r[istop]==5?' selected':''?>>äº”çº§ç½®é¡¶</option>
-          <option value="6"<?=$r[istop]==6?' selected':''?>>å…­çº§ç½®é¡¶</option>
-          <option value="7"<?=$r[istop]==7?' selected':''?>>ä¸ƒçº§ç½®é¡¶</option>
-          <option value="8"<?=$r[istop]==8?' selected':''?>>å…«çº§ç½®é¡¶</option>
-		  <option value="9"<?=$r[istop]==9?' selected':''?>>ä¹çº§ç½®é¡¶</option>
+          <option value="0"<?=$r[istop]==0?' selected':''?>>²»ÖÃ¶¥</option>
+          <option value="1"<?=$r[istop]==1?' selected':''?>>Ò»¼¶ÖÃ¶¥</option>
+          <option value="2"<?=$r[istop]==2?' selected':''?>>¶ş¼¶ÖÃ¶¥</option>
+          <option value="3"<?=$r[istop]==3?' selected':''?>>Èı¼¶ÖÃ¶¥</option>
+          <option value="4"<?=$r[istop]==4?' selected':''?>>ËÄ¼¶ÖÃ¶¥</option>
+          <option value="5"<?=$r[istop]==5?' selected':''?>>Îå¼¶ÖÃ¶¥</option>
+          <option value="6"<?=$r[istop]==6?' selected':''?>>Áù¼¶ÖÃ¶¥</option>
+          <option value="7"<?=$r[istop]==7?' selected':''?>>Æß¼¶ÖÃ¶¥</option>
+          <option value="8"<?=$r[istop]==8?' selected':''?>>°Ë¼¶ÖÃ¶¥</option>
+		  <option value="9"<?=$r[istop]==9?' selected':''?>>¾Å¼¶ÖÃ¶¥</option>
         </select>
         , 
         <input type=checkbox name=closepl value=1<?=$r[closepl]==1?" checked":""?>>
-        å…³é—­è¯„è®º</td>
+        ¹Ø±ÕÆÀÂÛ</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç‚¹å‡»æ•°&nbsp;&nbsp;&nbsp;: 
+      <td height="25">µã»÷Êı&nbsp;&nbsp;&nbsp;: 
         <input name="onclick" type="text" id="onclick2" value="<?=$r[onclick]?>" size="8">
-        ä¸‹è½½æ•°&nbsp;&nbsp;&nbsp;: 
+        ÏÂÔØÊı&nbsp;&nbsp;&nbsp;: 
         <input name="totaldown" type="text" id="totaldown2" value="<?=$r[totaldown]?>" size="8"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td><input type="submit" name="addnews" value=" æ äº¤ "> &nbsp;&nbsp;&nbsp; 
-        <input type="reset" name="Submit2" value="é‡ç½®">
-        &nbsp;&nbsp;&nbsp; <input type="button" name="Submit22" value="å–æ¶ˆ" onclick="window.close();"></td>
+      <td><input type="submit" name="addnews" value=" Ìá ½» "> &nbsp;&nbsp;&nbsp; 
+        <input type="reset" name="Submit2" value="ÖØÖÃ">
+        &nbsp;&nbsp;&nbsp; <input type="button" name="Submit22" value="È¡Ïû" onclick="window.close();"></td>
     </tr>
   </form>
 </table>

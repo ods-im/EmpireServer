@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,38 +15,38 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"plf");
-$url="<a href=ListAllPl.php".$ecms_hashur['whehref'].">ç®¡ç†è¯„è®º</a>&nbsp;>&nbsp;<a href=ListPlF.php".$ecms_hashur['whehref'].">ç®¡ç†è¯„è®ºè‡ªå®šä¹‰å­—æ®µ</a>";
+$url="<a href=ListAllPl.php".$ecms_hashur['whehref'].">¹ÜÀíÆÀÂÛ</a>&nbsp;>&nbsp;<a href=ListPlF.php".$ecms_hashur['whehref'].">¹ÜÀíÆÀÂÛ×Ô¶¨Òå×Ö¶Î</a>";
 $sql=$empire->query("select * from {$dbtbpre}enewsplf order by fid");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†å­—æ®µ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí×Ö¶Î</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit2" value="å¢åŠ å­—æ®µ" onclick="self.location.href='AddPlF.php?enews=AddPlF<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit2" value="Ôö¼Ó×Ö¶Î" onclick="self.location.href='AddPlF.php?enews=AddPlF<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
-<form name="form1" method="post" action="../ecmspl.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+<form name="form1" method="post" action="../ecmspl.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="27%" height="25"> <div align="center">å­—æ®µå</div></td>
-      <td width="27%"> <div align="center">å­—æ®µæ ‡è¯†</div></td>
-      <td width="23%"><div align="center">å­—æ®µç±»å‹</div></td>
-      <td width="17%" height="25"><div align="center">æ“ä½œ</div></td>
+      <td width="27%" height="25"> <div align="center">×Ö¶ÎÃû</div></td>
+      <td width="27%"> <div align="center">×Ö¶Î±êÊ¶</div></td>
+      <td width="23%"><div align="center">×Ö¶ÎÀàĞÍ</div></td>
+      <td width="17%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -70,7 +70,7 @@ $sql=$empire->query("select * from {$dbtbpre}enewsplf order by fid");
       <td><div align="center"> 
           <?=$ftype?>
         </div></td>
-      <td height="25"><div align="center"> [<a href='AddPlF.php?enews=EditPlF&fid=<?=$r[fid]?><?=$ecms_hashur['ehref']?>'>ä¿®æ”¹</a>]&nbsp;&nbsp;[<a href='../ecmspl.php?enews=DelPlF&fid=<?=$r[fid]?><?=$ecms_hashur['href']?>' onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>] 
+      <td height="25"><div align="center"> [<a href='AddPlF.php?enews=EditPlF&fid=<?=$r[fid]?><?=$ecms_hashur['ehref']?>'>ĞŞ¸Ä</a>]&nbsp;&nbsp;[<a href='../ecmspl.php?enews=DelPlF&fid=<?=$r[fid]?><?=$ecms_hashur['href']?>' onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>] 
         </div></td>
     </tr>
     <?

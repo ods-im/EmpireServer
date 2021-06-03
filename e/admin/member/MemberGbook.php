@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"spacedata");
 
-//åˆ é™¤ç•™è¨€
+//É¾³ýÁôÑÔ
 function hDelMemberGbook($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$gid=intval($add['gid']);
@@ -29,7 +29,7 @@ function hDelMemberGbook($add,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsmembergbook where gid='$gid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("gid=".$gid);
 		printerror("DelMemberGbookSuccess",EcmsGetReturnUrl());
 	}
@@ -39,7 +39,7 @@ function hDelMemberGbook($add,$userid,$username){
 	}
 }
 
-//æ‰¹é‡åˆ é™¤ç•™è¨€
+//ÅúÁ¿É¾³ýÁôÑÔ
 function hDelMemberGbook_All($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$gid=$add['gid'];
@@ -56,7 +56,7 @@ function hDelMemberGbook_All($add,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsmembergbook where (".$addsql.")");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("DelMemberGbookSuccess",EcmsGetReturnUrl());
 	}
@@ -86,10 +86,10 @@ include "../".LoadLang("pub/fun.php");
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=12;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æŽ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
-//æœç´¢
+$line=12;//Ã¿Ò³ÏÔÊ¾ÌõÊý
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊý
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
+//ËÑË÷
 $search='';
 $search.=$ecms_hashur['ehref'];
 $and='';
@@ -99,23 +99,23 @@ if($_GET['sear'])
 	if($keyboard)
 	{
 		$show=RepPostStr($_GET['show'],1);
-		if($show==1)//ç•™è¨€å†…å®¹
+		if($show==1)//ÁôÑÔÄÚÈÝ
 		{
 			$and.=" where gbtext like '%$keyboard%'";	
 		}
-		elseif($show==2)//å›žå¤å†…å®¹
+		elseif($show==2)//»Ø¸´ÄÚÈÝ
 		{
 			$and.=" where retext like '%$keyboard%'";
 		}
-		elseif($show==3)//ç•™è¨€è€…
+		elseif($show==3)//ÁôÑÔÕß
 		{
 			$and.=" where uname like '%$keyboard%'";
 		}
-		elseif($show==4)//ç©ºé—´ä¸»äººç”¨æˆ·ID
+		elseif($show==4)//¿Õ¼äÖ÷ÈËÓÃ»§ID
 		{
 			$and.=" where userid='$keyboard'";
 		}
-		elseif($show==5)//ç•™è¨€è€…IP
+		elseif($show==5)//ÁôÑÔÕßIP
 		{
 			$and.=" where ip like '%$keyboard%'";
 		}
@@ -124,24 +124,24 @@ if($_GET['sear'])
 }
 $query="select gid,isprivate,uid,uname,ip,addtime,gbtext,retext,userid,eipport from {$dbtbpre}enewsmembergbook".$and;
 $totalquery="select count(*) as total from {$dbtbpre}enewsmembergbook".$and;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊý
 $query=$query." order by gid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-$url="ä¼šå‘˜ç©ºé—´&nbsp;>&nbsp;<a href=MemberGbook.php".$ecms_hashur['whehref'].">ç®¡ç†ç•™è¨€</a>";
+$url="»áÔ±¿Õ¼ä&nbsp;>&nbsp;<a href=MemberGbook.php".$ecms_hashur['whehref'].">¹ÜÀíÁôÑÔ</a>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç•™è¨€ç®¡ç†</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÁôÑÔ¹ÜÀí</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®: 
+    <td width="50%">Î»ÖÃ: 
       <?=$url?>
     </td>
     <td><div align="right"> </div></td>
@@ -151,22 +151,22 @@ $url="ä¼šå‘˜ç©ºé—´&nbsp;>&nbsp;<a href=MemberGbook.php".$ecms_hashur['whehref'].
 <form name="searchgb" method="get" action="MemberGbook.php">
 <?=$ecms_hashur['eform']?>
   <tr>
-    <td><div align="center">æœç´¢ï¼š
+    <td><div align="center">ËÑË÷£º
           <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
           <select name="show" id="show">
-            <option value="1"<?=$show==1?' selected':''?>>ç•™è¨€å†…å®¹</option>
-			<option value="2"<?=$show==2?' selected':''?>>å›žå¤å†…å®¹</option>
-            <option value="3"<?=$show==3?' selected':''?>>ç•™è¨€è€…</option>
-            <option value="4"<?=$show==4?' selected':''?>>ç©ºé—´ä¸»äººç”¨æˆ·ID</option>
-            <option value="5"<?=$show==5?' selected':''?>>ç•™è¨€è€…IP</option>
+            <option value="1"<?=$show==1?' selected':''?>>ÁôÑÔÄÚÈÝ</option>
+			<option value="2"<?=$show==2?' selected':''?>>»Ø¸´ÄÚÈÝ</option>
+            <option value="3"<?=$show==3?' selected':''?>>ÁôÑÔÕß</option>
+            <option value="4"<?=$show==4?' selected':''?>>¿Õ¼äÖ÷ÈËÓÃ»§ID</option>
+            <option value="5"<?=$show==5?' selected':''?>>ÁôÑÔÕßIP</option>
           </select>
-          <input type="submit" name="Submit" value="æœç´¢">
+          <input type="submit" name="Submit" value="ËÑË÷">
           <input name="sear" type="hidden" id="sear" value="1">
         </div></td>
   </tr>
 </form>
 </table>
-<form name=thisform method=post action=MemberGbook.php onsubmit="return confirm('ç¡®è®¤è¦æ‰§è¡Œæ“ä½œ?');">
+<form name=thisform method=post action=MemberGbook.php onsubmit="return confirm('È·ÈÏÒªÖ´ÐÐ²Ù×÷?');">
 <?=$ecms_hashur['form']?>
 <?
 while($r=$empire->fetch($sql))
@@ -180,15 +180,15 @@ while($r=$empire->fetch($sql))
 	$private='';
 	if($r['isprivate'])
 	{
-		$private='<b>[æ‚„æ‚„è¯]</b>';
+		$private='<b>[ÇÄÇÄ»°]</b>';
 	}
 ?>
   <table width="700" border="0" align="center" cellpadding="3" cellspacing="1" class=tableborder>
     <tr class=header> 
-      <td width="55%" height="23">å‘å¸ƒè€…: 
+      <td width="55%" height="23">·¢²¼Õß: 
         <?=$r[uname]?>
         </td>  
-      <td width="45%">å‘å¸ƒæ—¶é—´: 
+      <td width="45%">·¢²¼Ê±¼ä: 
         <?=$r[addtime]?>&nbsp;
         (IP: <?=$r[ip]?>:<?=$r[eipport]?>) </td>
   </tr>
@@ -202,7 +202,7 @@ while($r=$empire->fetch($sql))
       </table>
       <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" style='word-break:break-all'>
         <tr> 
-          <td><img src="../../data/images/regb.gif" width="18" height="18"><strong><font color="#FF0000">å›žå¤:</font></strong> 
+          <td><img src="../../data/images/regb.gif" width="18" height="18"><strong><font color="#FF0000">»Ø¸´:</font></strong> 
             <?=nl2br($r[retext])?>
           </td>
         </tr>
@@ -213,11 +213,11 @@ while($r=$empire->fetch($sql))
     <td height="23" colspan="2"><div align="right">
         <table width="100%" border="0" cellspacing="1" cellpadding="3">
           <tr>
-              <td width="55%"><strong>ç©ºé—´ä¸»äºº: <a href="MemberGbook.php?sear=1&show=4&keyboard=<?=$r[userid]?><?=$ecms_hashur['ehref']?>"> 
+              <td width="55%"><strong>¿Õ¼äÖ÷ÈË: <a href="MemberGbook.php?sear=1&show=4&keyboard=<?=$r[userid]?><?=$ecms_hashur['ehref']?>"> 
                 <?=$username?>
                 </a> </strong></td>
               <td width="45%"> 
-                <div align="left"><strong>æ“ä½œ:</strong>&nbsp;[<a href="MemberGbook.php?enews=hDelMemberGbook&gid=<?=$r[gid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>] 
+                <div align="left"><strong>²Ù×÷:</strong>&nbsp;[<a href="MemberGbook.php?enews=hDelMemberGbook&gid=<?=$r[gid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ý?');">É¾³ý</a>] 
                   <input name="gid[]" type="checkbox" value="<?=$r[gid]?>">
                 </div></td>
           </tr>
@@ -231,10 +231,10 @@ while($r=$empire->fetch($sql))
 ?>
   <table width="700" border="0" align="center" cellpadding="3" cellspacing="1">
     <tr> 
-      <td>åˆ†é¡µ: 
+      <td>·ÖÒ³: 
         <?=$returnpage?>
         &nbsp;&nbsp; 
-        <input type="submit" name="Submit2" value="æ‰¹é‡åˆ é™¤" onClick="document.thisform.enews.value='hDelMemberGbook_All';">
+        <input type="submit" name="Submit2" value="ÅúÁ¿É¾³ý" onClick="document.thisform.enews.value='hDelMemberGbook_All';">
         <input name="enews" type="hidden" id="enews" value="hDelMemberGbook_All">
       </td>
   </tr>

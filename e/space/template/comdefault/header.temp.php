@@ -3,13 +3,13 @@ if(!defined('InEmpireCMS'))
 {
 	exit();
 }
-//å…¬å‘Š
+//¹«¸æ
 $spacegg='';
 if($addur['spacegg'])
 {
 	$spacegg='<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#96C8F1">
   <tr>
-    <td background="template/default/images/bg_title_sider.gif"><b>å…¬å‘Š</b></td>
+    <td background="template/default/images/bg_title_sider.gif"><b>¹«¸æ</b></td>
   </tr>
   <tr>
     <td bgcolor="#FFFFFF"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -23,7 +23,7 @@ if($addur['spacegg'])
 </table>
 <br>';
 }
-//å¯¼èˆªèœå•
+//µ¼º½²Ëµ¥
 $dhmenu='';
 $modsql=$empire->query("select mid,qmname from {$dbtbpre}enewsmod where usemod=0 and showmod=0 and qenter<>'' order by myorder,mid");
 while($modr=$empire->fetch($modsql))
@@ -33,7 +33,7 @@ while($modr=$empire->fetch($modsql))
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <title><?=$spacename?> - Powered by EmpireCMS</title>
 <meta content="<?=$spacename?>" name="keywords" />
 <meta content="<?=$spacename?>" name="description" />
@@ -57,8 +57,8 @@ function ChangeMenuBg2(doobj,dofont){
     <td height="20">&nbsp;<font color="#666666"> 
       <?=$spacename?>
       </font></td>
-    <td align="right"><a href="<?=$public_r[newsurl]?>">ç½‘ç«™é¦–é¡µ</a> | <a onClick="window.external.addFavorite('<?=$spaceurl?>','<?=$spacename?>')" href="#ecms">åŠ å…¥æ”¶è—</a> 
-      | <a onClick="this.style.behavior='url(#default#homepage)';this.setHomePage('<?=$spaceurl?>')" href="#ecms">è®¾ä¸ºé¦–é¡µ</a></td>
+    <td align="right"><a href="<?=$public_r[newsurl]?>">ÍøÕ¾Ê×Ò³</a> | <a onClick="window.external.addFavorite('<?=$spaceurl?>','<?=$spacename?>')" href="#ecms">¼ÓÈëÊÕ²Ø</a> 
+      | <a onClick="this.style.behavior='url(#default#homepage)';this.setHomePage('<?=$spaceurl?>')" href="#ecms">ÉèÎªÊ×Ò³</a></td>
  </tr>
 </table>
 <table width="778" height="108" border="0" align="center" cellpadding="0" cellspacing="8" background="template/default/images/head_bg.gif">
@@ -66,7 +66,7 @@ function ChangeMenuBg2(doobj,dofont){
     <td valign="middle"><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr> 
           <td width="15%"></td>
-          <td><font style="font-family:å®‹ä½“;font-size:20px;color:FFFFFF;font-weight:normal;font-style:normal;"><strong><?=$spacename?></strong></font><br><span style='line-height=15pt'><a href="<?=$spaceurl?>"><font color="ffffff"><?=$spaceurl?></font></a></span></td>
+          <td><font style="font-family:ËÎÌå;font-size:20px;color:FFFFFF;font-weight:normal;font-style:normal;"><strong><?=$spacename?></strong></font><br><span style='line-height=15pt'><a href="<?=$spaceurl?>"><font color="ffffff"><?=$spaceurl?></font></a></span></td>
         </tr>
       </table></td>
   </tr>
@@ -77,17 +77,17 @@ function ChangeMenuBg2(doobj,dofont){
 <table border="0" cellspacing="0" cellpadding="0">
         <tr> 
           <td width="10">&nbsp;</td>
-          <td width="70" height="24" onMouseOver="ChangeMenuBg(this,mhome)" onMouseOut="ChangeMenuBg2(this,mhome)" align="center" onClick="self.location.href='index.php?userid=<?=$userid?>';"><font color="#FFFFFF" id="mhome"><strong>ç©ºé—´é¦–é¡µ</strong></font></td>
+          <td width="70" height="24" onMouseOver="ChangeMenuBg(this,mhome)" onMouseOut="ChangeMenuBg2(this,mhome)" align="center" onClick="self.location.href='index.php?userid=<?=$userid?>';"><font color="#FFFFFF" id="mhome"><strong>¿Õ¼äÊ×Ò³</strong></font></td>
 			<?=$dhmenu?>
-          <td width="70" height="24" onMouseOver="ChangeMenuBg(this,muserinfo)" onMouseOut="ChangeMenuBg2(this,muserinfo)" align="center" onClick="self.location.href='UserInfo.php?userid=<?=$userid?>';"><font color="#FFFFFF" id="muserinfo"><strong>å…¬å¸ä»‹ç»</strong></font></td>
-		  <td width="70" height="24" onMouseOver="ChangeMenuBg(this,mfeedback)" onMouseOut="ChangeMenuBg2(this,mfeedback)" align="center" onClick="self.location.href='feedback.php?userid=<?=$userid?>';"><font color="#FFFFFF" id="mfeedback"><strong>åé¦ˆä¿¡æ¯</strong></font></td>
-		  <td width="70" height="24" onMouseOver="ChangeMenuBg(this,mgbook)" onMouseOut="ChangeMenuBg2(this,mgbook)" align="center" onClick="self.location.href='gbook.php?userid=<?=$userid?>';"><font color="#FFFFFF" id="mgbook"><strong>ç•™è¨€æ¿</strong></font></td>
+          <td width="70" height="24" onMouseOver="ChangeMenuBg(this,muserinfo)" onMouseOut="ChangeMenuBg2(this,muserinfo)" align="center" onClick="self.location.href='UserInfo.php?userid=<?=$userid?>';"><font color="#FFFFFF" id="muserinfo"><strong>¹«Ë¾½éÉÜ</strong></font></td>
+		  <td width="70" height="24" onMouseOver="ChangeMenuBg(this,mfeedback)" onMouseOut="ChangeMenuBg2(this,mfeedback)" align="center" onClick="self.location.href='feedback.php?userid=<?=$userid?>';"><font color="#FFFFFF" id="mfeedback"><strong>·´À¡ĞÅÏ¢</strong></font></td>
+		  <td width="70" height="24" onMouseOver="ChangeMenuBg(this,mgbook)" onMouseOut="ChangeMenuBg2(this,mgbook)" align="center" onClick="self.location.href='gbook.php?userid=<?=$userid?>';"><font color="#FFFFFF" id="mgbook"><strong>ÁôÑÔ°å</strong></font></td>
         </tr>
       </table>
     </td>
   </tr>
   <tr>
-    <td height="23" bgcolor="B3DBF5">&nbsp;&nbsp;æ‚¨ç°åœ¨çš„ä½ç½®ï¼š
+    <td height="23" bgcolor="B3DBF5">&nbsp;&nbsp;ÄúÏÖÔÚµÄÎ»ÖÃ£º
       <?=$url?>
     </td>
   </tr>
@@ -115,24 +115,24 @@ function ChangeMenuBg2(doobj,dofont){
             </table>
             <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#96C8F1">
               <tr> 
-                <td background="template/default/images/bg_title_sider.gif"><strong>ç”¨æˆ·èœå•</strong></td>
+                <td background="template/default/images/bg_title_sider.gif"><strong>ÓÃ»§²Ëµ¥</strong></td>
               </tr>
               <tr> 
                 <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="6" cellpadding="3">
                     <tr> 
-                      <td height="25"><a href="../member/friend/add/?fname=<?=$username?>" target="_blank">åŠ ä¸ºå¥½å‹</a></td>
-                      <td><a href="../member/msg/AddMsg/?username=<?=$username?>" target="_blank">å‘çŸ­æ¶ˆæ¯</a></td>
+                      <td height="25"><a href="../member/friend/add/?fname=<?=$username?>" target="_blank">¼ÓÎªºÃÓÑ</a></td>
+                      <td><a href="../member/msg/AddMsg/?username=<?=$username?>" target="_blank">·¢¶ÌÏûÏ¢</a></td>
                     </tr>
                     <tr> 
-                      <td height="25"><a href="UserInfo.php?userid=<?=$userid?>">ç”¨æˆ·èµ„æ–™</a></td>
-                      <td><a href="../member/cp">ç®¡ç†é¢æ¿</a></td>
+                      <td height="25"><a href="UserInfo.php?userid=<?=$userid?>">ÓÃ»§×ÊÁÏ</a></td>
+                      <td><a href="../member/cp">¹ÜÀíÃæ°å</a></td>
                     </tr>
                   </table> </td>
               </tr>
             </table>
 			<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#96C8F1">
 			<tr>
-				<td background="template/default/images/bg_title_sider.gif">è®¿é—®ç»Ÿè®¡ï¼š<?=$addur[viewstats]?></td>
+				<td background="template/default/images/bg_title_sider.gif">·ÃÎÊÍ³¼Æ£º<?=$addur[viewstats]?></td>
 			</tr>
 			</table>
           </td>

@@ -5,7 +5,7 @@ require("../class/db_sql.php");
 require("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -14,7 +14,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"cj");
 $add=$_GET;
 $classid=$add['classid'];
@@ -26,7 +26,7 @@ if(!$count)
 $add['from']=ehtmlspecialchars($add['from']);
 esetcookie("recjnum",$count,0,1);
 $url="ecmscj.php?enews=CjUrl".$ecms_hashur['href'];
-echo"<center><b>é‡‡é›†èŠ‚ç‚¹çš„æ€»ä¸ªæ•°ä¸º:<font color=red>$count</font>ä¸ªã€‚</b>&nbsp;&nbsp; (<a href='ReHtml/ChangeData.php".$ecms_hashur['whehref']."#ReIfInfoHtml' target=_blank>æ•°æ®æ›´æ–°ä¸­å¿ƒ</a>)</center><br>";
+echo"<center><b>²É¼¯½ÚµãµÄ×Ü¸öÊıÎª:<font color=red>$count</font>¸ö¡£</b>&nbsp;&nbsp; (<a href='ReHtml/ChangeData.php".$ecms_hashur['whehref']."#ReIfInfoHtml' target=_blank>Êı¾İ¸üĞÂÖĞĞÄ</a>)</center><br>";
 for($i=0;$i<$count;$i++)
 {
 	$classid[$i]=(int)$classid[$i];

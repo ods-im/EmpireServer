@@ -12,13 +12,13 @@ if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
-//瀵煎叆鏂囦欢
+//导入文件
 if($enews=='DownSoft'||$enews=='GetSofturl')
 {
-	$enews=='DownSoft'?eCheckCloseMods('down'):eCheckCloseMods('movie');//鍏抽棴妯″潡
+	$enews=='DownSoft'?eCheckCloseMods('down'):eCheckCloseMods('movie');//关闭模块
 	include('class/DownSysFun.php');
 }
-if($enews=="DownSoft")//涓嬭浇杞欢
+if($enews=="DownSoft")//下载软件
 {
 	$classid=$_GET['classid'];
 	$id=$_GET['id'];
@@ -27,7 +27,7 @@ if($enews=="DownSoft")//涓嬭浇杞欢
 	$pass=$_GET['pass'];
 	DownSoft($classid,$id,$pathid,$p,$pass);
 }
-elseif($enews=="GetSofturl")//鍙栧緱杞欢鍦板潃
+elseif($enews=="GetSofturl")//取得软件地址
 {
 	$classid=$_GET['classid'];
 	$id=$_GET[id];

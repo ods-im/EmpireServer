@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,19 +16,19 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"vote");
 
-//å¢åŠ æŠ•ç¥¨
+//Ôö¼ÓÍ¶Æ±
 function AddVote($title,$votename,$votenum,$delvid,$vid,$voteclass,$doip,$dotime,$width,$height,$tempid,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$title||!$tempid)
 	{printerror("EmptyVoteTitle","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"vote");
-	//è¿”å›ç»„åˆ
+	//·µ»Ø×éºÏ
 	$votetext=ReturnVote($votename,$votenum,$delvid,$vid,0);
-	//ç»Ÿè®¡æ€»ç¥¨æ•°
+	//Í³¼Æ×ÜÆ±Êı
 	for($i=0;$i<count($votename);$i++)
 	{$t_votenum+=$votenum[$i];}
 	$votetime=to_date($dotime);
@@ -44,12 +44,12 @@ function AddVote($title,$votename,$votenum,$delvid,$vid,$voteclass,$doip,$dotime
 	$votetext=AddAddsData($votetext);
 	$dotime=hRepPostStr($dotime,1);
 	$sql=$empire->query("insert into {$dbtbpre}enewsvote(title,votetext,votenum,voteip,voteclass,doip,votetime,dotime,width,height,addtime,tempid) values('$title','$votetext',$t_votenum,'',$voteclass,$doip,$votetime,'$dotime',$width,$height,'$addtime',$tempid);");
-	//ç”ŸæˆæŠ•ç¥¨js
+	//Éú³ÉÍ¶Æ±js
 	$voteid=$empire->lastid();
 	GetVoteJs($voteid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("voteid=".$voteid."<br>title=".$title);
 		printerror("AddVoteSuccess","AddVote.php?enews=AddVote".hReturnEcmsHashStrHref2(0));
 	}
@@ -57,22 +57,22 @@ function AddVote($title,$votename,$votenum,$delvid,$vid,$voteclass,$doip,$dotime
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹æŠ•ç¥¨
+//ĞŞ¸ÄÍ¶Æ±
 function EditVote($voteid,$title,$votename,$votenum,$delvid,$vid,$voteclass,$doip,$dotime,$width,$height,$tempid,$userid,$username){
 	global $empire,$dbtbpre;
 	$voteid=(int)$voteid;
 	if(!$voteid||!$title||!$tempid)
 	{printerror("EmptyVoteTitle","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"vote");
-	//è¿”å›ç»„åˆ
+	//·µ»Ø×éºÏ
 	$votetext=ReturnVote($votename,$votenum,$delvid,$vid,1);
-	//ç»Ÿè®¡æ€»ç¥¨æ•°
+	//Í³¼Æ×ÜÆ±Êı
 	for($i=0;$i<count($votename);$i++)
 	{$t_votenum+=$votenum[$i];}
 	$r=$empire->fetch1("select dotime,votetime from {$dbtbpre}enewsvote where voteid='$voteid'");
 	$votetime=to_date($dotime);
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$t_votenum=(int)$t_votenum;
 	$voteclass=(int)$voteclass;
 	$votetime=(int)$votetime;
@@ -84,11 +84,11 @@ function EditVote($voteid,$title,$votename,$votenum,$delvid,$vid,$voteclass,$doi
 	$votetext=AddAddsData($votetext);
 	$dotime=hRepPostStr($dotime,1);
 	$sql=$empire->query("update {$dbtbpre}enewsvote set title='$title',votetext='$votetext',votenum=$t_votenum,voteclass=$voteclass,doip=$doip,dotime='$dotime',votetime=$votetime,width=$width,height=$height,tempid=$tempid where voteid='$voteid'");
-	//ç”ŸæˆæŠ•ç¥¨js
+	//Éú³ÉÍ¶Æ±js
 	GetVoteJs($voteid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("voteid=".$voteid."<br>title=".$title);
 		printerror("EditVoteSuccess","ListVote.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -96,13 +96,13 @@ function EditVote($voteid,$title,$votename,$votenum,$delvid,$vid,$voteclass,$doi
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤æŠ•ç¥¨
+//É¾³ıÍ¶Æ±
 function DelVote($voteid,$userid,$username){
 	global $empire,$dbtbpre;
 	$voteid=(int)$voteid;
 	if(!$voteid)
 	{printerror("NotDelVoteid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"vote");
 	$r=$empire->fetch1("select title from {$dbtbpre}enewsvote where voteid='$voteid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsvote where voteid='$voteid'");
@@ -110,7 +110,7 @@ function DelVote($voteid,$userid,$username){
 	DelFiletext($file);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("voteid=".$voteid."<br>title=".$r[title]);
 		printerror("DelVoteSuccess","ListVote.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -118,7 +118,7 @@ function DelVote($voteid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ‰¹é‡ç”ŸæˆæŠ•ç¥¨
+//ÅúÁ¿Éú³ÉÍ¶Æ±
 function ReVoteJs_all($start=0,$from,$userid,$username){
 	global $empire,$public_r,$fun_r,$dbtbpre;
 	$moreportpid=(int)$_GET['moreportpid'];
@@ -138,7 +138,7 @@ function ReVoteJs_all($start=0,$from,$userid,$username){
 	}
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("");
 		printerror("ReVoteJsSuccess",$from);
 	}
@@ -146,11 +146,11 @@ function ReVoteJs_all($start=0,$from,$userid,$username){
 	exit();
 }
 
-//ç”ŸæˆæŠ•ç¥¨js
+//Éú³ÉÍ¶Æ±js
 function GetVoteJs($voteid){
 	global $empire,$public_r,$fun_r,$dbtbpre;
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsvote where voteid='$voteid'");
-	//æ¨¡æ¿
+	//Ä£°å
 	$votetemp=ReturnVoteTemp($r[tempid],1);
 	$votetemp=RepVoteTempAllvar($votetemp,$r);
 	$listexp="[!--empirenews.listtemp--]";
@@ -158,14 +158,14 @@ function GetVoteJs($voteid){
 	$file=eReturnTrueEcmsPath()."d/js/vote/vote".$voteid.".js";
 	$r_exp="\r\n";
 	$f_exp="::::::";
-	//é¡¹ç›®æ•°
+	//ÏîÄ¿Êı
 	$r_r=explode($r_exp,$r[votetext]);
 	$checked=0;
 	for($i=0;$i<count($r_r);$i++)
 	{
 		$checked++;
 		$f_r=explode($f_exp,$r_r[$i]);
-		//æŠ•ç¥¨ç±»å‹
+		//Í¶Æ±ÀàĞÍ
 		if($r[voteclass])
 		{$vote="<input type=checkbox name=vote[] value=".$checked.">";}
 		else
@@ -183,13 +183,13 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//è®¾ç½®è®¿é—®ç«¯
+//ÉèÖÃ·ÃÎÊ¶Ë
 $moreportpid=0;
 if($enews=='ReVoteJs_all')
 {
 	$moreportpid=Moreport_hDoSetSelfPath(0);
 }
-//å¢åŠ æŠ•ç¥¨
+//Ôö¼ÓÍ¶Æ±
 if($enews=="AddVote")
 {
 	$title=$_POST['title'];
@@ -205,7 +205,7 @@ if($enews=="AddVote")
 	$tempid=$_POST['tempid'];
 	AddVote($title,$votename,$votenum,$delvid,$vid,$voteclass,$doip,$dotime,$width,$height,$tempid,$logininid,$loginin);
 }
-//ä¿®æ”¹æŠ•ç¥¨
+//ĞŞ¸ÄÍ¶Æ±
 elseif($enews=="EditVote")
 {
 	$voteid=$_POST['voteid'];
@@ -222,13 +222,13 @@ elseif($enews=="EditVote")
 	$tempid=$_POST['tempid'];
 	EditVote($voteid,$title,$votename,$votenum,$delvid,$vid,$voteclass,$doip,$dotime,$width,$height,$tempid,$logininid,$loginin);
 }
-//åˆ é™¤æŠ•ç¥¨
+//É¾³ıÍ¶Æ±
 elseif($enews=="DelVote")
 {
 	$voteid=$_GET['voteid'];
 	DelVote($voteid,$logininid,$loginin);
 }
-//æ‰¹é‡åˆ·æ–°æŠ•ç¥¨JS
+//ÅúÁ¿Ë¢ĞÂÍ¶Æ±JS
 elseif($enews=="ReVoteJs_all")
 {
 	ReVoteJs_all($_GET['start'],$_GET['from'],$logininid,$loginin);
@@ -238,32 +238,32 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=20;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=20;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select voteid,title,addtime from {$dbtbpre}enewsvote";
-$num=$empire->num($query);//å–å¾—æ€»æ¡æ•°
+$num=$empire->num($query);//È¡µÃ×ÜÌõÊı
 $query=$query." order by voteid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-$url="<a href=ListVote.php".$ecms_hashur['whehref'].">ç®¡ç†æŠ•ç¥¨</a>";
+$url="<a href=ListVote.php".$ecms_hashur['whehref'].">¹ÜÀíÍ¶Æ±</a>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æŠ•ç¥¨</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Í¶Æ±</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr> 
-    <td width="50%">ä½ç½®: 
+    <td width="50%">Î»ÖÃ: 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ æŠ•ç¥¨" onclick="self.location.href='AddVote.php?enews=AddVote<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓÍ¶Æ±" onclick="self.location.href='AddVote.php?enews=AddVote<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -271,10 +271,10 @@ $url="<a href=ListVote.php".$ecms_hashur['whehref'].">ç®¡ç†æŠ•ç¥¨</a>";
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="5%" height="25"><div align="center">ID</div></td>
-    <td width="32%" height="25"><div align="center">æŠ•ç¥¨æ ‡é¢˜</div></td>
-    <td width="18%" height="25"><div align="center">å‘å¸ƒæ—¶é—´</div></td>
-    <td width="26%" height="25">è°ƒç”¨åœ°å€</td>
-    <td width="19%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="32%" height="25"><div align="center">Í¶Æ±±êÌâ</div></td>
+    <td width="18%" height="25"><div align="center">·¢²¼Ê±¼ä</div></td>
+    <td width="26%" height="25">µ÷ÓÃµØÖ·</td>
+    <td width="19%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -286,9 +286,9 @@ $url="<a href=ListVote.php".$ecms_hashur['whehref'].">ç®¡ç†æŠ•ç¥¨</a>";
     <td height="25"><div align="center"><?=$r[addtime]?></div>
       </td>
     <td height="25"><input name="textfield" type="text" value="<?=$public_r[newsurl]?>d/js/vote/vote<?=$r[voteid]?>.js">
-      [<a href="../view/js.php?js=vote<?=$r[voteid]?>&p=vote<?=$ecms_hashur['ehref']?>" target="_blank">é¢„è§ˆ</a>]</td>
-    <td height="25"><div align="center">[<a href="AddVote.php?enews=EditVote&voteid=<?=$r[voteid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="ListVote.php?enews=DelVote&voteid=<?=$r[voteid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+      [<a href="../view/js.php?js=vote<?=$r[voteid]?>&p=vote<?=$ecms_hashur['ehref']?>" target="_blank">Ô¤ÀÀ</a>]</td>
+    <td height="25"><div align="center">[<a href="AddVote.php?enews=EditVote&voteid=<?=$r[voteid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="ListVote.php?enews=DelVote&voteid=<?=$r[voteid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }
@@ -297,8 +297,8 @@ $url="<a href=ListVote.php".$ecms_hashur['whehref'].">ç®¡ç†æŠ•ç¥¨</a>";
     <td height="25" colspan="5">&nbsp;<?=$returnpage?></td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25" colspan="5"><font color="#666666">è¯´æ˜:æ¨¡æ¿ä¸­æ˜¾ç¤ºæŠ•ç¥¨çš„åœ°æ–¹åŠ ä¸Š:&lt;script 
-      src=è°ƒç”¨åœ°å€&gt;&lt;/script&gt; æˆ–è€… [phomevote]æŠ•ç¥¨ID[/phomevote]</font></td>
+    <td height="25" colspan="5"><font color="#666666">ËµÃ÷:Ä£°åÖĞÏÔÊ¾Í¶Æ±µÄµØ·½¼ÓÉÏ:&lt;script 
+      src=µ÷ÓÃµØÖ·&gt;&lt;/script&gt; »òÕß [phomevote]Í¶Æ±ID[/phomevote]</font></td>
   </tr>
 </table>
 </body>

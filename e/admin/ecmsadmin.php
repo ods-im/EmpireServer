@@ -17,7 +17,7 @@ if($enews=="login")
 {}
 else
 {
-	//楠岃瘉鐢ㄦ埛
+	//验证用户
 	$lur=is_login();
 	$logininid=$lur['userid'];
 	$loginin=$lur['username'];
@@ -27,7 +27,7 @@ else
 	hCheckEcmsRHash();
 }
 require("../class/adminfun.php");
-if($enews=="login")//鐧婚檰
+if($enews=="login")//登陆
 {
 	$username=$_POST['username'];
 	$password=$_POST['password'];

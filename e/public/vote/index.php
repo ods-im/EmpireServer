@@ -30,15 +30,15 @@ $r_exp="\r\n";
 $f_exp="::::::";
 if($r['voteclass'])
 {
-	$voteclass="å¤šé€‰";
+	$voteclass="¶àÑ¡";
 }
 else
 {
-	$voteclass="å•é€‰";
+	$voteclass="µ¥Ñ¡";
 }
 $titleurl=sys_ReturnBqTitleLink($infor);
 $infor[title]=stripSlashes($infor[title]);
-//å¯¼å…¥æ¨¡æ¿
+//µ¼ÈëÄ£°å
 require(ECMS_PATH.'e/template/public/vote.php');
 db_close();
 $empire=null;

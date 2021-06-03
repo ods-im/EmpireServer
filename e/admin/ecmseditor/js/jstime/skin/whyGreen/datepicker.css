@@ -1,10 +1,10 @@
 /* 
  * My97 DatePicker 4.0
- * çš®è‚¤åç§°:whyGreen
- * çš®è‚¤ä½œè€…:why
+ * Æ¤·ôÃû³Æ:whyGreen
+ * Æ¤·ô×÷Õß:why
  */
  
-/* æ—¥æœŸé€‰æ‹©å®¹å™¨ DIV */
+/* ÈÕÆÚÑ¡ÔñÈİÆ÷ DIV */
 .WdateDiv{
 	width:180px;
 	background-color:#fff;
@@ -14,7 +14,7 @@
 .WdateDiv *{font-size:9pt;}
 
 /****************************
- * å¯¼èˆªå›¾æ ‡
+ * µ¼º½Í¼±ê
  ***************************/
 .WdateDiv .NavImg {
 	cursor:pointer;
@@ -34,16 +34,16 @@
 	background-image:url(navRight.gif);
 }
 /****************************
- * å¹´ä»½æœˆä»½ç›¸å…³
+ * Äê·İÔÂ·İÏà¹Ø
  ***************************/
-/* å¹´ä»½æœˆä»½æ  DIV */
+/* Äê·İÔÂ·İÀ¸ DIV */
 .WdateDiv #dpTitle{
 	height:24px;
 	border:#c5d9e8 1px solid;
 	background:url(bg.jpg);
 	margin-bottom:2px;
 }
-/* å¹´ä»½æœˆä»½è¾“å…¥æ¡† INPUT */
+/* Äê·İÔÂ·İÊäÈë¿ò INPUT */
 .WdateDiv .yminput{
 	margin-top:2px;
 	text-align:center;
@@ -54,7 +54,7 @@
 	background-color:transparent;
 	cursor:pointer;
 }
-/* å¹´ä»½æœˆä»½è¾“å…¥æ¡†è·å¾—ç„¦ç‚¹æ—¶çš„æ ·å¼ INPUT */
+/* Äê·İÔÂ·İÊäÈë¿ò»ñµÃ½¹µãÊ±µÄÑùÊ½ INPUT */
 .WdateDiv .yminputfocus{
 	margin-top:2px;
 	text-align:center;
@@ -64,55 +64,55 @@
 	height:16px;
 	width:50px;
 }
-/* èœå•é€‰æ‹©æ¡† DIV */
+/* ²Ëµ¥Ñ¡Ôñ¿ò DIV */
 .WdateDiv .menuSel{
 	position:absolute;
 	background-color:#FFFFFF;
 	border:#A3C6C8 1px solid;
 	display:none;
 }
-/* èœå•çš„æ ·å¼ TD */
+/* ²Ëµ¥µÄÑùÊ½ TD */
 .WdateDiv .menu{
 	cursor:pointer;
 	background-color:#fff;
 	color:#11777C;
 }
-/* èœå•çš„mouseoveræ ·å¼ TD */
+/* ²Ëµ¥µÄmouseoverÑùÊ½ TD */
 .WdateDiv .menuOn{
 	cursor:pointer;
 	background-color:#BEEBEE;
 }
-/* èœå•æ— æ•ˆæ—¶çš„æ ·å¼ TD */
+/* ²Ëµ¥ÎŞĞ§Ê±µÄÑùÊ½ TD */
 .WdateDiv .invalidMenu{
 	color:#aaa;
 }
-/* å¹´é€‰æ‹©æ¡†çš„åç§» DIV */
+/* ÄêÑ¡Ôñ¿òµÄÆ«ÒÆ DIV */
 .WdateDiv .YMenu{
 	margin-top:16px;
 }
-/* æœˆé€‰æ‹©æ¡†çš„åç§» DIV */
+/* ÔÂÑ¡Ôñ¿òµÄÆ«ÒÆ DIV */
 .WdateDiv .MMenu{
 	margin-top:16px;
 	*width:62px;
 }
-/* æ—¶é€‰æ‹©æ¡†çš„ä½ç½® DIV */
+/* Ê±Ñ¡Ôñ¿òµÄÎ»ÖÃ DIV */
 .WdateDiv .hhMenu{
 	margin-top:-90px; 
 	margin-left:26px;
 }
-/* åˆ†é€‰æ‹©æ¡†çš„ä½ç½® DIV */
+/* ·ÖÑ¡Ôñ¿òµÄÎ»ÖÃ DIV */
 .WdateDiv .mmMenu{
 	margin-top:-46px; 
 	margin-left:26px;
 }
-/* ç§’é€‰æ‹©æ¡†çš„ä½ç½® DIV */
+/* ÃëÑ¡Ôñ¿òµÄÎ»ÖÃ DIV */
 .WdateDiv .ssMenu{
 	margin-top:-24px; 
 	margin-left:26px;
 }
 
 /****************************
- * å‘¨ç›¸å…³
+ * ÖÜÏà¹Ø
  ***************************/
  .WdateDiv .Wweek {
  	text-align:center;
@@ -120,35 +120,35 @@
 	border-right:#BDEBEE 1px solid;
  }
 /****************************
- * æ˜ŸæœŸ,æ—¥æœŸç›¸å…³
+ * ĞÇÆÚ,ÈÕÆÚÏà¹Ø
  ***************************/
- /* æ˜ŸæœŸæ  TR */
+ /* ĞÇÆÚÀ¸ TR */
 .WdateDiv .MTitle{
 	color:#13777e;
 	background-color:#bdebee;
 }
-/* æ—¥æœŸæ è¡¨æ ¼ TABLE */
+/* ÈÕÆÚÀ¸±í¸ñ TABLE */
 .WdateDiv .WdayTable{
 	line-height:20px;	
 	color:#13777e;
 	background-color:#edfbfb;
 	border:#BEE9F0 1px solid;
 }
-/* æ—¥æœŸæ ¼çš„æ ·å¼ TD */
+/* ÈÕÆÚ¸ñµÄÑùÊ½ TD */
 .WdateDiv .Wday{
 	cursor:pointer;
 }
-/* æ—¥æœŸæ ¼çš„mouseoveræ ·å¼ TD */
+/* ÈÕÆÚ¸ñµÄmouseoverÑùÊ½ TD */
 .WdateDiv .WdayOn{
 	cursor:pointer;
 	background-color:#74d2d9 ;
 }
-/* å‘¨æœ«æ—¥æœŸæ ¼çš„æ ·å¼ TD */
+/* ÖÜÄ©ÈÕÆÚ¸ñµÄÑùÊ½ TD */
 .WdateDiv .Wwday{
 	cursor:pointer;
 	color:#ab1e1e;
 }
-/* å‘¨æœ«æ—¥æœŸæ ¼çš„mouseoveræ ·å¼ TD */
+/* ÖÜÄ©ÈÕÆÚ¸ñµÄmouseoverÑùÊ½ TD */
 .WdateDiv .WwdayOn{
 	cursor:pointer;
 	background-color:#74d2d9;
@@ -160,33 +160,33 @@
 .WdateDiv .Wselday{
 	background-color:#A7E2E7;
 }
-/* å…¶ä»–æœˆä»½çš„æ—¥æœŸ */
+/* ÆäËûÔÂ·İµÄÈÕÆÚ */
 .WdateDiv .WotherDay{ 
 	cursor:pointer;
 	color:#0099CC;	
 }
-/* å…¶ä»–æœˆä»½çš„æ—¥æœŸmouseoveræ ·å¼ */
+/* ÆäËûÔÂ·İµÄÈÕÆÚmouseoverÑùÊ½ */
 .WdateDiv .WotherDayOn{ 
 	cursor:pointer;
 	background-color:#C0EBEF;	
 }
-/* æ— æ•ˆæ—¥æœŸçš„æ ·å¼,å³åœ¨æ—¥æœŸèŒƒå›´ä»¥å¤–æ—¥æœŸæ ¼çš„æ ·å¼,ä¸èƒ½é€‰æ‹©çš„æ—¥æœŸ */
+/* ÎŞĞ§ÈÕÆÚµÄÑùÊ½,¼´ÔÚÈÕÆÚ·¶Î§ÒÔÍâÈÕÆÚ¸ñµÄÑùÊ½,²»ÄÜÑ¡ÔñµÄÈÕÆÚ */
 .WdateDiv .WinvalidDay{
 	color:#aaa;
 }
 /****************************
- * æ—¶é—´ç›¸å…³
+ * Ê±¼äÏà¹Ø
  ***************************/
-/* æ—¶é—´æ  DIV */
+/* Ê±¼äÀ¸ DIV */
 .WdateDiv #dpTime{
 	
 }
-/* æ—¶é—´æ–‡å­— SPAN */
+/* Ê±¼äÎÄ×Ö SPAN */
 .WdateDiv #dpTime #dpTimeStr{
 	margin-left:1px;
 	color:#497F7F;
 }
-/* æ—¶é—´è¾“å…¥æ¡† INPUT */
+/* Ê±¼äÊäÈë¿ò INPUT */
 .WdateDiv #dpTime input{
 	height:16px;
 	width:18px;
@@ -194,29 +194,29 @@
 	color:#333;
 	border:#61CAD0 1px solid;	
 }
-/* æ—¶é—´ æ—¶ INPUT */
+/* Ê±¼ä Ê± INPUT */
 .WdateDiv #dpTime .tB{
 	border-right:0px;
 }
-/* æ—¶é—´ åˆ†å’Œé—´éš”ç¬¦ ':' INPUT */
+/* Ê±¼ä ·ÖºÍ¼ä¸ô·û ':' INPUT */
 .WdateDiv #dpTime .tE{
 	border-left:0;
 	border-right:0;
 }
-/* æ—¶é—´ ç§’ INPUT */
+/* Ê±¼ä Ãë INPUT */
 .WdateDiv #dpTime .tm{
 	width:7px;
 	border-left:0;
 	border-right:0;
 }
-/* æ—¶é—´å³è¾¹çš„å‘ä¸ŠæŒ‰é’® BUTTON */
+/* Ê±¼äÓÒ±ßµÄÏòÉÏ°´Å¥ BUTTON */
 .WdateDiv #dpTime #dpTimeUp{
 	height:10px;
 	width:13px;
 	border:0px;
 	background-image:url(up.jpg);
 }
-/* æ—¶é—´å³è¾¹çš„å‘ä¸‹æŒ‰é’® BUTTON */
+/* Ê±¼äÓÒ±ßµÄÏòÏÂ°´Å¥ BUTTON */
 .WdateDiv #dpTime #dpTimeDown{
 	height:10px;
 	width:13px;
@@ -224,7 +224,7 @@
 	background-image:url(down.jpg);
 }
 /****************************
- * å…¶ä»–
+ * ÆäËû
  ***************************/
  .WdateDiv #dpQS {
  	float:left;

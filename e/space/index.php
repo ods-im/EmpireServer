@@ -11,7 +11,7 @@ $empire=new mysqlquery();
 $userid=0;
 $username='';
 $spacestyle='';
-require('CheckUser.php');//楠岃瘉鐢ㄦ埛
+require('CheckUser.php');//验证用户
 require('template/'.$spacestyle.'/index.temp.php');
 db_close();
 $empire=null;

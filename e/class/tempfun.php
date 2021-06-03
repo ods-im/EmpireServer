@@ -1,15 +1,15 @@
 <?php
-//ä¿®æ”¹ç•™è¨€æ¿æ¨¡æ¿
+//ĞŞ¸ÄÁôÑÔ°åÄ£°å
 function EditGbooktemp($temptext,$userid,$username){
 	global $empire,$public_r,$dbtbpre;
 	if(!$temptext)
 	{printerror("EmptyTemptext","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$temptext=RepPhpAspJspcode($temptext);
 	$gid=(int)$_POST['gid'];
 	$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set gbooktemp='".eaddslashes2($temptext)."' limit 1");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('pubgbooktemp',$gid,1,'',$temptext,0,0,'',0,0,'',0,0,0,$userid,$username);
 	if($gid==$public_r['deftempid']||(!$public_r['deftempid']&&($gid==1||$gid==0)))
 	{
@@ -17,7 +17,7 @@ function EditGbooktemp($temptext,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("gid=$gid");
 		printerror("EditGbooktempSuccess","template/EditPublicTemp.php?tname=gbooktemp&gid=$gid".hReturnEcmsHashStrHref2(0)."#gbooktemp");
 	}
@@ -25,17 +25,17 @@ function EditGbooktemp($temptext,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹æ§åˆ¶é¢æ¿æ¨¡æ¿
+//ĞŞ¸Ä¿ØÖÆÃæ°åÄ£°å
 function EditCptemp($temptext,$userid,$username){
 	global $empire,$public_r,$dbtbpre;
 	if(!$temptext)
 	{printerror("EmptyTemptext","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$temptext=RepPhpAspJspcode($temptext);
 	$gid=(int)$_POST['gid'];
 	$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set cptemp='".eaddslashes2($temptext)."' limit 1");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('pubcptemp',$gid,1,'',$temptext,0,0,'',0,0,'',0,0,0,$userid,$username);
 	if($gid==$public_r['deftempid']||(!$public_r['deftempid']&&($gid==1||$gid==0)))
 	{
@@ -43,7 +43,7 @@ function EditCptemp($temptext,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("gid=$gid");
 		printerror("EditCptempSuccess","template/EditPublicTemp.php?tname=cptemp&gid=$gid".hReturnEcmsHashStrHref2(0)."#cptemp");
 	}
@@ -51,17 +51,17 @@ function EditCptemp($temptext,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ç™»é™†çŠ¶æ€æ¨¡æ¿
+//ĞŞ¸ÄµÇÂ½×´Ì¬Ä£°å
 function EditLoginIframe($temptext,$userid,$username){
 	global $empire,$public_r,$dbtbpre;
 	if(!$temptext)
 	{printerror("EmptyTemptext","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$temptext=RepPhpAspJspcode($temptext);
 	$gid=(int)$_POST['gid'];
 	$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set loginiframe='".eaddslashes2($temptext)."' limit 1");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('publoginiframe',$gid,1,'',$temptext,0,0,'',0,0,'',0,0,0,$userid,$username);
 	if($gid==$public_r['deftempid']||(!$public_r['deftempid']&&($gid==1||$gid==0)))
 	{
@@ -69,7 +69,7 @@ function EditLoginIframe($temptext,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("gid=$gid");
 		printerror("EditLoginIframeSuccess","template/EditPublicTemp.php?tname=loginiframe&gid=$gid".hReturnEcmsHashStrHref2(0)."#loginiframe");
 	}
@@ -77,17 +77,17 @@ function EditLoginIframe($temptext,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹JSè°ƒç”¨ç™»é™†çŠ¶æ€æ¨¡æ¿
+//ĞŞ¸ÄJSµ÷ÓÃµÇÂ½×´Ì¬Ä£°å
 function EditLoginJstemp($temptext,$userid,$username){
 	global $empire,$public_r,$dbtbpre;
 	if(!$temptext)
 	{printerror("EmptyTemptext","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$temptext=RepPhpAspJspcode($temptext);
 	$gid=(int)$_POST['gid'];
 	$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set loginjstemp='".eaddslashes2($temptext)."' limit 1");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('publoginjstemp',$gid,1,'',$temptext,0,0,'',0,0,'',0,0,0,$userid,$username);
 	if($gid==$public_r['deftempid']||(!$public_r['deftempid']&&($gid==1||$gid==0)))
 	{
@@ -95,7 +95,7 @@ function EditLoginJstemp($temptext,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("gid=$gid");
 		printerror("EditLoginJstempSuccess","template/EditPublicTemp.php?tname=loginjstemp&gid=$gid".hReturnEcmsHashStrHref2(0)."#loginjstemp");
 	}
@@ -103,18 +103,18 @@ function EditLoginJstemp($temptext,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹å…¨ç«™æœç´¢æ¨¡æ¿
+//ĞŞ¸ÄÈ«Õ¾ËÑË÷Ä£°å
 function EditSchallTemp($temptext,$sub,$formatdate,$userid,$username){
 	global $empire,$public_r,$dbtbpre;
 	if(!$temptext)
 	{printerror("EmptyTemptext","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$temptext=RepPhpAspJspcode($temptext);
 	$gid=(int)$_POST['gid'];
 	$sub=(int)$sub;
 	$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set schalltemp='".eaddslashes2($temptext)."',schallsubnum='$sub',schalldate='".eaddslashes($formatdate)."' limit 1");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('pubschalltemp',$gid,1,'',$temptext,$sub,0,'',0,0,$formatdate,0,0,0,$userid,$username);
 	if($gid==$public_r['deftempid']||(!$public_r['deftempid']&&($gid==1||$gid==0)))
 	{
@@ -122,7 +122,7 @@ function EditSchallTemp($temptext,$sub,$formatdate,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("gid=$gid");
 		printerror("EditSchallTempSuccess","template/EditPublicTemp.php?tname=schalltemp&gid=$gid".hReturnEcmsHashStrHref2(0)."#schalltemp");
 	}
@@ -130,18 +130,18 @@ function EditSchallTemp($temptext,$sub,$formatdate,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//å¢åŠ æ ‡ç­¾
+//Ôö¼Ó±êÇ©
 function AddBq($add,$bqsay,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[bqname]||!$add[funname]||!$add[bq])
 	{printerror("EmptyBqname","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"bq");
-	//æ ‡ç­¾é‡å¤
+	//±êÇ©ÖØ¸´
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsbq where bq='$add[bq]' limit 1");
 	if($num)
 	{printerror("ReBq","history.go(-1)");}
-	//å‡½æ•°æ˜¯å¦å­˜åœ¨
+	//º¯ÊıÊÇ·ñ´æÔÚ
 	if(!function_exists($add[funname]))
 	{
 		printerror("NotFun","history.go(-1)");
@@ -154,7 +154,7 @@ function AddBq($add,$bqsay,$userid,$username){
 	$bqid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("bqid=".$bqid."<br>bqname=".$add[bqname]);
 		printerror("AddBqSuccess","template/AddBq.php?enews=AddBq".hReturnEcmsHashStrHref2(0));
 	}
@@ -162,19 +162,19 @@ function AddBq($add,$bqsay,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹æ ‡ç­¾
+//ĞŞ¸Ä±êÇ©
 function EditBq($add,$bqsay,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[bqid]=(int)$add[bqid];
 	if(!$add[bqname]||!$add[funname]||!$add[bq]||!$add[bqid])
 	{printerror("EmptyBqname","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"bq");
-	//æ ‡ç­¾é‡å¤
+	//±êÇ©ÖØ¸´
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsbq where bq='$add[bq]' and bqid<>'$add[bqid]' limit 1");
 	if($num)
 	{printerror("ReBq","history.go(-1)");}
-	//å‡½æ•°æ˜¯å¦å­˜åœ¨
+	//º¯ÊıÊÇ·ñ´æÔÚ
 	if(!function_exists($add[funname]))
 	{
 		printerror("NotFun","history.go(-1)");
@@ -186,7 +186,7 @@ function EditBq($add,$bqsay,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsbq set bqname='$add[bqname]',bqsay='".eaddslashes2($bqsay)."',funname='$add[funname]',bq='$add[bq]',bqgs='".eaddslashes2($add[bqgs])."',isclose=$add[isclose],classid=$classid,myorder='$myorder' where bqid='$add[bqid]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("bqid=".$add[bqid]."<br>bqname=".$add[bqname]);
 		printerror("EditBqSuccess","template/ListBq.php?classid=$add[cid]".hReturnEcmsHashStrHref2(0));
 	}
@@ -194,13 +194,13 @@ function EditBq($add,$bqsay,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤æ ‡ç­¾
+//É¾³ı±êÇ©
 function DelBq($bqid,$cid,$userid,$username){
 	global $empire,$dbtbpre;
 	$bqid=(int)$bqid;
 	if(empty($bqid))
 	{printerror("NotDelBqid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"bq");
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsbq where bqid='$bqid' and issys=0");
 	if(empty($num))
@@ -209,7 +209,7 @@ function DelBq($bqid,$cid,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsbq where bqid='$bqid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("bqid=".$bqid."<br>bqname=".$r[bqname]);
 		printerror("DelBqSuccess","template/ListBq.php?classid=$cid".hReturnEcmsHashStrHref2(0));
 	}
@@ -217,29 +217,29 @@ function DelBq($bqid,$cid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹æœç´¢é¡µé¢
+//ĞŞ¸ÄËÑË÷Ò³Ãæ
 function EditSearchTemp($tempname,$temptext,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	if(empty($temptext)||empty($tempname))
 	{printerror("EmptySearchTemp","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$temptext=RepPhpAspJspcode($temptext);
 	$tempname=RepPostVar($tempname);
-	if($tempname=="searchtemp")//æœç´¢è¡¨å•æ¨¡æ¿
+	if($tempname=="searchtemp")//ËÑË÷±íµ¥Ä£°å
 	{
 		$f="searchtemp";
 		$tname="searchformtemp";
 		$temptype='pubsearchtemp';
 	}
-	elseif($tempname=="searchjstemp")//æœç´¢JSæ¨¡æ¿ï¼ˆæ¨ªå‘)
+	elseif($tempname=="searchjstemp")//ËÑË÷JSÄ£°å£¨ºáÏò)
 	{
 		$temptext=str_replace("\r\n","",$temptext);
 		$f="searchjstemp";
 		$tname="searchformjs";
 		$temptype='pubsearchjstemp';
 	}
-	else//æœç´¢JSæ¨¡æ¿ï¼ˆçºµå‘)
+	else//ËÑË÷JSÄ£°å£¨×İÏò)
 	{
 		$temptext=str_replace("\r\n","",$temptext);
 		$f="searchjstemp1";
@@ -248,7 +248,7 @@ function EditSearchTemp($tempname,$temptext,$userid,$username){
     }
 	$gid=(int)$_POST['gid'];
 	$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set ".$f."='".eaddslashes2($temptext)."'");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp($temptype,$gid,1,'',$temptext,0,0,'',0,0,'',0,0,0,$userid,$username);
 	if($gid==$public_r['deftempid']||(!$public_r['deftempid']&&($gid==1||$gid==0)))
 	{
@@ -256,7 +256,7 @@ function EditSearchTemp($tempname,$temptext,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("temp=$f&gid=$gid");
 		printerror("EditSearchTempSuccess","template/EditPublicTemp.php?tname=$tname&gid=$gid".hReturnEcmsHashStrHref2(0)."#$tempname");
 	}
@@ -264,12 +264,12 @@ function EditSearchTemp($tempname,$temptext,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ç›¸å…³é“¾æ¥æ¨¡æ¿
+//ĞŞ¸ÄÏà¹ØÁ´½ÓÄ£°å
 function EditOtherLinkTemp($tempname,$temptext,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($temptext)||empty($tempname))
 	{printerror("EmptyOtherLinkTemp","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$tempname=RepPostVar($tempname);
 	$temptext=RepPhpAspJspcode($temptext);
@@ -279,11 +279,11 @@ function EditOtherLinkTemp($tempname,$temptext,$userid,$username){
 	$otherlinktempdate=$_POST['otherlinktempdate'];
 	$gid=(int)$_POST['gid'];
 	$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set ".$f."='".eaddslashes2($temptext)."',otherlinktempsub=$otherlinktempsub,otherlinktempdate='".eaddslashes($otherlinktempdate)."'");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('pubotherlinktemp',$gid,1,'',$temptext,0,0,'',0,0,$otherlinktempdate,$otherlinktempsub,0,0,$userid,$username);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("temp=$f&gid=$gid");
 		printerror("EditOtherLinkTempSuccess","template/EditPublicTemp.php?tname=$tname&gid=$gid".hReturnEcmsHashStrHref2(0)."#$tempname");
 	}
@@ -291,12 +291,12 @@ function EditOtherLinkTemp($tempname,$temptext,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹å…¶å®ƒå…¬å…±æ¨¡æ¿
+//ĞŞ¸ÄÆäËü¹«¹²Ä£°å
 function EditOtherPubTemp($tempname,$temptext,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	if(empty($temptext)||empty($tempname))
 	{printerror("EmptyEditDownTemp","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$edittemplist=',pljstemp,downpagetemp,downsofttemp,onlinemovietemp,listpagetemp,';
 	$temptext=RepPhpAspJspcode($temptext);
@@ -327,7 +327,7 @@ function EditOtherPubTemp($tempname,$temptext,$userid,$username){
 	}
 	$gid=(int)$_POST['gid'];
 	$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set ".$tempname."='".eaddslashes2($temptext)."'");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp($temptype,$gid,1,'',$temptext,0,0,'',0,0,'',0,0,0,$userid,$username);
 	if($gid==$public_r['deftempid']||(!$public_r['deftempid']&&($gid==1||$gid==0)))
 	{
@@ -349,7 +349,7 @@ function EditOtherPubTemp($tempname,$temptext,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("temp=$tempname&gid=$gid");
 		printerror("EditDownTempSuccess","template/EditPublicTemp.php?tname=$tempname&gid=$gid".hReturnEcmsHashStrHref2(0)."#$tempname");
 	}
@@ -357,32 +357,32 @@ function EditOtherPubTemp($tempname,$temptext,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹é¦–é¡µæ¨¡æ¿
+//ĞŞ¸ÄÊ×Ò³Ä£°å
 function EditIndextemp($temptext,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	if(!$temptext)
 	{
 		printerror("EmptyIndexTemp","history.go(-1)");
 	}
-	CheckLevel($userid,$username,$classid,"template");//æ“ä½œæƒé™
+	CheckLevel($userid,$username,$classid,"template");//²Ù×÷È¨ÏŞ
 	$temptext=RepPhpAspJspcode($temptext);
 	$gid=(int)$_POST['gid'];
 	$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set indextemp='".eaddslashes2($temptext)."'");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('pubindextemp',$gid,1,'',$temptext,0,0,'',0,0,'',0,0,0,$userid,$username);
-	//åˆ·æ–°é¦–é¡µ
+	//Ë¢ĞÂÊ×Ò³
 	if($gid==$public_r['deftempid']||(!$public_r['deftempid']&&($gid==1||$gid==0)))
 	{
 		NewsBq($classid,eaddslashes($temptext),1,0);
-		//åˆ é™¤åŠ¨æ€æ¨¡æ¿ç¼“å­˜æ–‡ä»¶
+		//É¾³ı¶¯Ì¬Ä£°å»º´æÎÄ¼ş
 		DelOneTempTmpfile('indexpage');
-		//æ›´æ–°åŠ¨æ€é¡µé¢ç¼“å­˜
+		//¸üĞÂ¶¯Ì¬Ò³Ãæ»º´æ
 		$ecms_fclast=time();
 		$empire->query("update {$dbtbpre}enewspublic_fc set fclastindex='$ecms_fclast' limit 1");
 	}
 	if($sql)
 	{
-	    insert_dolog("gid=$gid");//æ“ä½œæ—¥å¿—
+	    insert_dolog("gid=$gid");//²Ù×÷ÈÕÖ¾
 		printerror("EditPublicTempSuccess","template/EditPublicTemp.php?tname=indextemp&gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -391,10 +391,10 @@ function EditIndextemp($temptext,$userid,$username){
 	}
 }
 
-//é¢„è§ˆé¦–é¡µæ–¹æ¡ˆ
+//Ô¤ÀÀÊ×Ò³·½°¸
 function PreviewIndexpage($tempid,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$emod_r,$class_r,$class_zr,$fun_r,$navclassid,$navinfor,$class_tr,$level_r,$etable_r;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$tempid=(int)$tempid;
 	if(!$tempid)
@@ -407,36 +407,36 @@ function PreviewIndexpage($tempid,$userid,$username){
 		printerror('ErrorUrl','');
 	}
 	$indextext=stripSlashes($tempr['temptext']);
-	$indextext=ReplaceTempvar($indextext);//æ›¿æ¢å…¨å±€æ¨¡æ¿å˜é‡
+	$indextext=ReplaceTempvar($indextext);//Ìæ»»È«¾ÖÄ£°å±äÁ¿
 	$pr=$empire->fetch1("select sitekey,siteintro from {$dbtbpre}enewspublic limit 1");
-	//é¡µé¢
+	//Ò³Ãæ
 	$pagetitle=ehtmlspecialchars($public_r['sitename']);
 	$pagekey=ehtmlspecialchars($pr['sitekey']);
 	$pagedes=ehtmlspecialchars($pr['siteintro']);
-	$url="<a href=\"".ReturnSiteIndexUrl()."\">".$fun_r['index']."</a>";//æ ç›®å¯¼èˆª
+	$url="<a href=\"".ReturnSiteIndexUrl()."\">".$fun_r['index']."</a>";//À¸Ä¿µ¼º½
 	$onclick='';
 	$file=ECMS_PATH.'e/data/tmp/indexpage'.$tempid.'.php';
 	$indextext=ReplaceSvars($indextext,$url,0,$pagetitle,$pagekey,$pagedes,$add,0);
 	$indextext=str_replace("[!--page.stats--]",$onclick,$indextext);
-	//æ›¿æ¢æ ‡ç­¾
+	//Ìæ»»±êÇ©
 	$indextext=DoRepEcmsLoopBq($indextext);
 	$indextext=RepBq($indextext);
-	//å†™æ–‡ä»¶
+	//Ğ´ÎÄ¼ş
 	WriteFiletext($file,AddCheckViewTempCode().$indextext);
-	//è¯»å–æ–‡ä»¶å†…å®¹
+	//¶ÁÈ¡ÎÄ¼şÄÚÈİ
 	ob_start();
 	include($file);
 	$string=ob_get_contents();
 	ob_end_clean();
-	$string=RepExeCode($string);//è§£æä»£ç 
+	$string=RepExeCode($string);//½âÎö´úÂë
 	echo stripSlashes($string);
 	exit();
 }
 
-//æ‰¹é‡å¯¼å…¥æ ç›®æ¨¡æ¿
+//ÅúÁ¿µ¼ÈëÀ¸Ä¿Ä£°å
 function LoadTempInClass($path,$start,$userid,$username){
 	global $empire,$public_r,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$start=(int)$start;
 	if(empty($public_r[loadtempnum]))
@@ -469,7 +469,7 @@ function LoadTempInClass($path,$start,$userid,$username){
     }
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("");
 		printerror("LoadClassTempSuccess","template/LoadTemp.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -477,12 +477,12 @@ function LoadTempInClass($path,$start,$userid,$username){
 	exit();
 }
 
-//æ‰¹é‡æ›´æ¢æ ç›®åˆ—è¡¨æ¨¡æ¿
+//ÅúÁ¿¸ü»»À¸Ä¿ÁĞ±íÄ£°å
 function ChangeClassListtemp($classid,$listtempid,$userid,$username){
 	global $empire,$class_r,$dbtbpre;
 	if(empty($listtempid))
 	{printerror("EmptChangeListtempid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$listtempid=(int)$listtempid;
 	$classid=(int)$classid;
@@ -490,12 +490,12 @@ function ChangeClassListtemp($classid,$listtempid,$userid,$username){
 	{$where="classid<>0";}
 	else
 	{
-		//ä¸­çº§æ ç›®
+		//ÖĞ¼¶À¸Ä¿
 		if(empty($class_r[$classid][islast]))
 		{
 			$where=ReturnClass($class_r[$classid][sonclass]);
 		}
-		//ç»ˆææ ç›®
+		//ÖÕ¼«À¸Ä¿
 		else
 		{
 			$where="classid='$classid'";
@@ -505,7 +505,7 @@ function ChangeClassListtemp($classid,$listtempid,$userid,$username){
 	GetClass();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=$classid&listtempid=$listtempid");
 		printerror("ChangeClassListtempSuccess","history.go(-1)");
 	}
@@ -513,7 +513,7 @@ function ChangeClassListtemp($classid,$listtempid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//å¯¼å‡ºæ ‡ç­¾
+//µ¼³ö±êÇ©
 function LoadOutBq($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$bqid=(int)$add['bqid'];
@@ -521,7 +521,7 @@ function LoadOutBq($add,$userid,$username){
 	{
 		printerror("EmptyLoadBqid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
     CheckLevel($userid,$username,$classid,"bq");
 	$r=$empire->fetch1("select bqid,bqname,bqsay,funname,bq,bqgs from {$dbtbpre}enewsbq where bqid=$bqid");
 	if(!$r[bqid])
@@ -535,22 +535,22 @@ function LoadOutBq($add,$userid,$username){
 	$filepath=ECMS_PATH.'e/data/tmp/temp/'.$filename;
 	WriteFiletext_n($filepath,$str);
 	DownLoadFile($filename,$filepath,1);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("bqid=".$bqid."<br>bqname=".$r[bqname]);
 	exit();
 }
 
-//å¯¼å…¥æ ‡ç­¾
+//µ¼Èë±êÇ©
 function LoadInBq($add,$file,$file_name,$file_type,$file_size,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
     CheckLevel($userid,$username,$classid,"bq");
 	$classid=(int)$add['classid'];
 	if(!$file_name||!$file_size)
 	{
 		printerror("EmptyLoadInBqFile","history.go(-1)");
 	}
-	//æ‰©å±•å
+	//À©Õ¹Ãû
 	$filetype=GetFiletype($file_name);
 	if($filetype!=".bq")
 	{
@@ -558,7 +558,7 @@ function LoadInBq($add,$file,$file_name,$file_type,$file_size,$userid,$username)
 	}
 	$field="<!--#empirecms.bq-phome.net#--!>";
 	$path=ECMS_PATH.'e/data/tmp/temp/uploadbq'.time().'.bq';
-	//ä¸Šä¼ æ–‡ä»¶
+	//ÉÏ´«ÎÄ¼ş
 	$cp=@move_uploaded_file($file,$path);
 	DoChmodFile($path);
 	$data=ReadFiletext($path);
@@ -571,15 +571,15 @@ function LoadInBq($add,$file,$file_name,$file_type,$file_size,$userid,$username)
 	}
 	$sql=$empire->query("insert into {$dbtbpre}enewsbq(bqname,bqsay,funname,bq,issys,bqgs,isclose,classid,myorder) values('".addslashes($r[0])."','".addslashes(addslashes($r[1]))."','".addslashes($r[2])."','".addslashes($r[3])."',0,'".addslashes(addslashes($r[4]))."',0,$classid,0);");
 	$bqid=$empire->lastid();
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("bqid=".$bqid."<br>bqname=".$r[0]);
 	return $r;
 }
 
-//-----------------------æ‰¹é‡æ›¿æ¢æ¨¡æ¿å­—ç¬¦
+//-----------------------ÅúÁ¿Ìæ»»Ä£°å×Ö·û
 function DoRepTemp($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$oldword=RepPhpAspJspcode(eaddslashes2($add['oldword']));
 	$newword=RepPhpAspJspcode(eaddslashes2($add['newword']));
@@ -588,137 +588,137 @@ function DoRepTemp($add,$userid,$username){
 		printerror("EmptyRepTemp","history.go(-1)");
     }
 	$gid=(int)$add['gid'];
-	//å…¬å…±è¡¨
+	//¹«¹²±í
 	if($add['indextemp']||$add['cptemp']||$add['sformtemp']||$add['otherlinktemp']||$add['gbooktemp']||$add['loginiframe']||$add['pljstemp']||$add['schalltemp']||$add['loginjstemp']||$add['downpagetemp'])
 	{
 		$set='';
-		//é¦–é¡µæ¨¡æ¿
+		//Ê×Ò³Ä£°å
 		if($add['indextemp'])
 		{
 			
 			$set.=",indextemp=REPLACE(indextemp,'".$oldword."','".$newword."')";
 		}
-		//æ§åˆ¶é¢æ¿æ¨¡æ¿
+		//¿ØÖÆÃæ°åÄ£°å
 		if($add['cptemp'])
 		{
 			$set.=",cptemp=REPLACE(cptemp,'".$oldword."','".$newword."')";
 		}
-		//æœç´¢è¡¨å•æ¨¡æ¿
+		//ËÑË÷±íµ¥Ä£°å
 		if($add['sformtemp'])
 		{
 			$set.=",searchtemp=REPLACE(searchtemp,'".$oldword."','".$newword."')";
 		}
-		//ç›¸å…³ä¿¡æ¯æ¨¡æ¿
+		//Ïà¹ØĞÅÏ¢Ä£°å
 		if($add['otherlinktemp'])
 		{
 			$set.=",otherlinktemp=REPLACE(otherlinktemp,'".$oldword."','".$newword."')";
 		}
-		//ç•™è¨€æ¿æ¨¡æ¿
+		//ÁôÑÔ°åÄ£°å
 		if($add['gbooktemp'])
 		{
 			$set.=",gbooktemp=REPLACE(gbooktemp,'".$oldword."','".$newword."')";
 		}
-		//ç™»é™†çŠ¶æ€æ¨¡æ¿
+		//µÇÂ½×´Ì¬Ä£°å
 		if($add['loginiframe'])
 		{
 			$set.=",loginiframe=REPLACE(loginiframe,'".$oldword."','".$newword."')";
 		}
-		//è¯„è®ºJSæ¨¡æ¿
+		//ÆÀÂÛJSÄ£°å
 		if($add['pljstemp'])
 		{
 			$set.=",pljstemp=REPLACE(pljstemp,'".$oldword."','".$newword."')";
 		}
-		//å…¨ç«™æœç´¢æ¨¡æ¿
+		//È«Õ¾ËÑË÷Ä£°å
 		if($add['schalltemp'])
 		{
 			$set.=",schalltemp=REPLACE(schalltemp,'".$oldword."','".$newword."')";
 		}
-		//JSè°ƒç”¨ç™»é™†çŠ¶æ€æ¨¡æ¿
+		//JSµ÷ÓÃµÇÂ½×´Ì¬Ä£°å
 		if($add['loginjstemp'])
 		{
 			$set.=",loginjstemp=REPLACE(loginjstemp,'".$oldword."','".$newword."')";
 		}
-		//æœ€ç»ˆä¸‹è½½é¡µæ¨¡æ¿
+		//×îÖÕÏÂÔØÒ³Ä£°å
 		if($add['downpagetemp'])
 		{
 			$set.=",downpagetemp=REPLACE(downpagetemp,'".$oldword."','".$newword."')";
 		}
 		$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set id=1".$set." limit 1");
 	}
-	//ä¿®æ”¹æ ç›®å°é¢æ¨¡æ¿
+	//ĞŞ¸ÄÀ¸Ä¿·âÃæÄ£°å
 	if($add['classtemp'])
 	{
 		$empire->query("update ".GetDoTemptb("enewsclasstemp",$gid)." set temptext=REPLACE(temptext,'".$oldword."','".$newword."')");
     }
-	//ä¿®æ”¹æ ‡ç­¾æ¨¡æ¿
+	//ĞŞ¸Ä±êÇ©Ä£°å
 	if($add['bqtemp'])
 	{
 		$empire->query("update ".GetDoTemptb("enewsbqtemp",$gid)." set temptext=REPLACE(temptext,'".$oldword."','".$newword."'),listvar=REPLACE(listvar,'".$oldword."','".$newword."')");
     }
-	//ä¿®æ”¹åˆ—è¡¨æ¨¡æ¿
+	//ĞŞ¸ÄÁĞ±íÄ£°å
 	if($add['listtemp'])
 	{
 		$empire->query("update ".GetDoTemptb("enewslisttemp",$gid)." set temptext=REPLACE(temptext,'".$oldword."','".$newword."'),listvar=REPLACE(listvar,'".$oldword."','".$newword."')");
     }
-	//ä¿®æ”¹å†…å®¹æ¨¡æ¿
+	//ĞŞ¸ÄÄÚÈİÄ£°å
 	if($add['newstemp'])
 	{
 		$empire->query("update ".GetDoTemptb("enewsnewstemp",$gid)." set temptext=REPLACE(temptext,'".$oldword."','".$newword."')");
 	}
-	//ä¿®æ”¹æœç´¢æ¨¡æ¿
+	//ĞŞ¸ÄËÑË÷Ä£°å
 	if($add['searchtemp'])
 	{
 		$empire->query("update ".GetDoTemptb("enewssearchtemp",$gid)." set temptext=REPLACE(temptext,'".$oldword."','".$newword."'),listvar=REPLACE(listvar,'".$oldword."','".$newword."')");
 	}
-	//ä¿®æ”¹è‡ªå®šä¹‰é¡µé¢
+	//ĞŞ¸Ä×Ô¶¨ÒåÒ³Ãæ
 	if($add['userpage'])
 	{
 		$empire->query("update {$dbtbpre}enewspage set pagetext=REPLACE(pagetext,'".$oldword."','".$newword."')");
 	}
-	//ä¿®æ”¹è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿
+	//ĞŞ¸Ä×Ô¶¨ÒåÒ³ÃæÄ£°å
 	if($add['pagetemp'])
 	{
 		$empire->query("update ".GetDoTemptb("enewspagetemp",$gid)." set temptext=REPLACE(temptext,'".$oldword."','".$newword."')");
     }
-	//è¯„è®ºåˆ—è¡¨æ¨¡æ¿
+	//ÆÀÂÛÁĞ±íÄ£°å
 	if($add['pltemp'])
 	{
 		$empire->query("update ".GetDoTemptb("enewspltemp",$gid)." set temptext=REPLACE(temptext,'".$oldword."','".$newword."')");
     }
-	//æ‰“å°æ¨¡æ¿
+	//´òÓ¡Ä£°å
 	if($add['printtemp'])
 	{
 		$empire->query("update ".GetDoTemptb("enewsprinttemp",$gid)." set temptext=REPLACE(temptext,'".$oldword."','".$newword."')");
     }
-	//æ¨¡æ¿å˜é‡
+	//Ä£°å±äÁ¿
 	if($add['tempvar'])
 	{
 		$empire->query("update ".GetDoTemptb("enewstempvar",$gid)." set varvalue=REPLACE(varvalue,'".$oldword."','".$newword."')");
 	}
-	//ä¿®æ”¹JSæ¨¡æ¿
+	//ĞŞ¸ÄJSÄ£°å
 	if($add['jstemp'])
 	{
 		$empire->query("update ".GetDoTemptb("enewsjstemp",$gid)." set temptext=REPLACE(temptext,'".$oldword."','".$newword."')");
     }
-	//ä¿®æ”¹æŠ•ç¥¨æ¨¡æ¿
+	//ĞŞ¸ÄÍ¶Æ±Ä£°å
 	if($add['votetemp'])
 	{
 		$empire->query("update ".GetDoTemptb("enewsvotetemp",$gid)." set temptext=REPLACE(temptext,'".$oldword."','".$newword."')");
     }
-	//åé¦ˆè¡¨å•æ¨¡æ¿
+	//·´À¡±íµ¥Ä£°å
 	if($add['feedbackbtemp'])
 	{
 		$empire->query("update {$dbtbpre}enewsfeedbackclass set btemp=REPLACE(btemp,'".$oldword."','".$newword."')");
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("gid=$gid");
 	printerror("RepTempSuccess","history.go(-1)");
 }
 
-//ä¿®æ”¹æ¨¡æ¿ç»„
+//ĞŞ¸ÄÄ£°å×é
 function EditTempGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tempgroup");
 	$gid=$add['gid'];
 	$gname=$add['gname'];
@@ -727,15 +727,15 @@ function EditTempGroup($add,$userid,$username){
 	{
 		$usql=$empire->query("update {$dbtbpre}enewstempgroup set gname='".$gname[$i]."' where gid='".$gid[$i]."'");
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("EditTempGroupSuccess","TempGroup.php".hReturnEcmsHashStrHref2(1));
 }
 
-//é»˜è®¤æ¨¡æ¿ç»„
+//Ä¬ÈÏÄ£°å×é
 function DefTtempGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tempgroup");
 	$gid=(int)$add['changegid'];
 	if(!$gid)
@@ -753,7 +753,7 @@ function DefTtempGroup($add,$userid,$username){
 	if($usql&&$sql&&$upsql)
 	{
 		GetConfig();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("gid=$gid&gname=$r[gname]");
 		printerror("DefTempGroupSuccess","TempGroup.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -763,13 +763,13 @@ function DefTtempGroup($add,$userid,$username){
 	}
 }
 
-//è¿”å›æ¨¡æ¿è¡¨
+//·µ»ØÄ£°å±í
 function ReturnTemptbList(){
 	$templist="enewsbqtemp,enewsjstemp,enewslisttemp,enewsnewstemp,enewspubtemp,enewssearchtemp,enewstempvar,enewsvotetemp,enewsclasstemp,enewspltemp,enewsprinttemp,enewspagetemp";
 	return $templist;
 }
 
-//åˆ é™¤æ¨¡æ¿æ•°æ®è¡¨
+//É¾³ıÄ£°åÊı¾İ±í
 function DelTempTb($gid){
 	global $empire,$dbtbpre;
 	if($gid==1)
@@ -793,7 +793,7 @@ function DelTempTb($gid){
 	return $sql;
 }
 
-//æ¸…ç©ºæ¨¡æ¿æ•°æ®è¡¨
+//Çå¿ÕÄ£°åÊı¾İ±í
 function ClearTempTb($gid,$en){
 	global $empire,$dbtbpre;
 	$templist=ReturnTemptbList();
@@ -806,7 +806,7 @@ function ClearTempTb($gid,$en){
 	}
 }
 
-//æ–°å»ºæ¨¡æ¿æ•°æ®è¡¨
+//ĞÂ½¨Ä£°åÊı¾İ±í
 function CreateTempTb($gid,$en){
 	global $empire,$dbtbpre;
 	if($gid==1)
@@ -824,10 +824,10 @@ function CreateTempTb($gid,$en){
 	}
 }
 
-//åˆ é™¤æ¨¡æ¿ç»„
+//É¾³ıÄ£°å×é
 function DelTempGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tempgroup");
 	$gid=(int)$add['changegid'];
 	if(!$gid)
@@ -850,11 +850,11 @@ function DelTempGroup($add,$userid,$username){
 		GetConfig();
 	}
 	DelTempTb($gid);
-	//åˆ é™¤å¤‡ä»½è®°å½•
+	//É¾³ı±¸·İ¼ÇÂ¼
 	$empire->query("delete from {$dbtbpre}enewstempbak where gid='$gid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("gid=$gid&gname=$r[gname]");
 		printerror("DelTempGroupSuccess","TempGroup.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -864,10 +864,10 @@ function DelTempGroup($add,$userid,$username){
 	}
 }
 
-//å¯¼å‡ºæ¨¡æ¿ç»„
+//µ¼³öÄ£°å×é
 function LoadTempGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tempgroup");
 	$gid=(int)$add['changegid'];
 	if(!$gid)
@@ -879,7 +879,7 @@ function LoadTempGroup($add,$userid,$username){
 	{
 		printerror("EmptyLoadTempGroup","");
 	}
-	//ç‰ˆæœ¬
+	//°æ±¾
 	$thistempver=LoadTGAddVer();
 	$pageexp="<!---ecms.temp--->";
 	$record="<!---ecms.record--->";
@@ -892,34 +892,34 @@ function LoadTempGroup($add,$userid,$username){
 	{
 		$en="_".$gid;
 	}
-	$bqtemp=LoadTGBqtemp($gid,$en,$pageexp,$record,$field);//æ ‡ç­¾æ¨¡æ¿
-	$jstemp=LoadTGJstemp($gid,$en,$pageexp,$record,$field);//JSæ¨¡æ¿
-	$listtemp=LoadTGListtemp($gid,$en,$pageexp,$record,$field);//åˆ—è¡¨æ¨¡æ¿
-	$newstemp=LoadTGNewstemp($gid,$en,$pageexp,$record,$field);//å†…å®¹æ¨¡æ¿
-	$pubtemp=LoadTGPubtemp($gid,$en,$pageexp,$record,$field);//å…¬å…±æ¨¡æ¿
-	$searchtemp=LoadTGSearchtemp($gid,$en,$pageexp,$record,$field);//æœç´¢æ¨¡æ¿
-	$tempvar=LoadTGTempvar($gid,$en,$pageexp,$record,$field);//æ¨¡æ¿å˜é‡
-	$votetemp=LoadTGVotetemp($gid,$en,$pageexp,$record,$field);//æŠ•ç¥¨æ¨¡æ¿
-	$classtemp=LoadTGClasstemp($gid,$en,$pageexp,$record,$field);//æ ç›®æ¨¡æ¿
-	$pltemp=LoadTGPltemp($gid,$en,$pageexp,$record,$field);//è¯„è®ºæ¨¡æ¿
-	$printtemp=LoadTGPrinttemp($gid,$en,$pageexp,$record,$field);//æ‰“å°æ¨¡æ¿
-	$pagetemp=LoadTGPagetemp($gid,$en,$pageexp,$record,$field);//è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿
+	$bqtemp=LoadTGBqtemp($gid,$en,$pageexp,$record,$field);//±êÇ©Ä£°å
+	$jstemp=LoadTGJstemp($gid,$en,$pageexp,$record,$field);//JSÄ£°å
+	$listtemp=LoadTGListtemp($gid,$en,$pageexp,$record,$field);//ÁĞ±íÄ£°å
+	$newstemp=LoadTGNewstemp($gid,$en,$pageexp,$record,$field);//ÄÚÈİÄ£°å
+	$pubtemp=LoadTGPubtemp($gid,$en,$pageexp,$record,$field);//¹«¹²Ä£°å
+	$searchtemp=LoadTGSearchtemp($gid,$en,$pageexp,$record,$field);//ËÑË÷Ä£°å
+	$tempvar=LoadTGTempvar($gid,$en,$pageexp,$record,$field);//Ä£°å±äÁ¿
+	$votetemp=LoadTGVotetemp($gid,$en,$pageexp,$record,$field);//Í¶Æ±Ä£°å
+	$classtemp=LoadTGClasstemp($gid,$en,$pageexp,$record,$field);//À¸Ä¿Ä£°å
+	$pltemp=LoadTGPltemp($gid,$en,$pageexp,$record,$field);//ÆÀÂÛÄ£°å
+	$printtemp=LoadTGPrinttemp($gid,$en,$pageexp,$record,$field);//´òÓ¡Ä£°å
+	$pagetemp=LoadTGPagetemp($gid,$en,$pageexp,$record,$field);//×Ô¶¨ÒåÒ³ÃæÄ£°å
 	$loadtemptext=$r['gname'].$thistempver.$pageexp.$bqtemp.$pageexp.$jstemp.$pageexp.$listtemp.$pageexp.$newstemp.$pageexp.$pubtemp.$pageexp.$searchtemp.$pageexp.$tempvar.$pageexp.$votetemp.$pageexp.$classtemp.$pageexp.$pltemp.$pageexp.$printtemp.$pageexp.$pagetemp;
 	$loadtemptext=stripSlashes($loadtemptext);
 	$file="e".time().".temp";
 	$filepath=ECMS_PATH.'e/data/tmp/temp/'.$file;
 	WriteFiletext_n($filepath,$loadtemptext);
 	DownLoadFile($file,$filepath,1);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("gid=$gid&gname=$r[gname]");
 	exit();
 }
 
-//æ¨¡æ¿è½¬ç¼–ç 
+//Ä£°å×ª±àÂë
 function LoadInTempChangeChar($tempchar,$text){
 	global $ecms_config;
 	@include_once(ECMS_PATH.'e/class/EmpireCMS_version.php');
-	if($tempchar=='GB2312')//ç®€ä½“GB2312
+	if($tempchar=='GB2312')//¼òÌåGB2312
 	{
 		if($ecms_config['sets']['pagechar']=='gb2312')
 		{
@@ -927,12 +927,12 @@ function LoadInTempChangeChar($tempchar,$text){
 		}
 		if($ecms_config['sets']['pagechar']=='utf-8')
 		{
-			if(EmpireCMS_CHARVER=='TC-UTF-8')//ç¹ä½“
+			if(EmpireCMS_CHARVER=='TC-UTF-8')//·±Ìå
 			{
 				$text=DoIconvVal("GB2312","BIG5",$text,1);
 				$text=DoIconvVal("BIG5","UTF8",$text);
 			}
-			else//ç®€ä½“
+			else//¼òÌå
 			{
 				$text=DoIconvVal("GB2312","UTF8",$text,1);
 			}
@@ -944,7 +944,7 @@ function LoadInTempChangeChar($tempchar,$text){
 			$text=preg_replace(array('/charset=gbk/i','/charset=gb2312/i'),array('charset=big5','charset=big5'),$text);
 		}
 	}
-	elseif($tempchar=='UTF8')//ç®€ä½“UTF-8
+	elseif($tempchar=='UTF8')//¼òÌåUTF-8
 	{
 		if($ecms_config['sets']['pagechar']=='utf-8'&&EmpireCMS_CHARVER=='UTF-8')
 		{
@@ -961,14 +961,14 @@ function LoadInTempChangeChar($tempchar,$text){
 			$text=DoIconvVal("GB2312","BIG5",$text);
 			$text=preg_replace('/charset=utf-8/i','charset=big5',$text);
 		}
-		elseif($ecms_config['sets']['pagechar']=='utf-8')//ç¹ä½“
+		elseif($ecms_config['sets']['pagechar']=='utf-8')//·±Ìå
 		{
 			$text=DoIconvVal("UTF8","GB2312",$text,1);
 			$text=DoIconvVal("GB2312","BIG5",$text);
 			$text=DoIconvVal("BIG5","UTF8",$text);
 		}
 	}
-	elseif($tempchar=='BIG5')//ç¹ä½“BIG5
+	elseif($tempchar=='BIG5')//·±ÌåBIG5
 	{
 		if($ecms_config['sets']['pagechar']=='big5')
 		{
@@ -981,19 +981,19 @@ function LoadInTempChangeChar($tempchar,$text){
 		}
 		elseif($ecms_config['sets']['pagechar']=='utf-8')
 		{
-			if(EmpireCMS_CHARVER=='UTF-8')//ç®€ä½“
+			if(EmpireCMS_CHARVER=='UTF-8')//¼òÌå
 			{
 				$text=DoIconvVal("BIG5","GB2312",$text,1);
 				$text=DoIconvVal("GB2312","UTF8",$text);
 			}
-			else//ç¹ä½“
+			else//·±Ìå
 			{
 				$text=DoIconvVal("BIG5","UTF8",$text,1);
 			}
 			$text=preg_replace('/charset=big5/i','charset=utf-8',$text);
 		}
 	}
-	elseif($tempchar=='TCUTF8')//ç¹ä½“UTF-8
+	elseif($tempchar=='TCUTF8')//·±ÌåUTF-8
 	{
 		if($ecms_config['sets']['pagechar']=='utf-8'&&EmpireCMS_CHARVER=='TC-UTF-8')
 		{
@@ -1010,7 +1010,7 @@ function LoadInTempChangeChar($tempchar,$text){
 			$text=DoIconvVal("UTF8","BIG5",$text,1);
 			$text=preg_replace('/charset=utf-8/i','charset=big5',$text);
 		}
-		elseif($ecms_config['sets']['pagechar']=='utf-8')//ç®€ä½“
+		elseif($ecms_config['sets']['pagechar']=='utf-8')//¼òÌå
 		{
 			$text=DoIconvVal("UTF8","BIG5",$text,1);
 			$text=DoIconvVal("BIG5","GB2312",$text);
@@ -1020,7 +1020,7 @@ function LoadInTempChangeChar($tempchar,$text){
 	return $text;
 }
 
-//æ›¿æ¢ä»¥å¾€ç‰ˆæœ¬åœ°å€
+//Ìæ»»ÒÔÍù°æ±¾µØÖ·
 function LoadInTGReptext_pubvar($text){
 	//shop
 	$text=str_replace('/enews/?enews=AddBuycar','/ShopSys/doaction.php?enews=AddBuycar',$text);
@@ -1036,7 +1036,7 @@ function LoadInTGReptext_pubvar($text){
 	return $text;
 }
 
-//æ›¿æ¢ä»¥å¾€ç‰ˆæœ¬åœ°å€
+//Ìæ»»ÒÔÍù°æ±¾µØÖ·
 function LoadInTGReptext_othervar($text,$type='pl'){
 	if($type=='pl')
 	{
@@ -1053,14 +1053,14 @@ function LoadInTGReptext_othervar($text,$type='pl'){
 	return $text;
 }
 
-//åŠ ç‰ˆæœ¬å·
+//¼Ó°æ±¾ºÅ
 function LoadTGAddVer(){
 	@include_once(ECMS_PATH.'e/class/EmpireCMS_version.php');
 	$ver=' ,-- '.EmpireCMS_VERSION.','.EmpireCMS_CHARVER;
 	return $ver;
 }
 
-//æ›¿æ¢ç‰ˆæœ¬å·
+//Ìæ»»°æ±¾ºÅ
 function LoadInTGReturnVer($gname){
 	$exp=' ,-- ';
 	$r=explode($exp,$gname);
@@ -1076,29 +1076,29 @@ function LoadInTGReturnVer($gname){
 	return $returnr;
 }
 
-//å¯¼å…¥æ¨¡æ¿ç»„
+//µ¼ÈëÄ£°å×é
 function LoadInTempGroup($add,$file,$file_name,$file_type,$file_size,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tempgroup");
 	if(!$file_name||!$file_size)
 	{
 		printerror("EmptyLoadInTempGroup","");
 	}
 	$gid=(int)$add['gid'];
-	//æ‰©å±•å
+	//À©Õ¹Ãû
 	$filetype=GetFiletype($file_name);
 	if($filetype!=".temp")
 	{
 		printerror("LoadInTempGroupMusttemp","");
 	}
-	//ä¸Šä¼ æ–‡ä»¶
+	//ÉÏ´«ÎÄ¼ş
 	$path=ECMS_PATH.'e/data/tmp/temp/uploadtg'.time().make_password(10).'.temp';
 	$cp=@move_uploaded_file($file,$path);
 	DoChmodFile($path);
 	$data=ReadFiletext($path);
 	DelFiletext($path);
-	//è½¬ç 
+	//×ªÂë
 	if($add['ChangeChar'])
 	{
 		$data=LoadInTempChangeChar($add['tempchar'],$data);
@@ -1107,33 +1107,33 @@ function LoadInTempGroup($add,$file,$file_name,$file_type,$file_size,$userid,$us
 	{
 		printerror("EmptyLoadInTempGroup","");
 	}
-	//è¿”å›ç‰ˆæœ¬
+	//·µ»Ø°æ±¾
 	$pageexp="<!---ecms.temp--->";
 	$checkpr=explode($pageexp,$data);
 	$tempverr=LoadInTGReturnVer($checkpr[0]);
 	$gname=$tempverr['gname'];
 	$thistempver=$tempverr['ver'];
 	$thistempchar=$tempverr['tempchar'];
-	//æ›¿æ¢æ—§åœ°å€
+	//Ìæ»»¾ÉµØÖ·
 	$GLOBALS['loadtempver']=$thistempver;
 	if(empty($thistempver))
 	{
 		$data=LoadInTGReptext_pubvar($data);
 	}
-	//å…¥åº“
+	//Èë¿â
 	$pageexp="<!---ecms.temp--->";
 	$record="<!---ecms.record--->";
 	$field="<!---ecms.field--->";
 	$pr=explode($pageexp,$data);
-	if(empty($gid))//æ–°å»ºæ¨¡æ¿ç»„
+	if(empty($gid))//ĞÂ½¨Ä£°å×é
 	{
 		$sql=$empire->query("insert into {$dbtbpre}enewstempgroup(gname,isdefault) values('".addslashes($gname)."',0);");
 		$gid=$empire->lastid();
 		$gname=$pr[0];
 		$en="_".$gid;
-		CreateTempTb($gid,$en);//å¤åˆ¶è¡¨
+		CreateTempTb($gid,$en);//¸´ÖÆ±í
 	}
-	else//è¦†ç›–æ¨¡æ¿ç»„
+	else//¸²¸ÇÄ£°å×é
 	{
 		$r=$empire->fetch1("select gid,gname from {$dbtbpre}enewstempgroup where gid=$gid");
 		if(!$r['gid'])
@@ -1149,9 +1149,9 @@ function LoadInTempGroup($add,$file,$file_name,$file_type,$file_size,$userid,$us
 			$en="_".$gid;
 		}
 		$gname=$r['gname'];
-		ClearTempTb($gid,$en);//æ¸…ç©ºè¡¨
+		ClearTempTb($gid,$en);//Çå¿Õ±í
 	}
-	//ç‰ˆæœ¬
+	//°æ±¾
 	$isold=0;
 	$ckcount=count($pr);
 	if($ckcount<=10)//5.1
@@ -1162,30 +1162,30 @@ function LoadInTempGroup($add,$file,$file_name,$file_type,$file_size,$userid,$us
 	{
 		$isold=2;
 	}
-	LoadInTGBqtemp($gid,$en,$record,$field,$pr[1]);//æ ‡ç­¾æ¨¡æ¿
-	LoadInTGJstemp($gid,$en,$record,$field,$pr[2]);//JSæ¨¡æ¿
-	LoadInTGListtemp($gid,$en,$record,$field,$pr[3]);//åˆ—è¡¨æ¨¡æ¿
-	LoadInTGNewstemp($gid,$en,$record,$field,$pr[4]);//å†…å®¹æ¨¡æ¿
-	LoadInTGPubtemp($gid,$en,$record,$field,$pr[5],$isold);//å…¬å…±æ¨¡æ¿
-	LoadInTGSearchtemp($gid,$en,$record,$field,$pr[6]);//æœç´¢æ¨¡æ¿
-	LoadInTGTempvar($gid,$en,$record,$field,$pr[7]);//æ¨¡æ¿å˜é‡
-	LoadInTGVotetemp($gid,$en,$record,$field,$pr[8]);//æŠ•ç¥¨æ¨¡æ¿
-	LoadInTGClasstemp($gid,$en,$record,$field,$pr[9]);//æ ç›®æ¨¡æ¿
+	LoadInTGBqtemp($gid,$en,$record,$field,$pr[1]);//±êÇ©Ä£°å
+	LoadInTGJstemp($gid,$en,$record,$field,$pr[2]);//JSÄ£°å
+	LoadInTGListtemp($gid,$en,$record,$field,$pr[3]);//ÁĞ±íÄ£°å
+	LoadInTGNewstemp($gid,$en,$record,$field,$pr[4]);//ÄÚÈİÄ£°å
+	LoadInTGPubtemp($gid,$en,$record,$field,$pr[5],$isold);//¹«¹²Ä£°å
+	LoadInTGSearchtemp($gid,$en,$record,$field,$pr[6]);//ËÑË÷Ä£°å
+	LoadInTGTempvar($gid,$en,$record,$field,$pr[7]);//Ä£°å±äÁ¿
+	LoadInTGVotetemp($gid,$en,$record,$field,$pr[8]);//Í¶Æ±Ä£°å
+	LoadInTGClasstemp($gid,$en,$record,$field,$pr[9]);//À¸Ä¿Ä£°å
 	if($isold!=1)
 	{
-		LoadInTGPltemp($gid,$en,$record,$field,$pr[10]);//è¯„è®ºæ¨¡æ¿
+		LoadInTGPltemp($gid,$en,$record,$field,$pr[10]);//ÆÀÂÛÄ£°å
 	}
 	if($isold==0)
 	{
-		LoadInTGPrinttemp($gid,$en,$record,$field,$pr[11]);//æ‰“å°æ¨¡æ¿
+		LoadInTGPrinttemp($gid,$en,$record,$field,$pr[11]);//´òÓ¡Ä£°å
 	}
-	LoadInTGPagetemp($gid,$en,$record,$field,$pr[12]);//è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿
-	//æ“ä½œæ—¥å¿—
+	LoadInTGPagetemp($gid,$en,$record,$field,$pr[12]);//×Ô¶¨ÒåÒ³ÃæÄ£°å
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("gid=$gid&gname=$gname");
 	printerror("LoadInTempGroupSuccess","TempGroup.php".hReturnEcmsHashStrHref2(1));
 }
 
-//æ›¿æ¢æ¨¡æ¿ç»„å­˜æ”¾æ ¼å¼
+//Ìæ»»Ä£°å×é´æ·Å¸ñÊ½
 function ReplaceLoadTGTemp($pageexp,$record,$field,$text){
 	$text=str_replace($pageexp,"",$text);
 	$text=str_replace($record,"",$text);
@@ -1193,7 +1193,7 @@ function ReplaceLoadTGTemp($pageexp,$record,$field,$text){
 	return $text;
 }
 
-//æ ‡ç­¾æ¨¡æ¿
+//±êÇ©Ä£°å
 function LoadTGBqtemp($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewsbqtemp".$en;
@@ -1224,7 +1224,7 @@ function LoadInTGBqtemp($gid,$en,$record,$field,$text){
 	}
 }
 
-//JSæ¨¡æ¿
+//JSÄ£°å
 function LoadTGJstemp($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewsjstemp".$en;
@@ -1258,7 +1258,7 @@ function LoadInTGJstemp($gid,$en,$record,$field,$text){
 	}
 }
 
-//åˆ—è¡¨æ¨¡æ¿
+//ÁĞ±íÄ£°å
 function LoadTGListtemp($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewslisttemp".$en;
@@ -1289,7 +1289,7 @@ function LoadInTGListtemp($gid,$en,$record,$field,$text){
 	}
 }
 
-//å†…å®¹æ¨¡æ¿
+//ÄÚÈİÄ£°å
 function LoadTGNewstemp($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewsnewstemp".$en;
@@ -1309,7 +1309,7 @@ function LoadInTGNewstemp($gid,$en,$record,$field,$text){
 	{
 		return "";
 	}
-	$text=RepTemplateJsUrl($text,1,0);//æ›¿æ¢JSåœ°å€
+	$text=RepTemplateJsUrl($text,1,0);//Ìæ»»JSµØÖ·
 	$tb=$dbtbpre."enewsnewstemp".$en;
 	$rr=explode($record,$text);
 	$count=count($rr);
@@ -1320,7 +1320,7 @@ function LoadInTGNewstemp($gid,$en,$record,$field,$text){
 	}
 }
 
-//å…¬å…±æ¨¡æ¿
+//¹«¹²Ä£°å
 function LoadTGPubtemp($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewspubtemp".$en;
@@ -1353,7 +1353,7 @@ function LoadInTGPubtemp($gid,$en,$record,$field,$text,$isold=0){
 	$tb=$dbtbpre."enewspubtemp".$en;
 	$rr=explode($record,$text);
 	$r=explode($field,$rr[0]);
-	//ç›¸å…³é“¾æ¥è®¾ç½®
+	//Ïà¹ØÁ´½ÓÉèÖÃ
 	if(empty($r[14]))
 	{
 		$r[14]=30;
@@ -1366,29 +1366,29 @@ function LoadInTGPubtemp($gid,$en,$record,$field,$text,$isold=0){
 	{
 		$r[21]='Y-m-d H:i:s';
 	}
-	//æ›¿æ¢æ—§åœ°å€
+	//Ìæ»»¾ÉµØÖ·
 	if(empty($GLOBALS['loadtempver']))
 	{
-		//ç™»å½•çŠ¶æ€æ¨¡æ¿
+		//µÇÂ¼×´Ì¬Ä£°å
 		$r[13]=LoadInTGReptext_othervar($r[13],'member');
 		$r[16]=LoadInTGReptext_othervar($r[16],'member');
-		//è¯„è®º
+		//ÆÀÂÛ
 		$r[18]=LoadInTGReptext_othervar($r[18],'pl');
 	}
 	$sql=$empire->query("insert into ".$tb."(id,indextemp,cptemp,searchtemp,searchjstemp,searchjstemp1,otherlinktemp,downsofttemp,onlinemovietemp,listpagetemp,gbooktemp,loginiframe,otherlinktempsub,otherlinktempdate,loginjstemp,downpagetemp,pljstemp,schalltemp,schallsubnum,schalldate) values('$r[0]','".addslashes(addslashes($r[1]))."','".addslashes(addslashes($r[3]))."','".addslashes(addslashes($r[4]))."','".addslashes(addslashes($r[5]))."','".addslashes(addslashes($r[6]))."','".addslashes(addslashes($r[7]))."','".addslashes(addslashes($r[9]))."','".addslashes(addslashes($r[10]))."','".addslashes(addslashes($r[11]))."','".addslashes(addslashes($r[12]))."','".addslashes(addslashes($r[13]))."','$r[14]','$r[15]','".addslashes(addslashes($r[16]))."','".addslashes(addslashes($r[17]))."','".addslashes(addslashes($r[18]))."','".addslashes(addslashes($r[19]))."','$r[20]','$r[21]');");
-	//5.1ä»¥ä¸‹ç‰ˆæœ¬
+	//5.1ÒÔÏÂ°æ±¾
 	if($isold==1&&$r[2])
 	{
 		$pltb=$dbtbpre."enewspltemp".$en;
 		$pltempname=$fun_r['PlListTempname'];
-		//æ›¿æ¢æ—§åœ°å€
+		//Ìæ»»¾ÉµØÖ·
 		if(empty($GLOBALS['loadtempver']))
 		{
 			$r[2]=LoadInTGReptext_othervar($r[2],'pl');
 		}
 		$empire->query("insert into ".$pltb."(tempid,tempname,temptext,isdefault) values(NULL,'".addslashes($pltempname)."','".addslashes(addslashes($r[2]))."',1);");
 	}
-	//6.0ä»¥ä¸‹ç‰ˆæœ¬
+	//6.0ÒÔÏÂ°æ±¾
 	if(($isold==1||$isold==2)&&$r[8])
 	{
 		$printtb=$dbtbpre."enewsprinttemp".$en;
@@ -1397,7 +1397,7 @@ function LoadInTGPubtemp($gid,$en,$record,$field,$text,$isold=0){
 	}
 }
 
-//æœç´¢æ¨¡æ¿
+//ËÑË÷Ä£°å
 function LoadTGSearchtemp($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewssearchtemp".$en;
@@ -1428,7 +1428,7 @@ function LoadInTGSearchtemp($gid,$en,$record,$field,$text){
 	}
 }
 
-//æ¨¡æ¿å˜é‡
+//Ä£°å±äÁ¿
 function LoadTGTempvar($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewstempvar".$en;
@@ -1454,7 +1454,7 @@ function LoadInTGTempvar($gid,$en,$record,$field,$text){
 	for($i=0;$i<$count-1;$i++)
 	{
 		$r=explode($field,$rr[$i]);
-		//è¯„è®ºå˜é‡
+		//ÆÀÂÛ±äÁ¿
 		if(!$GLOBALS['loadtempver']&&$r[1]=='pl')
 		{
 			$r[3]=LoadInTGReptext_othervar($r[3],'pl');
@@ -1463,7 +1463,7 @@ function LoadInTGTempvar($gid,$en,$record,$field,$text){
 	}
 }
 
-//æŠ•ç¥¨æ¨¡æ¿
+//Í¶Æ±Ä£°å
 function LoadTGVotetemp($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewsvotetemp".$en;
@@ -1493,7 +1493,7 @@ function LoadInTGVotetemp($gid,$en,$record,$field,$text){
 	}
 }
 
-//æ ç›®å°é¢æ¨¡æ¿
+//À¸Ä¿·âÃæÄ£°å
 function LoadTGClasstemp($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewsclasstemp".$en;
@@ -1523,7 +1523,7 @@ function LoadInTGClasstemp($gid,$en,$record,$field,$text){
 	}
 }
 
-//è¯„è®ºåˆ—è¡¨æ¨¡æ¿
+//ÆÀÂÛÁĞ±íÄ£°å
 function LoadTGPltemp($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewspltemp".$en;
@@ -1548,7 +1548,7 @@ function LoadInTGPltemp($gid,$en,$record,$field,$text){
 	for($i=0;$i<$count-1;$i++)
 	{
 		$r=explode($field,$rr[$i]);
-		//æ›¿æ¢æ—§åœ°å€
+		//Ìæ»»¾ÉµØÖ·
 		if(empty($GLOBALS['loadtempver']))
 		{
 			$r[2]=LoadInTGReptext_othervar($r[2],'pl');
@@ -1557,7 +1557,7 @@ function LoadInTGPltemp($gid,$en,$record,$field,$text){
 	}
 }
 
-//æ‰“å°æ¨¡æ¿
+//´òÓ¡Ä£°å
 function LoadTGPrinttemp($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewsprinttemp".$en;
@@ -1586,7 +1586,7 @@ function LoadInTGPrinttemp($gid,$en,$record,$field,$text){
 	}
 }
 
-//è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿
+//×Ô¶¨ÒåÒ³ÃæÄ£°å
 function LoadTGPagetemp($gid,$en,$pageexp,$record,$field){
 	global $empire,$dbtbpre;
 	$tb=$dbtbpre."enewspagetemp".$en;
@@ -1616,9 +1616,9 @@ function LoadInTGPagetemp($gid,$en,$record,$field,$text){
 	}
 }
 
-//----------------------å¤‡ä»½æ¨¡æ¿-------------------
+//----------------------±¸·İÄ£°å-------------------
 
-//åˆ é™¤å¤šä½™å¤‡ä»½è®°å½•
+//É¾³ı¶àÓà±¸·İ¼ÇÂ¼
 function DelEBakTemp($temptype,$gid,$tempid){
 	global $empire,$dbtbpre;
 	$pr=$empire->fetch1("select baktempnum from {$dbtbpre}enewspublic limit 1");
@@ -1643,7 +1643,7 @@ function DelEBakTemp($temptype,$gid,$tempid){
 	return $pr;
 }
 
-//åˆ é™¤æ‰€æœ‰å¤‡ä»½è®°å½•
+//É¾³ıËùÓĞ±¸·İ¼ÇÂ¼
 function DelEbakTempAll($temptype,$gid,$tempid){
 	global $empire,$dbtbpre;
 	$tempid=(int)$tempid;
@@ -1659,7 +1659,7 @@ function DelEbakTempAll($temptype,$gid,$tempid){
 	$empire->query("delete from {$dbtbpre}enewstempbak where temptype='$temptype' and gid='$gid' and tempid='$tempid'");
 }
 
-//æ¨¡æ¿å¤‡ä»½è®°å½•
+//Ä£°å±¸·İ¼ÇÂ¼
 function AddEBakTemp($temptype,$gid,$tempid,$tempname,$temptext,$subnews,$isdefault,$listvar,$rownum,$modid,$showdate,$subtitle,$classid,$docode,$userid,$username){
 	global $empire,$dbtbpre;
 	$tempid=(int)$tempid;
@@ -1688,7 +1688,7 @@ function AddEBakTemp($temptype,$gid,$tempid,$tempname,$temptext,$subnews,$isdefa
 	$empire->query("insert into {$dbtbpre}enewstempbak(tempid,tempname,temptext,subnews,isdefault,listvar,rownum,modid,showdate,subtitle,classid,docode,baktime,temptype,gid,lastuser) values('$tempid','".eaddslashes($tempname)."','".eaddslashes2($temptext)."','$subnews','$isdefault','".eaddslashes2($listvar)."','$rownum','$modid','".eaddslashes($showdate)."','$subtitle','$classid','$docode','$baktime','$temptype','$gid','$username');");
 }
 
-//è¿˜åŸæ¨¡æ¿å¤‡ä»½
+//»¹Ô­Ä£°å±¸·İ
 function ReEBakTemp($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$bid=(int)$add['bid'];
@@ -1701,7 +1701,7 @@ function ReEBakTemp($add,$userid,$username){
 	{
 		printerror("NotBakTemp","history.go(-1)");
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	if($r['temptype']=='tempvar')
 	{
 		CheckLevel($userid,$username,$classid,"tempvar");
@@ -1719,118 +1719,118 @@ function ReEBakTemp($add,$userid,$username){
 	{
 		$gid=1;
 	}
-	if($r['temptype']=='bqtemp')//æ ‡ç­¾æ¨¡æ¿
+	if($r['temptype']=='bqtemp')//±êÇ©Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewsbqtemp",$gid)." set tempname='".StripAddsData($r[tempname])."',temptext='".addslashes($r[temptext])."',modid='$r[modid]',showdate='".StripAddsData($r[showdate])."',listvar='".addslashes($r[listvar])."',subnews='$r[subnews]',rownum='$r[rownum]',classid='$r[classid]',docode='$r[docode]' where tempid='$r[tempid]'");
 	}
-	elseif($r['temptype']=='classtemp')//å°é¢æ¨¡æ¿
+	elseif($r['temptype']=='classtemp')//·âÃæÄ£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewsclasstemp",$gid)." set tempname='".StripAddsData($r[tempname])."',temptext='".addslashes($r[temptext])."',classid='$r[classid]' where tempid='$r[tempid]'");
 	}
-	elseif($r['temptype']=='jstemp')//JSæ¨¡æ¿
+	elseif($r['temptype']=='jstemp')//JSÄ£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewsjstemp",$gid)." set tempname='".StripAddsData($r[tempname])."',temptext='".addslashes($r[temptext])."',classid='$r[classid]',showdate='".StripAddsData($r[showdate])."',modid='$r[modid]',subnews='$r[subnews]',subtitle='$r[subtitle]' where tempid='$r[tempid]'");
 	}
-	elseif($r['temptype']=='listtemp')//åˆ—è¡¨æ¨¡æ¿
+	elseif($r['temptype']=='listtemp')//ÁĞ±íÄ£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewslisttemp",$gid)." set subnews='$r[subnews]',tempname='".StripAddsData($r[tempname])."',temptext='".addslashes($r[temptext])."',listvar='".addslashes($r[listvar])."',rownum='$r[rownum]',modid='$r[modid]',showdate='".StripAddsData($r[showdate])."',subtitle='$r[subtitle]',classid='$r[classid]',docode='$r[docode]' where tempid='$r[tempid]'");
 	}
-	elseif($r['temptype']=='newstemp')//å†…å®¹æ¨¡æ¿
+	elseif($r['temptype']=='newstemp')//ÄÚÈİÄ£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewsnewstemp",$gid)." set tempname='".StripAddsData($r[tempname])."',temptext='".addslashes($r[temptext])."',showdate='".StripAddsData($r[showdate])."',modid='$r[modid]',classid='$r[classid]' where tempid='$r[tempid]'");
 	}
-	elseif($r['temptype']=='pltemp')//è¯„è®ºæ¨¡æ¿
+	elseif($r['temptype']=='pltemp')//ÆÀÂÛÄ£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspltemp",$gid)." set tempname='".StripAddsData($r[tempname])."',temptext='".addslashes($r[temptext])."' where tempid='$r[tempid]'");
 	}
-	elseif($r['temptype']=='printtemp')//æ‰“å°æ¨¡æ¿
+	elseif($r['temptype']=='printtemp')//´òÓ¡Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewsprinttemp",$gid)." set tempname='".StripAddsData($r[tempname])."',temptext='".addslashes($r[temptext])."',showdate='".StripAddsData($r[showdate])."',modid='$r[modid]' where tempid='$r[tempid]'");
 	}
-	elseif($r['temptype']=='searchtemp')//æœç´¢æ¨¡æ¿
+	elseif($r['temptype']=='searchtemp')//ËÑË÷Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewssearchtemp",$gid)." set subnews='$r[subnews]',tempname='".StripAddsData($r[tempname])."',temptext='".addslashes($r[temptext])."',listvar='".addslashes($r[listvar])."',rownum='$r[rownum]',modid='$r[modid]',showdate='".StripAddsData($r[showdate])."',subtitle='$r[subtitle]',classid='$r[classid]',docode='$r[docode]' where tempid='$r[tempid]'");
 	}
-	elseif($r['temptype']=='tempvar')//å…¬å…±æ¨¡æ¿å˜é‡
+	elseif($r['temptype']=='tempvar')//¹«¹²Ä£°å±äÁ¿
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewstempvar",$gid)." set myvar='".StripAddsData($r[tempname])."',varname='".StripAddsData($r[listvar])."',varvalue='".addslashes($r[temptext])."',classid='$r[classid]',isclose='$r[docode]',myorder='$r[subnews]' where varid='$r[tempid]'");
 	}
-	elseif($r['temptype']=='votetemp')//æŠ•ç¥¨æ¨¡æ¿
+	elseif($r['temptype']=='votetemp')//Í¶Æ±Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewsvotetemp",$gid)." set tempname='".StripAddsData($r[tempname])."',temptext='".addslashes($r[temptext])."' where tempid='$r[tempid]'");
 	}
-	elseif($r['temptype']=='pagetemp')//è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿
+	elseif($r['temptype']=='pagetemp')//×Ô¶¨ÒåÒ³ÃæÄ£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspagetemp",$gid)." set tempname='".StripAddsData($r[tempname])."',temptext='".addslashes($r[temptext])."' where tempid='$r[tempid]'");
 	}
-	elseif($r['temptype']=='indexpage')//é¦–é¡µæ–¹æ¡ˆæ¨¡æ¿
+	elseif($r['temptype']=='indexpage')//Ê×Ò³·½°¸Ä£°å
 	{
 		$sql=$empire->query("update {$dbtbpre}enewsindexpage set tempname='".StripAddsData($r[tempname])."',temptext='".addslashes($r[temptext])."' where tempid='$r[tempid]'");
 	}
-	//å…¬å…±æ¨¡æ¿
-	elseif($r['temptype']=='pubindextemp')//é¦–é¡µæ¨¡æ¿
+	//¹«¹²Ä£°å
+	elseif($r['temptype']=='pubindextemp')//Ê×Ò³Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set indextemp='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='pubcptemp')//æ§åˆ¶é¢æ¿æ¨¡æ¿
+	elseif($r['temptype']=='pubcptemp')//¿ØÖÆÃæ°åÄ£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set cptemp='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='pubsearchtemp')//é«˜çº§æœç´¢è¡¨å•æ¨¡æ¿
+	elseif($r['temptype']=='pubsearchtemp')//¸ß¼¶ËÑË÷±íµ¥Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set searchtemp='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='pubsearchjstemp')//æœç´¢JSæ¨¡æ¿[æ¨ªå‘]
+	elseif($r['temptype']=='pubsearchjstemp')//ËÑË÷JSÄ£°å[ºáÏò]
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set searchjstemp='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='pubsearchjstemp1')//æœç´¢JSæ¨¡æ¿[çºµå‘]
+	elseif($r['temptype']=='pubsearchjstemp1')//ËÑË÷JSÄ£°å[×İÏò]
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set searchjstemp1='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='pubotherlinktemp')//ç›¸å…³é“¾æ¥æ¨¡æ¿
+	elseif($r['temptype']=='pubotherlinktemp')//Ïà¹ØÁ´½ÓÄ£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set otherlinktemp='".addslashes($r[temptext])."',otherlinktempsub='$r[subtitle]',otherlinktempdate='".StripAddsData($r[showdate])."' limit 1");
 	}
-	elseif($r['temptype']=='pubdownsofttemp')//ä¸‹è½½åœ°å€æ¨¡æ¿
+	elseif($r['temptype']=='pubdownsofttemp')//ÏÂÔØµØÖ·Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set downsofttemp='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='pubonlinemovietemp')//åœ¨çº¿æ’­æ”¾åœ°å€æ¨¡æ¿
+	elseif($r['temptype']=='pubonlinemovietemp')//ÔÚÏß²¥·ÅµØÖ·Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set onlinemovietemp='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='publistpagetemp')//åˆ—è¡¨åˆ†é¡µæ¨¡æ¿
+	elseif($r['temptype']=='publistpagetemp')//ÁĞ±í·ÖÒ³Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set listpagetemp='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='pubpljstemp')//è¯„è®ºJSè°ƒç”¨æ¨¡æ¿
+	elseif($r['temptype']=='pubpljstemp')//ÆÀÂÛJSµ÷ÓÃÄ£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set pljstemp='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='pubdownpagetemp')//æœ€ç»ˆä¸‹è½½é¡µæ¨¡æ¿
+	elseif($r['temptype']=='pubdownpagetemp')//×îÖÕÏÂÔØÒ³Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set downpagetemp='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='pubgbooktemp')//ç•™è¨€æ¿æ¨¡æ¿
+	elseif($r['temptype']=='pubgbooktemp')//ÁôÑÔ°åÄ£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set gbooktemp='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='publoginiframe')//ç™»é™†çŠ¶æ€æ¨¡æ¿
+	elseif($r['temptype']=='publoginiframe')//µÇÂ½×´Ì¬Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set loginiframe='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='publoginjstemp')//JSè°ƒç”¨ç™»é™†çŠ¶æ€æ¨¡æ¿
+	elseif($r['temptype']=='publoginjstemp')//JSµ÷ÓÃµÇÂ½×´Ì¬Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set loginjstemp='".addslashes($r[temptext])."' limit 1");
 	}
-	elseif($r['temptype']=='pubschalltemp')//å…¨ç«™æœç´¢æ¨¡æ¿
+	elseif($r['temptype']=='pubschalltemp')//È«Õ¾ËÑË÷Ä£°å
 	{
 		$sql=$empire->query("update ".GetDoTemptb("enewspubtemp",$gid)." set schalltemp='".addslashes($r[temptext])."',schallsubnum='$r[subnews]',schalldate='".StripAddsData($r[showdate])."' limit 1");
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("bid=$bid&temptype=$r[temptype]<br>tempid=$r[tempid]&tempname=$r[tempname]&gid=$r[gid]");
 		echo"<script>opener.ReTempBak();window.close();</script>";
 		exit();

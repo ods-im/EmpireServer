@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"feedbackf");
 $enews=ehtmlspecialchars($_GET['enews']);
 $btype=" checked";
@@ -23,36 +23,36 @@ $usernames='';
 $r['mustenter']=",title,";
 $record="<!--record-->";
 $field="<!--field--->";
-$url="<a href=feedback.php".$ecms_hashur['whhref'].">ç®¡ç†ä¿¡æ¯åé¦ˆ</a>&nbsp;>&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whhref'].">ç®¡ç†åé¦ˆåˆ†ç±»</a>&nbsp;>&nbsp;å¢åŠ åé¦ˆåˆ†ç±»";
+$url="<a href=feedback.php".$ecms_hashur['whhref'].">¹ÜÀíĞÅÏ¢·´À¡</a>&nbsp;>&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whhref'].">¹ÜÀí·´À¡·ÖÀà</a>&nbsp;>&nbsp;Ôö¼Ó·´À¡·ÖÀà";
 if($enews=="AddFeedbackClass"&&$_GET['docopy'])
 {
 	$bid=(int)$_GET['bid'];
 	$btype="";
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsfeedbackclass where bid='$bid'");
-	$url="<a href=feedback.php".$ecms_hashur['whhref'].">ç®¡ç†ä¿¡æ¯åé¦ˆ</a>&nbsp;>&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whhref'].">ç®¡ç†åé¦ˆåˆ†ç±»</a>&nbsp;>&nbsp;å¤åˆ¶åé¦ˆåˆ†ç±»: ".$r['bname'];
+	$url="<a href=feedback.php".$ecms_hashur['whhref'].">¹ÜÀíĞÅÏ¢·´À¡</a>&nbsp;>&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whhref'].">¹ÜÀí·´À¡·ÖÀà</a>&nbsp;>&nbsp;¸´ÖÆ·´À¡·ÖÀà: ".$r['bname'];
 	$usernames=substr($r['usernames'],1,-1);
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditFeedbackClass")
 {
 	$bid=(int)$_GET['bid'];
 	$btype="";
-	$url="<a href=feedback.php".$ecms_hashur['whhref'].">ç®¡ç†ä¿¡æ¯åé¦ˆ</a>&nbsp;->&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whhref'].">ç®¡ç†åé¦ˆåˆ†ç±»</a>&nbsp;->&nbsp;ä¿®æ”¹åé¦ˆåˆ†ç±»";
+	$url="<a href=feedback.php".$ecms_hashur['whhref'].">¹ÜÀíĞÅÏ¢·´À¡</a>&nbsp;->&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whhref'].">¹ÜÀí·´À¡·ÖÀà</a>&nbsp;->&nbsp;ĞŞ¸Ä·´À¡·ÖÀà";
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsfeedbackclass where bid='$bid'");
 	$usernames=substr($r['usernames'],1,-1);
 }
-//å–å¾—å­—æ®µ
+//È¡µÃ×Ö¶Î
 $fsql=$empire->query("select f,fname from {$dbtbpre}enewsfeedbackf order by myorder,fid");
 while($fr=$empire->fetch($fsql))
 {
 	$like=$field.$fr[f].$record;
 	$slike=",".$fr[f].",";
-	//å½•å…¥é¡¹
+	//Â¼ÈëÏî
 	$enterchecked="";
 	if(strstr($r[enter],$like))
 	{
 		$enterchecked=" checked";
-		//å–å¾—å­—æ®µæ ‡è¯†
+		//È¡µÃ×Ö¶Î±êÊ¶
 		$dor=explode($like,$r[enter]);
 		if(strstr($dor[0],$record))
 		{
@@ -65,13 +65,13 @@ while($fr=$empire->fetch($fsql))
 			$fr[fname]=$dor[0];
 		}
 	}
-	//æ ‡é¢˜
+	//±êÌâ
 	if($enews=="AddFeedbackClass"&&$fr[f]=="title")
 	{
 		$enterchecked=" checked";
 	}
 	$entercheckbox="<input name=center[] type=checkbox value='".$fr[f]."'".$enterchecked.">";
-	//å¿…å¡«é¡¹
+	//±ØÌîÏî
 	$mustfchecked="";
 	if(strstr($r[mustenter],$slike))
 	{$mustfchecked=" checked";}
@@ -95,7 +95,7 @@ while($fr=$empire->fetch($fsql))
               </div></td>
           </tr>";
 }
-//----------ä¼šå‘˜ç»„
+//----------»áÔ±×é
 $sql1=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($l_r=$empire->fetch($sql1))
 {
@@ -111,87 +111,87 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ åé¦ˆåˆ†ç±»</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼Ó·´À¡·ÖÀà</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="FeedbackClass.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr> 
-      <td height="25" colspan="2" class="header">å¢åŠ åé¦ˆåˆ†ç±» 
+      <td height="25" colspan="2" class="header">Ôö¼Ó·´À¡·ÖÀà 
         <input name="bid" type="hidden" id="bid" value="<?=$bid?>"> <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="23%" height="25">åˆ†ç±»åç§°</td>
+      <td width="23%" height="25">·ÖÀàÃû³Æ</td>
       <td width="77%" height="25"><input name="bname" type="text" id="bname" value="<?=$r[bname]?>" size="43"> 
-        <font color="#666666">(æ¯”å¦‚ï¼š&quot;å»ºè®®ä¸åé¦ˆ&quot;)</font></td>
+        <font color="#666666">(±ÈÈç£º&quot;½¨ÒéÓë·´À¡&quot;)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">ç®¡ç†åé¦ˆçš„ç”¨æˆ·</td>
+      <td height="25">¹ÜÀí·´À¡µÄÓÃ»§</td>
       <td height="25"><input name="usernames" type="text" id="usernames" value="<?=$usernames?>" size="42">
         <font color="#666666"> 
-        <input type="button" name="Submit32" value="é€‰æ‹©" onclick="window.open('../ChangeUser.php?field=usernames&form=form1<?=$ecms_hashur['ehref']?>','','width=300,height=520,scrollbars=yes');">
-        (ç©ºä¸ºä¸é™ï¼Œå¤šä¸ªç”¨æˆ·ç”¨â€œ,â€é€—å·éš”å¼€)</font></td>
+        <input type="button" name="Submit32" value="Ñ¡Ôñ" onclick="window.open('../ChangeUser.php?field=usernames&form=form1<?=$ecms_hashur['ehref']?>','','width=300,height=520,scrollbars=yes');">
+        (¿ÕÎª²»ÏŞ£¬¶à¸öÓÃ»§ÓÃ¡°,¡±¶ººÅ¸ô¿ª)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æäº¤ä¼šå‘˜ç»„æƒé™</td>
+      <td height="25">Ìá½»»áÔ±×éÈ¨ÏŞ</td>
       <td height="25"><select name="groupid" id="groupid">
-          <option value="0">æ¸¸å®¢</option>
+          <option value="0">ÓÎ¿Í</option>
           <?=$membergroup?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">é€‰æ‹©æœ¬è¡¨å•çš„å­—æ®µé¡¹<br>
+      <td height="25" valign="top">Ñ¡Ôñ±¾±íµ¥µÄ×Ö¶ÎÏî<br>
         (<font color="#FF0000"> 
         <input name="btype" type="checkbox" value="1"<?=$btype?>>
-        è‡ªåŠ¨ç”Ÿæˆè¡¨å•</font>)<br> <br> <input type="button" name="Submit3" value="å­—æ®µç®¡ç†" onclick="window.open('ListFeedbackF.php<?=$ecms_hashur['whehref']?>');"> 
+        ×Ô¶¯Éú³É±íµ¥</font>)<br> <br> <input type="button" name="Submit3" value="×Ö¶Î¹ÜÀí" onclick="window.open('ListFeedbackF.php<?=$ecms_hashur['whehref']?>');"> 
       </td>
       <td height="25" valign="top"><table width="100%" border="0" cellspacing="1" cellpadding="3">
           <tr bgcolor="#DBEAF5"> 
-            <td width="35%" height="25"> <div align="center">å­—æ®µæ ‡è¯†</div></td>
-            <td width="35%" height="25"> <div align="center">å­—æ®µå</div></td>
-            <td width="15%"> <div align="center">æäº¤é¡¹</div></td>
-            <td width="15%"> <div align="center">å¿…å¡«é¡¹</div></td>
+            <td width="35%" height="25"> <div align="center">×Ö¶Î±êÊ¶</div></td>
+            <td width="35%" height="25"> <div align="center">×Ö¶ÎÃû</div></td>
+            <td width="15%"> <div align="center">Ìá½»Ïî</div></td>
+            <td width="15%"> <div align="center">±ØÌîÏî</div></td>
           </tr>
           <?=$data?>
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top"><p>å½•å…¥è¡¨å•æ¨¡æ¿<br>
-          (å¦‚<font color="#FF0000">è‡ªåŠ¨ç”Ÿæˆè¡¨å•æ¨¡æ¿</font><br>
-          ï¼Œä¸ç”¨å¡«æ¨¡æ¿å†…å®¹)<br>
+      <td height="25" valign="top"><p>Â¼Èë±íµ¥Ä£°å<br>
+          (Èç<font color="#FF0000">×Ô¶¯Éú³É±íµ¥Ä£°å</font><br>
+          £¬²»ÓÃÌîÄ£°åÄÚÈİ)<br>
           <br>
-          æ§åˆ¶é¢æ¿å¤´éƒ¨æ ‡ç­¾ï¼š<br>
+          ¿ØÖÆÃæ°åÍ·²¿±êÇ©£º<br>
           [!--cp.header--]<br>
           <br>
-          æ§åˆ¶é¢æ¿å°¾éƒ¨æ ‡ç­¾ï¼š<br>
+          ¿ØÖÆÃæ°åÎ²²¿±êÇ©£º<br>
           [!--cp.footer--]<br>
           <br>
-          ä¼šå‘˜ä¸­å¿ƒå¤´éƒ¨æ ‡ç­¾ï¼š<br>
+          »áÔ±ÖĞĞÄÍ·²¿±êÇ©£º<br>
 [!--member.header--]<br>
 <br>
-ä¼šå‘˜ä¸­å¿ƒå°¾éƒ¨æ ‡ç­¾ï¼š<br>
+»áÔ±ÖĞĞÄÎ²²¿±êÇ©£º<br>
 [!--member.footer--]<br>
           <br>
-          (æ”¯æŒå…¬å…±æ¨¡æ¿å˜é‡)</p></td>
+          (Ö§³Ö¹«¹²Ä£°å±äÁ¿)</p></td>
       <td height="25"><textarea name="btemp" cols="75" rows="20" style="WIDTH: 100%" id="btemp"><?=ehtmlspecialchars(stripSlashes($r[btemp]))?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">æ³¨é‡Šï¼š</td>
+      <td height="25" valign="top">×¢ÊÍ£º</td>
       <td height="25"><textarea name="bzs" cols="75" rows="10" style="WIDTH: 100%" id="textarea"><?=stripSlashes($r[bzs])?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

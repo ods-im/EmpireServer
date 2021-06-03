@@ -8,7 +8,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,10 +17,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"viewgroup");
 
-//æ›´æ–°è®¿é—®ç»„çŠ¶æ€
+//¸üĞÂ·ÃÎÊ×é×´Ì¬
 function ToUpViewGroupMList($vgid){
 	global $empire,$dbtbpre;
 	$vgid=(int)$vgid;
@@ -29,7 +29,7 @@ function ToUpViewGroupMList($vgid){
 	$sql=$empire->query("update {$dbtbpre}enewsvg set mlist='$mlist' where vgid='$vgid'");
 }
 
-//å¢åŠ ä¼šå‘˜ç™½åå•
+//Ôö¼Ó»áÔ±°×Ãûµ¥
 function AddViewGroupMList($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$vgid=(int)$add['vgid'];
@@ -46,7 +46,7 @@ function AddViewGroupMList($add,$userid,$username){
 		$outtime=to_time($outtime);
 	}
 	$outtime=(int)$outtime;
-	//ä¼šå‘˜
+	//»áÔ±
 	$havem=0;
 	$r=explode(',',$adduserid);
 	$count=count($r);
@@ -57,7 +57,7 @@ function AddViewGroupMList($add,$userid,$username){
 		{
 			continue;
 		}
-		//ç±»å‹
+		//ÀàĞÍ
 		if($usertype==2)
 		{
 			$thisuid=RepPostVar($thisuid);
@@ -72,7 +72,7 @@ function AddViewGroupMList($add,$userid,$username){
 		{
 			continue;
 		}
-		//æ˜¯å¦å­˜åœ¨
+		//ÊÇ·ñ´æÔÚ
 		$vgnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsvglist where vgid='$vgid' and userid='$mr[userid]' limit 1");
 		if(!$vgnum)
 		{
@@ -81,12 +81,12 @@ function AddViewGroupMList($add,$userid,$username){
 		}
 	}
 	ToUpViewGroupMList($vgid);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("vgid=".$vgid."&usertype=".$usertype."<br>adduserid=".$adduserid);
 	printerror("AddViewGroupMListSuccess","ListVgMember.php?vgid=$vgid".hReturnEcmsHashStrHref2(0));
 }
 
-//ä¿®æ”¹ä¼šå‘˜ç™½åå•
+//ĞŞ¸Ä»áÔ±°×Ãûµ¥
 function EditViewGroupMList($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$vgid=(int)$add['vgid'];
@@ -104,7 +104,7 @@ function EditViewGroupMList($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsvglist set outtime='$outtime' where vgid='$vgid' and userid='$adduserid' limit 1");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("vgid=".$vgid."<br>userid=".$adduserid);
 		printerror("EditViewGroupMListSuccess",EcmsGetReturnUrl());
 	}
@@ -112,7 +112,7 @@ function EditViewGroupMList($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ä¼šå‘˜ç™½åå•
+//É¾³ı»áÔ±°×Ãûµ¥
 function DelViewGroupMList($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$vgid=(int)$add['vgid'];
@@ -125,7 +125,7 @@ function DelViewGroupMList($add,$userid,$username){
 	ToUpViewGroupMList($vgid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("vgid=".$vgid."<br>userid=".$adduserid);
 		printerror("DelViewGroupMListSuccess",EcmsGetReturnUrl());
 	}
@@ -168,9 +168,9 @@ if(!$vgr['vgid'])
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $search='&vgid='.$vgid;
 $search.=$ecms_hashur['ehref'];
 $totalquery="select count(*) as total from {$dbtbpre}enewsvglist";
@@ -182,8 +182,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ä¼šå‘˜ç™½åå•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí»áÔ±°×Ãûµ¥</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 </head>
@@ -191,45 +191,45 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="ListViewGroup.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¼šå‘˜è®¿é—®ç»„</a>&nbsp;>&nbsp;<a href="ListVgMember.php?vgid=<?=$vgr['vgid']?><?=$ecms_hashur['ehref']?>"><?=$vgr['gname']?></a>&nbsp;>&nbsp;ä¼šå‘˜ç™½åå•</td>
+    <td>Î»ÖÃ£º<a href="ListViewGroup.php<?=$ecms_hashur['whehref']?>">¹ÜÀí»áÔ±·ÃÎÊ×é</a>&nbsp;>&nbsp;<a href="ListVgMember.php?vgid=<?=$vgr['vgid']?><?=$ecms_hashur['ehref']?>"><?=$vgr['gname']?></a>&nbsp;>&nbsp;»áÔ±°×Ãûµ¥</td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListVgMember.php">
   <table width="800" border="0" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td height="25" colspan="4">å¢åŠ ä¼šå‘˜ç™½åå•: 
+      <td height="25" colspan="4">Ôö¼Ó»áÔ±°×Ãûµ¥: 
         <input name=enews type=hidden id="enews" value=AddViewGroupMList>
 		<input type=hidden name=vgid value="<?=$vgid?>">        </td>
     </tr>
     <tr>
-      <td width="96" height="25" bgcolor="#FFFFFF"><div align="center"><strong>å¢åŠ ç±»å‹</strong></div></td>
-      <td width="391" bgcolor="#FFFFFF"><strong>ä¼šå‘˜IDæˆ–ç”¨æˆ·å</strong><font color="#666666">(å¤šä¸ªç”¨åŠè§’é€—å·éš”å¼€)</font></td>
-      <td width="207" bgcolor="#FFFFFF"><strong>è¿‡æœŸæ—¶é—´ </strong><font color="#666666">(ç•™ç©ºä¸ºä¸é™)</font></td>
-      <td width="77" bgcolor="#FFFFFF"><div align="center"><strong>æ“ä½œ</strong></div></td>
+      <td width="96" height="25" bgcolor="#FFFFFF"><div align="center"><strong>Ôö¼ÓÀàĞÍ</strong></div></td>
+      <td width="391" bgcolor="#FFFFFF"><strong>»áÔ±ID»òÓÃ»§Ãû</strong><font color="#666666">(¶à¸öÓÃ°ë½Ç¶ººÅ¸ô¿ª)</font></td>
+      <td width="207" bgcolor="#FFFFFF"><strong>¹ıÆÚÊ±¼ä </strong><font color="#666666">(Áô¿ÕÎª²»ÏŞ)</font></td>
+      <td width="77" bgcolor="#FFFFFF"><div align="center"><strong>²Ù×÷</strong></div></td>
     </tr>
     <tr>
       <td height="25" bgcolor="#FFFFFF"><div align="center">
         <select name="usertype" id="usertype">
-          <option value="1">ä¼šå‘˜ID</option>
-          <option value="2">ç”¨æˆ·å</option>
+          <option value="1">»áÔ±ID</option>
+          <option value="2">ÓÃ»§Ãû</option>
         </select>
       </div></td>
       <td bgcolor="#FFFFFF"><input name="adduserid" type="text" id="adduserid" size="55"></td>
       <td bgcolor="#FFFFFF"><input name="outtime" type="text" class="Wdate" id="outtime" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd HH:mm:ss'})" size="28"></td>
       <td bgcolor="#FFFFFF"><div align="center">
-        <input type="submit" name="Submit" value="å¢åŠ ">
+        <input type="submit" name="Submit" value="Ôö¼Ó">
       </div></td>
     </tr>
   </table>
 </form>
 <table width="800" border="0" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td width="8%" height="25"><div align="center">ä¼šå‘˜ID</div></td>
-    <td width="29%"><div align="center">ç”¨æˆ·å</div></td>
-    <td width="18%"><div align="center">å¢åŠ æ—¶é—´</div></td>
-    <td width="25%"><div align="center">è¿‡æœŸæ—¶é—´</div></td>
-    <td width="20%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="8%" height="25"><div align="center">»áÔ±ID</div></td>
+    <td width="29%"><div align="center">ÓÃ»§Ãû</div></td>
+    <td width="18%"><div align="center">Ôö¼ÓÊ±¼ä</div></td>
+    <td width="25%"><div align="center">¹ıÆÚÊ±¼ä</div></td>
+    <td width="20%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -249,9 +249,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
         <input name="outtime" type="text" class="Wdate" id="outtime" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="<?=$r['outtime']?date("Y-m-d H:i:s",$r['outtime']):''?>" size="28">
       </div></td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="if(confirm('ç¡®è®¤è¦åˆ é™¤æ­¤ä¼šå‘˜ç™½åå•?')){self.location.href='ListVgMember.php?enews=DelViewGroupMList&vgid=<?=$r['vgid']?>&adduserid=<?=$r['userid']?><?=$ecms_hashur['href']?>';}">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="if(confirm('È·ÈÏÒªÉ¾³ı´Ë»áÔ±°×Ãûµ¥?')){self.location.href='ListVgMember.php?enews=DelViewGroupMList&vgid=<?=$r['vgid']?>&adduserid=<?=$r['userid']?><?=$ecms_hashur['href']?>';}">
         </div></td>
     </tr>
   </form>

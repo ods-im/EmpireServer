@@ -6,21 +6,21 @@ if(!defined('InEmpireCMS'))
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ÊäïÁ•®: <?=$r[title]?></title>
-<meta name="keywords" content="<?=$r[title]?> ÊäïÁ•®" />
-<meta name="description" content="<?=$r[title]?> ÊäïÁ•®" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Õ∂∆±: <?=$r[title]?></title>
+<meta name="keywords" content="<?=$r[title]?> Õ∂∆±" />
+<meta name="description" content="<?=$r[title]?> Õ∂∆±" />
 <link href="../../data/images/qcss.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header">
-    <td height="25">Ê†áÈ¢ò:<?=$r[title]?>&nbsp;(<?=$voteclass?>)</td>
+    <td height="25">±ÍÃ‚:<?=$r[title]?>&nbsp;(<?=$voteclass?>)</td>
   </tr>
   <tr>
     <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="1" cellpadding="3">
 <?php
-//ÂèñÂæóË°å
+//»°µ√––
 $r_r=explode($r_exp,$r[votetext]);
 for($i=0;$i<count($r_r);$i++)
 {
@@ -38,7 +38,7 @@ for($i=0;$i<count($r_r);$i++)
           <td width="48%"><img src="../../data/images/msgnav.gif" width="5" height="5">&nbsp; 
             <?=$f_r[0]?>
           </td>
-          <td width="10%"><div align="center"><?=$f_r[1]?>Á•®</div></td>
+          <td width="10%"><div align="center"><?=$f_r[1]?>∆±</div></td>
           <td width="42%"><img src="../../data/images/showvote.gif" width="<?=$width?>" height="6" border=0>
             <?=$width?>%
           </td>
@@ -51,7 +51,7 @@ for($i=0;$i<count($r_r);$i++)
   <tr>
     <td><table width="100%" border="0" align="right" cellpadding="3" cellspacing="1">
         <tr>
-          <td>ÂèëÂ∏ÉÊó∂Èó¥Ôºö<?=$r[addtime]?>Ôºå&nbsp;&nbsp;ÂÖ±&nbsp;<b><?=$r[votenum]?></b>&nbsp;Á•®</td>
+          <td>∑¢≤º ±º‰£∫<?=$r[addtime]?>£¨&nbsp;&nbsp;π≤&nbsp;<b><?=$r[votenum]?></b>&nbsp;∆±</td>
         </tr>
       </table></td>
   </tr>
@@ -59,6 +59,6 @@ for($i=0;$i<count($r_r);$i++)
 <br>
 <br>
 <br>
-<center><input type=button name=button value=ÂÖ≥Èó≠ onclick="self.window.close();"></center>
+<center><input type=button name=button value=πÿ±’ onclick="self.window.close();"></center>
 </body>
 </html>

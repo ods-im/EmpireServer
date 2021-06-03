@@ -5,14 +5,14 @@ require('../../member/class/user.php');
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 if($ecms_config['member']['loginurl'])
 {
 	echo"<script>window.close();</script>";
 	//Header("Location:".$ecms_config['member']['loginurl']);
 	exit();
 }
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/loginopen.php');
 db_close();
 $empire=null;

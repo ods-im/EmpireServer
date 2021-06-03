@@ -61,17 +61,17 @@ document.getElementById("addpicdown").innerHTML="<table width='100%' border=0 ce
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td height="25">
-	å›¾ç‰‡åœ°å€å‰ç¼€:
+	Í¼Æ¬µØÖ·Ç°×º:
       <input name="mpicurl_qz" type="text" id="mpicurl_qz" size="32">
       &nbsp;</td>
   </tr>
   <tr> 
     <td><table width=100% border=0 align=center cellpadding=3 cellspacing=1>
   <tr bgcolor='#DBEAF5'> 
-    <td width=7%><div align=center>ç¼–å·</div></td>
-    <td width=33%><div align=center>ç¼©å›¾</div></td>
-    <td width=30%><div align=center>å¤§å›¾</div></td>
-    <td width=30%><div align=center>å›¾ç‰‡è¯´æ˜</div></td>
+    <td width=7%><div align=center>±àºÅ</div></td>
+    <td width=33%><div align=center>ËõÍ¼</div></td>
+    <td width=30%><div align=center>´óÍ¼</div></td>
+    <td width=30%><div align=center>Í¼Æ¬ËµÃ÷</div></td>
   </tr>
 </table></td>
   </tr>
@@ -112,7 +112,7 @@ document.getElementById("addpicdown").innerHTML="<table width='100%' border=0 ce
 	if($r[morepic])
 	{
 		$r[morepic]=stripSlashes($r[morepic]);
-		//åœ°å€
+		//µØÖ·
 		$j=0;
 		$pd_record=explode("\r\n",$r[morepic]);
 		for($i=0;$i<count($pd_record);$i++)
@@ -128,7 +128,7 @@ document.getElementById("addpicdown").innerHTML="<table width='100%' border=0 ce
         <input name=mbigpic[] type=text value='".$pd_field[1]."' size=28>
       </div></td>
     <td width='30%'><div align=center>
-        <input name=mpicname[] type=text value='".$pd_field[2]."'><input type=hidden name=mpicid[] value=".$j."><input type=checkbox name=mdelpicid[] value=".$j.">åˆ 
+        <input name=mpicname[] type=text value='".$pd_field[2]."'><input type=hidden name=mpicid[] value=".$j."><input type=checkbox name=mdelpicid[] value=".$j.">É¾
       </div></td></tr>";
 		}
 		$morepicnum=$j;
@@ -140,8 +140,8 @@ document.getElementById("addpicdown").innerHTML="<table width='100%' border=0 ce
     </td>
   </tr>
   <tr> 
-    <td height="25">åœ°å€æ‰©å±•æ•°é‡: <input name="morepicnum" type="hidden" id="morepicnum" value="<?=$morepicnum?>">
-      <input name="downmorepicnum" type="text" value="1" size="6"> <input type="button" name="Submit5" value="è¾“å‡ºåœ°å€" onclick="javascript:dopicadd();"></td>
+    <td height="25">µØÖ·À©Õ¹ÊıÁ¿: <input name="morepicnum" type="hidden" id="morepicnum" value="<?=$morepicnum?>">
+      <input name="downmorepicnum" type="text" value="1" size="6"> <input type="button" name="Submit5" value="Êä³öµØÖ·" onclick="javascript:dopicadd();"></td>
   </tr>
   <tr> 
     <td id=addpicdown></td>
@@ -174,7 +174,7 @@ while($player_r=$empire->fetch($player_sql))
 }
 ?>
 <select name="playerid">
-<option value=0>è‡ªåŠ¨è¯†åˆ«</option>
+<option value=0>×Ô¶¯Ê¶±ğ</option>
 <?=$player_class?>
 </select>
 [!--playerid--]
@@ -256,7 +256,7 @@ function domvadd_[!--enews.var--]()
 			?>
 			<table width='100%' border=0 cellspacing=1 cellpadding=3>
 			<?php
-			//å½•å…¥é¡¹
+			//Â¼ÈëÏî
 			$j=0;
 			$mvf_record=explode('||||||',$r['[!--enews.var--]']);
 			$mvf_count=count($mvf_record);
@@ -278,10 +278,10 @@ function domvadd_[!--enews.var--]()
     </td>
   </tr>
   <tr> 
-    <td height="25">æ‰©å±•æ•°é‡: <input name="mveditnum_[!--enews.var--]" type="hidden" id="mveditnum_[!--enews.var--]" value="<?=$editnum?>">
+    <td height="25">À©Õ¹ÊıÁ¿: <input name="mveditnum_[!--enews.var--]" type="hidden" id="mveditnum_[!--enews.var--]" value="<?=$editnum?>">
       <input name="mvnum_[!--enews.var--]" type="hidden" id="mvnum_[!--enews.var--]" value="[!--enews.mvnum--]">
       <input name="mvmust_[!--enews.var--]" type="hidden" id="mvmust_[!--enews.var--]" value="[!--enews.mvmust--]">
-      <input name="mvaddnum_[!--enews.var--]" type="text" id="mvaddnum_[!--enews.var--]" value="1" size="6"> <input type="button" name="Submit5" value="è¾“å‡º" onclick="javascript:domvadd_[!--enews.var--]();"></td>
+      <input name="mvaddnum_[!--enews.var--]" type="text" id="mvaddnum_[!--enews.var--]" value="1" size="6"> <input type="button" name="Submit5" value="Êä³ö" onclick="javascript:domvadd_[!--enews.var--]();"></td>
   </tr>
   <tr> 
     <td id="mvadd_[!--enews.var--]"></td>

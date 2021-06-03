@@ -6,7 +6,7 @@ require("../../class/functions.php");
 require("class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,11 +15,11 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"dbdata");
-//é»˜è®¤æ•°æ®åº“
+//Ä¬ÈÏÊı¾İ¿â
 if(!empty($public_r['ebakthisdb'])){
-	echo"æ­£è½¬åˆ°é»˜è®¤çš„æ•°æ®åº“,è¯·ç¨ç­‰......<script>self.location.href='ChangeTable.php?mydbname=".$ecms_config['db']['dbname'].$ecms_hashur['ehref']."'</script>";
+	echo"Õı×ªµ½Ä¬ÈÏµÄÊı¾İ¿â,ÇëÉÔµÈ......<script>self.location.href='ChangeTable.php?mydbname=".$ecms_config['db']['dbname'].$ecms_hashur['ehref']."'</script>";
 	exit();
 }
 $sql=$empire->query("SHOW DATABASES");
@@ -27,13 +27,13 @@ $sql=$empire->query("SHOW DATABASES");
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>é€‰æ‹©æ•°æ®åº“</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ñ¡ÔñÊı¾İ¿â</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function DoDrop(dbname)
 {var ok;
-ok=confirm("ç¡®è®¤è¦åˆ é™¤æ­¤æ•°æ®åº“?");
+ok=confirm("È·ÈÏÒªÉ¾³ı´ËÊı¾İ¿â?");
 if(ok)
 {
 self.location.href='phome.php?<?=$ecms_hashur['href']?>&phome=DropDb&mydbname='+dbname;
@@ -45,20 +45,20 @@ self.location.href='phome.php?<?=$ecms_hashur['href']?>&phome=DropDb&mydbname='+
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td>ä½ç½®ï¼šå¤‡ä»½æ•°æ® -&gt; <a href="ChangeDb.php<?=$ecms_hashur['whehref']?>">é€‰æ‹©æ•°æ®åº“</a></td>
+    <td>Î»ÖÃ£º±¸·İÊı¾İ -&gt; <a href="ChangeDb.php<?=$ecms_hashur['whehref']?>">Ñ¡ÔñÊı¾İ¿â</a></td>
   </tr>
   <tr>
-    <td height="25"><div align="center">å¤‡ä»½æ­¥éª¤ï¼š<font color="#FF0000">é€‰æ‹©æ•°æ®åº“</font> 
-        -&gt; é€‰æ‹©è¦å¤‡ä»½çš„è¡¨ -&gt; å¼€å§‹å¤‡ä»½ -&gt; å®Œæˆ</div></td>
+    <td height="25"><div align="center">±¸·İ²½Öè£º<font color="#FF0000">Ñ¡ÔñÊı¾İ¿â</font> 
+        -&gt; Ñ¡ÔñÒª±¸·İµÄ±í -&gt; ¿ªÊ¼±¸·İ -&gt; Íê³É</div></td>
   </tr>
 </table>
 <br>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="60%" height="25"> 
-      <div align="center">æ•°æ®åº“å</div></td>
+      <div align="center">Êı¾İ¿âÃû</div></td>
     <td width="40%" height="25"> 
-      <div align="center">å¤‡ä»½</div></td>
+      <div align="center">±¸·İ</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -77,8 +77,8 @@ self.location.href='phome.php?<?=$ecms_hashur['href']?>&phome=DropDb&mydbname='+
       <div align="center"><?=$r[0]?></div></td>
     <td height="25"> 
       <div align="center"> 
-        <input type="button" name="Submit" value="å¤‡ä»½æ•°æ®" onclick="self.location.href='ChangeTable.php?mydbname=<?=$r[0]?><?=$ecms_hashur['ehref']?>';">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="Submit3" value="åˆ é™¤æ•°æ®åº“" onclick="javascript:DoDrop('<?=$r[0]?>')">
+        <input type="button" name="Submit" value="±¸·İÊı¾İ" onclick="self.location.href='ChangeTable.php?mydbname=<?=$r[0]?><?=$ecms_hashur['ehref']?>';">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="Submit3" value="É¾³ıÊı¾İ¿â" onclick="javascript:DoDrop('<?=$r[0]?>')">
       </div></td>
   </tr>
   <?
@@ -91,22 +91,22 @@ self.location.href='phome.php?<?=$ecms_hashur['href']?>&phome=DropDb&mydbname='+
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
 		<?=$ecms_hashur['form']?>
           <tr class="header"> 
-            <td height="25">å»ºç«‹æ•°æ®åº“
+            <td height="25">½¨Á¢Êı¾İ¿â
               <input name="phome" type="hidden" id="phome" value="CreateDb">
               </td>
           </tr>
           <tr> 
-            <td bgcolor="#FFFFFF">æ•°æ®åº“åï¼š 
+            <td bgcolor="#FFFFFF">Êı¾İ¿âÃû£º 
               <input name="mydbname" type="text" id="mydbname">
               <select name="mydbchar" id="mydbchar">
-                <option value="">é»˜è®¤ç¼–ç </option>
+                <option value="">Ä¬ÈÏ±àÂë</option>
                 <option value="gbk">gbk</option>
                 <option value="utf8">utf8</option>
                 <option value="gb2312">gb2312</option>
                 <option value="big5">big5</option>
 				<option value="latin1">latin1</option>
               </select> 
-              <input type="submit" name="Submit2" value="å»ºç«‹">
+              <input type="submit" name="Submit2" value="½¨Á¢">
             </td>
           </tr>
         </table>

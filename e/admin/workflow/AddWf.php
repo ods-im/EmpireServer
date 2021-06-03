@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,19 +15,19 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"workflow");
 $enews=ehtmlspecialchars($_GET['enews']);
-$postword='å¢åŠ å·¥ä½œæµ';
+$postword='Ôö¼Ó¹¤×÷Á÷';
 $r[myorder]=0;
-$url="<a href=ListWf.php".$ecms_hashur['whehref'].">ç®¡ç†å·¥ä½œæµ</a> &gt; å¢åŠ å·¥ä½œæµ";
-//ä¿®æ”¹
+$url="<a href=ListWf.php".$ecms_hashur['whehref'].">¹ÜÀí¹¤×÷Á÷</a> &gt; Ôö¼Ó¹¤×÷Á÷";
+//ĞŞ¸Ä
 if($enews=="EditWorkflow")
 {
-	$postword='ä¿®æ”¹å·¥ä½œæµ';
+	$postword='ĞŞ¸Ä¹¤×÷Á÷';
 	$wfid=(int)$_GET['wfid'];
 	$r=$empire->fetch1("select wfid,wfname,wftext,myorder,canedit from {$dbtbpre}enewsworkflow where wfid='$wfid'");
-	$url="<a href=ListWf.php".$ecms_hashur['whehref'].">ç®¡ç†å·¥ä½œæµ</a> -&gt; ä¿®æ”¹å·¥ä½œæµï¼š<b>".$r[wfname]."</b>";
+	$url="<a href=ListWf.php".$ecms_hashur['whehref'].">¹ÜÀí¹¤×÷Á÷</a> -&gt; ĞŞ¸Ä¹¤×÷Á÷£º<b>".$r[wfname]."</b>";
 }
 db_close();
 $empire=null;
@@ -35,15 +35,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>å·¥ä½œæµ</title>
+<title>¹¤×÷Á÷</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListWf.php">
@@ -55,28 +55,28 @@ $empire=null;
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="wfid" type="hidden" id="wfid" value="<?=$wfid?>">      </td>
     </tr>
     <tr> 
-      <td width="20%" height="25" bgcolor="#FFFFFF">å·¥ä½œæµåç§°</td>
+      <td width="20%" height="25" bgcolor="#FFFFFF">¹¤×÷Á÷Ãû³Æ</td>
       <td width="80%" height="25" bgcolor="#FFFFFF"> <input name="wfname" type="text" id="wfname" value="<?=$r[wfname]?>" size="42">      </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å·¥ä½œæµæè¿°</td>
+      <td height="25" bgcolor="#FFFFFF">¹¤×÷Á÷ÃèÊö</td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="wftext" cols="60" rows="5" id="wftext"><?=ehtmlspecialchars($r[wftext])?></textarea></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">æµè½¬ä¸­çš„ä¿¡æ¯å¯ä¿®æ”¹</td>
-      <td height="25" bgcolor="#FFFFFF"><input type="radio" name="canedit" value="1"<?=$r['canedit']==1?' checked':''?>>å¯ä»¥ä¿®æ”¹
-          <input type="radio" name="canedit" value="0"<?=$r['canedit']==0?' checked':''?>>ä¸èƒ½ä¿®æ”¹</td>
+      <td height="25" bgcolor="#FFFFFF">Á÷×ªÖĞµÄĞÅÏ¢¿ÉĞŞ¸Ä</td>
+      <td height="25" bgcolor="#FFFFFF"><input type="radio" name="canedit" value="1"<?=$r['canedit']==1?' checked':''?>>¿ÉÒÔĞŞ¸Ä
+          <input type="radio" name="canedit" value="0"<?=$r['canedit']==0?' checked':''?>>²»ÄÜĞŞ¸Ä</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ’åº</td>
+      <td height="25" bgcolor="#FFFFFF">ÅÅĞò</td>
       <td height="25" bgcolor="#FFFFFF"><font color="#666666">
         <input name="myorder" type="text" id="myorder" value="<?=$r[myorder]?>" size="42">
-        (å€¼è¶Šå°æ˜¾ç¤ºè¶Šå‰é¢)</font></td>
+        (ÖµÔ½Ğ¡ÏÔÊ¾Ô½Ç°Ãæ)</font></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="æäº¤"> 
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="Ìá½»"> 
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

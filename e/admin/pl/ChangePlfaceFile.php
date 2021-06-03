@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,9 +15,9 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//å‚æ•°
+//²ÎÊı
 $returnform=RepPostVar($_GET['returnform']);
-//åŸºç›®å½•
+//»ùÄ¿Â¼
 $openpath="../../data/face";
 $hand=@opendir($openpath);
 db_close();
@@ -26,15 +26,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>é€‰æ‹©æ–‡ä»¶</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ñ¡ÔñÎÄ¼ş</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="56%">ä½ç½®ï¼š<a href="ChangePlfaceFile.php<?=$ecms_hashur['whehref']?>">é€‰æ‹©æ–‡ä»¶</a></td>
+    <td width="56%">Î»ÖÃ£º<a href="ChangePlfaceFile.php<?=$ecms_hashur['whehref']?>">Ñ¡ÔñÎÄ¼ş</a></td>
     <td width="44%"><div align="right"> </div></td>
   </tr>
 </table>
@@ -42,7 +42,7 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <?=$ecms_hashur['eform']?>
     <tr class="header"> 
-      <td height="25">æ–‡ä»¶å (å½“å‰ç›®å½•ï¼š<strong>/e/data/face/</strong>)</td>
+      <td height="25">ÎÄ¼şÃû (µ±Ç°Ä¿Â¼£º<strong>/e/data/face/</strong>)</td>
     </tr>
     <?php
 	while($file=@readdir($hand))
@@ -52,7 +52,7 @@ $empire=null;
 		{
 			continue;
 		}
-		//ç›®å½•
+		//Ä¿Â¼
 		if(is_dir($openpath."/".$file))
 		{
 			continue;
@@ -64,7 +64,7 @@ $empire=null;
 		}
 	 ?>
     <tr> 
-      <td width="88%" height="25"><a href="#ecms" onclick="<?=$returnform?>='<?=$truefile?>';window.close();" title="é€‰æ‹©"> 
+      <td width="88%" height="25"><a href="#ecms" onclick="<?=$returnform?>='<?=$truefile?>';window.close();" title="Ñ¡Ôñ"> 
         <img src="../../data/face/<?=$truefile?>" border=0>&nbsp;<?=$truefile?>
         </a></td>
     </tr>

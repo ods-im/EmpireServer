@@ -3,7 +3,7 @@ if(!defined('InEmpireCMS'))
 {
 	exit();
 }
-//‰ΩçÁΩÆ
+//Œª÷√
 $url="$spacename &gt; ".$pagename;
 include("header.temp.php");
 $pagetext=nl2br(RepFieldtextNbsp($pagetext));

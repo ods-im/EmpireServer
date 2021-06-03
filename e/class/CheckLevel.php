@@ -4,7 +4,7 @@ if(!defined('empirecms'))
 	exit();
 }
 
-//æ˜¯å¦ç™»é™†
+//ÊÇ·ñµÇÂ½
 function ViewCheckLogin($infor){
 	global $empire,$public_r,$ecms_config,$toreturnurl,$gotourl;
 	$userid=(int)getcvar('mluserid');
@@ -49,14 +49,14 @@ function ViewCheckLogin($infor){
 		}
 		eCheckLevelInfo_ViewInfoMsg($cr,$infor,'NotCheckUser');
 	}
-	//é»˜è®¤ä¼šå‘˜ç»„
+	//Ä¬ÈÏ»áÔ±×é
 	if(empty($cr['groupid']))
 	{
 		$user_groupid=eReturnMemberDefGroupid();
 		$usql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('groupid')."='$user_groupid' where ".egetmf('userid')."='".$cr[userid]."'");
 		$cr['groupid']=$user_groupid;
 	}
-	//æ˜¯å¦è¿‡æœŸ
+	//ÊÇ·ñ¹ıÆÚ
 	if($cr['userdate'])
 	{
 		if($cr['userdate']-time()<=0)
@@ -83,17 +83,17 @@ function ViewCheckLogin($infor){
 	return $re;
 }
 
-//æŸ¥çœ‹æƒé™å‡½æ•°
+//²é¿´È¨ÏŞº¯Êı
 function CheckShowNewsLevel($infor){
 	global $check_path,$level_r,$empire,$gotourl,$toreturnurl,$public_r,$dbtbpre,$class_r;
 	$groupid=$infor['groupid'];
 	$userfen=$infor['userfen'];
 	$id=$infor['id'];
 	$classid=$infor['classid'];
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=ViewCheckLogin($infor);
-	//éªŒè¯æƒé™
-	if($class_r[$infor[classid]]['cgtoinfo'])//æ ç›®è®¾ç½®
+	//ÑéÖ¤È¨ÏŞ
+	if($class_r[$infor[classid]]['cgtoinfo'])//À¸Ä¿ÉèÖÃ
 	{
 		$checkcr=$empire->fetch1("select cgroupid from {$dbtbpre}enewsclass where classid='$infor[classid]'");
 		if($checkcr['cgroupid'])
@@ -109,9 +109,9 @@ function CheckShowNewsLevel($infor){
 			}
 		}
 	}
-	if($groupid)//ä¿¡æ¯è®¾ç½®
+	if($groupid)//ĞÅÏ¢ÉèÖÃ
 	{
-		if($groupid>0)//ä¼šå‘˜ç»„
+		if($groupid>0)//»áÔ±×é
 		{
 			if($level_r[$groupid][level]>$level_r[$user_r[groupid]][level])
 			{
@@ -122,7 +122,7 @@ function CheckShowNewsLevel($infor){
 				eCheckLevelInfo_ViewInfoMsg($user_r,$infor,'NotLevelGroup');
 			}
 		}
-		else//è®¿é—®ç»„
+		else//·ÃÎÊ×é
 		{
 			$vgroupid=0-$groupid;
 			$ckvgresult=eMember_ReturnCheckViewGroup($user_r,$vgroupid);
@@ -136,16 +136,16 @@ function CheckShowNewsLevel($infor){
 			}
 		}
 	}
-	//æ‰£ç‚¹
+	//¿Ûµã
 	if(!empty($userfen))
 	{
-		//æ˜¯å¦æœ‰å†å²è®°å½•
+		//ÊÇ·ñÓĞÀúÊ·¼ÇÂ¼
 		$bakr=$empire->fetch1("select id,truetime from {$dbtbpre}enewsdownrecord where id='$id' and classid='$classid' and userid='$user_r[userid]' and online=2 order by truetime desc limit 1");
 		if($bakr['id']&&(time()-$bakr['truetime']<=$public_r['redoview']*3600))
 		{}
 		else
 		{
-			if($user_r[userdate]-time()>0)//åŒ…æœˆ
+			if($user_r[userdate]-time()>0)//°üÔÂ
 			{}
 			else
 			{
@@ -157,10 +157,10 @@ function CheckShowNewsLevel($infor){
 					}
 					eCheckLevelInfo_ViewInfoMsg($user_r,$infor,'NotUserfen');
 				}
-				//æ‰£ç‚¹
+				//¿Ûµã
 				$usql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('userfen')."=".egetmf('userfen')."-".$userfen." where ".egetmf('userid')."='$user_r[userid]'");
 			}
-			//å¤‡ä»½ä¸‹è½½è®°å½•
+			//±¸·İÏÂÔØ¼ÇÂ¼
 			$utfusername=$user_r['username'];
 			BakDown($classid,$id,0,$user_r['userid'],$utfusername,$infor[title],$userfen,2);
 		}
@@ -184,10 +184,10 @@ if(!defined('PageCheckLevel'))
 	$checkinfor=$empire->fetch1("select * from {$dbtbpre}ecms_".$check_tbname." where id='$check_infoid' limit 1");
 	if(!$checkinfor['id']||$checkinfor['classid']!=$check_classid)
 	{
-		echo"<script>alert('æ­¤ä¿¡æ¯ä¸å­˜åœ¨');history.go(-1);</script>";
+		echo"<script>alert('´ËĞÅÏ¢²»´æÔÚ');history.go(-1);</script>";
 		exit();
 	}
-	//å‰¯è¡¨
+	//¸±±í
 	$check_mid=$class_r[$checkinfor[classid]]['modid'];
 	$checkfinfor=$empire->fetch1("select ".ReturnSqlFtextF($check_mid)." from {$dbtbpre}ecms_".$check_tbname."_data_".$checkinfor[stb]." where id='$checkinfor[id]' limit 1");
 	$checkinfor=array_merge($checkinfor,$checkfinfor);
@@ -197,13 +197,13 @@ else
 	$check_tbname=RepPostVar($check_tbname);
 }
 require_once(ECMS_PATH.'e/member/class/user.php');
-//éªŒè¯IP
+//ÑéÖ¤IP
 eCheckAccessDoIp('showinfo');
 if($checkinfor['groupid']||$class_r[$checkinfor['classid']]['cgtoinfo'])
 {
 	include_once(ECMS_PATH.'e/template/public/checklevel/info1.php');
-	$toreturnurl=eReturnSelfPage(1);	//è¿”å›é¡µé¢åœ°å€
-	$gotourl=$ecms_config['member']['loginurl']?$ecms_config['member']['loginurl']:$public_r['newsurl']."e/member/login/";	//ç™»é™†åœ°å€
+	$toreturnurl=eReturnSelfPage(1);	//·µ»ØÒ³ÃæµØÖ·
+	$gotourl=$ecms_config['member']['loginurl']?$ecms_config['member']['loginurl']:$public_r['newsurl']."e/member/login/";	//µÇÂ½µØÖ·
 	CheckShowNewsLevel($checkinfor);
 }
 if(!defined('PageCheckLevel'))

@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,23 +16,23 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"moreport");
 
-//æ˜¯å¦ä¸»ç«¯
+//ÊÇ·ñÖ÷¶Ë
 if($ecms_config['sets']['selfmoreportid']>1)
 {
-	printerror2('è¯·åœ¨ä¸»ç«¯ä¸‹ä½¿ç”¨æœ¬æ“ä½œ','history.go(-1)',9);
+	printerror2('ÇëÔÚÖ÷¶ËÏÂÊ¹ÓÃ±¾²Ù×÷','history.go(-1)',9);
 }
 
-//å¢åŠ è®¿é—®ç«¯
+//Ôö¼Ó·ÃÎÊ¶Ë
 function AddMoreport($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[pname]||!$add[ppath]||!$add[purl]||!$add[postpass]||!$add[tempgid])
 	{
 		printerror("EmptyMoreport","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"moreport");
 	$add['pname']=hRepPostStr($add['pname'],1);
 	$add['purl']=RepPostStr($add['purl'],1);
@@ -52,12 +52,12 @@ function AddMoreport($add,$userid,$username){
 	}
 	$sql=$empire->query("insert into {$dbtbpre}enewsmoreport(pname,purl,ppath,postpass,postfile,tempgid,mustdt,isclose,closeadd,headersign,openadmin,rehtml) values('$add[pname]','$add[purl]','$add[ppath]','$add[postpass]','$add[postfile]','$add[tempgid]','$add[mustdt]','$add[isclose]','$add[closeadd]','$add[headersign]','$add[openadmin]','$add[rehtml]');");
 	$pid=$empire->lastid();
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	Moreport_UpdateIsclose();
 	GetConfig();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("pid=$pid&pname=$add[pname]");
 		printerror("AddMoreportSuccess","AddMoreport.php?enews=AddMoreport".hReturnEcmsHashStrHref2(0));
 	}
@@ -65,7 +65,7 @@ function AddMoreport($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹è®¿é—®ç«¯
+//ĞŞ¸Ä·ÃÎÊ¶Ë
 function EditMoreport($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[pid]=(int)$add[pid];
@@ -73,7 +73,7 @@ function EditMoreport($add,$userid,$username){
 	{
 		printerror("EmptyMoreport","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"moreport");
 	$add['pname']=hRepPostStr($add['pname'],1);
 	$add['purl']=RepPostStr($add['purl'],1);
@@ -92,12 +92,12 @@ function EditMoreport($add,$userid,$username){
 		printerror("ErrorMoreportPath","history.go(-1)");
 	}
 	$sql=$empire->query("update {$dbtbpre}enewsmoreport set pname='$add[pname]',purl='$add[purl]',ppath='$add[ppath]',postpass='$add[postpass]',postfile='$add[postfile]',tempgid='$add[tempgid]',mustdt='$add[mustdt]',isclose='$add[isclose]',closeadd='$add[closeadd]',headersign='$add[headersign]',openadmin='$add[openadmin]',rehtml='$add[rehtml]' where pid='$add[pid]'");
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	Moreport_UpdateIsclose();
 	GetConfig();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("pid=$add[pid]&pname=$add[pname]");
 		printerror("EditMoreportSuccess","ListMoreport.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -105,7 +105,7 @@ function EditMoreport($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤è®¿é—®ç«¯
+//É¾³ı·ÃÎÊ¶Ë
 function DelMoreport($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$pid=(int)$add['pid'];
@@ -113,16 +113,16 @@ function DelMoreport($add,$userid,$username){
 	{
 		printerror("NotChangeMoreportId","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"moreport");
 	$r=$empire->fetch1("select pname from {$dbtbpre}enewsmoreport where pid='$pid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsmoreport where pid='$pid'");
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	Moreport_UpdateIsclose();
 	GetConfig();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("pid=$pid&pname=$r[pname]");
 		printerror("DelMoreportSuccess","ListMoreport.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -140,36 +140,36 @@ if($enews)
 	include('../../class/copypath.php');
 	include('moreportfun.php');
 }
-//å¢åŠ è®¿é—®ç«¯
+//Ôö¼Ó·ÃÎÊ¶Ë
 if($enews=="AddMoreport")
 {
 	AddMoreport($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditMoreport")//ä¿®æ”¹è®¿é—®ç«¯
+elseif($enews=="EditMoreport")//ĞŞ¸Ä·ÃÎÊ¶Ë
 {
 	EditMoreport($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelMoreport")//åˆ é™¤è®¿é—®ç«¯
+elseif($enews=="DelMoreport")//É¾³ı·ÃÎÊ¶Ë
 {
 	DelMoreport($_GET,$logininid,$loginin);
 }
-elseif($enews=="MoreportChangeCacheAll")//æ›´æ–°è®¿é—®ç«¯æ•°æ®åº“ç¼“å­˜
+elseif($enews=="MoreportChangeCacheAll")//¸üĞÂ·ÃÎÊ¶ËÊı¾İ¿â»º´æ
 {
 	Moreport_ChangeCacheAll($_GET,$logininid,$loginin);
 }
-elseif($enews=="MoreportUpdateClassfileAll")//æ›´æ–°è®¿é—®ç«¯æ ç›®ç¼“å­˜æ–‡ä»¶
+elseif($enews=="MoreportUpdateClassfileAll")//¸üĞÂ·ÃÎÊ¶ËÀ¸Ä¿»º´æÎÄ¼ş
 {
 	Moreport_UpdateClassfileAll($_GET,$logininid,$loginin);
 }
-elseif($enews=="MoreportReDtPageAll")//æ›´æ–°è®¿é—®ç«¯åŠ¨æ€é¡µé¢
+elseif($enews=="MoreportReDtPageAll")//¸üĞÂ·ÃÎÊ¶Ë¶¯Ì¬Ò³Ãæ
 {
 	Moreport_ReDtPageAll($_GET,$logininid,$loginin);
 }
-elseif($enews=="MoreportClearTmpfileAll")//æ¸…ç†è®¿é—®ç«¯ä¸´æ—¶æ–‡ä»¶
+elseif($enews=="MoreportClearTmpfileAll")//ÇåÀí·ÃÎÊ¶ËÁÙÊ±ÎÄ¼ş
 {
 	Moreport_ClearTmpfileAll($_GET,$logininid,$loginin);
 }
-elseif($enews=="MoreportReIndexfileAll")//æ›´æ–°è®¿é—®ç«¯åŠ¨æ€é¦–é¡µæ–‡ä»¶
+elseif($enews=="MoreportReIndexfileAll")//¸üĞÂ·ÃÎÊ¶Ë¶¯Ì¬Ê×Ò³ÎÄ¼ş
 {
 	Moreport_ReIndexfileAll($_GET,$logininid,$loginin);
 }
@@ -192,8 +192,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ç½‘ç«™è®¿é—®ç«¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÍøÕ¾·ÃÎÊ¶Ë</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -211,53 +211,53 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š<a href="ListMoreport.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ç½‘ç«™è®¿é—®ç«¯</a></td>
+    <td width="50%">Î»ÖÃ£º<a href="ListMoreport.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÍøÕ¾·ÃÎÊ¶Ë</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ è®¿é—®ç«¯" onclick="self.location.href='AddMoreport.php?enews=AddMoreport<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó·ÃÎÊ¶Ë" onclick="self.location.href='AddMoreport.php?enews=AddMoreport<?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit52" value="æ›´æ–°æ‰€æœ‰è®¿é—®ç«¯ç¼“å­˜ä¸åŠ¨æ€é¡µé¢" onclick="if(document.getElementById('moreportchangedata').style.display==''){document.getElementById('moreportchangedata').style.display='none';}else{document.getElementById('moreportchangedata').style.display='';}">
+        <input type="button" name="Submit52" value="¸üĞÂËùÓĞ·ÃÎÊ¶Ë»º´æÓë¶¯Ì¬Ò³Ãæ" onclick="if(document.getElementById('moreportchangedata').style.display==''){document.getElementById('moreportchangedata').style.display='none';}else{document.getElementById('moreportchangedata').style.display='';}">
     </div></td>
   </tr>
 </table>
 <table width="100%" border="0" cellspacing="1" cellpadding="0" class="tableborder" id="moreportchangedata" style="display:none">
-	<form name="moreportchangedataform" method="GET" action="ListMoreport.php" onsubmit="return confirm('ç¡®è®¤è¦æ›´æ–°?');">
+	<form name="moreportchangedataform" method="GET" action="ListMoreport.php" onsubmit="return confirm('È·ÈÏÒª¸üĞÂ?');">
 	<?=$ecms_hashur['form']?>
 	<input type="hidden" name="enews" value="MoreportChangeCacheAll">
     <tr class="header">
-      <td height="25">æ›´æ–°æ‰€æœ‰è®¿é—®ç«¯ç¼“å­˜ä¸åŠ¨æ€é¡µé¢</td>
+      <td height="25">¸üĞÂËùÓĞ·ÃÎÊ¶Ë»º´æÓë¶¯Ì¬Ò³Ãæ</td>
     </tr>
     <tr>
     <td height="25" bgcolor="#FFFFFF"><input name="docache" type="checkbox" id="docache" value="1" checked>
-      æ›´æ–°æ•°æ®åº“ç¼“å­˜
+      ¸üĞÂÊı¾İ¿â»º´æ
       <input name="doclassfile" type="checkbox" id="doclassfile" value="1" checked>
-      æ›´æ–°æ ç›®ç¼“å­˜æ–‡ä»¶
+      ¸üĞÂÀ¸Ä¿»º´æÎÄ¼ş
       <input name="dodtpage" type="checkbox" id="dodtpage" value="1" checked>
-      æ›´æ–°åŠ¨æ€é¡µé¢
+      ¸üĞÂ¶¯Ì¬Ò³Ãæ
       <input name="dotmpfile" type="checkbox" id="dotmpfile" value="1" checked>
-      æ¸…ç†ä¸´æ—¶æ–‡ä»¶
+      ÇåÀíÁÙÊ±ÎÄ¼ş
       <input name="doreindex" type="checkbox" id="doreindex" value="1" checked>
-      æ›´æ–°åŠ¨æ€é¦–é¡µæ–‡ä»¶
-      <input type="submit" name="Submit" value="æäº¤"></td>
+      ¸üĞÂ¶¯Ì¬Ê×Ò³ÎÄ¼ş
+      <input type="submit" name="Submit" value="Ìá½»"></td>
   </tr>
   </form>
 </table>
 <br>
 <table width="100%" border="0" cellpadding="0" cellspacing="1" class="tableborder">
-  <form name="listmoreportform" method="post" action="ListMoreport.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+  <form name="listmoreportform" method="post" action="ListMoreport.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
   <?=$ecms_hashur['form']?>
     <input type="hidden" name="enews" value="DelMoreport_all">
     <tr class="header"> 
       <td width="7%" height="25"> <div align="center">ID</div></td>
-      <td width="25%" height="25"> <div align="center">è®¿é—®ç«¯</div></td>
-      <td width="27%" height="25"> <div align="center">ä½¿ç”¨æ¨¡æ¿ç»„</div></td>
-      <td width="11%"><div align="center">å¼ºåˆ¶åŠ¨æ€é¡µæ¨¡å¼</div></td>
-      <td width="11%"><div align="center">çŠ¶æ€</div></td>
-      <td width="19%" height="25"> <div align="center">æ“ä½œ</div></td>
+      <td width="25%" height="25"> <div align="center">·ÃÎÊ¶Ë</div></td>
+      <td width="27%" height="25"> <div align="center">Ê¹ÓÃÄ£°å×é</div></td>
+      <td width="11%"><div align="center">Ç¿ÖÆ¶¯Ì¬Ò³Ä£Ê½</div></td>
+      <td width="11%"><div align="center">×´Ì¬</div></td>
+      <td width="19%" height="25"> <div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
   {
-	//ä¸»è®¿é—®ç«¯
+	//Ö÷·ÃÎÊ¶Ë
 	if($r['pid']==1)
 	{
 		$r['pname']='<b>'.$r['pname'].'</b>';
@@ -282,20 +282,20 @@ function CheckAll(form)
       <td height="25"> <div align="center"> 
           <?=$tgr[gname]?>
         </div></td>
-      <td><div align="center"><?=$r[mustdt]==1?'æ˜¯':'å¦'?></div></td>
-      <td><div align="center"><?=$r[isclose]==1?'å…³é—­':'å¼€å¯'?></div></td>
+      <td><div align="center"><?=$r[mustdt]==1?'ÊÇ':'·ñ'?></div></td>
+      <td><div align="center"><?=$r[isclose]==1?'¹Ø±Õ':'¿ªÆô'?></div></td>
       <td height="25"> <div align="center">
 	  <?php
 	  if($r['pid']==1)
 	  {
 	  ?>
-	  	ä¸»è®¿é—®ç«¯
+	  	Ö÷·ÃÎÊ¶Ë
 	  <?php
 	  }
 	  else
 	  {
 	  ?>
-		 [<a href="AddMoreport.php?enews=EditMoreport&pid=<?=$r[pid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] [<a href="ListMoreport.php?enews=DelMoreport&pid=<?=$r[pid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]
+		 [<a href="AddMoreport.php?enews=EditMoreport&pid=<?=$r[pid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] [<a href="ListMoreport.php?enews=DelMoreport&pid=<?=$r[pid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]
 	  <?php
 	  }
 	  ?>

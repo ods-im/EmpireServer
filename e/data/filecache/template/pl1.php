@@ -7,10 +7,10 @@ if(!defined('InEmpireCMS'))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title><?=$pagetitle?> ä¿¡æ¯è¯„è®º - Powered by EmpireCMS</title>
-<meta name="keywords" content="<?=$pagetitle?> ä¿¡æ¯è¯„è®º" />
-<meta name="description" content="<?=$pagetitle?> ä¿¡æ¯è¯„è®º" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title><?=$pagetitle?> ĞÅÏ¢ÆÀÂÛ - Powered by EmpireCMS</title>
+<meta name="keywords" content="<?=$pagetitle?> ĞÅÏ¢ÆÀÂÛ" />
+<meta name="description" content="<?=$pagetitle?> ĞÅÏ¢ÆÀÂÛ" />
 <style type="text/css">
 <!--
 body,Table{ color: #222; font-size: 12px; }
@@ -33,15 +33,15 @@ h2 { color: #1e3a9e; font-size: 25px; font-weight: bold;  }
 .ecommenttext {clear:left;margin:0;padding:0;}
 -->
 </style>
-<script src="/ecms75/e/data/js/ajax.js"></script>
+<script src="/e/data/js/ajax.js"></script>
 </head>
 
 <body topmargin="0">
 <table width="766" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td width="210"><a href="/ecms75/"><img src="/ecms75/skin/default/images/logo.gif" border="0" /></a></td>
-    <td><h1>ç½‘å‹è¯„è®º</h1></td>
-    <td><div align="right"><a href="#tosaypl"><strong><font color="#FF0000">æˆ‘ä¹Ÿè¯„ä¸¤å¥</font></strong></a></div></td>
+    <td width="210"><a href="/"><img src="/skin/default/images/logo.gif" border="0" /></a></td>
+    <td><h1>ÍøÓÑÆÀÂÛ</h1></td>
+    <td><div align="right"><a href="#tosaypl"><strong><font color="#FF0000">ÎÒÒ²ÆÀÁ½¾ä</font></strong></a></div></td>
   </tr>
 </table>
 <table width="766" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#222">
@@ -52,8 +52,8 @@ h2 { color: #1e3a9e; font-size: 25px; font-weight: bold;  }
 <table width="766" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
     <td height="42"> 
-      <h2>è¯„è®ºï¼š<a href="<?=$titleurl?>" target="_blank"><font color="#1e3a9e"><?=$title?></font></a></h2></td>
-    <td><div align="right"><a href="<?=$titleurl?>" target="_blank">æŸ¥çœ‹åŸæ–‡</a></div></td>
+      <h2>ÆÀÂÛ£º<a href="<?=$titleurl?>" target="_blank"><font color="#1e3a9e"><?=$title?></font></a></h2></td>
+    <td><div align="right"><a href="<?=$titleurl?>" target="_blank">²é¿´Ô­ÎÄ</a></div></td>
   </tr>
 </table>
 <hr align="center" width="766" size=1 class=hrline>
@@ -63,22 +63,22 @@ h2 { color: #1e3a9e; font-size: 25px; font-weight: bold;  }
     <input type="hidden" name="classid" value="<?=$classid?>" />
     <input type="hidden" name="id" value="<?=$id?>" />
     <tr> 
-      <td width="50%" height="27" valign="middle"><font color="#FFFFFF">&nbsp;è¯„åˆ†: 
+      <td width="50%" height="27" valign="middle"><font color="#FFFFFF">&nbsp;ÆÀ·Ö: 
         <input type="radio" name="fen" value="1">
-        1åˆ† 
+        1·Ö 
         <input type="radio" name="fen" value="2">
-        2åˆ† 
+        2·Ö 
         <input name="fen" type="radio" value="3" checked>
-        3åˆ† 
+        3·Ö 
         <input type="radio" name="fen" value="4">
-        4åˆ† 
+        4·Ö 
         <input type="radio" name="fen" value="5">
-        5åˆ† 
-        <input type="submit" name="Submit" value="æäº¤">
+        5·Ö 
+        <input type="submit" name="Submit" value="Ìá½»">
         </font></td>
-      <td width="50%" valign="middle"><div align="center"><font color="#FFFFFF">å¹³å‡å¾—åˆ†: 
-          <strong><span id="pfendiv"><?=$pinfopfen?></span></strong> åˆ†ï¼Œå…±æœ‰ <strong><?=$infopfennum?></strong> 
-          äººå‚ä¸è¯„åˆ†</font></div></td>
+      <td width="50%" valign="middle"><div align="center"><font color="#FFFFFF">Æ½¾ùµÃ·Ö: 
+          <strong><span id="pfendiv"><?=$pinfopfen?></span></strong> ·Ö£¬¹²ÓĞ <strong><?=$infopfennum?></strong> 
+          ÈË²ÎÓëÆÀ·Ö</font></div></td>
     </tr>
   </form>
 </table>
@@ -87,7 +87,7 @@ h2 { color: #1e3a9e; font-size: 25px; font-weight: bold;  }
     <td height="30" bgcolor="#FFFFFF"> 
       <table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
-          <td width="17%">&nbsp;&nbsp;&nbsp;ç½‘å‹è¯„è®º</td>
+          <td width="17%">&nbsp;&nbsp;&nbsp;ÍøÓÑÆÀÂÛ</td>
           <td width="83%"><div align="right"><?=$listpage?>&nbsp;&nbsp;&nbsp;</div></td>
         </tr>
       </table></td>
@@ -109,29 +109,29 @@ while($r=$empire->fetch($sql))
 	$saytime=date('Y-m-d H:i:s',$r['saytime']);
 	//ip
 	$sayip=ToReturnXhIp($r[sayip]);
-	$saytext=RepPltextFace(stripSlashes($r['saytext']));//æ›¿æ¢è¡¨æƒ…
+	$saytext=RepPltextFace(stripSlashes($r['saytext']));//Ìæ»»±íÇé
 	$includelink=" onclick=\"javascript:document.saypl.repid.value='".$r[plid]."';document.saypl.saytext.focus();\"";
 ?>
  
       <table width="96%" border="0" align="center" cellpadding="3" cellspacing="1" style="word-break:break-all; word-wrap:break-all;">
         <tr> 
-          <td height="30"><span class="name">æœ¬ç«™ç½‘å‹ <?=$plusername?></span> <font color="#666666">ip:<?=$sayip?></font></td>
-          <td><div align="right"><font color="#666666"><?=$saytime?> å‘è¡¨</font></div></td>
+          <td height="30"><span class="name">±¾Õ¾ÍøÓÑ <?=$plusername?></span> <font color="#666666">ip:<?=$sayip?></font></td>
+          <td><div align="right"><font color="#666666"><?=$saytime?> ·¢±í</font></div></td>
         </tr>
         <tr valign="top"> 
           <td height="50" colspan="2" class="text"><?=$saytext?></td>
         </tr>
         <tr> 
           <td height="30">&nbsp;</td>
-          <td><div align="right" class="re"><a href="#tosaypl"<?=$includelink?>>å›å¤</a>&nbsp; 
-              <a href="JavaScript:makeRequest('../pl/doaction.php?enews=DoForPl&plid=<?=$r[plid]?>&classid=<?=$classid?>&id=<?=$id?>&dopl=1&doajax=1&ajaxarea=zcpldiv<?=$r[plid]?>','EchoReturnedText','GET','');">æ”¯æŒ</a>[<span id="zcpldiv<?=$r[plid]?>"><?=$r[zcnum]?></span>]&nbsp; 
-              <a href="JavaScript:makeRequest('../pl/doaction.php?enews=DoForPl&plid=<?=$r[plid]?>&classid=<?=$classid?>&id=<?=$id?>&dopl=0&doajax=1&ajaxarea=fdpldiv<?=$r[plid]?>','EchoReturnedText','GET','');">åå¯¹</a>[<span id="fdpldiv<?=$r[plid]?>"><?=$r[fdnum]?></span>]
+          <td><div align="right" class="re"><a href="#tosaypl"<?=$includelink?>>»Ø¸´</a>&nbsp; 
+              <a href="JavaScript:makeRequest('../pl/doaction.php?enews=DoForPl&plid=<?=$r[plid]?>&classid=<?=$classid?>&id=<?=$id?>&dopl=1&doajax=1&ajaxarea=zcpldiv<?=$r[plid]?>','EchoReturnedText','GET','');">Ö§³Ö</a>[<span id="zcpldiv<?=$r[plid]?>"><?=$r[zcnum]?></span>]&nbsp; 
+              <a href="JavaScript:makeRequest('../pl/doaction.php?enews=DoForPl&plid=<?=$r[plid]?>&classid=<?=$classid?>&id=<?=$id?>&dopl=0&doajax=1&ajaxarea=fdpldiv<?=$r[plid]?>','EchoReturnedText','GET','');">·´¶Ô</a>[<span id="fdpldiv<?=$r[plid]?>"><?=$r[fdnum]?></span>]
             </div></td>
         </tr>
       </table>
       <table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr>
-          <td background="/ecms75/skin/default/images/plhrbg.gif"></td>
+          <td background="/skin/default/images/plhrbg.gif"></td>
         </tr>
       </table>
       
@@ -142,14 +142,14 @@ while($r=$empire->fetch($sql))
       <div align="right"><br />
         <?=$listpage?>&nbsp;&nbsp;&nbsp;<br />
         <br />
-        <font color="#FF0000">ç½‘å‹è¯„è®ºä»…ä¾›ç½‘å‹è¡¨è¾¾ä¸ªäººçœ‹æ³•ï¼Œå¹¶ä¸è¡¨æ˜æœ¬ç«™åŒæ„å…¶è§‚ç‚¹æˆ–è¯å®å…¶æè¿°&nbsp;&nbsp;&nbsp;</font><br><br> </div></td>
+        <font color="#FF0000">ÍøÓÑÆÀÂÛ½ö¹©ÍøÓÑ±í´ï¸öÈË¿´·¨£¬²¢²»±íÃ÷±¾Õ¾Í¬ÒâÆä¹Ûµã»òÖ¤ÊµÆäÃèÊö&nbsp;&nbsp;&nbsp;</font><br><br> </div></td>
   </tr>
   <script>
   function CheckPl(obj)
   {
   	if(obj.saytext.value=="")
   	{
-  		alert("é”™è¯¯ï¼Œè¯„è®ºä¸èƒ½ä¸ºç©º");
+  		alert("´íÎó£¬ÆÀÂÛ²»ÄÜÎª¿Õ");
   		obj.saytext.focus();
   		return false;
   	}
@@ -160,14 +160,14 @@ while($r=$empire->fetch($sql))
   <tr id="tosaypl"> 
     <td bgcolor="#f8fcff"> <table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
-            <td width="13%" height="28">&nbsp;&nbsp;&nbsp;<span class="you">æˆ‘ä¹Ÿè¯„ä¸¤å¥</span></td>
-            <td valign="middle">ç”¨æˆ·åï¼š 
+            <td width="13%" height="28">&nbsp;&nbsp;&nbsp;<span class="you">ÎÒÒ²ÆÀÁ½¾ä</span></td>
+            <td valign="middle">ÓÃ»§Ãû£º 
               <input name="username" type="text" id="username" size="12" value="<?=$lusername?>" />
-            å¯†ç ï¼š 
+            ÃÜÂë£º 
             <input name="password" type="password" id="password" size="12" value="<?=$lpassword?>" />
-            éªŒè¯ç ï¼š 
+            ÑéÖ¤Âë£º 
             <input name="key" type="text" id="key" size="6" />
-              <img src="/ecms75/e/ShowKey/?v=pl" align="middle" name="plKeyImg" id="plKeyImg" onclick="plKeyImg.src='/ecms75/e/ShowKey/?v=pl&t='+Math.random()" title="çœ‹ä¸æ¸…æ¥š,ç‚¹å‡»åˆ·æ–°" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/ecms75/e/member/register/" target="_blank">è¿˜æ²¡æœ‰æ³¨å†Œï¼Ÿ</a></td>
+              <img src="/e/ShowKey/?v=pl" align="middle" name="plKeyImg" id="plKeyImg" onclick="plKeyImg.src='/e/ShowKey/?v=pl&t='+Math.random()" title="¿´²»Çå³ş,µã»÷Ë¢ĞÂ" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/e/member/register/" target="_blank">»¹Ã»ÓĞ×¢²á£¿</a></td>
         </tr>
       </table></td>
   </tr>
@@ -179,14 +179,14 @@ while($r=$empire->fetch($sql))
             </div></td>
           <td width="22%" rowspan="2"> <div align="center">
               <input name="nomember" type="checkbox" id="nomember" value="1" checked="checked" />
-                åŒ¿åå‘è¡¨<br>
+                ÄäÃû·¢±í<br>
                 <br />
-              <input name="imageField" type="submit" id="imageField" value=" æ äº¤ " />
+              <input name="imageField" type="submit" id="imageField" value=" Ìá ½» " />
             </div></td>
         </tr>
         <tr> 
           <td><div align="center"> 
-              <script src="/ecms75/d/js/js/plface.js"></script>
+              <script src="/d/js/js/plface.js"></script>
             </div></td>
         </tr>
       </table> </td>
@@ -197,31 +197,31 @@ while($r=$empire->fetch($sql))
   <input name="repid" type="hidden" id="repid" value="0" />
   </form>
 </table>
-<!-- é¡µè„š -->
+<!-- Ò³½Å -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td align="center" class="search">
-<form action="/ecms75/e/search/index.php" method="post" name="searchform" id="searchform">
+<form action="/e/search/index.php" method="post" name="searchform" id="searchform">
 <table border="0" cellspacing="6" cellpadding="0">
 <tr>
-<td><strong>ç«™å†…æœç´¢ï¼š</strong>
+<td><strong>Õ¾ÄÚËÑË÷£º</strong>
 <input name="keyboard" type="text" size="32" id="keyboard" class="inputText" />
 <input type="hidden" name="show" value="title" />
 <input type="hidden" name="tempid" value="1" />
 <select name="tbname">
-<option value="news">æ–°é—»</option>
-<option value="download">ä¸‹è½½</option>
-<option value="photo">å›¾åº“</option>
+<option value="news">ĞÂÎÅ</option>
+<option value="download">ÏÂÔØ</option>
+<option value="photo">Í¼¿â</option>
 <option value="flash">FLASH</option>
-<option value="movie">ç”µå½±</option>
-<option value="shop">å•†å“</option>
-<option value="article">æ–‡ç« </option>
-<option value="info">åˆ†ç±»ä¿¡æ¯</option>
+<option value="movie">µçÓ°</option>
+<option value="shop">ÉÌÆ·</option>
+<option value="article">ÎÄÕÂ</option>
+<option value="info">·ÖÀàĞÅÏ¢</option>
 </select>
 </td>
-<td><input type="image" class="inputSub" src="/ecms75/skin/default/images/search.gif" />
+<td><input type="image" class="inputSub" src="/skin/default/images/search.gif" />
 </td>
-<td><a href="/ecms75/search/" target="_blank">é«˜çº§æœç´¢</a></td>
+<td><a href="/search/" target="_blank">¸ß¼¶ËÑË÷</a></td>
 </tr>
 </table>
 </form>
@@ -231,9 +231,9 @@ while($r=$empire->fetch($sql))
 <td>
 	<table width="100%" border="0" cellpadding="0" cellspacing="4" class="copyright">
         <tr> 
-          <td align="center"><a href="/ecms75/">ç½‘ç«™é¦–é¡µ</a> | <a href="#">å…³äºæˆ‘ä»¬</a> 
-            | <a href="#">æœåŠ¡æ¡æ¬¾</a> | <a href="#">å¹¿å‘ŠæœåŠ¡</a> | <a href="#">è”ç³»æˆ‘ä»¬</a> 
-            | <a href="#">ç½‘ç«™åœ°å›¾</a> | <a href="#">å…è´£å£°æ˜</a> | <a href="/ecms75/e/wap/" target="_blank">WAP</a></td>
+          <td align="center"><a href="/">ÍøÕ¾Ê×Ò³</a> | <a href="#">¹ØÓÚÎÒÃÇ</a> 
+            | <a href="#">·şÎñÌõ¿î</a> | <a href="#">¹ã¸æ·şÎñ</a> | <a href="#">ÁªÏµÎÒÃÇ</a> 
+            | <a href="#">ÍøÕ¾µØÍ¼</a> | <a href="#">ÃâÔğÉùÃ÷</a> | <a href="/e/wap/" target="_blank">WAP</a></td>
         </tr>
         <tr> 
           <td align="center">Powered by <strong><a href="http://www.phome.net" target="_blank">EmpireCMS</a></strong> 

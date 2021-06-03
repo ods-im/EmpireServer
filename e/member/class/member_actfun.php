@@ -1,5 +1,5 @@
 <?php
-//åŠ å¯†
+//¼ÓÃÜ
 function QMReturnCheckPass($userid,$username,$email,$ecms=1){
 	global $ecms_config;
 	$r['rnd']=make_password(12);
@@ -9,7 +9,7 @@ function QMReturnCheckPass($userid,$username,$email,$ecms=1){
 	return $r;
 }
 
-//éªŒè¯
+//ÑéÖ¤
 function QMReturnCheckThePass($ckuserid,$ckpass,$cktime,$authstr,$ecms=1){
 	global $empire,$dbtbpre,$ecms_config,$public_r;
 	$f=$ecms==2?'acttime':'getpasstime';
@@ -27,7 +27,7 @@ function QMReturnCheckThePass($ckuserid,$ckpass,$cktime,$authstr,$ecms=1){
 	}
 }
 
-//æ›¿æ¢é‚®ä»¶å†…å®¹å˜é‡
+//Ìæ»»ÓÊ¼þÄÚÈÝ±äÁ¿
 function QMRepEmailtext($userid,$username,$email,$pageurl,$title,$text){
 	global $empire,$dbtbpre,$public_r;
 	$date=date("Y-m-d");
@@ -46,9 +46,9 @@ function QMRepEmailtext($userid,$username,$email,$pageurl,$title,$text){
 	return $r;
 }
 
-//--------------- å–å›žå¯†ç  --------------
+//--------------- È¡»ØÃÜÂë --------------
 
-//å‘é€å–å›žå¯†ç é‚®ä»¶
+//·¢ËÍÈ¡»ØÃÜÂëÓÊ¼þ
 function SendGetPasswordEmail($add){
 	global $empire,$dbtbpre,$public_r;
 	if(!$public_r['opengetpass'])
@@ -61,7 +61,7 @@ function SendGetPasswordEmail($add){
 	{
 		printerror("EmptyGetPassword","history.go(-1)",1);
 	}
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$key=$add['key'];
 	$keyvname='checkgetpasskey';
 	ecmsCheckShowKey($keyvname,$key,1);
@@ -82,16 +82,16 @@ function SendGetPasswordEmail($add){
 	$authstr=$passr['dotime'].'||'.$passr['ecms'].'||'.$passr['rnd'];
 	$sql=DoUpdateMemberAuthstr($ur['userid'],$authstr);
 	$url=eReturnDomainSiteUrl().'e/member/GetPassword/getpass.php?id='.$ur['userid'].'&cc='.$passr[checkpass].'&tt='.$passr['dotime'];
-	//å‘é€é‚®ä»¶
+	//·¢ËÍÓÊ¼þ
 	$pr=$empire->fetch1("select getpasstext,getpasstitle from {$dbtbpre}enewspublic limit 1");
 	@include(ECMS_PATH.'e/class/SendEmail.inc.php');
 	$textr=QMRepEmailtext($ur['userid'],$username,$email,$url,$pr['getpasstitle'],$pr['getpasstext']);
 	$sm=EcmsToSendMail($email,$textr['title'],$textr['text']);
-	ecmsEmptyShowKey($keyvname);//æ¸…ç©ºéªŒè¯ç 
+	ecmsEmptyShowKey($keyvname);//Çå¿ÕÑéÖ¤Âë
 	printerror("SendGetPasswordEmailSucess",$public_r['newsurl'],1);
 }
 
-//æŽ¥æ”¶éªŒè¯ä¿¡æ¯
+//½ÓÊÕÑéÖ¤ÐÅÏ¢
 function CheckGetPassword($add,$ecms=1){
 	global $empire,$dbtbpre,$public_r;
 	$r['id']=(int)$add['id'];
@@ -118,7 +118,7 @@ function CheckGetPassword($add,$ecms=1){
 	return $r;
 }
 
-//ä¿®æ”¹å¯†ç 
+//ÐÞ¸ÄÃÜÂë
 function DoGetPassword($add){
 	global $empire,$dbtbpre,$public_r;
 	if(!$public_r['opengetpass'])
@@ -132,7 +132,7 @@ function DoGetPassword($add){
 	{
 		printerror('NotRepassword','',1);
 	}
-	//å¯†ç 
+	//ÃÜÂë
 	$salt=eReturnMemberSalt();
 	$password=eDoMemberPw($password,$salt);
 	$sql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('password')."='$password',".egetmf('salt')."='$salt' where ".egetmf('userid')."='$r[id]'");
@@ -141,9 +141,9 @@ function DoGetPassword($add){
 }
 
 
-//--------------- å¸å·æ¿€æ´» --------------
+//--------------- ÕÊºÅ¼¤»î --------------
 
-//å‘é€æ¿€æ´»å¸å·é‚®ä»¶
+//·¢ËÍ¼¤»îÕÊºÅÓÊ¼þ
 function SendActUserEmail($userid,$username,$email){
 	global $empire,$dbtbpre,$public_r;
 	$email=addslashes($email);
@@ -151,7 +151,7 @@ function SendActUserEmail($userid,$username,$email){
 	$authstr=$passr['dotime'].'||'.$passr['ecms'].'||'.$passr['rnd'];
 	$sql=DoUpdateMemberAuthstr($userid,$authstr);
 	$url=eReturnDomainSiteUrl().'e/member/doaction.php?enews=DoActUser&id='.$userid.'&cc='.$passr[checkpass].'&tt='.$passr['dotime'];
-	//å‘é€é‚®ä»¶
+	//·¢ËÍÓÊ¼þ
 	$pr=$empire->fetch1("select acttext,acttitle from {$dbtbpre}enewspublic limit 1");
 	@include(ECMS_PATH.'e/class/SendEmail.inc.php');
 	$textr=QMRepEmailtext($userid,$username,$email,$url,$pr['acttitle'],$pr['acttext']);
@@ -159,7 +159,7 @@ function SendActUserEmail($userid,$username,$email){
 	printerror("SendActUserEmailSucess",$public_r['newsurl'],1);
 }
 
-//æ¿€æ´»å¸å·
+//¼¤»îÕÊºÅ
 function DoActUser($add){
 	global $empire,$dbtbpre,$public_r;
 	$r=CheckGetPassword($add,2);
@@ -175,7 +175,7 @@ function DoActUser($add){
 	printerror('ActUserSuccess',$public_r['newsurl'],1);
 }
 
-//é‡æ–°å‘é€å¸å·æ¿€æ´»é‚®ä»¶
+//ÖØÐÂ·¢ËÍÕÊºÅ¼¤»îÓÊ¼þ
 function DoRegSend($add){
 	global $empire,$dbtbpre,$public_r;
 	if($public_r['regacttype']!=1)
@@ -190,7 +190,7 @@ function DoRegSend($add){
 	{
 		printerror("EmptyRegAct","history.go(-1)",1);
 	}
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$key=$add['key'];
 	$keyvname='checkregsendkey';
 	ecmsCheckShowKey($keyvname,$key,1);
@@ -217,7 +217,7 @@ function DoRegSend($add){
 	{
 		$sendemail=$email;
 	}
-	//å¯†ç 
+	//ÃÜÂë
 	$ur=$empire->fetch1("select ".eReturnSelectMemberF('userid,salt,password')." from ".eReturnMemberTable()." where ".egetmf('username')."='$username' limit 1");
 	if(!$ur['userid'])
 	{
@@ -243,7 +243,7 @@ function DoRegSend($add){
 	{
 		printerror("HaveRegActUser",'',1);
 	}
-	ecmsEmptyShowKey($keyvname);//æ¸…ç©ºéªŒè¯ç 
+	ecmsEmptyShowKey($keyvname);//Çå¿ÕÑéÖ¤Âë
 	SendActUserEmail($r['userid'],$username,$sendemail);
 }
 ?>

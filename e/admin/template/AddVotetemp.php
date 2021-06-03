@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,26 +15,26 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"template");
 $gid=(int)$_GET['gid'];
 $gname=CheckTempGroup($gid);
 $urlgname=$gname."&nbsp;>&nbsp;";
 $enews=ehtmlspecialchars($_GET['enews']);
-$url=$urlgname."<a href=ListVotetemp.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†æŠ•ç¥¨æ¨¡æ¿</a>&nbsp;>&nbsp;å¢åŠ æŠ•ç¥¨æ¨¡æ¿";
-//å¤åˆ¶
+$url=$urlgname."<a href=ListVotetemp.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀíÍ¶Æ±Ä£°å</a>&nbsp;>&nbsp;Ôö¼ÓÍ¶Æ±Ä£°å";
+//¸´ÖÆ
 if($enews=="AddVoteTemp"&&$_GET['docopy'])
 {
 	$tempid=(int)$_GET['tempid'];
 	$r=$empire->fetch1("select tempid,tempname,temptext from ".GetDoTemptb("enewsvotetemp",$gid)." where tempid=$tempid");
-	$url=$urlgname."<a href=ListVotetemp.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†æŠ•ç¥¨æ¨¡æ¿</a>&nbsp;>&nbsp;å¤åˆ¶æŠ•ç¥¨æ¨¡æ¿ï¼š<b>".$r[tempname]."</b>";
+	$url=$urlgname."<a href=ListVotetemp.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀíÍ¶Æ±Ä£°å</a>&nbsp;>&nbsp;¸´ÖÆÍ¶Æ±Ä£°å£º<b>".$r[tempname]."</b>";
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditVoteTemp")
 {
 	$tempid=(int)$_GET['tempid'];
 	$r=$empire->fetch1("select tempid,tempname,temptext from ".GetDoTemptb("enewsvotetemp",$gid)." where tempid=$tempid");
-	$url=$urlgname."<a href=ListVotetemp.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†æŠ•ç¥¨æ¨¡æ¿</a>&nbsp;>&nbsp;ä¿®æ”¹æŠ•ç¥¨æ¨¡æ¿ï¼š<b>".$r[tempname]."</b>";
+	$url=$urlgname."<a href=ListVotetemp.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀíÍ¶Æ±Ä£°å</a>&nbsp;>&nbsp;ĞŞ¸ÄÍ¶Æ±Ä£°å£º<b>".$r[tempname]."</b>";
 }
 db_close();
 $empire=null;
@@ -42,8 +42,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ æŠ•ç¥¨æ¨¡æ¿</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼ÓÍ¶Æ±Ä£°å</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <SCRIPT lanuage="JScript">
 <!--
@@ -66,7 +66,7 @@ function ReTempBak(){
 <body>
 <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <br>
@@ -74,18 +74,18 @@ function ReTempBak(){
   <form name="form1" method="post" action="ListVotetemp.php">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å¢åŠ æŠ•ç¥¨æ¨¡æ¿ 
+      <td height="25" colspan="2">Ôö¼ÓÍ¶Æ±Ä£°å 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="tempid" type="hidden" id="tempid" value="<?=$tempid?>"> 
         <input name="gid" type="hidden" id="gid" value="<?=$gid?>"> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">æ¨¡æ¿åç§°</td>
+      <td width="19%" height="25">Ä£°åÃû³Æ</td>
       <td width="81%" height="25"> <input name="tempname" type="text" id="tempname" value="<?=$r[tempname]?>"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><strong>æ¨¡æ¿å†…å®¹</strong>(*)</td>
-      <td height="25">è¯·å°†æ¨¡æ¿å†…å®¹<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.temptext.value);document.form1.temptext.select()" title="ç‚¹å‡»å¤åˆ¶æ¨¡æ¿å†…å®¹"><strong>å¤åˆ¶åˆ°Dreamweaver(æ¨è)</strong></a>æˆ–è€…ä½¿ç”¨<a href="#ecms" onclick="window.open('editor.php?getvar=opener.document.form1.temptext.value&returnvar=opener.document.form1.temptext.value&fun=ReturnHtml&notfullpage=1<?=$ecms_hashur['ehref']?>','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>æ¨¡æ¿åœ¨çº¿ç¼–è¾‘</strong></a>è¿›è¡Œå¯è§†åŒ–ç¼–è¾‘</td>
+      <td height="25"><strong>Ä£°åÄÚÈİ</strong>(*)</td>
+      <td height="25">Çë½«Ä£°åÄÚÈİ<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.temptext.value);document.form1.temptext.select()" title="µã»÷¸´ÖÆÄ£°åÄÚÈİ"><strong>¸´ÖÆµ½Dreamweaver(ÍÆ¼ö)</strong></a>»òÕßÊ¹ÓÃ<a href="#ecms" onclick="window.open('editor.php?getvar=opener.document.form1.temptext.value&returnvar=opener.document.form1.temptext.value&fun=ReturnHtml&notfullpage=1<?=$ecms_hashur['ehref']?>','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>Ä£°åÔÚÏß±à¼­</strong></a>½øĞĞ¿ÉÊÓ»¯±à¼­</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"><div align="center"> 
@@ -94,12 +94,12 @@ function ReTempBak(){
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®">
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ">
         <?php
 		if($enews=='EditVoteTemp')
 		{
 		?>
-        &nbsp;&nbsp;[<a href="#empirecms" onclick="window.open('TempBak.php?temptype=votetemp&tempid=<?=$tempid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>','ViewTempBak','width=450,height=500,scrollbars=yes,left=300,top=150,resizable=yes');">ä¿®æ”¹è®°å½•</a>] 
+        &nbsp;&nbsp;[<a href="#empirecms" onclick="window.open('TempBak.php?temptype=votetemp&tempid=<?=$tempid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>','ViewTempBak','width=450,height=500,scrollbars=yes,left=300,top=150,resizable=yes');">ĞŞ¸Ä¼ÇÂ¼</a>] 
         <?php
 		}
 		?>
@@ -107,105 +107,105 @@ function ReTempBak(){
     </tr>
 	</form>
 	<tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="2">&nbsp;&nbsp;[<a href="#ecms" onclick="tempturnit(showtempvar);">æ˜¾ç¤ºæ¨¡æ¿å˜é‡è¯´æ˜</a>]</td>
+      <td height="25" colspan="2">&nbsp;&nbsp;[<a href="#ecms" onclick="tempturnit(showtempvar);">ÏÔÊ¾Ä£°å±äÁ¿ËµÃ÷</a>]</td>
     </tr>
     <tr bgcolor="#FFFFFF" id="showtempvar" style="display:none"> 
-      <td height="25" colspan="2"><strong>(1)ã€æŠ•ç¥¨æ’ä»¶ä½¿ç”¨æ—¶æ”¯æŒçš„æ¨¡æ¿å˜é‡åˆ—è¡¨ </strong><br> 
+      <td height="25" colspan="2"><strong>(1)¡¢Í¶Æ±²å¼şÊ¹ÓÃÊ±Ö§³ÖµÄÄ£°å±äÁ¿ÁĞ±í </strong><br> 
         <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
           <tr bgcolor="#FFFFFF">
             <td height="25"><div align="center">[!--news.url--]</div></td>
-            <td>ç½‘ç«™åœ°å€</td>
+            <td>ÍøÕ¾µØÖ·</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td width="36%" height="25"> <div align="center">[!--vote.action--]</div></td>
-            <td width="64%">æŠ•ç¥¨è¡¨å•æäº¤åœ°å€</td>
+            <td width="64%">Í¶Æ±±íµ¥Ìá½»µØÖ·</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"> <div align="center">[!--title--]</div></td>
-            <td>æ˜¾ç¤ºæŠ•ç¥¨çš„æ ‡é¢˜</td>
+            <td>ÏÔÊ¾Í¶Æ±µÄ±êÌâ</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"> <div align="center">[!--vote.view--]</div></td>
-            <td>æŸ¥çœ‹æŠ•ç¥¨ç»“æœåœ°å€</td>
+            <td>²é¿´Í¶Æ±½á¹ûµØÖ·</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td height="25"> <div align="center">[!--width--](å®½åº¦)ã€[!--height--](é«˜åº¦)</div></td>
-            <td>å¼¹å‡ºæŠ•ç¥¨ç»“æœçª—å£å¤§å°</td>
+            <td height="25"> <div align="center">[!--width--](¿í¶È)¡¢[!--height--](¸ß¶È)</div></td>
+            <td>µ¯³öÍ¶Æ±½á¹û´°¿Ú´óĞ¡</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"> <div align="center">[!--voteid--]</div></td>
-            <td>æ­¤æŠ•ç¥¨çš„ID</td>
+            <td>´ËÍ¶Æ±µÄID</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"> <div align="center">[!--vote.box--]</div></td>
-            <td>æŠ•ç¥¨é€‰é¡¹ï¼ˆå•é€‰æ¡† 
+            <td>Í¶Æ±Ñ¡Ïî£¨µ¥Ñ¡¿ò 
               <input type="radio" name="radiobutton" value="radiobutton">
-              ä¸å¤é€‰æ¡† 
+              Óë¸´Ñ¡¿ò 
               <input type="checkbox" name="checkbox" value="checkbox">
-              ï¼‰</td>
+              £©</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"> <div align="center">[!--vote.name--]</div></td>
-            <td>æŠ•ç¥¨é€‰é¡¹åç§°</td>
+            <td>Í¶Æ±Ñ¡ÏîÃû³Æ</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td height="25"><div align="center">æŠ•ç¥¨äº‹ä»¶å˜é‡</div></td>
+            <td height="25"><div align="center">Í¶Æ±ÊÂ¼ş±äÁ¿</div></td>
             <td>&lt;input type=&quot;hidden&quot; name=&quot;<strong>enews</strong>&quot; 
               value=&quot;<strong>AddVote</strong>&quot;&gt;</td>
           </tr>
         </table>
-        <br> <strong>(2)ã€ä¿¡æ¯æŠ•ç¥¨ä½¿ç”¨æ—¶æ”¯æŒçš„æ¨¡æ¿å˜é‡åˆ—è¡¨ </strong><br> 
+        <br> <strong>(2)¡¢ĞÅÏ¢Í¶Æ±Ê¹ÓÃÊ±Ö§³ÖµÄÄ£°å±äÁ¿ÁĞ±í </strong><br> 
         <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
           <tr bgcolor="#FFFFFF">
             <td height="25"><div align="center">[!--news.url--]</div></td>
-            <td>ç½‘ç«™åœ°å€</td>
+            <td>ÍøÕ¾µØÖ·</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td width="36%" height="25"> <div align="center">æŠ•ç¥¨è¡¨å•æäº¤åœ°å€</div></td>
+            <td width="36%" height="25"> <div align="center">Í¶Æ±±íµ¥Ìá½»µØÖ·</div></td>
             <td width="64%">/e/enews/index.php</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td height="25"><div align="center">æŸ¥çœ‹æŠ•ç¥¨ç»“æœåœ°å€</div></td>
+            <td height="25"><div align="center">²é¿´Í¶Æ±½á¹ûµØÖ·</div></td>
             <td>/e/public/vote/?classid=[!--classid--]&amp;id=[!--id--]</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"> <div align="center">[!--title--]</div></td>
-            <td>æ˜¾ç¤ºæŠ•ç¥¨çš„æ ‡é¢˜</td>
+            <td>ÏÔÊ¾Í¶Æ±µÄ±êÌâ</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td height="25"> <div align="center">[!--width--](å®½åº¦)ã€[!--height--](é«˜åº¦)</div></td>
-            <td>å¼¹å‡ºæŠ•ç¥¨ç»“æœçª—å£å¤§å°</td>
+            <td height="25"> <div align="center">[!--width--](¿í¶È)¡¢[!--height--](¸ß¶È)</div></td>
+            <td>µ¯³öÍ¶Æ±½á¹û´°¿Ú´óĞ¡</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"> <div align="center">[!--id--]</div></td>
-            <td>ä¿¡æ¯ID</td>
+            <td>ĞÅÏ¢ID</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"><div align="center">[!--classid--]</div></td>
-            <td>æ ç›®ID</td>
+            <td>À¸Ä¿ID</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"> <div align="center">[!--vote.box--]</div></td>
-            <td>æŠ•ç¥¨é€‰é¡¹ï¼ˆå•é€‰æ¡† 
+            <td>Í¶Æ±Ñ¡Ïî£¨µ¥Ñ¡¿ò 
               <input type="radio" name="radiobutton" value="radiobutton">
-              ä¸å¤é€‰æ¡† 
+              Óë¸´Ñ¡¿ò 
               <input type="checkbox" name="checkbox2" value="checkbox">
-              ï¼‰</td>
+              £©</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"> <div align="center">[!--vote.name--]</div></td>
-            <td>æŠ•ç¥¨é€‰é¡¹åç§°</td>
+            <td>Í¶Æ±Ñ¡ÏîÃû³Æ</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td height="25"><div align="center">æŠ•ç¥¨äº‹ä»¶å˜é‡</div></td>
+            <td height="25"><div align="center">Í¶Æ±ÊÂ¼ş±äÁ¿</div></td>
             <td>&lt;input type=&quot;hidden&quot; name=&quot;<strong>enews</strong>&quot; 
               value=&quot;<strong>AddInfoVote</strong>&quot;&gt;</td>
           </tr>
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¨¡æ¿æ ¼å¼:</td>
-      <td height="25">åˆ—è¡¨å¤´[!--empirenews.listtemp--]åˆ—è¡¨å†…å®¹[!--empirenews.listtemp--]åˆ—è¡¨å°¾</td>
+      <td height="25">Ä£°å¸ñÊ½:</td>
+      <td height="25">ÁĞ±íÍ·[!--empirenews.listtemp--]ÁĞ±íÄÚÈİ[!--empirenews.listtemp--]ÁĞ±íÎ²</td>
     </tr>
   </table>
 </body>

@@ -6,7 +6,7 @@ require("../class/functions.php");
 require LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"do");
 
-//ç»„åˆæ ç›®
+//×éºÏÀ¸Ä¿
 function AddDoTogClassid($classid){
 	$count=count($classid);
 	$class=',';
@@ -29,7 +29,7 @@ function AddDoTogClassid($classid){
 	return $class;
 }
 
-//å¢åŠ åˆ·æ–°ä»»åŠ¡
+//Ôö¼ÓË¢ĞÂÈÎÎñ
 function AddDo($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$count=count($add[classid]);
@@ -37,14 +37,14 @@ function AddDo($add,$userid,$username){
 	{
 		printerror("EmptyDoname","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"do");
 	if($add[dotime]<5)
 	{
 		$add[dotime]=5;
 	}
 	$lasttime=time();
-	//å˜é‡å¤„ç†
+	//±äÁ¿´¦Àí
 	$add[dotime]=(int)$add[dotime];
 	$add[isopen]=(int)$add[isopen];
 	$add[doing]=(int)$add[doing];
@@ -54,7 +54,7 @@ function AddDo($add,$userid,$username){
 	$doid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("doid=$doid&doname=$add[doname]");
 		printerror("AddDoSuccess","AddDo.php?enews=AddDo".hReturnEcmsHashStrHref2(0));
     }
@@ -62,7 +62,7 @@ function AddDo($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹åˆ·æ–°ä»»åŠ¡
+//ĞŞ¸ÄË¢ĞÂÈÎÎñ
 function EditDo($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$count=count($add[classid]);
@@ -70,13 +70,13 @@ function EditDo($add,$userid,$username){
 	{
 		printerror("EmptyDoname","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"do");
 	if($add[dotime]<5)
 	{
 		$add[dotime]=5;
 	}
-	//å˜é‡å¤„ç†
+	//±äÁ¿´¦Àí
 	$add[dotime]=(int)$add[dotime];
 	$add[isopen]=(int)$add[isopen];
 	$add[doing]=(int)$add[doing];
@@ -85,7 +85,7 @@ function EditDo($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsdo set doname='$add[doname]',dotime=$add[dotime],isopen=$add[isopen],doing=$add[doing],classid='$classid' where doid='$add[doid]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("doid=$add[doid]&doname=$add[doname]");
 		printerror("EditDoSuccess","ListDo.php".hReturnEcmsHashStrHref2(1));
     }
@@ -93,19 +93,19 @@ function EditDo($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤åˆ·æ–°ä»»åŠ¡
+//É¾³ıË¢ĞÂÈÎÎñ
 function DelDo($doid,$userid,$username){
 	global $empire,$dbtbpre;
 	$doid=(int)$doid;
 	if(empty($doid))
 	{printerror("EmptyDoid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"do");
 	$r=$empire->fetch1("select doname from {$dbtbpre}enewsdo where doid='$doid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsdo where doid='$doid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("doid=$doid&doname=$r[doname]");
 		printerror("EditDoSuccess","ListDo.php".hReturnEcmsHashStrHref2(1));
     }
@@ -120,19 +120,19 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ åˆ·æ–°ä»»åŠ¡
+//Ôö¼ÓË¢ĞÂÈÎÎñ
 if($enews=="AddDo")
 {
 	$add=$_POST;
 	AddDo($add,$logininid,$loginin);
 }
-//ä¿®æ”¹åˆ·æ–°ä»»åŠ¡
+//ĞŞ¸ÄË¢ĞÂÈÎÎñ
 elseif($enews=="EditDo")
 {
 	$add=$_POST;
 	EditDo($add,$logininid,$loginin);
 }
-//åˆ é™¤åˆ·æ–°ä»»åŠ¡
+//É¾³ıË¢ĞÂÈÎÎñ
 elseif($enews=="DelDo")
 {
 	$doid=$_GET['doid'];
@@ -143,11 +143,11 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select * from {$dbtbpre}enewsdo";
-$num=$empire->num($query);//å–å¾—æ€»æ¡æ•°
+$num=$empire->num($query);//È¡µÃ×ÜÌõÊı
 $query=$query." order by doid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -155,17 +155,17 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†åˆ·æ–°ä»»åŠ¡</title>
+<title>¹ÜÀíË¢ĞÂÈÎÎñ</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href="ListDo.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å®šæ—¶åˆ·æ–°ä»»åŠ¡</a></td>
+    <td width="50%" height="25">Î»ÖÃ£º<a href="ListDo.php<?=$ecms_hashur['whehref']?>">¹ÜÀí¶¨Ê±Ë¢ĞÂÈÎÎñ</a></td>
     <td> <div align="right" class="emenubutton">
-        <input type="button" name="Submit" value="å¢åŠ åˆ·æ–°ä»»åŠ¡" onclick="self.location.href='AddDo.php?enews=AddDo<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit" value="Ôö¼ÓË¢ĞÂÈÎÎñ" onclick="self.location.href='AddDo.php?enews=AddDo<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -174,19 +174,19 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="6%" height="25"> <div align="center">ID</div></td>
-    <td width="46%" height="25"> <div align="center">ä»»åŠ¡å</div></td>
-    <td width="8%"><div align="center">æ—¶é—´é—´éš”</div></td>
-    <td width="18%"><div align="center">æœ€åæ‰§è¡Œæ—¶é—´</div></td>
-    <td width="8%" height="25"> <div align="center">å¼€å¯</div></td>
-    <td width="14%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="46%" height="25"> <div align="center">ÈÎÎñÃû</div></td>
+    <td width="8%"><div align="center">Ê±¼ä¼ä¸ô</div></td>
+    <td width="18%"><div align="center">×îºóÖ´ĞĞÊ±¼ä</div></td>
+    <td width="8%" height="25"> <div align="center">¿ªÆô</div></td>
+    <td width="14%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
   {
   if($r[isopen])
-  {$isopen="å¼€å¯";}
+  {$isopen="¿ªÆô";}
   else
-  {$isopen="å…³é—­";}
+  {$isopen="¹Ø±Õ";}
   ?>
   <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
     <td height="25"> <div align="center"> 
@@ -204,7 +204,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td height="25"> <div align="center"> 
         <?=$isopen?>
       </div></td>
-    <td height="25"> <div align="center">[<a href="AddDo.php?enews=EditDo&doid=<?=$r[doid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="ListDo.php?enews=DelDo&doid=<?=$r[doid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td height="25"> <div align="center">[<a href="AddDo.php?enews=EditDo&doid=<?=$r[doid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="ListDo.php?enews=DelDo&doid=<?=$r[doid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }
@@ -215,7 +215,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     </td>
   </tr>
   <tr bgcolor="#FFFFFF">
-    <td height="25" colspan="6"><font color="#666666">è¯´æ˜ï¼šæ‰§è¡Œå®šæ—¶åˆ·æ–°ä»»åŠ¡éœ€è¦å¼€ç€åå°æˆ–è€…<a href="DoTimeRepage.php<?=$ecms_hashur['whehref']?>" target="_blank"><strong>ç‚¹å‡»è¿™é‡Œ</strong></a>å¼€ç€è¿™ä¸ªé¡µé¢æ‰ä¼šæ‰§è¡Œã€‚</font></td>
+    <td height="25" colspan="6"><font color="#666666">ËµÃ÷£ºÖ´ĞĞ¶¨Ê±Ë¢ĞÂÈÎÎñĞèÒª¿ª×ÅºóÌ¨»òÕß<a href="DoTimeRepage.php<?=$ecms_hashur['whehref']?>" target="_blank"><strong>µã»÷ÕâÀï</strong></a>¿ª×ÅÕâ¸öÒ³Ãæ²Å»áÖ´ĞĞ¡£</font></td>
   </tr>
 </table>
 </body>

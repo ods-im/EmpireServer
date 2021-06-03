@@ -1,12 +1,12 @@
 <?php
 define('InEmpireCMSCopyPath',TRUE);
 
-//鏈▼搴忕敱wm_chief鍘熷垱锛屽瑕佽浆杞斤紝璇锋敞鏄庝綔鑰呬笌鏉ユ簮(http://www.phome.net)
+//本程序由wm_chief原创，如要转载，请注明作者与来源(http://www.phome.net)
 class copy_path{
 	function wm_chief_copypath($o_path,$n_path)
 	{
 		$hand=@opendir($o_path);
-		if(!file_exists($n_path))//鐩爣鐩綍涓嶅瓨鍦ㄥ垯寤虹珛
+		if(!file_exists($n_path))//目标目录不存在则建立
 		{
 			$this->wm_chief_createpath($n_path);
 		}
@@ -16,7 +16,7 @@ class copy_path{
 			$i++;
 			if($file!="."&&$file!="..")
 			{
-				//鐩綍
+				//目录
 				if(is_dir($o_path."/".$file))
 				{
 					$o_s_path=$o_path."/".$file;
@@ -44,5 +44,5 @@ class copy_path{
 		@chmod($n_path,0777);
 	}
 }
-//鏈▼搴忕敱wm_chief鍘熷垱锛屽瑕佽浆杞斤紝璇锋敞鏄庝綔鑰呬笌鏉ユ簮(http://www.phome.net)
+//本程序由wm_chief原创，如要转载，请注明作者与来源(http://www.phome.net)
 ?>

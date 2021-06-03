@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -21,11 +21,11 @@ if(empty($ztid))
 {
 	$ztid=(int)$_POST['ztid'];
 }
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 //CheckLevel($logininid,$loginin,$classid,"zt");
 $returnandlevel=CheckAndUsernamesLevel('dozt',$ztid,$logininid,$loginin,$loginlevel);
 
-//å¤„ç†å˜é‡
+//´¦Àí±äÁ¿
 function DoPostZtTypeVar($add){
 	if(empty($add['ttype']))
 	{
@@ -53,7 +53,7 @@ function DoPostZtTypeVar($add){
 	return $add;
 }
 
-//å¢åŠ å­ç±»
+//Ôö¼Ó×ÓÀà
 function AddZtType($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add=DoPostZtTypeVar($add);
@@ -62,9 +62,9 @@ function AddZtType($add,$userid,$username){
 	{
 		printerror("EmptyZtType","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"zt");
-	//éªŒè¯æ–‡ä»¶å
+	//ÑéÖ¤ÎÄ¼şÃû
 	if($add['tfile'])
 	{
 		if($add['tfile']=='index')
@@ -80,17 +80,17 @@ function AddZtType($add,$userid,$username){
 	$sql=$empire->query("insert into {$dbtbpre}enewszttype(ztid,cname,myorder,islist,listtempid,maxnum,tnum,reorder,ttype,tfile) values('$ztid','$add[cname]','$add[myorder]','$add[islist]','$add[listtempid]','$add[maxnum]','$add[tnum]','$add[reorder]','$add[ttype]','$add[tfile]');");
 	$lastid=$empire->lastid();
 	$empire->query("insert into {$dbtbpre}enewszttypeadd(cid,classtext) values('$lastid','".eaddslashes2($add[classtext])."');");
-	//æ–‡ä»¶å
+	//ÎÄ¼şÃû
 	if(empty($add['tfile']))
 	{
 		$tfile='type'.$lastid;
 		$empire->query("update {$dbtbpre}enewszttype set tfile='$tfile' where cid='$lastid'");
 	}
-	//ç”Ÿæˆé¡µé¢
+	//Éú³ÉÒ³Ãæ
 	ListHtmlIndex($lastid,'',1);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("ztid=".$ztid."<br>cid=".$lastid."&cname=".$add[cname]);
 		printerror("AddZtTypeSuccess","ZtType.php?ztid=$ztid".hReturnEcmsHashStrHref2(0));
 	}
@@ -100,7 +100,7 @@ function AddZtType($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹å­ç±»
+//ĞŞ¸Ä×ÓÀà
 function EditZtType($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add=DoPostZtTypeVar($add);
@@ -110,14 +110,14 @@ function EditZtType($add,$userid,$username){
 	{
 		printerror("EmptyZtType","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"zt");
 	$r=$empire->fetch1("select * from {$dbtbpre}enewszttype where cid='$cid' and ztid='$ztid' limit 1");
 	if(!$r['ztid'])
 	{
 		printerror('ErrorUrl','');
 	}
-	//éªŒè¯æ–‡ä»¶å
+	//ÑéÖ¤ÎÄ¼şÃû
 	if($add['tfile']&&$add['tfile']<>$r['tfile'])
 	{
 		if($add['tfile']=='index')
@@ -136,16 +136,16 @@ function EditZtType($add,$userid,$username){
 	}
 	$sql=$empire->query("update {$dbtbpre}enewszttype set cname='$add[cname]',myorder='$add[myorder]',islist='$add[islist]',listtempid='$add[listtempid]',maxnum='$add[maxnum]',tnum='$add[tnum]',reorder='$add[reorder]',ttype='$add[ttype]',tfile='$add[tfile]' where cid='$cid'");
 	$empire->query("update {$dbtbpre}enewszttypeadd set classtext='".eaddslashes2($add[classtext])."' where cid='$cid'");
-	//æ”¹å˜æ–‡ä»¶å
+	//¸Ä±äÎÄ¼şÃû
 	if($add['tfile'].$add['ttype']<>$r['tfile'].$r['ttype'])
 	{
 		DelZtcFile($cid,$r);
 	}
-	//ç”Ÿæˆé¡µé¢
+	//Éú³ÉÒ³Ãæ
 	ListHtmlIndex($cid,'',1);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("ztid=".$ztid."<br>cid=".$cid."<br>cname=".$add[cname]);
 		printerror("EditZtTypeSuccess","ZtType.php?ztid=$ztid".hReturnEcmsHashStrHref2(0));
 	}
@@ -155,7 +155,7 @@ function EditZtType($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤å­ç±»
+//É¾³ı×ÓÀà
 function DelZtType($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$ztid=(int)$add['ztid'];
@@ -164,7 +164,7 @@ function DelZtType($add,$userid,$username){
 	{
 		printerror("EmptyZtTypeId","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"zt");
 	$r=$empire->fetch1("select * from {$dbtbpre}enewszttype where cid='$cid' and ztid='$ztid' limit 1");
 	if(!$r['ztid'])
@@ -173,12 +173,12 @@ function DelZtType($add,$userid,$username){
 	}
 	$sql=$empire->query("delete from {$dbtbpre}enewszttype where cid='$cid'");
 	$empire->query("delete from {$dbtbpre}enewszttypeadd where cid='$cid'");
-	//åˆ é™¤é¡µé¢
+	//É¾³ıÒ³Ãæ
 	DelZtcFile($cid,$r);
 	$empire->query("update {$dbtbpre}enewsztinfo set cid=0 where cid='$cid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("ztid=".$ztid."<br>cid=".$cid."<br>cname=".$r[cname]);
 		printerror("DelZtTypeSuccess","ZtType.php?ztid=$ztid".hReturnEcmsHashStrHref2(0));
 	}
@@ -200,15 +200,15 @@ if($enews)
 	include('../../data/dbcache/class.php');
 	include('../../data/dbcache/MemberLevel.php');
 }
-if($enews=="AddZtType")//å¢åŠ å­ç±»
+if($enews=="AddZtType")//Ôö¼Ó×ÓÀà
 {
 	AddZtType($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditZtType")//ä¿®æ”¹å­ç±»
+elseif($enews=="EditZtType")//ĞŞ¸Ä×ÓÀà
 {
 	EditZtType($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelZtType")//åˆ é™¤å­ç±»
+elseif($enews=="DelZtType")//É¾³ı×ÓÀà
 {
 	DelZtType($_GET,$logininid,$loginin);
 }
@@ -234,19 +234,19 @@ $sql=$empire->query("select cid,cname,ttype,tfile from {$dbtbpre}enewszttype whe
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ä¸“é¢˜å­ç±»</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí×¨Ìâ×ÓÀà</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="74%">ä½ç½®ï¼š<a href="ListZt.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¸“é¢˜</a> &gt; 
+    <td width="74%">Î»ÖÃ£º<a href="ListZt.php<?=$ecms_hashur['whehref']?>">¹ÜÀí×¨Ìâ</a> &gt; 
       <?=$ztr[ztname]?>
-      &gt; <a href="ZtType.php?ztid=<?=$ztid?><?=$ecms_hashur['whehref']?>">ç®¡ç†ä¸“é¢˜å­ç±»</a></td>
+      &gt; <a href="ZtType.php?ztid=<?=$ztid?><?=$ecms_hashur['whehref']?>">¹ÜÀí×¨Ìâ×ÓÀà</a></td>
     <td width="26%"><div align="right">
-        <input type="button" name="Submit22" value="å¢åŠ ä¸“é¢˜å­ç±»" onclick="self.location.href='AddZtType.php?enews=AddZtType&ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit22" value="Ôö¼Ó×¨Ìâ×ÓÀà" onclick="self.location.href='AddZtType.php?enews=AddZtType&ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -254,9 +254,9 @@ $sql=$empire->query("select cid,cname,ttype,tfile from {$dbtbpre}enewszttype whe
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="6%"><div align="center">ID</div></td>
-    <td width="27%" height="25"><div align="center">åˆ†ç±»åç§°</div></td>
-    <td width="48%"><div align="center">é¡µé¢åœ°å€</div></td>
-    <td width="19%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="27%" height="25"><div align="center">·ÖÀàÃû³Æ</div></td>
+    <td width="48%"><div align="center">Ò³ÃæµØÖ·</div></td>
+    <td width="19%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -271,8 +271,8 @@ $sql=$empire->query("select cid,cname,ttype,tfile from {$dbtbpre}enewszttype whe
           <?=$r[cname]?>
         </div></td>
       <td><div align="center"><input type="text" name="textfield" value="<?=$curl?>">
-        <a href="<?=$curl?>" target="_blank">[æŸ¥çœ‹]</a></div></td>
-      <td height="25"><div align="center">[<a href='AddZtType.php?enews=EditZtType&cid=<?=$r[cid]?>&ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>'>ä¿®æ”¹</a>]&nbsp;&nbsp;[<a href='ZtType.php?enews=DelZtType&cid=<?=$r[cid]?>&ztid=<?=$ztid?><?=$ecms_hashur['href']?>' onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+        <a href="<?=$curl?>" target="_blank">[²é¿´]</a></div></td>
+      <td height="25"><div align="center">[<a href='AddZtType.php?enews=EditZtType&cid=<?=$r[cid]?>&ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>'>ĞŞ¸Ä</a>]&nbsp;&nbsp;[<a href='ZtType.php?enews=DelZtType&cid=<?=$r[cid]?>&ztid=<?=$ztid?><?=$ecms_hashur['href']?>' onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
     </tr>
   <?
   }

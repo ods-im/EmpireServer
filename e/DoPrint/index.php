@@ -6,7 +6,7 @@ require("../data/dbcache/class.php");
 require LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
-eCheckCloseMods('print');//å…³é—­æ¨¡å—
+eCheckCloseMods('print');//¹Ø±ÕÄ£¿é
 $id=(int)$_GET['id'];
 $classid=(int)$_GET['classid'];
 if(empty($id)||empty($classid))
@@ -24,10 +24,10 @@ if(empty($r['id'])||$r['classid']!=$classid)
 {
 	printerror("ErrorUrl","history.go(-1)",1);
 }
-//å‰¯è¡¨
+//¸±±í
 $finfor=$empire->fetch1("select ".ReturnSqlFtextF($mid)." from {$dbtbpre}ecms_".$tbname."_data_".$r[stb]." where id='$r[id]' limit 1");
 $r=array_merge($r,$finfor);
-//æƒé™
+//È¨ÏŞ
 if($r['groupid']||$class_r[$classid]['cgtoinfo'])
 {
 	include('../data/dbcache/MemberLevel.php');
@@ -40,7 +40,7 @@ if($r['groupid']||$class_r[$classid]['cgtoinfo'])
 	$checkinfor=$r;
 	include("../class/CheckLevel.php");
 }
-//ä½¿ç”¨æ¨¡æ¿
+//Ê¹ÓÃÄ£°å
 if($_GET['tempid'])
 {
 	$tempid=(int)$_GET['tempid'];
@@ -56,13 +56,13 @@ if(empty($tempid))
 {
 	$tempid=1;
 }
-//å­˜æ–‡æœ¬
+//´æÎÄ±¾
 $savetxtf=$emod_r[$mid]['savetxtf'];
 if($savetxtf&&$r[$savetxtf])
 {
 	$r[$savetxtf]=GetTxtFieldText($r[$savetxtf]);
 }
-//åˆ†é¡µå­—æ®µ
+//·ÖÒ³×Ö¶Î
 $pagef=$emod_r[$mid]['pagef'];
 if($pagef&&$r[$pagef])
 {
@@ -70,9 +70,9 @@ if($pagef&&$r[$pagef])
 	$r[$pagef]=str_replace('[/!--empirenews.page--]','',$r[$pagef]);
 }
 $url=ReturnClassLink($r[classid])."&nbsp;>&nbsp;".$fun_r['zw'];
-//æ ‡é¢˜é“¾æ¥
+//±êÌâÁ´½Ó
 $titleurl=sys_ReturnBqTitleLink($r);
-//æ ‡é¢˜å›¾ç‰‡
+//±êÌâÍ¼Æ¬
 if(empty($r[titlepic]))
 {
 	$r[titlepic]=$public_r[newsurl].'e/data/images/notimg.gif';

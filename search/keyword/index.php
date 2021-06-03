@@ -3,7 +3,7 @@ error_reporting(0);
 $classid=(int)$_GET['classid'];
 $tempid=(int)$_GET['tempid'];
 ?>
-<meta http-equiv="Content-Type"  content="text/html;  charset=utf-8">
+<meta http-equiv="Content-Type"  content="text/html;  charset=gb2312">
 <body>
 <form id="gotosearch" name="gotosearch" method="post" action="../../e/search/index.php">
 <input type="hidden" name="show" value="<?=htmlspecialchars($_GET['show'])?>">

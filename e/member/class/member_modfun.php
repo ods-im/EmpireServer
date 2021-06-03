@@ -1,13 +1,13 @@
 <?php
-//--------------- ä¼šå‘˜å­—æ®µå¤„ç†å‡½æ•° ---------------
+//--------------- »áÔ±×Ö¶Î´¦Àíº¯Êý ---------------
 
-//å¤„ç†æ³¨å†Œå­—æ®µå€¼
+//´¦Àí×¢²á×Ö¶ÎÖµ
 function DoMemberFValue($val){
 	$val=ehtmlspecialchars($val,ENT_QUOTES);
 	return $val;
 }
 
-//åˆ é™¤ä¼šå‘˜å­—æ®µé™„ä»¶
+//É¾³ý»áÔ±×Ö¶Î¸½¼þ
 function DelYMemberTranFile($file,$tf,$username=''){
 	global $empire,$dbtbpre;
 	if(empty($file)){
@@ -25,7 +25,7 @@ function DelYMemberTranFile($file,$tf,$username=''){
 	}
 }
 
-//ç»„åˆå¤é€‰æ¡†æ•°æ®
+//×éºÏ¸´Ñ¡¿òÊý¾Ý
 function ReturnMCheckboxAddF($r,$f,$checkboxf){
 	$val=$r;
 	if(is_array($r)&&strstr($checkboxf,','.$f.','))
@@ -44,31 +44,31 @@ function ReturnMCheckboxAddF($r,$f,$checkboxf){
 	return $val;
 }
 
-//è¿”å›žä¼šå‘˜å­—æ®µ
+//·µ»Ø»áÔ±×Ö¶Î
 function ReturnDoMemberF($fid,$add,$mr,$ecms=0,$username='',$admin=0){
 	global $empire,$dbtbpre,$ecms_config,$public_r;
 	$pr=$empire->fetch1("select openmembertranimg,memberimgsize,memberimgtype,openmembertranfile,memberfilesize,memberfiletype from {$dbtbpre}enewspublic limit 1");
 	$formr=$empire->fetch1("select fid,enter,mustenter,filef,imgf,canaddf,caneditf,checkboxf from {$dbtbpre}enewsmemberform where fid='$fid'");
-	//æ£€æµ‹å¿…å¡«å­—æ®µ
+	//¼ì²â±ØÌî×Ö¶Î
 	$mustr=explode(",",$formr['mustenter']);
 	$mustcount=count($mustr);
 	for($i=1;$i<$mustcount-1;$i++)
 	{
 		$mf=$mustr[$i];
-		if(strstr($formr['filef'],",".$mf.",")||strstr($formr['imgf'],",".$mf.","))//é™„ä»¶
+		if(strstr($formr['filef'],",".$mf.",")||strstr($formr['imgf'],",".$mf.","))//¸½¼þ
 		{
 			$mfilef=$mf."file";
-			//ä¸Šä¼ æ–‡ä»¶
+			//ÉÏ´«ÎÄ¼þ
 			if($_FILES[$mfilef]['name'])
 			{
-				if(strstr($formr['imgf'],",".$mf.","))//å›¾ç‰‡
+				if(strstr($formr['imgf'],",".$mf.","))//Í¼Æ¬
 				{
 					if(!$pr['openmembertranimg'])
 					{
 						printerror("CloseQTranPic","",1);
 					}
 				}
-				else//é™„ä»¶
+				else//¸½¼þ
 				{
 					if(!$pr['openmembertranfile'])
 					{
@@ -90,7 +90,7 @@ function ReturnDoMemberF($fid,$add,$mr,$ecms=0,$username='',$admin=0){
 			}
 		}
 	}
-	//å­—æ®µå¤„ç†
+	//×Ö¶Î´¦Àí
 	$dh="";
 	$tranf="";
 	$record="<!--record-->";
@@ -103,20 +103,20 @@ function ReturnDoMemberF($fid,$add,$mr,$ecms=0,$username='',$admin=0){
 		$f=$fr1[1];
 		if($admin==0&&(($ecms==0&&!strstr($formr['canaddf'],','.$f.','))||($ecms==1&&!strstr($formr['caneditf'],','.$f.','))))
 		{continue;}
-		//é™„ä»¶
+		//¸½¼þ
 		$add[$f]=str_replace('[!#@-','ecms',$add[$f]);
 		if(strstr($formr['filef'],",".$f.",")||strstr($formr['imgf'],",".$f.","))
 		{
-			//ä¸Šä¼ é™„ä»¶
+			//ÉÏ´«¸½¼þ
 			$filetf=$f."file";
 			if($_FILES[$filetf]['name'])
 			{
-				$filetype=GetFiletype($_FILES[$filetf]['name']);//å–å¾—æ–‡ä»¶ç±»åž‹
+				$filetype=GetFiletype($_FILES[$filetf]['name']);//È¡µÃÎÄ¼þÀàÐÍ
 				if(CheckSaveTranFiletype($filetype))
 				{
 					printerror("NotQTranFiletype","",1);
 				}
-				if(strstr($formr['imgf'],",".$f.","))//å›¾ç‰‡
+				if(strstr($formr['imgf'],",".$f.","))//Í¼Æ¬
 				{
 					if(!$pr['openmembertranimg'])
 					{
@@ -135,7 +135,7 @@ function ReturnDoMemberF($fid,$add,$mr,$ecms=0,$username='',$admin=0){
 						printerror("NotQTranFiletype","",1);
 					}
 				}
-				else//é™„ä»¶
+				else//¸½¼þ
 				{
 					if(!$pr['openmembertranfile'])
 					{
@@ -182,17 +182,17 @@ function ReturnDoMemberF($fid,$add,$mr,$ecms=0,$username='',$admin=0){
 		$fval=DoMemberFValue($fval);
 		$fval=RepPostStr2($fval);
 		$fval=addslashes($fval);
-		if($ecms==0)//æ·»åŠ 
+		if($ecms==0)//Ìí¼Ó
 		{
 			$ret_r[0].=",`".$f."`";
 			$ret_r[1].=",'".$fval."'";
 		}
-		else//ç¼–è¾‘
+		else//±à¼­
 		{
 			$ret_r[0].=",`".$f."`='".$fval."'";
 		}
 	}
-	//ä¸Šä¼ é™„ä»¶
+	//ÉÏ´«¸½¼þ
 	if($tranf)
 	{
 		$infoid=0;
@@ -208,18 +208,18 @@ function ReturnDoMemberF($fid,$add,$mr,$ecms=0,$username='',$admin=0){
 			$tfr=DoTranFile($_FILES[$tffile]['tmp_name'],$_FILES[$tffile]['name'],$_FILES[$tffile]['type'],$_FILES[$tffile]['size'],$classid);
 			if($tfr['tran'])
 			{
-				if(strstr($formr['imgf'],",".$tf.","))//å›¾ç‰‡
+				if(strstr($formr['imgf'],",".$tf.","))//Í¼Æ¬
 				{
 					$type=1;
 				}
-				else//é™„ä»¶
+				else//¸½¼þ
 				{
 					$type=0;
 				}
-				//å†™å…¥æ•°æ®åº“
+				//Ð´ÈëÊý¾Ý¿â
 				$filesize=(int)$_FILES[$tffile]['size'];
 				eInsertFileTable($tfr[filename],$filesize,$tfr[filepath],'[EditInfo]'.$username,$classid,'Member['.$tf.']',$type,$filepass,$filepass,$public_r[fpath],0,6,0);
-				//åˆ é™¤æ—§æ–‡ä»¶
+				//É¾³ý¾ÉÎÄ¼þ
 				if($ecms==1&&$mr[$tf])
 				{
 					DelYMemberTranFile($mr[$tf],$tf,$username);
@@ -230,11 +230,11 @@ function ReturnDoMemberF($fid,$add,$mr,$ecms=0,$username='',$admin=0){
 			{
 				$repfval=$mr[$tf];
 			}
-			if($ecms==0)//æ·»åŠ 
+			if($ecms==0)//Ìí¼Ó
 			{
 				$ret_r[1]=str_replace("[!#@-".$tf."-@!]",$repfval,$ret_r[1]);
 			}
-			else//ç¼–è¾‘
+			else//±à¼­
 			{
 				$ret_r[0]=str_replace("[!#@-".$tf."-@!]",$repfval,$ret_r[0]);
 			}
@@ -243,7 +243,7 @@ function ReturnDoMemberF($fid,$add,$mr,$ecms=0,$username='',$admin=0){
 	return $ret_r;
 }
 
-//åˆ é™¤ä¼šå‘˜é™„ä»¶
+//É¾³ý»áÔ±¸½¼þ
 function DoDelMemberF($fid,$userid,$username){
 	global $empire,$dbtbpre;
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsmemberadd where userid='$userid'");

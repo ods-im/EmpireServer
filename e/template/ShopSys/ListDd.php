@@ -5,35 +5,35 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='è®¢å•åˆ—è¡¨';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../../member/cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;è®¢å•åˆ—è¡¨";
+$public_diyr['pagetitle']='¶©µ¥ÁĞ±í';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../../member/cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;¶©µ¥ÁĞ±í";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <script type="text/javascript" src="../../data/js/jstime/WdatePicker.js"></script>
 <form name="form1" method="get" action="index.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
     <tr> 
-      <td>è®¢å•å·ä¸º: 
+      <td>¶©µ¥ºÅÎª: 
         <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
-        æ—¶é—´ä» 
+        Ê±¼ä´Ó 
         <input name="starttime" type="text" id="starttime2" value="<?=$starttime?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        åˆ° 
+        µ½ 
         <input name="endtime" type="text" id="endtime2" value="<?=$endtime?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        æ­¢çš„è®¢å• 
-        <input type="submit" name="Submit6" value="æœç´¢"> <input name="sear" type="hidden" id="sear2" value="1"> 
+        Ö¹µÄ¶©µ¥ 
+        <input type="submit" name="Submit6" value="ËÑË÷"> <input name="sear" type="hidden" id="sear2" value="1"> 
       </td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class=tableborder>
     <tr class=header> 
-      <td width="5%" height="23"> <div align="center">åºå·</div></td>
-      <td width="17%"><div align="center">ç¼–å·(ç‚¹å‡»æŸ¥çœ‹)</div></td>
-      <td width="17%"><div align="center">è®¢è´­æ—¶é—´</div></td>
-      <td width="12%"><div align="center">æ€»é‡‘é¢</div></td>
-      <td width="14%"><div align="center">æ”¯ä»˜æ–¹å¼</div></td>
-      <td width="28%"><div align="center">çŠ¶æ€</div></td>
-      <td width="7%"><div align="center">æ“ä½œ</div></td>
+      <td width="5%" height="23"> <div align="center">ĞòºÅ</div></td>
+      <td width="17%"><div align="center">±àºÅ(µã»÷²é¿´)</div></td>
+      <td width="17%"><div align="center">¶©¹ºÊ±¼ä</div></td>
+      <td width="12%"><div align="center">×Ü½ğ¶î</div></td>
+      <td width="14%"><div align="center">Ö§¸¶·½Ê½</div></td>
+      <td width="28%"><div align="center">×´Ì¬</div></td>
+      <td width="7%"><div align="center">²Ù×÷</div></td>
     </tr>
 <?
 $todaytime=time();
@@ -41,82 +41,82 @@ $j=0;
 while($r=$empire->fetch($sql))
 {
 	$j++;
-	//ç‚¹æ•°è´­ä¹°
+	//µãÊı¹ºÂò
 	$total=0;
 	if($r[payby]==1)
 	{
 		$total=$r[alltotalfen]+$r[pstotal];
-		$mytotal="<a href='#ecms' title='å•†å“é¢(".$r[alltotalfen].")+è¿è´¹(".$r[pstotal].")'>".$total." ç‚¹</a>";
+		$mytotal="<a href='#ecms' title='ÉÌÆ·¶î(".$r[alltotalfen].")+ÔË·Ñ(".$r[pstotal].")'>".$total." µã</a>";
 	}
 	else
 	{
-		//å‘ç¥¨
+		//·¢Æ±
 		$fpa='';
 		$pre='';
 		if($r[fp])
 		{
-			$fpa="+å‘ç¥¨è´¹(".$r[fptotal].")";
+			$fpa="+·¢Æ±·Ñ(".$r[fptotal].")";
 		}
-		//ä¼˜æƒ 
+		//ÓÅ»İ
 		if($r['pretotal'])
 		{
-			$pre="-ä¼˜æƒ (".$r[pretotal].")";
+			$pre="-ÓÅ»İ(".$r[pretotal].")";
 		}
 		$total=$r[alltotal]+$r[pstotal]+$r[fptotal]-$r[pretotal];
-		$mytotal="<a href='#ecms' title='å•†å“é¢(".$r[alltotal].")+è¿è´¹(".$r[pstotal].")".$fpa.$pre."'>".$total." å…ƒ</a>";
+		$mytotal="<a href='#ecms' title='ÉÌÆ·¶î(".$r[alltotal].")+ÔË·Ñ(".$r[pstotal].")".$fpa.$pre."'>".$total." Ôª</a>";
 	}
-	//æ”¯ä»˜æ–¹å¼
+	//Ö§¸¶·½Ê½
 	if($r[payby]==1)
 	{
-		$payfsname=$r[payfsname]."<br>(ç‚¹æ•°è´­ä¹°)";
+		$payfsname=$r[payfsname]."<br>(µãÊı¹ºÂò)";
 	}
 	elseif($r[payby]==2)
 	{
-		$payfsname=$r[payfsname]."<br>(ä½™é¢è´­ä¹°)";
+		$payfsname=$r[payfsname]."<br>(Óà¶î¹ºÂò)";
 	}
 	else
 	{
 		$payfsname=$r[payfsname];
 	}
-	//çŠ¶æ€
+	//×´Ì¬
 	if($r['checked']==1)
 	{
-		$ch="å·²ç¡®è®¤";
+		$ch="ÒÑÈ·ÈÏ";
 	}
 	elseif($r['checked']==2)
 	{
-		$ch="å–æ¶ˆ";
+		$ch="È¡Ïû";
 	}
 	elseif($r['checked']==3)
 	{
-		$ch="é€€è´§";
+		$ch="ÍË»õ";
 	}
 	else
 	{
-		$ch="<font color=red>æœªç¡®è®¤</font>";
+		$ch="<font color=red>Î´È·ÈÏ</font>";
 	}
 	if($r['outproduct']==1)
 	{
-		$ou="å·²å‘è´§";
+		$ou="ÒÑ·¢»õ";
 	}
 	elseif($r['outproduct']==2)
 	{
-		$ou="å¤‡è´§ä¸­";
+		$ou="±¸»õÖĞ";
 	}
 	else
 	{
-		$ou="<font color=red>æœªå‘è´§</font>";
+		$ou="<font color=red>Î´·¢»õ</font>";
 	}
 	if($r['haveprice']==1)
 	{
-		$ha="å·²ä»˜æ¬¾";
+		$ha="ÒÑ¸¶¿î";
 	}
 	else
 	{
-		$ha="<font color=red>æœªä»˜æ¬¾</font>";
+		$ha="<font color=red>Î´¸¶¿î</font>";
 	}
-	//æ“ä½œ
-	$doing='<a href="../doaction.php?enews=DelDd&ddid='.$r[ddid].'" onclick="return confirm(\'ç¡®è®¤è¦å–æ¶ˆï¼Ÿ\');">å–æ¶ˆ</a>';
+	//²Ù×÷
+	$doing='<a href="../doaction.php?enews=DelDd&ddid='.$r[ddid].'" onclick="return confirm(\'È·ÈÏÒªÈ¡Ïû£¿\');">È¡Ïû</a>';
 	if($r['checked']||$r['outproduct']||$r['haveprice'])
 	{
 		$doing='--';

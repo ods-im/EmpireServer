@@ -7,7 +7,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -21,8 +21,8 @@ $ecms_hashur=hReturnEcmsHashStrAll();
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>èœå•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²Ëµ¥</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <SCRIPT lanuage="JScript">
 function DisplayImg(ss,imgname,phome)
@@ -76,59 +76,59 @@ function turnit(ss,img)
 <br>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="dolistddid">
   <tr> 
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="listddimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dolistdd,"listddimg"); style="CURSOR: hand">ç®¡ç†è®¢å•</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="listddimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dolistdd,"listddimg"); style="CURSOR: hand">¹ÜÀí¶©µ¥</a></td>
   </tr>
   <tbody id="dolistdd">
     <tr> 
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListDd.php<?=$ecms_hashur['whehref']?>" target="apmain">æ‰€æœ‰è®¢å•</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListDd.php<?=$ecms_hashur['whehref']?>" target="apmain">ËùÓĞ¶©µ¥</a></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListDd.php?sear=1&outproduct=9<?=$ecms_hashur['ehref']?>" target="apmain">æœªå‘è´§è®¢å•</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListDd.php?sear=1&outproduct=9<?=$ecms_hashur['ehref']?>" target="apmain">Î´·¢»õ¶©µ¥</a></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListDd.php?sear=1&outproduct=2<?=$ecms_hashur['ehref']?>" target="apmain">å¤‡è´§ä¸­çš„è®¢å•</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListDd.php?sear=1&outproduct=2<?=$ecms_hashur['ehref']?>" target="apmain">±¸»õÖĞµÄ¶©µ¥</a></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListDd.php?sear=1&outproduct=1<?=$ecms_hashur['ehref']?>" target="apmain">å·²å‘è´§çš„è®¢å•</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListDd.php?sear=1&outproduct=1<?=$ecms_hashur['ehref']?>" target="apmain">ÒÑ·¢»õµÄ¶©µ¥</a></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListDd.php?sear=1&checked=3<?=$ecms_hashur['ehref']?>" target="apmain">é€€è´§çš„è®¢å•</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListDd.php?sear=1&checked=3<?=$ecms_hashur['ehref']?>" target="apmain">ÍË»õµÄ¶©µ¥</a></td>
     </tr>
   </tbody>
 </table>
   <br>
   <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="doaddsaleid">
     <tr>
-      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="addsaleimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(doaddsale,"addsaleimg"); style="CURSOR: hand">ç®¡ç†ä¿ƒé”€</a></td>
+      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="addsaleimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(doaddsale,"addsaleimg"); style="CURSOR: hand">¹ÜÀí´ÙÏú</a></td>
     </tr>
     <tbody id="doaddsale">
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListPrecode.php<?=$ecms_hashur['whehref']?>" target="apmain">ä¼˜æƒ ç </a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListPrecode.php<?=$ecms_hashur['whehref']?>" target="apmain">ÓÅ»İÂë</a></td>
       </tr>
     </tbody>
   </table>
   <br>
   <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="dopaysendid">
     <tr>
-      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="paysendimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dopaysend,"paysendimg"); style="CURSOR: hand">æ”¯ä»˜ä¸é…é€</a></td>
+      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="paysendimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dopaysend,"paysendimg"); style="CURSOR: hand">Ö§¸¶ÓëÅäËÍ</a></td>
     </tr>
     <tbody id="dopaysend">
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListPayfs.php<?=$ecms_hashur['whehref']?>" target="apmain">ç®¡ç†æ”¯ä»˜æ–¹å¼</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListPayfs.php<?=$ecms_hashur['whehref']?>" target="apmain">¹ÜÀíÖ§¸¶·½Ê½</a></td>
       </tr>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListPs.php<?=$ecms_hashur['whehref']?>" target="apmain">ç®¡ç†é…é€æ–¹å¼</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListPs.php<?=$ecms_hashur['whehref']?>" target="apmain">¹ÜÀíÅäËÍ·½Ê½</a></td>
       </tr>
     </tbody>
   </table>
   <br>
   <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="dosetshopid">
     <tr>
-      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="setshopimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dosetshop,"setshopimg"); style="CURSOR: hand">å•†åŸå‚æ•°è®¾ç½®</a></td>
+      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="setshopimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dosetshop,"setshopimg"); style="CURSOR: hand">ÉÌ³Ç²ÎÊıÉèÖÃ</a></td>
     </tr>
     <tbody id="dosetshop">
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SetShopSys.php<?=$ecms_hashur['whehref']?>" target="apmain">å•†åŸå‚æ•°è®¾ç½®</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SetShopSys.php<?=$ecms_hashur['whehref']?>" target="apmain">ÉÌ³Ç²ÎÊıÉèÖÃ</a></td>
       </tr>
     </tbody>
   </table>

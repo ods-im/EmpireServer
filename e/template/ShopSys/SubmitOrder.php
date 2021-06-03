@@ -5,14 +5,14 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-//æ˜¾ç¤ºé…é€æ–¹å¼
+//ÏÔÊ¾ÅäËÍ·½Ê½
 function ShowPs($pid){
 	global $empire,$dbtbpre,$shoppr,$totalr;
 	$pid=(int)$pid;
 	$r=$empire->fetch1("select pid,pname,price,psay from {$dbtbpre}enewsshopps where pid='$pid' and isclose=0");
 	if(empty($r[pid]))
 	{
-		printerror('è¯·é€‰æ‹©é…é€æ–¹å¼','',1,0,1);
+		printerror('ÇëÑ¡ÔñÅäËÍ·½Ê½','',1,0,1);
 	}
 	$r['price']=ShopSys_PrePsTotal($r['pid'],$r['price'],$totalr['truetotalmoney'],$shoppr);
 	echo"<table width='100%' border=0 align=center cellpadding=3 cellspacing=1>
@@ -20,7 +20,7 @@ function ShowPs($pid){
     <td width='69%' height=25> 
       <strong>".$r[pname]."</strong>
     </td>
-    <td width='31%'><strong>è´¹ç”¨:ï¿¥".$r['price']."</strong></td>
+    <td width='31%'><strong>·ÑÓÃ:£¤".$r['price']."</strong></td>
   </tr>
   <tr> 
     <td colspan=2><table width='98%' border=0 align=right cellpadding=3 cellspacing=1><tr><td>".$r[psay]."</td></tr></table></td>
@@ -29,32 +29,32 @@ function ShowPs($pid){
 	return $r['price'];
 }
 
-//æ˜¾ç¤ºæ”¯ä»˜æ–¹å¼
+//ÏÔÊ¾Ö§¸¶·½Ê½
 function ShowPayfs($payfsid,$r,$price){
 	global $empire,$public_r,$dbtbpre,$totalr,$shoppr;
 	$payfsid=(int)$payfsid;
 	$add=$empire->fetch1("select payid,payname,payurl,paysay,userpay,userfen from {$dbtbpre}enewsshoppayfs where payid='$payfsid' and isclose=0");
 	if(empty($add[payid]))
 	{
-		printerror('è¯·é€‰æ‹©æ”¯ä»˜æ–¹å¼','',1,0,1);
+		printerror('ÇëÑ¡ÔñÖ§¸¶·½Ê½','',1,0,1);
 	}
-	//æ€»é‡‘é¢
+	//×Ü½ğ¶î
 	$buyallmoney=$totalr['totalmoney']+$price-$totalr['pretotal'];
 	if($add[userfen]&&$r[fp])
 	{
 		printerror("FenNotFp","history.go(-1)",1);
 	}
-	//å‘ç¥¨
+	//·¢Æ±
 	if($r[fp])
 	{
 		$fptotal=($totalr['totalmoney']-$totalr['pretotal'])*($shoppr[fpnum]/100);
-		$afp="+å‘ç¥¨è´¹(".$fptotal.")";
+		$afp="+·¢Æ±·Ñ(".$fptotal.")";
 		$buyallmoney+=$fptotal;
 	}
 	$buyallfen=$totalr['totalfen']+$price;
-	$returntotal="é‡‡è´­æ€»é¢(".$totalr['totalmoney'].")+é…é€è´¹(".$price.")".$afp."-ä¼˜æƒ (".$totalr['pretotal'].")=æ€»é¢(<b>".$buyallmoney." å…ƒ</b>)";
-	$mytotal="ç»“ç®—æ€»é‡‘é¢ä¸º:<b><font color=red>".$buyallmoney." å…ƒ</font></b> å…¨éƒ¨";
-	//æ˜¯å¦ç™»é™†
+	$returntotal="²É¹º×Ü¶î(".$totalr['totalmoney'].")+ÅäËÍ·Ñ(".$price.")".$afp."-ÓÅ»İ(".$totalr['pretotal'].")=×Ü¶î(<b>".$buyallmoney." Ôª</b>)";
+	$mytotal="½áËã×Ü½ğ¶îÎª:<b><font color=red>".$buyallmoney." Ôª</font></b> È«²¿";
+	//ÊÇ·ñµÇÂ½
 	if($add[userfen]||$add[userpay])
 	{
 		if(!getcvar('mluserid'))
@@ -62,17 +62,17 @@ function ShowPayfs($payfsid,$r,$price){
 			printerror("NotLoginTobuy","history.go(-1)",1);
 		}
 		$user=islogin();
-		//ç‚¹æ•°è´­ä¹°
+		//µãÊı¹ºÂò
 		if($add[userfen])
 		{
 			if($buyallfen>$user[userfen])
 			{
 				printerror("NotEnoughFenBuy","history.go(-1)",1);
 			}
-			$returntotal="é‡‡è´­æ€»ç‚¹æ•°(".$totalr['totalfen'].")+é…é€ç‚¹æ•°è´¹(".$price.")=æ€»ç‚¹æ•°(<b>".$buyallfen." ç‚¹</b>)";
-			$mytotal="ç»“ç®—æ€»ç‚¹æ•°ä¸º:<b><font color=red>".$buyallfen." ç‚¹</font></b> å…¨éƒ¨";
+			$returntotal="²É¹º×ÜµãÊı(".$totalr['totalfen'].")+ÅäËÍµãÊı·Ñ(".$price.")=×ÜµãÊı(<b>".$buyallfen." µã</b>)";
+			$mytotal="½áËã×ÜµãÊıÎª:<b><font color=red>".$buyallfen." µã</font></b> È«²¿";
 		}
-		else//æ‰£é™¤ä½™é¢
+		else//¿Û³ıÓà¶î
 		{
 			if($buyallmoney>$user[money])
 			{
@@ -89,8 +89,8 @@ function ShowPayfs($payfsid,$r,$price){
 <!DOCTYPE HTML PUBLIC -//W3C//DTD HTML 4.01 Transitional//EN>
 <html>
 <head>
-<meta http-equiv=Content-Type content=text/html; charset=utf-8>
-<title>è®¢å•ç¡®è®¤</title>
+<meta http-equiv=Content-Type content=text/html; charset=gb2312>
+<title>¶©µ¥È·ÈÏ</title>
 <link href=../../data/images/css.css rel=stylesheet type=text/css>
 </head>
 
@@ -99,13 +99,13 @@ function ShowPayfs($payfsid,$r,$price){
 <input type=hidden name=enews value=AddDd>
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
     <tr> 
-      <td height="27" bgcolor="#FFFFFF"><strong>è®¢å•å·: 
+      <td height="27" bgcolor="#FFFFFF"><strong>¶©µ¥ºÅ: 
         <?=$ddno?>
         <input name="ddno" type="hidden" id="ddno" value="<?=$ddno?>">
         </strong></td>
     </tr>
     <tr> 
-      <td height="23" bgcolor="#EFEFEF"><strong>é€‰æ‹©çš„å•†å“</strong></td>
+      <td height="23" bgcolor="#EFEFEF"><strong>Ñ¡ÔñµÄÉÌÆ·</strong></td>
     </tr>
     <tr> 
       <td> 
@@ -115,7 +115,7 @@ function ShowPayfs($payfsid,$r,$price){
 	  $totalr['totalmoney']=$totalmoney;
 	  $totalr['buytype']=$buytype;
 	  $totalr['totalfen']=$totalfen;
-	  //ä¼˜æƒ ç 
+	  //ÓÅ»İÂë
 	  $prer=array();
 	  $pretotal=0;
 	  if($r['precode'])
@@ -129,12 +129,12 @@ function ShowPayfs($payfsid,$r,$price){
 	  </td>
     </tr>
     <tr> 
-      <td height="23" bgcolor="#EFEFEF"><strong>æ”¶è´§äººä¿¡æ¯</strong></td>
+      <td height="23" bgcolor="#EFEFEF"><strong>ÊÕ»õÈËĞÅÏ¢</strong></td>
     </tr>
     <tr> 
       <td><table width="100%%" border="0" cellspacing="1" cellpadding="3">
           <tr> 
-            <td width="20%">çœŸå®å§“å:</td>
+            <td width="20%">ÕæÊµĞÕÃû:</td>
             <td width="80%"> 
               <?=$r[truename]?>
               <input name="truename" type="hidden" id="truename" value="<?=$r[truename]?>">            </td>
@@ -152,47 +152,47 @@ function ShowPayfs($payfsid,$r,$price){
               <input name="msn" type="hidden" id="msn" value="<?=$r[msn]?>"></td>
           </tr>
           <tr> 
-            <td>å›ºå®šç”µè¯:</td>
+            <td>¹Ì¶¨µç»°:</td>
             <td> 
               <?=$r[mycall]?>
               <input name="mycall" type="hidden" id="mycall" value="<?=$r[mycall]?>">            </td>
           </tr>
           <tr> 
-            <td>ç§»åŠ¨ç”µè¯:</td>
+            <td>ÒÆ¶¯µç»°:</td>
             <td> 
               <?=$r[phone]?>
               <input name="phone" type="hidden" id="phone" value="<?=$r[phone]?>"></td>
           </tr>
           <tr> 
-            <td>è”ç³»é‚®ç®±:</td>
+            <td>ÁªÏµÓÊÏä:</td>
             <td> 
               <?=$r[email]?>
               <input name="email" type="hidden" id="email" value="<?=$r[email]?>">            </td>
           </tr>
           <tr> 
-            <td>è”ç³»åœ°å€:</td>
+            <td>ÁªÏµµØÖ·:</td>
             <td> 
               <?=$r[address]?>
               <input name="address" type="hidden" id="address" value="<?=$r[address]?>" size="60">            </td>
           </tr>
           <tr> 
-            <td>é‚®ç¼–:</td>
+            <td>ÓÊ±à:</td>
             <td> 
               <?=$r[zip]?>
               <input name="zip" type="hidden" id="zip" value="<?=$r[zip]?>" size="8">            </td>
           </tr>
           <tr>
-            <td>å‘¨è¾¹æ ‡å¿—å»ºç­‘:</td>
+            <td>ÖÜ±ß±êÖ¾½¨Öş:</td>
             <td><?=$r[signbuild]?>
               <input name="signbuild" type="hidden" id="signbuild" value="<?=$r[signbuild]?>" size="8"></td>
           </tr>
           <tr>
-            <td>æœ€ä½³é€è´§æ—¶é—´:</td>
+            <td>×î¼ÑËÍ»õÊ±¼ä:</td>
             <td><?=$r[besttime]?>
               <input name="besttime" type="hidden" id="besttime" value="<?=$r[besttime]?>" size="8"></td>
           </tr>
           <tr> 
-            <td>å¤‡æ³¨:</td>
+            <td>±¸×¢:</td>
             <td> 
               <?=nl2br($r[bz])?> <input name="bz" type="hidden" value="<?=$r[bz]?>" size="8">            </td>
           </tr>
@@ -203,7 +203,7 @@ function ShowPayfs($payfsid,$r,$price){
 	{
 	?>
     <tr> 
-      <td height="23" bgcolor="#EFEFEF"><strong>é€‰æ‹©é…é€æ–¹å¼ 
+      <td height="23" bgcolor="#EFEFEF"><strong>Ñ¡ÔñÅäËÍ·½Ê½ 
         <input name="psid" type="hidden" id="psid" value="<?=$r[psid]?>" size="8">
         </strong></td>
     </tr>
@@ -221,7 +221,7 @@ function ShowPayfs($payfsid,$r,$price){
 	{
 	?>
     <tr> 
-      <td height="23" bgcolor="#EFEFEF"><strong>é€‰æ‹©æ”¯ä»˜æ–¹å¼ 
+      <td height="23" bgcolor="#EFEFEF"><strong>Ñ¡ÔñÖ§¸¶·½Ê½ 
         <input name="payfsid" type="hidden" id="payfsid" value="<?=$r[payfsid]?>" size="8">
         </strong></td>
     </tr>
@@ -239,20 +239,20 @@ function ShowPayfs($payfsid,$r,$price){
 	{
 	?>
     <tr>
-      <td height="23" bgcolor="#EFEFEF"><strong>å‘ç¥¨ä¿¡æ¯</strong></td>
+      <td height="23" bgcolor="#EFEFEF"><strong>·¢Æ±ĞÅÏ¢</strong></td>
     </tr>
     <tr>
       <td height="23" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr>
-          <td width="20%">å‘ç¥¨è´¹ç”¨:</td>
+          <td width="20%">·¢Æ±·ÑÓÃ:</td>
           <td width="80%"><?=$shoppr[fpnum]?>%</td>
         </tr>
         <tr>
-          <td>å‘ç¥¨æŠ¬å¤´:</td>
+          <td>·¢Æ±Ì§Í·:</td>
           <td><?=$r['fptt']?></td>
         </tr>
         <tr>
-          <td>å‘ç¥¨åç§°:</td>
+          <td>·¢Æ±Ãû³Æ:</td>
           <td><?=$r['fpname']?></td>
         </tr>
       </table>
@@ -264,22 +264,22 @@ function ShowPayfs($payfsid,$r,$price){
 	}
 	?>
     <tr>
-      <td height="23" bgcolor="#EFEFEF"><strong>ä¼˜æƒ </strong></td>
+      <td height="23" bgcolor="#EFEFEF"><strong>ÓÅ»İ</strong></td>
     </tr>
     <tr>
       <td height="23" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr>
-          <td width="20%">ä¼˜æƒ ç :</td>
+          <td width="20%">ÓÅ»İÂë:</td>
           <td width="80%"><?=$prer[precode]?><input name="precode" type="hidden" id="precode" value="<?=$r[precode]?>"></td>
         </tr>
         <tr>
-          <td>ä¼˜æƒ é‡‘é¢:</td>
+          <td>ÓÅ»İ½ğ¶î:</td>
           <td><?=$pretotal?></td>
         </tr>
       </table></td>
     </tr>
     <tr>
-      <td height="23" bgcolor="#EFEFEF"><strong>ç»“ç®—ä¿¡æ¯ 
+      <td height="23" bgcolor="#EFEFEF"><strong>½áËãĞÅÏ¢ 
         </strong></td>
     </tr>
     <tr>
@@ -296,9 +296,9 @@ function ShowPayfs($payfsid,$r,$price){
     </tr>
     <tr height=27> 
       <td><div align="center"> 
-          <input type="button" name="Submit3" value=" ä¸Šä¸€æ­¥ " onclick="history.go(-1)">
+          <input type="button" name="Submit3" value=" ÉÏÒ»²½ " onclick="history.go(-1)">
 		  &nbsp;&nbsp;
-		  <input type="submit" name="Submit" value=" æäº¤è®¢å• ">
+		  <input type="submit" name="Submit" value=" Ìá½»¶©µ¥ ">
         </div></td>
     </tr>
     <tr> 

@@ -6,27 +6,27 @@ require("../../member/class/user.php");
 require("../../data/dbcache/class.php");
 require "../".LoadLang("pub/fun.php");
 require("../class/ShopSysFun.php");
-eCheckCloseMods('shop');//å…³é—­æ¨¡å—
+eCheckCloseMods('shop');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//æ˜¯å¦ç™»é™†
+//ÊÇ·ñµÇÂ½
 $user=islogin();
-//æ›´æ–°åº“å­˜
+//¸üĞÂ¿â´æ
 $shoppr=ShopSys_ReturnSet();
 ShopSys_TimeCutMaxnum($user['userid'],$shoppr);
 
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=16;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=10;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=16;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=10;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $add="";
 $search='';
 $totalquery="select count(*) as total from {$dbtbpre}enewsshopdd where userid='$user[userid]'";
 $query="select ddid,ddno,ddtime,userid,username,outproduct,haveprice,checked,truename,psid,psname,pstotal,alltotal,payfsid,payfsname,payby,alltotalfen,fp,fptotal,pretotal from {$dbtbpre}enewsshopdd where userid='$user[userid]'";
-//æœç´¢
+//ËÑË÷
 $sear=(int)$_GET['sear'];
 $keyboard='';
 $starttime='';
@@ -35,7 +35,7 @@ if($sear)
 {
 	$keyboard=RepPostVar($_GET['keyboard']);
 	$add=" and ddno like '%$keyboard%'";
-	//æ—¶é—´
+	//Ê±¼ä
 	$starttime=RepPostVar($_GET['starttime']);
 	$endtime=RepPostVar($_GET['endtime']);
 	if($endtime!="")
@@ -47,12 +47,12 @@ if($sear)
 	$search="&sear=1&keyboard=$keyboard&starttime=$starttime&endtime=$endtime";
 }
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query.=$add;
 $query=$query." order by ddid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page1($num,$line,$page_line,$start,$page,$search);
-//å¯¼å…¥æ¨¡æ¿
+//µ¼ÈëÄ£°å
 require(ECMS_PATH.'e/template/ShopSys/ListDd.php');
 db_close();
 $empire=null;

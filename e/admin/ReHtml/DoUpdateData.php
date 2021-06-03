@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,14 +15,14 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"changedata");
-//æ ç›®
+//À¸Ä¿
 $fcfile="../../data/fc/ListEnews.php";
 $class="<script src=../../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
 {$class=ShowClass_AddClass("",0,0,"|-",0,0);}
-//åˆ·æ–°è¡¨
+//Ë¢ÐÂ±í
 $retable="";
 $selecttable="";
 $cleartable='';
@@ -43,31 +43,31 @@ while($tr=$empire->fetch($tsql))
 	$selecttable.="<option value='".$tr[tbname]."'>".$tr[tname]."</option>";
 	$cleartable.="<option value='".$tr[tid]."'>".$tr[tname]."</option>";
 }
-//ä¸“é¢˜
+//×¨Ìâ
 $ztclass="";
 $ztsql=$empire->query("select ztid,ztname from {$dbtbpre}enewszt order by ztid desc");
 while($ztr=$empire->fetch($ztsql))
 {
 	$ztclass.="<option value='".$ztr['ztid']."'>".$ztr['ztname']."</option>";
 }
-//é€‰æ‹©æ—¥æœŸ
+//Ñ¡ÔñÈÕÆÚ
 $todaydate=date("Y-m-d");
 $todaytime=time();
 $changeday="<select name=selectday onchange=\"document.reform.startday.value=this.value;document.reform.endday.value='".$todaydate."'\">
-<option value='".$todaydate."'>--é€‰æ‹©--</option>
-<option value='".$todaydate."'>ä»Šå¤©</option>
-<option value='".ToChangeTime($todaytime,7)."'>ä¸€å‘¨</option>
-<option value='".ToChangeTime($todaytime,30)."'>ä¸€æœˆ</option>
-<option value='".ToChangeTime($todaytime,90)."'>ä¸‰æœˆ</option>
-<option value='".ToChangeTime($todaytime,180)."'>åŠå¹´</option>
-<option value='".ToChangeTime($todaytime,365)."'>ä¸€å¹´</option>
+<option value='".$todaydate."'>--Ñ¡Ôñ--</option>
+<option value='".$todaydate."'>½ñÌì</option>
+<option value='".ToChangeTime($todaytime,7)."'>Ò»ÖÜ</option>
+<option value='".ToChangeTime($todaytime,30)."'>Ò»ÔÂ</option>
+<option value='".ToChangeTime($todaytime,90)."'>ÈýÔÂ</option>
+<option value='".ToChangeTime($todaytime,180)."'>°ëÄê</option>
+<option value='".ToChangeTime($todaytime,365)."'>Ò»Äê</option>
 </select>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ•°æ®æ•´ç†</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Êý¾ÝÕûÀí</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 <script>
@@ -86,167 +86,167 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="12%" height="25">ä½ç½®ï¼š<a href="DoUpdateData.php<?=$ecms_hashur['whehref']?>">æ•°æ®æ•´ç†</a></td>
+    <td width="12%" height="25">Î»ÖÃ£º<a href="DoUpdateData.php<?=$ecms_hashur['whehref']?>">Êý¾ÝÕûÀí</a></td>
     <td width="42%"><table width="460" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr> 
-          <td> <div align="center">[<a href="#IfTotalPlNum">æ‰¹é‡æ›´æ–°ä¿¡æ¯è¯„è®ºæ•°</a>]</div></td>
-          <td> <div align="center">[<a href="#IfOtherInfo">æ‰¹é‡æ›´æ–°ç›¸å…³é“¾æŽ¥</a>]</div></td>
-          <td><div align="center">[<a href="#IfClearBreakInfo">æ¸…ç†å¤šä½™ä¿¡æ¯</a>]</div></td>
+          <td> <div align="center">[<a href="#IfTotalPlNum">ÅúÁ¿¸üÐÂÐÅÏ¢ÆÀÂÛÊý</a>]</div></td>
+          <td> <div align="center">[<a href="#IfOtherInfo">ÅúÁ¿¸üÐÂÏà¹ØÁ´½Ó</a>]</div></td>
+          <td><div align="center">[<a href="#IfClearBreakInfo">ÇåÀí¶àÓàÐÅÏ¢</a>]</div></td>
         </tr>
     </table></td>
     <td width="46%"><div align="right" class="emenubutton">
-      <input type="button" name="Submit52" value="æ•°æ®æ›´æ–°ä¸­å¿ƒ" onclick="self.location.href='ChangeData.php<?=$ecms_hashur['whehref']?>';">
+      <input type="button" name="Submit52" value="Êý¾Ý¸üÐÂÖÐÐÄ" onclick="self.location.href='ChangeData.php<?=$ecms_hashur['whehref']?>';">
       &nbsp;&nbsp;
-      <input type="button" name="Submit522" value="æ›´æ–°ä¿¡æ¯é¡µåœ°å€" onclick="self.location.href='ReInfoUrl.php<?=$ecms_hashur['whehref']?>';">
+      <input type="button" name="Submit522" value="¸üÐÂÐÅÏ¢Ò³µØÖ·" onclick="self.location.href='ReInfoUrl.php<?=$ecms_hashur['whehref']?>';">
 	  &nbsp;&nbsp;
-      <input type="button" name="Submit522" value="æ›´æ–°åŠ¨æ€é¡µç¼“å­˜" onclick="self.location.href='ChangePageCache.php<?=$ecms_hashur['whehref']?>';">
+      <input type="button" name="Submit522" value="¸üÐÂ¶¯Ì¬Ò³»º´æ" onclick="self.location.href='ChangePageCache.php<?=$ecms_hashur['whehref']?>';">
     </div></td>
   </tr>
 </table>
-<form action="../ecmspl.php" method="get" name="form1" target="_blank" onsubmit="return confirm('ç¡®è®¤è¦æ›´æ–°?');">
+<form action="../ecmspl.php" method="get" name="form1" target="_blank" onsubmit="return confirm('È·ÈÏÒª¸üÐÂ?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id=IfTotalPlNum>
   <?=$ecms_hashur['form']?>
     <input name="from" type="hidden" id="from" value="ReHtml/DoUpdateData.php<?=$ecms_hashur['whehref']?>">
     <tr class="header"> 
-      <td height="25"> <div align="center">æ‰¹é‡æ›´æ–°ä¿¡æ¯è¯„è®ºæ•°</div></td>
+      <td height="25"> <div align="center">ÅúÁ¿¸üÐÂÐÅÏ¢ÆÀÂÛÊý</div></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <div align="center"> 
           <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
             <tr> 
-              <td height="25">æ•°æ®è¡¨ï¼š</td>
+              <td height="25">Êý¾Ý±í£º</td>
               <td height="25"> <select name="tbname" id="tbname">
-                  <option value=''>------ é€‰æ‹©æ•°æ®è¡¨ ------</option>
+                  <option value=''>------ Ñ¡ÔñÊý¾Ý±í ------</option>
                   <?=$selecttable?>
                 </select>
                 (*) </td>
             </tr>
             <tr> 
-              <td height="25">æ ç›®</td>
+              <td height="25">À¸Ä¿</td>
               <td height="25"><select name="classid">
-                  <option value="0">æ‰€æœ‰æ ç›®</option>
+                  <option value="0">ËùÓÐÀ¸Ä¿</option>
                   <?=$class?>
                 </select>
-                <font color="#666666">(å¦‚é€‰æ‹©çˆ¶æ ç›®ï¼Œå°†æ›´æ–°æ‰€æœ‰å­æ ç›®)</font></td>
+                <font color="#666666">(ÈçÑ¡Ôñ¸¸À¸Ä¿£¬½«¸üÐÂËùÓÐ×ÓÀ¸Ä¿)</font></td>
             </tr>
             <tr> 
               <td width="23%" height="25"> <input name="retype" type="radio" value="0" checked>
-                æŒ‰æ—¶é—´æ›´æ–°ï¼š</td>
-              <td width="77%" height="25">ä»Ž 
+                °´Ê±¼ä¸üÐÂ£º</td>
+              <td width="77%" height="25">´Ó 
                 <input name="startday" type="text" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-                åˆ° 
+                µ½ 
                 <input name="endday" type="text" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-                ä¹‹é—´çš„ä¿¡æ¯ <font color="#666666">(ä¸å¡«å°†æ›´æ–°æ‰€æœ‰ä¿¡æ¯)</font></td>
+                Ö®¼äµÄÐÅÏ¢ <font color="#666666">(²»Ìî½«¸üÐÂËùÓÐÐÅÏ¢)</font></td>
             </tr>
             <tr> 
               <td height="25"> <input name="retype" type="radio" value="1">
-                æŒ‰IDæ›´æ–°ï¼š</td>
-              <td height="25">ä»Ž 
+                °´ID¸üÐÂ£º</td>
+              <td height="25">´Ó 
                 <input name="startid" type="text" value="0" size="6">
-                åˆ° 
+                µ½ 
                 <input name="endid" type="text" value="0" size="6">
-                ä¹‹é—´çš„ä¿¡æ¯ <font color="#666666">(ä¸¤ä¸ªå€¼ä¸º0å°†æ›´æ–°æ‰€æœ‰ä¿¡æ¯)</font></td>
+                Ö®¼äµÄÐÅÏ¢ <font color="#666666">(Á½¸öÖµÎª0½«¸üÐÂËùÓÐÐÅÏ¢)</font></td>
             </tr>
             <tr>
-              <td height="25">æŒ‡å®šå›ºå®šä¿¡æ¯IDï¼š</td>
+              <td height="25">Ö¸¶¨¹Ì¶¨ÐÅÏ¢ID£º</td>
               <td height="25"><input name="doids" type="text" id="doids" size="50">
-                <font color="#666666">ï¼ˆå¤šä¸ªIDå¯ç”¨åŠè§’é€—å·â€œ,â€éš”å¼€ï¼‰</font></td>
+                <font color="#666666">£¨¶à¸öID¿ÉÓÃ°ë½Ç¶ººÅ¡°,¡±¸ô¿ª£©</font></td>
             </tr>
             <tr> 
               <td height="25">&nbsp;</td>
-              <td height="25"><input type="submit" name="Submit62" value="å¼€å§‹æ›´æ–°"> 
-                <input type="reset" name="Submit72" value="é‡ç½®"> <input name="enews" type="hidden" value="UpdateAllInfoPlnum">              </td>
+              <td height="25"><input type="submit" name="Submit62" value="¿ªÊ¼¸üÐÂ"> 
+                <input type="reset" name="Submit72" value="ÖØÖÃ"> <input name="enews" type="hidden" value="UpdateAllInfoPlnum">              </td>
             </tr>
             <tr> 
-              <td height="25" colspan="2"><font color="#666666">è¯´æ˜Žï¼šå½“ä¿¡æ¯è¡¨é‡Œçš„è¯„è®ºæ•°ä¸Žå®žé™…è¯„è®ºæ•°ä¸ç¬¦æ—¶ä½¿ç”¨ã€‚</font></td>
+              <td height="25" colspan="2"><font color="#666666">ËµÃ÷£ºµ±ÐÅÏ¢±íÀïµÄÆÀÂÛÊýÓëÊµ¼ÊÆÀÂÛÊý²»·ûÊ±Ê¹ÓÃ¡£</font></td>
             </tr>
           </table>
         </div></td>
     </tr>
   </table>
 </form>
-<form action="../ecmscom.php" method="get" name="form1" target="_blank" onsubmit="return confirm('ç¡®è®¤è¦æ›´æ–°?');">
+<form action="../ecmscom.php" method="get" name="form1" target="_blank" onsubmit="return confirm('È·ÈÏÒª¸üÐÂ?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id=IfOtherInfo>
   <?=$ecms_hashur['form']?>
     <input name="from" type="hidden" id="from" value="ReHtml/DoUpdateData.php<?=$ecms_hashur['whehref']?>">
     <tr class="header"> 
-      <td height="25"> <div align="center">æ‰¹é‡æ›´æ–°ç›¸å…³é“¾æŽ¥</div></td>
+      <td height="25"> <div align="center">ÅúÁ¿¸üÐÂÏà¹ØÁ´½Ó</div></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <div align="center"> 
           <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
             <tr> 
-              <td height="25">æ•°æ®è¡¨ï¼š</td>
+              <td height="25">Êý¾Ý±í£º</td>
               <td height="25"> <select name="tbname" id="tbname">
-                  <option value=''>------ é€‰æ‹©æ•°æ®è¡¨ ------</option>
+                  <option value=''>------ Ñ¡ÔñÊý¾Ý±í ------</option>
                   <?=$selecttable?>
                 </select>
                 (*) </td>
             </tr>
             <tr> 
-              <td height="25">æ ç›®</td>
+              <td height="25">À¸Ä¿</td>
               <td height="25"><select name="classid">
-                  <option value="0">æ‰€æœ‰æ ç›®</option>
+                  <option value="0">ËùÓÐÀ¸Ä¿</option>
                   <?=$class?>
                 </select>
-                <font color="#666666">(å¦‚é€‰æ‹©çˆ¶æ ç›®ï¼Œå°†æ›´æ–°æ‰€æœ‰å­æ ç›®)</font></td>
+                <font color="#666666">(ÈçÑ¡Ôñ¸¸À¸Ä¿£¬½«¸üÐÂËùÓÐ×ÓÀ¸Ä¿)</font></td>
             </tr>
             <tr> 
               <td width="23%" height="25"> <input name="retype" type="radio" value="0" checked>
-                æŒ‰æ—¶é—´æ›´æ–°ï¼š</td>
-              <td width="77%" height="25">ä»Ž 
+                °´Ê±¼ä¸üÐÂ£º</td>
+              <td width="77%" height="25">´Ó 
                 <input name="startday" type="text" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-                åˆ° 
+                µ½ 
                 <input name="endday" type="text" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-                ä¹‹é—´çš„ä¿¡æ¯ <font color="#666666">(ä¸å¡«å°†æ›´æ–°æ‰€æœ‰ä¿¡æ¯)</font></td>
+                Ö®¼äµÄÐÅÏ¢ <font color="#666666">(²»Ìî½«¸üÐÂËùÓÐÐÅÏ¢)</font></td>
             </tr>
             <tr> 
               <td height="25"> <input name="retype" type="radio" value="1">
-                æŒ‰IDæ›´æ–°ï¼š</td>
-              <td height="25">ä»Ž 
+                °´ID¸üÐÂ£º</td>
+              <td height="25">´Ó 
                 <input name="startid" type="text" value="0" size="6">
-                åˆ° 
+                µ½ 
                 <input name="endid" type="text" value="0" size="6">
-                ä¹‹é—´çš„ä¿¡æ¯ <font color="#666666">(ä¸¤ä¸ªå€¼ä¸º0å°†æ›´æ–°æ‰€æœ‰ä¿¡æ¯)</font></td>
+                Ö®¼äµÄÐÅÏ¢ <font color="#666666">(Á½¸öÖµÎª0½«¸üÐÂËùÓÐÐÅÏ¢)</font></td>
             </tr>
             <tr> 
               <td height="25">&nbsp;</td>
-              <td height="25"><input type="submit" name="Submit62" value="å¼€å§‹æ›´æ–°"> 
-                <input type="reset" name="Submit72" value="é‡ç½®"> <input name="enews" type="hidden" value="ChangeInfoOtherLink"> 
+              <td height="25"><input type="submit" name="Submit62" value="¿ªÊ¼¸üÐÂ"> 
+                <input type="reset" name="Submit72" value="ÖØÖÃ"> <input name="enews" type="hidden" value="ChangeInfoOtherLink"> 
               </td>
             </tr>
             <tr> 
-              <td height="25" colspan="2"><font color="#666666">å‹æƒ…æé†’ï¼šæ­¤åŠŸèƒ½æ¯”è¾ƒè€—èµ„æºï¼Œéžå¿…è¦æ—¶è¯·å‹¿ç”¨ã€‚</font></td>
+              <td height="25" colspan="2"><font color="#666666">ÓÑÇéÌáÐÑ£º´Ë¹¦ÄÜ±È½ÏºÄ×ÊÔ´£¬·Ç±ØÒªÊ±ÇëÎðÓÃ¡£</font></td>
             </tr>
           </table>
         </div></td>
     </tr>
   </table>
 </form>
-<form action="../ecmscom.php" method="POST" name="form1" onsubmit="return confirm('ç¡®è®¤è¦æ¸…ç†?');">
+<form action="../ecmscom.php" method="POST" name="form1" onsubmit="return confirm('È·ÈÏÒªÇåÀí?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="IfClearBreakInfo">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2"> <div align="center">æ¸…ç†å¤šä½™ä¿¡æ¯</div></td>
+      <td height="25" colspan="2"> <div align="center">ÇåÀí¶àÓàÐÅÏ¢</div></td>
     </tr>
     <tr> 
-      <td width="20%" height="25" bgcolor="#FFFFFF">é€‰æ‹©è¦æ¸…ç†çš„æ•°æ®è¡¨</td>
+      <td width="20%" height="25" bgcolor="#FFFFFF">Ñ¡ÔñÒªÇåÀíµÄÊý¾Ý±í</td>
       <td width="80%" bgcolor="#FFFFFF"><select name="tid" id="tid">
-          <option value=''>------ é€‰æ‹©æ•°æ®è¡¨ ------</option>
+          <option value=''>------ Ñ¡ÔñÊý¾Ý±í ------</option>
           <?=$cleartable?>
         </select>
         *</td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td bgcolor="#FFFFFF"><input type="submit" name="Submit6" value="é©¬ä¸Šæ¸…ç†"> 
+      <td bgcolor="#FFFFFF"><input type="submit" name="Submit6" value="ÂíÉÏÇåÀí"> 
         <input name="enews" type="hidden" id="enews2" value="ClearBreakInfo"> </td>
     </tr>
   </table>
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
-      <td height="25"><font color="#666666">è¯´æ˜Ž: å½“ç”Ÿæˆä¿¡æ¯å†…å®¹é¡µæ—¶æç¤ºå¦‚ä¸‹é”™è¯¯æ—¶ä½¿ç”¨æœ¬åŠŸèƒ½æ¥æ¸…ç†å¤šä½™ä¿¡æ¯ï¼š<br>
-      ç”Ÿæˆå†…å®¹é¡µæç¤ºâ€œTable '*.phome_ecms_' doesn't exist......update ***_ecms_ set havehtml=1   where id='' limit 1â€æ—¶ä½¿ç”¨ã€‚</font></td>
+      <td height="25"><font color="#666666">ËµÃ÷: µ±Éú³ÉÐÅÏ¢ÄÚÈÝÒ³Ê±ÌáÊ¾ÈçÏÂ´íÎóÊ±Ê¹ÓÃ±¾¹¦ÄÜÀ´ÇåÀí¶àÓàÐÅÏ¢£º<br>
+      Éú³ÉÄÚÈÝÒ³ÌáÊ¾¡°Table '*.phome_ecms_' doesn't exist......update ***_ecms_ set havehtml=1   where id='' limit 1¡±Ê±Ê¹ÓÃ¡£</font></td>
     </tr>
   </table>
 </form>

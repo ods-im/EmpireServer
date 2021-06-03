@@ -6,10 +6,10 @@ require("../class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 $user=islogin();
 $r=ReturnUserInfo($user[userid]);
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/EditSafeInfo.php');
 db_close();
 $empire=null;

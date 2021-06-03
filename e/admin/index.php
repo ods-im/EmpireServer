@@ -4,9 +4,9 @@ define('EmpireCMSAPage','login');
 define('EmpireCMSNFPage','1');
 require("../class/connect.php");
 require("../class/functions.php");
-//é£æ ¼
+//·ç¸ñ
 $loginadminstyleid=EcmsReturnAdminStyle();
-//å˜é‡å¤„ç†
+//±äÁ¿´¦Àí
 $empirecmskey1='';
 $empirecmskey2='';
 $empirecmskey3='';
@@ -38,10 +38,10 @@ else
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¸å›½CMS ï¼ ç¨³å®šå¯é ã€å®‰å…¨çœå¿ƒ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>µÛ¹úCMS £­ ÎÈ¶¨¿É¿¿¡¢°²È«Ê¡ĞÄ</title>
 <link rel="stylesheet" href="loginimg/css.css" type="text/css">
-<base onmouseover="window.status='å¸å›½CMS ï¼ ç¨³å®šå¯é ã€å®‰å…¨çœå¿ƒ';return true">
+<base onmouseover="window.status='µÛ¹úCMS £­ ÎÈ¶¨¿É¿¿¡¢°²È«Ê¡ĞÄ';return true">
 
 <script>
 if(self!=top)
@@ -51,13 +51,13 @@ if(self!=top)
 function CheckLogin(obj){
 	if(obj.username.value=='')
 	{
-		alert('è¯·è¾“å…¥ç”¨æˆ·å');
+		alert('ÇëÊäÈëÓÃ»§Ãû');
 		obj.username.focus();
 		return false;
 	}
 	if(obj.password.value=='')
 	{
-		alert('è¯·è¾“å…¥ç™»å½•å¯†ç ');
+		alert('ÇëÊäÈëµÇÂ¼ÃÜÂë');
 		obj.password.focus();
 		return false;
 	}
@@ -65,7 +65,7 @@ function CheckLogin(obj){
 	{
 		if(obj.loginauth.value=='')
 		{
-			alert('è¯·è¾“å…¥è®¤è¯ç ');
+			alert('ÇëÊäÈëÈÏÖ¤Âë');
 			obj.loginauth.focus();
 			return false;
 		}
@@ -74,7 +74,7 @@ function CheckLogin(obj){
 	{
 		if(obj.key.value=='')
 		{
-			alert('è¯·è¾“å…¥éªŒè¯ç ');
+			alert('ÇëÊäÈëÑéÖ¤Âë');
 			obj.key.focus();
 			return false;
 		}
@@ -84,7 +84,7 @@ function CheckLogin(obj){
 }
 
 function edoshowkey(showid,vname){
-	document.getElementById(showid).innerHTML='<img src="ShowKey.php?v='+vname+'&t='+Math.random()+'" name="'+vname+'KeyImg" id="'+vname+'KeyImg" align="bottom" onclick=edoshowkey("'+showid+'","'+vname+'") title="çœ‹ä¸æ¸…æ¥š,ç‚¹å‡»åˆ·æ–°">';
+	document.getElementById(showid).innerHTML='<img src="ShowKey.php?v='+vname+'&t='+Math.random()+'" name="'+vname+'KeyImg" id="'+vname+'KeyImg" align="bottom" onclick=edoshowkey("'+showid+'","'+vname+'") title="¿´²»Çå³ş,µã»÷Ë¢ĞÂ">';
 }
 </script>
 </head>
@@ -142,12 +142,12 @@ function edoshowkey(showid,vname){
     <tr> 
       <td height="80"> <table width="230" height="100%" border="0" align="right" cellpadding="0" cellspacing="0">
           <tr> 
-            <td width="50" height="27">ç”¨æˆ·å: </td>
+            <td width="50" height="27">ÓÃ»§Ãû: </td>
             <td colspan="2"> <input name="username" type="text" class="b-form2" size="22"> 
             </td>
           </tr>
           <tr> 
-            <td height="27">å¯†&nbsp; &nbsp;ç : </td>
+            <td height="27">ÃÜ&nbsp; &nbsp;Âë: </td>
             <td colspan="2"> <input name="password" type="password" class="b-form2" size="22"> 
             </td>
           </tr>
@@ -156,27 +156,27 @@ function edoshowkey(showid,vname){
 		  {
 		  ?>
           <tr> 
-            <td height="27">è®¤è¯ç : </td>
+            <td height="27">ÈÏÖ¤Âë: </td>
             <td colspan="2"><input name="loginauth" type="password" id="loginauth" class="b-form2" size="22"></td>
           </tr>
           <?php
 		  }
 		  ?>
           <tr>
-            <td height="27">æ&nbsp; &nbsp;é—®: </td>
+            <td height="27">Ìá&nbsp; &nbsp;ÎÊ: </td>
             <td colspan="2"><select name="equestion" id="equestion" onchange="if(this.options[this.selectedIndex].value==0){showanswer.style.display='none';}else{showanswer.style.display='';}">
-                <option value="0">æ— å®‰å…¨æé—®</option>
-                <option value="1">æ¯äº²çš„åå­—</option>
-                <option value="2">çˆ·çˆ·çš„åå­—</option>
-                <option value="3">çˆ¶äº²å‡ºç”Ÿçš„åŸå¸‚</option>
-                <option value="4">æ‚¨å…¶ä¸­ä¸€ä½è€å¸ˆçš„åå­—</option>
-                <option value="5">æ‚¨ä¸ªäººè®¡ç®—æœºçš„å‹å·</option>
-                <option value="6">æ‚¨æœ€å–œæ¬¢çš„é¤é¦†åç§°</option>
-                <option value="7">é©¾é©¶æ‰§ç…§çš„æœ€åå››ä½æ•°å­—</option>
+                <option value="0">ÎŞ°²È«ÌáÎÊ</option>
+                <option value="1">Ä¸Ç×µÄÃû×Ö</option>
+                <option value="2">Ò¯Ò¯µÄÃû×Ö</option>
+                <option value="3">¸¸Ç×³öÉúµÄ³ÇÊĞ</option>
+                <option value="4">ÄúÆäÖĞÒ»Î»ÀÏÊ¦µÄÃû×Ö</option>
+                <option value="5">Äú¸öÈË¼ÆËã»úµÄĞÍºÅ</option>
+                <option value="6">Äú×îÏ²»¶µÄ²Í¹İÃû³Æ</option>
+                <option value="7">¼İÊ»Ö´ÕÕµÄ×îºóËÄÎ»Êı×Ö</option>
               </select></td>
           </tr>
           <tr id="showanswer">
-            <td height="27">ç­”&nbsp; &nbsp;æ¡ˆ: </td>
+            <td height="27">´ğ&nbsp; &nbsp;°¸: </td>
             <td colspan="2"><input name="eanswer" type="text" id="eanswer" class="b-form2" size="22"></td>
           </tr>
           <?php
@@ -184,20 +184,20 @@ function edoshowkey(showid,vname){
 		  {
 		  ?>
           <tr> 
-            <td height="27">éªŒè¯ç : </td>
+            <td height="27">ÑéÖ¤Âë: </td>
             <td width="83"> <input name="key" type="text" class="b-form2" size="9"> 
             </td>
-            <td width="97" id="checkkeyshowkey"><a href="#EmpireCMS" onclick="edoshowkey('checkkeyshowkey','checkkey');" title="ç‚¹å‡»æ˜¾ç¤ºéªŒè¯ç ">ç‚¹å‡»æ˜¾ç¤º</a></td>
+            <td width="97" id="checkkeyshowkey"><a href="#EmpireCMS" onclick="edoshowkey('checkkeyshowkey','checkkey');" title="µã»÷ÏÔÊ¾ÑéÖ¤Âë">µã»÷ÏÔÊ¾</a></td>
           </tr>
           <?php
 		  }
 		  ?>
           <tr> 
-            <td height="27">çª—&nbsp; &nbsp;å£: </td>
+            <td height="27">´°&nbsp; &nbsp;¿Ú: </td>
             <td colspan="2"><input type="radio" name="adminwindow" value="0" checked>
-              æ­£å¸¸ 
+              Õı³£ 
               <input type="radio" name="adminwindow" value="1">
-              å…¨å±</td>
+              È«ÆÁ</td>
           </tr>
           <tr> 
             <td height="27">&nbsp;</td>
@@ -235,7 +235,7 @@ function edoshowkey(showid,vname){
 </table>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr>
-    <td height="90"><div align="center"><a href="http://ebak.phome.net" target="_blank" title="EmpireBak+phpMyAdmin+é«˜å®‰å…¨"><img src="loginimg/ebakbanner.gif" width="523" style="border:1px solid #63CDEF;"></a></div></td>
+    <td height="90"><div align="center"><a href="http://ebak.phome.net" target="_blank" title="EmpireBak+phpMyAdmin+¸ß°²È«"><img src="loginimg/ebakbanner.gif" width="523" style="border:1px solid #63CDEF;"></a></div></td>
   </tr>
 </table>
 <script>

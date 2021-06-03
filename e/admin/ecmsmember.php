@@ -10,7 +10,7 @@ if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -20,45 +20,45 @@ $loginadminstyleid=$lur['adminstyleid'];
 hCheckEcmsRHash();
 require("../member/class/user.php");
 require("../class/memberfun.php");
-if($enews=='AddMemberF')//å¢åŠ ä¼šå‘˜å­—æ®µ
+if($enews=='AddMemberF')//Ôö¼Ó»áÔ±×Ö¶Î
 {
 	AddMemberF($_POST,$logininid,$loginin);
 }
-elseif($enews=='EditMemberF')//ä¿®æ”¹ä¼šå‘˜å­—æ®µ
+elseif($enews=='EditMemberF')//ĞŞ¸Ä»áÔ±×Ö¶Î
 {
 	EditMemberF($_POST,$logininid,$loginin);
 }
-elseif($enews=='DelMemberF')//åˆ é™¤ä¼šå‘˜å­—æ®µ
+elseif($enews=='DelMemberF')//É¾³ı»áÔ±×Ö¶Î
 {
 	DelMemberF($_GET,$logininid,$loginin);
 }
-elseif($enews=='EditMemberFOrder')//ä¿®æ”¹ä¼šå‘˜å­—æ®µé¡ºåº
+elseif($enews=='EditMemberFOrder')//ĞŞ¸Ä»áÔ±×Ö¶ÎË³Ğò
 {
 	EditMemberFOrder($_POST['fid'],$_POST['myorder'],$logininid,$loginin);
 }
-elseif($enews=='AddMemberForm')//å¢åŠ ä¼šå‘˜è¡¨å•
+elseif($enews=='AddMemberForm')//Ôö¼Ó»áÔ±±íµ¥
 {
 	AddMemberForm($_POST,$logininid,$loginin);
 }
-elseif($enews=='EditMemberForm')//ä¿®æ”¹ä¼šå‘˜è¡¨å•
+elseif($enews=='EditMemberForm')//ĞŞ¸Ä»áÔ±±íµ¥
 {
 	EditMemberForm($_POST,$logininid,$loginin);
 }
-elseif($enews=='DelMemberForm')//åˆ é™¤ä¼šå‘˜è¡¨å•
+elseif($enews=='DelMemberForm')//É¾³ı»áÔ±±íµ¥
 {
 	DelMemberForm($_GET,$logininid,$loginin);
 }
-elseif($enews=="AddMemberGroup")//å¢åŠ ä¼šå‘˜ç»„
+elseif($enews=="AddMemberGroup")//Ôö¼Ó»áÔ±×é
 {
 	$add=$_POST;
 	AddMemberGroup($add,$logininid,$loginin);
 }
-elseif($enews=="EditMemberGroup")//ä¿®æ”¹ä¼šå‘˜ç»„
+elseif($enews=="EditMemberGroup")//ĞŞ¸Ä»áÔ±×é
 {
 	$add=$_POST;
 	EditMemberGroup($add,$logininid,$loginin);
 }
-elseif($enews=="DelMemberGroup")//åˆ é™¤ä¼šå‘˜ç»„
+elseif($enews=="DelMemberGroup")//É¾³ı»áÔ±×é
 {
 	$groupid=$_GET['groupid'];
 	DelMemberGroup($groupid,$logininid,$loginin);

@@ -7,7 +7,7 @@ require '../'.LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -22,27 +22,27 @@ $page=RepPIntvar($page);
 $start=0;
 $field=RepPostVar($_GET['field']);
 $form=RepPostVar($_GET['form']);
-$line=50;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
-//æœç´¢
+$line=50;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
+//ËÑË÷
 $search="&field=$field&form=$form".$ecms_hashur['ehref'];
 $add='';
-//æ¨è
+//ÍÆ¼ö
 $isgood=(int)$_GET[isgood];
 if($isgood)
 {
 	$add.=' and isgood=1';
 	$search.="&isgood=$isgood";
 }
-//åˆ†ç±»
+//·ÖÀà
 $cid=(int)$_GET[cid];
 if($cid)
 {
 	$add.=" and cid='$cid'";
 	$search.="&cid=$cid";
 }
-//å…³é”®å­—
+//¹Ø¼ü×Ö
 if($_GET['keyboard'])
 {
 	$keyboard=RepPostVar($_GET['keyboard']);
@@ -57,24 +57,24 @@ if($_GET['keyboard'])
 	}
 	$search.="&show=$show&keyboard=$keyboard";
 }
-//æ’åº
+//ÅÅĞò
 $orderby=RepPostStr($_GET['orderby'],1);
-if($orderby==1)//æŒ‰TAGIDå‡åºæ’åº
+if($orderby==1)//°´TAGIDÉıĞòÅÅĞò
 {$doorder='tagid asc';}
-elseif($orderby==2)//æŒ‰ä¿¡æ¯æ•°é™åºæ’åº
+elseif($orderby==2)//°´ĞÅÏ¢Êı½µĞòÅÅĞò
 {$doorder='num desc';}
-elseif($orderby==3)//æŒ‰ä¿¡æ¯æ•°å‡åºæ’åº
+elseif($orderby==3)//°´ĞÅÏ¢ÊıÉıĞòÅÅĞò
 {$doorder='num asc';}
-else//æŒ‰TAGIDé™åºæ’åº
+else//°´TAGID½µĞòÅÅĞò
 {$doorder='tagid desc';}
 $search.="&orderby=$orderby";
 $add=$add?' where '.substr($add,5):'';
 $totalquery="select count(*) as total from {$dbtbpre}enewstags".$add;
 $query="select tagid,tagname,isgood from {$dbtbpre}enewstags".$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by ".$doorder." limit $offset,$line";
 $sql=$empire->query($query);
-//åˆ†ç±»
+//·ÖÀà
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewstagsclass order by classid");
 while($cr=$empire->fetch($csql))
 {
@@ -86,13 +86,13 @@ while($cr=$empire->fetch($csql))
 	$cs.="<option value='".$cr[classid]."'".$select.">".$cr[classname]."</option>";
 }
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-$changeline=5;//ä¸€è¡Œå‡ ä¸ª
+$changeline=5;//Ò»ĞĞ¼¸¸ö
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>é€‰æ‹©TAGS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ñ¡ÔñTAGS</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function ChangeTags(tags){
@@ -100,7 +100,7 @@ function ChangeTags(tags){
 	var str;
 	var r;
 	str=','+opener.document.<?=$form?>.<?=$field?>.value+',';
-	//é‡å¤
+	//ÖØ¸´
 	r=str.split(','+tags+',');
 	if(r.length!=1)
 	{
@@ -120,22 +120,22 @@ function ChangeTags(tags){
   <form name="searchform" method="GET" action="ChangeTags.php">
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æœç´¢ï¼š 
+      <td height="25" bgcolor="#FFFFFF">ËÑË÷£º 
         <select name="show" id="select">
-          <option value="0"<?=$show==0?' selected':''?>>TAGåç§°</option>
+          <option value="0"<?=$show==0?' selected':''?>>TAGÃû³Æ</option>
           <option value="1"<?=$show==1?' selected':''?>>TAGID</option>
         </select> <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>"> 
         <select name="cid" id="cid">
-          <option value="0">ä¸é™åˆ†ç±»</option>
+          <option value="0">²»ÏŞ·ÖÀà</option>
           <?=$cs?>
         </select> <input name="isgood" type="checkbox" id="isgood" value="1"<?=$isgood==1?' checked':''?>>
-        æ¨èTAGS 
+        ÍÆ¼öTAGS 
         <select name="orderby" id="orderby">
-          <option value="0"<?=$orderby==0?' selected':''?>>æŒ‰TAGIDé™åºæ’åº</option>
-          <option value="1"<?=$orderby==1?' selected':''?>>æŒ‰TAGIDå‡åºæ’åº</option>
-          <option value="2"<?=$orderby==2?' selected':''?>>æŒ‰ä¿¡æ¯æ•°é™åºæ’åº</option>
-          <option value="3"<?=$orderby==3?' selected':''?>>æŒ‰ä¿¡æ¯æ•°å‡åºæ’åº</option>
-        </select> <input type="submit" name="Submit2" value="æ˜¾ç¤º">
+          <option value="0"<?=$orderby==0?' selected':''?>>°´TAGID½µĞòÅÅĞò</option>
+          <option value="1"<?=$orderby==1?' selected':''?>>°´TAGIDÉıĞòÅÅĞò</option>
+          <option value="2"<?=$orderby==2?' selected':''?>>°´ĞÅÏ¢Êı½µĞòÅÅĞò</option>
+          <option value="3"<?=$orderby==3?' selected':''?>>°´ĞÅÏ¢ÊıÉıĞòÅÅĞò</option>
+        </select> <input type="submit" name="Submit2" value="ÏÔÊ¾">
         <input name="form" type="hidden" id="form" value="<?=$form?>">
         <input name="field" type="hidden" id="field" value="<?=$field?>"></td>
     </tr>
@@ -146,7 +146,7 @@ function ChangeTags(tags){
   <tr> 
     <td height="25" bgcolor="#FFFFFF"> <div align="center"> 
     <?php
-	//è¾“å‡º
+	//Êä³ö
 	$i=0;
 	$class_text="";
 	while($r=$empire->fetch($sql))
@@ -161,8 +161,8 @@ function ChangeTags(tags){
 		{
 			$class_text.="<tr>";
 		}
-		$class_text.="<td align=center height=25><a href='#empirecms' onclick=\"ChangeTags('".$r[tagname]."');\" title='TAGIDï¼š".$r[tagid]."'>".$tagname."</a></td>";
-		//åˆ†å‰²
+		$class_text.="<td align=center height=25><a href='#empirecms' onclick=\"ChangeTags('".$r[tagname]."');\" title='TAGID£º".$r[tagid]."'>".$tagname."</a></td>";
+		//·Ö¸î
         if($i%$changeline==0)
 		{
 			$class_text.="</tr>";

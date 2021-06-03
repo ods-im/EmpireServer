@@ -5,7 +5,7 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-//æ˜¾ç¤ºé…é€æ–¹å¼
+//ÏÔÊ¾ÅäËÍ·½Ê½
 function ShowPs(){
 	global $empire,$dbtbpre;
 	$sql=$empire->query("select pid,pname,price,psay,isdefault from {$dbtbpre}enewsshopps where isclose=0 order by pid");
@@ -18,7 +18,7 @@ function ShowPs(){
     <td width='69%' height=23> 
       <input type=radio name=psid value='".$r[pid]."'".$checked."><strong>".$r[pname]."</strong>
     </td>
-    <td width='31%'><strong>è´¹ç”¨:ï¿¥".$r[price]."</strong></td>
+    <td width='31%'><strong>·ÑÓÃ:£¤".$r[price]."</strong></td>
   </tr>
   <tr> 
     <td colspan=2><table width='98%' border=0 align=right cellpadding=3 cellspacing=1><tr><td>".$r[psay]."</td></tr></table></td>
@@ -28,7 +28,7 @@ function ShowPs(){
 	return $str;
 }
 
-//æ˜¾ç¤ºæ”¯ä»˜æ–¹å¼
+//ÏÔÊ¾Ö§¸¶·½Ê½
 function ShowPayfs($pr,$user){
 	global $empire,$dbtbpre;
 	$str='';
@@ -38,13 +38,13 @@ function ShowPayfs($pr,$user){
 		$checked=$r[isdefault]==1?' checked':'';
 		$dis="";
 		$words="";
-		//æ‰£ç‚¹æ•°
+		//¿ÛµãÊı
 		if($r[userfen])
 		{
 			if($pr['buytype'])
 			{
 				$dis=" disabled";
-				$words="&nbsp;<font color='#666666'>(æ‚¨é€‰æ‹©çš„å•†å“è‡³å°‘æœ‰ä¸€ä¸ªä¸æ”¯æŒç‚¹æ•°è´­ä¹°)</font>";
+				$words="&nbsp;<font color='#666666'>(ÄúÑ¡ÔñµÄÉÌÆ·ÖÁÉÙÓĞÒ»¸ö²»Ö§³ÖµãÊı¹ºÂò)</font>";
 			}
 			else
 			{
@@ -53,17 +53,17 @@ function ShowPayfs($pr,$user){
 					if($user[userfen]<$pr['totalfen'])
 					{
 						$dis=" disabled";
-						$words="&nbsp;<font color='#666666'>(æ‚¨çš„å¸å·ç‚¹æ•°ä¸è¶³,ä¸èƒ½ä½¿ç”¨æ­¤æ”¯ä»˜æ–¹å¼)</font>";
+						$words="&nbsp;<font color='#666666'>(ÄúµÄÕÊºÅµãÊı²»×ã,²»ÄÜÊ¹ÓÃ´ËÖ§¸¶·½Ê½)</font>";
 					}
 				}
 				else
 				{
 					$dis=" disabled";
-					$words="&nbsp;<font color='#666666'>(æ‚¨æœªç™»å½•,ä¸èƒ½ä½¿ç”¨æ­¤æ”¯ä»˜æ–¹å¼)</font>";
+					$words="&nbsp;<font color='#666666'>(ÄúÎ´µÇÂ¼,²»ÄÜÊ¹ÓÃ´ËÖ§¸¶·½Ê½)</font>";
 				}
 			}
 		}
-		//ä½™é¢æ‰£é™¤
+		//Óà¶î¿Û³ı
 		elseif($r[userpay])
 		{
 			if(getcvar('mluserid'))
@@ -71,16 +71,16 @@ function ShowPayfs($pr,$user){
 				if($user[money]<$pr['totalmoney'])
 				{
 					$dis=" disabled";
-					$words="&nbsp;<font color='#666666'>(æ‚¨çš„å¸å·ä½™é¢ä¸è¶³,ä¸èƒ½ä½¿ç”¨æ­¤æ”¯ä»˜æ–¹å¼)</font>";
+					$words="&nbsp;<font color='#666666'>(ÄúµÄÕÊºÅÓà¶î²»×ã,²»ÄÜÊ¹ÓÃ´ËÖ§¸¶·½Ê½)</font>";
 				}
 			}
 			else
 			{
 				$dis=" disabled";
-				$words="&nbsp;<font color='#666666'>(æ‚¨æœªç™»å½•,ä¸èƒ½ä½¿ç”¨æ­¤æ”¯ä»˜æ–¹å¼)</font>";
+				$words="&nbsp;<font color='#666666'>(ÄúÎ´µÇÂ¼,²»ÄÜÊ¹ÓÃ´ËÖ§¸¶·½Ê½)</font>";
 			}
 		}
-		//ç½‘ä¸Šæ”¯ä»˜
+		//ÍøÉÏÖ§¸¶
 		elseif($r[payurl])
 		{
 			$words="";
@@ -96,29 +96,29 @@ function ShowPayfs($pr,$user){
 	return $str;
 }
 
-//æäº¤åœ°å€
+//Ìá½»µØÖ·
 if($shoppr['buystep']==0)
 {
 	$formaction='../SubmitOrder/index.php';
 	$formconfirm='';
-	$formsubmit='<input type="submit" name="Submit" value=" ä¸‹ä¸€æ­¥ ">';
+	$formsubmit='<input type="submit" name="Submit" value=" ÏÂÒ»²½ ">';
 	$enewshidden='';
 	$ddno='';
 }
 else
 {
 	$formaction='../doaction.php';
-	$formconfirm=' onsubmit="return confirm(\'ç¡®è®¤æäº¤?\');"';
-	$formsubmit='<input type="submit" name="Submit" value=" æäº¤è®¢å• ">';
+	$formconfirm=' onsubmit="return confirm(\'È·ÈÏÌá½»?\');"';
+	$formsubmit='<input type="submit" name="Submit" value=" Ìá½»¶©µ¥ ">';
 	$enewshidden='<input type=hidden name=enews value=AddDd>';
-	$ddno=ShopSys_ReturnDdNo();//è®¢å•ID
+	$ddno=ShopSys_ReturnDdNo();//¶©µ¥ID
 }
 ?>
 <!DOCTYPE HTML PUBLIC -//W3C//DTD HTML 4.01 Transitional//EN>
 <html>
 <head>
-<meta http-equiv=Content-Type content=text/html; charset=utf-8>
-<title>å¡«å†™è®¢å•</title>
+<meta http-equiv=Content-Type content=text/html; charset=gb2312>
+<title>ÌîĞ´¶©µ¥</title>
 <link href=../../data/images/qcss.css rel=stylesheet type=text/css>
 </head>
 
@@ -130,7 +130,7 @@ else
   {
   ?>
     <tr> 
-      <td height="27" bgcolor="#FFFFFF"><strong>è®¢å•å·: 
+      <td height="27" bgcolor="#FFFFFF"><strong>¶©µ¥ºÅ: 
         <?=$ddno?>
         <input name="ddno" type="hidden" id="ddno" value="<?=$ddno?>">
         </strong></td>
@@ -139,7 +139,7 @@ else
   }
   ?>
     <tr> 
-      <td height="23" bgcolor="#EFEFEF"><strong>é€‰æ‹©çš„å•†å“</strong>ã€€<?=$shoppr['buystep']!=2?'[<a href="../buycar/">ä¿®æ”¹è´­ç‰©è½¦</a>]':''?></td>
+      <td height="23" bgcolor="#EFEFEF"><strong>Ñ¡ÔñµÄÉÌÆ·</strong>¡¡<?=$shoppr['buystep']!=2?'[<a href="../buycar/">ĞŞ¸Ä¹ºÎï³µ</a>]':''?></td>
     </tr>
     <tr> 
       <td> 
@@ -155,7 +155,7 @@ else
     <tr> 
       <td height="23" bgcolor="#EFEFEF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="50%"><strong>æ”¶è´§äººä¿¡æ¯</strong></td>
+            <td width="50%"><strong>ÊÕ»õÈËĞÅÏ¢</strong></td>
             <td><div align="right">
 			<?php
 			if($user['userid'])
@@ -163,7 +163,7 @@ else
 				$addresssql=$empire->query("select addressid,addressname from {$dbtbpre}enewsshop_address where userid='$user[userid]'");
 			?>
               <select name="addressid" id="addressid" onchange="window.location='index.php?addressid='+this.options[this.selectedIndex].value">
-                <option value="0">é€‰æ‹©é¢„å¢åŠ çš„é…é€åœ°å€</option>
+                <option value="0">Ñ¡ÔñÔ¤Ôö¼ÓµÄÅäËÍµØÖ·</option>
 				<?php
 				while($chaddressr=$empire->fetch($addresssql))
 				{
@@ -183,22 +183,22 @@ else
     <tr> 
       <td><table width="100%%" border="0" cellspacing="1" cellpadding="3">
           <tr> 
-            <td width="20%" height="25">çœŸå®å§“å:</td>
+            <td width="20%" height="25">ÕæÊµĞÕÃû:</td>
             <td width="80%"><input name="truename" type="text" id="truename" value="<?=stripSlashes($useraddr[truename])?>" size="65">
               <?=stristr($shoppr['ddmust'],',truename,')?'*':''?></td>
           </tr>
           <tr> 
-            <td height="25">å›ºå®šç”µè¯:</td>
+            <td height="25">¹Ì¶¨µç»°:</td>
             <td><input name="mycall" type="text" id="mycall" value="<?=stripSlashes($useraddr[mycall])?>" size="65">
               <?=stristr($shoppr['ddmust'],',mycall,')?'*':''?></td>
           </tr>
           <tr> 
-            <td height="25">æ‰‹æœº:</td>
+            <td height="25">ÊÖ»ú:</td>
             <td><input name="phone" type="text" id="phone" value="<?=stripSlashes($useraddr[phone])?>" size="65">
 			  <?=stristr($shoppr['ddmust'],',phone,')?'*':''?></td>
           </tr>
           <tr> 
-            <td height="25">è”ç³»é‚®ç®±:</td>
+            <td height="25">ÁªÏµÓÊÏä:</td>
             <td><input name="email" type="text" id="email" value="<?=stripSlashes($email)?>" size="65">
               <?=stristr($shoppr['ddmust'],',email,')?'*':''?></td>
           </tr>
@@ -213,27 +213,27 @@ else
 			  <?=stristr($shoppr['ddmust'],',msn,')?'*':''?></td>
           </tr>
           <tr> 
-            <td height="25">è”ç³»åœ°å€:</td>
+            <td height="25">ÁªÏµµØÖ·:</td>
             <td><input name="address" type="text" id="address" value="<?=stripSlashes($useraddr[address])?>" size="65">
               <?=stristr($shoppr['ddmust'],',address,')?'*':''?></td>
           </tr>
           <tr> 
-            <td height="25">é‚®ç¼–:</td>
+            <td height="25">ÓÊ±à:</td>
             <td><input name="zip" type="text" id="zip" value="<?=stripSlashes($useraddr[zip])?>" size="65">
 			  <?=stristr($shoppr['ddmust'],',zip,')?'*':''?></td>
           </tr>
           <tr>
-            <td height="25">å‘¨è¾¹æ ‡å¿—å»ºç­‘:</td>
+            <td height="25">ÖÜ±ß±êÖ¾½¨Öş:</td>
             <td><input name="signbuild" type="text" id="signbuild" value="<?=stripSlashes($useraddr[signbuild])?>" size="65">
               <?=stristr($shoppr['ddmust'],',signbuild,')?'*':''?></td>
           </tr>
           <tr>
-            <td height="25">æœ€ä½³é€è´§æ—¶é—´:</td>
+            <td height="25">×î¼ÑËÍ»õÊ±¼ä:</td>
             <td><input name="besttime" type="text" id="besttime" value="<?=stripSlashes($useraddr[besttime])?>" size="65">
               <?=stristr($shoppr['ddmust'],',besttime,')?'*':''?></td>
           </tr>
           <tr> 
-            <td height="25">å¤‡æ³¨:</td>
+            <td height="25">±¸×¢:</td>
             <td><textarea name="bz" cols="65" rows="6" id="bz"></textarea>
 			  <?=stristr($shoppr['ddmust'],',bz,')?'*':''?></td>
           </tr>
@@ -247,7 +247,7 @@ else
 	{
 	?>
     <tr> 
-      <td height="23" bgcolor="#EFEFEF"><strong>é€‰æ‹©é…é€æ–¹å¼</strong></td>
+      <td height="23" bgcolor="#EFEFEF"><strong>Ñ¡ÔñÅäËÍ·½Ê½</strong></td>
     </tr>
     <tr> 
       <td> 
@@ -265,7 +265,7 @@ else
 	{
 	?>
     <tr> 
-      <td height="23" bgcolor="#EFEFEF"><strong>é€‰æ‹©æ”¯ä»˜æ–¹å¼</strong></td>
+      <td height="23" bgcolor="#EFEFEF"><strong>Ñ¡ÔñÖ§¸¶·½Ê½</strong></td>
     </tr>
     <tr> 
       <td> 
@@ -276,23 +276,23 @@ else
 	}
 	?>
 	<?
-	//æä¾›å‘ç¥¨
+	//Ìá¹©·¢Æ±
 	if($shoppr[havefp])
 	{
 	?>
     <tr> 
-      <td height="23" bgcolor="#EFEFEF">æ˜¯å¦éœ€è¦å‘ç¥¨:
+      <td height="23" bgcolor="#EFEFEF">ÊÇ·ñĞèÒª·¢Æ±:
         <input name="fp" type="checkbox" id="fp" value="1">
-        æ˜¯(éœ€å¢åŠ  <?=$shoppr[fpnum]?>% çš„è´¹ç”¨)</td>
+        ÊÇ(ĞèÔö¼Ó <?=$shoppr[fpnum]?>% µÄ·ÑÓÃ)</td>
     </tr>
     <tr>
       <td height="23" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr>
-          <td>å‘ç¥¨æŠ¬å¤´:
+          <td>·¢Æ±Ì§Í·:
             <input name="fptt" type="text" id="fptt" size="38"></td>
           </tr>
         <tr>
-          <td>å‘ç¥¨åç§°:
+          <td>·¢Æ±Ãû³Æ:
             <select name="fpname" id="fpname">
 			<?php
 			$fpnamer=explode("\r\n",$shoppr['fpname']);
@@ -312,12 +312,12 @@ else
 	}
 	?>
     <tr>
-      <td height="23" bgcolor="#EFEFEF">ä½¿ç”¨ä¼˜æƒ ç </td>
+      <td height="23" bgcolor="#EFEFEF">Ê¹ÓÃÓÅ»İÂë</td>
     </tr>
     <tr>
       <td><table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr>
-          <td width="20%">ä¼˜æƒ ç :</td>
+          <td width="20%">ÓÅ»İÂë:</td>
           <td width="80%"><input name="precode" type="text" id="precode" size="65"></td>
         </tr>
       </table></td>
@@ -329,7 +329,7 @@ else
 		if($shoppr['buystep']!=2)
 		{
 		?>
-          <input type="button" name="Submit3" value=" ä¸Šä¸€æ­¥ " onclick="history.go(-1)">
+          <input type="button" name="Submit3" value=" ÉÏÒ»²½ " onclick="history.go(-1)">
           &nbsp;&nbsp; &nbsp;&nbsp; 
 		<?php
 		}

@@ -1,14 +1,14 @@
 <?php
-//--------------- ä¿®æ”¹ä¿¡æ¯å‡½æ•° ---------------
+//--------------- ÐÞ¸ÄÐÅÏ¢º¯Êý ---------------
 
-//ä¿®æ”¹å®‰å…¨ä¿¡æ¯
+//ÐÞ¸Ä°²È«ÐÅÏ¢
 function EditSafeInfo($add){
 	global $empire,$dbtbpre,$public_r;
-	$user_r=islogin();//æ˜¯å¦ç™»é™†
+	$user_r=islogin();//ÊÇ·ñµÇÂ½
 	$userid=$user_r[userid];
 	$username=$user_r[username];
 	$rnd=$user_r[rnd];
-	//é‚®ç®±
+	//ÓÊÏä
 	$email=trim($add['email']);
 	if(!$email||!chemail($email))
 	{
@@ -16,7 +16,7 @@ function EditSafeInfo($add){
 	}
 	$email=addslashes(RepPostStr($email));
 	$email=RepPostVar($email);
-	//éªŒè¯åŽŸå¯†ç 
+	//ÑéÖ¤Ô­ÃÜÂë
 	$oldpassword=RepPostVar($add[oldpassword]);
 	if(!$oldpassword)
 	{
@@ -33,7 +33,7 @@ function EditSafeInfo($add){
 	{
 		printerror('FailOldPassword','',1);
 	}
-	//é‚®ç®±
+	//ÓÊÏä
 	$pr=$empire->fetch1("select regemailonly from {$dbtbpre}enewspublic limit 1");
 	if($pr['regemailonly'])
 	{
@@ -43,7 +43,7 @@ function EditSafeInfo($add){
 			printerror("ReEmailFail","history.go(-1)",1);
 		}
 	}
-	//å¯†ç 
+	//ÃÜÂë
 	$a='';
 	$salt='';
 	$truepassword='';
@@ -61,7 +61,7 @@ function EditSafeInfo($add){
 	$sql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('email')."='$email'".$a." where ".egetmf('userid')."='$userid'");
 	if($sql)
     {
-		//æ˜“é€šè¡Œç³»ç»Ÿ
+		//Ò×Í¨ÐÐÏµÍ³
 		DoEpassport('editpassword',$userid,$username,$truepassword,$salt,$email,$user_r['groupid'],'');
 		printerror("EditInfoSuccess","../member/EditInfo/EditSafeInfo.php",1);
 	}
@@ -71,10 +71,10 @@ function EditSafeInfo($add){
 	}
 }
 
-//ä¿¡æ¯ä¿®æ”¹
+//ÐÅÏ¢ÐÞ¸Ä
 function EditInfo($post){
 	global $empire,$dbtbpre,$public_r;
-	$user_r=islogin();//æ˜¯å¦ç™»é™†
+	$user_r=islogin();//ÊÇ·ñµÇÂ½
 	$userid=$user_r[userid];
 	$username=$user_r[username];
 	$dousername=$username;
@@ -84,7 +84,7 @@ function EditInfo($post){
 	{
 		printerror("NotEmpty","history.go(-1)",1);
 	}
-	//éªŒè¯é™„åŠ è¡¨å¿…å¡«é¡¹
+	//ÑéÖ¤¸½¼Ó±í±ØÌîÏî
 	$addr=$empire->fetch1("select * from {$dbtbpre}enewsmemberadd where userid='$userid'");
 	$user_r=$empire->fetch1("select ".eReturnSelectMemberF('groupid')." from ".eReturnMemberTable()." where ".egetmf('userid')."='$userid'");
 	$fid=GetMemberFormId($user_r['groupid']);
@@ -98,7 +98,7 @@ function EditInfo($post){
 		$addr['add_filepass']=$userid;
 		$member_r=ReturnDoMemberF($fid,$post,$addr,1,$dousername);
 	}
-	//é™„åŠ è¡¨
+	//¸½¼Ó±í
 	if(empty($addr[userid]))
 	{
 		//IP
@@ -111,7 +111,7 @@ function EditInfo($post){
 	{
 		$sql=$empire->query("update {$dbtbpre}enewsmemberadd set userid='$userid'".$member_r[0]." where userid='$userid'");
     }
-	//æ›´æ–°é™„ä»¶
+	//¸üÐÂ¸½¼þ
 	UpdateTheFileEditOther(6,$userid,'member');
     if($sql)
     {

@@ -7,9 +7,9 @@ if(!defined('InEmpireCMS'))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../../data/images/css.css" rel="stylesheet" type="text/css">
-<title>查看订单</title>
+<title>�鿴����</title>
 <script>
 function PrintDd()
 {
@@ -22,15 +22,15 @@ function PrintDd()
 <body>
 <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="61%" height="27" bgcolor="#FFFFFF"><strong>订单号: 
+    <td width="61%" height="27" bgcolor="#FFFFFF"><strong>������: 
       <?=$r[ddno]?>
       </strong></td>
-    <td width="39%" bgcolor="#FFFFFF"><strong>下单时间: 
+    <td width="39%" bgcolor="#FFFFFF"><strong>�µ�ʱ��: 
       <?=$r[ddtime]?>
       </strong></td>
   </tr>
   <tr> 
-    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>商品信息</strong></td>
+    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>��Ʒ��Ϣ</strong></td>
   </tr>
   <tr> 
     <td colspan="2"> 
@@ -42,18 +42,18 @@ function PrintDd()
     </td>
   </tr>
   <tr> 
-    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>订单信息</strong></td>
+    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>������Ϣ</strong></td>
   </tr>
   <tr> 
     <td height="23" colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr> 
           <td width="12%" height="25"> 
-            <div align="right">订单号：</div></td>
+            <div align="right">�����ţ�</div></td>
           <td width="32%"><strong> 
             <?=$r[ddno]?>
             </strong></td>
           <td width="14%"> 
-            <div align="right">订单状态：</div></td>
+            <div align="right">����״̬��</div></td>
           <td width="41%"><strong> 
             <?=$ha?>
             </strong>/<strong> 
@@ -65,55 +65,55 @@ function PrintDd()
         </tr>
         <tr> 
           <td height="25"> 
-            <div align="right">下单时间：</div></td>
+            <div align="right">�µ�ʱ�䣺</div></td>
           <td><strong> 
             <?=$r[ddtime]?>
             </strong></td>
-          <td><div align="right">商品总金额：</div></td>
+          <td><div align="right">��Ʒ�ܽ�</div></td>
           <td><strong>
             <?=$alltotal?>
             </strong></td>
         </tr>
         <tr> 
           <td height="25"> 
-            <div align="right">配送方式：</div></td>
+            <div align="right">���ͷ�ʽ��</div></td>
           <td><strong>
             <?=$r[psname]?>
             </strong></td>
-          <td><div align="right">+ 商品运费：</div></td>
+          <td><div align="right">+ ��Ʒ�˷ѣ�</div></td>
           <td><strong>
             <?=$pstotal?>
             </strong></td>
         </tr>
         <tr> 
           <td height="25"> 
-            <div align="right">支付方式：</div></td>
+            <div align="right">֧����ʽ��</div></td>
           <td><strong>
             <?=$payfsname?>
             </strong></td>
-          <td><div align="right">+ 发票费用：</div></td>
+          <td><div align="right">+ ��Ʊ���ã�</div></td>
           <td><?=$r[fptotal]?></td>
         </tr>
         <tr> 
           <td height="25"> 
-            <div align="right">需要发票：</div></td>
+            <div align="right">��Ҫ��Ʊ��</div></td>
           <td><?=$fp?></td>
-          <td><div align="right">- 优惠：</div></td>
+          <td><div align="right">- �Żݣ�</div></td>
           <td><?=$r[pretotal]?></td>
         </tr>
         <tr> 
           <td height="25"> 
-            <div align="right">发票抬头：</div></td>
+            <div align="right">��Ʊ̧ͷ��</div></td>
           <td><strong> 
             <?=stripSlashes($r[fptt])?>
             </strong></td>
-          <td><div align="right">订单总金额：</div></td>
+          <td><div align="right">�����ܽ�</div></td>
           <td><strong>
             <?=$mytotal?>
           </strong></td>
         </tr>
         <tr>
-          <td height="25"><div align="right">发票名称：</div></td>
+          <td height="25"><div align="right">��Ʊ���ƣ�</div></td>
           <td colspan="3"><strong>
             <?=stripSlashes($r[fpname])?>
           </strong></td>
@@ -121,12 +121,12 @@ function PrintDd()
       </table></td>
   </tr>
   <tr> 
-    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>收货人信息</strong></td>
+    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>�ջ�����Ϣ</strong></td>
   </tr>
   <tr> 
     <td colspan="2"><table width="100%%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
-          <td width="20%" height="25">真实姓名:</td>
+          <td width="20%" height="25">��ʵ����:</td>
           <td width="80%"> 
             <?=stripSlashes($r[truename])?>          </td>
         </tr>
@@ -141,52 +141,52 @@ function PrintDd()
             <?=stripSlashes($r[msn])?>          </td>
         </tr>
         <tr> 
-          <td height="25">固定电话:</td>
+          <td height="25">�̶��绰:</td>
           <td> 
             <?=stripSlashes($r[mycall])?>          </td>
         </tr>
         <tr> 
-          <td height="25">移动电话:</td>
+          <td height="25">�ƶ��绰:</td>
           <td> 
             <?=stripSlashes($r[phone])?>          </td>
         </tr>
         <tr> 
-          <td height="25">联系邮箱:</td>
+          <td height="25">��ϵ����:</td>
           <td> 
             <?=stripSlashes($r[email])?>          </td>
         </tr>
         <tr> 
-          <td height="25">联系地址:</td>
+          <td height="25">��ϵ��ַ:</td>
           <td> 
             <?=stripSlashes($r[address])?>          </td>
         </tr>
         <tr> 
-          <td height="25">邮编:</td>
+          <td height="25">�ʱ�:</td>
           <td> 
             <?=stripSlashes($r[zip])?>          </td>
         </tr>
         <tr>
-          <td height="25">标志建筑:</td>
+          <td height="25">��־����:</td>
           <td><?=stripSlashes($r[signbuild])?></td>
         </tr>
         <tr>
-          <td height="25">最佳送货地址:</td>
+          <td height="25">����ͻ���ַ:</td>
           <td><?=stripSlashes($r[besttime])?></td>
         </tr>
         <tr> 
-          <td height="25">备注:</td>
+          <td height="25">��ע:</td>
           <td> 
             <?=nl2br(stripSlashes($addr[bz]))?>          </td>
         </tr>
       </table></td>
   </tr>
   <tr> 
-    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>管理员备注信息</strong></td>
+    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>����Ա��ע��Ϣ</strong></td>
   </tr>
   <tr> 
     <td colspan="2"><table width="100%%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
-          <td width="20%" height="25">备注内容:</td>
+          <td width="20%" height="25">��ע����:</td>
           <td width="80%"> 
             <?=nl2br(stripSlashes($addr['retext']))?>          </td>
         </tr>
@@ -197,7 +197,7 @@ function PrintDd()
         <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" id="pdiv">
           <tr> 
             <td><div align="center">
-                <input type="button" name="Submit" value=" 打 印 " onclick="javascript:PrintDd();">
+                <input type="button" name="Submit" value=" �� ӡ " onclick="javascript:PrintDd();">
               </div></td>
           </tr>
         </table>

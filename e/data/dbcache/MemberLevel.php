@@ -2,7 +2,7 @@
 //level
 $level_r=array();
 $level_r[1]=Array('groupid'=>1,
-'groupname'=>'æ™®é€šä¼šå‘˜',
+'groupname'=>'ÆÕÍ¨»áÔ±',
 'level'=>1,
 'checked'=>0,
 'favanum'=>120,
@@ -15,7 +15,7 @@ $level_r[1]=Array('groupid'=>1,
 'plchecked'=>0,
 'msgnum'=>50);
 $level_r[2]=Array('groupid'=>2,
-'groupname'=>'VIPä¼šå‘˜',
+'groupname'=>'VIP»áÔ±',
 'level'=>2,
 'checked'=>0,
 'favanum'=>200,
@@ -28,7 +28,7 @@ $level_r[2]=Array('groupid'=>2,
 'plchecked'=>0,
 'msgnum'=>120);
 $level_r[3]=Array('groupid'=>3,
-'groupname'=>'ä¼ä¸šä¼šå‘˜',
+'groupname'=>'ÆóÒµ»áÔ±',
 'level'=>1,
 'checked'=>0,
 'favanum'=>120,
@@ -41,7 +41,7 @@ $level_r[3]=Array('groupid'=>3,
 'plchecked'=>0,
 'msgnum'=>50);
 $level_r[4]=Array('groupid'=>4,
-'groupname'=>'ä¼ä¸šVIPä¼šå‘˜',
+'groupname'=>'ÆóÒµVIP»áÔ±',
 'level'=>2,
 'checked'=>0,
 'favanum'=>200,
@@ -56,10 +56,10 @@ $level_r[4]=Array('groupid'=>4,
 
 $aglevel_r=array();
 $aglevel_r[1]=Array('agid'=>1,
-'agname'=>'ç®¡ç†å‘˜',
+'agname'=>'¹ÜÀíÔ±',
 'isadmin'=>9);
 $aglevel_r[2]=Array('agid'=>2,
-'agname'=>'ç‰ˆä¸»',
+'agname'=>'°æÖ÷',
 'isadmin'=>5);
 
 

@@ -1,7 +1,7 @@
 <?php
-//--------------- ç™»å½•å‡½æ•° ---------------
+//--------------- µÇÂ¼º¯Êý ---------------
 
-//ç™»å½•
+//µÇÂ¼
 function qlogin($add){
 	global $empire,$dbtbpre,$public_r,$ecms_config;
 	if($ecms_config['member']['loginurl'])
@@ -21,7 +21,7 @@ function qlogin($add){
 		printerror("EmptyLogin","history.go(-1)",$dopr);
 	}
 	$tobind=(int)$add['tobind'];
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$keyvname='checkloginkey';
 	if($public_r['loginkey_ok'])
 	{
@@ -50,13 +50,13 @@ function qlogin($add){
 			printerror('NotCheckedUser','',1);
 		}
 	}
-	//ç»‘å®šå¸å·
+	//°ó¶¨ÕÊºÅ
 	if($tobind)
 	{
 		MemberConnect_BindUser($r['userid']);
 	}
-	$rnd=make_password(20);//å–å¾—éšæœºå¯†ç 
-	//é»˜è®¤ä¼šå‘˜ç»„
+	$rnd=make_password(20);//È¡µÃËæ»úÃÜÂë
+	//Ä¬ÈÏ»áÔ±×é
 	if(empty($r['groupid']))
 	{
 		$r['groupid']=eReturnMemberDefGroupid();
@@ -68,7 +68,7 @@ function qlogin($add){
 	$lastipport=egetipport();
 	$usql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('rnd')."='$rnd',".egetmf('groupid')."='$r[groupid]' where ".egetmf('userid')."='$r[userid]'");
 	$empire->query("update {$dbtbpre}enewsmemberadd set lasttime='$lasttime',lastip='$lastip',loginnum=loginnum+1,lastipport='$lastipport' where userid='$r[userid]'");
-	//è®¾ç½®cookie
+	//ÉèÖÃcookie
 	$lifetime=(int)$add['lifetime'];
 	$logincookie=0;
 	if($lifetime)
@@ -79,9 +79,9 @@ function qlogin($add){
 	$set2=esetcookie("mluserid",$r['userid'],$logincookie);
 	$set3=esetcookie("mlgroupid",$r['groupid'],$logincookie);
 	$set4=esetcookie("mlrnd",$rnd,$logincookie);
-	//éªŒè¯ç¬¦
+	//ÑéÖ¤·û
 	qGetLoginAuthstr($r['userid'],$username,$rnd,$r['groupid'],$logincookie);
-	//ç™»å½•é™„åŠ cookie
+	//µÇÂ¼¸½¼Ócookie
 	AddLoginCookie($r);
 	$location="../member/cp/";
 	$returnurl=getcvar('returnurl');
@@ -98,11 +98,11 @@ function qlogin($add){
 		$location="../member/cp/";
 		$_POST['ecmsfrom']='';
 	}
-	ecmsEmptyShowKey($keyvname);//æ¸…ç©ºéªŒè¯ç 
+	ecmsEmptyShowKey($keyvname);//Çå¿ÕÑéÖ¤Âë
 	$set6=esetcookie("returnurl","");
 	if($set1&&$set2)
 	{
-		//æ˜“é€šè¡Œç³»ç»Ÿ
+		//Ò×Í¨ÐÐÏµÍ³
 		DoEpassport('login',$r['userid'],$username,$password,$r['salt'],$r['email'],$r['groupid'],$r['registertime']);
 		$location=DoingReturnUrl($location,$_POST['ecmsfrom']);
 		printerror("LoginSuccess",$location,$dopr);
@@ -113,10 +113,10 @@ function qlogin($add){
 	}
 }
 
-//é€€å‡ºç™»é™†
+//ÍË³öµÇÂ½
 function qloginout($userid,$username,$rnd){
 	global $empire,$public_r,$ecms_config;
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	if($ecms_config['member']['quiturl'])
 	{
@@ -124,7 +124,7 @@ function qloginout($userid,$username,$rnd){
 		exit();
 	}
 	$user_r[userid]=(int)$user_r[userid];
-	$rnd=make_password(20);//äº§ç”Ÿéšæœºå¯†ç 
+	$rnd=make_password(20);//²úÉúËæ»úÃÜÂë
 	$sql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('rnd')."='$rnd' where ".egetmf('userid')."='$user_r[userid]'");
 	EmptyEcmsCookie();
 	$dopr=1;
@@ -137,7 +137,7 @@ function qloginout($userid,$username,$rnd){
 	{
 		$gotourl=$public_r['newsurl']."e/member/iframe/";
 	}
-	//æ˜“é€šè¡Œç³»ç»Ÿ
+	//Ò×Í¨ÐÐÏµÍ³
 	DoEpassport('logout',$user_r['userid'],$user_r['username'],'','','','','');
 	$gotourl=DoingReturnUrl($gotourl,$_GET['ecmsfrom']);
 	printerror("ExitSuccess",$gotourl,$dopr);

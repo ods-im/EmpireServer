@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,21 +15,21 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"viewgroup");
 $enews=ehtmlspecialchars($_GET['enews']);
-$postword='å¢åŠ ';
+$postword='Ôö¼Ó';
 $vgid=0;
 $r=array();
-$url="<a href='ListViewGroup.php".$ecms_hashur['whehref']."'>ç®¡ç†ä¼šå‘˜è®¿é—®ç»„</a>&nbsp;->&nbsp;å¢åŠ ä¼šå‘˜è®¿é—®ç»„";
+$url="<a href='ListViewGroup.php".$ecms_hashur['whehref']."'>¹ÜÀí»áÔ±·ÃÎÊ×é</a>&nbsp;->&nbsp;Ôö¼Ó»áÔ±·ÃÎÊ×é";
 if($enews=="EditViewGroup")
 {
 	$vgid=(int)$_GET['vgid'];
-	$postword='ä¿®æ”¹';
+	$postword='ĞŞ¸Ä';
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsvg where vgid='$vgid'");
-	$url="<a href='ListViewGroup.php".$ecms_hashur['whehref']."'>ç®¡ç†ä¼šå‘˜è®¿é—®ç»„</a>&nbsp;->&nbsp;ä¿®æ”¹ä¼šå‘˜è®¿é—®ç»„ï¼š<b>".$r[gname]."</b>";
+	$url="<a href='ListViewGroup.php".$ecms_hashur['whehref']."'>¹ÜÀí»áÔ±·ÃÎÊ×é</a>&nbsp;->&nbsp;ĞŞ¸Ä»áÔ±·ÃÎÊ×é£º<b>".$r[gname]."</b>";
 }
-//ä¼šå‘˜ç»„
+//»áÔ±×é
 $i=0;
 $membergroup='';
 $mgsql=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
@@ -47,7 +47,7 @@ while($level_r=$empire->fetch($mgsql))
 	{$checked="";}
 	$membergroup.="<input type='checkbox' name='membergroup[]' value='$level_r[groupid]'".$checked.">".$level_r[groupname]."&nbsp;".$br;
 }
-//å†…éƒ¨ç»„
+//ÄÚ²¿×é
 $i=0;
 $ingroup='';
 $minsql=$empire->query("select gid,gname from {$dbtbpre}enewsingroup order by myorder");
@@ -65,7 +65,7 @@ while($min_r=$empire->fetch($minsql))
 	{$checked="";}
 	$ingroup.="<input type='checkbox' name='ingroup[]' value='$min_r[gid]'".$checked.">".$min_r[gname]."&nbsp;".$br;
 }
-//ç®¡ç†ç»„
+//¹ÜÀí×é
 $i=0;
 $madmingroup='';
 $agsql=$empire->query("select agid,agname from {$dbtbpre}enewsag order by isadmin");
@@ -89,44 +89,44 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¼šå‘˜è®¿é—®ç»„</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>»áÔ±·ÃÎÊ×é</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListViewGroup.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="20%" height="25"><?=$postword?>ä¼šå‘˜è®¿é—®ç»„</td>
+      <td width="20%" height="25"><?=$postword?>»áÔ±·ÃÎÊ×é</td>
       <td width="80%" height="25"><input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
         <input name="vgid" type="hidden" id="vgid" value="<?=$vgid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç»„åç§°</td>
+      <td height="25">×éÃû³Æ</td>
       <td height="25"> <input name="gname" type="text" id="gname" value="<?=$r[gname]?>" size="30">      </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å…è®¸ä¼šå‘˜ç»„</td>
+      <td height="25">ÔÊĞí»áÔ±×é</td>
       <td height="25"><?=$membergroup?></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">å…è®¸ä¼šå‘˜å†…éƒ¨ç»„</td>
+      <td height="25">ÔÊĞí»áÔ±ÄÚ²¿×é</td>
       <td height="25"><?=$ingroup?></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">å…è®¸ä¼šå‘˜ç®¡ç†ç»„</td>
+      <td height="25">ÔÊĞí»áÔ±¹ÜÀí×é</td>
       <td height="25"><?=$madmingroup?></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"> <input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"> <input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

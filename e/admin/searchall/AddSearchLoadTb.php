@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,22 +15,22 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"searchall");
-$url="<a href=ListSearchLoadTb.php".$ecms_hashur['whehref'].">ç®¡ç†å…¨ç«™æœç´¢æ•°æ®æº</a>&nbsp;>&nbsp;å¢åŠ æœç´¢æ•°æ®æº";
-$word='å¢åŠ å…¨ç«™æœç´¢æ•°æ®æº';
+$url="<a href=ListSearchLoadTb.php".$ecms_hashur['whehref'].">¹ÜÀíÈ«Õ¾ËÑË÷Êı¾İÔ´</a>&nbsp;>&nbsp;Ôö¼ÓËÑË÷Êı¾İÔ´";
+$word='Ôö¼ÓÈ«Õ¾ËÑË÷Êı¾İÔ´';
 $enews=ehtmlspecialchars($_GET['enews']);
 $r['titlefield']='title';
 $r['loadnum']='300';
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditSearchLoadTb")
 {
 	$lid=(int)$_GET['lid'];
 	$r=$empire->fetch1("select lid,tbname,titlefield,infotextfield,smalltextfield,loadnum from {$dbtbpre}enewssearchall_load where lid='$lid'");
-	$url="<a href=ListSearchLoadTb.php".$ecms_hashur['whehref'].">ç®¡ç†å…¨ç«™æœç´¢æ•°æ®æº</a>&nbsp;>&nbsp;ä¿®æ”¹æœç´¢æ•°æ®æº";
-	$word='ä¿®æ”¹å…¨ç«™æœç´¢æ•°æ®æº';
+	$url="<a href=ListSearchLoadTb.php".$ecms_hashur['whehref'].">¹ÜÀíÈ«Õ¾ËÑË÷Êı¾İÔ´</a>&nbsp;>&nbsp;ĞŞ¸ÄËÑË÷Êı¾İÔ´";
+	$word='ĞŞ¸ÄÈ«Õ¾ËÑË÷Êı¾İÔ´';
 }
-//æ•°æ®è¡¨
+//Êı¾İ±í
 $tsql=$empire->query("select tid,tbname,tname from {$dbtbpre}enewstable order by tid");
 while($tr=$empire->fetch($tsql))
 {
@@ -46,15 +46,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†å…¨ç«™æœç´¢æ•°æ®æº</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÈ«Õ¾ËÑË÷Êı¾İÔ´</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?>
+    <td>Î»ÖÃ£º<?=$url?>
     </td>
   </tr>
 </table>
@@ -67,7 +67,7 @@ $empire=null;
       <td height="25" colspan="2"><?=$word?></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å¯¼å…¥çš„æ•°æ®è¡¨ï¼š</td>
+      <td height="25">µ¼ÈëµÄÊı¾İ±í£º</td>
       <td height="25"><select name="tbname" id="tbname">
 	  <?=$table?>
         </select>
@@ -75,28 +75,28 @@ $empire=null;
         <input name="oldtbname" type="hidden" id="oldtbname" value="<?=$r[tbname]?>"> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="18%" height="25">æ ‡é¢˜å­—æ®µï¼š</td>
+      <td width="18%" height="25">±êÌâ×Ö¶Î£º</td>
       <td width="82%" height="25"><input name="titlefield" type="text" id="titlefield" value="<?=$r[titlefield]?>">
         <font color="#666666">(*)</font> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å†…å®¹å­—æ®µï¼š</td>
+      <td height="25">ÄÚÈİ×Ö¶Î£º</td>
       <td height="25"><input name="infotextfield" type="text" id="infotextfield" value="<?=$r[infotextfield]?>">
         <font color="#666666">(*)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç®€ä»‹å­—æ®µï¼š</td>
+      <td height="25">¼ò½é×Ö¶Î£º</td>
       <td height="25"><input name="smalltextfield" type="text" id="smalltextfield" value="<?=$r[smalltextfield]?>">
         <font color="#666666">(*)</font> </td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ¯ç»„å¯¼å…¥è®°å½•æ•°ï¼š</td>
+      <td height="25">Ã¿×éµ¼Èë¼ÇÂ¼Êı£º</td>
       <td height="25"><input name="loadnum" type="text" id="loadnum" value="<?=$r[loadnum]?>">
         <font color="#666666">(*)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

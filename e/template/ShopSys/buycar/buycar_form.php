@@ -8,9 +8,9 @@ if(!defined('InEmpireCMS'))
 $buycar=getcvar('mybuycar');
 $record="!";
 $field="|";
-$totalmoney=0;	//å•†å“æ€»é‡‘é¢
-$buytype=0;	//æ”¯ä»˜ç±»å‹ï¼š1ä¸ºé‡‘é¢,0ä¸ºç‚¹æ•°
-$totalfen=0;	//å•†å“æ€»ç§¯åˆ†
+$totalmoney=0;	//ÉÌÆ·×Ü½ğ¶î
+$buytype=0;	//Ö§¸¶ÀàĞÍ£º1Îª½ğ¶î,0ÎªµãÊı
+$totalfen=0;	//ÉÌÆ·×Ü»ı·Ö
 $buycarr=explode($record,$buycar);
 $bcount=count($buycarr);
 ?>
@@ -18,13 +18,13 @@ $bcount=count($buycarr);
   <form name=form1 method=post action='../doaction.php'>
   <input type=hidden name=enews value=EditBuycar>
     <tr class='header'> 
-      <td width='16%' height=23> <div align=center>å›¾ç‰‡</div></td>
-      <td width='29%'> <div align=center>å•†å“åç§°</div></td>
-      <td width='14%'> <div align=center>å¸‚åœºä»·æ ¼</div></td>
-      <td width='14%'> <div align=center>ä¼˜æƒ ä»·æ ¼</div></td>
-      <td width='8%'> <div align=center>æ•°é‡</div></td>
-      <td width='14%'> <div align=center>å°è®¡</div></td>
-      <td width='5%'> <div align=center>åˆ é™¤</div></td>
+      <td width='16%' height=23> <div align=center>Í¼Æ¬</div></td>
+      <td width='29%'> <div align=center>ÉÌÆ·Ãû³Æ</div></td>
+      <td width='14%'> <div align=center>ÊĞ³¡¼Û¸ñ</div></td>
+      <td width='14%'> <div align=center>ÓÅ»İ¼Û¸ñ</div></td>
+      <td width='8%'> <div align=center>ÊıÁ¿</div></td>
+      <td width='14%'> <div align=center>Ğ¡¼Æ</div></td>
+      <td width='5%'> <div align=center>É¾³ı</div></td>
     </tr>
 <?php
 for($i=0;$i<$bcount-1;$i++)
@@ -39,36 +39,36 @@ for($i=0;$i<$bcount-1;$i++)
 	{
 		continue;
 	}
-	//å±æ€§
+	//ÊôĞÔ
 	$addatt='';
 	if($pr[2])
 	{
 		$addatt=$pr[2];
 	}
-	//æ•°é‡
+	//ÊıÁ¿
 	$pnum=(int)$pr[3];
 	if($pnum<1)
 	{
 		$pnum=1;
 	}
-	//å–å¾—äº§å“ä¿¡æ¯
+	//È¡µÃ²úÆ·ĞÅÏ¢
 	$productr=$empire->fetch1("select title,tprice,price,isurl,titleurl,classid,id,titlepic,buyfen from {$dbtbpre}ecms_".$class_r[$classid][tbname]." where id='$id' limit 1");
 	if(!$productr['id']||$productr['classid']!=$classid)
 	{
 		continue;
 	}
-	//æ˜¯å¦å…¨éƒ¨ç‚¹æ•°
+	//ÊÇ·ñÈ«²¿µãÊı
 	if(!$productr[buyfen])
 	{
 		$buytype=1;
 	}
 	$totalfen+=$productr[buyfen]*$pnum;
-	//äº§å“å›¾ç‰‡
+	//²úÆ·Í¼Æ¬
 	if(empty($productr[titlepic]))
 	{
 		$productr[titlepic]="../../data/images/notimg.gif";
 	}
-	//è¿”å›é“¾æ¥
+	//·µ»ØÁ´½Ó
 	$titleurl=sys_ReturnBqTitleLink($productr);
 	$thistotal=$productr[price]*$pnum;
 	$totalmoney+=$thistotal;
@@ -76,10 +76,10 @@ for($i=0;$i<$bcount-1;$i++)
 <tr>
 	<td align="center"><a href="<?=$titleurl?>" target="_blank"><img src="<?=$productr[titlepic]?>" border=0 width=80 height=80></a></td>
 	<td align="center"><a href="<?=$titleurl?>" target="_blank"><?=$productr[title]?></a><?=$addatt?' - '.$addatt:''?></td>
-	<td align="right">ï¿¥<?=$productr[tprice]?></td>
-	<td align="right"><b>ï¿¥<?=$productr[price]?></b></td>
+	<td align="right">£¤<?=$productr[tprice]?></td>
+	<td align="right"><b>£¤<?=$productr[price]?></b></td>
 	<td align="center"><input type="text" name="num[]" value="<?=$pnum?>" size="6"></td>
-	<td align="right">ï¿¥<?=$thistotal?></td>
+	<td align="right">£¤<?=$thistotal?></td>
 	<td align="center"><input type="checkbox" name="del[]" value="<?=$productid.'|'.$addatt?>"></td>
 	<input type="hidden" name="productid[]" value="<?=$productid?>">
 	<input type="hidden" name="addatt[]" value="<?=$addatt?>">
@@ -88,11 +88,11 @@ for($i=0;$i<$bcount-1;$i++)
 }
 ?>
 <?php
-if(!$buytype)//ç‚¹æ•°ä»˜è´¹
+if(!$buytype)//µãÊı¸¶·Ñ
 {
 ?>
 <tr height="25"> 
-    <td colspan="6"><div align="right">åˆè®¡ç‚¹æ•°:<strong><?=$totalfen?></strong></div></td>
+    <td colspan="6"><div align="right">ºÏ¼ÆµãÊı:<strong><?=$totalfen?></strong></div></td>
     <td>&nbsp;</td>
 </tr>
 <?php
@@ -101,7 +101,7 @@ else
 {
 ?>
 <tr height="27"> 
-    <td colspan="6"><div align="right">åˆè®¡:<strong>ï¿¥<?=$totalmoney?></strong></div></td>
+    <td colspan="6"><div align="right">ºÏ¼Æ:<strong>£¤<?=$totalmoney?></strong></div></td>
     <td>&nbsp;</td>
 </tr>
 <?php

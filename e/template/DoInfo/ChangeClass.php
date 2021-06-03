@@ -5,8 +5,8 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='å¢åŠ ä¿¡æ¯';
-$url="<a href='../../'>é¦–é¡µ</a>&nbsp;>&nbsp;<a href='../member/cp/'>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;<a href='ListInfo.php?mid=".$mid."'>ç®¡ç†ä¿¡æ¯</a>&nbsp;>&nbsp;å¢åŠ ä¿¡æ¯&nbsp;(".$mr[qmname].")";
+$public_diyr['pagetitle']='Ôö¼ÓĞÅÏ¢';
+$url="<a href='../../'>Ê×Ò³</a>&nbsp;>&nbsp;<a href='../member/cp/'>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;<a href='ListInfo.php?mid=".$mid."'>¹ÜÀíĞÅÏ¢</a>&nbsp;>&nbsp;Ôö¼ÓĞÅÏ¢&nbsp;(".$mr[qmname].")";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <script>
@@ -14,7 +14,7 @@ function CheckChangeClass()
 {
 	if(document.changeclass.classid.value==0||document.changeclass.classid.value=='')
 	{
-		alert("è¯·é€‰æ‹©æ ç›®");
+		alert("ÇëÑ¡ÔñÀ¸Ä¿");
 		return false;
 	}
 	return true;
@@ -22,13 +22,13 @@ function CheckChangeClass()
 </script>
       <table width="500" border="0" align="center">
         <tr> 
-          <td>ä½ å¥½ï¼Œ<b><?=$musername?></b></td>
+          <td>ÄãºÃ£¬<b><?=$musername?></b></td>
         </tr>
       </table>
       <table width="500" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
         <form action="AddInfo.php" method="get" name="changeclass" id="changeclass" onsubmit="return CheckChangeClass();">
           <tr class="header"> 
-            <td height="23"><strong>è¯·é€‰æ‹©è¦å¢åŠ ä¿¡æ¯çš„æ ç›® 
+            <td height="23"><strong>ÇëÑ¡ÔñÒªÔö¼ÓĞÅÏ¢µÄÀ¸Ä¿ 
                 <input name="mid" type="hidden" id="mid" value="<?=$mid?>">
               <input name="enews" type="hidden" id="enews" value="MAddInfo">
               </strong></td>
@@ -39,7 +39,7 @@ function CheckChangeClass()
               </select> </td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td><input type="submit" name="Submit" value="æ·»åŠ ä¿¡æ¯"> <font color="#666666">(è¯·é€‰æ‹©ç»ˆææ ç›®[è“è‰²æ¡])</font></td>
+            <td><input type="submit" name="Submit" value="Ìí¼ÓĞÅÏ¢"> <font color="#666666">(ÇëÑ¡ÔñÖÕ¼«À¸Ä¿[À¶É«Ìõ])</font></td>
           </tr>
         </form>
       </table>

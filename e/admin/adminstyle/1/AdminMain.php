@@ -4,11 +4,11 @@ if(!defined('InEmpireCMS'))
 	exit();
 }
 $r=ReturnLeftLevel($loginlevel);
-//èœå•æ˜¾ç¤º
-$showfastmenu=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsmenuclass where classtype=1 limit 1");//å¸¸ç”¨èœå•
-$showextmenu=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsmenuclass where classtype=3 limit 1");//æ‰©å±•èœå•
+//²Ëµ¥ÏÔÊ¾
+$showfastmenu=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsmenuclass where classtype=1 limit 1");//³£ÓÃ²Ëµ¥
+$showextmenu=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsmenuclass where classtype=3 limit 1");//À©Õ¹²Ëµ¥
 $showshopmenu=stristr($public_r['closehmenu'],',shop,')?0:1;
-//å›¾ç‰‡è¯†åˆ«
+//Í¼Æ¬Ê¶±ğ
 if(stristr($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0'))
 {
 	$menufiletype='.gif';
@@ -20,8 +20,8 @@ else
 ?>
 <HTML>
 <HEAD>
-<META http-equiv=Content-Type content="text/html; charset=utf-8">
-<TITLE>å¸å›½CMS ï¼ ç¨³å®šå¯é ã€å®‰å…¨çœå¿ƒ</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<TITLE>µÛ¹úCMS £­ ÎÈ¶¨¿É¿¿¡¢°²È«Ê¡ĞÄ</TITLE>
 <LINK href="adminstyle/1/adminmain.css" rel=stylesheet>
 <STYLE>
 .flyoutLink A {
@@ -205,7 +205,7 @@ function DoOnclickMenu(m){
     <TBODY>
 	<input type="hidden" name="onclickmenu" value="">
       <TR> 
-            <TD width="180"><div align="center"><a href="main.php<?=$ecms_hashur['whehref']?>" target="main" title="å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»Ÿ"><img src="adminstyle/1/images/logo.gif" border="0"></a></div></TD>
+            <TD width="180"><div align="center"><a href="main.php<?=$ecms_hashur['whehref']?>" target="main" title="µÛ¹úÍøÕ¾¹ÜÀíÏµÍ³"><img src="adminstyle/1/images/logo.gif" border="0"></a></div></TD>
 		<TD height="60"> 
 			<TABLE width="760" height="60" border=0 cellpadding="0" cellSpacing=0>
                 <TBODY>
@@ -213,101 +213,101 @@ function DoOnclickMenu(m){
                     <TD width=60 onmouseover="if(document.menuform.onclickmenu.value!='dosysmenu'){this.style.backgroundColor='#8CBDEF';}" onmouseout="if(document.menuform.onclickmenu.value!='dosysmenu'){this.style.backgroundColor='';}" onclick="DoOnclickMenu('dosysmenu');JumpToLeftMenu('adminstyle/1/left.php?ecms=system<?=$ecms_hashur['ehref']?>');" style="CURSOR: hand" id="dosysmenu"> 
                       <table width="100%" border="0" cellspacing="2" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/system<?=$menufiletype?>" width=32 border=0 title="ç³»ç»Ÿè®¾ç½®"></div></td>
+                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/system<?=$menufiletype?>" width=32 border=0 title="ÏµÍ³ÉèÖÃ"></div></td>
                         </tr>
                         <tr> 
                           <td height="20">
-<div align="center"><font color="#FFFFFF"><strong>ç³»ç»Ÿ</strong></font></div></td>
+<div align="center"><font color="#FFFFFF"><strong>ÏµÍ³</strong></font></div></td>
                         </tr>
                       </table></TD>
                     <TD width=60 onmouseout="if(document.menuform.onclickmenu.value!='doinfomenu'){this.style.backgroundColor='';}" onmouseover="if(document.menuform.onclickmenu.value!='doinfomenu'){this.style.backgroundColor='#8CBDEF';}" onclick="DoOnclickMenu('doinfomenu');switchSysBarInfo();JumpToLeftMenu('ListEnews.php<?=$ecms_hashur['whehref']?>');" style="CURSOR: hand" id="doinfomenu"> 
                       <table width="100%" border="0" cellspacing="2" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/info<?=$menufiletype?>" width=32 border=0 title="ä¿¡æ¯ç®¡ç†"></div></td>
+                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/info<?=$menufiletype?>" width=32 border=0 title="ĞÅÏ¢¹ÜÀí"></div></td>
                         </tr>
                         <tr> 
                           <td height="20">
-<div align="center"><font color="#FFFFFF"><strong>ä¿¡æ¯</strong></font></div></td>
+<div align="center"><font color="#FFFFFF"><strong>ĞÅÏ¢</strong></font></div></td>
                         </tr>
                       </table></TD>
                     <TD width=60 onmouseout="if(document.menuform.onclickmenu.value!='doclassmenu'){this.style.backgroundColor='';}" onmouseover="if(document.menuform.onclickmenu.value!='doclassmenu'){this.style.backgroundColor='#8CBDEF';}" onclick="DoOnclickMenu('doclassmenu');JumpToLeftMenu('adminstyle/1/left.php?ecms=classdata<?=$ecms_hashur['ehref']?>');" style="CURSOR: hand" id="doclassmenu"> 
                       <table width="100%" border="0" cellspacing="2" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><img height=32 src="adminstyle/1/images/class<?=$menufiletype?>" width=32 border=0 title="æ ç›®ç®¡ç†"></div></td>
+                          <td><div align="center"><img height=32 src="adminstyle/1/images/class<?=$menufiletype?>" width=32 border=0 title="À¸Ä¿¹ÜÀí"></div></td>
                         </tr>
                         <tr> 
                           <td height="20">
-<div align="center"><font color="#FFFFFF"><strong>æ ç›®</strong></font></div></td>
+<div align="center"><font color="#FFFFFF"><strong>À¸Ä¿</strong></font></div></td>
                         </tr>
                       </table></TD>
                     <TD width=60 onmouseout="if(document.menuform.onclickmenu.value!='dotempmenu'){this.style.backgroundColor='';}" onmouseover="if(document.menuform.onclickmenu.value!='dotempmenu'){this.style.backgroundColor='#8CBDEF';}" onclick="DoOnclickMenu('dotempmenu');JumpToLeftMenu('adminstyle/1/left.php?ecms=template<?=$ecms_hashur['ehref']?>');" style="CURSOR: hand" id="dotempmenu"> 
                       <table width="100%" border="0" cellspacing="2" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><img src="adminstyle/1/images/template<?=$menufiletype?>" width="32" height="32" border="0" title="æ¨¡æ¿ç®¡ç†"></div></td>
+                          <td><div align="center"><img src="adminstyle/1/images/template<?=$menufiletype?>" width="32" height="32" border="0" title="Ä£°å¹ÜÀí"></div></td>
                         </tr>
                         <tr> 
                           <td height="20">
-<div align="center"><font color="#FFFFFF"><strong>æ¨¡æ¿</strong></font></div></td>
+<div align="center"><font color="#FFFFFF"><strong>Ä£°å</strong></font></div></td>
                         </tr>
                       </table></TD>
                     <TD width=60 onmouseout="if(document.menuform.onclickmenu.value!='dousermenu'){this.style.backgroundColor='';}" onmouseover="if(document.menuform.onclickmenu.value!='dousermenu'){this.style.backgroundColor='#8CBDEF';}" onclick="DoOnclickMenu('dousermenu');JumpToLeftMenu('adminstyle/1/left.php?ecms=usercp<?=$ecms_hashur['ehref']?>');" style="CURSOR: hand" id="dousermenu"> 
                       <table width="100%" border="0" cellspacing="2" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/usercp<?=$menufiletype?>" width=32 border=0 title="ç”¨æˆ·å’Œä¼šå‘˜"></div></td>
+                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/usercp<?=$menufiletype?>" width=32 border=0 title="ÓÃ»§ºÍ»áÔ±"></div></td>
                         </tr>
                         <tr> 
                           <td height="20">
-<div align="center"><font color="#FFFFFF"><strong>ç”¨æˆ·</strong></font></div></td>
+<div align="center"><font color="#FFFFFF"><strong>ÓÃ»§</strong></font></div></td>
                         </tr>
                       </table></TD>
                     <TD width=60 onmouseout="if(document.menuform.onclickmenu.value!='dotoolmenu'){this.style.backgroundColor='';}" onmouseover="if(document.menuform.onclickmenu.value!='dotoolmenu'){this.style.backgroundColor='#8CBDEF';}" onclick="DoOnclickMenu('dotoolmenu');JumpToLeftMenu('adminstyle/1/left.php?ecms=tool<?=$ecms_hashur['ehref']?>');" style="CURSOR: hand" id="dotoolmenu"> 
                       <table width="100%" border="0" cellspacing="2" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/tool<?=$menufiletype?>" width=32 border=0 title="æ’ä»¶ç®¡ç†"></div></td>
+                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/tool<?=$menufiletype?>" width=32 border=0 title="²å¼ş¹ÜÀí"></div></td>
                         </tr>
                         <tr> 
                           <td height="20">
-<div align="center"><font color="#FFFFFF"><strong>æ’ä»¶</strong></font></div></td>
+<div align="center"><font color="#FFFFFF"><strong>²å¼ş</strong></font></div></td>
                         </tr>
                       </table></TD>
-					<TD width=60 onmouseout="if(document.menuform.onclickmenu.value!='doshopmenu'){this.style.backgroundColor='';}" onmouseover="if(document.menuform.onclickmenu.value!='doshopmenu'){this.style.backgroundColor='#8CBDEF';}" onclick="DoOnclickMenu('doshopmenu');window.open('openpage/AdminPage.php?leftfile=<?=urlencode('../ShopSys/pageleft.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../other/OtherMain.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('å•†åŸç³»ç»Ÿç®¡ç†')?><?=$ecms_hashur['ehref']?>','AdminShopSys','');" style="CURSOR: hand;<?=$showshopmenu?'':'display:none'?>" id="doshopmenu"> 
+					<TD width=60 onmouseout="if(document.menuform.onclickmenu.value!='doshopmenu'){this.style.backgroundColor='';}" onmouseover="if(document.menuform.onclickmenu.value!='doshopmenu'){this.style.backgroundColor='#8CBDEF';}" onclick="DoOnclickMenu('doshopmenu');window.open('openpage/AdminPage.php?leftfile=<?=urlencode('../ShopSys/pageleft.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../other/OtherMain.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('ÉÌ³ÇÏµÍ³¹ÜÀí')?><?=$ecms_hashur['ehref']?>','AdminShopSys','');" style="CURSOR: hand;<?=$showshopmenu?'':'display:none'?>" id="doshopmenu"> 
                       <table width="100%" border="0" cellspacing="2" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/shop<?=$menufiletype?>" width=32 border=0 title="å•†åŸç³»ç»Ÿç®¡ç†"></div></td>
+                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/shop<?=$menufiletype?>" width=32 border=0 title="ÉÌ³ÇÏµÍ³¹ÜÀí"></div></td>
                         </tr>
                         <tr> 
                           <td height="20">
-<div align="center"><font color="#FFFFFF"><strong>å•†åŸ</strong></font></div></td>
+<div align="center"><font color="#FFFFFF"><strong>ÉÌ³Ç</strong></font></div></td>
                         </tr>
                       </table></TD>
                     <TD width=60 onmouseout="if(document.menuform.onclickmenu.value!='doothermenu'){this.style.backgroundColor='';}" onmouseover="if(document.menuform.onclickmenu.value!='doothermenu'){this.style.backgroundColor='#8CBDEF';}" onclick="DoOnclickMenu('doothermenu');JumpToLeftMenu('adminstyle/1/left.php?ecms=other<?=$ecms_hashur['ehref']?>');" style="CURSOR: hand" id="doothermenu"><table width="100%" border="0" cellspacing="2" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/other<?=$menufiletype?>" width=32 border=0 title="å…¶ä»–ç®¡ç†"></div></td>
+                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/other<?=$menufiletype?>" width=32 border=0 title="ÆäËû¹ÜÀí"></div></td>
                         </tr>
                         <tr> 
                           <td height="20">
-<div align="center"><font color="#FFFFFF"><strong>å…¶ä»–</strong></font></div></td>
+<div align="center"><font color="#FFFFFF"><strong>ÆäËû</strong></font></div></td>
                         </tr>
                       </table></TD>
 					  <TD width=60 onmouseout="if(document.menuform.onclickmenu.value!='doextmenu'){this.style.backgroundColor='';}" onmouseover="if(document.menuform.onclickmenu.value!='doextmenu'){this.style.backgroundColor='#8CBDEF';}" onclick="DoOnclickMenu('doextmenu');JumpToLeftMenu('adminstyle/1/left.php?ecms=extend<?=$ecms_hashur['ehref']?>');" style="CURSOR:hand;<?=$showextmenu?'':'display:none'?>" id="doextmenu"><table width="100%" border="0" cellspacing="2" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/extend<?=$menufiletype?>" width=32 border=0 title="æ‰©å±•èœå•é¡¹"></div></td>
+                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/extend<?=$menufiletype?>" width=32 border=0 title="À©Õ¹²Ëµ¥Ïî"></div></td>
                         </tr>
                         <tr> 
                           <td height="20">
-<div align="center"><font color="#FFFFFF"><strong>æ‰©å±•</strong></font></div></td>
+<div align="center"><font color="#FFFFFF"><strong>À©Õ¹</strong></font></div></td>
                         </tr>
                       </table> </TD>
                     <TD width=60 onmouseout="if(document.menuform.onclickmenu.value!='dofastmenu'){this.style.backgroundColor='';}" onmouseover="if(document.menuform.onclickmenu.value!='dofastmenu'){this.style.backgroundColor='#8CBDEF';}" onclick="DoOnclickMenu('dofastmenu');JumpToLeftMenu('adminstyle/1/left.php?ecms=fastmenu<?=$ecms_hashur['ehref']?>');" style="CURSOR:hand;<?=$showfastmenu?'':'display:none'?>" id="dofastmenu"><table width="100%" border="0" cellspacing="2" cellpadding="0">
                         <tr> 
-                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/fastmenu<?=$menufiletype?>" width=32 border=0 title="å¸¸ç”¨æ“ä½œ"></div></td>
+                          <td><div align="center"><IMG height=32 src="adminstyle/1/images/fastmenu<?=$menufiletype?>" width=32 border=0 title="³£ÓÃ²Ù×÷"></div></td>
                         </tr>
                         <tr> 
                           <td height="20">
-<div align="center"><font color="#FFFFFF"><strong>å¸¸ç”¨</strong></font></div></td>
+<div align="center"><font color="#FFFFFF"><strong>³£ÓÃ</strong></font></div></td>
                         </tr>
                       </table></TD>
-                    <TD width="301"><div align="right"><font color="#ffffff">ç”¨æˆ·ï¼š<a href="user/EditPassword.php<?=$ecms_hashur['whehref']?>" target="main"><font color="#ffffff"><b><?=$loginin?></b></font></a>&nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="if(confirm('ç¡®è®¤è¦é€€å‡º?')){JumpToMain('enews.php?enews=exit<?=$ecms_hashur['href']?>');}"><font color="#ffffff">é€€å‡º</font></a>]&nbsp;&nbsp;</font></div></TD>
+                    <TD width="301"><div align="right"><font color="#ffffff">ÓÃ»§£º<a href="user/EditPassword.php<?=$ecms_hashur['whehref']?>" target="main"><font color="#ffffff"><b><?=$loginin?></b></font></a>&nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="if(confirm('È·ÈÏÒªÍË³ö?')){JumpToMain('enews.php?enews=exit<?=$ecms_hashur['href']?>');}"><font color="#ffffff">ÍË³ö</font></a>]&nbsp;&nbsp;</font></div></TD>
                   </TR>
                 </TBODY>
               </TABLE>
@@ -322,7 +322,7 @@ function DoOnclickMenu(m){
 <tr><td height="22">
 
   <TABLE width="100%" height="22" border=0 cellpadding="0" cellSpacing=0>
-  <form name="chmpform" method="post" action="enews.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ‡æ¢è®¿é—®ç«¯ï¼Ÿ');">
+  <form name="chmpform" method="post" action="enews.php" onsubmit="return confirm('È·ÈÏÒªÇĞ»»·ÃÎÊ¶Ë£¿');">
     <TBODY>
       <TR> 
         <TD class=flyoutMenu width="1%"> </TD>   
@@ -330,34 +330,34 @@ function DoOnclickMenu(m){
               <TABLE class=flyoutMenu border=0>
                 <TBODY>
                   <TR align=middle> 
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('AddInfoChClass.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">å¢åŠ ä¿¡æ¯</TD>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListAllInfo.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">ç®¡ç†ä¿¡æ¯</TD>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListAllInfo.php?ecmscheck=1<?=$ecms_hashur['ehref']?>');" onmouseover="over(this)" onmouseout="out(this)">å®¡æ ¸ä¿¡æ¯</TD>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('workflow/ListWfInfo.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">ç­¾å‘ä¿¡æ¯</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('AddInfoChClass.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">Ôö¼ÓĞÅÏ¢</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListAllInfo.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">¹ÜÀíĞÅÏ¢</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ListAllInfo.php?ecmscheck=1<?=$ecms_hashur['ehref']?>');" onmouseover="over(this)" onmouseout="out(this)">ÉóºËĞÅÏ¢</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('workflow/ListWfInfo.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">Ç©·¢ĞÅÏ¢</TD>
 					<?php
 					if($r[dopl])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('openpage/AdminPage.php?leftfile=<?=urlencode('../pl/PlNav.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../pl/PlMain.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('ç®¡ç†è¯„è®º')?><?=$ecms_hashur['ehref']?>');" onmouseover="over(this)" onmouseout="out(this)">ç®¡ç†è¯„è®º</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('openpage/AdminPage.php?leftfile=<?=urlencode('../pl/PlNav.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../pl/PlMain.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('¹ÜÀíÆÀÂÛ')?><?=$ecms_hashur['ehref']?>');" onmouseover="over(this)" onmouseout="out(this)">¹ÜÀíÆÀÂÛ</TD>
 					<?php
 					}
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('sp/UpdateSp.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">æ›´æ–°ç¢ç‰‡</TD>
-					<TD width="60" class="flyoutLink" onclick="JumpToMain('special/UpdateZt.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">æ›´æ–°ä¸“é¢˜</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('sp/UpdateSp.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">¸üĞÂËéÆ¬</TD>
+					<TD width="60" class="flyoutLink" onclick="JumpToMain('special/UpdateZt.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">¸üĞÂ×¨Ìâ</TD>
 					<?php
 					if($r[dochangedata])
 					{
 					?>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">æ•°æ®æ›´æ–°</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">Êı¾İ¸üĞÂ</TD>
 					<?php
 					}
 					?>
-					<TD width="60" class="flyoutLink" onclick="JumpToMain('info/InfoMain.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">æ•°æ®ç»Ÿè®¡</TD>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('infotop.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">æ’è¡Œç»Ÿè®¡</TD>
-                    <TD width="60" class="flyoutLink" onclick="JumpToMain('main.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">åå°é¦–é¡µ</TD>
-                    <TD width="60" class="flyoutLink" onclick="window.open('../../');" onmouseover="over(this)" onmouseout="out(this)">ç½‘ç«™é¦–é¡µ</TD>
-                    <TD width="60" class="flyoutLink" onclick="window.open('map.php<?=$ecms_hashur['whehref']?>','','width=1250,height=760,scrollbars=yes,resizable=yes,top=80,left=120');" onmouseover="over(this)" onmouseout="out(this)">åå°åœ°å›¾</TD>
-                    <TD width="60" class="flyoutLink" onclick="window.open('http://bbs.phome.net/listthread-23-cms-page-0.html');" onmouseover="over(this)" onmouseout="out(this)">ç‰ˆæœ¬æ›´æ–°</TD>
+					<TD width="60" class="flyoutLink" onclick="JumpToMain('info/InfoMain.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">Êı¾İÍ³¼Æ</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('infotop.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">ÅÅĞĞÍ³¼Æ</TD>
+                    <TD width="60" class="flyoutLink" onclick="JumpToMain('main.php<?=$ecms_hashur['whehref']?>');" onmouseover="over(this)" onmouseout="out(this)">ºóÌ¨Ê×Ò³</TD>
+                    <TD width="60" class="flyoutLink" onclick="window.open('../../');" onmouseover="over(this)" onmouseout="out(this)">ÍøÕ¾Ê×Ò³</TD>
+                    <TD width="60" class="flyoutLink" onclick="window.open('map.php<?=$ecms_hashur['whehref']?>','','width=1250,height=760,scrollbars=yes,resizable=yes,top=80,left=120');" onmouseover="over(this)" onmouseout="out(this)">ºóÌ¨µØÍ¼</TD>
+                    <TD width="60" class="flyoutLink" onclick="window.open('http://bbs.phome.net/listthread-23-cms-page-0.html');" onmouseover="over(this)" onmouseout="out(this)">°æ±¾¸üĞÂ</TD>
                   </TR>
                 </TBODY>
               </TABLE>            </TD>
@@ -366,9 +366,9 @@ function DoOnclickMenu(m){
 if($r['dochmoreport']&&$public_r['ckhavemoreport'])
 {
 ?>
-  è®¿é—®ç«¯:
+  ·ÃÎÊ¶Ë:
   <?=Moreport_eReturnMoreportSelect($ecms_config['sets']['selfmoreportid'])?>
-  <input type="submit" name="Submit" value="åˆ‡æ¢">
+  <input type="submit" name="Submit" value="ÇĞ»»">
   <input name="enews" type="hidden" id="enews" value="ChangeMoreportAdmin">
   <?=$ecms_hashur['form']?>
 	&nbsp;&nbsp;
@@ -398,7 +398,7 @@ if($r['dochmoreport']&&$public_r['ckhavemoreport'])
           <TBODY>
             <tr> 
               <TD onclick="switchSysBar()" style="HEIGHT:100%;"> <font style="COLOR:666666;CURSOR:hand;FONT-FAMILY:Webdings;FONT-SIZE:9pt;"> 
-                <SPAN id="switchPoint" title="æ‰“å¼€/å…³é—­å·¦è¾¹å¯¼èˆªæ ">3</SPAN></font> 
+                <SPAN id="switchPoint" title="´ò¿ª/¹Ø±Õ×ó±ßµ¼º½À¸">3</SPAN></font> 
           </TBODY>
         </TABLE>
       </TD>

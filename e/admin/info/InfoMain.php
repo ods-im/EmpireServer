@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -18,9 +18,9 @@ $ecms_hashur=hReturnEcmsHashStrAll();
 
 @set_time_limit(1000);
 
-//ä»Šæ—¥ä¿¡æ¯
+//½ñÈÕĞÅÏ¢
 $pur=$empire->fetch1("select lasttimeinfo,lastnuminfo,lastnuminfotb,todaytimeinfo,todaytimepl,todaynuminfo,yesterdaynuminfo from {$dbtbpre}enewspublic_up limit 1");
-//æ›´æ–°æ˜¨æ—¥ä¿¡æ¯
+//¸üĞÂ×òÈÕĞÅÏ¢
 $todaydate=date('Y-m-d');
 if(date('Y-m-d',$pur['todaytimeinfo'])<>$todaydate||date('Y-m-d',$pur['todaytimepl'])<>$todaydate)
 {
@@ -28,29 +28,29 @@ if(date('Y-m-d',$pur['todaytimeinfo'])<>$todaydate||date('Y-m-d',$pur['todaytime
 	$pur=$empire->fetch1("select lasttimeinfo,lastnuminfo,lastnuminfotb,todaytimeinfo,todaytimepl,todaynuminfo,yesterdaynuminfo from {$dbtbpre}enewspublic_up limit 1");
 }
 $sql=$empire->query("select tid,tbname,tname,isdefault from {$dbtbpre}enewstable order by tid");
-//ç­¾å‘ä¿¡æ¯
+//Ç©·¢ĞÅÏ¢
 $qfinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewswfinfo where checktno=0 and (groupid like '%,".$lur['groupid'].",%' or userclass like '%,".$lur['classid'].",%' or username like '%,".$lur['username'].",%')");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¿¡æ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ĞÅÏ¢</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="InfoMain.php<?=$ecms_hashur['whehref']?>">ä¿¡æ¯ç»Ÿè®¡</a></td>
+    <td>Î»ÖÃ£º<a href="InfoMain.php<?=$ecms_hashur['whehref']?>">ĞÅÏ¢Í³¼Æ</a></td>
   </tr>
 </table>
 <br>
 <table width="100%" border="0" cellspacing="1" cellpadding="0">
   <tr>
-    <td width="10%" height="25" class="header"><div align="center"><a href="../info/InfoMain.php<?=$ecms_hashur['whehref']?>">ä¿¡æ¯ç»Ÿè®¡</a></div></td>
-    <td width="10%" bgcolor="#C9F1FF"><div align="center"><a href="../pl/PlMain.php<?=$ecms_hashur['whehref']?>">è¯„è®ºç»Ÿè®¡</a></div></td>
-    <td width="10%" bgcolor="#C9F1FF"><div align="center"><a href="../other/OtherMain.php<?=$ecms_hashur['whehref']?>">å…¶ä»–ç»Ÿè®¡</a></div></td>
+    <td width="10%" height="25" class="header"><div align="center"><a href="../info/InfoMain.php<?=$ecms_hashur['whehref']?>">ĞÅÏ¢Í³¼Æ</a></div></td>
+    <td width="10%" bgcolor="#C9F1FF"><div align="center"><a href="../pl/PlMain.php<?=$ecms_hashur['whehref']?>">ÆÀÂÛÍ³¼Æ</a></div></td>
+    <td width="10%" bgcolor="#C9F1FF"><div align="center"><a href="../other/OtherMain.php<?=$ecms_hashur['whehref']?>">ÆäËûÍ³¼Æ</a></div></td>
     <td width="58%">&nbsp;</td>
     <td width="6%">&nbsp;</td>
     <td width="6%">&nbsp;</td>
@@ -58,17 +58,17 @@ $qfinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewswfinf
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td height="25" colspan="6">ä¿¡æ¯å‘å¸ƒç»Ÿè®¡ (ä»Šæ—¥ä¿¡æ¯æ•°ï¼š<?=$pur['todaynuminfo']?>ï¼Œæ˜¨å¤©ä¿¡æ¯æ•°ï¼š<?=$pur['yesterdaynuminfo']?>ï¼Œå¾…æˆ‘ç­¾å‘çš„ä¿¡æ¯æ•°ï¼š<a href="../workflow/ListWfInfo.php<?=$ecms_hashur['whehref']?>" target="_blank"><?=$qfinfonum?></a>) </td>
+    <td height="25" colspan="6">ĞÅÏ¢·¢²¼Í³¼Æ (½ñÈÕĞÅÏ¢Êı£º<?=$pur['todaynuminfo']?>£¬×òÌìĞÅÏ¢Êı£º<?=$pur['yesterdaynuminfo']?>£¬´ıÎÒÇ©·¢µÄĞÅÏ¢Êı£º<a href="../workflow/ListWfInfo.php<?=$ecms_hashur['whehref']?>" target="_blank"><?=$qfinfonum?></a>) </td>
   </tr>
   <tr class="header">
-    <td width="14%" height="25"><div align="center">è¡¨å</div></td>
-    <td width="8%"><div align="center">å·²å®¡æ ¸</div></td>
-    <td width="8%"><div align="center">æœªå®¡æ ¸</div></td>
-    <td width="8%"><div align="center">æœªå®¡æ ¸æŠ•ç¨¿</div></td>
-    <td width="8%"><div align="center">æ€»æ•°</div></td>
-    <td width="54%">ä» 
+    <td width="14%" height="25"><div align="center">±íÃû</div></td>
+    <td width="8%"><div align="center">ÒÑÉóºË</div></td>
+    <td width="8%"><div align="center">Î´ÉóºË</div></td>
+    <td width="8%"><div align="center">Î´ÉóºËÍ¶¸å</div></td>
+    <td width="8%"><div align="center">×ÜÊı</div></td>
+    <td width="54%">´Ó 
       <?=date('Y-m-d H:i:s',$pur['lasttimeinfo'])?> 
-    æˆªæ­¢è‡³ç°åœ¨çš„æ–°å¢æ•°é‡</td>
+    ½ØÖ¹ÖÁÏÖÔÚµÄĞÂÔöÊıÁ¿</td>
   </tr>
 	  <?php
 	  $i=0;
@@ -83,11 +83,11 @@ $qfinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewswfinf
 		}
 		$thistb=$tr['tid'];
 		$infotbname='ecms_'.$tr['tbname'];
-		$tbinfos=eGetTableRowNum($dbtbpre.$infotbname);//å·²å®¡æ ¸
+		$tbinfos=eGetTableRowNum($dbtbpre.$infotbname);//ÒÑÉóºË
 		$checkinfotbname='ecms_'.$tr['tbname'].'_check';
-		$checktbinfos=eGetTableRowNum($dbtbpre.$checkinfotbname);//æœªå®¡æ ¸
-		$qchecktbinfos=$empire->gettotal("select count(*) as total from ".$dbtbpre.$checkinfotbname." where ismember=1");//æŠ•ç¨¿æ•°
-		$alltbinfos=$tbinfos+$checktbinfos;//æ€»æ•°
+		$checktbinfos=eGetTableRowNum($dbtbpre.$checkinfotbname);//Î´ÉóºË
+		$qchecktbinfos=$empire->gettotal("select count(*) as total from ".$dbtbpre.$checkinfotbname." where ismember=1");//Í¶¸åÊı
+		$alltbinfos=$tbinfos+$checktbinfos;//×ÜÊı
 		$tname=$tr['tname'];
 		if($tr['isdefault'])
 		{
@@ -122,7 +122,7 @@ $qfinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewswfinf
 	  }
 	  ?>
   <tr class="header">
-    <td height="25"><div align="right">æ€»è®¡ï¼š</div></td>
+    <td height="25"><div align="right">×Ü¼Æ£º</div></td>
     <td align="right"><div align="right"><?=$totaltbinfos?></div></td>
     <td align="right"><div align="right"><?=$totalchecktbinfos?></div></td>
     <td align="right"><?=$totalqchecktbinfos?></td>
@@ -131,7 +131,7 @@ $qfinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewswfinf
         <tr>
           <td width="40%" align="right"><font color="#FFFFFF"><b><?=$pur['lastnuminfo']?></b></font></td>
           <td width="60%"><div align="center">
-            <input type="button" name="Submit" value="é‡ç½®æˆªæ­¢ç»Ÿè®¡" onclick="if(confirm('ç¡®è®¤è¦é‡ç½®ä¿¡æ¯æ•°ç»Ÿè®¡?')){self.location.href='../ecmscom.php?enews=ResetAddDataNum&type=info&from=info/InfoMain.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>';}">
+            <input type="button" name="Submit" value="ÖØÖÃ½ØÖ¹Í³¼Æ" onclick="if(confirm('È·ÈÏÒªÖØÖÃĞÅÏ¢ÊıÍ³¼Æ?')){self.location.href='../ecmscom.php?enews=ResetAddDataNum&type=info&from=info/InfoMain.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>';}">
           </div></td>
         </tr>
     </table></td>
@@ -139,7 +139,7 @@ $qfinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewswfinf
 </table>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr>
-    <td height="23"><font color="#666666">è¯´æ˜ï¼šç‚¹å‡»â€œå·²å®¡æ ¸â€ã€â€œæœªå®¡æ ¸â€æˆ–â€œæœªå®¡æ ¸æŠ•ç¨¿â€æ•°å¯è¿›å…¥ç›¸åº”çš„ç®¡ç†ã€‚</font></td>
+    <td height="23"><font color="#666666">ËµÃ÷£ºµã»÷¡°ÒÑÉóºË¡±¡¢¡°Î´ÉóºË¡±»ò¡°Î´ÉóºËÍ¶¸å¡±Êı¿É½øÈëÏàÓ¦µÄ¹ÜÀí¡£</font></td>
   </tr>
 </table>
 <p>&nbsp;</p>

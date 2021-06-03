@@ -7,7 +7,7 @@ require LoadLang("pub/fun.php");
 require("../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//å–å¾—æ•°æ®è¡¨
+//È¡µÃÊı¾İ±í
 $tid=(int)$public_r['tid'];
 $tbname=$_GET['tbname']?$_GET['tbname']:$public_r['tbname'];
 $tbname=RepPostVar($tbname);
@@ -38,11 +38,11 @@ if($havetb==0)
 {
 	printerror('ErrorUrl','');
 }
-//å–å¾—ç›¸åº”çš„ä¿¡æ¯
+//È¡µÃÏàÓ¦µÄĞÅÏ¢
 $user_r=$empire->fetch1("select groupid,adminclass from {$dbtbpre}enewsuser where userid='$logininid'");
-//å–å¾—ç”¨æˆ·ç»„
+//È¡µÃÓÃ»§×é
 $gr=$empire->fetch1("select doall,doselfinfo from {$dbtbpre}enewsgroup where groupid='$user_r[groupid]'");
-//ç®¡ç†å‘˜
+//¹ÜÀíÔ±
 $where='';
 $and='';
 $ewhere='';
@@ -57,7 +57,7 @@ if($ecmscheck)
 	$indexchecked=0;
 }
 $infotb=ReturnInfoMainTbname($tbname,$indexchecked);
-//ä¼˜åŒ–
+//ÓÅ»¯
 $modid=$etable_r[$tbname][mid];
 $yhadd='';
 $yhvar='hlist';
@@ -73,7 +73,7 @@ if($yhid)
 }
 if(empty($yhadd))
 {
-	//æ—¶é—´èŒƒå›´
+	//Ê±¼ä·¶Î§
 	$infolday=(int)$_GET['infolday'];
 	if(empty($infolday))
 	{
@@ -111,20 +111,20 @@ if(!$gr['doall'])
 	$and=$where?' and ':' where ';
 	$where.=$and.'classid in ('.$cids.')';
 }
-//åªèƒ½ç¼–è¾‘è‡ªå·±çš„ä¿¡æ¯
+//Ö»ÄÜ±à¼­×Ô¼ºµÄĞÅÏ¢
 if($gr['doselfinfo'])
 {
 	$and=$where?' and ':' where ';
 	$where.=$and."userid='$logininid' and ismember=0";
 }
-$url="<a href=ListAllInfo.php?tbname=".$tbname.$addecmscheck.$ecms_hashur['ehref'].">ç®¡ç†ä¿¡æ¯</a>";
+$url="<a href=ListAllInfo.php?tbname=".$tbname.$addecmscheck.$ecms_hashur['ehref'].">¹ÜÀíĞÅÏ¢</a>";
 $start=0;
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
-$line=intval($public_r['hlistinfonum']);//æ¯é¡µæ˜¾ç¤º
+$line=intval($public_r['hlistinfonum']);//Ã¿Ò³ÏÔÊ¾
 $page_line=21;
 $offset=$page*$line;
-//æ ç›®ID
+//À¸Ä¿ID
 $classid=intval($_GET['classid']);
 if($classid)
 {
@@ -139,9 +139,9 @@ if($classid)
 	}
 	$search.="&classid=$classid";
 }
-//æ¨¡å‹
+//Ä£ĞÍ
 $infomod_r=$empire->fetch1("select mid,listfile from {$dbtbpre}enewsmod where mid='$modid'");
-//æ ‡é¢˜åˆ†ç±»
+//±êÌâ·ÖÀà
 $ttid=(int)$_GET['ttid'];
 if($ttid)
 {
@@ -149,7 +149,7 @@ if($ttid)
 	$where.=$and."ttid='$ttid'";
 	$search.="&ttid=$ttid";
 }
-//æ ‡é¢˜åˆ†ç±»
+//±êÌâ·ÖÀà
 $tts='';
 $ttsql=$empire->query("select typeid,tname from {$dbtbpre}enewsinfotype where mid='$infomod_r[mid]' order by myorder");
 while($ttr=$empire->fetch($ttsql))
@@ -161,8 +161,8 @@ while($ttr=$empire->fetch($ttsql))
 	}
 	$tts.="<option value='$ttr[typeid]'".$select.">$ttr[tname]</option>";
 }
-$stts=$tts?"<select name='ttid'><option value='0'>æ ‡é¢˜åˆ†ç±»</option>$tts</select>":"";
-//æœç´¢
+$stts=$tts?"<select name='ttid'><option value='0'>±êÌâ·ÖÀà</option>$tts</select>":"";
+//ËÑË÷
 $showisgood=(int)$_GET['showisgood'];
 $showfirsttitle=(int)$_GET['showfirsttitle'];
 $sear=(int)$_GET['sear'];
@@ -170,32 +170,32 @@ if($sear)
 {
 	$and=$where?' and ':' where ';
 	$showspecial=(int)$_GET['showspecial'];
-	if($showspecial==1)//ç½®é¡¶
+	if($showspecial==1)//ÖÃ¶¥
 	{
 		$where.=$and.'istop>0';
 	}
-	elseif($showspecial==2)//æ¨è
+	elseif($showspecial==2)//ÍÆ¼ö
 	{
 		$where.=$and.'isgood>0';
 	}
-	elseif($showspecial==3)//å¤´æ¡
+	elseif($showspecial==3)//Í·Ìõ
 	{
 		$where.=$and.'firsttitle>0';
 	}
-	elseif($showspecial==5)//ç­¾å‘
+	elseif($showspecial==5)//Ç©·¢
 	{
 		$where.=$and.'isqf=1';
 	}
-	elseif($showspecial==7)//æŠ•ç¨¿
+	elseif($showspecial==7)//Í¶¸å
 	{
 		$where.=$and.'ismember=1';
 	}
-	elseif($showspecial==8)//æˆ‘çš„ä¿¡æ¯
+	elseif($showspecial==8)//ÎÒµÄĞÅÏ¢
 	{
 		$where.=$and."userid='$logininid' and ismember=0";
 	}
 	$and=$where?' and ':' where ';
-	//æ¨è
+	//ÍÆ¼ö
 	if($showisgood)
 	{
 		if($showisgood>0)
@@ -208,7 +208,7 @@ if($sear)
 		}
 	}
 	$and=$where?' and ':' where ';
-	//å¤´æ¡
+	//Í·Ìõ
 	if($showfirsttitle)
 	{
 		if($showfirsttitle>0)
@@ -225,11 +225,11 @@ if($sear)
 	{
 		$keyboard=RepPostVar2($_GET['keyboard']);
 		$show=RepPostStr($_GET['show'],1);
-		if($show==0)//æœç´¢å…¨éƒ¨
+		if($show==0)//ËÑË÷È«²¿
 		{
 			$where.=$and."(title like '%$keyboard%' or username like '%$keyboard%' or id='$keyboard' or keyboard like '%$keyboard%')";
 		}
-		elseif($show==1)//æœç´¢æ ‡é¢˜
+		elseif($show==1)//ËÑË÷±êÌâ
 		{
 			$where.=$and."(title like '%$keyboard%')";
 		}
@@ -237,7 +237,7 @@ if($sear)
 		{
 			$where.=$and."(id='$keyboard')";
 		}
-		elseif($show==4)//æœç´¢å…³é”®å­—
+		elseif($show==4)//ËÑË÷¹Ø¼ü×Ö
 		{
 			$where.=$and."(keyboard like '%$keyboard%')";
 		}
@@ -248,7 +248,7 @@ if($sear)
 	}
 	$search.="&sear=1&keyboard=$keyboard&show=$show&showspecial=$showspecial&showisgood=$showisgood&showfirsttitle=$showfirsttitle";
 }
-//æ˜¾ç¤ºé‡å¤æ ‡é¢˜
+//ÏÔÊ¾ÖØ¸´±êÌâ
 if($_GET['showretitle']==1)
 {
 	$and=$where?' and ':' where ';
@@ -287,29 +287,29 @@ if($_GET['showretitle']==1)
 		printerror("HaveNotReInfo","ListAllInfo.php?tbname=".$tbname.$addecmscheck.$ecms_hashur['ehref']);
 	}
 }
-//æ’åº
+//ÅÅĞò
 $orderby=RepPostStr($_GET['orderby'],1);
 $doorderby=$orderby?'asc':'desc';
 $myorder=RepPostStr($_GET['myorder'],1);
-if($myorder==1)//IDå·
+if($myorder==1)//IDºÅ
 {$doorder="id";}
-elseif($myorder==2)//æ—¶é—´
+elseif($myorder==2)//Ê±¼ä
 {$doorder="newstime";}
-elseif($myorder==5)//è¯„è®ºæ•°
+elseif($myorder==5)//ÆÀÂÛÊı
 {$doorder="plnum";}
-elseif($myorder==3)//äººæ°”
+elseif($myorder==3)//ÈËÆø
 {$doorder="onclick";}
-elseif($myorder==4)//ä¸‹è½½
+elseif($myorder==4)//ÏÂÔØ
 {$doorder="totaldown";}
-else//é»˜è®¤æ’åº
+else//Ä¬ÈÏÅÅĞò
 {$doorder="id";}
 $doorder.=' '.$doorderby;
 $search.="&myorder=$myorder&orderby=$orderby";
 $totalquery="select count(*) as total from ".$infotb.$where;
-//è¡¨ä¿¡æ¯æ•°
+//±íĞÅÏ¢Êı
 $tbinfos=eGetTableRowNum("{$dbtbpre}ecms_".$tbname);
 $tbckinfos=eGetTableRowNum("{$dbtbpre}ecms_".$tbname."_check");
-//å–å¾—æ€»æ¡æ•°
+//È¡µÃ×ÜÌõÊı
 $totalnum=intval($_GET['totalnum']);
 if($totalnum<1)
 {
@@ -330,7 +330,7 @@ $search1=$search;
 $search.="&totalnum=$num";
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 $phpmyself=urlencode(eReturnSelfPage(1));
-//å¯¼å…¥é¡µé¢
+//µ¼ÈëÒ³Ãæ
 $deftempfile=ECMS_PATH.'e/data/html/list/alllistinfo.php';
 if($infomod_r[listfile])
 {

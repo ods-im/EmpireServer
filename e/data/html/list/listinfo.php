@@ -5,10 +5,10 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-//æŸ¥è¯¢SQLï¼Œå¦‚æœè¦æ˜¾ç¤ºè‡ªå®šä¹‰å­—æ®µè®°å¾—åœ¨SQLé‡Œå¢åŠ æŸ¥è¯¢å­—æ®µ
+//²éÑ¯SQL£¬Èç¹ûÒªÏÔÊ¾×Ô¶¨Òå×Ö¶Î¼ÇµÃÔÚSQLÀïÔö¼Ó²éÑ¯×Ö¶Î
 $query="select id,classid,isurl,titleurl,isqf,havehtml,istop,isgood,firsttitle,ismember,userid,username,eckuid,plnum,totaldown,onclick,newstime,truetime,lastdotime,titlepic,title from ".$infotb.$ewhere." order by ".$doorder." limit $offset,$line";
 $sql=$empire->query($query);
-//è¿”å›å¤´æ¡å’Œæ¨èçº§åˆ«åç§°
+//·µ»ØÍ·ÌõºÍÍÆ¼ö¼¶±ğÃû³Æ
 $ftnr=ReturnFirsttitleNameList(0,0);
 $ftnamer=$ftnr['ftr'];
 $ignamer=$ftnr['igr'];
@@ -34,9 +34,9 @@ else
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link rel="stylesheet" href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" type="text/css">
-<title>ç®¡ç†ä¿¡æ¯</title>
+<title>¹ÜÀíĞÅÏ¢</title>
 <script>
 function CheckAll(form)
   {
@@ -73,7 +73,7 @@ function PushInfoToSp(form)
 	id=GetSelectId(form);
 	if(id=='')
 	{
-		alert('è¯·é€‰æ‹©è¦æ¨é€çš„ä¿¡æ¯');
+		alert('ÇëÑ¡ÔñÒªÍÆËÍµÄĞÅÏ¢');
 		return false;
 	}
 	window.open('sp/PushToSp.php?<?=$ecms_hashur['ehref']?>&classid=<?=$classid?>&id='+id,'PushToSp','width=360,height=500,scrollbars=yes,left=300,top=150,resizable=yes');
@@ -85,7 +85,7 @@ function PushInfoToZt(form)
 	id=GetSelectId(form);
 	if(id=='')
 	{
-		alert('è¯·é€‰æ‹©è¦æ¨é€çš„ä¿¡æ¯');
+		alert('ÇëÑ¡ÔñÒªÍÆËÍµÄĞÅÏ¢');
 		return false;
 	}
 	window.open('special/PushToZt.php?<?=$ecms_hashur['ehref']?>&classid=<?=$classid?>&id='+id,'PushToZt','width=360,height=500,scrollbars=yes,left=300,top=150,resizable=yes');
@@ -95,12 +95,12 @@ function PushInfoToZt(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="52%">ä½ç½®ï¼š 
+    <td width="52%">Î»ÖÃ£º 
       <?=$url?>
     </td>
-    <td width="48%"> <div align="right">[<a href="AddClass.php?enews=EditClass&classid=<?=$classid?><?=$ecms_hashur['ehref']?>">æ ç›®è®¾ç½®</a>] 
-        [<a href="AddInfoClass.php?enews=AddInfoClass&newsclassid=<?=$classid?><?=$ecms_hashur['ehref']?>">å¢åŠ é‡‡é›†</a>] 
-        [<a href="ListInfoClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†é‡‡é›†</a>] [<a href="ecmschtml.php?enews=ReAllNewsJs&from=<?=$phpmyself?><?=$ecms_hashur['href']?>">åˆ·æ–°æ‰€æœ‰ä¿¡æ¯JS</a>]</div></td>
+    <td width="48%"> <div align="right">[<a href="AddClass.php?enews=EditClass&classid=<?=$classid?><?=$ecms_hashur['ehref']?>">À¸Ä¿ÉèÖÃ</a>] 
+        [<a href="AddInfoClass.php?enews=AddInfoClass&newsclassid=<?=$classid?><?=$ecms_hashur['ehref']?>">Ôö¼Ó²É¼¯</a>] 
+        [<a href="ListInfoClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀí²É¼¯</a>] [<a href="ecmschtml.php?enews=ReAllNewsJs&from=<?=$phpmyself?><?=$ecms_hashur['href']?>">Ë¢ĞÂËùÓĞĞÅÏ¢JS</a>]</div></td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
@@ -111,66 +111,66 @@ function PushInfoToZt(form)
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
             <td width="24%"> <div align="left" class="emenubutton"> 
-                <input type=button name=button value="å¢åŠ ä¿¡æ¯" onClick="self.location.href='AddNews.php?enews=AddNews&ecmsnfrom=1<?=$addecmscheck?>&bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$ecms_hashur['ehref']?>'">
+                <input type=button name=button value="Ôö¼ÓĞÅÏ¢" onClick="self.location.href='AddNews.php?enews=AddNews&ecmsnfrom=1<?=$addecmscheck?>&bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$ecms_hashur['ehref']?>'">
               </div></td>
             <td width="76%"> </td>
           </tr>
         </table></td> 
     </tr>
     <tr>
-      <td width="24%" bgcolor="#FFFFFF" title="å¢åŠ ä¿¡æ¯åä½¿ç”¨æœ¬æ“ä½œå°†ä¿¡æ¯æ˜¾ç¤ºåˆ°å‰å°"> 
+      <td width="24%" bgcolor="#FFFFFF" title="Ôö¼ÓĞÅÏ¢ºóÊ¹ÓÃ±¾²Ù×÷½«ĞÅÏ¢ÏÔÊ¾µ½Ç°Ì¨"> 
         <div align="left">
           <select name="dore">
-            <option value="1">åˆ·æ–°å½“å‰æ ç›®</option>
-            <option value="2">åˆ·æ–°é¦–é¡µ</option>
-            <option value="3">åˆ·æ–°çˆ¶æ ç›®</option>
-            <option value="4">åˆ·æ–°å½“å‰æ ç›®ä¸çˆ¶æ ç›®</option>
-            <option value="5">åˆ·æ–°çˆ¶æ ç›®ä¸é¦–é¡µ</option>
-            <option value="6" selected>åˆ·æ–°å½“å‰æ ç›®ã€çˆ¶æ ç›®ä¸é¦–é¡µ</option>
+            <option value="1">Ë¢ĞÂµ±Ç°À¸Ä¿</option>
+            <option value="2">Ë¢ĞÂÊ×Ò³</option>
+            <option value="3">Ë¢ĞÂ¸¸À¸Ä¿</option>
+            <option value="4">Ë¢ĞÂµ±Ç°À¸Ä¿Óë¸¸À¸Ä¿</option>
+            <option value="5">Ë¢ĞÂ¸¸À¸Ä¿ÓëÊ×Ò³</option>
+            <option value="6" selected>Ë¢ĞÂµ±Ç°À¸Ä¿¡¢¸¸À¸Ä¿ÓëÊ×Ò³</option>
           </select>
-          <input type="button" name="Submit12" value="æäº¤" onclick="self.location.href='ecmsinfo.php?<?=$ecms_hashur['href']?>&enews=AddInfoToReHtml<?=$addecmscheck?>&classid=<?=$classid?>&dore='+document.searchinfo.dore.value;">
-          </div></td><td width="76%" height="32" bgcolor="#FFFFFF"><div align="right">æœç´¢: 
+          <input type="button" name="Submit12" value="Ìá½»" onclick="self.location.href='ecmsinfo.php?<?=$ecms_hashur['href']?>&enews=AddInfoToReHtml<?=$addecmscheck?>&classid=<?=$classid?>&dore='+document.searchinfo.dore.value;">
+          </div></td><td width="76%" height="32" bgcolor="#FFFFFF"><div align="right">ËÑË÷: 
           <select name="showspecial" id="showspecial">
-            <option value="0"<?=$showspecial==0?' selected':''?>>ä¸é™å±æ€§</option>
-			<option value="1"<?=$showspecial==1?' selected':''?>>ç½®é¡¶</option>
-            <option value="2"<?=$showspecial==2?' selected':''?>>æ¨è</option>
-            <option value="3"<?=$showspecial==3?' selected':''?>>å¤´æ¡</option>
-			<option value="7"<?=$showspecial==7?' selected':''?>>æŠ•ç¨¿</option>
-            <option value="5"<?=$showspecial==5?' selected':''?>>ç­¾å‘</option>
-			<option value="8"<?=$showspecial==8?' selected':''?>>æˆ‘çš„ä¿¡æ¯</option>
+            <option value="0"<?=$showspecial==0?' selected':''?>>²»ÏŞÊôĞÔ</option>
+			<option value="1"<?=$showspecial==1?' selected':''?>>ÖÃ¶¥</option>
+            <option value="2"<?=$showspecial==2?' selected':''?>>ÍÆ¼ö</option>
+            <option value="3"<?=$showspecial==3?' selected':''?>>Í·Ìõ</option>
+			<option value="7"<?=$showspecial==7?' selected':''?>>Í¶¸å</option>
+            <option value="5"<?=$showspecial==5?' selected':''?>>Ç©·¢</option>
+			<option value="8"<?=$showspecial==8?' selected':''?>>ÎÒµÄĞÅÏ¢</option>
           </select>
 		  <select name="showisgood" id="showisgood">
-            <option value="0"<?=$showisgood==0?' selected':''?>>ä¸é™æ¨è</option>
-	    	<option value="-1"<?=$showisgood==-1?' selected':''?>>æ‰€æœ‰æ¨è</option>
+            <option value="0"<?=$showisgood==0?' selected':''?>>²»ÏŞÍÆ¼ö</option>
+	    	<option value="-1"<?=$showisgood==-1?' selected':''?>>ËùÓĞÍÆ¼ö</option>
 	    	<?=$searchisgoods?>
           </select>
           <select name="showfirsttitle" id="showfirsttitle">
-            <option value="0"<?=$showfirsttitle==0?' selected':''?>>ä¸é™å¤´æ¡</option>
-	    	<option value="-1"<?=$showfirsttitle==-1?' selected':''?>>æ‰€æœ‰å¤´æ¡</option>
+            <option value="0"<?=$showfirsttitle==0?' selected':''?>>²»ÏŞÍ·Ìõ</option>
+	    	<option value="-1"<?=$showfirsttitle==-1?' selected':''?>>ËùÓĞÍ·Ìõ</option>
 	    	<?=$searchfirsttitles?>
           </select>
           <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>" size="16">
           <select name="show">
-            <option value="0" selected>ä¸é™å­—æ®µ</option>
+            <option value="0" selected>²»ÏŞ×Ö¶Î</option>
             <?=$searchoptions_r['select']?>
           </select>
 		  <?=$stts?>
           <select name="infolday" id="infolday">
-            <option value="1"<?=$infolday==1?' selected':''?>>å…¨éƒ¨æ—¶é—´</option>
-            <option value="86400"<?=$infolday==86400?' selected':''?>>1 å¤©</option>
+            <option value="1"<?=$infolday==1?' selected':''?>>È«²¿Ê±¼ä</option>
+            <option value="86400"<?=$infolday==86400?' selected':''?>>1 Ìì</option>
             <option value="172800"<?=$infolday==172800?' selected':''?>>2 
-            å¤©</option>
-            <option value="604800"<?=$infolday==604800?' selected':''?>>ä¸€å‘¨</option>
+            Ìì</option>
+            <option value="604800"<?=$infolday==604800?' selected':''?>>Ò»ÖÜ</option>
             <option value="2592000"<?=$infolday==2592000?' selected':''?>>1 
-            ä¸ªæœˆ</option>
+            ¸öÔÂ</option>
             <option value="7948800"<?=$infolday==7948800?' selected':''?>>3 
-            ä¸ªæœˆ</option>
+            ¸öÔÂ</option>
             <option value="15897600"<?=$infolday==15897600?' selected':''?>>6 
-            ä¸ªæœˆ</option>
+            ¸öÔÂ</option>
             <option value="31536000"<?=$infolday==31536000?' selected':''?>>1 
-            å¹´</option>
+            Äê</option>
           </select>
-          <input type="submit" name="Submit2" value="æœç´¢">
+          <input type="submit" name="Submit2" value="ËÑË÷">
           <input name="sear" type="hidden" id="sear" value="1">
           <input name="bclassid" type="hidden" id="bclassid" value="<?=$bclassid?>">
           <input name="classid" type="hidden" id="classid" value="<?=$classid?>">
@@ -180,7 +180,7 @@ function PushInfoToZt(form)
   </form>
 </table>
 <br>
-<form name="listform" method="post" action="ecmsinfo.php" onsubmit="return confirm('ç¡®è®¤è¦æ‰§è¡Œæ­¤æ“ä½œï¼Ÿ');">
+<form name="listform" method="post" action="ecmsinfo.php" onsubmit="return confirm('È·ÈÏÒªÖ´ĞĞ´Ë²Ù×÷£¿');">
 <?=$ecms_hashur['form']?>
 <input type=hidden name=classid value=<?=$classid?>>
 <input type=hidden name=bclassid value=<?=$bclassid?>>
@@ -191,9 +191,9 @@ function PushInfoToZt(form)
   <input name="ecmscheck" type="hidden" id="ecmscheck" value="<?=$ecmscheck?>">
   <table width="100%" border="0" cellspacing="1" cellpadding="0">
     <tr>
-      <td width="10%" height="25"<?=$indexchecked==1?' class="header"':' bgcolor="#C9F1FF"'?> title="å·²å‘å¸ƒä¿¡æ¯æ€»æ•°ï¼š<?=$classinfos?>"><div align="center"><a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$ecms_hashur['ehref']?>">å·²å‘å¸ƒ (<?=$classinfos?>)</a></div></td>
-      <td width="10%"<?=$indexchecked==0?' class="header"':' bgcolor="#C9F1FF"'?> title="å¾…å®¡æ ¸ä¿¡æ¯æ€»æ•°ï¼š<?=$classckinfos?>"><div align="center"><a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?>&ecmscheck=1<?=$ecms_hashur['ehref']?>">å¾…å®¡æ ¸ (<?=$classckinfos?>)</a></div></td>
-      <td width="10%" bgcolor="#C9F1FF"><div align="center"><a href="ListInfoDoc.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>">å½’æ¡£</a></div></td>
+      <td width="10%" height="25"<?=$indexchecked==1?' class="header"':' bgcolor="#C9F1FF"'?> title="ÒÑ·¢²¼ĞÅÏ¢×ÜÊı£º<?=$classinfos?>"><div align="center"><a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$ecms_hashur['ehref']?>">ÒÑ·¢²¼ (<?=$classinfos?>)</a></div></td>
+      <td width="10%"<?=$indexchecked==0?' class="header"':' bgcolor="#C9F1FF"'?> title="´ıÉóºËĞÅÏ¢×ÜÊı£º<?=$classckinfos?>"><div align="center"><a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?>&ecmscheck=1<?=$ecms_hashur['ehref']?>">´ıÉóºË (<?=$classckinfos?>)</a></div></td>
+      <td width="10%" bgcolor="#C9F1FF"><div align="center"><a href="ListInfoDoc.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>">¹éµµ</a></div></td>
       <td width="58%">&nbsp;</td>
       <td width="6%">&nbsp;</td>
       <td width="6%">&nbsp;</td>
@@ -203,53 +203,53 @@ function PushInfoToZt(form)
   	<tr class="header"> 
       <td height="25" colspan="8"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="60%"><font color="#ffffff"><a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&sear=1&showspecial=8<?=$ecms_hashur['ehref']?>">æˆ‘çš„ä¿¡æ¯</a> 
-              | <a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&sear=1&showspecial=5<?=$ecms_hashur['ehref']?>">ç­¾å‘ä¿¡æ¯</a> 
-              | <a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&sear=1&showspecial=7<?=$ecms_hashur['ehref']?>">æŠ•ç¨¿ä¿¡æ¯</a> 
-              | <a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&showretitle=1&srt=1<?=$ecms_hashur['ehref']?>" title="æŸ¥è¯¢é‡å¤æ ‡é¢˜ï¼Œå¹¶ä¿ç•™ä¸€æ¡ä¿¡æ¯">æŸ¥è¯¢é‡å¤æ ‡é¢˜A</a> 
-              | <a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&showretitle=1&srt=0<?=$ecms_hashur['ehref']?>" title="æŸ¥è¯¢é‡å¤æ ‡é¢˜çš„ä¿¡æ¯(ä¸ä¿ç•™ä¿¡æ¯)">æŸ¥è¯¢é‡å¤æ ‡é¢˜B</a> 
-              | <a href="ecmsinfo.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&enews=SetAllCheckInfo<?=$ecms_hashur['href']?>" title="æœ¬æ ç›®æ‰€æœ‰ä¿¡æ¯å…¨è®¾ä¸ºå®¡æ ¸çŠ¶æ€" onclick="return confirm('ç¡®è®¤è¦æ“ä½œ?');">å®¡æ ¸æ ç›®å…¨éƒ¨ä¿¡æ¯</a></font> 
+            <td width="60%"><font color="#ffffff"><a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&sear=1&showspecial=8<?=$ecms_hashur['ehref']?>">ÎÒµÄĞÅÏ¢</a> 
+              | <a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&sear=1&showspecial=5<?=$ecms_hashur['ehref']?>">Ç©·¢ĞÅÏ¢</a> 
+              | <a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&sear=1&showspecial=7<?=$ecms_hashur['ehref']?>">Í¶¸åĞÅÏ¢</a> 
+              | <a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&showretitle=1&srt=1<?=$ecms_hashur['ehref']?>" title="²éÑ¯ÖØ¸´±êÌâ£¬²¢±£ÁôÒ»ÌõĞÅÏ¢">²éÑ¯ÖØ¸´±êÌâA</a> 
+              | <a href="ListNews.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&showretitle=1&srt=0<?=$ecms_hashur['ehref']?>" title="²éÑ¯ÖØ¸´±êÌâµÄĞÅÏ¢(²»±£ÁôĞÅÏ¢)">²éÑ¯ÖØ¸´±êÌâB</a> 
+              | <a href="ecmsinfo.php?bclassid=<?=$bclassid?>&classid=<?=$classid?><?=$addecmscheck?>&enews=SetAllCheckInfo<?=$ecms_hashur['href']?>" title="±¾À¸Ä¿ËùÓĞĞÅÏ¢È«ÉèÎªÉóºË×´Ì¬" onclick="return confirm('È·ÈÏÒª²Ù×÷?');">ÉóºËÀ¸Ä¿È«²¿ĞÅÏ¢</a></font> 
             </td>
-            <td width="40%"> <div align="right"><font color="#ffffff"><a href="openpage/AdminPage.php?leftfile=<?=urlencode('../file/FileNav.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../file/ListFile.php?type=9&classid='.$classid.$ecms_hashur['ehref'])?>&title=<?=urlencode('ç®¡ç†é™„ä»¶')?><?=$ecms_hashur['ehref']?>" target="_blank">ç®¡ç†é™„ä»¶</a> | <a href="ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>" target=_blank>æ›´æ–°æ•°æ®</a> | <a href=../../ target=_blank>é¢„è§ˆé¦–é¡µ</a> | <a href="<?=$classurl?>" target=_blank>é¢„è§ˆæ ç›®</a></font></div></td>
+            <td width="40%"> <div align="right"><font color="#ffffff"><a href="openpage/AdminPage.php?leftfile=<?=urlencode('../file/FileNav.php'.$ecms_hashur['whehref'])?>&mainfile=<?=urlencode('../file/ListFile.php?type=9&classid='.$classid.$ecms_hashur['ehref'])?>&title=<?=urlencode('¹ÜÀí¸½¼ş')?><?=$ecms_hashur['ehref']?>" target="_blank">¹ÜÀí¸½¼ş</a> | <a href="ReHtml/ChangeData.php<?=$ecms_hashur['whehref']?>" target=_blank>¸üĞÂÊı¾İ</a> | <a href=../../ target=_blank>Ô¤ÀÀÊ×Ò³</a> | <a href="<?=$classurl?>" target=_blank>Ô¤ÀÀÀ¸Ä¿</a></font></div></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
       <td width="3%"><div align="center"></div></td>
       <td width="6%" height="25"><div align="center"><a href='ListNews.php?<?=$search1?>&myorder=4'><u>ID</u></a></div></td>
-      <td width="36%" height="25"> <div align="center">æ ‡é¢˜</div></td>
-      <td width="12%" height="25"><div align="center">å‘å¸ƒè€…</div></td>
-      <td width="16%" height="25"> <div align="center"><a href='ListNews.php?<?=$search1?>&myorder=1'><u>å‘å¸ƒæ—¶é—´</u></a></div></td>
-	  <td width="7%" height="25"><div align="center"><a href='ListNews.php?<?=$search1?>&myorder=3'><u>ç‚¹å‡»</u></a></div></td>
-      <td width="6%"><div align="center"><a href='ListNews.php?<?=$search1?>&myorder=2'><u>è¯„è®º</u></a></div></td>
-      <td width="14%" height="25"> <div align="center">æ“ä½œ</div></td>
+      <td width="36%" height="25"> <div align="center">±êÌâ</div></td>
+      <td width="12%" height="25"><div align="center">·¢²¼Õß</div></td>
+      <td width="16%" height="25"> <div align="center"><a href='ListNews.php?<?=$search1?>&myorder=1'><u>·¢²¼Ê±¼ä</u></a></div></td>
+	  <td width="7%" height="25"><div align="center"><a href='ListNews.php?<?=$search1?>&myorder=3'><u>µã»÷</u></a></div></td>
+      <td width="6%"><div align="center"><a href='ListNews.php?<?=$search1?>&myorder=2'><u>ÆÀÂÛ</u></a></div></td>
+      <td width="14%" height="25"> <div align="center">²Ù×÷</div></td>
     </tr>
     <?php
 	while($r=$empire->fetch($sql))
 	{
-		//çŠ¶æ€
+		//×´Ì¬
 		$st='';
-		if($r[istop])//ç½®é¡¶
+		if($r[istop])//ÖÃ¶¥
 		{
-			$st.="<font color=red>[é¡¶".$r[istop]."]</font>";
+			$st.="<font color=red>[¶¥".$r[istop]."]</font>";
 		}
-		if($r[isgood])//æ¨è
+		if($r[isgood])//ÍÆ¼ö
 		{
 			$st.="<font color=red>[".$ignamer[$r['isgood']]."]</font>";
 		}
-		if($r[firsttitle])//å¤´æ¡
+		if($r[firsttitle])//Í·Ìõ
 		{
 			$st.="<font color=red>[".$ftnamer[$r['firsttitle']]."]</font>";
 		}
-		//æ—¶é—´
+		//Ê±¼ä
 		$truetime=date("Y-m-d H:i:s",$r[truetime]);
 		$lastdotime=date("Y-m-d H:i:s",$r[lastdotime]);
 		$oldtitle=$r[title];
 		$r[title]=stripSlashes(sub($r[title],0,50,false));
-		//å®¡æ ¸
+		//ÉóºË
 		if(empty($indexchecked))
 		{
-			$checked=" title='æœªå®¡æ ¸' style='background:#99C4E3'";
+			$checked=" title='Î´ÉóºË' style='background:#99C4E3'";
 			$titleurl="ShowInfo.php?classid=$r[classid]&id=$r[id]".$addecmscheck.$ecms_hashur['ehref'];
 		}
 		else
@@ -257,27 +257,27 @@ function PushInfoToZt(form)
 			$checked="";
 			$titleurl=sys_ReturnBqTitleLink($r);
 		}
-		//ä¼šå‘˜æŠ•ç¨¿
+		//»áÔ±Í¶¸å
 		if($r[ismember])
 		{
 			$r[username]="<a href='member/AddMember.php?enews=EditMember&userid=".$r[userid].$ecms_hashur['ehref']."' target='_blank'><font color=red>".$r[username]."</font></a>";
 		}
-		//ç­¾å‘
+		//Ç©·¢
 		$qf="";
 		if($r[isqf])
 		{
 			$qfr=$empire->fetch1("select checktno,tstatus from {$dbtbpre}enewswfinfo where id='$r[id]' and classid='$r[classid]' limit 1");
 			if($qfr[checktno]=='100')
 			{
-				$qf="(<font color='red'>å·²é€šè¿‡</font>)";
+				$qf="(<font color='red'>ÒÑÍ¨¹ı</font>)";
 			}
 			elseif($qfr[checktno]=='101')
 			{
-				$qf="(<font color='red'>è¿”å·¥</font>)";
+				$qf="(<font color='red'>·µ¹¤</font>)";
 			}
 			elseif($qfr[checktno]=='102')
 			{
-				$qf="(<font color='red'>å·²å¦å†³</font>)";
+				$qf="(<font color='red'>ÒÑ·ñ¾ö</font>)";
 			}
 			else
 			{
@@ -285,17 +285,17 @@ function PushInfoToZt(form)
 			}
 			$qf="<a href='#ecms' onclick=\"window.open('workflow/DoWfInfo.php?classid=$r[classid]&id=$r[id]".$addecmscheck.$ecms_hashur['ehref']."','','width=600,height=520,scrollbars=yes');\">".$qf."</a>";
 		}
-		//æ ‡é¢˜å›¾ç‰‡
+		//±êÌâÍ¼Æ¬
 		$showtitlepic="";
 		if($r[titlepic])
 		{
-			$showtitlepic="<a href='".$r['titlepic']."' title='é¢„è§ˆæ ‡é¢˜å›¾ç‰‡' target=_blank><img src='../data/images/showimg.gif' border=0></a>";
+			$showtitlepic="<a href='".$r['titlepic']."' title='Ô¤ÀÀ±êÌâÍ¼Æ¬' target=_blank><img src='../data/images/showimg.gif' border=0></a>";
 		}
-		//æœªç”Ÿæˆ
+		//Î´Éú³É
 		$myid="<a href='ecmschtml.php?enews=ReSingleInfo&classid=$r[classid]&id[]=".$r[id].$ecms_hashur['href']."'>".$r['id']."</a>";
 		if(empty($r[havehtml]))
 		{
-			$myid="<a href='ecmschtml.php?enews=ReSingleInfo&classid=$r[classid]&id[]=".$r[id].$ecms_hashur['href']."' title='æœªç”Ÿæˆ'><b>".$r[id]."</b></a>";
+			$myid="<a href='ecmschtml.php?enews=ReSingleInfo&classid=$r[classid]&id[]=".$r[id].$ecms_hashur['href']."' title='Î´Éú³É'><b>".$r[id]."</b></a>";
 		}
 	?>
     <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'" id=news<?=$r[id]?>> 
@@ -314,19 +314,19 @@ function PushInfoToZt(form)
           </a> 
           <?=$qf?>
         </div></td>
-      <td height="25"<?=$r['eckuid']?' title="å®¡æ ¸äººUIDï¼š'.$r['eckuid'].'"':''?>> <div align="center"> 
+      <td height="25"<?=$r['eckuid']?' title="ÉóºËÈËUID£º'.$r['eckuid'].'"':''?>> <div align="center"> 
           <?=$r[username]?>
         </div></td>
-      <td height="25" title="<? echo"å¢åŠ æ—¶é—´ï¼š".$truetime."\r\næœ€åä¿®æ”¹ï¼š".$lastdotime;?>"> <div align="center"> 
+      <td height="25" title="<? echo"Ôö¼ÓÊ±¼ä£º".$truetime."\r\n×îºóĞŞ¸Ä£º".$lastdotime;?>"> <div align="center"> 
 		  <input name="newstime[]" type="text" value="<?=date("Y-m-d H:i:s",$r[newstime])?>" size="20">
         </div></td>
-      <td height="25"> <div align="center"> <a title="ä¸‹è½½æ¬¡æ•°:<?=$r[totaldown]?>"> 
+      <td height="25"> <div align="center"> <a title="ÏÂÔØ´ÎÊı:<?=$r[totaldown]?>"> 
           <?=$r[onclick]?>
           </a> </div></td>
-      <td><div align="center"><a href="pl/ListPl.php?id=<?=$r[id]?>&classid=<?=$classid?>&bclassid=<?=$bclassid?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>" target=_blank title="ç®¡ç†è¯„è®º"><u> 
+      <td><div align="center"><a href="pl/ListPl.php?id=<?=$r[id]?>&classid=<?=$classid?>&bclassid=<?=$bclassid?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>" target=_blank title="¹ÜÀíÆÀÂÛ"><u> 
           <?=$r[plnum]?>
           </u></a></div></td>
-      <td height="25"> <div align="center"><a href="AddNews.php?enews=EditNews&id=<?=$r[id]?>&classid=<?=$classid?>&bclassid=<?=$bclassid?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a> | <a href="#empirecms" onclick="window.open('info/EditInfoSimple.php?enews=EditNews&id=<?=$r[id]?>&classid=<?=$classid?>&bclassid=<?=$bclassid?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>','EditInfoSimple','width=600,height=360,scrollbars=yes,resizable=yes');">ç®€æ”¹</a> | <a href="ecmsinfo.php?enews=DelNews&id=<?=$r[id]?>&classid=<?=$classid?>&bclassid=<?=$bclassid?><?=$addecmscheck?><?=$ecms_hashur['href']?>" onClick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>
+      <td height="25"> <div align="center"><a href="AddNews.php?enews=EditNews&id=<?=$r[id]?>&classid=<?=$classid?>&bclassid=<?=$bclassid?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a> | <a href="#empirecms" onclick="window.open('info/EditInfoSimple.php?enews=EditNews&id=<?=$r[id]?>&classid=<?=$classid?>&bclassid=<?=$bclassid?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>','EditInfoSimple','width=600,height=360,scrollbars=yes,resizable=yes');">¼ò¸Ä</a> | <a href="ecmsinfo.php?enews=DelNews&id=<?=$r[id]?>&classid=<?=$classid?>&bclassid=<?=$bclassid?><?=$addecmscheck?><?=$ecms_hashur['href']?>" onClick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>
         </div></td>
     </tr>
     <?
@@ -337,49 +337,49 @@ function PushInfoToZt(form)
           <input type=checkbox name=chkall value=on onClick="CheckAll(this.form)">
         </div></td>
       <td height="25" colspan="7"><div align="right">
-          <input type="submit" name="Submit3" value="åˆ é™¤" onClick="document.listform.enews.value='DelNews_all';document.listform.action='ecmsinfo.php';">
+          <input type="submit" name="Submit3" value="É¾³ı" onClick="document.listform.enews.value='DelNews_all';document.listform.action='ecmsinfo.php';">
 		  <?php
 		  if($ecmscheck)
 		  {
 		  ?>
-		  <input type="submit" name="Submit8" value="å®¡æ ¸" onClick="document.listform.enews.value='CheckNews_all';document.listform.action='ecmsinfo.php';">
+		  <input type="submit" name="Submit8" value="ÉóºË" onClick="document.listform.enews.value='CheckNews_all';document.listform.action='ecmsinfo.php';">
 		  <?php
 		  }
 		  else
 		  {
 		  ?>
-		  <input type="submit" name="Submit9" value="å–æ¶ˆå®¡æ ¸" onClick="document.listform.enews.value='NoCheckNews_all';document.listform.action='ecmsinfo.php';">
-		  <input type="submit" name="Submit8" value="åˆ·æ–°" onClick="document.listform.enews.value='ReSingleInfo';document.listform.action='ecmschtml.php';">
-		  <input type="button" name="Submit112" value="æ¨é€" onClick="PushInfoToSp(this.form);">
+		  <input type="submit" name="Submit9" value="È¡ÏûÉóºË" onClick="document.listform.enews.value='NoCheckNews_all';document.listform.action='ecmsinfo.php';">
+		  <input type="submit" name="Submit8" value="Ë¢ĞÂ" onClick="document.listform.enews.value='ReSingleInfo';document.listform.action='ecmschtml.php';">
+		  <input type="button" name="Submit112" value="ÍÆËÍ" onClick="PushInfoToSp(this.form);">
 		  <?php
 		  }
 		  ?>
           <select name="isgood" id="isgood">
-            <option value="0">ä¸æ¨è</option>
+            <option value="0">²»ÍÆ¼ö</option>
 			<?=$ftnr['igname']?>
           </select>
-          <input type="submit" name="Submit82" value="æ¨è" onClick="document.listform.enews.value='GoodInfo_all';document.listform.doing.value='0';document.listform.action='ecmsinfo.php';">
+          <input type="submit" name="Submit82" value="ÍÆ¼ö" onClick="document.listform.enews.value='GoodInfo_all';document.listform.doing.value='0';document.listform.action='ecmsinfo.php';">
           <select name="firsttitle" id="firsttitle">
-            <option value="0">å–æ¶ˆå¤´æ¡</option>
+            <option value="0">È¡ÏûÍ·Ìõ</option>
             <?=$ftnr['ftname']?>
           </select>
-          <input type="submit" name="Submit823" value="å¤´æ¡" onClick="document.listform.enews.value='GoodInfo_all';document.listform.doing.value='1';document.listform.action='ecmsinfo.php';">
-          <input type="submit" name="Submit11" value="å½’æ¡£" onClick="document.listform.enews.value='InfoToDoc';document.listform.doing.value='0';document.listform.action='ecmsinfo.php';">
+          <input type="submit" name="Submit823" value="Í·Ìõ" onClick="document.listform.enews.value='GoodInfo_all';document.listform.doing.value='1';document.listform.action='ecmsinfo.php';">
+          <input type="submit" name="Submit11" value="¹éµµ" onClick="document.listform.enews.value='InfoToDoc';document.listform.doing.value='0';document.listform.action='ecmsinfo.php';">
           <select name="istop" id="select">
-            <option value="0">ä¸ç½®é¡¶</option>
-            <option value="1">ä¸€çº§ç½®é¡¶</option>
-            <option value="2">äºŒçº§ç½®é¡¶</option>
-            <option value="3">ä¸‰çº§ç½®é¡¶</option>
-            <option value="4">å››çº§ç½®é¡¶</option>
-            <option value="5">äº”çº§ç½®é¡¶</option>
-            <option value="6">å…­çº§ç½®é¡¶</option>
-			<option value="7">ä¸ƒçº§ç½®é¡¶</option>
-			<option value="8">å…«çº§ç½®é¡¶</option>
-			<option value="9">ä¹çº§ç½®é¡¶</option>
+            <option value="0">²»ÖÃ¶¥</option>
+            <option value="1">Ò»¼¶ÖÃ¶¥</option>
+            <option value="2">¶ş¼¶ÖÃ¶¥</option>
+            <option value="3">Èı¼¶ÖÃ¶¥</option>
+            <option value="4">ËÄ¼¶ÖÃ¶¥</option>
+            <option value="5">Îå¼¶ÖÃ¶¥</option>
+            <option value="6">Áù¼¶ÖÃ¶¥</option>
+			<option value="7">Æß¼¶ÖÃ¶¥</option>
+			<option value="8">°Ë¼¶ÖÃ¶¥</option>
+			<option value="9">¾Å¼¶ÖÃ¶¥</option>
           </select>
-          <input type="submit" name="Submit7" value="ç½®é¡¶" onClick="document.listform.enews.value='TopNews_all';document.listform.action='ecmsinfo.php';">
-		  <input type="submit" name="Submit7" value="ä¿®æ”¹æ—¶é—´" onClick="document.listform.enews.value='EditMoreInfoTime';document.listform.action='ecmsinfo.php';">
-		  <input type="button" name="Submit52" value="æ¨é€è‡³ä¸“é¢˜" onClick="PushInfoToZt(this.form);">
+          <input type="submit" name="Submit7" value="ÖÃ¶¥" onClick="document.listform.enews.value='TopNews_all';document.listform.action='ecmsinfo.php';">
+		  <input type="submit" name="Submit7" value="ĞŞ¸ÄÊ±¼ä" onClick="document.listform.enews.value='EditMoreInfoTime';document.listform.action='ecmsinfo.php';">
+		  <input type="button" name="Submit52" value="ÍÆËÍÖÁ×¨Ìâ" onClick="PushInfoToZt(this.form);">
         </div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
@@ -390,14 +390,14 @@ function PushInfoToZt(form)
             </td>
             <td width="32%"> <div align="right">
 			<span id="moveclassnav"></span>
-                <input type="submit" name="Submit5" value="ç§»åŠ¨" onClick="document.listform.enews.value='MoveNews_all';document.listform.action='ecmsinfo.php';">
-                <input type="submit" name="Submit6" value="å¤åˆ¶" onClick="document.listform.enews.value='CopyNews_all';document.listform.action='ecmsinfo.php';">
+                <input type="submit" name="Submit5" value="ÒÆ¶¯" onClick="document.listform.enews.value='MoveNews_all';document.listform.action='ecmsinfo.php';">
+                <input type="submit" name="Submit6" value="¸´ÖÆ" onClick="document.listform.enews.value='CopyNews_all';document.listform.action='ecmsinfo.php';">
               </div></td>
           </tr>
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="8"> <font color="#666666">å¤‡æ³¨ï¼šå¤šé€‰æ¡†è“è‰²ä¸ºæœªå®¡æ ¸ä¿¡æ¯ï¼›å‘å¸ƒè€…çº¢è‰²ä¸ºä¼šå‘˜æŠ•ç¨¿ï¼›ä¿¡æ¯IDç²—ä½“ä¸ºæœªç”Ÿæˆ,ç‚¹å‡»IDå¯åˆ·æ–°é¡µé¢.</font></td>
+      <td height="25" colspan="8"> <font color="#666666">±¸×¢£º¶àÑ¡¿òÀ¶É«ÎªÎ´ÉóºËĞÅÏ¢£»·¢²¼ÕßºìÉ«Îª»áÔ±Í¶¸å£»ĞÅÏ¢ID´ÖÌåÎªÎ´Éú³É,µã»÷ID¿ÉË¢ĞÂÒ³Ãæ.</font></td>
     </tr>
   </table>
 </form>

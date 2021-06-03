@@ -1,15 +1,15 @@
 <?php
-//--------------- åå°ç®¡ç†ä¼šå‘˜å‡½æ•° ---------------
+//--------------- ºóÌ¨¹ÜÀí»áÔ±º¯Êı ---------------
 
-//åå°ä¿®æ”¹èµ„æ–™
+//ºóÌ¨ĞŞ¸Ä×ÊÁÏ
 function admin_EditMember($add,$logininid,$loginin){
 	global $empire,$dbtbpre;
 	if(!trim($add[userid])||!trim($add[email])||!trim($add[username])||!$add[groupid])
 	{
 		printerror("EmptyEmail","history.go(-1)");
 	}
-    CheckLevel($logininid,$loginin,$classid,"member");//éªŒè¯æƒé™
-	//å˜é‡
+    CheckLevel($logininid,$loginin,$classid,"member");//ÑéÖ¤È¨ÏŞ
+	//±äÁ¿
 	$add[userid]=(int)$add[userid];
 	$add[checked]=(int)$add[checked];
 	$add[username]=RepPostVar($add[username]);
@@ -19,7 +19,7 @@ function admin_EditMember($add,$logininid,$loginin){
 	$add[email]=RepPostVar($add[email]);
 	$dousername=$add[username];
 	$dooldusername=$add[oldusername];
-	//ä¿®æ”¹å¯†ç 
+	//ĞŞ¸ÄÃÜÂë
 	$add1='';
 	if($add[password])
 	{
@@ -27,7 +27,7 @@ function admin_EditMember($add,$logininid,$loginin){
 		$add[password]=eDoMemberPw($add[password],$salt);
 		$add1=",".egetmf('password')."='$add[password]',".egetmf('salt')."='$salt'";
     }
-	//ä¿®æ”¹ç”¨æˆ·å
+	//ĞŞ¸ÄÓÃ»§Ãû
 	if($add[oldusername]<>$add[username])
 	{
 		$num=$empire->gettotal("select count(*) as total from ".eReturnMemberTable()." where ".egetmf('username')."='$add[username]' and ".egetmf('userid')."<>".$add[userid]." limit 1");
@@ -37,7 +37,7 @@ function admin_EditMember($add,$logininid,$loginin){
 			printerror("ReUsername","history.go(-1)");
 		}
 	}
-	//åŒ…æœˆ
+	//°üÔÂ
 	$add[zgroupid]=(int)$add[zgroupid];
 	if($add[userdate]>0)
 	{
@@ -47,7 +47,7 @@ function admin_EditMember($add,$logininid,$loginin){
 	{
 		$add[zgroupid]=0;
 	}
-	//å˜é‡
+	//±äÁ¿
 	$add[groupid]=(int)$add[groupid];
 	$add[userfen]=(int)$add[userfen];
 	$userdate=(int)$userdate;
@@ -57,7 +57,7 @@ function admin_EditMember($add,$logininid,$loginin){
 	$isern=(int)$add['isern'];
 	$spacename=dgdb_tosave($add['spacename']);
 	$spacegg=dgdb_tosave($add['spacegg']);
-	//éªŒè¯é™„åŠ è¡¨å¿…å¡«é¡¹
+	//ÑéÖ¤¸½¼Ó±í±ØÌîÏî
 	$addr=$empire->fetch1("select * from {$dbtbpre}enewsmemberadd where userid='$add[userid]'");
 	$fid=GetMemberFormId($add[groupid]);
 	if(empty($addr[userid]))
@@ -73,19 +73,19 @@ function admin_EditMember($add,$logininid,$loginin){
 
 	$sql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('email')."='$add[email]',".egetmf('groupid')."='$add[groupid]',".egetmf('userfen')."='$add[userfen]',".egetmf('money')."='$add[money]',".egetmf('userdate')."='$userdate',".egetmf('zgroupid')."='$add[zgroupid]',".egetmf('checked')."='$add[checked]',".egetmf('ingid')."='$add[ingid]',".egetmf('isern')."='$isern'".$add1." where ".egetmf('userid')."='$add[userid]'");
 
-	//æ›´æ”¹ç”¨æˆ·å
+	//¸ü¸ÄÓÃ»§Ãû
 	if($add[oldusername]<>$add[username])
 	{
-		//çŸ­æ¶ˆæ¯
+		//¶ÌÏûÏ¢
 		$empire->query("update {$dbtbpre}enewsqmsg set to_username='$dousername' where to_username='$dooldusername'");
 		$empire->query("update {$dbtbpre}enewsqmsg set from_username='$dousername' where from_username='$dooldusername'");
-		//æ”¶è—
+		//ÊÕ²Ø
 		$empire->query("update {$dbtbpre}enewsfava set username='$dousername' where userid='$add[userid]'");
-		//è´­ä¹°è®°å½•
+		//¹ºÂò¼ÇÂ¼
 		$empire->query("update {$dbtbpre}enewsbuybak set username='$dousername' where userid='$add[userid]'");
-		//ä¸‹è½½è®°å½•
+		//ÏÂÔØ¼ÇÂ¼
 		$empire->query("update {$dbtbpre}enewsdownrecord set username='$dousername' where userid='$add[userid]'");
-		//ä¿¡æ¯è¡¨
+		//ĞÅÏ¢±í
 		$tbsql=$empire->query("select tbname from {$dbtbpre}enewstable");
 		while($tbr=$empire->fetch($tbsql))
 		{
@@ -94,7 +94,7 @@ function admin_EditMember($add,$logininid,$loginin){
 		}
 	}
 
-	//é™„åŠ è¡¨
+	//¸½¼Ó±í
 	if(empty($addr[userid]))
 	{
 		$sql1=$empire->query("insert into {$dbtbpre}enewsmemberadd(userid,spacestyleid,spacename,spacegg".$member_r[0].") values($add[userid],$add[spacestyleid],'$spacename','$spacegg'".$member_r[1].");");
@@ -103,11 +103,11 @@ function admin_EditMember($add,$logininid,$loginin){
 	{
 		$sql1=$empire->query("update {$dbtbpre}enewsmemberadd set spacestyleid=$add[spacestyleid],spacename='$spacename',spacegg='$spacegg'".$member_r[0]." where userid='$add[userid]'");
     }
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileEditOther(6,$add['userid'],'member');
 	if($sql)
 	{
-	   insert_dolog("userid=".$add[userid]."<br>username=".$dousername);//æ“ä½œæ—¥å¿—
+	   insert_dolog("userid=".$add[userid]."<br>username=".$dousername);//²Ù×÷ÈÕÖ¾
 	   printerror("EditMemberSuccess","ListMember.php".hReturnEcmsHashStrHref2(1));
 	}
     else
@@ -116,7 +116,7 @@ function admin_EditMember($add,$logininid,$loginin){
 	}
 }
 
-//åå°åˆ é™¤ä¼šå‘˜
+//ºóÌ¨É¾³ı»áÔ±
 function admin_DelMember($userid,$loginuserid,$loginusername){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;
@@ -124,7 +124,7 @@ function admin_DelMember($userid,$loginuserid,$loginusername){
 	{
 		printerror("NotDelMemberid","history.go(-1)");
 	}
-    CheckLevel($loginuserid,$loginusername,$classid,"member");//éªŒè¯æƒé™
+    CheckLevel($loginuserid,$loginusername,$classid,"member");//ÑéÖ¤È¨ÏŞ
 	$r=$empire->fetch1("select ".eReturnSelectMemberF('username,groupid')." from ".eReturnMemberTable()." where ".egetmf('userid')."='$userid'");
 	if(empty($r['username']))
 	{
@@ -132,30 +132,30 @@ function admin_DelMember($userid,$loginuserid,$loginusername){
 	}
     $sql=$empire->query("delete from ".eReturnMemberTable()." where ".egetmf('userid')."='$userid'");
 	$dousername=$r['username'];
-	//åˆ é™¤é™„åŠ è¡¨
+	//É¾³ı¸½¼Ó±í
 	$fid=GetMemberFormId($r['groupid']);
 	DoDelMemberF($fid,$userid,$dousername);
-	//åˆ é™¤æ”¶è—
+	//É¾³ıÊÕ²Ø
 	$del=$empire->query("delete from {$dbtbpre}enewsfava where userid='$userid'");
 	$del=$empire->query("delete from {$dbtbpre}enewsfavaclass where userid='$userid'");
-	//åˆ é™¤çŸ­æ¶ˆæ¯
+	//É¾³ı¶ÌÏûÏ¢
 	$del=$empire->query("delete from {$dbtbpre}enewsqmsg where to_username='".$dousername."'");
-	//åˆ é™¤è´­ä¹°è®°å½•
+	//É¾³ı¹ºÂò¼ÇÂ¼
 	$del=$empire->query("delete from {$dbtbpre}enewsbuybak where userid='$userid'");
-	//åˆ é™¤ä¸‹è½½è®°å½•
+	//É¾³ıÏÂÔØ¼ÇÂ¼
 	$del=$empire->query("delete from {$dbtbpre}enewsdownrecord where userid='$userid'");
-	//åˆ é™¤å¥½å‹è®°å½•
+	//É¾³ıºÃÓÑ¼ÇÂ¼
 	$del=$empire->query("delete from {$dbtbpre}enewshy where userid='$userid'");
 	$del=$empire->query("delete from {$dbtbpre}enewshyclass where userid='$userid'");
-	//åˆ é™¤ç•™è¨€
+	//É¾³ıÁôÑÔ
 	$del=$empire->query("delete from {$dbtbpre}enewsmembergbook where userid='$userid'");
-	//åˆ é™¤åé¦ˆ
+	//É¾³ı·´À¡
 	$del=$empire->query("delete from {$dbtbpre}enewsmemberfeedback where userid='$userid'");
-	//åˆ é™¤ç»‘å®š
+	//É¾³ı°ó¶¨
 	$del=$empire->query("delete from {$dbtbpre}enewsmember_connect where userid='$userid';");
     if($sql)
 	{
-	    insert_dolog("userid=".$userid."<br>username=".$dousername);//æ“ä½œæ—¥å¿—
+	    insert_dolog("userid=".$userid."<br>username=".$dousername);//²Ù×÷ÈÕÖ¾
 		printerror("DelMemberSuccess",EcmsGetReturnUrl());
 	}
     else
@@ -164,10 +164,10 @@ function admin_DelMember($userid,$loginuserid,$loginusername){
 	}
 }
 
-//åå°æ‰¹é‡åˆ é™¤ä¼šå‘˜
+//ºóÌ¨ÅúÁ¿É¾³ı»áÔ±
 function admin_DelMember_all($userid,$logininid,$loginin){
 	global $empire,$dbtbpre;
-    CheckLevel($logininid,$loginin,$classid,"member");//éªŒè¯æƒé™
+    CheckLevel($logininid,$loginin,$classid,"member");//ÑéÖ¤È¨ÏŞ
     $count=count($userid);
     if(!$count)
 	{
@@ -177,18 +177,18 @@ function admin_DelMember_all($userid,$logininid,$loginin){
 	for($i=0;$i<$count;$i++)
 	{
 		$euid=(int)$userid[$i];
-		//åˆ é™¤çŸ­æ¶ˆæ¯
+		//É¾³ı¶ÌÏûÏ¢
 		$ur=$empire->fetch1("select ".eReturnSelectMemberF('username,groupid')." from ".eReturnMemberTable()." where ".egetmf('userid')."='".$euid."'");
 		if(empty($ur['username']))
 		{
 			continue;
 		}
 		$dousername=$ur['username'];
-		//åˆ é™¤é™„åŠ è¡¨
+		//É¾³ı¸½¼Ó±í
 		$fid=GetMemberFormId($ur['groupid']);
 		DoDelMemberF($fid,$euid,$dousername);
 		$del=$empire->query("delete from {$dbtbpre}enewsqmsg where to_username='".$dousername."'");
-		//é›†åˆ
+		//¼¯ºÏ
 		$inid.=$dh.$euid;
 		$dh=",";
     }
@@ -199,25 +199,25 @@ function admin_DelMember_all($userid,$logininid,$loginin){
 	$add=egetmf('userid')." in (".$inid.")";
 	$adda="userid in (".$inid.")";
 	$sql=$empire->query("delete from ".eReturnMemberTable()." where ".$add);
-	//åˆ é™¤æ”¶è—
+	//É¾³ıÊÕ²Ø
 	$del=$empire->query("delete from {$dbtbpre}enewsfava where ".$adda);
 	$del=$empire->query("delete from {$dbtbpre}enewsfavaclass where ".$adda);
-	//åˆ é™¤è´­ä¹°è®°å½•
+	//É¾³ı¹ºÂò¼ÇÂ¼
 	$del=$empire->query("delete from {$dbtbpre}enewsbuybak where ".$adda);
-	//åˆ é™¤ä¸‹è½½è®°å½•
+	//É¾³ıÏÂÔØ¼ÇÂ¼
 	$del=$empire->query("delete from {$dbtbpre}enewsdownrecord where ".$adda);
-	//åˆ é™¤å¥½å‹è®°å½•
+	//É¾³ıºÃÓÑ¼ÇÂ¼
 	$del=$empire->query("delete from {$dbtbpre}enewshy where ".$adda);
 	$del=$empire->query("delete from {$dbtbpre}enewshyclass where ".$adda);
-	//åˆ é™¤ç•™è¨€
+	//É¾³ıÁôÑÔ
 	$del=$empire->query("delete from {$dbtbpre}enewsmembergbook where ".$adda);
-	//åˆ é™¤åé¦ˆ
+	//É¾³ı·´À¡
 	$del=$empire->query("delete from {$dbtbpre}enewsmemberfeedback where ".$adda);
-	//åˆ é™¤ç»‘å®š
+	//É¾³ı°ó¶¨
 	$del=$empire->query("delete from {$dbtbpre}enewsmember_connect where ".$adda);
 	if($sql)
 	{
-	    insert_dolog("");//æ“ä½œæ—¥å¿—
+	    insert_dolog("");//²Ù×÷ÈÕÖ¾
 		printerror("DelMemberSuccess",EcmsGetReturnUrl());
     }
 	else
@@ -226,10 +226,10 @@ function admin_DelMember_all($userid,$logininid,$loginin){
     }
 }
 
-//å®¡æ ¸ä¼šå‘˜
+//ÉóºË»áÔ±
 function admin_DoCheckMember_all($add,$logininid,$loginin){
 	global $empire,$dbtbpre;
-    CheckLevel($logininid,$loginin,$classid,"member");//éªŒè¯æƒé™
+    CheckLevel($logininid,$loginin,$classid,"member");//ÑéÖ¤È¨ÏŞ
 	$userid=$add['userid'];
 	$docheck=(int)$add['docheck'];
     $count=count($userid);
@@ -245,14 +245,14 @@ function admin_DoCheckMember_all($add,$logininid,$loginin){
 		{
 			$dh="";
 		}
-		//é›†åˆ
+		//¼¯ºÏ
 		$inid.=$dh.intval($userid[$i]);
 	}
 	$checked=$docheck?1:0;
 	$sql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('checked')."='$checked' where ".egetmf('userid')." in (".$inid.")");
 	if($sql)
 	{
-		insert_dolog("");//æ“ä½œæ—¥å¿—
+		insert_dolog("");//²Ù×÷ÈÕÖ¾
 		printerror("DoCheckMemberSuccess",EcmsGetReturnUrl());
 	}
 	else
@@ -261,10 +261,10 @@ function admin_DoCheckMember_all($add,$logininid,$loginin){
 	}
 }
 
-//è½¬ç§»è‡³å†…éƒ¨ä¼šå‘˜ç»„
+//×ªÒÆÖÁÄÚ²¿»áÔ±×é
 function admin_DoMoveInGroupMember_all($add,$logininid,$loginin){
 	global $empire,$dbtbpre;
-	CheckLevel($logininid,$loginin,$classid,"member");//éªŒè¯æƒé™
+	CheckLevel($logininid,$loginin,$classid,"member");//ÑéÖ¤È¨ÏŞ
 	$userid=$add['userid'];
 	$toingid=(int)$add['toingid'];
 	$count=count($userid);
@@ -280,13 +280,13 @@ function admin_DoMoveInGroupMember_all($add,$logininid,$loginin){
 		{
 			$dh="";
 		}
-		//é›†åˆ
+		//¼¯ºÏ
 		$inid.=$dh.intval($userid[$i]);
 	}
 	$sql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('ingid')."='$toingid' where ".egetmf('userid')." in (".$inid.")");
 	if($sql)
 	{
-		insert_dolog("");//æ“ä½œæ—¥å¿—
+		insert_dolog("");//²Ù×÷ÈÕÖ¾
 		printerror("DoMoveInGroupMemberSuccess",EcmsGetReturnUrl());
 	}
 	else
@@ -295,11 +295,11 @@ function admin_DoMoveInGroupMember_all($add,$logininid,$loginin){
 	}
 }
 
-//åå°æ¸…ç†ä¼šå‘˜
+//ºóÌ¨ÇåÀí»áÔ±
 function admin_ClearMember($add,$logininid,$loginin){
 	global $empire,$dbtbpre,$level_r;
-    CheckLevel($logininid,$loginin,$classid,"member");//éªŒè¯æƒé™
-	//å˜é‡å¤„ç†
+    CheckLevel($logininid,$loginin,$classid,"member");//ÑéÖ¤È¨ÏŞ
+	//±äÁ¿´¦Àí
 	$username=RepPostVar($add['username']);
 	$email=RepPostStr($add['email']);
 	$email=RepPostVar($email);
@@ -360,13 +360,13 @@ function admin_ClearMember($add,$logininid,$loginin){
 	while($r=$empire->fetch($sql))
 	{
 		$euid=$r['userid'];
-		//åˆ é™¤çŸ­æ¶ˆæ¯
+		//É¾³ı¶ÌÏûÏ¢
 		$dousername=$r['username'];
-		//åˆ é™¤é™„åŠ è¡¨
+		//É¾³ı¸½¼Ó±í
 		$fid=GetMemberFormId($r['groupid']);
 		DoDelMemberF($fid,$euid,$dousername);
 		$empire->query("delete from {$dbtbpre}enewsqmsg where to_username='".$dousername."'");
-		//é›†åˆ
+		//¼¯ºÏ
 		$inid.=$dh.$euid;
 		$dh=',';
     }
@@ -375,39 +375,39 @@ function admin_ClearMember($add,$logininid,$loginin){
 		$addw=egetmf('userid')." in (".$inid.")";
 		$addaw="userid in (".$inid.")";
 		$sql=$empire->query("delete from ".eReturnMemberTable()." where ".$addw);
-		//åˆ é™¤æ”¶è—
+		//É¾³ıÊÕ²Ø
 		$del=$empire->query("delete from {$dbtbpre}enewsfava where ".$addaw);
 		$del=$empire->query("delete from {$dbtbpre}enewsfavaclass where ".$addaw);
-		//åˆ é™¤è´­ä¹°è®°å½•
+		//É¾³ı¹ºÂò¼ÇÂ¼
 		$del=$empire->query("delete from {$dbtbpre}enewsbuybak where ".$addaw);
-		//åˆ é™¤ä¸‹è½½è®°å½•
+		//É¾³ıÏÂÔØ¼ÇÂ¼
 		$del=$empire->query("delete from {$dbtbpre}enewsdownrecord where ".$addaw);
-		//åˆ é™¤å¥½å‹è®°å½•
+		//É¾³ıºÃÓÑ¼ÇÂ¼
 		$del=$empire->query("delete from {$dbtbpre}enewshy where ".$addaw);
 		$del=$empire->query("delete from {$dbtbpre}enewshyclass where ".$addaw);
-		//åˆ é™¤ç•™è¨€
+		//É¾³ıÁôÑÔ
 		$del=$empire->query("delete from {$dbtbpre}enewsmembergbook where ".$addaw);
-		//åˆ é™¤åé¦ˆ
+		//É¾³ı·´À¡
 		$del=$empire->query("delete from {$dbtbpre}enewsmemberfeedback where ".$addaw);
-		//åˆ é™¤ç»‘å®š
+		//É¾³ı°ó¶¨
 		$del=$empire->query("delete from {$dbtbpre}enewsmember_connect where ".$addaw);
 	}
-	insert_dolog("");//æ“ä½œæ—¥å¿—
+	insert_dolog("");//²Ù×÷ÈÕÖ¾
 	printerror("DelMemberSuccess","ClearMember.php".hReturnEcmsHashStrHref2(1));
 }
 
-//æ‰¹é‡èµ é€ç‚¹æ•°
+//ÅúÁ¿ÔùËÍµãÊı
 function GetFen_all($cardfen,$userid,$username){
 	global $empire,$dbtbpre;
 	$cardfen=(int)$cardfen;
 	if(!$cardfen)
 	{printerror("EmptyGetFen","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"card");
 	$sql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('userfen')."=".egetmf('userfen')."+$cardfen");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("cardfen=$cardfen");
 		printerror("GetFenSuccess","GetFen.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -415,18 +415,18 @@ function GetFen_all($cardfen,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ‰¹é‡æ›´æ–°åˆ°æœŸä¼šå‘˜ç»„
+//ÅúÁ¿¸üĞÂµ½ÆÚ»áÔ±×é
 function admin_MemberChangeTimeGroup($add,$logininid,$loginin){
 	global $empire,$dbtbpre;
-	CheckLevel($logininid,$loginin,$classid,"member");//éªŒè¯æƒé™
+	CheckLevel($logininid,$loginin,$classid,"member");//ÑéÖ¤È¨ÏŞ
 	$dotime=time();
-	//æ›´æ–°åˆ°æœŸä¼šå‘˜ç»„
+	//¸üĞÂµ½ÆÚ»áÔ±×é
 	$sql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('groupid')."=".egetmf('zgroupid').",".egetmf('userdate')."=0 where ".egetmf('zgroupid')."<>0 and ".egetmf('userdate').">0 and ".egetmf('userdate')."<=".$dotime);
-	//æ›´æ–°åˆ°æœŸæ—¶é—´
+	//¸üĞÂµ½ÆÚÊ±¼ä
 	$sql1=$empire->query("update ".eReturnMemberTable()." set ".egetmf('userdate')."=0 where ".egetmf('userdate').">0 and ".egetmf('userdate')."<=".$dotime);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("MemberChangeTimeGroupSuccess","ListMember.php".hReturnEcmsHashStrHref2(1));
 	}

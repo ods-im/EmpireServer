@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"sp");
 
-//è¿”å›ç”¨æˆ·ç»„
+//·µ»ØÓÃ»§×é
 function ReturnSpGroup($groupid){
 	$count=count($groupid);
 	if($count==0)
@@ -34,7 +34,7 @@ function ReturnSpGroup($groupid){
 	return $ids;
 }
 
-//å¢åŠ ç¢ç‰‡
+//Ôö¼ÓËéÆ¬
 function AddSp($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add['varname']=RepPostVar($add['varname']);
@@ -42,7 +42,7 @@ function AddSp($add,$userid,$username){
 	{
 		printerror("EmptySp","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"sp");
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewssp where varname='$add[varname]' limit 1");
 	if($num)
@@ -74,9 +74,9 @@ function AddSp($add,$userid,$username){
 	$add['spfile']=hRepPostStr($add['spfile'],1);
 	$sql=$empire->query("insert into {$dbtbpre}enewssp(spname,varname,sppic,spsay,sptype,cid,classid,tempid,maxnum,sptime,groupid,userclass,username,isclose,cladd,refile,spfile,spfileline,spfilesub) values('$add[spname]','$add[varname]','$add[sppic]','$add[spsay]','$add[sptype]','$add[cid]','$add[classid]','$add[tempid]','$add[maxnum]','$sptime','$groupid','$userclass','$username','$add[isclose]','$add[cladd]','$add[refile]','$add[spfile]','$add[spfileline]','$add[spfilesub]');");
 	$spid=$empire->lastid();
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileOther(7,$spid,$add['filepass'],'other');
-	//ç”Ÿæˆç¢ç‰‡æ–‡ä»¶
+	//Éú³ÉËéÆ¬ÎÄ¼ş
 	if($add['refile'])
 	{
 		$add['spid']=$spid;
@@ -84,7 +84,7 @@ function AddSp($add,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("spid=".$spid."<br>spname=".$add[spname]);
 		printerror("AddSpSuccess","AddSp.php?enews=AddSp".hReturnEcmsHashStrHref2(0));
 	}
@@ -92,7 +92,7 @@ function AddSp($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ç¢ç‰‡
+//ĞŞ¸ÄËéÆ¬
 function EditSp($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add['varname']=RepPostVar($add['varname']);
@@ -101,7 +101,7 @@ function EditSp($add,$userid,$username){
 	{
 		printerror("EmptySp","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"sp");
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewssp where varname='$add[varname]' and spid<>$spid limit 1");
 	if($num)
@@ -133,12 +133,12 @@ function EditSp($add,$userid,$username){
 	$username=hRepPostStr($username,1);
 	$add['spfile']=hRepPostStr($add['spfile'],1);
 	$sql=$empire->query("update {$dbtbpre}enewssp set spname='$add[spname]',varname='$add[varname]',sppic='$add[sppic]',spsay='$add[spsay]',sptype='$add[sptype]',cid='$add[cid]',classid='$add[classid]',tempid='$add[tempid]',maxnum='$add[maxnum]',groupid='$groupid',userclass='$userclass',username='$username',isclose='$add[isclose]',cladd='$add[cladd]',refile='$add[refile]',spfile='$add[spfile]',spfileline='$add[spfileline]',spfilesub='$add[spfilesub]' where spid='$spid'");
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileEditOther(7,$spid,'other');
-	//ç”Ÿæˆç¢ç‰‡æ–‡ä»¶
+	//Éú³ÉËéÆ¬ÎÄ¼ş
 	if($add['refile'])
 	{
-		//æ—§æ–‡ä»¶
+		//¾ÉÎÄ¼ş
 		if($add['spfile']!=$add['oldspfile'])
 		{
 			DelSpReFile($add['oldspfile']);
@@ -148,7 +148,7 @@ function EditSp($add,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("spid=".$spid."<br>spname=".$add[spname]);
 		printerror("EditSpSuccess","ListSp.php?cid=$add[fcid]&fclassid=$add[fclassid]&fsptype=$add[fsptype]".hReturnEcmsHashStrHref2(0));
 	}
@@ -156,7 +156,7 @@ function EditSp($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ç¢ç‰‡
+//É¾³ıËéÆ¬
 function DelSp($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$spid=(int)$add[spid];
@@ -164,7 +164,7 @@ function DelSp($add,$userid,$username){
 	{
 		printerror("NotDelSpid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"sp");
 	$r=$empire->fetch1("select spname,sptype,refile,spfile from {$dbtbpre}enewssp where spid='$spid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewssp where spid='$spid'");
@@ -181,16 +181,16 @@ function DelSp($add,$userid,$username){
 		$empire->query("delete from {$dbtbpre}enewssp_3 where spid='$spid'");
 		$empire->query("delete from {$dbtbpre}enewssp_3_bak where spid='$spid'");
 	}
-	//åˆ é™¤ç¢ç‰‡æ–‡ä»¶
+	//É¾³ıËéÆ¬ÎÄ¼ş
 	if($r['refile'])
 	{
 		DelSpReFile($r['spfile']);
 	}
-	//åˆ é™¤é™„ä»¶
+	//É¾³ı¸½¼ş
 	DelFileOtherTable("modtype=7 and id='$spid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("spid=".$spid."<br>spname=".$r[spname]);
 		printerror("DelSpSuccess","ListSp.php?cid=$add[fcid]&fclassid=$add[fclassid]&fsptype=$add[fsptype]".hReturnEcmsHashStrHref2(0));
 	}
@@ -198,7 +198,7 @@ function DelSp($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ç¢ç‰‡æ–‡ä»¶
+//É¾³ıËéÆ¬ÎÄ¼ş
 function DelSpReFile($file){
 	$filename=ECMS_PATH.$file;
 	if($file&&file_exists($filename)&&!stristr('/'.$file,'/e/'))
@@ -223,19 +223,19 @@ if($enews)
 	include('../../data/dbcache/class.php');
 	include('../../class/t_functions.php');
 }
-if($enews=="AddSp")//å¢åŠ ç¢ç‰‡
+if($enews=="AddSp")//Ôö¼ÓËéÆ¬
 {
 	AddSp($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditSp")//ä¿®æ”¹ç¢ç‰‡
+elseif($enews=="EditSp")//ĞŞ¸ÄËéÆ¬
 {
 	EditSp($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelSp")//åˆ é™¤ç¢ç‰‡
+elseif($enews=="DelSp")//É¾³ıËéÆ¬
 {
 	DelSp($_GET,$logininid,$loginin);
 }
-elseif($enews=='ReSp')//åˆ·æ–°ç¢ç‰‡æ–‡ä»¶
+elseif($enews=='ReSp')//Ë¢ĞÂËéÆ¬ÎÄ¼ş
 {
 	ReSp($_POST,$logininid,$loginin,0);
 }
@@ -243,14 +243,14 @@ elseif($enews=='ReSp')//åˆ·æ–°ç¢ç‰‡æ–‡ä»¶
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $add='';
 $and='';
 $search='';
 $search.=$ecms_hashur['ehref'];
-//ç¢ç‰‡ç±»å‹
+//ËéÆ¬ÀàĞÍ
 $sptype=(int)$_GET['sptype'];
 if($sptype)
 {
@@ -258,7 +258,7 @@ if($sptype)
 	$and=' and ';
 	$search.="&sptype=$sptype";
 }
-//åˆ†ç±»
+//·ÖÀà
 $cid=(int)$_GET['cid'];
 if($cid)
 {
@@ -266,7 +266,7 @@ if($cid)
 	$and=' and ';
 	$search.="&cid=$cid";
 }
-//æ ç›®
+//À¸Ä¿
 $classid=(int)$_GET['classid'];
 if($classid)
 {
@@ -279,12 +279,12 @@ if($add)
 }
 $query="select spid,spname,varname,cid,classid,isclose,sptype,sptime,refile,spfile from {$dbtbpre}enewssp".$add;
 $totalquery="select count(*) as total from {$dbtbpre}enewssp".$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by spid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-$url="<a href=ListSp.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡</a>";
-//åˆ†ç±»
+$url="<a href=ListSp.php".$ecms_hashur['whehref'].">¹ÜÀíËéÆ¬</a>";
+//·ÖÀà
 $scstr="";
 $scsql=$empire->query("select classid,classname from {$dbtbpre}enewsspclass order by classid");
 while($scr=$empire->fetch($scsql))
@@ -300,8 +300,8 @@ while($scr=$empire->fetch($scsql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç¢ç‰‡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ËéÆ¬</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -319,21 +319,21 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr> 
-    <td width="50%">ä½ç½®: 
+    <td width="50%">Î»ÖÃ: 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ç¢ç‰‡" onclick="self.location.href='AddSp.php?enews=AddSp<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓËéÆ¬" onclick="self.location.href='AddSp.php?enews=AddSp<?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit52" value="ç®¡ç†ç¢ç‰‡åˆ†ç±»" onclick="self.location.href='ListSpClass.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit52" value="¹ÜÀíËéÆ¬·ÖÀà" onclick="self.location.href='ListSpClass.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td> é€‰æ‹©åˆ†ç±»ï¼š 
+    <td> Ñ¡Ôñ·ÖÀà£º 
       <select name="classid" id="classid" onchange=window.location='ListSp.php?<?=$ecms_hashur['ehref']?>&cid='+this.options[this.selectedIndex].value>
-        <option value="0">æ˜¾ç¤ºæ‰€æœ‰åˆ†ç±»</option>
+        <option value="0">ÏÔÊ¾ËùÓĞ·ÖÀà</option>
         <?=$scstr?>
       </select> </td>
   </tr>
@@ -345,12 +345,12 @@ function CheckAll(form)
     <tr class="header">
       <td width="4%"><div align="center"><input type=checkbox name=chkall value=on onClick="CheckAll(this.form)"></div></td>
       <td width="6%" height="25"><div align="center">ID</div></td>
-      <td width="20%" height="25"><div align="center">ç¢ç‰‡åç§°</div></td>
-      <td width="17%"><div align="center">å˜é‡å</div></td>
-      <td width="15%"><div align="center">æ‰€å±åˆ†ç±»</div></td>
-      <td width="12%"><div align="center">ç¢ç‰‡ç±»å‹</div></td>
-      <td width="6%"><div align="center">çŠ¶æ€</div></td>
-      <td width="20%" height="25"><div align="center">æ“ä½œ</div></td>
+      <td width="20%" height="25"><div align="center">ËéÆ¬Ãû³Æ</div></td>
+      <td width="17%"><div align="center">±äÁ¿Ãû</div></td>
+      <td width="15%"><div align="center">ËùÊô·ÖÀà</div></td>
+      <td width="12%"><div align="center">ËéÆ¬ÀàĞÍ</div></td>
+      <td width="6%"><div align="center">×´Ì¬</div></td>
+      <td width="20%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -363,17 +363,17 @@ function CheckAll(form)
 	}
 	if($r[sptype]==1)
 	{
-		$sptypename='é™æ€ä¿¡æ¯';
+		$sptypename='¾²Ì¬ĞÅÏ¢';
 	}
 	elseif($r[sptype]==2)
 	{
-		$sptypename='åŠ¨æ€ä¿¡æ¯';
+		$sptypename='¶¯Ì¬ĞÅÏ¢';
 	}
 	else
 	{
-		$sptypename='ä»£ç ç¢ç‰‡';
+		$sptypename='´úÂëËéÆ¬';
 	}
-	//é“¾æ¥
+	//Á´½Ó
 	$sphref='';
 	if($r['refile'])
 	{
@@ -394,7 +394,7 @@ function CheckAll(form)
       <td height="32"><div align="center">
           <?=$r[spid]?>
       </div></td>
-      <td height="25"><a<?=$sphref?> title="å¢åŠ æ—¶é—´ï¼š<?=date('Y-m-d H:i:s',$r[sptime])?>">
+      <td height="25"><a<?=$sphref?> title="Ôö¼ÓÊ±¼ä£º<?=date('Y-m-d H:i:s',$r[sptime])?>">
         <?=$r[spname]?>
       </a> </td>
       <td><div align="center">
@@ -407,11 +407,11 @@ function CheckAll(form)
         <?=$sptypename?>
       </a></div></td>
       <td><div align="center">
-        <?=$r[isclose]==1?'<font color="red">å…³é—­</font>':'å¼€å¯'?>
+        <?=$r[isclose]==1?'<font color="red">¹Ø±Õ</font>':'¿ªÆô'?>
       </div></td>
-      <td height="25"><div align="center">[<a href="AddSp.php?enews=EditSp&spid=<?=$r[spid]?>&fcid=<?=$cid?>&fclassid=<?=$classid?>&fsptype=<?=$sptype?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="AddSp.php?enews=AddSp&spid=<?=$r[spid]?>&fcid=<?=$cid?>&fclassid=<?=$classid?>&fsptype=<?=$sptype?>&docopy=1<?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>] 
-        [<a href="ListSp.php?enews=DelSp&spid=<?=$r[spid]?>&fcid=<?=$cid?>&fclassid=<?=$classid?>&fsptype=<?=$sptype?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+      <td height="25"><div align="center">[<a href="AddSp.php?enews=EditSp&spid=<?=$r[spid]?>&fcid=<?=$cid?>&fclassid=<?=$classid?>&fsptype=<?=$sptype?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="AddSp.php?enews=AddSp&spid=<?=$r[spid]?>&fcid=<?=$cid?>&fclassid=<?=$classid?>&fsptype=<?=$sptype?>&docopy=1<?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>] 
+        [<a href="ListSp.php?enews=DelSp&spid=<?=$r[spid]?>&fcid=<?=$cid?>&fclassid=<?=$classid?>&fsptype=<?=$sptype?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
     </tr>
     <?
   }
@@ -419,7 +419,7 @@ function CheckAll(form)
     <tr bgcolor="#FFFFFF">
       <td height="25" colspan="8">&nbsp;
           <?=$returnpage?>
-      &nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" name="Submit" value="åˆ·æ–°ç¢ç‰‡æ–‡ä»¶">
+      &nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" name="Submit" value="Ë¢ĞÂËéÆ¬ÎÄ¼ş">
       <input name="enews" type="hidden" id="enews" value="ReSp"></td>
     </tr>
   </form>

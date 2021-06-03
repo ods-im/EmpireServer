@@ -1,14 +1,14 @@
 <?php
-//ä¿®æ”¹é‡‡é›†ä¿¡æ¯
+//ĞŞ¸Ä²É¼¯ĞÅÏ¢
 function EditCjNews($add,$newstext,$userid,$username){
 	global $empire,$class_r,$dbtbpre,$public_r;
 	$add[classid]=(int)$add[classid];
 	$add[id]=(int)$add[id];
 	if(empty($add[classid])||empty($add[id])||empty($add[title]))
 	{printerror("EmptyCjTitle","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
-	//å–å¾—é‡‡é›†å­—æ®µ
+	//È¡µÃ²É¼¯×Ö¶Î
 	$record="<!--record-->";
 	$field="<!--field--->";
 	$cr=$empire->fetch1("select newsclassid,tbname from {$dbtbpre}enewsinfoclass where classid='$add[classid]'");
@@ -20,22 +20,22 @@ function EditCjNews($add,$newstext,$userid,$username){
 	{
 		$cjr1=explode($field,$cjr[$i]);
 		$dofield=$cjr1[1];
-		//å›¾ç‰‡é›†
+		//Í¼Æ¬¼¯
 		if($dofield=="morepic")
 		{
 			$add[$dofield]=ReturnMorepicpath($add['msmallpic'],$add['mbigpic'],$add['mpicname'],$add['mdelpicid'],$add['mpicid'],$add,$add['mpicurl_qz'],1,0,$public_r['filedeftb']);
 		}
-		//ä¸‹è½½åœ°å€
+		//ÏÂÔØµØÖ·
 		if($dofield=="downpath")
 		{
 			$add[$dofield]=ReturnDownpath($add['downname'],$add['downpath'],$add['delpathid'],$add['pathid'],$add['downuser'],$add['fen'],$add['thedownqz'],$add,$add['foruser'],$add['downurl'],0);
 		}
-		//åœ¨çº¿åœ°å€
+		//ÔÚÏßµØÖ·
 		if($dofield=="onlinepath")
 		{
 			$add[$dofield]=ReturnDownpath($add['odownname'],$add['odownpath'],$add['odelpathid'],$add['opathid'],$add['odownuser'],$add['ofen'],$add['othedownqz'],$add,$add['oforuser'],$add['onlineurl_qz'],1);
 		}
-		//å‘å¸ƒæ—¶é—´
+		//·¢²¼Ê±¼ä
 		if($dofield=="newstime")
 		{continue;}
 		$update.=",".$dofield."='".eaddslashes2($add[$dofield])."'";
@@ -43,7 +43,7 @@ function EditCjNews($add,$newstext,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}ecms_infotmp_".$cr[tbname]." set keyboard='".eaddslashes2($add[keyboard])."',newstime='$add[newstime]'".$update." where id='$add[id]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=".$add[id]."<br>title=".$add[title]);
 		printerror("EditCjNewsSuccess","CheckCj.php?classid=$add[classid]&from=".ehtmlspecialchars($_POST[from]).hReturnEcmsHashStrHref2(0));
 	}
@@ -51,21 +51,21 @@ function EditCjNews($add,$newstext,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤é‡‡é›†ä¿¡æ¯
+//É¾³ı²É¼¯ĞÅÏ¢
 function DelCjNews($classid,$id,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
 	$id=(int)$id;
 	if(empty($classid)||empty($id))
 	{printerror("NotDelCjNewsid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
 	$cr=$empire->fetch1("select newsclassid,tbname from {$dbtbpre}enewsinfoclass where classid='$classid'");
 	$r=$empire->fetch1("select title from {$dbtbpre}ecms_infotmp_".$cr[tbname]." where id='$id'");
 	$sql=$empire->query("delete from {$dbtbpre}ecms_infotmp_".$cr[tbname]." where id='$id'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=".$id."<br>title=".$r[title]);
 		printerror("DelCjNewsSuccess","CheckCj.php?classid=$classid&from=".ehtmlspecialchars($_GET[from]).hReturnEcmsHashStrHref2(0));
 	}
@@ -73,10 +73,10 @@ function DelCjNews($classid,$id,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ‰¹é‡åˆ é™¤é‡‡é›†ä¿¡æ¯
+//ÅúÁ¿É¾³ı²É¼¯ĞÅÏ¢
 function DelCjNews_all($classid,$id,$userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
 	$count=count($id);
 	if(!$count)
@@ -86,12 +86,12 @@ function DelCjNews_all($classid,$id,$userid,$username){
 	{
 		$add.="id='".$id[$i]."' or ";
     }
-	//å»æ‰æœ€åä¸€ä¸ª or
+	//È¥µô×îºóÒ»¸ö or
 	$add=substr($add,0,strlen($add)-4);
 	$sql=$empire->query("delete from {$dbtbpre}ecms_infotmp_".$cr[tbname]." where ".$add);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("classid=".$classid."<br>classname=".$cr[classname]);
 		printerror("DelCjNewsAllSuccess",EcmsGetReturnUrl());
     }
@@ -101,7 +101,7 @@ function DelCjNews_all($classid,$id,$userid,$username){
     }
 }
 
-//æ¸…é™¤ç®€ä»‹å­—ç¬¦
+//Çå³ı¼ò½é×Ö·û
 function DoClearSmalltextVal($value){
 	$value=str_replace(array("\r\n","<br />","<br>","&nbsp;","[!--empirenews.page--]","[/!--empirenews.page--]"),array("","\r\n","\r\n"," ","",""),$value);
 	$value=strip_tags($value);
@@ -109,7 +109,7 @@ function DoClearSmalltextVal($value){
 	return $value;
 }
 
-//é‡‡é›†å…¥åº“
+//²É¼¯Èë¿â
 function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 	global $class_r,$empire,$public_r,$dbtbpre,$emod_r,$lur;
 	$checked=(int)$checked;
@@ -118,18 +118,18 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	CheckLevel($userid,$username,$classid,"cj");//æ“ä½œæƒé™
+	CheckLevel($userid,$username,$classid,"cj");//²Ù×÷È¨ÏŞ
 	$count=count($id);
 	if(empty($count))
 	{
 		printerror("NotCjNewsIn","history.go(-1)");
 	}
 	$cr=$empire->fetch1("select * from {$dbtbpre}enewsinfoclass where classid='$classid'");
-	//å‰¯è¡¨
+	//¸±±í
 	$cra=$empire->fetch1("select * from {$dbtbpre}ecms_infoclass_".$cr[tbname]." where classid='$classid'");
-	//ç»„åˆä¸¤æ•°ç»„
+	//×éºÏÁ½Êı×é
     $cr=TogTwoArray($cr,$cra);
-	//å¯¼å…¥gdå¤„ç†æ–‡ä»¶
+	//µ¼Èëgd´¦ÀíÎÄ¼ş
 	if($cr['mark']||$cr['getfirstspic'])
 	{
 		@include_once("gd.php");
@@ -138,13 +138,13 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 	$mid=$class_r[$cr[newsclassid]][modid];
 	$savetxtf=$emod_r[$mid]['savetxtf'];
 	$stb=$emod_r[$mid]['deftb'];
-	//å–å¾—é‡‡é›†å­—æ®µ
+	//È¡µÃ²É¼¯×Ö¶Î
 	$record="<!--record-->";
 	$field="<!--field--->";
 	$mr=$empire->fetch1("select cj from {$dbtbpre}enewsmod where mid='".$class_r[$cr[newsclassid]][modid]."'");
 	$cjr=explode($record,$mr[cj]);
 	$ccount=count($cjr);
-	//å–å¾—ä¼˜åŒ–å­—æ®µ
+	//È¡µÃÓÅ»¯×Ö¶Î
 	for($ci=0;$ci<$ccount-1;$ci++)
 	{
 		$cir=explode($field,$cjr[$ci]);
@@ -159,7 +159,7 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 	{
 		$a.="id='".$id[$i]."' or ";
 	}
-	//å»æ‰æœ€åä¸€ä¸ª or
+	//È¥µô×îºóÒ»¸ö or
 	$a=substr($a,0,strlen($a)-4);
 	$sql=$empire->query("select * from {$dbtbpre}ecms_infotmp_".$cr[tbname]." where ".$a." and checked=0 order by id desc");
 	$todaytime=time();
@@ -180,12 +180,12 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 			$var2="qz_".$dofield;
 			$var3="save_".$dofield;
 			$value=$r[$dofield];
-			//è‡ªèº«é“¾æ¥
+			//×ÔÉíÁ´½Ó
 			if($dofield=="empireselfurl")
 			{
 				$value=$r['oldurl'];
 			}
-			//å†…å®¹
+			//ÄÚÈİ
 			if($dofield=="newstext")
 			{
 				if($cr[copyimg]||$cr[copyflash])
@@ -193,10 +193,10 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 					$GLOBALS['cjnewsurl']=$r[oldurl];
 					$value=addslashes(CopyImg(stripSlashes($value),$cr[copyimg],$cr[copyflash],$cr[newsclassid],$cr[imgurl],$username,0,$r['id'],$cr['mark'],$public_r['filedeftb']));
 				}
-				//æ›¿æ¢å…³é”®å­—å’Œå­—ç¬¦
+				//Ìæ»»¹Ø¼ü×ÖºÍ×Ö·û
 				$value=DoReplaceKeyAndWord($value,1,$cr[newsclassid]);
 			}
-			//ç®€ä»‹
+			//¼ò½é
 			if($dofield=="smalltext")
 			{
 				if(empty($value))
@@ -208,7 +208,7 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 					$value=DoClearSmalltextVal($value);
 				}
 			}
-			//å›¾ç‰‡é›†
+			//Í¼Æ¬¼¯
 			if($dofield=="morepic")
 			{
 				if($cr[$var3]==" checked")
@@ -218,10 +218,10 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 					$value=LoadInSaveMorepicFile($value,$msavepic,$cr[newsclassid],0,$r,0,$public_r['filedeftb']);
 				}
 			}
-			//ä¿¡æ¯æ—¶é—´
+			//ĞÅÏ¢Ê±¼ä
 			if($dofield=="newstime")
 			{continue;}
-			//å›¾ç‰‡æ ‡é¢˜
+			//Í¼Æ¬±êÌâ
 			if($dofield=="titlepic"&&$cr[zz_titlepicl])
 			{
 				$cr[$var]=$cr[zz_titlepicl];
@@ -233,7 +233,7 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 			{
 				$titlepicnoval=1;
 			}
-			//æ˜¯å¦è¿œç¨‹ä¿å­˜
+			//ÊÇ·ñÔ¶³Ì±£´æ
 			if($value&&!$cr[$var1]&&$cr[$var3]==" checked"&&$dofield!="morepic")
 			{
 				$tranr=DoTranUrl($value,$cr[newsclassid]);
@@ -242,23 +242,23 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 					$tranr[filesize]=(int)$tranr[filesize];
 					$tranr[type]=(int)$tranr[type];
 					$r[id]=(int)$r[id];
-					//è®°å½•æ•°æ®åº“
+					//¼ÇÂ¼Êı¾İ¿â
 					eInsertFileTable($tranr[filename],$tranr[filesize],$tranr[filepath],$username,$cr[newsclassid],'[URL]'.$tranr[filename],$tranr[type],0,$r[id],$public_r[fpath],0,0,$public_r['filedeftb']);
 					$value=$tranr[url];
 				}
 			}
-			//å­˜æ”¾æ–‡æœ¬
+			//´æ·ÅÎÄ±¾
 			if($savetxtf==$dofield)
 			{
-				//å»ºç«‹ç›®å½•
+				//½¨Á¢Ä¿Â¼
 				$thetxtfile=GetFileMd5();
 				$truevalue=MkDirTxtFile(date("Y/md"),$thetxtfile);
-				//å†™æ”¾æ–‡ä»¶
+				//Ğ´·ÅÎÄ¼ş
 				EditTxtFieldText($truevalue,$value);
 				$value=$truevalue;
 			}
 			$value=addslashes($value);
-			if(strstr($emod_r[$mid]['tbdataf'],','.$dofield.','))//å‰¯è¡¨
+			if(strstr($emod_r[$mid]['tbdataf'],','.$dofield.','))//¸±±í
 			{
 				$dataifield.=",".$dofield;
 				$dataivalue.=",'".$value."'";
@@ -270,8 +270,8 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 			}
 		}
 		$r[keyboard]=addslashes($r[keyboard]);
-		//æ—¶é—´
-		if($uptime)//å½“å‰æ—¶é—´
+		//Ê±¼ä
+		if($uptime)//µ±Ç°Ê±¼ä
 		{
 			$r[newstime]=$todaytime;
 			$r[truetime]=$todaytime;
@@ -287,9 +287,9 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 				$r[newstime]=to_time($r[newstime]);
 			}
 		}
-		//æŸ¥çœ‹ç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™å»ºç«‹
+		//²é¿´Ä¿Â¼ÊÇ·ñ´æÔÚ£¬²»´æÔÚÔò½¨Á¢
 		$newspath=FormatPath($cr[newsclassid],"",0);
-		//å¼ºåˆ¶ç­¾å‘
+		//Ç¿ÖÆÇ©·¢
 		if($class_r[$cr[newsclassid]][wfid])
 		{
 			if($userisqf)
@@ -308,33 +308,33 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 			$checked=$checked;
 			$isqf=0;
 		}
-		//å˜é‡å¤„ç†
+		//±äÁ¿´¦Àí
 		$newstempid=0;
 		$ispic=$r[titlepic]?1:0;
-		//å–å¾—è¿”å›å…³é”®å­—
+		//È¡µÃ·µ»Ø¹Ø¼ü×Ö
 		$keyid=GetKeyid($r[keyboard],$cr[newsclassid],0,$class_r[$cr[newsclassid]][link_num]);
-		//ç´¢å¼•è¡¨
+		//Ë÷Òı±í
 		$havehtml=0;
 		$indexsql=$empire->query("insert into {$dbtbpre}ecms_".$class_r[$cr[newsclassid]][tbname]."_index(classid,checked,newstime,truetime,lastdotime,havehtml) values('$cr[newsclassid]','$checked','$r[newstime]','$r[truetime]','$r[truetime]','$havehtml');");
 		$id=$empire->lastid();
 		$infotbr=ReturnInfoTbname($class_r[$cr[newsclassid]][tbname],$checked,$stb);
-		//ä¸»è¡¨
+		//Ö÷±í
 		$isurl=$r['titleurl']?1:0;
 		$isql=$empire->query("insert into ".$infotbr['tbname']."(id,classid,ttid,onclick,plnum,totaldown,newspath,filename,userid,username,firsttitle,isgood,ispic,istop,isqf,ismember,isurl,truetime,lastdotime,havehtml,groupid,userfen,titlefont,titleurl,stb,fstb,restb,keyboard,newstime".$ifield.") values('$id','$cr[newsclassid]',0,0,0,0,'$newspath','$filename','$r[userid]','$r[username]',0,0,'$ispic',0,'$isqf',0,'$isurl','$r[truetime]','$r[truetime]','$havehtml',0,0,'$r[titlefont]','$r[titleurl]','$stb','$public_r[filedeftb]','$public_r[pldeftb]','$r[keyboard]','$r[newstime]'".$ivalue.");");
-		//å‰¯è¡¨
+		//¸±±í
 		$fisql=$empire->query("insert into ".$infotbr['datatbname']."(id,classid,keyid,dokey,newstempid,closepl,haveaddfen,infotags".$dataifield.") values('$id','$cr[newsclassid]','$keyid',1,'$newstempid',0,0,''".$dataivalue.");");
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		AddClassInfos($cr['newsclassid'],'+1','+1',$checked);
-		//æ›´æ–°æ–°ä¿¡æ¯æ•°
+		//¸üĞÂĞÂĞÅÏ¢Êı
 		DoUpdateAddDataNum('info',$class_r[$cr['newsclassid']]['tid'],1);
-		//ç­¾å‘
+		//Ç©·¢
 		if($isqf==1)
 		{
 			InfoInsertToWorkflow($id,$cr[newsclassid],$class_r[$cr[newsclassid]][wfid],$userid,$username);
 		}
-		//æ›´æ–°é™„ä»¶
+		//¸üĞÂ¸½¼ş
 		UpdateTheFile($id,$r['id'],$cr['newsclassid'],$public_r['filedeftb']);
-		//å–ç¬¬ä¸€å¼ å›¾ç‰‡ä¸ºæ ‡é¢˜å›¾ç‰‡
+		//È¡µÚÒ»ÕÅÍ¼Æ¬Îª±êÌâÍ¼Æ¬
 		$addtitlepic="";
 		if($cr['getfirstpic']&&$titlepicnoval)
 		{
@@ -344,9 +344,9 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 				$addtitlepic=",titlepic='".addslashes($firsttitlepic)."',ispic=1";
 			}
 		}
-		//æ–‡ä»¶å‘½å
+		//ÎÄ¼şÃüÃû
 		$filename=ReturnInfoFilename($cr[newsclassid],$id,$r[filenameqz]);
-		//ä¿¡æ¯åœ°å€
+		//ĞÅÏ¢µØÖ·
 		$updateinfourl='';
 		if(!$isurl)
 		{
@@ -355,8 +355,8 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 		}
         $usql=$empire->query("update ".$infotbr['tbname']." set filename='$filename'".$updateinfourl.$addtitlepic." where id='$id'");
 	}
-	//çŠ¶æ€åŸè®°å½•
-	if($cr['delloadinfo'])//åˆ é™¤
+	//×´Ì¬Ô­¼ÇÂ¼
+	if($cr['delloadinfo'])//É¾³ı
 	{
 		$del=$empire->query("delete from {$dbtbpre}ecms_infotmp_".$cr[tbname]." where ".$a);
 	}
@@ -364,12 +364,12 @@ function CjNewsIn($classid,$id,$checked,$uptime,$userid,$username){
 	{
 		$del=$empire->query("update {$dbtbpre}ecms_infotmp_".$cr[tbname]." set checked=1,keyboard=''".$updatefield." where ".$a);
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("classid=".$classid);
 	printerror("CjLoadDbSuccess","CheckCj.php?classid=$classid&from=".ehtmlspecialchars($_POST[from]).hReturnEcmsHashStrHref2(0));
 }
 
-//å…¨éƒ¨é‡‡é›†å…¥åº“
+//È«²¿²É¼¯Èë¿â
 function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 	global $class_r,$empire,$public_r,$dbtbpre,$fun_r,$emod_r,$lur;
 	$checked=(int)$checked;
@@ -379,14 +379,14 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
 	$cr=$empire->fetch1("select * from {$dbtbpre}enewsinfoclass where classid='$classid'");
-	//å‰¯è¡¨
+	//¸±±í
 	$cra=$empire->fetch1("select * from {$dbtbpre}ecms_infoclass_".$cr[tbname]." where classid='$classid'");
-	//ç»„åˆä¸¤æ•°ç»„
+	//×éºÏÁ½Êı×é
     $cr=TogTwoArray($cr,$cra);
-	//å¯¼å…¥gdå¤„ç†æ–‡ä»¶
+	//µ¼Èëgd´¦ÀíÎÄ¼ş
 	if($cr['mark']||$cr['getfirstspic'])
 	{
 		@include_once("gd.php");
@@ -397,7 +397,7 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 	$mid=$class_r[$cr[newsclassid]][modid];
 	$savetxtf=$emod_r[$mid]['savetxtf'];
 	$stb=$emod_r[$mid]['deftb'];
-	//å–å¾—é‡‡é›†å­—æ®µ
+	//È¡µÃ²É¼¯×Ö¶Î
 	$record="<!--record-->";
 	$field="<!--field--->";
 	$mr=$empire->fetch1("select cj from {$dbtbpre}enewsmod where mid='".$class_r[$cr[newsclassid]][modid]."'");
@@ -425,12 +425,12 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 			$var2="qz_".$dofield;
 			$var3="save_".$dofield;
 			$value=$r[$dofield];
-			//è‡ªèº«é“¾æ¥
+			//×ÔÉíÁ´½Ó
 			if($dofield=="empireselfurl")
 			{
 				$value=$r['oldurl'];
 			}
-			//å†…å®¹
+			//ÄÚÈİ
 			if($dofield=="newstext")
 			{
 				if($cr[copyimg]||$cr[copyflash])
@@ -438,10 +438,10 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 					$GLOBALS['cjnewsurl']=$r[oldurl];
 					$value=addslashes(CopyImg(stripSlashes($value),$cr[copyimg],$cr[copyflash],$cr[newsclassid],$cr[imgurl],$username,0,$r['id'],$cr['mark'],$public_r['filedeftb']));
 				}
-				//æ›¿æ¢å…³é”®å­—å’Œå­—ç¬¦
+				//Ìæ»»¹Ø¼ü×ÖºÍ×Ö·û
 				$value=DoReplaceKeyAndWord($value,1,$cr[newsclassid]);
 			}
-			//ç®€ä»‹
+			//¼ò½é
 			if($dofield=="smalltext")
 			{
 				if(empty($value))
@@ -453,7 +453,7 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 					$value=DoClearSmalltextVal($value);
 				}
 			}
-			//å›¾ç‰‡é›†
+			//Í¼Æ¬¼¯
 			if($dofield=="morepic")
 			{
 				if($cr[$var3]==" checked")
@@ -463,10 +463,10 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 					$value=LoadInSaveMorepicFile($value,$msavepic,$cr[newsclassid],0,$r,0,$public_r['filedeftb']);
 				}
 			}
-			//æ—¶é—´
+			//Ê±¼ä
 			if($dofield=="newstime")
 			{continue;}
-			//å›¾ç‰‡æ ‡é¢˜
+			//Í¼Æ¬±êÌâ
 			if($dofield=="titlepic"&&$cr[zz_titlepicl])
 			{
 				$cr[$var]=$cr[zz_titlepicl];
@@ -478,7 +478,7 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 			{
 				$titlepicnoval=1;
 			}
-			//æ˜¯å¦è¿œç¨‹ä¿å­˜
+			//ÊÇ·ñÔ¶³Ì±£´æ
 			if($value&&!$cr[$var1]&&$cr[$var3]==" checked"&&$dofield!="morepic")
 			{
 				$tranr=DoTranUrl($value,$cr[newsclassid]);
@@ -487,23 +487,23 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 					$tranr[filesize]=(int)$tranr[filesize];
 					$tranr[type]=(int)$tranr[type];
 					$r[id]=(int)$r[id];
-					//è®°å½•æ•°æ®åº“
+					//¼ÇÂ¼Êı¾İ¿â
 					eInsertFileTable($tranr[filename],$tranr[filesize],$tranr[filepath],$username,$cr[newsclassid],'[URL]'.$tranr[filename],$tranr[type],0,$r[id],$public_r[fpath],0,0,$public_r['filedeftb']);
 					$value=$tranr[url];
 				}
 			}
-			//å­˜æ”¾æ–‡æœ¬
+			//´æ·ÅÎÄ±¾
 			if($savetxtf==$dofield)
 			{
-				//å»ºç«‹ç›®å½•
+				//½¨Á¢Ä¿Â¼
 				$thetxtfile=GetFileMd5();
 				$truevalue=MkDirTxtFile(date("Y/md"),$thetxtfile);
-				//å†™æ”¾æ–‡ä»¶
+				//Ğ´·ÅÎÄ¼ş
 				EditTxtFieldText($truevalue,$value);
 				$value=$truevalue;
 			}
 			$value=addslashes($value);
-			if(strstr($emod_r[$mid]['tbdataf'],','.$dofield.','))//å‰¯è¡¨
+			if(strstr($emod_r[$mid]['tbdataf'],','.$dofield.','))//¸±±í
 			{
 				$dataifield.=",".$dofield;
 				$dataivalue.=",'".$value."'";
@@ -515,8 +515,8 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 			}
 		}
 		$r[keyboard]=addslashes($r[keyboard]);
-		//æ—¶é—´
-		if($uptime)//å½“å‰æ—¶é—´
+		//Ê±¼ä
+		if($uptime)//µ±Ç°Ê±¼ä
 		{
 			$r[newstime]=$todaytime;
 			$r[truetime]=$todaytime;
@@ -532,9 +532,9 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 				$r[newstime]=to_time($r[newstime]);
 			}
 		}
-		//æŸ¥çœ‹ç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™å»ºç«‹
+		//²é¿´Ä¿Â¼ÊÇ·ñ´æÔÚ£¬²»´æÔÚÔò½¨Á¢
 		$newspath=FormatPath($cr[newsclassid],"",0);
-		//å¼ºåˆ¶ç­¾å‘
+		//Ç¿ÖÆÇ©·¢
 		if($class_r[$cr[newsclassid]][wfid])
 		{
 			if($userisqf)
@@ -553,33 +553,33 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 			$checked=$checked;
 			$isqf=0;
 		}
-		//å˜é‡å¤„ç†
+		//±äÁ¿´¦Àí
 		$newstempid=0;
 		$ispic=$r[titlepic]?1:0;
-		//è¿”å›å…³é”®å­—
+		//·µ»Ø¹Ø¼ü×Ö
 		$keyid=GetKeyid($r[keyboard],$cr[newsclassid],0,$class_r[$cr[newsclassid]][link_num]);
-		//ç´¢å¼•è¡¨
+		//Ë÷Òı±í
 		$havehtml=0;
 		$indexsql=$empire->query("insert into {$dbtbpre}ecms_".$class_r[$cr[newsclassid]][tbname]."_index(classid,checked,newstime,truetime,lastdotime,havehtml) values('$cr[newsclassid]','$checked','$r[newstime]','$r[truetime]','$r[truetime]','$havehtml');");
 		$id=$empire->lastid();
 		$infotbr=ReturnInfoTbname($class_r[$cr[newsclassid]][tbname],$checked,$stb);
-		//ä¸»è¡¨
+		//Ö÷±í
 		$isurl=$r['titleurl']?1:0;
 		$isql=$empire->query("insert into ".$infotbr['tbname']."(id,classid,ttid,onclick,plnum,totaldown,newspath,filename,userid,username,firsttitle,isgood,ispic,istop,isqf,ismember,isurl,truetime,lastdotime,havehtml,groupid,userfen,titlefont,titleurl,stb,fstb,restb,keyboard,newstime".$ifield.") values('$id','$cr[newsclassid]',0,0,0,0,'$newspath','$filename','$r[userid]','$r[username]',0,0,'$ispic',0,'$isqf',0,'$isurl','$r[truetime]','$r[truetime]','$havehtml',0,0,'$r[titlefont]','$r[titleurl]','$stb','$public_r[filedeftb]','$public_r[pldeftb]','$r[keyboard]','$r[newstime]'".$ivalue.");");
-		//å‰¯è¡¨
+		//¸±±í
 		$fisql=$empire->query("insert into ".$infotbr['datatbname']."(id,classid,keyid,dokey,newstempid,closepl,haveaddfen,infotags".$dataifield.") values('$id','$cr[newsclassid]','$keyid',1,'$newstempid',0,0,''".$dataivalue.");");
-		//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+		//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 		AddClassInfos($cr['newsclassid'],'+1','+1',$checked);
-		//æ›´æ–°æ–°ä¿¡æ¯æ•°
+		//¸üĞÂĞÂĞÅÏ¢Êı
 		DoUpdateAddDataNum('info',$class_r[$cr['newsclassid']]['tid'],1);
-		//ç­¾å‘
+		//Ç©·¢
 		if($isqf==1)
 		{
 			InfoInsertToWorkflow($id,$cr[newsclassid],$class_r[$cr[newsclassid]][wfid],$userid,$username);
 		}
-		//æ›´æ–°é™„ä»¶
+		//¸üĞÂ¸½¼ş
 		UpdateTheFile($id,$r['id'],$cr[newsclassid],$public_r['filedeftb']);
-		//å–ç¬¬ä¸€å¼ å›¾ç‰‡ä¸ºæ ‡é¢˜å›¾ç‰‡
+		//È¡µÚÒ»ÕÅÍ¼Æ¬Îª±êÌâÍ¼Æ¬
 		$addtitlepic="";
 		if($cr['getfirstpic']&&$titlepicnoval)
 		{
@@ -589,9 +589,9 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 				$addtitlepic=",titlepic='".addslashes($firsttitlepic)."',ispic=1";
 			}
 		}
-		//æ–‡ä»¶å‘½å
+		//ÎÄ¼şÃüÃû
 		$filename=ReturnInfoFilename($cr[newsclassid],$id,$r[filenameqz]);
-		//ä¿¡æ¯åœ°å€
+		//ĞÅÏ¢µØÖ·
 		$updateinfourl='';
 		if(!$isurl)
 		{
@@ -601,10 +601,10 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
         $usql=$empire->query("update ".$infotbr['tbname']." set filename='$filename'".$updateinfourl.$addtitlepic." where id='$id'");
 	}
 	$fm=ehtmlspecialchars($_GET['fm']);
-	//å…¨éƒ¨å…¥åº“å®Œæ¯•
+	//È«²¿Èë¿âÍê±Ï
 	if(empty($b))
 	{
-		//å–å¾—å¿§åŒ–å­—æ®µ
+		//È¡µÃÓÇ»¯×Ö¶Î
 		for($ci=0;$ci<$ccount-1;$ci++)
 	    {
 			$cir=explode($field,$cjr[$ci]);
@@ -615,8 +615,8 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 			}
 			$updatefield.=",".$cifield."=''";
 		}
-		//çŠ¶æ€åŸè®°å½•
-		if($cr['delloadinfo'])//åˆ é™¤
+		//×´Ì¬Ô­¼ÇÂ¼
+		if($cr['delloadinfo'])//É¾³ı
 		{
 			$del=$empire->query("delete from {$dbtbpre}ecms_infotmp_".$cr[tbname]." where classid='$classid'");
 		}
@@ -639,36 +639,36 @@ function CjNewsIn_all($classid,$checked,$uptime,$start,$userid,$username){
 	exit();
 }
 
-//##############################é‡‡é›†åŠŸèƒ½å¼€å§‹###############################
+//##############################²É¼¯¹¦ÄÜ¿ªÊ¼###############################
 
-//æ›¿æ¢å›è½¦
+//Ìæ»»»Ø³µ
 function ReplaceFc($text){
 	$text=str_replace("\n","",$text);
 	$text=str_replace("\r","",$text);
 	return $text;
 }
 
-//è¿”å›å­—ç¬¦æ­£åˆ™
+//·µ»Ø×Ö·ûÕıÔò
 function GetInfoStr($text,$exp,$enews=0){
 	$e1="[phome-".$exp."]";
 	$e2="[/phome-".$exp."]";
 	$rep="[!--".$exp."--]";
 	$mode="*";
-	//åŒ¹é…å¤šä¸ª
+	//Æ¥Åä¶à¸ö
 	if($enews==1)
 	{
 		$cr=explode($rep,$text);
 		$cer=explode($mode,$cr[0]);
 		$num=count($cer)-1;
 	}
-	//è½¬æ¢å­—ç¬¦
+	//×ª»»×Ö·û
 	$text=str_replace($rep,$mode,$text);
 	$er=explode($mode,$text);
 	$newtext="";
 	for($i=0;$i<count($er);$i++)
 	{
 		$j=$i+1;
-		//åŠ æ ‡ç­¾
+		//¼Ó±êÇ©
 		if($enews==1)
 		{
 			if($i==$num)
@@ -680,7 +680,7 @@ function GetInfoStr($text,$exp,$enews=0){
 				$newtext.=$er[$i]."\\".$j;
 			}
 		}
-		//è¿‡æ»¤å¹¿å‘Š
+		//¹ıÂË¹ã¸æ
 		elseif($enews==2)
 		{
 			if($i==$num)
@@ -697,17 +697,17 @@ function GetInfoStr($text,$exp,$enews=0){
 			$newtext.=$er[$i]."\\".$j;
 		}
 	}
-	//å»æ‰æœ€åä¸€ä¸ª//
+	//È¥µô×îºóÒ»¸ö//
 	$newtext=substr($newtext,0,strlen($newtext)-2);
 	return $newtext;
 }
 
-//è¿‡æ»¤å¹¿å‘Š
+//¹ıÂË¹ã¸æ
 function RepAd($repad,$text){
 	if(empty($repad))
 	{return $text;}
 	$repad=stripSlashes($repad);
-	//æ›¿æ¢å›è½¦
+	//Ìæ»»»Ø³µ
 	$repad=ReplaceFc($repad);
 	$r=explode(",",$repad);
 	$exp="ad";
@@ -721,12 +721,12 @@ function RepAd($repad,$text){
 	return $text;
 }
 
-//è¿‡æ»¤æ•´ä¸ªé¡µé¢å¹¿å‘Š
+//¹ıÂËÕû¸öÒ³Ãæ¹ã¸æ
 function RepPageAd($repad,$text){
 	if(empty($repad))
 	{return $text;}
 	$repad=stripSlashes($repad);
-	//æ›¿æ¢å›è½¦
+	//Ìæ»»»Ø³µ
 	$repad=ReplaceFc($repad);
 	$r=explode(",",$repad);
 	$exp="pad";
@@ -740,7 +740,7 @@ function RepPageAd($repad,$text){
 	return $text;
 }
 
-//åœ°å€
+//µØÖ·
 function eCheckCjUrl($url,$ecms=0){
 	if(!strstr($url,'://'))
 	{
@@ -756,7 +756,7 @@ function eCheckCjUrl($url,$ecms=0){
 	return true;
 }
 
-//å–å¾—ç¬¦å·ä½ç½®
+//È¡µÃ·ûºÅÎ»ÖÃ
 function CountCJ_site($text,$exp){
 	$rep="[!--".$exp."--]";
 	$mode="*";
@@ -766,16 +766,16 @@ function CountCJ_site($text,$exp){
 	return $num;
 }
 
-//å–å¾—æ›¿æ¢ç©ºä½™å‡ºæ¥çš„å€¼
+//È¡µÃÌæ»»¿ÕÓà³öÀ´µÄÖµ
 function ReturnCJ_str($text,$exp,$info){
 	$e1="[phome-".$exp."]";
 	$e2="[/phome-".$exp."]";
 	$text=stripSlashes(stripSlashes($text));
-	//æ›¿æ¢å›è½¦
+	//Ìæ»»»Ø³µ
 	$text=ReplaceFc($text);
 	$rep="[!--".$exp."--]";
-	//æ›¿æ¢
-	$num=CountCJ_site($text,$exp);//å–å¾—ç¬¦å·ä½ç½®
+	//Ìæ»»
+	$num=CountCJ_site($text,$exp);//È¡µÃ·ûºÅÎ»ÖÃ
 	$zztext=RepInfoZZ($text,$exp,0);
 	$text1=stripSlashes(preg_replace($zztext,$e1."\\".$num.$e2,$info));
 	$r=explode($e1,$text1);
@@ -784,7 +784,7 @@ function ReturnCJ_str($text,$exp,$info){
 	return $text1;
 }
 
-//æ›¿æ¢é“¾æ¥
+//Ìæ»»Á´½Ó
 function RepCjUrlStr($url){
 	$url=strip_tags($url);
 	$url=str_replace("\"","",$url);
@@ -793,9 +793,9 @@ function RepCjUrlStr($url){
 	return $url;
 }
 
-//ç¼–ç è½¬æ¢
+//±àÂë×ª»»
 function doCjUtfAndGbk($str,$phome=0){
-	//æ­£å¸¸ç¼–ç 
+	//Õı³£±àÂë
 	if($phome==0)
 	{
 		return $str;
@@ -841,19 +841,19 @@ function doCjUtfAndGbk($str,$phome=0){
 	return $str;
 }
 
-//æ›¿æ¢é‡‡é›†é¡µé¢å†…å®¹
+//Ìæ»»²É¼¯Ò³ÃæÄÚÈİ
 function RepCjPagetextStr($text,$r){
 	$text=str_replace("\\","/",$text);
-	//ç¼–ç è½¬æ¢
+	//±àÂë×ª»»
 	$text=doCjUtfAndGbk($text,$r['enpagecode']);
-	//æ›¿æ¢
+	//Ìæ»»
 	$text=RepInfoWord($text,$r['oldpagerep'],$r['newpagerep']);
-	//æ›¿æ¢é¡µé¢è¿‡æ»¤æ­£åˆ™
+	//Ìæ»»Ò³Ãæ¹ıÂËÕıÔò
 	$text=RepPageAd($r['pagerepad'],$text);
 	return $text;
 }
 
-//å–å¾—åœ°å€
+//È¡µÃµØÖ·
 function EchoUrl($text,$exp,$exp1,$dr,$url,$classid,$num,$checkrnd){
 	global $empire,$fun_r,$dbtbpre;
 	$e1="[phome-".$exp."]";
@@ -861,7 +861,7 @@ function EchoUrl($text,$exp,$exp1,$dr,$url,$classid,$num,$checkrnd){
 	$ep1="[phome-".$exp1."]";
 	$ep2="[/phome-".$exp1."]";
 	$r=explode($e1,$text);
-	//å›¾ç‰‡é“¾æ¥
+	//Í¼Æ¬Á´½Ó
 	if(!$dr[z_titlepicl]&&$dr[zz_titlepicl])
 	{
 		$rp=explode($ep1,$text);
@@ -874,52 +874,52 @@ function EchoUrl($text,$exp,$exp1,$dr,$url,$classid,$num,$checkrnd){
 	{
 		$r1=explode($e2,$r[$i]);
 		$dourl=trim($r1[0]);
-		//æ˜¯å¦æœ‰http
+		//ÊÇ·ñÓĞhttp
 		if(strstr($dourl,"http://")||strstr($dourl,"https://"))
 		{}
 		else
 		{
 			$dourl=$url.$dourl;
 		}
-		//æ›¿æ¢åœ°å€
+		//Ìæ»»µØÖ·
 		$dourl=RepCjUrlStr($dourl);
 		if(empty($dourl))
 		{continue;}
 		$dourl=addslashes($dourl);
-		//---------------æ£€æŸ¥æ•°æ®åº“æ˜¯å¦æœ‰è®°å½•
-		if(empty($dr[recjtheurl]))//é‡å¤é‡‡é›†
+		//---------------¼ì²éÊı¾İ¿âÊÇ·ñÓĞ¼ÇÂ¼
+		if(empty($dr[recjtheurl]))//ÖØ¸´²É¼¯
 		{
 			$dbnum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_infotmp_".$dr[tbname]." where oldurl='$dourl' limit 1");
 			if($dbnum)
 			{continue;}
 		}
-		//å›¾ç‰‡é“¾æ¥
+		//Í¼Æ¬Á´½Ó
 		if(!$dr[z_titlepicl]&&$dr[zz_titlepicl])
 	    {
 			$rp1=explode($ep2,$rp[$i]);
 			$titlepic=trim($rp1[0]);
-			//æ˜¯å¦æœ‰http
+			//ÊÇ·ñÓĞhttp
 			if(strstr($titlepic,"http://")||strstr($titlepic,"https://"))
 			{}
 			else
 			{$titlepic=$dr[qz_titlepicl].$titlepic;}
-			//æ›¿æ¢åœ°å€
+			//Ìæ»»µØÖ·
 			$titlepic=RepCjUrlStr($titlepic);
 			$titlepic=addslashes($titlepic);
 	    }
-		//å°†åœ°å€å†™å…¥æ•°æ®åº“
+		//½«µØÖ·Ğ´ÈëÊı¾İ¿â
 		$sql=$empire->query("insert into {$dbtbpre}enewslinktmp(newsurl,checkrnd,titlepic) values('$dourl','$checkrnd','$titlepic');");
 		echo $dourl."<br>";
 	}
 }
 
-//é‡‡é›†ç›´æ¥å†…å®¹é¡µåœ°å€
+//²É¼¯Ö±½ÓÄÚÈİÒ³µØÖ·
 function PageEchoUrl($classid,$cr,$userid,$username){
 	global $empire,$fun_r,$dbtbpre;
-	//å–å¾—æ¡æ•°
+	//È¡µÃÌõÊı
 	if(empty($cr[num]))
 	{$cr[num]=10000;}
-	//ç”Ÿæˆæ£€æµ‹å€¼
+	//Éú³É¼ì²âÖµ
 	$checkrnd=md5(uniqid(microtime()).EcmsRandInt());
 
 	$url_r=explode("\r\n",$cr[infourl]);
@@ -935,26 +935,26 @@ function PageEchoUrl($classid,$cr,$userid,$username){
 		{
 			continue;
 		}
-		//æ˜¯å¦æœ‰http
+		//ÊÇ·ñÓĞhttp
 		if(strstr($dourl,"http://")||strstr($dourl,"https://"))
 		{}
 		else
 		{
 			$dourl=$cr[httpurl].$dourl;
 		}
-		//æ›¿æ¢åœ°å€
+		//Ìæ»»µØÖ·
 		$dourl=RepCjUrlStr($dourl);
 		if(empty($dourl))
 		{continue;}
 		$dourl=addslashes($dourl);
-		//---------------æ£€æŸ¥æ•°æ®åº“æ˜¯å¦æœ‰è®°å½•
-		if(empty($cr[recjtheurl]))//é‡å¤é‡‡é›†
+		//---------------¼ì²éÊı¾İ¿âÊÇ·ñÓĞ¼ÇÂ¼
+		if(empty($cr[recjtheurl]))//ÖØ¸´²É¼¯
 		{
 			$dbnum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_infotmp_".$cr[tbname]." where oldurl='$dourl' limit 1");
 			if($dbnum)
 			{continue;}
 		}
-		//å°†åœ°å€å†™å…¥æ•°æ®åº“
+		//½«µØÖ·Ğ´ÈëÊı¾İ¿â
 		$sql=$empire->query("insert into {$dbtbpre}enewslinktmp(newsurl,checkrnd,titlepic) values('$dourl','$checkrnd','');");
 		echo $dourl."<br>";
 	}
@@ -962,28 +962,28 @@ function PageEchoUrl($classid,$cr,$userid,$username){
 	exit();
 }
 
-//å¼€å§‹é‡‡é›†è¿œç¨‹åœ°å€
+//¿ªÊ¼²É¼¯Ô¶³ÌµØÖ·
 function CJUrl($classid,$start,$checkrnd,$userid,$username){
 	global $empire,$fun_r,$dbtbpre;
 	$classid=(int)$classid;
 	if(empty($classid))
 	{printerror("NotChangeCjid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
 	$r=$empire->fetch1("select endday,num,zz_smallurl,zz_newsurl,httpurl,infourl,newsclassid,relistnum,zz_titlepicl,z_titlepicl,qz_titlepicl,save_titlepicl,tbname,recjtheurl,enpagecode,pagerepad,oldpagerep,newpagerep,keeptime,infourlispage from {$dbtbpre}enewsinfoclass where classid='$classid'");
 	if(empty($r[newsclassid]))
 	{printerror("NotCjid","history.go(-1)");}
-	//ç›´æ¥å†…å®¹é¡µé“¾æ¥åˆ—è¡¨
+	//Ö±½ÓÄÚÈİÒ³Á´½ÓÁĞ±í
 	if($r['infourlispage'])
 	{
 		PageEchoUrl($classid,$r,$userid,$username);
 	}
-	//å¯¼å…¥ç¼–ç æ–‡ä»¶
+	//µ¼Èë±àÂëÎÄ¼ş
 	if($r['enpagecode'])
 	{
 		@include_once("doiconv.php");
 	}
-	//å–å¾—æ¡æ•°
+	//È¡µÃÌõÊı
 	if(empty($r[num]))
 	{$r[num]=10000;}
 	if(empty($r[relistnum]))
@@ -991,12 +991,12 @@ function CJUrl($classid,$start,$checkrnd,$userid,$username){
 	if(empty($start))
 	{
 		$start=0;
-		//ç”Ÿæˆæ£€æµ‹å€¼
+		//Éú³É¼ì²âÖµ
 		$checkrnd=md5(uniqid(microtime()).EcmsRandInt());
 	}
 	$exp="newsurl";
 	$exp1="titlepic";
-	//æŸ¥çœ‹æ˜¯å¦è¿‡æœŸ
+	//²é¿´ÊÇ·ñ¹ıÆÚ
 	$b=0;
 	$p=0;
 	$url_r=explode("\r\n",$r[infourl]);
@@ -1008,7 +1008,7 @@ function CJUrl($classid,$start,$checkrnd,$userid,$username){
 		$dourl=trim($url_r[$i]);
 		if(empty($dourl)||!eCheckCjUrl($dourl,1))
 		{continue;}
-		//è¯»å–é¡µé¢
+		//¶ÁÈ¡Ò³Ãæ
 		for($readnum=0;$readnum<3;$readnum++)
 		{
 			$text1=ReadFiletext($dourl);
@@ -1017,11 +1017,11 @@ function CJUrl($classid,$start,$checkrnd,$userid,$username){
 		}
 		if(empty($text1))
 		{continue;}
-		//æ›¿æ¢å›è½¦
+		//Ìæ»»»Ø³µ
 		$text1=ReplaceFc($text1);
-		//æ›¿æ¢ç½‘é¡µå˜é‡
+		//Ìæ»»ÍøÒ³±äÁ¿
 		$text1=RepCjPagetextStr($text1,$r);
-		//åŒºåŸŸå—
+		//ÇøÓò¿é
 		if($r[zz_smallurl])
 		{
 			$text1=ReturnCJ_str($r[zz_smallurl],"smallurl",$text1);
@@ -1030,9 +1030,9 @@ function CJUrl($classid,$start,$checkrnd,$userid,$username){
 				continue;
 			}
 		}
-		//æ›¿æ¢å†…å®¹é“¾æ¥
+		//Ìæ»»ÄÚÈİÁ´½Ó
 		$text=stripSlashes(stripSlashes($r[zz_newsurl]));
-		//æ›¿æ¢å›è½¦
+		//Ìæ»»»Ø³µ
 		$text=ReplaceFc($text);
 		$zztext=RepInfoZZ($text,$exp,0);
 		$strtext=GetInfoStr($text,$exp,1);
@@ -1040,11 +1040,11 @@ function CJUrl($classid,$start,$checkrnd,$userid,$username){
 		{
 			$text1=stripSlashes(preg_replace($zztext,$strtext,$text1));
 		}
-		//æ›¿æ¢æ ‡é¢˜å›¾ç‰‡åœ°å€
+		//Ìæ»»±êÌâÍ¼Æ¬µØÖ·
 		if($r[zz_titlepicl]&&!$r[z_titlepicl])
 		{
 			$text=stripSlashes(stripSlashes($r[zz_titlepicl]));
-			//æ›¿æ¢å›è½¦
+			//Ìæ»»»Ø³µ
 			$text=ReplaceFc($text);
 			$zztext=RepInfoZZ($text,$exp1,0);
 			$strtext=GetInfoStr($text,$exp1,1);
@@ -1053,11 +1053,11 @@ function CJUrl($classid,$start,$checkrnd,$userid,$username){
 				$text1=stripSlashes(preg_replace($zztext,$strtext,$text1));
 			}
 		}
-		//é“¾æ¥å†™å…¥æ•°æ®åº“
+		//Á´½ÓĞ´ÈëÊı¾İ¿â
 		EchoUrl($text1,$exp,$exp1,$r,$r[httpurl],$classid,$r[num],$checkrnd);
 	}
 	$newstart=$i;
-	//é‡‡é›†é“¾æ¥å®Œæ¯•
+	//²É¼¯Á´½ÓÍê±Ï
 	if(empty($b))
 	{
 		echo $fun_r['GetUrlOver']."<script>self.location.href='ecmscj.php?enews=GetNewsInfo&classid=$classid&start=0&checkrnd=$checkrnd".hReturnEcmsHashStrHref(0)."';</script>";
@@ -1068,18 +1068,18 @@ function CJUrl($classid,$start,$checkrnd,$userid,$username){
 	exit();
 }
 
-//###################é‡‡é›†é¡µé¢åˆ—è¡¨##################
+//###################²É¼¯Ò³ÃæÁĞ±í##################
 function ViewCjList($classid,$userid,$username){
 	global $empire,$fun_r,$dbtbpre;
 	$classid=(int)$classid;
 	if(empty($classid))
 	{printerror("NotChangeCjid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
 	$r=$empire->fetch1("select endday,num,zz_smallurl,zz_newsurl,httpurl,infourl,newsclassid,relistnum,zz_titlepicl,z_titlepicl,qz_titlepicl,save_titlepicl,infourlispage from {$dbtbpre}enewsinfoclass where classid='$classid'");
 	if(empty($r[newsclassid]))
 	{printerror("NotCjid","history.go(-1)");}
-	//ç›´æ¥å†…å®¹é¡µåˆ—è¡¨
+	//Ö±½ÓÄÚÈİÒ³ÁĞ±í
 	if($r[infourlispage])
 	{
 		PageViewCjList($classid,$r,$userid,$username);
@@ -1100,10 +1100,10 @@ function ViewCjList($classid,$userid,$username){
 	exit();
 }
 
-//###################é‡‡é›†å†…å®¹é¡µé¢åˆ—è¡¨##################
+//###################²É¼¯ÄÚÈİÒ³ÃæÁĞ±í##################
 function PageViewCjList($classid,$cr,$userid,$username){
 	global $empire,$fun_r,$dbtbpre;
-	//å–å¾—æ¡æ•°
+	//È¡µÃÌõÊı
 	if(empty($cr[num]))
 	{$cr[num]=10000;}
 	$url_r=explode("\r\n",$cr[infourl]);
@@ -1120,14 +1120,14 @@ function PageViewCjList($classid,$cr,$userid,$username){
 		{
 			continue;
 		}
-		//æ˜¯å¦æœ‰http
+		//ÊÇ·ñÓĞhttp
 		if(strstr($dourl,"http://")||strstr($dourl,"https://"))
 		{}
 		else
 		{
 			$dourl=$cr[httpurl].$dourl;
 		}
-		//æ›¿æ¢åœ°å€
+		//Ìæ»»µØÖ·
 		$dourl=RepCjUrlStr($dourl);
 		if(empty($dourl))
 		{continue;}
@@ -1140,30 +1140,30 @@ function PageViewCjList($classid,$cr,$userid,$username){
 	exit();
 }
 
-//#################é¢„è§ˆé‡‡é›†åˆ—è¡¨
+//#################Ô¤ÀÀ²É¼¯ÁĞ±í
 function ViewCjUrl($classid,$listpage,$userid,$username){
 	global $empire,$fun_r,$dbtbpre;
 	$classid=(int)$classid;
 	if(empty($classid)||empty($listpage))
 	{printerror("NotChangeCjid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
 	$r=$empire->fetch1("select endday,num,zz_smallurl,zz_newsurl,httpurl,infourl,newsclassid,relistnum,zz_titlepicl,z_titlepicl,qz_titlepicl,save_titlepicl,tbname,recjtheurl,enpagecode,pagerepad,oldpagerep,newpagerep from {$dbtbpre}enewsinfoclass where classid='$classid'");
 	if(empty($r[newsclassid]))
 	{printerror("NotCjid","history.go(-1)");}
-	//å¯¼å…¥ç¼–ç æ–‡ä»¶
+	//µ¼Èë±àÂëÎÄ¼ş
 	if($r['enpagecode'])
 	{
 		@include_once("doiconv.php");
 	}
-	//å–å¾—æ¡æ•°
+	//È¡µÃÌõÊı
 	if(empty($r[num]))
 	{$r[num]=10000;}
 	$exp="newsurl";
 	$exp1="titlepic";
 	$dourl=$listpage;
 	eCheckCjUrl($dourl,0);
-	//è¯»å–é¡µé¢
+	//¶ÁÈ¡Ò³Ãæ
 	for($readnum=0;$readnum<3;$readnum++)
 	{
 		$text1=ReadFiletext($dourl);
@@ -1174,11 +1174,11 @@ function ViewCjUrl($classid,$listpage,$userid,$username){
 	{
 		printerror("FailCjUrl","history.go(-1)");
 	}
-	//æ›¿æ¢å›è½¦
+	//Ìæ»»»Ø³µ
 	$text1=ReplaceFc($text1);
-	//æ›¿æ¢ç½‘é¡µå˜é‡
+	//Ìæ»»ÍøÒ³±äÁ¿
 	$text1=RepCjPagetextStr($text1,$r);
-	//åŒºåŸŸå—
+	//ÇøÓò¿é
 	if($r[zz_smallurl])
 	{
 		$text1=ReturnCJ_str($r[zz_smallurl],"smallurl",$text1);
@@ -1187,9 +1187,9 @@ function ViewCjUrl($classid,$listpage,$userid,$username){
 			printerror("EmptyCjSmallUrl","history.go(-1)");
 		}
 	 }
-	 //æ›¿æ¢å†…å®¹é“¾æ¥
+	 //Ìæ»»ÄÚÈİÁ´½Ó
 	$text=stripSlashes(stripSlashes($r[zz_newsurl]));
-	 //æ›¿æ¢å›è½¦
+	 //Ìæ»»»Ø³µ
 	$text=ReplaceFc($text);
 	$zztext=RepInfoZZ($text,$exp,0);
 	$strtext=GetInfoStr($text,$exp,1);
@@ -1197,11 +1197,11 @@ function ViewCjUrl($classid,$listpage,$userid,$username){
 	{
 		$text1=stripSlashes(preg_replace($zztext,$strtext,$text1));
 	}
-	//æ›¿æ¢æ ‡é¢˜å›¾ç‰‡åœ°å€
+	//Ìæ»»±êÌâÍ¼Æ¬µØÖ·
 	if($r[zz_titlepicl]&&!$r[z_titlepicl])
 	{
 		$text=stripSlashes(stripSlashes($r[zz_titlepicl]));
-		//æ›¿æ¢å›è½¦
+		//Ìæ»»»Ø³µ
 		$text=ReplaceFc($text);
 		$zztext=RepInfoZZ($text,$exp1,0);
 		$strtext=GetInfoStr($text,$exp1,1);
@@ -1210,7 +1210,7 @@ function ViewCjUrl($classid,$listpage,$userid,$username){
 			$text1=stripSlashes(preg_replace($zztext,$strtext,$text1));
 		}
 	}
-	//è¾“å‡ºåœ°å€
+	//Êä³öµØÖ·
 	echo"<p align=center><b>".$fun_r['CjListPageUrl']."</b></p><table width='96%' border=1 align=center cellpadding=3 cellspacing=0>
   <tr><td width=70% align=center><b>URL</b></td><td align=center><b>VIEW</b></td></tr>";
 	ViewEchoUrl($text1,$exp,$exp1,$r,$r[httpurl],$classid,$r[num],$checkrnd);
@@ -1218,7 +1218,7 @@ function ViewCjUrl($classid,$listpage,$userid,$username){
 	exit();
 }
 
-//################è¾“å…¥é‡‡é›†é¡µé¢
+//################ÊäÈë²É¼¯Ò³Ãæ
 function ViewEchoUrl($text,$exp,$exp1,$dr,$url,$classid,$num,$checkrnd){
 	global $empire,$fun_r,$dbtbpre;
 	$e1="[phome-".$exp."]";
@@ -1226,7 +1226,7 @@ function ViewEchoUrl($text,$exp,$exp1,$dr,$url,$classid,$num,$checkrnd){
 	$ep1="[phome-".$exp1."]";
 	$ep2="[/phome-".$exp1."]";
 	$r=explode($e1,$text);
-	//å›¾ç‰‡é“¾æ¥
+	//Í¼Æ¬Á´½Ó
 	if(!$dr[z_titlepicl]&&$dr[zz_titlepicl])
 	{
 		$rp=explode($ep1,$text);
@@ -1240,36 +1240,36 @@ function ViewEchoUrl($text,$exp,$exp1,$dr,$url,$classid,$num,$checkrnd){
 	{
 		$r1=explode($e2,$r[$i]);
 		$dourl=trim($r1[0]);
-		//æ˜¯å¦æœ‰http
+		//ÊÇ·ñÓĞhttp
 		if(strstr($dourl,"http://")||strstr($dourl,"https://"))
 		{}
 		else
 		{
 			$dourl=$url.$dourl;
 		}
-		//æ›¿æ¢åœ°å€
+		//Ìæ»»µØÖ·
 		$dourl=RepCjUrlStr($dourl);
 		if(empty($dourl))
 		{continue;}
 		$dourl=addslashes($dourl);
-		//æ£€æŸ¥æ•°æ®åº“æ˜¯å¦æœ‰è®°å½•
+		//¼ì²éÊı¾İ¿âÊÇ·ñÓĞ¼ÇÂ¼
 		if(empty($dr[recjtheurl]))
 		{
 			$dbnum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_infotmp_".$dr[tbname]." where oldurl='$dourl' limit 1");
 			if($dbnum)
 			{continue;}
 		}
-		//å›¾ç‰‡é“¾æ¥
+		//Í¼Æ¬Á´½Ó
 		if(!$dr[z_titlepicl]&&$dr[zz_titlepicl])
 	    {
 			$rp1=explode($ep2,$rp[$i]);
 			$titlepic=trim($rp1[0]);
-			//æ˜¯å¦æœ‰http
+			//ÊÇ·ñÓĞhttp
 			if(strstr($titlepic,"http://")||strstr($titlepic,"https://"))
 			{}
 			else
 			{$titlepic=$dr[qz_titlepicl].$titlepic;}
-			//æ›¿æ¢åœ°å€
+			//Ìæ»»µØÖ·
 			$titlepic=RepCjUrlStr($titlepic);
 			$titlepic=addslashes($titlepic);
 	    }
@@ -1281,7 +1281,7 @@ function ViewEchoUrl($text,$exp,$exp1,$dr,$url,$classid,$num,$checkrnd){
 
 
 //#################################
-//å–å¾—ä¸‹è½½åœ°å€
+//È¡µÃÏÂÔØµØÖ·
 function GetCjDownpath($text,$text1,$exp,$exp1,$url,$online=0){
 	global $empire,$fun_r;
 	if($online)
@@ -1293,7 +1293,7 @@ function GetCjDownpath($text,$text1,$exp,$exp1,$url,$online=0){
 	$ep1="[phome-".$exp1."]";
 	$ep2="[/phome-".$exp1."]";
 	$r=explode($e1,$text);
-	//åç§°
+	//Ãû³Æ
 	if($text1)
 	{
 		$rp=explode($ep1,$text1);
@@ -1330,7 +1330,7 @@ function GetCjDownpath($text,$text1,$exp,$exp1,$url,$online=0){
 	return $down;
 }
 
-//å–å¾—å›¾ç‰‡é›†åœ°å€
+//È¡µÃÍ¼Æ¬¼¯µØÖ·
 function GetCjMorepicpath($text,$text1,$text2,$exp,$exp1,$exp2,$url){
 	global $empire,$public_r;
 	$e1="[phome-".$exp."]";
@@ -1340,12 +1340,12 @@ function GetCjMorepicpath($text,$text1,$text2,$exp,$exp1,$exp2,$url){
 	$epp1="[phome-".$exp2."]";
 	$epp2="[/phome-".$exp2."]";
 	$r=explode($e1,$text);
-	//å¤§å›¾
+	//´óÍ¼
 	if($text1)
 	{
 		$rp=explode($ep1,$text1);
 	}
-	//åç§°
+	//Ãû³Æ
 	if($text2)
 	{
 		$rpp=explode($epp1,$text2);
@@ -1361,7 +1361,7 @@ function GetCjMorepicpath($text,$text1,$text2,$exp,$exp1,$exp2,$url){
 		{
 			$dourl=$url.$dourl;
 		}
-		//å¤§å›¾
+		//´óÍ¼
 		if($text1)
 		{
 			$rp1=explode($ep2,$rp[$i]);
@@ -1378,7 +1378,7 @@ function GetCjMorepicpath($text,$text1,$text2,$exp,$exp1,$exp2,$url){
 		{
 			$dobigurl="";
 		}
-		//å›¾ç‰‡åç§°
+		//Í¼Æ¬Ãû³Æ
 		if($text2)
 		{
 			$rpp1=explode($epp2,$rpp[$i]);
@@ -1397,19 +1397,19 @@ function GetCjMorepicpath($text,$text1,$text2,$exp,$exp1,$exp2,$url){
 	return $down;
 }
 
-//å†…å®¹é¡µåˆ†é¡µå¤„ç†-ä¸‹ä¸€é¡µå¼
+//ÄÚÈİÒ³·ÖÒ³´¦Àí-ÏÂÒ»Ò³Ê½
 function GetMoreCjPagetext($self,$newstextzz,$smallpagezz,$pagezz,$pagetype,$firsttext,$the_r){
 	if(empty($pagezz)||empty($newstextzz))
 	{return "";}
-	//æ˜¯å¦ä¿ç•™åˆ†é¡µ
+	//ÊÇ·ñ±£Áô·ÖÒ³
 	$addpagetag=empty($the_r['doaddtextpage'])?'[!--empirenews.page--]':'';
-	//å–å¾—åœ°å€å‰ç¼€
+	//È¡µÃµØÖ·Ç°×º
 	$sr=GetPageurlQz($self);
 	$pagetext=$firsttext;
 	$allpagetext="";
 	for($i=0;$i<100;$i++)
 	{
-		//åŒºåŸŸæ­£åˆ™
+		//ÇøÓòÕıÔò
 		if($smallpagezz)
 		{
 			$pagetext=ReturnCJ_str($smallpagezz,"smallpagezz",$pagetext);
@@ -1421,7 +1421,7 @@ function GetMoreCjPagetext($self,$newstextzz,$smallpagezz,$pagezz,$pagetype,$fir
 		}
 		if(!strstr($nextlink,"://"))
 		{
-			//æ ¹ç›®å½•å¼€å§‹
+			//¸ùÄ¿Â¼¿ªÊ¼
 			if(strstr($nextlink,"/"))
 			{
 				$nextlink=$sr[domain].$nextlink;
@@ -1434,7 +1434,7 @@ function GetMoreCjPagetext($self,$newstextzz,$smallpagezz,$pagezz,$pagetype,$fir
 		$nextlink=RepCjUrlStr($nextlink);
 		if($nextlink==$self||!eCheckCjUrl($nextlink,1))
 		{continue;}
-		//å–å¾—è¿œç¨‹æ•°æ®
+		//È¡µÃÔ¶³ÌÊı¾İ
 		for($j=0;$j<3;$j++)
 		{
 			$pagetext=ReadFiletext($nextlink);
@@ -1443,14 +1443,14 @@ function GetMoreCjPagetext($self,$newstextzz,$smallpagezz,$pagezz,$pagetype,$fir
 				break;
 			}
 		}
-		//é¡µé¢ä¸å­˜åœ¨
+		//Ò³Ãæ²»´æÔÚ
 		if(empty($pagetext))
 		{
 			break;
 		}
-		//æ›¿æ¢ç½‘é¡µå˜é‡
+		//Ìæ»»ÍøÒ³±äÁ¿
 	    $pagetext=RepCjPagetextStr($pagetext,$the_r);
-		//æ›¿æ¢å›è½¦
+		//Ìæ»»»Ø³µ
 		$pagetext=ReplaceFc($pagetext);
 		$newstext=ReturnCJ_str($newstextzz,"newstext",$pagetext);
 		if($newstext)
@@ -1461,25 +1461,25 @@ function GetMoreCjPagetext($self,$newstextzz,$smallpagezz,$pagezz,$pagetype,$fir
 	return $allpagetext;
 }
 
-//å†…å®¹é¡µåˆ†é¡µå¤„ç†-å…¨éƒ¨åˆ—è¡¨å¼
+//ÄÚÈİÒ³·ÖÒ³´¦Àí-È«²¿ÁĞ±íÊ½
 function GetMoreCjPagetextall($self,$newstextzz,$smallpagezz,$pagezz,$pagetype,$firsttext,$the_r){
 	if(empty($pagezz)||empty($newstextzz))
 	{return "";}
-	//æ˜¯å¦ä¿ç•™åˆ†é¡µ
+	//ÊÇ·ñ±£Áô·ÖÒ³
 	$addpagetag=empty($the_r['doaddtextpage'])?'[!--empirenews.page--]':'';
 	$exp="pageallzz";
-	//å–å¾—åœ°å€å‰ç¼€
+	//È¡µÃµØÖ·Ç°×º
 	$sr=GetPageurlQz($self);
 	$pagetext=$firsttext;
 	$allpagetext="";
-	//åŒºåŸŸæ­£åˆ™
+	//ÇøÓòÕıÔò
 	if($smallpagezz)
 	{
 		$pagetext=ReturnCJ_str($smallpagezz,"smallpageallzz",$pagetext);
 	}
-	//åˆ†é¡µ
+	//·ÖÒ³
 	$text=stripSlashes(stripSlashes($pagezz));
-	//æ›¿æ¢å›è½¦
+	//Ìæ»»»Ø³µ
 	$text=ReplaceFc($text);
 	$zztext=RepInfoZZ($text,$exp,0);
 	$strtext=GetInfoStr($text,$exp,1);
@@ -1496,7 +1496,7 @@ function GetMoreCjPagetextall($self,$newstextzz,$smallpagezz,$pagezz,$pagetype,$
 		{continue;}
 		if(!strstr($nextlink,"://"))
 		{
-			//æ ¹ç›®å½•å¼€å§‹
+			//¸ùÄ¿Â¼¿ªÊ¼
 			if(strstr($nextlink,"/"))
 			{
 				$nextlink=$sr[domain].$nextlink;
@@ -1509,7 +1509,7 @@ function GetMoreCjPagetextall($self,$newstextzz,$smallpagezz,$pagezz,$pagetype,$
 		$nextlink=RepCjUrlStr($nextlink);
 		if($nextlink==$self||!eCheckCjUrl($nextlink,1))
 		{continue;}
-		//å–å¾—è¿œç¨‹æ•°æ®
+		//È¡µÃÔ¶³ÌÊı¾İ
 		for($j=0;$j<3;$j++)
 		{
 			$pagetext=ReadFiletext($nextlink);
@@ -1518,14 +1518,14 @@ function GetMoreCjPagetextall($self,$newstextzz,$smallpagezz,$pagezz,$pagetype,$
 				break;
 			}
 		}
-		//é¡µé¢ä¸å­˜åœ¨
+		//Ò³Ãæ²»´æÔÚ
 		if(empty($pagetext))
 		{
 			continue;
 		}
-		//æ›¿æ¢ç½‘é¡µå˜é‡
+		//Ìæ»»ÍøÒ³±äÁ¿
 	    $pagetext=RepCjPagetextStr($pagetext,$the_r);
-		//æ›¿æ¢å›è½¦
+		//Ìæ»»»Ø³µ
 		$pagetext=ReplaceFc($pagetext);
 		$newstext=ReturnCJ_str($newstextzz,"newstext",$pagetext);
 		if($newstext)
@@ -1536,13 +1536,13 @@ function GetMoreCjPagetextall($self,$newstextzz,$smallpagezz,$pagezz,$pagetype,$
 	return $allpagetext;
 }
 
-//é‡‡é›†æ—¶é—´æ ¼å¼è½¬æ¢
+//²É¼¯Ê±¼ä¸ñÊ½×ª»»
 function CjFormatNewstime($newstime){
-	$newstime=str_replace(array('å¹´','æœˆ','æ—¥','.','æ—¶','åˆ†','ç§’','/'),array('-','-','','-',':',':','','-'),$newstime);
+	$newstime=str_replace(array('Äê','ÔÂ','ÈÕ','.','Ê±','·Ö','Ãë','/'),array('-','-','','-',':',':','','-'),$newstime);
 	return $newstime;
 }
 
-//é‡‡é›†ä¿¡æ¯æ–‡ä»¶
+//²É¼¯ĞÅÏ¢ÎÄ¼ş
 function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 	global $empire,$class_r,$fun_r,$dbtbpre;
 	$userid=(int)$userid;
@@ -1551,19 +1551,19 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 	$checkrnd=RepPostVar($checkrnd);
 	if(empty($classid)||empty($checkrnd))
 	{printerror("FailCX","ListInfoClass.php".hReturnEcmsHashStrHref2(1));}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsinfoclass where classid='$classid'");
-	//å‰¯è¡¨
+	//¸±±í
 	$ra=$empire->fetch1("select * from {$dbtbpre}ecms_infoclass_".$r[tbname]." where classid='$classid'");
-	//ç»„åˆä¸¤æ•°ç»„
+	//×éºÏÁ½Êı×é
 	$r=TogTwoArray($r,$ra);
-	//å¯¼å…¥ç¼–ç æ–‡ä»¶
+	//µ¼Èë±àÂëÎÄ¼ş
 	if($r['enpagecode'])
 	{
 		@include_once(ECMS_PATH."e/class/doiconv.php");
 	}
-	//å–å¾—æ¨¡å‹
+	//È¡µÃÄ£ĞÍ
 	$record="<!--record-->";
 	$field="<!--field--->";
 	$mr=$empire->fetch1("select cj,tid,tbname from {$dbtbpre}enewsmod where mid='".$class_r[$r[newsclassid]][modid]."'");
@@ -1573,7 +1573,7 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 	{$start=0;}
 	$b=0;
 	$sql=$empire->query("select linkid,newsurl,titlepic from {$dbtbpre}enewslinktmp where checkrnd='$checkrnd' and linkid>".$start." order by linkid limit ".$r[renum]);
-	//é‡‡é›†æ—¶é—´
+	//²É¼¯Ê±¼ä
 	$newstime=date("Y-m-d H:i:s");
     $truetime=time();
 	$tmptime=$newstime;
@@ -1585,14 +1585,14 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 		{
 			continue;
 		}
-		//å…¥åº“æ•°æ®åº“æ˜¯å¦æœ‰è®°å½•
+		//Èë¿âÊı¾İ¿âÊÇ·ñÓĞ¼ÇÂ¼
 		if(empty($r[recjtheurl]))
 		{
 			$tmpnum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_infotmp_".$r[tbname]." where oldurl='$nr[newsurl]' limit 1");
 			if($tmpnum)
 			{continue;}
 		}
-		//å–å¾—è¿œç¨‹é¡µé¢ï¼Œä¸‰æ¬¡å–ä¸åˆ°å€¼çš„å°†ä¸å–å€¼
+		//È¡µÃÔ¶³ÌÒ³Ãæ£¬Èı´ÎÈ¡²»µ½ÖµµÄ½«²»È¡Öµ
 		for($i=1;$i<=3;$i++)
 		{
 			$info=ReadFiletext($nr[newsurl]);
@@ -1603,9 +1603,9 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 		}
 		if(empty($info))
 		{continue;}
-		//æ›¿æ¢ç½‘é¡µå˜é‡
+		//Ìæ»»ÍøÒ³±äÁ¿
 	    $info=RepCjPagetextStr($info,$r);
-		//æ›¿æ¢å›è½¦
+		//Ìæ»»»Ø³µ
 		$info=ReplaceFc($info);
 		//-----------------
 		$ifield="";
@@ -1620,7 +1620,7 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 			$var1="z_".$dofield;
 			$var2="qz_".$dofield;
 			$var3="save_".$dofield;
-			//æ ‡é¢˜å›¾ç‰‡
+			//±êÌâÍ¼Æ¬
 			if($dofield=="titlepic")
 			{
 				if($nr[titlepic])
@@ -1631,26 +1631,26 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 					continue;
 				}
 			}
-			//å›¾ç‰‡é›†
+			//Í¼Æ¬¼¯
 			if($dofield=="morepic"&&$r[$var])
 			{
-				//æ›¿æ¢ä¸‹è½½é“¾æ¥
+				//Ìæ»»ÏÂÔØÁ´½Ó
 	            $text=$r[$var];
-				//æ›¿æ¢å›è½¦
+				//Ìæ»»»Ø³µ
 				$text=ReplaceFc($text);
 				$down=explode("[!empirecms!]",$text);
-				//å°å›¾
+				//Ğ¡Í¼
 	            $zztext=RepInfoZZ($down[0],"ecmsspicurl",0);
 	            $strtext=GetInfoStr($down[0],"ecmsspicurl",1);
 	            $text1=stripSlashes(preg_replace($zztext,$strtext,$info));
-				//å¤§å›¾
+				//´óÍ¼
 				if($down[1])
 				{
 					$zztext=RepInfoZZ($down[1],"ecmsbpicurl",0);
 	                $strtext=GetInfoStr($down[1],"ecmsbpicurl",1);
 	                $text2=stripSlashes(preg_replace($zztext,$strtext,$info));
 				}
-				//åç§°
+				//Ãû³Æ
 				if($down[2])
 				{
 					$zztext=RepInfoZZ($down[2],"ecmspicname",0);
@@ -1662,19 +1662,19 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 			    $ivalue.=",'".addslashes($zzvalue)."'";
 				continue;
 			}
-			//ä¸‹è½½åœ°å€
+			//ÏÂÔØµØÖ·
 			if($dofield=="downpath"&&$r[$var])
 			{
-				//æ›¿æ¢ä¸‹è½½é“¾æ¥
+				//Ìæ»»ÏÂÔØÁ´½Ó
 	            $text=$r[$var];
-				//æ›¿æ¢å›è½¦
+				//Ìæ»»»Ø³µ
 				$text=ReplaceFc($text);
 				$down=explode("[!empirecms!]",$text);
-				//åœ°å€
+				//µØÖ·
 	            $zztext=RepInfoZZ($down[0],"ecmsdownpathurl",0);
 	            $strtext=GetInfoStr($down[0],"ecmsdownpathurl",1);
 	            $text1=stripSlashes(preg_replace($zztext,$strtext,$info));
-				//åç§°
+				//Ãû³Æ
 				if($down[1])
 				{
 					$zztext=RepInfoZZ($down[1],"ecmsdownpathname",0);
@@ -1686,19 +1686,19 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 			    $ivalue.=",'".addslashes($zzvalue)."'";
 				continue;
 			}
-			//åœ¨çº¿åœ°å€
+			//ÔÚÏßµØÖ·
 			if($dofield=="onlinepath"&&$r[$var])
 			{
-				//æ›¿æ¢ä¸‹è½½é“¾æ¥
+				//Ìæ»»ÏÂÔØÁ´½Ó
 	            $text=$r[$var];
-				//æ›¿æ¢å›è½¦
+				//Ìæ»»»Ø³µ
 				$text=ReplaceFc($text);
 				$down=explode("[!empirecms!]",$text);
-				//åœ°å€
+				//µØÖ·
 	            $zztext=RepInfoZZ($down[0],"ecmsonlinepathurl",0);
 	            $strtext=GetInfoStr($down[0],"ecmsonlinepathurl",1);
 	            $text1=stripSlashes(preg_replace($zztext,$strtext,$info));
-				//åç§°
+				//Ãû³Æ
 				if($down[1])
 				{
 					$zztext=RepInfoZZ($down[1],"ecmsonlinepathname",0);
@@ -1723,7 +1723,7 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 			}
 			else
 			{$zzvalue=$r[$var1];}
-			//------------------------------ä¿¡æ¯æ—¶é—´
+			//------------------------------ĞÅÏ¢Ê±¼ä
 			if($dofield=="newstime")
 			{
 				$newstime=$zzvalue;
@@ -1733,20 +1733,20 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 				}
 				else
 				{
-					$newstime=CjFormatNewstime($newstime);//æ—¶é—´è½¬æ¢
+					$newstime=CjFormatNewstime($newstime);//Ê±¼ä×ª»»
 				}
 				continue;
 			}
-			//------------------------------ä¿¡æ¯æ¥æº
+			//------------------------------ĞÅÏ¢À´Ô´
 			if($dofield=="befrom"||$dofield=="writer")
 			{
-				//æ ‡é¢˜å»é™¤htmlä»£ç 
+				//±êÌâÈ¥³ıhtml´úÂë
 		        $zzvalue=strip_tags(str_replace("\r\n","",$zzvalue));
 			}
-			//------------------------------æ ‡é¢˜
+			//------------------------------±êÌâ
 			if($dofield=="title")
 			{
-				//æ ‡é¢˜å»é™¤htmlä»£ç 
+				//±êÌâÈ¥³ıhtml´úÂë
 		        $zzvalue=ehtmlspecialchars(strip_tags(str_replace("\r\n","",$zzvalue)));
 				if(empty($zzvalue))
 				{
@@ -1754,7 +1754,7 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 					break;
 				}
 				$keyboard=sub($zzvalue,0,$r[keynum],false);
-				//æ ‡é¢˜æ˜¯å¦åŒ…å«å…³é”®å­—
+				//±êÌâÊÇ·ñ°üº¬¹Ø¼ü×Ö
 				if($r[keyboard])
 				{
 					$t=HaveKeyboard($zzvalue,$r[keyboard]);
@@ -1764,16 +1764,16 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 						break;
 					}
 				}
-				if($r[retitlewriter])//æ ‡é¢˜å®Œå…¨ä¸€æ ·
+				if($r[retitlewriter])//±êÌâÍêÈ«Ò»Ñù
 				{
-					//å…¥åº“æ¯”è¾ƒ
+					//Èë¿â±È½Ï
 					$onum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$class_r[$r[newsclassid]][tbname]." where title='".addslashes($zzvalue)."' and classid='$r[newsclassid]' limit 1");
 					if($onum)
 					{
 						$next=1;
 						break;
 					}
-					/*é‡‡é›†åº“æ¯”è¾ƒ
+					/*²É¼¯¿â±È½Ï
 					$onum=$empire->num("select id from {$dbtbpre}ecms_infotmp_".$r[tbname]." where title='".addslashes($zzvalue)."' limit 1");
 					if($onum)
 					{
@@ -1782,9 +1782,9 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 					}
 					*/
 				}
-				if($r[titlelen])//æ ‡é¢˜ç›¸ä¼¼
+				if($r[titlelen])//±êÌâÏàËÆ
 				{
-					//å…¥åº“æ¯”è¾ƒ
+					//Èë¿â±È½Ï
 					$c_title=addslashes(sub($zzvalue,0,$r[titlelen],false));
 					$onum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$class_r[$r[newsclassid]][tbname]." where title like '%$c_title%' and classid='$r[newsclassid]' limit 1");
 					if($onum)
@@ -1792,7 +1792,7 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 						$next=1;
 						break;
 					}
-					/*é‡‡é›†æ¯”è¾ƒ
+					/*²É¼¯±È½Ï
 					$onum=$empire->num("select id from {$dbtbpre}ecms_infotmp_".$r[tbname]." where title like '%$c_title%' limit 1");
 					if($onum)
 					{
@@ -1802,35 +1802,35 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 					*/
 				}
 			}
-			//æ–°é—»å†…å®¹åˆ†é¡µ
+			//ĞÂÎÅÄÚÈİ·ÖÒ³
 			if($dofield=="newstext")
 			{
-				//æ˜¯å¦æœ‰åˆ†é¡µ
+				//ÊÇ·ñÓĞ·ÖÒ³
 				if($r[pagezz]||$r[pageallzz])
 				{
-					//ä¸Šä¸‹é¡µå¼
+					//ÉÏÏÂÒ³Ê½
 					if(empty($r[pagetype]))
 					{
 						$zzvalue.=GetMoreCjPagetext($nr[newsurl],$r[$var],$r[smallpagezz],$r[pagezz],$r[pagetype],$info,$r);
 					}
-					//å…¨éƒ¨åˆ—è¡¨å¼
+					//È«²¿ÁĞ±íÊ½
 					else
 					{
 						$zzvalue.=GetMoreCjPagetextall($nr[newsurl],$r[$var],$r[smallpageallzz],$r[pageallzz],$r[pagetype],$info,$r);
 					}
 				}
 			}
-			//æ›¿æ¢å…³é”®å­—
+			//Ìæ»»¹Ø¼ü×Ö
 			if(stristr($r['repf'],','.$dofield.','))
 			{
 				$zzvalue=RepInfoWord($zzvalue,$r[oldword],$r[newword]);
 			}
-			//å¹¿å‘Šè¿‡æ»¤
+			//¹ã¸æ¹ıÂË
 			if(stristr($r['repadf'],','.$dofield.','))
 			{
 				$zzvalue=RepAd($r[repad],$zzvalue);
 			}
-			//æ–°é—»å†…å®¹
+			//ĞÂÎÅÄÚÈİ
 			if(stristr($r['isnullf'],','.$dofield.','))
 			{
 				$ckzzvalue=trim($zzvalue);
@@ -1846,23 +1846,23 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 		}
 		if($next)
 		{continue;}
-		//å…¥ä¸´æ—¶åº“
+		//ÈëÁÙÊ±¿â
 		$isql=$empire->query("insert into {$dbtbpre}ecms_infotmp_".$r[tbname]."(classid,oldurl,checked,keyboard,newstime,truetime,tmptime,userid,username".$ifield.") values($classid,'$nr[newsurl]',0,'".addslashes($keyboard)."','$newstime',$truetime,'$tmptime',$userid,'".addslashes($username)."'".$ivalue.");");
     }
-	//é‡‡é›†ç»“æŸ
+	//²É¼¯½áÊø
 	if(empty($b))
 	{
-		//åˆ é™¤è®°å½•
+		//É¾³ı¼ÇÂ¼
 		$del=$empire->query("delete from {$dbtbpre}enewslinktmp where checkrnd='$checkrnd'");
-		//æ›´æ–°æœ€åæ—¶é—´
+		//¸üĞÂ×îºóÊ±¼ä
 		$ucjsql=$empire->query("update {$dbtbpre}enewsinfoclass set lasttime='".time()."' where classid='$classid'");
-		//è‡ªåŠ¨å…¥åº“
+		//×Ô¶¯Èë¿â
 		if($r['justloadin'])
 		{
 			echo $fun_r['cjLoadInInfos']."<script>self.location.href='ecmscj.php?enews=CjNewsIn_all&classid=$classid&checked=$r[justloadcheck]&fm=1".hReturnEcmsHashStrHref(0)."';</script>";
 			exit();
 		}
-		//å•ä¸ªèŠ‚ç‚¹
+		//µ¥¸ö½Úµã
 		if(getcvar('recjnum',1)==1)
 		{
 			echo"<link rel=\"stylesheet\" href=\"../data/images/css.css\" type=\"text/css\"><font color=red>".$fun_r['CjSuccess']."</font><script>parent.location.href='CheckCj.php?classid=$classid".hReturnEcmsHashStrHref2(0)."';</script>";
@@ -1879,36 +1879,36 @@ function GetNewsInfo($classid,$checkrnd,$start,$userid,$username){
 	exit();
 }
 
-//#################å•ä¸ªé‡‡é›†æ–‡ä»¶é¢„è§ˆ################
+//#################µ¥¸ö²É¼¯ÎÄ¼şÔ¤ÀÀ################
 function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 	global $empire,$class_r,$fun_r,$dbtbpre;
 	$classid=(int)$classid;
 	if(empty($classid)||empty($newspage))
 	{printerror("FailCX","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"cj");
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsinfoclass where classid='$classid'");
 	if(empty($r[classid]))
 	{printerror("FailCX","history.go(-1)");}
-	//å‰¯è¡¨
+	//¸±±í
 	$ra=$empire->fetch1("select * from {$dbtbpre}ecms_infoclass_".$r[tbname]." where classid='$classid'");
-	//ç»„åˆä¸¤æ•°ç»„
+	//×éºÏÁ½Êı×é
 	$r=TogTwoArray($r,$ra);
-	//å¯¼å…¥ç¼–ç æ–‡ä»¶
+	//µ¼Èë±àÂëÎÄ¼ş
 	if($r['enpagecode'])
 	{
 		@include_once("doiconv.php");
 	}
-	//å–å¾—æ¨¡å‹
+	//È¡µÃÄ£ĞÍ
 	$record="<!--record-->";
 	$field="<!--field--->";
 	$mr=$empire->fetch1("select cj from {$dbtbpre}enewsmod where mid='".$class_r[$r[newsclassid]][modid]."'");
 	$cjr=explode($record,$mr[cj]);
 	$count=count($cjr);
-	//é‡‡é›†æ—¶é—´
+	//²É¼¯Ê±¼ä
 	$newstime=date("Y-m-d H:i:s");
 	eCheckCjUrl($newspage,0);
-	//å…¥åº“æ•°æ®åº“æ˜¯å¦æœ‰è®°å½•
+	//Èë¿âÊı¾İ¿âÊÇ·ñÓĞ¼ÇÂ¼
 	if(empty($r[recjtheurl]))
 	{
 		$tmpnum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_infotmp_".$r[tbname]." where oldurl='$newspage' limit 1");
@@ -1918,7 +1918,7 @@ function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 			exit();
 	    }
 	}
-	//å–å¾—è¿œç¨‹é¡µé¢ï¼Œä¸‰æ¬¡å–ä¸åˆ°å€¼çš„å°†ä¸å–å€¼
+	//È¡µÃÔ¶³ÌÒ³Ãæ£¬Èı´ÎÈ¡²»µ½ÖµµÄ½«²»È¡Öµ
 	for($i=1;$i<=3;$i++)
 	{
 		$info=ReadFiletext($newspage);
@@ -1932,9 +1932,9 @@ function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 		echo $fun_r['CanNotOpenUrl'];
 		exit();
 	}
-	//æ›¿æ¢ç½‘é¡µå˜é‡
+	//Ìæ»»ÍøÒ³±äÁ¿
 	$info=RepCjPagetextStr($info,$r);
-	//æ›¿æ¢å›è½¦
+	//Ìæ»»»Ø³µ
 	$info=ReplaceFc($info);
 	//-----------------
 	$ifield="";
@@ -1950,26 +1950,26 @@ function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 		$var1="z_".$dofield;
 		$var2="qz_".$dofield;
 		$var3="save_".$dofield;
-		//å›¾ç‰‡é›†
+		//Í¼Æ¬¼¯
 		if($dofield=="morepic"&&$r[$var])
 		{
-			//æ›¿æ¢ä¸‹è½½é“¾æ¥
+			//Ìæ»»ÏÂÔØÁ´½Ó
 	        $text=stripSlashes(stripSlashes($r[$var]));
-			//æ›¿æ¢å›è½¦
+			//Ìæ»»»Ø³µ
 			$text=ReplaceFc($text);
 			$down=explode("[!empirecms!]",$text);
-			//å°å›¾
+			//Ğ¡Í¼
 	        $zztext=RepInfoZZ($down[0],"ecmsspicurl",0);
 	        $strtext=GetInfoStr($down[0],"ecmsspicurl",1);
 	        $text1=stripSlashes(preg_replace($zztext,$strtext,$info));
-			//å¤§å›¾
+			//´óÍ¼
 			if($down[1])
 			{
 				$zztext=RepInfoZZ($down[1],"ecmsbpicurl",0);
 	            $strtext=GetInfoStr($down[1],"ecmsbpicurl",1);
 	            $text2=stripSlashes(preg_replace($zztext,$strtext,$info));
 			}
-			//åç§°
+			//Ãû³Æ
 			if($down[2])
 			{
 				$zztext=RepInfoZZ($down[2],"ecmspicname",0);
@@ -1980,19 +1980,19 @@ function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 			$data.="<tr><td><b>".$dofieldname."<br>(".$dofield.")</b></td><td>".$zzvalue."</td></tr>";
 				continue;
 		}
-		//ä¸‹è½½åœ°å€
+		//ÏÂÔØµØÖ·
 		if($dofield=="downpath"&&$r[$var])
 		{
-			//æ›¿æ¢ä¸‹è½½é“¾æ¥
+			//Ìæ»»ÏÂÔØÁ´½Ó
 	        $text=stripSlashes(stripSlashes($r[$var]));
-			//æ›¿æ¢å›è½¦
+			//Ìæ»»»Ø³µ
 			$text=ReplaceFc($text);
 			$down=explode("[!empirecms!]",$text);
-			//åœ°å€
+			//µØÖ·
 	        $zztext=RepInfoZZ($down[0],"ecmsdownpathurl",0);
 	        $strtext=GetInfoStr($down[0],"ecmsdownpathurl",1);
 	        $text1=stripSlashes(preg_replace($zztext,$strtext,$info));
-			//åç§°
+			//Ãû³Æ
 			if($down[1])
 			{
 				$zztext=RepInfoZZ($down[1],"ecmsdownpathname",0);
@@ -2003,19 +2003,19 @@ function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 			$data.="<tr><td><b>".$dofieldname."<br>(".$dofield.")</b></td><td>".$zzvalue."</td></tr>";
 			continue;
 		}
-		//åœ¨çº¿åœ°å€
+		//ÔÚÏßµØÖ·
 		if($dofield=="onlinepath"&&$r[$var])
 		{
-			//æ›¿æ¢ä¸‹è½½é“¾æ¥
+			//Ìæ»»ÏÂÔØÁ´½Ó
 	        $text=stripSlashes(stripSlashes($r[$var]));
-			//æ›¿æ¢å›è½¦
+			//Ìæ»»»Ø³µ
 			$text=ReplaceFc($text);
 			$down=explode("[!empirecms!]",$text);
-			//åœ°å€
+			//µØÖ·
 	        $zztext=RepInfoZZ($down[0],"ecmsonlinepathurl",0);
 	        $strtext=GetInfoStr($down[0],"ecmsonlinepathurl",1);
 	        $text1=stripSlashes(preg_replace($zztext,$strtext,$info));
-			//åç§°
+			//Ãû³Æ
 			if($down[1])
 			{
 				$zztext=RepInfoZZ($down[1],"ecmsonlinepathname",0);
@@ -2040,23 +2040,23 @@ function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 		}
 		else
 		{$zzvalue=$r[$var1];}
-		//------------------------------ä¿¡æ¯æ¥æº
+		//------------------------------ĞÅÏ¢À´Ô´
 		if($dofield=="befrom"||$dofield=="writer")
 		{
-			//æ ‡é¢˜å»é™¤htmlä»£ç 
+			//±êÌâÈ¥³ıhtml´úÂë
 		    $zzvalue=strip_tags(str_replace("\r\n","",$zzvalue));
 		}
-		//------------------------------æ ‡é¢˜
+		//------------------------------±êÌâ
 		if($dofield=="title")
 		{
-			//æ ‡é¢˜å»é™¤htmlä»£ç 
+			//±êÌâÈ¥³ıhtml´úÂë
 		    $zzvalue=ehtmlspecialchars(strip_tags(str_replace("\r\n","",$zzvalue)));
 			if(empty($zzvalue))
 			{
 				echo $fun_r['CjEmptyTitle'];
 			    exit();
 			}
-			//æ ‡é¢˜æ˜¯å¦åŒ…å«å…³é”®å­—
+			//±êÌâÊÇ·ñ°üº¬¹Ø¼ü×Ö
 			if($r[keyboard])
 			{
 				$t=HaveKeyboard($zzvalue,$r[keyboard]);
@@ -2066,16 +2066,16 @@ function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 			        exit();
 		        }
 			}
-			if($r[retitlewriter])//æ ‡é¢˜å®Œå…¨ä¸€æ ·
+			if($r[retitlewriter])//±êÌâÍêÈ«Ò»Ñù
 		    {
-			   //å…¥åº“æ¯”è¾ƒ
+			   //Èë¿â±È½Ï
 			   $onum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$class_r[$r[newsclassid]][tbname]." where title='".addslashes($zzvalue)."' and classid='$r[newsclassid]' limit 1");
 			   if($onum)
 			   {
 					echo $fun_r['CjReTitleWriter'];
 					exit();
 			   }
-				/*é‡‡é›†åº“æ¯”è¾ƒ
+				/*²É¼¯¿â±È½Ï
 				$onum=$empire->num("select id from {$dbtbpre}ecms_infotmp_".$r[tbname]." where title='".addslashes($zzvalue)."' limit 1");
 				if($onum)
 				{
@@ -2084,9 +2084,9 @@ function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 				}
 				*/
 		    }
-		    if($r[titlelen])//æ ‡é¢˜ç›¸ä¼¼
+		    if($r[titlelen])//±êÌâÏàËÆ
 		    {
-			  //å…¥åº“æ¯”è¾ƒ
+			  //Èë¿â±È½Ï
 			  $c_title=addslashes(sub($zzvalue,0,$r[titlelen],false));
 			  $onum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$class_r[$r[newsclassid]][tbname]." where title like '%$c_title%' and classid='$r[newsclassid]' limit 1");
 			  if($onum)
@@ -2094,7 +2094,7 @@ function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 				echo $fun_r['CjSingTitlelen'].$r[titlelen].$fun_r['CjSingTitlelenL'];
 				exit();
 			  }
-			  /*é‡‡é›†æ¯”è¾ƒ
+			  /*²É¼¯±È½Ï
 			  $onum=$empire->num("select id from {$dbtbpre}ecms_infotmp_".$r[tbname]." where title like '%$c_title%' limit 1");
 			  if($onum)
 			  {
@@ -2104,35 +2104,35 @@ function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 			  */
 		    }
 		}
-		//æ–°é—»å†…å®¹åˆ†é¡µ
+		//ĞÂÎÅÄÚÈİ·ÖÒ³
 		if($dofield=="newstext")
 		{
-			//æ˜¯å¦æœ‰åˆ†é¡µ
+			//ÊÇ·ñÓĞ·ÖÒ³
 			if($r[pagezz]||$r[pageallzz])
 			{
-				//ä¸Šä¸‹é¡µå¼
+				//ÉÏÏÂÒ³Ê½
 				if(empty($r[pagetype]))
 				{
 					$zzvalue.=GetMoreCjPagetext($newspage,$r[$var],$r[smallpagezz],$r[pagezz],$r[pagetype],$info,$r);
 				}
-				//å…¨éƒ¨åˆ—è¡¨å¼
+				//È«²¿ÁĞ±íÊ½
 				else
 				{
 					$zzvalue.=GetMoreCjPagetextall($newspage,$r[$var],$r[smallpageallzz],$r[pageallzz],$r[pagetype],$info,$r);
 				}
 			}
 		}
-		//æ›¿æ¢å…³é”®å­—
+		//Ìæ»»¹Ø¼ü×Ö
 		if(stristr($r['repf'],','.$dofield.','))
 		{
 			$zzvalue=RepInfoWord($zzvalue,$r[oldword],$r[newword]);
 		}
-		//æ›¿æ¢å¹¿å‘Š
+		//Ìæ»»¹ã¸æ
 		if(stristr($r['repadf'],','.$dofield.','))
 		{
 			$zzvalue=RepAd($r[repad],$zzvalue);
 		}
-		//æ–°é—»å†…å®¹
+		//ĞÂÎÅÄÚÈİ
 		if(stristr($r['isnullf'],','.$dofield.','))
 		{
 			$ckzzvalue=trim($zzvalue);
@@ -2144,14 +2144,14 @@ function ViewGetNewsInfo($classid,$newspage,$userid,$username){
 		}
 		$data.="<tr><td><b>".$dofieldname."<br>(".$dofield.")</b></td><td>".$zzvalue."</td></tr>";
 	}
-	//è¾“å‡ºæ•°æ®
+	//Êä³öÊı¾İ
 	$data="<table width='96%' border=1 align=center cellpadding=3 cellspacing=0>
   <tr><td width=30% align=center><b>VAR</b></td><td align=center><b>GET</b></td></tr><tr><td><b>".$fun_r['ViewCjPage']."</b></td><td><a href='".$newspage."' target=_blank>".$newspage."</a></td></tr>".$data."</table>";
 	echo $data;
 	exit();
 }
 
-//æ˜¯å¦æœ‰å…³é”®å­—
+//ÊÇ·ñÓĞ¹Ø¼ü×Ö
 function HaveKeyboard($title,$keyboard) {
 	$r=explode(",",$keyboard);
 	$b=0;
@@ -2167,7 +2167,7 @@ function HaveKeyboard($title,$keyboard) {
 	return $b;
 }
 
-//æ›¿æ¢å…³é”®å­—
+//Ìæ»»¹Ø¼ü×Ö
 function RepInfoWord($title,$oldword,$newword){
 	if(empty($oldword))
 	{
@@ -2175,7 +2175,7 @@ function RepInfoWord($title,$oldword,$newword){
 	}
 	$oldword=stripSlashes($oldword);
 	$newword=stripSlashes($newword);
-	//æ›¿æ¢å›è½¦
+	//Ìæ»»»Ø³µ
 	$oldword=ReplaceFc($oldword);
 	$newword=ReplaceFc($newword);
 	$repmore=0;
@@ -2187,7 +2187,7 @@ function RepInfoWord($title,$oldword,$newword){
 	$r=explode(",",$oldword);
 	for($i=0;$i<count($r);$i++)
 	{
-		//æ›¿æ¢å¤šé¡¹
+		//Ìæ»»¶àÏî
 		if($repmore)
 		{
 			$title=str_replace($r[$i],$nr[$i],$title);
@@ -2200,14 +2200,14 @@ function RepInfoWord($title,$oldword,$newword){
 	return $title;
 }
 
-//å¯¼å‡ºé‡‡é›†è§„åˆ™
+//µ¼³ö²É¼¯¹æÔò
 function LoadOutCj($classid,$userid,$username){
 	global $empire,$dbtbpre;
 	$lineexp='<!-#-|-line-|-#-!>';
 	$recordexp='<!-#-|-record-|-#-!>';
 	$fieldexp='<!-#-|-field-|-#-!>';
 	$sfieldexp='<!-#-|-smallfield-|-#-!>';
-	CheckLevel($userid,$username,$classid,"loadcj");//éªŒè¯æƒé™
+	CheckLevel($userid,$username,$classid,"loadcj");//ÑéÖ¤È¨ÏŞ
 	$classid=(int)$classid;
 	if(!$classid)
 	{
@@ -2218,14 +2218,14 @@ function LoadOutCj($classid,$userid,$username){
 	{
 		printerror('LoadOutCjEmptyClassid','');
 	}
-	if(!$cr['newsclassid'])//éé‡‡é›†èŠ‚ç‚¹
+	if(!$cr['newsclassid'])//·Ç²É¼¯½Úµã
 	{
 		printerror('LoadOutCjMustNewsclassid','');
 	}
-	//ä¸»è¡¨
+	//Ö÷±í
 	$mainfield=LoadOutCjMainField();
 	$mainstr=LoadOutCjMainstr($cr,$mainfield,$fieldexp,$sfieldexp);
-	//å‰¯è¡¨
+	//¸±±í
 	$infocr=$empire->fetch1("select * from {$dbtbpre}ecms_infoclass_".$cr[tbname]." where classid='$classid'");
 	$datafield=LoadOutCjDataField($cr['tid'],$cr['tbname']);
 	$datastr=LoadOutCjDatastr($infocr,$datafield,$fieldexp,$sfieldexp);
@@ -2235,18 +2235,18 @@ function LoadOutCj($classid,$userid,$username){
 	$filepath=ECMS_PATH."e/data/tmp/cj/".$file;
 	WriteFiletext_n($filepath,$cjstr);
 	DownLoadFile($file,$filepath,1);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("classid=$classid&classname=$cr[classname]");
 	exit();
 }
 
-//è¿”å›ä¸»è¡¨å­—æ®µåˆ—è¡¨
+//·µ»ØÖ÷±í×Ö¶ÎÁĞ±í
 function LoadOutCjMainField(){
 	$field='classname,infourl,bz,num,copyimg,renum,keyboard,oldword,newword,titlelen,retitlewriter,smalltextlen,zz_smallurl,zz_newsurl,httpurl,repad,imgurl,relistnum,zz_titlepicl,z_titlepicl,qz_titlepicl,save_titlepicl,keynum,insertnum,copyflash,pagetype,smallpagezz,pagezz,smallpageallzz,pageallzz,mark,enpagecode,recjtheurl,hiddenload,justloadin,justloadcheck,delloadinfo,pagerepad,getfirstpic,oldpagerep,newpagerep,keeptime,newstextisnull,getfirstspic,getfirstspicw,getfirstspich,doaddtextpage,infourlispage,repf,repadf,loadkeeptime,isnullf';
 	return $field;
 }
 
-//è¿”å›ä¸»è¡¨ç»„åˆ
+//·µ»ØÖ÷±í×éºÏ
 function LoadOutCjMainstr($r,$field,$fieldexp,$sfieldexp){
 	$mainstr='';
 	$addexp='';
@@ -2261,7 +2261,7 @@ function LoadOutCjMainstr($r,$field,$fieldexp,$sfieldexp){
 	return $mainstr;
 }
 
-//è¿”å›å‰¯è¡¨å­—æ®µåˆ—è¡¨
+//·µ»Ø¸±±í×Ö¶ÎÁĞ±í
 function LoadOutCjDataField($tid,$tbname){
 	global $empire,$dbtbpre;
 	$field='';
@@ -2275,7 +2275,7 @@ function LoadOutCjDataField($tid,$tbname){
 	return $field;
 }
 
-//è¿”å›å‰¯è¡¨ç»„åˆ
+//·µ»Ø¸±±í×éºÏ
 function LoadOutCjDatastr($r,$field,$fieldexp,$sfieldexp){
 	if(empty($field))
 	{
@@ -2298,14 +2298,14 @@ function LoadOutCjDatastr($r,$field,$fieldexp,$sfieldexp){
 	return $datastr;
 }
 
-//å¯¼å…¥é‡‡é›†è§„åˆ™
+//µ¼Èë²É¼¯¹æÔò
 function LoadInCj($add,$file,$file_name,$file_type,$file_size,$userid,$username){
 	global $empire,$dbtbpre;
 	$lineexp='<!-#-|-line-|-#-!>';
 	$recordexp='<!-#-|-record-|-#-!>';
 	$fieldexp='<!-#-|-field-|-#-!>';
 	$sfieldexp='<!-#-|-smallfield-|-#-!>';
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
     CheckLevel($userid,$username,$classid,"loadcj");
 	$classid=(int)$add['classid'];
 	if(!$classid)
@@ -2321,14 +2321,14 @@ function LoadInCj($add,$file,$file_name,$file_type,$file_size,$userid,$username)
 	{
 		printerror("EmptyLoadInCjFile","history.go(-1)");
 	}
-	//æ‰©å±•å
+	//À©Õ¹Ãû
 	$filetype=GetFiletype($file_name);
 	if($filetype!=".cj")
 	{
 		printerror("LoadInCjErrorfiletype","history.go(-1)");
 	}
 	$path=ECMS_PATH.'e/data/tmp/cj/uploadcj'.time().'.cj';
-	//ä¸Šä¼ æ–‡ä»¶
+	//ÉÏ´«ÎÄ¼ş
 	$cp=@move_uploaded_file($file,$path);
 	DoChmodFile($path);
 	$data=ReadFiletext($path);
@@ -2342,17 +2342,17 @@ function LoadInCj($add,$file,$file_name,$file_type,$file_size,$userid,$username)
 	{
 		printerror("EmptyLoadInCjFile","history.go(-1)");
 	}
-	//ä¸»è¡¨
+	//Ö÷±í
 	$infoclassid=LoadInCjInsertMainstr($classid,$cr['tid'],$cr['tbname'],$mainstr,$fieldexp,$sfieldexp);
-	//å‰¯è¡¨
+	//¸±±í
 	LoadInCjInsertDatastr($classid,$cr['tid'],$cr['tbname'],$infoclassid,$datafield,$datastr,$fieldexp,$sfieldexp);
 	$cjr=$empire->fetch1("select classname from {$dbtbpre}enewsinfoclass where classid='$infoclassid'");
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("classid=".$infoclassid."<br>classname=".$cjr[classname]);
 	printerror("LoadInCjSuccess","cj/LoadInCj.php?from=".ehtmlspecialchars($_POST[from]).hReturnEcmsHashStrHref2(0));
 }
 
-//å†™å…¥ä¸»è¡¨ç»„åˆ
+//Ğ´ÈëÖ÷±í×éºÏ
 function LoadInCjInsertMainstr($classid,$tid,$tbname,$mainstr,$fieldexp,$sfieldexp){
 	global $empire,$dbtbpre;
 	$mainfield=LoadOutCjMainField();
@@ -2373,7 +2373,7 @@ function LoadInCjInsertMainstr($classid,$tid,$tbname,$mainstr,$fieldexp,$sfielde
 		}
 		$mainvalues.=",'".addslashes($mainr[$i])."'";
 	}
-	//å­—æ®µä¸ä¸€è‡´
+	//×Ö¶Î²»Ò»ÖÂ
 	if($fcount>$count)
 	{
 		$addcount=$fcount-$count;
@@ -2407,7 +2407,7 @@ function LoadInCjInsertMainstr($classid,$tid,$tbname,$mainstr,$fieldexp,$sfielde
 	return $lastid;
 }
 
-//å†™å…¥å‰¯è¡¨ç»„åˆ
+//Ğ´Èë¸±±í×éºÏ
 function LoadInCjInsertDatastr($classid,$tid,$tbname,$infoclassid,$dataf,$datastr,$fieldexp,$sfieldexp){
 	global $empire,$dbtbpre;
 	if(empty($dataf))
@@ -2415,7 +2415,7 @@ function LoadInCjInsertDatastr($classid,$tid,$tbname,$infoclassid,$dataf,$datast
 		$empire->query("insert into {$dbtbpre}ecms_infoclass_".$tbname."(classid) values('$infoclassid');");
 		return '';
 	}
-	//è¿”å›è¡¨å­—æ®µ
+	//·µ»Ø±í×Ö¶Î
 	$tbfield=LoadOutCjDataField($tid,$tbname);
 	$datafr=explode(',',$dataf);
 	$datar=explode($fieldexp,$datastr);

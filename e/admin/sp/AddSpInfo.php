@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 
-//è¿”å›ç¢ç‰‡ä¿¡æ¯å†…å®¹
+//·µ»ØËéÆ¬ĞÅÏ¢ÄÚÈİ
 function ReturnSpInfoidGetData($add,$userid,$username){
 	global $empire,$dbtbpre,$class_r,$emod_r;
 	$idr=explode(',',$add['getinfoid']);
@@ -44,12 +44,12 @@ function ReturnSpInfoidGetData($add,$userid,$username){
 	{
 		return '';
 	}
-	//è¿”å›è¡¨
+	//·µ»Ø±í
 	$infotb=ReturnInfoMainTbname($class_r[$classid][tbname],$index_r['checked']);
 	$infor=$empire->fetch1("select id,classid,isurl,titleurl,isgood,firsttitle,plnum,totaldown,onclick,newstime,titlepic,title,stb".$addf." from ".$infotb." where id='$id' limit 1");
 	if($sf&&!$addf)
 	{
-		//è¿”å›è¡¨ä¿¡æ¯
+		//·µ»Ø±íĞÅÏ¢
 		$infodatatb=ReturnInfoDataTbname($class_r[$classid][tbname],$index_r['checked'],$infor['stb']);
 		$finfor=$empire->fetch1("select ".$sf." from ".$infodatatb." where id='$id' limit 1");
 		$infor[$sf]=$finfor[$sf];
@@ -63,29 +63,29 @@ function ReturnSpInfoidGetData($add,$userid,$username){
 }
 
 $spid=(int)$_GET['spid'];
-//ç¢ç‰‡
+//ËéÆ¬
 $spr=$empire->fetch1("select spid,spname,varname,sptype,maxnum,groupid,userclass,username from {$dbtbpre}enewssp where spid='$spid'");
 if(!$spr['spid'])
 {
 	printerror('ErrorUrl','');
 }
-//éªŒè¯æ“ä½œæƒé™
+//ÑéÖ¤²Ù×÷È¨ÏŞ
 CheckDoLevel($lur,$spr[groupid],$spr[userclass],$spr[username]);
 $enews=ehtmlspecialchars($_GET['enews']);
-$postword='å¢åŠ ç¢ç‰‡ä¿¡æ¯';
+$postword='Ôö¼ÓËéÆ¬ĞÅÏ¢';
 $todaytime=date("Y-m-d H:i:s");
-$url="<a href=UpdateSp.php".$ecms_hashur['whehref'].">æ›´æ–°ç¢ç‰‡</a>&nbsp;>&nbsp;<a href=ListSpInfo.php?spid=$spid".$ecms_hashur['ehref'].">".$spr[spname]."</a>&nbsp;>&nbsp;å¢åŠ ç¢ç‰‡ä¿¡æ¯";
+$url="<a href=UpdateSp.php".$ecms_hashur['whehref'].">¸üĞÂËéÆ¬</a>&nbsp;>&nbsp;<a href=ListSpInfo.php?spid=$spid".$ecms_hashur['ehref'].">".$spr[spname]."</a>&nbsp;>&nbsp;Ôö¼ÓËéÆ¬ĞÅÏ¢";
 $filepass=$spid;
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditSpInfo")
 {
-	$postword='ä¿®æ”¹ç¢ç‰‡ä¿¡æ¯';
+	$postword='ĞŞ¸ÄËéÆ¬ĞÅÏ¢';
 	$sid=(int)$_GET['sid'];
 	if($spr[sptype]==1)
 	{
 		$r=$empire->fetch1("select * from {$dbtbpre}enewssp_1 where sid='$sid' and spid='$spid'");
 		$newstime=date('Y-m-d H:i:s',$r[newstime]);
-		//æ ‡é¢˜å±æ€§
+		//±êÌâÊôĞÔ
 		if(strstr($r[titlefont],','))
 		{
 			$tfontr=explode(',',$r[titlefont]);
@@ -104,21 +104,21 @@ if($enews=="EditSpInfo")
 		{
 			$titlefonts=" checked";
 		}
-		$url="<a href=UpdateSp.php".$ecms_hashur['whehref'].">æ›´æ–°ç¢ç‰‡</a>&nbsp;>&nbsp;<a href=ListSpInfo.php?spid=$spid".$ecms_hashur['ehref'].">".$spr[spname]."</a>&nbsp;>&nbsp;ä¿®æ”¹ç¢ç‰‡ä¿¡æ¯";
+		$url="<a href=UpdateSp.php".$ecms_hashur['whehref'].">¸üĞÂËéÆ¬</a>&nbsp;>&nbsp;<a href=ListSpInfo.php?spid=$spid".$ecms_hashur['ehref'].">".$spr[spname]."</a>&nbsp;>&nbsp;ĞŞ¸ÄËéÆ¬ĞÅÏ¢";
 	}
 	elseif($spr[sptype]==2)
 	{
 		$r=$empire->fetch1("select * from {$dbtbpre}enewssp_2 where sid='$sid' and spid='$spid'");
 		$newstime=date('Y-m-d H:i:s',$r[newstime]);
-		$url="<a href=UpdateSp.php".$ecms_hashur['whehref'].">æ›´æ–°ç¢ç‰‡</a>&nbsp;>&nbsp;<a href=ListSpInfo.php?spid=$spid".$ecms_hashur['ehref'].">".$spr[spname]."</a>&nbsp;>&nbsp;ä¿®æ”¹ç¢ç‰‡ä¿¡æ¯";
+		$url="<a href=UpdateSp.php".$ecms_hashur['whehref'].">¸üĞÂËéÆ¬</a>&nbsp;>&nbsp;<a href=ListSpInfo.php?spid=$spid".$ecms_hashur['ehref'].">".$spr[spname]."</a>&nbsp;>&nbsp;ĞŞ¸ÄËéÆ¬ĞÅÏ¢";
 	}
 	elseif($spr[sptype]==3)
 	{
 		$r=$empire->fetch1("select * from {$dbtbpre}enewssp_3 where spid='$spid' limit 1");
-		$url="<a href=UpdateSp.php".$ecms_hashur['whehref'].">æ›´æ–°ç¢ç‰‡</a>&nbsp;>&nbsp;".$spr[spname]."&nbsp;>&nbsp;ä¿®æ”¹ç¢ç‰‡ä¿¡æ¯";
+		$url="<a href=UpdateSp.php".$ecms_hashur['whehref'].">¸üĞÂËéÆ¬</a>&nbsp;>&nbsp;".$spr[spname]."&nbsp;>&nbsp;ĞŞ¸ÄËéÆ¬ĞÅÏ¢";
 	}
 }
-//å–å¾—ä¿¡æ¯
+//È¡µÃĞÅÏ¢
 $ecms=RepPostStr($_GET['ecms'],1);
 if($ecms=='InfoidGetData')
 {
@@ -138,8 +138,8 @@ if($ecms=='InfoidGetData')
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç¢ç‰‡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ËéÆ¬</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function foreColor(){
@@ -152,7 +152,7 @@ function foreColor(){
 <script>
 function ToGetInfo(){
 	var infoid;
-	infoid=prompt('è¯·è¾“å…¥ä¿¡æ¯IDï¼Œæ ¼å¼ï¼šæ ç›®ID,ä¿¡æ¯ID',',');
+	infoid=prompt('ÇëÊäÈëĞÅÏ¢ID£¬¸ñÊ½£ºÀ¸Ä¿ID,ĞÅÏ¢ID',',');
 	if(infoid==''||infoid==null||infoid==',')
 	{
 		return false;
@@ -167,7 +167,7 @@ function ToGetInfo(){
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <?php
@@ -184,58 +184,58 @@ if($spr['sptype']==1)
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="14%" height="25">æ ‡é¢˜ï¼š</td>
+      <td width="14%" height="25">±êÌâ£º</td>
       <td width="86%" height="25"><input name="title" type="text" id="title" size="60" value="<?=ehtmlspecialchars(stripSlashes($r[title]))?>">
-        <input type="button" name="Submit5" value="é€šè¿‡ä¿¡æ¯IDè·å–" onclick="ToGetInfo();"> </td>
+        <input type="button" name="Submit5" value="Í¨¹ıĞÅÏ¢ID»ñÈ¡" onclick="ToGetInfo();"> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ ‡é¢˜é“¾æ¥ï¼š</td>
+      <td height="25">±êÌâÁ´½Ó£º</td>
       <td height="25"><input name="titleurl" type="text" id="titleurl" size="60" value="<?=stripSlashes($r[titleurl])?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ ‡é¢˜å±æ€§ï¼š</td>
+      <td height="25">±êÌâÊôĞÔ£º</td>
       <td height="25"> <table width="100%" border="0" cellspacing="1" cellpadding="3">
           <tr> 
             <td> <input name="titlefont[b]" type="checkbox" value="b"<?=$titlefontb?>>
-              ç²—ä½“ 
+              ´ÖÌå 
               <input name="titlefont[i]" type="checkbox" value="i"<?=$titlefonti?>>
-              æ–œä½“ 
+              Ğ±Ìå 
               <input name="titlefont[s]" type="checkbox" value="s"<?=$titlefonts?>>
-              åˆ é™¤çº¿ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;é¢œè‰²: 
+              É¾³ıÏß &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÑÕÉ«: 
               <input name="titlecolor" type="text" value="<?=stripSlashes($r[titlecolor])?>" size="10" class="color"> 
               </td>
           </tr>
           <tr> 
-            <td>å·¦è¾¹: 
+            <td>×ó±ß: 
               <input name="titlepre" type="text" id="titlepre3" value="<?=ehtmlspecialchars(stripSlashes($r[titlepre]))?>" size="21">
-              å³è¾¹: 
+              ÓÒ±ß: 
               <input name="titlenext" type="text" id="titlenext" value="<?=ehtmlspecialchars(stripSlashes($r[titlenext]))?>" size="21"> 
             </td>
           </tr>
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ ‡é¢˜ç¼©å›¾ï¼š</td>
+      <td height="25">±êÌâËõÍ¼£º</td>
       <td height="25"><input name="titlepic" type="text" id="titlepic" size="60" value="<?=stripSlashes($r[titlepic])?>">
-        <a onclick="window.open('../ecmseditor/FileMain.php?<?=$ecms_hashur['ehref']?>&modtype=7&type=1&classid=&doing=2&field=titlepic&filepass=<?=$filepass?>&sinfo=1','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../../data/images/changeimg.gif" alt="é€‰æ‹©/ä¸Šä¼ å›¾ç‰‡" width="22" height="22" border="0" align="absbottom"></a></td>
+        <a onclick="window.open('../ecmseditor/FileMain.php?<?=$ecms_hashur['ehref']?>&modtype=7&type=1&classid=&doing=2&field=titlepic&filepass=<?=$filepass?>&sinfo=1','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../../data/images/changeimg.gif" alt="Ñ¡Ôñ/ÉÏ´«Í¼Æ¬" width="22" height="22" border="0" align="absbottom"></a></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ ‡é¢˜å¤§å›¾ï¼š</td>
+      <td height="25">±êÌâ´óÍ¼£º</td>
       <td height="25"><input name="bigpic" type="text" id="bigpic" size="60" value="<?=stripSlashes($r[bigpic])?>">
-        <a onclick="window.open('../ecmseditor/FileMain.php?<?=$ecms_hashur['ehref']?>&modtype=7&type=1&classid=&doing=2&field=bigpic&filepass=<?=$filepass?>&sinfo=1','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../../data/images/changeimg.gif" alt="é€‰æ‹©/ä¸Šä¼ å›¾ç‰‡" width="22" height="22" border="0" align="absbottom"></a></td>
+        <a onclick="window.open('../ecmseditor/FileMain.php?<?=$ecms_hashur['ehref']?>&modtype=7&type=1&classid=&doing=2&field=bigpic&filepass=<?=$filepass?>&sinfo=1','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../../data/images/changeimg.gif" alt="Ñ¡Ôñ/ÉÏ´«Í¼Æ¬" width="22" height="22" border="0" align="absbottom"></a></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å‘å¸ƒæ—¶é—´ï¼š</td>
+      <td height="25">·¢²¼Ê±¼ä£º</td>
       <td height="25"><input name="newstime" type="text" id="title3" size="60" value="<?=$newstime?>" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd HH:mm:ss'})">
-        <input type="button" name="Submit3" value="å½“å‰æ—¶é—´" onclick="document.form1.newstime.value='<?=$todaytime?>';"></td>
+        <input type="button" name="Submit3" value="µ±Ç°Ê±¼ä" onclick="document.form1.newstime.value='<?=$todaytime?>';"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å†…å®¹ç®€ä»‹ï¼š</td>
+      <td height="25">ÄÚÈİ¼ò½é£º</td>
       <td height="25"><textarea name="smalltext" cols="60" rows="5" id="smalltext"><?=ehtmlspecialchars(stripSlashes($r[smalltext]))?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"> 
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"> 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="sid" type="hidden" id="sid" value="<?=$r['sid']?>"> 
         <input name="spid" type="hidden" id="spid" value="<?=$spid?>"></td>
     </tr>
@@ -256,26 +256,26 @@ elseif($spr['sptype']==2)
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="14%" height="25">ä¿¡æ¯ä½ç½®ï¼š</td>
-      <td width="86%" height="25">æ ç›®ID: 
+      <td width="14%" height="25">ĞÅÏ¢Î»ÖÃ£º</td>
+      <td width="86%" height="25">À¸Ä¿ID: 
         <input name="classid" type="text" id="titlepre5" value="<?=$r[classid]?>" size="21">
-        ä¿¡æ¯ID: 
+        ĞÅÏ¢ID: 
         <input name="id" type="text" id="classid" value="<?=$r[id]?>" size="21"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å‘å¸ƒæ—¶é—´ï¼š</td>
+      <td height="25">·¢²¼Ê±¼ä£º</td>
       <td height="25"><input name="newstime" type="text" id="newstime" size="60" value="<?=$newstime?>" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd HH:mm:ss'})"> 
-        <input type="button" name="Submit32" value="å½“å‰æ—¶é—´" onclick="document.form1.newstime.value='<?=$todaytime?>';"></td>
+        <input type="button" name="Submit32" value="µ±Ç°Ê±¼ä" onclick="document.form1.newstime.value='<?=$todaytime?>';"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit4" value="æäº¤"> <input type="reset" name="Submit22" value="é‡ç½®"> 
+      <td height="25"><input type="submit" name="Submit4" value="Ìá½»"> <input type="reset" name="Submit22" value="ÖØÖÃ"> 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="sid" type="hidden" id="sid3" value="<?=$r['sid']?>"> 
         <input name="spid" type="hidden" id="spid" value="<?=$spid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
       <td height="25">&nbsp;</td>
-      <td height="25"><font color="#666666">ä¸è®¾ç½®æ—¶é—´ç›´æ¥è¯»å–ä¿¡æ¯æœ¬èº«çš„å‘å¸ƒæ—¶é—´.</font></td>
+      <td height="25"><font color="#666666">²»ÉèÖÃÊ±¼äÖ±½Ó¶ÁÈ¡ĞÅÏ¢±¾ÉíµÄ·¢²¼Ê±¼ä.</font></td>
     </tr>
   </table>
 </form>
@@ -304,9 +304,9 @@ elseif($spr['sptype']==3)
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit4" value="æäº¤">&nbsp;&nbsp;
-          &nbsp;&nbsp;<input type="reset" name="Submit22" value="é‡ç½®">
-          &nbsp;&nbsp; [<a href="#ecms" onclick="window.open('../template/editor.php?<?=$ecms_hashur['ehref']?>&getvar=opener.document.form1.sptext.value&returnvar=opener.document.form1.sptext.value&fun=ReturnHtml&notfullpage=1','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');">å¯è§†åŒ–ç¼–è¾‘</a>]&nbsp;&nbsp;[<a href="#empirecms" onclick="window.open('SpInfoBak.php?spid=<?=$r[spid]?>&sid=<?=$r['sid']?><?=$ecms_hashur['ehref']?>','ViewSpInfoBak','width=450,height=500,scrollbars=yes,left=300,top=150,resizable=yes');">ä¿®æ”¹è®°å½•</a>] 
+          <input type="submit" name="Submit4" value="Ìá½»">&nbsp;&nbsp;
+          &nbsp;&nbsp;<input type="reset" name="Submit22" value="ÖØÖÃ">
+          &nbsp;&nbsp; [<a href="#ecms" onclick="window.open('../template/editor.php?<?=$ecms_hashur['ehref']?>&getvar=opener.document.form1.sptext.value&returnvar=opener.document.form1.sptext.value&fun=ReturnHtml&notfullpage=1','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');">¿ÉÊÓ»¯±à¼­</a>]&nbsp;&nbsp;[<a href="#empirecms" onclick="window.open('SpInfoBak.php?spid=<?=$r[spid]?>&sid=<?=$r['sid']?><?=$ecms_hashur['ehref']?>','ViewSpInfoBak','width=450,height=500,scrollbars=yes,left=300,top=150,resizable=yes');">ĞŞ¸Ä¼ÇÂ¼</a>] 
           <input name="enews" type="hidden" id="enews" value="<?=$enews?>">
           <input name="sid" type="hidden" id="sid" value="<?=$r['sid']?>">
           <input name="spid" type="hidden" id="spid" value="<?=$spid?>">

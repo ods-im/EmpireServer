@@ -5,29 +5,29 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-//æŸ¥è¯¢SQLï¼Œå¦‚æœè¦æ˜¾ç¤ºè‡ªå®šä¹‰å­—æ®µè®°å¾—åœ¨SQLé‡Œå¢åŠ æŸ¥è¯¢å­—æ®µ
+//²éÑ¯SQL£¬Èç¹ûÒªÏÔÊ¾×Ô¶¨Òå×Ö¶Î¼ÇµÃÔÚSQLÀïÔö¼Ó²éÑ¯×Ö¶Î
 $query="select id,classid,isurl,titleurl,isqf,havehtml,istop,isgood,firsttitle,ismember,username,plnum,totaldown,onclick,newstime,truetime,lastdotime,titlefont,titlepic,title from ".$infotb." where ".$yhadd."userid='$user[userid]' and ismember=1".$add." order by newstime desc limit $offset,$line";
 $sql=$empire->query($query);
-//è¿”å›å¤´æ¡å’Œæ¨èçº§åˆ«åç§°
+//·µ»ØÍ·ÌõºÍÍÆ¼ö¼¶±ğÃû³Æ
 $ftnr=ReturnFirsttitleNameList(0,0);
 $ftnamer=$ftnr['ftr'];
 $ignamer=$ftnr['igr'];
 
-$public_diyr['pagetitle']='ç®¡ç†ä¿¡æ¯';
-$url="<a href='../../'>é¦–é¡µ</a>&nbsp;>&nbsp;<a href='../member/cp/'>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;<a href='ListInfo.php?mid=$mid".$addecmscheck."'>ç®¡ç†ä¿¡æ¯</a>&nbsp;(".$mr[qmname].")";
+$public_diyr['pagetitle']='¹ÜÀíĞÅÏ¢';
+$url="<a href='../../'>Ê×Ò³</a>&nbsp;>&nbsp;<a href='../member/cp/'>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;<a href='ListInfo.php?mid=$mid".$addecmscheck."'>¹ÜÀíĞÅÏ¢</a>&nbsp;(".$mr[qmname].")";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
         <form name="searchinfo" method="GET" action="ListInfo.php">
     <tr>
             <td width="25%" height="27"> 
-              <input type="button" name="Submit" value="å¢åŠ ä¿¡æ¯" onclick="self.location.href='ChangeClass.php?mid=<?=$mid?><?=$addecmscheck?>';">            </td>
-      <td width="75%"><div align="right">&nbsp;æœç´¢ï¼š 
+              <input type="button" name="Submit" value="Ôö¼ÓĞÅÏ¢" onclick="self.location.href='ChangeClass.php?mid=<?=$mid?><?=$addecmscheck?>';">            </td>
+      <td width="75%"><div align="right">&nbsp;ËÑË÷£º 
           <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
           <select name="show">
-            <option value="0" selected>æ ‡é¢˜</option>
+            <option value="0" selected>±êÌâ</option>
           </select>
-          <input type="submit" name="Submit2" value="æœç´¢">
+          <input type="submit" name="Submit2" value="ËÑË÷">
           <input name="sear" type="hidden" id="sear" value="1">
           <input name="mid" type="hidden" value="<?=$mid?>">
 		  <input name="ecmscheck" type="hidden" id="ecmscheck" value="<?=$ecmscheck?>">
@@ -38,8 +38,8 @@ require(ECMS_PATH.'e/template/incfile/header.php');
 <br>
 <table width="100%" border="0" cellspacing="1" cellpadding="0">
   <tr>
-    <td width="9%" height="25"<?=$indexchecked==1?' class="header"':' bgcolor="#C9F1FF"'?>><div align="center"><a href="ListInfo.php?mid=<?=$mid?>">å·²å‘å¸ƒ</a></div></td>
-    <td width="9%"<?=$indexchecked==0?' class="header"':' bgcolor="#C9F1FF"'?>><div align="center"><a href="ListInfo.php?mid=<?=$mid?>&ecmscheck=1">å¾…å®¡æ ¸</a></div></td>
+    <td width="9%" height="25"<?=$indexchecked==1?' class="header"':' bgcolor="#C9F1FF"'?>><div align="center"><a href="ListInfo.php?mid=<?=$mid?>">ÒÑ·¢²¼</a></div></td>
+    <td width="9%"<?=$indexchecked==0?' class="header"':' bgcolor="#C9F1FF"'?>><div align="center"><a href="ListInfo.php?mid=<?=$mid?>&ecmscheck=1">´ıÉóºË</a></div></td>
     <td width="23%">&nbsp;</td>
     <td width="47%">&nbsp;</td>
     <td width="6%">&nbsp;</td>
@@ -48,61 +48,61 @@ require(ECMS_PATH.'e/template/incfile/header.php');
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td width="50%" height="25"> <div align="center">æ ‡é¢˜</div></td>
-    <td width="13%" height="25"> <div align="center">å‘å¸ƒæ—¶é—´</div></td>
+    <td width="50%" height="25"> <div align="center">±êÌâ</div></td>
+    <td width="13%" height="25"> <div align="center">·¢²¼Ê±¼ä</div></td>
 	<td width="8%" height="25"> 
-      <div align="center">ç‚¹å‡»</div></td>
+      <div align="center">µã»÷</div></td>
     <td width="6%">
-      <div align="center">è¯„è®º</div></td>
-    <td width="6%"><div align="center">å®¡æ ¸</div></td>
+      <div align="center">ÆÀÂÛ</div></td>
+    <td width="6%"><div align="center">ÉóºË</div></td>
     <td width="17%" height="25"> 
-      <div align="center">æ“ä½œ</div></td>
+      <div align="center">²Ù×÷</div></td>
   </tr>
   <?
 	while($r=$empire->fetch($sql))
 	{
-		//çŠ¶æ€
+		//×´Ì¬
 		$st='';
-		if($r[istop])//ç½®é¡¶
+		if($r[istop])//ÖÃ¶¥
 		{
-			$st.="<font color=red>[é¡¶".$r[istop]."]</font>";
+			$st.="<font color=red>[¶¥".$r[istop]."]</font>";
 		}
-		if($r[isgood])//æ¨è
+		if($r[isgood])//ÍÆ¼ö
 		{
 			$st.="<font color=red>[".$ignamer[$r['isgood']]."]</font>";
 		}
-		if($r[firsttitle])//å¤´æ¡
+		if($r[firsttitle])//Í·Ìõ
 		{
 			$st.="<font color=red>[".$ftnamer[$r['firsttitle']]."]</font>";
 		}
-		//æ—¶é—´
+		//Ê±¼ä
 		$newstime=date("Y-m-d",$r[newstime]);
 		$oldtitle=$r[title];
 		$r[title]=stripSlashes(sub($r[title],0,50,false));
 		$r[title]=DoTitleFont($r[titlefont],$r[title]);
 		if($indexchecked==0)
 		{
-			$checked='<font color=red>Ã—</font>';
-			$titleurl='AddInfo.php?enews=MEditInfo&classid='.$r[classid].'&id='.$r[id].'&mid='.$mid.$addecmscheck;//é“¾æ¥
+			$checked='<font color=red>¡Á</font>';
+			$titleurl='AddInfo.php?enews=MEditInfo&classid='.$r[classid].'&id='.$r[id].'&mid='.$mid.$addecmscheck;//Á´½Ó
 		}
 		else
 		{
-			$checked='âˆš';
-			$titleurl=sys_ReturnBqTitleLink($r);//é“¾æ¥
+			$checked='¡Ì';
+			$titleurl=sys_ReturnBqTitleLink($r);//Á´½Ó
 		}
-		$plnum=$r[plnum];//è¯„è®ºä¸ªæ•°
-		//æ ‡é¢˜å›¾ç‰‡
+		$plnum=$r[plnum];//ÆÀÂÛ¸öÊı
+		//±êÌâÍ¼Æ¬
 		$showtitlepic="";
 		if($r[titlepic])
-		{$showtitlepic="<a href='".$r[titlepic]."' title='é¢„è§ˆæ ‡é¢˜å›¾ç‰‡' target=_blank><img src='../data/images/showimg.gif' border=0></a>";}
-		//æ ç›®
+		{$showtitlepic="<a href='".$r[titlepic]."' title='Ô¤ÀÀ±êÌâÍ¼Æ¬' target=_blank><img src='../data/images/showimg.gif' border=0></a>";}
+		//À¸Ä¿
 		$classname=$class_r[$r[classid]][classname];
 		$classurl=sys_ReturnBqClassname($r,9);
 		$bclassid=$class_r[$r[classid]][bclassid];
 		$br['classid']=$bclassid;
 		$bclassurl=sys_ReturnBqClassname($br,9);
 		$bclassname=$class_r[$bclassid][classname];
-		//è¯„è®ºåœ°å€
+		//ÆÀÂÛµØÖ·
 		$pagefunr=eReturnRewritePlUrl($r['classid'],$r['id'],'doinfo',0,0,1);
 		$eplurl=$pagefunr['pageurl'];
 	?>
@@ -113,17 +113,17 @@ require(ECMS_PATH.'e/template/incfile/header.php');
         <a href="<?=$titleurl?>" target=_blank title="<?=$oldtitle?>"> 
         <strong><?=$r[title]?></strong>        </a>
 		<br>
-          æ ç›®:<a href='<?=$bclassurl?>' target='_blank'><?=$bclassname?></a> > <a href='<?=$classurl?>' target='_blank'><?=$classname?></a>
+          À¸Ä¿:<a href='<?=$bclassurl?>' target='_blank'><?=$bclassname?></a> > <a href='<?=$classurl?>' target='_blank'><?=$classname?></a>
       </div></td>
     <td height="25"> <div align="center"><?=$newstime?></div></td>
-	<td height="25"> <div align="center"> <a title="ä¸‹è½½æ¬¡æ•°:<?=$r[totaldown]?>"> 
+	<td height="25"> <div align="center"> <a title="ÏÂÔØ´ÎÊı:<?=$r[totaldown]?>"> 
         <?=$r[onclick]?>
         </a> </div></td>
-    <td><div align="center"><a href="<?=$eplurl?>" title="æŸ¥çœ‹è¯„è®º" target=_blank><u><?=$plnum?></u></a></div></td>
+    <td><div align="center"><a href="<?=$eplurl?>" title="²é¿´ÆÀÂÛ" target=_blank><u><?=$plnum?></u></a></div></td>
     <td><div align="center">
         <?=$checked?>
       </div></td>
-    <td height="25"><div align="center"><a href="AddInfo.php?enews=MEditInfo&classid=<?=$r[classid]?>&id=<?=$r[id]?>&mid=<?=$mid?><?=$addecmscheck?>">ä¿®æ”¹</a> | <a href="ecms.php?enews=MDelInfo&classid=<?=$r[classid]?>&id=<?=$r[id]?>&mid=<?=$mid?><?=$addecmscheck?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a> 
+    <td height="25"><div align="center"><a href="AddInfo.php?enews=MEditInfo&classid=<?=$r[classid]?>&id=<?=$r[id]?>&mid=<?=$mid?><?=$addecmscheck?>">ĞŞ¸Ä</a> | <a href="ecms.php?enews=MDelInfo&classid=<?=$r[classid]?>&id=<?=$r[id]?>&mid=<?=$mid?><?=$addecmscheck?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a> 
       </div></td>
   </tr>
   <?

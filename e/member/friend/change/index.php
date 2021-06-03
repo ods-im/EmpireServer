@@ -8,7 +8,7 @@ $link=db_connect();
 $empire=new mysqlquery();
 $editor=2;
 $ecmsreurl=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 $user=islogin();
 $a="";
 $cid=(int)$_GET['cid'];
@@ -23,7 +23,7 @@ while($r=$empire->fetch($sql))
 {
 	$hyselect.="<option value='".$r['fname']."'>".$r['fname']."</option>";
 }
-//鍒嗙被
+//分类
 $select=ReturnFriendclass($user[userid],$cid);
 $fm=RepPostVar($_GET['fm']);
 $f=RepPostVar($_GET['f']);
@@ -36,7 +36,7 @@ if($f)
 	eCheckStrType(4,$f,1);
 }
 $addvar="fm=".$fm."&f=".$f;
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/ChangeFriend.php');
 db_close();
 $empire=null;

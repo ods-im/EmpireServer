@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"spacestyle");
 
-//è¿”å›ä¼šå‘˜ç»„
+//·µ»Ø»áÔ±×é
 function ReturnSpaceStyleMemberGroup($membergroup){
 	$count=count($membergroup);
 	if($count==0)
@@ -38,7 +38,7 @@ function ReturnSpaceStyleMemberGroup($membergroup){
 	return $mg;
 }
 
-//å¢åŠ ä¼šå‘˜ç©ºé—´æ¨¡æ¿
+//Ôö¼Ó»áÔ±¿Õ¼äÄ£°å
 function AddSpaceStyle($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add[stylename])||empty($add[stylepath]))
@@ -47,7 +47,7 @@ function AddSpaceStyle($add,$userid,$username){
 	}
 	$add[stylepath]=RepPathStr($add[stylepath]);
 	$add['stylepath']=RepPostStr($add['stylepath'],1);
-	//ç›®å½•æ˜¯å¦å­˜åœ¨
+	//Ä¿Â¼ÊÇ·ñ´æÔÚ
 	if(!file_exists("../../space/template/".$add[stylepath]))
 	{
 		printerror("EmptySpaceStylePath","history.go(-1)");
@@ -61,7 +61,7 @@ function AddSpaceStyle($add,$userid,$username){
 	if($sql)
 	{
 		$styleid=$empire->lastid();
-		insert_dolog("styleid=$styleid&stylename=$add[stylename]");//æ“ä½œæ—¥å¿—
+		insert_dolog("styleid=$styleid&stylename=$add[stylename]");//²Ù×÷ÈÕÖ¾
 		printerror("AddSpaceStyleSuccess","AddSpaceStyle.php?enews=AddSpaceStyle".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -70,7 +70,7 @@ function AddSpaceStyle($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ä¼šå‘˜ç©ºé—´æ¨¡æ¿
+//ĞŞ¸Ä»áÔ±¿Õ¼äÄ£°å
 function EditSpaceStyle($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$styleid=intval($add[styleid]);
@@ -80,7 +80,7 @@ function EditSpaceStyle($add,$userid,$username){
 	}
 	$add[stylepath]=RepPathStr($add[stylepath]);
 	$add['stylepath']=RepPostStr($add['stylepath'],1);
-	//ç›®å½•æ˜¯å¦å­˜åœ¨
+	//Ä¿Â¼ÊÇ·ñ´æÔÚ
 	if(!file_exists("../../space/template/".$add[stylepath]))
 	{
 		printerror("EmptySpaceStylePath","history.go(-1)");
@@ -93,7 +93,7 @@ function EditSpaceStyle($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsspacestyle set stylename='$add[stylename]',stylepic='$add[stylepic]',stylesay='$add[stylesay]',stylepath='$add[stylepath]',membergroup='$mg' where styleid='$styleid'");
 	if($sql)
 	{
-		insert_dolog("styleid=$styleid&stylename=$add[stylename]");//æ“ä½œæ—¥å¿—
+		insert_dolog("styleid=$styleid&stylename=$add[stylename]");//²Ù×÷ÈÕÖ¾
 		printerror("EditSpaceStyleSuccess","ListSpaceStyle.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
@@ -102,7 +102,7 @@ function EditSpaceStyle($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤ä¼šå‘˜ç©ºé—´æ¨¡æ¿
+//É¾³ı»áÔ±¿Õ¼äÄ£°å
 function DelSpaceStyle($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$styleid=intval($add[styleid]);
@@ -118,7 +118,7 @@ function DelSpaceStyle($add,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsspacestyle where styleid='$styleid'");
 	if($sql)
 	{
-		insert_dolog("styleid=$styleid&stylename=$r[stylename]");//æ“ä½œæ—¥å¿—
+		insert_dolog("styleid=$styleid&stylename=$r[stylename]");//²Ù×÷ÈÕÖ¾
 		printerror("DelSpaceStyleSuccess","ListSpaceStyle.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
@@ -127,7 +127,7 @@ function DelSpaceStyle($add,$userid,$username){
 	}
 }
 
-//é»˜è®¤ä¼šå‘˜ç©ºé—´æ¨¡æ¿
+//Ä¬ÈÏ»áÔ±¿Õ¼äÄ£°å
 function DefSpaceStyle($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$styleid=intval($add[styleid]);
@@ -142,7 +142,7 @@ function DefSpaceStyle($add,$userid,$username){
 	if($sql)
 	{
 		GetConfig();
-		insert_dolog("styleid=$styleid&stylename=$r[stylename]");//æ“ä½œæ—¥å¿—
+		insert_dolog("styleid=$styleid&stylename=$r[stylename]");//²Ù×÷ÈÕÖ¾
 		printerror("DefSpaceStyleSuccess","ListSpaceStyle.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
@@ -179,12 +179,12 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=16;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=25;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=16;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=25;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select * from {$dbtbpre}enewsspacestyle";
 $totalquery="select count(*) as total from {$dbtbpre}enewsspacestyle";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by styleid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -192,17 +192,17 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ä¼šå‘˜ç©ºé—´æ¨¡æ¿</title>
+<title>»áÔ±¿Õ¼äÄ£°å</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href="ListSpaceStyle.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¼šå‘˜ç©ºé—´æ¨¡æ¿</a></td>
+    <td width="50%" height="25">Î»ÖÃ£º<a href="ListSpaceStyle.php<?=$ecms_hashur['whehref']?>">¹ÜÀí»áÔ±¿Õ¼äÄ£°å</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ä¼šå‘˜ç©ºé—´æ¨¡æ¿" onclick="self.location.href='AddSpaceStyle.php?enews=AddSpaceStyle<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó»áÔ±¿Õ¼äÄ£°å" onclick="self.location.href='AddSpaceStyle.php?enews=AddSpaceStyle<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -211,8 +211,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="10%" height="25"> <div align="center">ID</div></td>
-    <td width="56%" height="25"> <div align="center">æ¨¡æ¿åç§°</div></td>
-    <td width="34%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="56%" height="25"> <div align="center">Ä£°åÃû³Æ</div></td>
+    <td width="34%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
@@ -232,7 +232,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td height="25"> <div align="center"> 
         <?=$r[stylename]?>
       </div></td>
-    <td height="25"> <div align="center">[<a href="ListSpaceStyle.php?enews=DefSpaceStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['href']?>">è®¾ä¸ºé»˜è®¤</a>] [<a href="AddSpaceStyle.php?enews=EditSpaceStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="ListSpaceStyle.php?enews=DelSpaceStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td height="25"> <div align="center">[<a href="ListSpaceStyle.php?enews=DefSpaceStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['href']?>">ÉèÎªÄ¬ÈÏ</a>] [<a href="AddSpaceStyle.php?enews=EditSpaceStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="ListSpaceStyle.php?enews=DelSpaceStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

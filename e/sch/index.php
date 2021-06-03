@@ -10,7 +10,7 @@ require LoadLang("pub/fun.php");
 require("../class/schallfun.php");
 $link=db_connect();
 $empire=new mysqlquery();
-eCheckCloseMods('sch');//å…³é—­æ¨¡å—
+eCheckCloseMods('sch');//¹Ø±ÕÄ£¿é
 $searchtime=time();
 $totalnum=(int)$_GET['totalnum'];
 $sear=(int)$_GET['sear'];
@@ -22,7 +22,7 @@ $firstsearch=0;
 if($sear<1)
 {
 	$firstsearch=1;
-	//æœç´¢é—´éš”
+	//ËÑË÷¼ä¸ô
 	$lastsearchtime=(int)getcvar('lastschalltime');
 	if($lastsearchtime)
 	{
@@ -31,16 +31,16 @@ if($sear<1)
 			printerror('SchallOutTime','',1);
 		}
 	}
-	//è®¾ç½®æœ€åŽæœç´¢æ—¶é—´
+	//ÉèÖÃ×îºóËÑË÷Ê±¼ä
 	esetcookie('lastschalltime',$searchtime,$searchtime+3600*24);
 }
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$page_line=$public_r['schallpagenum'];//æ¯é¡µæ˜¾ç¤ºé“¾æŽ¥æ•°
-$line=$public_r['schallnum'];//æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
-$offset=$start+$page*$line;//æ€»åç§»é‡
-//ç¼–ç 
+$page_line=$public_r['schallpagenum'];//Ã¿Ò³ÏÔÊ¾Á´½ÓÊý
+$line=$public_r['schallnum'];//Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êý
+$offset=$start+$page*$line;//×ÜÆ«ÒÆÁ¿
+//±àÂë
 $iconv='';
 $char='';
 $targetchar='';
@@ -83,10 +83,10 @@ $url="<a href='".ReturnSiteIndexUrl()."'>".$fun_r['index']."</a>&nbsp;>&nbsp;".$
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>æœç´¢ - Powered by EmpireCMS</title>
-<link href="/ecms75/skin/default/css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/ecms75/skin/default/js/tabs.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>ËÑË÷ - Powered by EmpireCMS</title>
+<link href="/skin/default/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/skin/default/js/tabs.js"></script>
 <style type="text/css">
 <!--
 .r {
@@ -102,19 +102,19 @@ margin-top:10px;
 </style>
 </head>
 <body class="listpage">
-<!-- é¡µå¤´ -->
+<!-- Ò³Í· -->
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="top">
 <tr>
 <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="63%">
-<!-- ç™»å½• -->
+<!-- µÇÂ¼ -->
 <script>
-document.write('<script src="/ecms75/e/member/login/loginjs.php?t='+Math.random()+'"><'+'/script>');
+document.write('<script src="/e/member/login/loginjs.php?t='+Math.random()+'"><'+'/script>');
 </script>
 </td>
 <td align="right">
-<a onclick="window.external.addFavorite(location.href,document.title)" href="#ecms">åŠ å…¥æ”¶è—</a> | <a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('/ecms75/')" href="#ecms">è®¾ä¸ºé¦–é¡µ</a> | <a href="/ecms75/e/member/cp/">ä¼šå‘˜ä¸­å¿ƒ</a> | <a href="/ecms75/e/DoInfo/">æˆ‘è¦æŠ•ç¨¿</a> | <a href="/ecms75/e/web/?type=rss2" target="_blank">RSS<img src="/ecms75/skin/default/images/rss.gif" border="0" hspace="2" /></a>
+<a onclick="window.external.addFavorite(location.href,document.title)" href="#ecms">¼ÓÈëÊÕ²Ø</a> | <a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('/')" href="#ecms">ÉèÎªÊ×Ò³</a> | <a href="/e/member/cp/">»áÔ±ÖÐÐÄ</a> | <a href="/e/DoInfo/">ÎÒÒªÍ¶¸å</a> | <a href="/e/web/?type=rss2" target="_blank">RSS<img src="/skin/default/images/rss.gif" border="0" hspace="2" /></a>
 </td>
 </tr>
 </table></td>
@@ -122,23 +122,23 @@ document.write('<script src="/ecms75/e/member/login/loginjs.php?t='+Math.random(
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="10">
 <tr valign="middle">
-<td width="240" align="center"><a href="/ecms75/"><img src="/ecms75/skin/default/images/logo.gif" width="200" height="65" border="0" /></a></td>
-<td align="center"><a href="http://www.phome.net/OpenSource/" target="_blank"><img src="/ecms75/skin/default/images/opensource.gif" width="100%" height="70" border="0" /></a></td>
+<td width="240" align="center"><a href="/"><img src="/skin/default/images/logo.gif" width="200" height="65" border="0" /></a></td>
+<td align="center"><a href="http://www.phome.net/OpenSource/" target="_blank"><img src="/skin/default/images/opensource.gif" width="100%" height="70" border="0" /></a></td>
 </tr>
 </table>
-<!-- å¯¼èˆªtabé€‰é¡¹å¡ -->
+<!-- µ¼º½tabÑ¡Ïî¿¨ -->
 <table width="920" border="0" align="center" cellpadding="0" cellspacing="0" class="nav">
   <tr> 
     <td class="nav_global"><ul>
-        <li class="curr" id="tabnav_btn_0" onmouseover="tabit(this)"><a href="/ecms75/">é¦–é¡µ</a></li>
-        <li id="tabnav_btn_1" onmouseover="tabit(this)"><a href="/ecms75/news/">æ–°é—»ä¸­å¿ƒ</a></li>
-        <li id="tabnav_btn_2" onmouseover="tabit(this)"><a href="/ecms75/download/">ä¸‹è½½ä¸­å¿ƒ</a></li>
-        <li id="tabnav_btn_3" onmouseover="tabit(this)"><a href="/ecms75/movie/">å½±è§†é¢‘é“</a></li>
-        <li id="tabnav_btn_4" onmouseover="tabit(this)"><a href="/ecms75/shop/">ç½‘ä¸Šå•†åŸŽ</a></li>
-        <li id="tabnav_btn_5" onmouseover="tabit(this)"><a href="/ecms75/flash/">FLASHé¢‘é“</a></li>
-        <li id="tabnav_btn_6" onmouseover="tabit(this)"><a href="/ecms75/photo/">å›¾ç‰‡é¢‘é“</a></li>
-        <li id="tabnav_btn_7" onmouseover="tabit(this)"><a href="/ecms75/article/">æ–‡ç« ä¸­å¿ƒ</a></li>
-        <li id="tabnav_btn_8" onmouseover="tabit(this)"><a href="/ecms75/info/">åˆ†ç±»ä¿¡æ¯</a></li>
+        <li class="curr" id="tabnav_btn_0" onmouseover="tabit(this)"><a href="/">Ê×Ò³</a></li>
+        <li id="tabnav_btn_1" onmouseover="tabit(this)"><a href="/news/">ÐÂÎÅÖÐÐÄ</a></li>
+        <li id="tabnav_btn_2" onmouseover="tabit(this)"><a href="/download/">ÏÂÔØÖÐÐÄ</a></li>
+        <li id="tabnav_btn_3" onmouseover="tabit(this)"><a href="/movie/">Ó°ÊÓÆµµÀ</a></li>
+        <li id="tabnav_btn_4" onmouseover="tabit(this)"><a href="/shop/">ÍøÉÏÉÌ³Ç</a></li>
+        <li id="tabnav_btn_5" onmouseover="tabit(this)"><a href="/flash/">FLASHÆµµÀ</a></li>
+        <li id="tabnav_btn_6" onmouseover="tabit(this)"><a href="/photo/">Í¼Æ¬ÆµµÀ</a></li>
+        <li id="tabnav_btn_7" onmouseover="tabit(this)"><a href="/article/">ÎÄÕÂÖÐÐÄ</a></li>
+        <li id="tabnav_btn_8" onmouseover="tabit(this)"><a href="/info/">·ÖÀàÐÅÏ¢</a></li>
       </ul></td>
   </tr>
 </table>
@@ -146,7 +146,7 @@ document.write('<script src="/ecms75/e/member/login/loginjs.php?t='+Math.random(
 	<tr valign="top">
 		<td class="list_content"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="position">
 				<tr>
-					<td>çŽ°åœ¨çš„ä½ç½®ï¼š<a href="/ecms75/">é¦–é¡µ</a>&nbsp;>&nbsp;æœç´¢</td>
+					<td>ÏÖÔÚµÄÎ»ÖÃ£º<a href="/">Ê×Ò³</a>&nbsp;>&nbsp;ËÑË÷</td>
 				</tr>
 			</table>
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="box">
@@ -154,21 +154,21 @@ document.write('<script src="/ecms75/e/member/login/loginjs.php?t='+Math.random(
 					<td><form action='index.php' method="GET" name="search_news" id="search_news">
 							<table width="100%" border="0" cellspacing="6" cellpadding="0">
 								<tr>
-									<td height="32">å…³é”®å­—ï¼š
+									<td height="32">¹Ø¼ü×Ö£º
 										<input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>" size="42" />
                     <select name="field" id="field">
-                      <option value="1">å…¨æ–‡</option>
-                      <option value="2">æ ‡é¢˜</option>
-                      <option value="3">å†…å®¹</option>
+                      <option value="1">È«ÎÄ</option>
+                      <option value="2">±êÌâ</option>
+                      <option value="3">ÄÚÈÝ</option>
                     </select> 
-                    <input type="submit" name="Submit22" value="æœç´¢" />
-                    <font color="#666666">(å¤šä¸ªå…³é”®å­—è¯·ç”¨&quot;ç©ºæ ¼&quot;éš”å¼€)</font> </td>
+                    <input type="submit" name="Submit22" value="ËÑË÷" />
+                    <font color="#666666">(¶à¸ö¹Ø¼ü×ÖÇëÓÃ&quot;¿Õ¸ñ&quot;¸ô¿ª)</font> </td>
 								</tr>
 							</table>
 						</form>
 						<table width="100%" border="0" cellpadding="0" cellspacing="6">
 							<tr>
-								<td>ç³»ç»Ÿæœç´¢åˆ°çº¦æœ‰<strong><?=$num?></strong>é¡¹ç¬¦åˆ<strong><?=$keyboard?></strong>çš„æŸ¥è¯¢ç»“æžœ</td>
+								<td>ÏµÍ³ËÑË÷µ½Ô¼ÓÐ<strong><?=$num?></strong>Ïî·ûºÏ<strong><?=$keyboard?></strong>µÄ²éÑ¯½á¹û</td>
 							</tr>
 						</table>
 						
@@ -229,31 +229,31 @@ $empire=null;
 			</table></td>
 	</tr>
 </table>
-<!-- é¡µè„š -->
+<!-- Ò³½Å -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td align="center" class="search">
-<form action="/ecms75/e/search/index.php" method="post" name="searchform" id="searchform">
+<form action="/e/search/index.php" method="post" name="searchform" id="searchform">
 <table border="0" cellspacing="6" cellpadding="0">
 <tr>
-<td><strong>ç«™å†…æœç´¢ï¼š</strong>
+<td><strong>Õ¾ÄÚËÑË÷£º</strong>
 <input name="keyboard" type="text" size="32" id="keyboard" class="inputText" />
 <input type="hidden" name="show" value="title" />
 <input type="hidden" name="tempid" value="1" />
 <select name="tbname">
-<option value="news">æ–°é—»</option>
-<option value="download">ä¸‹è½½</option>
-<option value="photo">å›¾åº“</option>
+<option value="news">ÐÂÎÅ</option>
+<option value="download">ÏÂÔØ</option>
+<option value="photo">Í¼¿â</option>
 <option value="flash">FLASH</option>
-<option value="movie">ç”µå½±</option>
-<option value="shop">å•†å“</option>
-<option value="article">æ–‡ç« </option>
-<option value="info">åˆ†ç±»ä¿¡æ¯</option>
+<option value="movie">µçÓ°</option>
+<option value="shop">ÉÌÆ·</option>
+<option value="article">ÎÄÕÂ</option>
+<option value="info">·ÖÀàÐÅÏ¢</option>
 </select>
 </td>
-<td><input type="image" class="inputSub" src="/ecms75/skin/default/images/search.gif" />
+<td><input type="image" class="inputSub" src="/skin/default/images/search.gif" />
 </td>
-<td><a href="/ecms75/search/" target="_blank">é«˜çº§æœç´¢</a></td>
+<td><a href="/search/" target="_blank">¸ß¼¶ËÑË÷</a></td>
 </tr>
 </table>
 </form>
@@ -263,9 +263,9 @@ $empire=null;
 <td>
 	<table width="100%" border="0" cellpadding="0" cellspacing="4" class="copyright">
         <tr> 
-          <td align="center"><a href="/ecms75/">ç½‘ç«™é¦–é¡µ</a> | <a href="#">å…³äºŽæˆ‘ä»¬</a> 
-            | <a href="#">æœåŠ¡æ¡æ¬¾</a> | <a href="#">å¹¿å‘ŠæœåŠ¡</a> | <a href="#">è”ç³»æˆ‘ä»¬</a> 
-            | <a href="#">ç½‘ç«™åœ°å›¾</a> | <a href="#">å…è´£å£°æ˜Ž</a> | <a href="/ecms75/e/wap/" target="_blank">WAP</a></td>
+          <td align="center"><a href="/">ÍøÕ¾Ê×Ò³</a> | <a href="#">¹ØÓÚÎÒÃÇ</a> 
+            | <a href="#">·þÎñÌõ¿î</a> | <a href="#">¹ã¸æ·þÎñ</a> | <a href="#">ÁªÏµÎÒÃÇ</a> 
+            | <a href="#">ÍøÕ¾µØÍ¼</a> | <a href="#">ÃâÔðÉùÃ÷</a> | <a href="/e/wap/" target="_blank">WAP</a></td>
         </tr>
         <tr> 
           <td align="center">Powered by <strong><a href="http://www.phome.net" target="_blank">EmpireCMS</a></strong> 

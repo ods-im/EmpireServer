@@ -5,37 +5,37 @@ if(!defined('InEmpireCMS'))
 }
 ?><table width='100%' align=center cellpadding=3 cellspacing=1 class=tableborder>
   <tr>
-    <td width=16% height=25 bgcolor=ffffff>ä½œå“å(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>×÷Æ·Ãû(*)</td>
     <td bgcolor=ffffff><input name="title" type="text" size="42" value="<?=$ecmsfirstpost==1?"":DoReqValue($mid,'title',stripSlashes($r[title]))?>">
 </td>
   </tr>
   <tr> 
-    <td width='16%' height=25 bgcolor='ffffff'>å…³é”®å­—</td>
+    <td width='16%' height=25 bgcolor='ffffff'>¹Ø¼ü×Ö</td>
     <td bgcolor='ffffff'>
 <input name="keyboard" type="text" size=42 value="<?=stripSlashes($r[keyboard])?>">
-<font color="#666666">(å¤šä¸ªè¯·ç”¨&quot;,&quot;éš”å¼€)</font>
+<font color="#666666">(¶à¸öÇëÓÃ&quot;,&quot;¸ô¿ª)</font>
 </td>
   </tr>
   <tr>
-    <td width=16% height=25 bgcolor=ffffff>ä½œå“é¢„è§ˆå›¾</td>
+    <td width=16% height=25 bgcolor=ffffff>×÷Æ·Ô¤ÀÀÍ¼</td>
     <td bgcolor=ffffff><input type="file" name="titlepicfile" size="45">
 </td>
   </tr>
   <tr>
-    <td width=16% height=25 bgcolor=ffffff>ä½œè€…</td>
+    <td width=16% height=25 bgcolor=ffffff>×÷Õß</td>
     <td bgcolor=ffffff><input name="flashwriter" type="text" id="flashwriter" value="<?=$ecmsfirstpost==1?"":DoReqValue($mid,'flashwriter',stripSlashes($r[flashwriter]))?>" size="42">
 </td>
   </tr>
   <tr>
-    <td width=16% height=25 bgcolor=ffffff>ä½œè€…é‚®ç®±</td>
+    <td width=16% height=25 bgcolor=ffffff>×÷ÕßÓÊÏä</td>
     <td bgcolor=ffffff><input name="email" type="text" id="email" value="<?=$ecmsfirstpost==1?"":DoReqValue($mid,'email',stripSlashes($r[email]))?>" size="42">
 </td>
   </tr>
   <tr>
-    <td width=16% height=25 bgcolor=ffffff>æ–‡ä»¶å¤§å°</td>
+    <td width=16% height=25 bgcolor=ffffff>ÎÄ¼þ´óÐ¡</td>
     <td bgcolor=ffffff><input name="filesize" type="text" id="filesize" value="<?=$ecmsfirstpost==1?"":DoReqValue($mid,'filesize',stripSlashes($r[filesize]))?>" size="42">
 <select name="select" onchange="document.add.filesize.value+=this.value">
-        <option value="">å•ä½</option>
+        <option value="">µ¥Î»</option>
         <option value=" MB">MB</option>
         <option value=" KB">KB</option>
         <option value=" GB">GB</option>
@@ -43,18 +43,18 @@ if(!defined('InEmpireCMS'))
       </select></td>
   </tr>
   <tr>
-    <td width=16% height=25 bgcolor=ffffff>ä¸Šä¼ Flash(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>ÉÏ´«Flash(*)</td>
     <td bgcolor=ffffff><input type="file" name="flashurlfile" size="45">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>Flashè§„æ ¼</td>
+    <td width=16% height=25 bgcolor=ffffff>Flash¹æ¸ñ</td>
     <td bgcolor=ffffff><input name="width" type="text" id="width" value="<?=$ecmsfirstpost==1?"600":DoReqValue($mid,'width',stripSlashes($r[width]))?>" size="6">
 *<input name="height" type="text" id="height" value="<?=$ecmsfirstpost==1?"450":DoReqValue($mid,'height',stripSlashes($r[height]))?>" size="6">
-<font color="#666666">(å®½åº¦*é«˜åº¦)</font></td>
+<font color="#666666">(¿í¶È*¸ß¶È)</font></td>
   </tr>
   <tr>
-    <td width=16% height=25 bgcolor=ffffff>ä½œå“ç®€ä»‹(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>×÷Æ·¼ò½é(*)</td>
     <td bgcolor=ffffff><textarea name="flashsay" cols="60" rows="10" id="flashsay"><?=$ecmsfirstpost==1?"":DoReqValue($mid,'flashsay',stripSlashes($r[flashsay]))?></textarea>
 </td>
   </tr>

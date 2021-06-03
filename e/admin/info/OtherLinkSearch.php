@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -33,14 +33,14 @@ if(!$pclassid||!$class_r[$pclassid]['tbname']||!trim($keyboard))
 }
 $search="&pclassid=$pclassid&pid=$pid&enews=$enews&keyid=$keyid&keyboard=$keyboard&show=$show&sear=$sear&returnkeyid=$returnkeyid&classid=$classid".$ecms_hashur['ehref'];
 $add='';
-//åˆ†é¡µ
+//·ÖÒ³
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=6;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
-//å·²é€‰ä¿¡æ¯
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=6;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
+//ÒÑÑ¡ĞÅÏ¢
 $ids='';
 $dh='';
 $keyr=explode(',',$returnkeyid);
@@ -66,7 +66,7 @@ else
 {
 	$ids=$pid;
 }
-//æ ç›®
+//À¸Ä¿
 if($classid)
 {
 	if($class_r[$classid][islast])
@@ -78,7 +78,7 @@ if($classid)
 		$add.=" and (".ReturnClass($class_r[$classid][sonclass]).")";
 	}
 }
-//æœç´¢
+//ËÑË÷
 if($keyboard)
 {
 	$kbr=explode(' ',$keyboard);
@@ -112,7 +112,7 @@ if($keyboard)
 }
 $query="select isurl,titleurl,classid,id,newstime,username,userid,title from {$dbtbpre}ecms_".$class_r[$pclassid][tbname]." where id not in (".$ids.")".$add;
 $totalquery="select count(*) as total from {$dbtbpre}ecms_".$class_r[$pclassid][tbname]." where id not in (".$ids.")".$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by newstime desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -120,8 +120,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç›¸å…³é“¾æ¥</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ïà¹ØÁ´½Ó</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function AddKeyid(infoid){
@@ -137,13 +137,13 @@ function AddKeyid(infoid){
 	r=str.split(ckinfoid);
 	if(r.length!=1)
 	{
-		alert('æ­¤ä¿¡æ¯å·²æ·»åŠ ');
+		alert('´ËĞÅÏ¢ÒÑÌí¼Ó');
 		return false;
 	}
 	kr=keyid.split(',');
 	if(kr.length>=showlinknum)
 	{
-		alert('æ·»åŠ æ•°é‡å·²è¶…è¿‡æ ç›®è®¾å®š('+showlinknum+'ä¸ª)');
+		alert('Ìí¼ÓÊıÁ¿ÒÑ³¬¹ıÀ¸Ä¿Éè¶¨('+showlinknum+'¸ö)');
 		return false;
 	}
 	if(keyid=='')
@@ -172,10 +172,10 @@ while($infor=$empire->fetch($sql))
       <div align="center"> 
         <?=$infor['id']?>
       </div></td>
-    <td width="75%"><a href="<?=$titleurl?>" target="_blank" title="å‘å¸ƒæ—¶é—´ï¼š<?=date('Y-m-d H:i:s',$infor['newstime'])?>"> 
+    <td width="75%"><a href="<?=$titleurl?>" target="_blank" title="·¢²¼Ê±¼ä£º<?=date('Y-m-d H:i:s',$infor['newstime'])?>"> 
       <?=stripSlashes($infor['title'])?>
       </a></td>
-    <td width="14%"><div align="center" id="doaddkey<?=$infor['id']?>"><a href="#empirecms" onclick="AddKeyid('<?=$infor['id']?>');">æ·»åŠ </a></div></td>
+    <td width="14%"><div align="center" id="doaddkey<?=$infor['id']?>"><a href="#empirecms" onclick="AddKeyid('<?=$infor['id']?>');">Ìí¼Ó</a></div></td>
   </tr>
 <?php
 }

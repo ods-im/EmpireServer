@@ -11,33 +11,33 @@ $wapstyle=0;
 $pr=array();
 require("wapfun.php");
 
-//æ ç›®ID
+//À¸Ä¿ID
 $classid=(int)$_GET['classid'];
 $bclassid=(int)$_GET['bclassid'];
 if(!$classid||!$class_r[$classid]['tbname']||InfoIsInTable($class_r[$classid]['tbname']))
 {
-	DoWapShowMsg('æ‚¨æ¥è‡ªçš„é“¾æ¥ä¸å­˜åœ¨','index.php?style='.$wapstyle);
+	DoWapShowMsg('ÄúÀ´×ÔµÄÁ´½Ó²»´æÔÚ','index.php?style='.$wapstyle);
 }
 $cr=$empire->fetch1("select classid,classpagekey,intro,classimg,cgroupid,islist,bdinfoid,islast,infos,addsql,wapstyleid,wapislist from {$dbtbpre}enewsclass where classid='$classid'");
 if(!$cr['classid'])
 {
-	DoWapShowMsg('æ‚¨æ¥è‡ªçš„é“¾æ¥ä¸å­˜åœ¨','index.php?style='.$wapstyle);
+	DoWapShowMsg('ÄúÀ´×ÔµÄÁ´½Ó²»´æÔÚ','index.php?style='.$wapstyle);
 }
 $GLOBALS['navclassid']=$classid;
 $pagetitle=$class_r[$classid]['classname'];
 $pagekey=$cr['classpagekey'];
 $pagedes=$cr['intro'];
 $classimg=$cr['classimg']?$cr['classimg']:$public_r[newsurl].'e/data/images/notimg.gif';
-//æƒé™
+//È¨ÏŞ
 if($cr['cgroupid'])
 {
-	DoWapShowMsg('æ‚¨æ¥è‡ªçš„é“¾æ¥ä¸å­˜åœ¨','index.php?style='.$wapstyle);
+	DoWapShowMsg('ÄúÀ´×ÔµÄÁ´½Ó²»´æÔÚ','index.php?style='.$wapstyle);
 }
-//å°é¢å¼
+//·âÃæÊ½
 $waptempfile='';
-if($cr['wapislist']==1)//å°é¢
+if($cr['wapislist']==1)//·âÃæ
 {
-	//å‚æ•°
+	//²ÎÊı
 	$ecmsvar_mbr=array();
 	$ecmsvar_mbr['wapstyle']=$wapstyle;
 	$ecmsvar_mbr['fbclassid']=$bclassid;
@@ -53,9 +53,9 @@ if($cr['wapislist']==1)//å°é¢
 		exit();
 	}
 }
-elseif($cr['wapislist']==2)//é¡µé¢
+elseif($cr['wapislist']==2)//Ò³Ãæ
 {
-	//å‚æ•°
+	//²ÎÊı
 	$ecmsvar_mbr=array();
 	$ecmsvar_mbr['wapstyle']=$wapstyle;
 	$ecmsvar_mbr['fbclassid']=$bclassid;
@@ -71,7 +71,7 @@ elseif($cr['wapislist']==2)//é¡µé¢
 		exit();
 	}
 }
-else//åˆ—è¡¨
+else//ÁĞ±í
 {
 	$waptempfile='template/'.$usewapstyle.'/list.temp.php';
 	if(!file_exists($waptempfile))
@@ -95,7 +95,7 @@ else
 	$add.="(".$where.")";
 }
 $modid=$class_r[$classid][modid];
-//ä¼˜åŒ–
+//ÓÅ»¯
 $yhid=$class_r[$classid][yhid];
 $yhvar='qlist';
 $yhadd='';
@@ -107,7 +107,7 @@ $search.="&classid=$classid&style=$wapstyle&bclassid=$bclassid";
 
 $page=intval($_GET['page']);
 $page=RepPIntvar($page);
-$line=$pr['waplistnum'];//æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
+$line=$pr['waplistnum'];//Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
 $offset=$page*$line;
 $query="select ".ReturnSqlListF($modid)." from {$dbtbpre}ecms_".$class_r[$classid]['tbname']." where ".$yhadd.$add;
 $totalnum=intval($_GET['totalnum']);
@@ -118,7 +118,7 @@ if(!$public_r['usetotalnum'])
 if($totalnum<1)
 {
 	$totalquery="select count(*) as total from {$dbtbpre}ecms_".$class_r[$classid]['tbname']." where ".$yhadd.$add;
-	$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+	$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 }
 else
 {
@@ -130,7 +130,7 @@ if($public_r['usetotalnum'])
 }
 //checkpageno
 eCheckListPageNo($page,$line,$num);
-//æ’åº
+//ÅÅĞò
 if(empty($class_r[$classid][reorder]))
 {
 	$addorder="newstime desc";
@@ -142,9 +142,9 @@ else
 $query.=" order by ".ReturnSetTopSql('list').$addorder." limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=DoWapListPage($num,$line,$page,$search);
-//ç³»ç»Ÿæ¨¡å‹
+//ÏµÍ³Ä£ĞÍ
 $ret_r=ReturnAddF($modid,2);
-//å‚æ•°
+//²ÎÊı
 $ecmsvar_mbr=array();
 $ecmsvar_mbr['wapstyle']=$wapstyle;
 $ecmsvar_mbr['fbclassid']=$bclassid;

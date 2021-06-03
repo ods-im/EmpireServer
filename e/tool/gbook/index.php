@@ -10,15 +10,15 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('gb');//å…³é—­æ¨¡å—
-//åˆ†ç±»id
+eCheckCloseMods('gb');//¹Ø±ÕÄ£¿é
+//·ÖÀàid
 $bid=(int)$_GET['bid'];
 $gbr=$empire->fetch1("select bid,bname,groupid from {$dbtbpre}enewsgbookclass where bid='$bid'");
 if(empty($gbr['bid']))
 {
 	printerror("EmptyGbook","",1);
 }
-//æƒé™
+//È¨ÏÞ
 if($gbr['groupid'])
 {
 	include("../../member/class/user.php");
@@ -26,7 +26,7 @@ if($gbr['groupid'])
 	include("../../data/dbcache/MemberLevel.php");
 	if($level_r[$gbr[groupid]][level]>$level_r[$user[groupid]][level])
 	{
-		echo"<script>alert('æ‚¨çš„ä¼šå‘˜çº§åˆ«ä¸è¶³(".$level_r[$gbr[groupid]][groupname].")ï¼Œæ²¡æœ‰æƒé™æäº¤ä¿¡æ¯!');history.go(-1);</script>";
+		echo"<script>alert('ÄúµÄ»áÔ±¼¶±ð²»×ã(".$level_r[$gbr[groupid]][groupname].")£¬Ã»ÓÐÈ¨ÏÞÌá½»ÐÅÏ¢!');history.go(-1);</script>";
 		exit();
 	}
 }
@@ -36,9 +36,9 @@ $search="&bid=$bid";
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=$public_r['gb_num'];//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=10;//æ¯é¡µæ˜¾ç¤ºé“¾æŽ¥æ•°
-$offset=$start+$page*$line;//æ€»åç§»é‡
+$line=$public_r['gb_num'];//Ã¿Ò³ÏÔÊ¾ÌõÊý
+$page_line=10;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊý
+$offset=$start+$page*$line;//×ÜÆ«ÒÆÁ¿
 $totalnum=(int)$_GET['totalnum'];
 if(!$public_r['usetotalnum'])
 {
@@ -51,7 +51,7 @@ if($totalnum>0)
 else
 {
 	$totalquery="select count(*) as total from {$dbtbpre}enewsgbook where bid='$bid' and checked=0";
-	$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+	$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊý
 }
 if($public_r['usetotalnum'])
 {
@@ -68,27 +68,27 @@ $url="<a href='".ReturnSiteIndexUrl()."'>".$fun_r['index']."</a>&nbsp;>&nbsp;".$
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ç•™è¨€æ¿ - Powered by EmpireCMS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>ÁôÑÔ°å - Powered by EmpireCMS</title>
 <meta name="keywords" content="<?=$bname?>" />
 <meta name="description" content="<?=$bname?>" />
-<link href="/ecms75/skin/default/css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/ecms75/skin/default/js/tabs.js"></script>
+<link href="/skin/default/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/skin/default/js/tabs.js"></script>
 </head>
 <body class="listpage">
-<!-- é¡µå¤´ -->
+<!-- Ò³Í· -->
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="top">
 <tr>
 <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="63%">
-<!-- ç™»å½• -->
+<!-- µÇÂ¼ -->
 <script>
-document.write('<script src="/ecms75/e/member/login/loginjs.php?t='+Math.random()+'"><'+'/script>');
+document.write('<script src="/e/member/login/loginjs.php?t='+Math.random()+'"><'+'/script>');
 </script>
 </td>
 <td align="right">
-<a onclick="window.external.addFavorite(location.href,document.title)" href="#ecms">åŠ å…¥æ”¶è—</a> | <a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('/ecms75/')" href="#ecms">è®¾ä¸ºé¦–é¡µ</a> | <a href="/ecms75/e/member/cp/">ä¼šå‘˜ä¸­å¿ƒ</a> | <a href="/ecms75/e/DoInfo/">æˆ‘è¦æŠ•ç¨¿</a> | <a href="/ecms75/e/web/?type=rss2" target="_blank">RSS<img src="/ecms75/skin/default/images/rss.gif" border="0" hspace="2" /></a>
+<a onclick="window.external.addFavorite(location.href,document.title)" href="#ecms">¼ÓÈëÊÕ²Ø</a> | <a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('/')" href="#ecms">ÉèÎªÊ×Ò³</a> | <a href="/e/member/cp/">»áÔ±ÖÐÐÄ</a> | <a href="/e/DoInfo/">ÎÒÒªÍ¶¸å</a> | <a href="/e/web/?type=rss2" target="_blank">RSS<img src="/skin/default/images/rss.gif" border="0" hspace="2" /></a>
 </td>
 </tr>
 </table></td>
@@ -96,23 +96,23 @@ document.write('<script src="/ecms75/e/member/login/loginjs.php?t='+Math.random(
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="10">
 <tr valign="middle">
-<td width="240" align="center"><a href="/ecms75/"><img src="/ecms75/skin/default/images/logo.gif" width="200" height="65" border="0" /></a></td>
-<td align="center"><a href="http://www.phome.net/OpenSource/" target="_blank"><img src="/ecms75/skin/default/images/opensource.gif" width="100%" height="70" border="0" /></a></td>
+<td width="240" align="center"><a href="/"><img src="/skin/default/images/logo.gif" width="200" height="65" border="0" /></a></td>
+<td align="center"><a href="http://www.phome.net/OpenSource/" target="_blank"><img src="/skin/default/images/opensource.gif" width="100%" height="70" border="0" /></a></td>
 </tr>
 </table>
-<!-- å¯¼èˆªtabé€‰é¡¹å¡ -->
+<!-- µ¼º½tabÑ¡Ïî¿¨ -->
 <table width="920" border="0" align="center" cellpadding="0" cellspacing="0" class="nav">
   <tr> 
     <td class="nav_global"><ul>
-        <li class="curr" id="tabnav_btn_0" onmouseover="tabit(this)"><a href="/ecms75/">é¦–é¡µ</a></li>
-        <li id="tabnav_btn_1" onmouseover="tabit(this)"><a href="/ecms75/news/">æ–°é—»ä¸­å¿ƒ</a></li>
-        <li id="tabnav_btn_2" onmouseover="tabit(this)"><a href="/ecms75/download/">ä¸‹è½½ä¸­å¿ƒ</a></li>
-        <li id="tabnav_btn_3" onmouseover="tabit(this)"><a href="/ecms75/movie/">å½±è§†é¢‘é“</a></li>
-        <li id="tabnav_btn_4" onmouseover="tabit(this)"><a href="/ecms75/shop/">ç½‘ä¸Šå•†åŸŽ</a></li>
-        <li id="tabnav_btn_5" onmouseover="tabit(this)"><a href="/ecms75/flash/">FLASHé¢‘é“</a></li>
-        <li id="tabnav_btn_6" onmouseover="tabit(this)"><a href="/ecms75/photo/">å›¾ç‰‡é¢‘é“</a></li>
-        <li id="tabnav_btn_7" onmouseover="tabit(this)"><a href="/ecms75/article/">æ–‡ç« ä¸­å¿ƒ</a></li>
-        <li id="tabnav_btn_8" onmouseover="tabit(this)"><a href="/ecms75/info/">åˆ†ç±»ä¿¡æ¯</a></li>
+        <li class="curr" id="tabnav_btn_0" onmouseover="tabit(this)"><a href="/">Ê×Ò³</a></li>
+        <li id="tabnav_btn_1" onmouseover="tabit(this)"><a href="/news/">ÐÂÎÅÖÐÐÄ</a></li>
+        <li id="tabnav_btn_2" onmouseover="tabit(this)"><a href="/download/">ÏÂÔØÖÐÐÄ</a></li>
+        <li id="tabnav_btn_3" onmouseover="tabit(this)"><a href="/movie/">Ó°ÊÓÆµµÀ</a></li>
+        <li id="tabnav_btn_4" onmouseover="tabit(this)"><a href="/shop/">ÍøÉÏÉÌ³Ç</a></li>
+        <li id="tabnav_btn_5" onmouseover="tabit(this)"><a href="/flash/">FLASHÆµµÀ</a></li>
+        <li id="tabnav_btn_6" onmouseover="tabit(this)"><a href="/photo/">Í¼Æ¬ÆµµÀ</a></li>
+        <li id="tabnav_btn_7" onmouseover="tabit(this)"><a href="/article/">ÎÄÕÂÖÐÐÄ</a></li>
+        <li id="tabnav_btn_8" onmouseover="tabit(this)"><a href="/info/">·ÖÀàÐÅÏ¢</a></li>
       </ul></td>
   </tr>
 </table>
@@ -120,7 +120,7 @@ document.write('<script src="/ecms75/e/member/login/loginjs.php?t='+Math.random(
 <tr valign="top">
 <td class="list_content"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="position">
 <tr>
-<td>çŽ°åœ¨çš„ä½ç½®ï¼š<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<?=$bname?>
+<td>ÏÖÔÚµÄÎ»ÖÃ£º<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<?=$bname?>
 </td>
 </tr>
 </table><table width="100%" border="0" cellspacing="0" cellpadding="0" class="box">
@@ -142,8 +142,8 @@ while($r=$empire->fetch($sql))
 
 								<table width="92%" border="0" align="center" cellpadding="4" cellspacing="1" bgcolor="#F4F9FD" class="tableborder">
 										<tr class="header">
-											<td width="55%" height="23">å‘å¸ƒè€…: <?=stripSlashes($r[name])?> </td>
-											<td width="45%">å‘å¸ƒæ—¶é—´: <?=$r[lytime]?> </td>
+											<td width="55%" height="23">·¢²¼Õß: <?=stripSlashes($r[name])?> </td>
+											<td width="45%">·¢²¼Ê±¼ä: <?=$r[lytime]?> </td>
 										</tr>
 										<tr bgcolor="#FFFFFF">
 											<td height="23" colspan="2"><table border="0" width="100%" cellspacing="1" cellpadding="8" bgcolor='#cccccc'>
@@ -159,7 +159,7 @@ if($r[retext])
 
 												<table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
 													<tr>
-														<td><img src="../../data/images/regb.gif" width="18" height="18" /><strong><font color="#FF0000">å›žå¤:</font></strong> <?=$r[retext]?> </td>
+														<td><img src="../../data/images/regb.gif" width="18" height="18" /><strong><font color="#FF0000">»Ø¸´:</font></strong> <?=$r[retext]?> </td>
 													</tr>
 												</table>
 												
@@ -176,36 +176,36 @@ if($r[retext])
 
 								<table width="92%" border="0" align="center" cellpadding="4" cellspacing="1">
 									<tr>
-										<td>åˆ†é¡µ: <?=$listpage?></td>
+										<td>·ÖÒ³: <?=$listpage?></td>
 									</tr>
 								</table>
 								<form action="../../enews/index.php" method="post" name="form1" id="form1">
 									<table width="92%" border="0" align="center" cellpadding="4" cellspacing="1"class="tableborder">
 										<tr class="header">
-											<td colspan="2" bgcolor="#F4F9FD"><strong>è¯·æ‚¨ç•™è¨€:</strong></td>
+											<td colspan="2" bgcolor="#F4F9FD"><strong>ÇëÄúÁôÑÔ:</strong></td>
 										</tr>
 										<tr bgcolor="#FFFFFF">
-											<td width="20%">å§“å:</td>
+											<td width="20%">ÐÕÃû:</td>
 											<td width="722" height="23"><input name="name" type="text" id="name" />
 												*</td>
 										</tr>
 										<tr bgcolor="#FFFFFF">
-											<td>è”ç³»é‚®ç®±:</td>
+											<td>ÁªÏµÓÊÏä:</td>
 											<td height="23"><input name="email" type="text" id="email" />
 												*</td>
 										</tr>
 										<tr bgcolor="#FFFFFF">
-											<td>è”ç³»ç”µè¯:</td>
+											<td>ÁªÏµµç»°:</td>
 											<td height="23"><input name="mycall" type="text" id="mycall" /></td>
 										</tr>
 										<tr bgcolor="#FFFFFF">
-											<td>ç•™è¨€å†…å®¹(*):</td>
+											<td>ÁôÑÔÄÚÈÝ(*):</td>
 											<td height="23"><textarea name="lytext" cols="60" rows="12" id="lytext"></textarea></td>
 										</tr>
 										<tr bgcolor="#FFFFFF">
 											<td height="23">&nbsp;</td>
-											<td height="23"><input type="submit" name="Submit3" value="æäº¤" />
-											<input type="reset" name="Submit22" value="é‡ç½®" />
+											<td height="23"><input type="submit" name="Submit3" value="Ìá½»" />
+											<input type="reset" name="Submit22" value="ÖØÖÃ" />
 											<input name="enews" type="hidden" id="enews" value="AddGbook" /></td>
 										</tr>
 									</table>
@@ -218,31 +218,31 @@ if($r[retext])
 </table></td>
 </tr>
 </table>
-<!-- é¡µè„š -->
+<!-- Ò³½Å -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td align="center" class="search">
-<form action="/ecms75/e/search/index.php" method="post" name="searchform" id="searchform">
+<form action="/e/search/index.php" method="post" name="searchform" id="searchform">
 <table border="0" cellspacing="6" cellpadding="0">
 <tr>
-<td><strong>ç«™å†…æœç´¢ï¼š</strong>
+<td><strong>Õ¾ÄÚËÑË÷£º</strong>
 <input name="keyboard" type="text" size="32" id="keyboard" class="inputText" />
 <input type="hidden" name="show" value="title" />
 <input type="hidden" name="tempid" value="1" />
 <select name="tbname">
-<option value="news">æ–°é—»</option>
-<option value="download">ä¸‹è½½</option>
-<option value="photo">å›¾åº“</option>
+<option value="news">ÐÂÎÅ</option>
+<option value="download">ÏÂÔØ</option>
+<option value="photo">Í¼¿â</option>
 <option value="flash">FLASH</option>
-<option value="movie">ç”µå½±</option>
-<option value="shop">å•†å“</option>
-<option value="article">æ–‡ç« </option>
-<option value="info">åˆ†ç±»ä¿¡æ¯</option>
+<option value="movie">µçÓ°</option>
+<option value="shop">ÉÌÆ·</option>
+<option value="article">ÎÄÕÂ</option>
+<option value="info">·ÖÀàÐÅÏ¢</option>
 </select>
 </td>
-<td><input type="image" class="inputSub" src="/ecms75/skin/default/images/search.gif" />
+<td><input type="image" class="inputSub" src="/skin/default/images/search.gif" />
 </td>
-<td><a href="/ecms75/search/" target="_blank">é«˜çº§æœç´¢</a></td>
+<td><a href="/search/" target="_blank">¸ß¼¶ËÑË÷</a></td>
 </tr>
 </table>
 </form>
@@ -252,9 +252,9 @@ if($r[retext])
 <td>
 	<table width="100%" border="0" cellpadding="0" cellspacing="4" class="copyright">
         <tr> 
-          <td align="center"><a href="/ecms75/">ç½‘ç«™é¦–é¡µ</a> | <a href="#">å…³äºŽæˆ‘ä»¬</a> 
-            | <a href="#">æœåŠ¡æ¡æ¬¾</a> | <a href="#">å¹¿å‘ŠæœåŠ¡</a> | <a href="#">è”ç³»æˆ‘ä»¬</a> 
-            | <a href="#">ç½‘ç«™åœ°å›¾</a> | <a href="#">å…è´£å£°æ˜Ž</a> | <a href="/ecms75/e/wap/" target="_blank">WAP</a></td>
+          <td align="center"><a href="/">ÍøÕ¾Ê×Ò³</a> | <a href="#">¹ØÓÚÎÒÃÇ</a> 
+            | <a href="#">·þÎñÌõ¿î</a> | <a href="#">¹ã¸æ·þÎñ</a> | <a href="#">ÁªÏµÎÒÃÇ</a> 
+            | <a href="#">ÍøÕ¾µØÍ¼</a> | <a href="#">ÃâÔðÉùÃ÷</a> | <a href="/e/wap/" target="_blank">WAP</a></td>
         </tr>
         <tr> 
           <td align="center">Powered by <strong><a href="http://www.phome.net" target="_blank">EmpireCMS</a></strong> 

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"tags");
 
-//æ¸…ç†å¤šä½™æ•°æ®
+//ÇåÀí¶àÓàÊı¾İ
 function ClearTags($start,$line,$userid,$username){
 	global $empire,$dbtbpre,$class_r,$fun_r;
 	$line=(int)$line;
@@ -47,13 +47,13 @@ function ClearTags($start,$line,$userid,$username){
 		}
 		else
 		{
-			//è¿”å›è¡¨
+			//·µ»Ø±í
 			$infotb=ReturnInfoMainTbname($class_r[$r[classid]]['tbname'],$index_r['checked']);
-			//ä¸»è¡¨
+			//Ö÷±í
 			$infor=$empire->fetch1("select stb from ".$infotb." where id='$r[id]' limit 1");
-			//è¿”å›è¡¨ä¿¡æ¯
+			//·µ»Ø±íĞÅÏ¢
 			$infodatatb=ReturnInfoDataTbname($class_r[$r[classid]]['tbname'],$index_r['checked'],$infor['stb']);
-			//å‰¯è¡¨
+			//¸±±í
 			$finfor=$empire->fetch1("select infotags from ".$infodatatb." where id='$r[id]' limit 1");
 			$tagr=$empire->fetch1("select tagname from {$dbtbpre}enewstags where tagid='$r[tagid]'");
 			if(!stristr(','.$finfor['infotags'].',',','.$tagr['tagname'].','))
@@ -69,7 +69,7 @@ function ClearTags($start,$line,$userid,$username){
 	}
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror('ClearTagsSuccess','ClearTags.php'.hReturnEcmsHashStrHref2(1));
 	}
@@ -92,7 +92,7 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title>TAGS</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -100,23 +100,23 @@ $empire=null;
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href=ListTags.php<?=$ecms_hashur['whehref']?>>ç®¡ç†TAGS</a> &gt; æ¸…ç†å¤šä½™TAGSä¿¡æ¯</td>
+    <td>Î»ÖÃ£º<a href=ListTags.php<?=$ecms_hashur['whehref']?>>¹ÜÀíTAGS</a> &gt; ÇåÀí¶àÓàTAGSĞÅÏ¢</td>
   </tr>
 </table>
-<form name="tagsclear" method="get" action="ClearTags.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+<form name="tagsclear" method="get" action="ClearTags.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">æ¸…ç†å¤šä½™TAGSä¿¡æ¯ <input name=enews type=hidden value=ClearTags></td>
+      <td height="25" colspan="2">ÇåÀí¶àÓàTAGSĞÅÏ¢ <input name=enews type=hidden value=ClearTags></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">æ¯ç»„æ•´ç†æ•°ï¼š</td>
+      <td width="19%" height="25">Ã¿×éÕûÀíÊı£º</td>
       <td width="81%" height="25"><input name="line" type="text" id="line" value="500"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="å¼€å§‹æ¸…ç†"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="¿ªÊ¼ÇåÀí"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

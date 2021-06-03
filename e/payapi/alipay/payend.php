@@ -3,55 +3,55 @@ require("../../class/connect.php");
 require("../../class/db_sql.php");
 require("../../class/q_functions.php");
 require("../../member/class/user.php");
-eCheckCloseMods('pay');//å…³é—­æ¨¡å—
+eCheckCloseMods('pay');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
 
-//è®¢å•å·
+//¶©µ¥ºÅ
 if(!getcvar('checkpaysession'))
 {
-	printerror('éæ³•æ“ä½œ','../../../',1,0,1);
+	printerror('·Ç·¨²Ù×÷','../../../',1,0,1);
 }
 else
 {
 	esetcookie("checkpaysession","",0);
 }
-//æ“ä½œäº‹ä»¶
+//²Ù×÷ÊÂ¼ş
 $phome=getcvar('payphome');
-if($phome=='PayToFen')//è´­ä¹°ç‚¹æ•°
+if($phome=='PayToFen')//¹ºÂòµãÊı
 {}
-elseif($phome=='PayToMoney')//å­˜é¢„ä»˜æ¬¾
+elseif($phome=='PayToMoney')//´æÔ¤¸¶¿î
 {}
-elseif($phome=='ShopPay')//å•†åŸæ”¯ä»˜
+elseif($phome=='ShopPay')//ÉÌ³ÇÖ§¸¶
 {}
-elseif($phome=='BuyGroupPay')//è´­ä¹°å……å€¼ç±»å‹
+elseif($phome=='BuyGroupPay')//¹ºÂò³äÖµÀàĞÍ
 {}
 else
 {
-	printerror('æ‚¨æ¥è‡ªçš„é“¾æ¥ä¸å­˜åœ¨','',1,0,1);
+	printerror('ÄúÀ´×ÔµÄÁ´½Ó²»´æÔÚ','',1,0,1);
 }
 
 $user=array();
 if($phome=='PayToFen'||$phome=='PayToMoney'||$phome=='BuyGroupPay')
 {
-	$user=islogin();//æ˜¯å¦ç™»é™†
+	$user=islogin();//ÊÇ·ñµÇÂ½
 }
 
 $paytype='alipay';
 $payr=$empire->fetch1("select * from {$dbtbpre}enewspayapi where paytype='$paytype' limit 1");
 if(!$payr['payid']||$payr['isclose'])
 {
-	printerror('æ‚¨æ¥è‡ªçš„é“¾æ¥ä¸å­˜åœ¨','',1,0,1);
+	printerror('ÄúÀ´×ÔµÄÁ´½Ó²»´æÔÚ','',1,0,1);
 }
 
-$bargainor_id=$payr['payuser'];//å•†æˆ·å·
+$bargainor_id=$payr['payuser'];//ÉÌ»§ºÅ
 
-$paykey=$payr['paykey'];//å¯†é’¥
+$paykey=$payr['paykey'];//ÃÜÔ¿
 
-$seller_email=$payr['payemail'];//å–å®¶æ”¯ä»˜å®å¸æˆ·
+$seller_email=$payr['payemail'];//Âô¼ÒÖ§¸¶±¦ÕÊ»§
 
-//----------------------------------------------è¿”å›ä¿¡æ¯
+//----------------------------------------------·µ»ØĞÅÏ¢
 
 if(!empty($_POST))
 {
@@ -64,7 +64,7 @@ if(!empty($_POST))
 $get_seller_email=rawurldecode($_GET['seller_email']);
 
 
-//æ”¯ä»˜éªŒè¯
+//Ö§¸¶ÑéÖ¤
 ksort($_GET);
 reset($_GET);
 
@@ -80,42 +80,42 @@ foreach($_GET AS $key=>$val)
 $sign=md5(substr($sign,0,-1).$paykey);
 if('dg'.$sign!='dg'.$_GET['sign'])
 {
-	printerror('éªŒè¯MD5ç­¾åå¤±è´¥.','../../../',1,0,1);
+	printerror('ÑéÖ¤MD5Ç©ÃûÊ§°Ü.','../../../',1,0,1);
 }
 
 if(!($_GET['trade_status']=="TRADE_FINISHED"||$_GET['trade_status']=="WAIT_SELLER_SEND_GOODS"||$_GET['trade_status']=="TRADE_SUCCESS"))
 {
-	printerror('æ”¯ä»˜å¤±è´¥.','../../../',1,0,1);
+	printerror('Ö§¸¶Ê§°Ü.','../../../',1,0,1);
 }
 
-//----------- æ”¯ä»˜æˆåŠŸåå¤„ç† -----------
+//----------- Ö§¸¶³É¹¦ºó´¦Àí -----------
 
 include('../payfun.php');
 $pr=$empire->fetch1("select paymoneytofen,payminmoney from {$dbtbpre}enewspublic limit 1");
 
-$orderid=$_GET['trade_no'];	//æ”¯ä»˜è®¢å•
-$ddno=$_GET['out_trade_no'];	//ç½‘ç«™çš„è®¢å•å·
+$orderid=$_GET['trade_no'];	//Ö§¸¶¶©µ¥
+$ddno=$_GET['out_trade_no'];	//ÍøÕ¾µÄ¶©µ¥ºÅ
 $money=$_GET['total_fee'];
 $fen=floor($money)*$pr[paymoneytofen];
 
-if($phome=='PayToFen')//è´­ä¹°ç‚¹æ•°
+if($phome=='PayToFen')//¹ºÂòµãÊı
 {
-	$paybz='è´­ä¹°ç‚¹æ•°: '.$fen;
+	$paybz='¹ºÂòµãÊı: '.$fen;
 	PayApiBuyFen($fen,$money,$paybz,$orderid,$user[userid],$user[username],$paytype);
 }
-elseif($phome=='PayToMoney')//å­˜é¢„ä»˜æ¬¾
+elseif($phome=='PayToMoney')//´æÔ¤¸¶¿î
 {
-	$paybz='å­˜é¢„ä»˜æ¬¾';
+	$paybz='´æÔ¤¸¶¿î';
 	PayApiPayMoney($money,$paybz,$orderid,$user[userid],$user[username],$paytype);
 }
-elseif($phome=='ShopPay')//å•†åŸæ”¯ä»˜
+elseif($phome=='ShopPay')//ÉÌ³ÇÖ§¸¶
 {
 	include('../../data/dbcache/class.php');
 	$ddid=(int)getcvar('paymoneyddid');
-	$paybz='å•†åŸè´­ä¹° [!--ddno--] çš„è®¢å•(ddid='.$ddid.')';
+	$paybz='ÉÌ³Ç¹ºÂò [!--ddno--] µÄ¶©µ¥(ddid='.$ddid.')';
 	PayApiShopPay($ddid,$money,$paybz,$orderid,'','',$paytype);
 }
-elseif($phome=='BuyGroupPay')//è´­ä¹°å……å€¼ç±»å‹
+elseif($phome=='BuyGroupPay')//¹ºÂò³äÖµÀàĞÍ
 {
 	include("../../data/dbcache/MemberLevel.php");
 	$bgid=(int)getcvar('paymoneybgid');

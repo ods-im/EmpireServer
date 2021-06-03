@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"searchall");
 $r=$empire->fetch1("select openschall,schallfield,schallminlen,schallmaxlen,schallnotcid,schallnum,schallpagenum,schalltime from {$dbtbpre}enewspublic limit 1");
 $schallnotcid=substr($r[schallnotcid],1,strlen($r[schallnotcid])-2);
@@ -25,15 +25,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å…¨ç«™æœç´¢è®¾ç½®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>È«Õ¾ËÑË÷ÉèÖÃ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="ListSearchLoadTb.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å…¨ç«™æœç´¢æ•°æ®æº</a>&nbsp;->&nbsp;å…¨ç«™æœç´¢è®¾ç½®
+    <td>Î»ÖÃ£º<a href="ListSearchLoadTb.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÈ«Õ¾ËÑË÷Êý¾ÝÔ´</a>&nbsp;->&nbsp;È«Õ¾ËÑË÷ÉèÖÃ
     </td>
   </tr>
 </table>
@@ -41,58 +41,58 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å…¨ç«™æœç´¢è®¾ç½® 
+      <td height="25" colspan="2">È«Õ¾ËÑË÷ÉèÖÃ 
         <input name=enews type=hidden value=SetSearchAll></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å¼€å¯æœç´¢</td>
+      <td height="25">¿ªÆôËÑË÷</td>
       <td height="25"><input type="radio" name="openschall" value="1"<?=$r[openschall]==1?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="openschall" value="0"<?=$r[openschall]==0?' checked':''?>>
-        å¦ </td>
+        ·ñ </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">æœç´¢èŒƒå›´ï¼š</td>
+      <td width="19%" height="25">ËÑË÷·¶Î§£º</td>
       <td width="81%" height="25"><select name="schallfield" id="schallfield">
-          <option value="1"<?=$r[schallfield]==1?' selected':''?>>æœç´¢æ ‡é¢˜å’Œå…¨æ–‡</option>
-          <option value="2"<?=$r[schallfield]==2?' selected':''?>>æœç´¢æ ‡é¢˜</option>
-          <option value="3"<?=$r[schallfield]==3?' selected':''?>>æœç´¢å…¨æ–‡</option>
+          <option value="1"<?=$r[schallfield]==1?' selected':''?>>ËÑË÷±êÌâºÍÈ«ÎÄ</option>
+          <option value="2"<?=$r[schallfield]==2?' selected':''?>>ËÑË÷±êÌâ</option>
+          <option value="3"<?=$r[schallfield]==3?' selected':''?>>ËÑË÷È«ÎÄ</option>
         </select> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æœç´¢å…³é”®å­—é•¿åº¦ï¼š</td>
-      <td height="25">åœ¨ 
+      <td height="25">ËÑË÷¹Ø¼ü×Ö³¤¶È£º</td>
+      <td height="25">ÔÚ 
         <input name="schallminlen" type="text" id="schallminlen" value="<?=$r[schallminlen]?>" size="6">
-        ä¸ªå­—ç¬¦ä¸Ž 
+        ¸ö×Ö·ûÓë 
         <input name="schallmaxlen" type="text" id="schallmaxlen" value="<?=$r[schallmaxlen]?>" size="6">
-        ä¸ªå­—ç¬¦ä¹‹é—´ </td>
+        ¸ö×Ö·ûÖ®¼ä </td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æœç´¢æ—¶é—´é—´éš”ï¼š</td>
-      <td height="25">åœ¨ 
+      <td height="25">ËÑË÷Ê±¼ä¼ä¸ô£º</td>
+      <td height="25">ÔÚ 
         <input name="schalltime" type="text" id="schalltime" value="<?=$r[schalltime]?>" size="6">
-        ç§’</td>
+        Ãë</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">é¡µé¢æ˜¾ç¤ºï¼š</td>
-      <td height="25">æ¯é¡µ 
+      <td height="25">Ò³ÃæÏÔÊ¾£º</td>
+      <td height="25">Ã¿Ò³ 
         <input name="schallnum" type="text" id="schallnum" value="<?=$r[schallnum]?>" size="6">
-        æ˜¾ç¤ºæ¡è®°å½•ï¼Œ 
+        ÏÔÊ¾Ìõ¼ÇÂ¼£¬ 
         <input name="schallpagenum" type="text" id="schallpagenum" value="<?=$r[schallpagenum]?>" size="6">
-        ä¸ªåˆ†é¡µé“¾æŽ¥<font color="#666666">&nbsp;</font></td>
+        ¸ö·ÖÒ³Á´½Ó<font color="#666666">&nbsp;</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ä¸å¯¼å…¥æœç´¢è¡¨çš„ç»ˆæžæ ç›®ï¼š</td>
+      <td height="25">²»µ¼ÈëËÑË÷±íµÄÖÕ¼«À¸Ä¿£º</td>
       <td height="25"><input name="schallnotcid" type="text" id="schallnotcid" value="<?=$schallnotcid?>"> 
-        <font color="#666666">(æ ¼å¼ï¼šæ ç›®ID1,æ ç›®ID2...å¤šä¸ªç”¨&quot;,&quot;æ ¼å¼€)</font> </td>
+        <font color="#666666">(¸ñÊ½£ºÀ¸Ä¿ID1,À¸Ä¿ID2...¶à¸öÓÃ&quot;,&quot;¸ñ¿ª)</font> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25">å…¨ç«™æœç´¢æµ‹è¯•åœ°å€ï¼š<a href="<?=$public_r[newsurl].'e/sch/sch.html'?>" target="_blank">
+      <td height="25">È«Õ¾ËÑË÷²âÊÔµØÖ·£º<a href="<?=$public_r[newsurl].'e/sch/sch.html'?>" target="_blank">
         <?=$public_r[newsurl].'e/sch/sch.html'?>
         </a></td>
     </tr>

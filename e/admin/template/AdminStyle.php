@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"adminstyle");
 
-//æ›´æ–°æ ·å¼ç¼“å­˜
+//¸üĞÂÑùÊ½»º´æ
 function UpAdminstyle(){
 	global $empire,$dbtbpre;
 	$adminstyle=',';
@@ -31,7 +31,7 @@ function UpAdminstyle(){
 	GetConfig();
 }
 
-//å¢åŠ åå°æ ·å¼
+//Ôö¼ÓºóÌ¨ÑùÊ½
 function AddAdminstyle($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$path=RepPathStr($add['path']);
@@ -40,9 +40,9 @@ function AddAdminstyle($add,$userid,$username){
 	{
 		printerror("EmptyAdminStyle","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"adminstyle");
-	//ç›®å½•æ˜¯å¦å­˜åœ¨
+	//Ä¿Â¼ÊÇ·ñ´æÔÚ
 	if(!file_exists("../adminstyle/".$path))
 	{
 		printerror("EmptyAdminStylePath","history.go(-1)");
@@ -53,7 +53,7 @@ function AddAdminstyle($add,$userid,$username){
 	{
 		UpAdminstyle();
 		$styleid=$empire->lastid();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("styleid=$styleid&stylename=$add[stylename]");
 		printerror("AddAdminStyleSuccess","AdminStyle.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -63,7 +63,7 @@ function AddAdminstyle($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹åå°æ ·å¼
+//ĞŞ¸ÄºóÌ¨ÑùÊ½
 function EditAdminStyle($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$styleid=(int)$add['styleid'];
@@ -73,9 +73,9 @@ function EditAdminStyle($add,$userid,$username){
 	{
 		printerror("EmptyAdminStyle","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"adminstyle");
-	//ç›®å½•æ˜¯å¦å­˜åœ¨
+	//Ä¿Â¼ÊÇ·ñ´æÔÚ
 	if(!file_exists("../adminstyle/".$path))
 	{
 		printerror("EmptyAdminStylePath","history.go(-1)");
@@ -85,7 +85,7 @@ function EditAdminStyle($add,$userid,$username){
 	if($sql)
 	{
 		UpAdminstyle();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("styleid=$styleid&stylename=$add[stylename]");
 		printerror("EditAdminStyleSuccess","AdminStyle.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -95,7 +95,7 @@ function EditAdminStyle($add,$userid,$username){
 	}
 }
 
-//é»˜è®¤åå°æ ·å¼
+//Ä¬ÈÏºóÌ¨ÑùÊ½
 function DefAdminStyle($styleid,$userid,$username){
 	global $empire,$dbtbpre;
 	$styleid=(int)$styleid;
@@ -103,7 +103,7 @@ function DefAdminStyle($styleid,$userid,$username){
 	{
 		printerror("EmptyAdminStyleid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"adminstyle");
 	$r=$empire->fetch1("select stylename,path from {$dbtbpre}enewsadminstyle where styleid=$styleid");
 	$usql=$empire->query("update {$dbtbpre}enewsadminstyle set isdefault=0");
@@ -112,7 +112,7 @@ function DefAdminStyle($styleid,$userid,$username){
 	if($sql)
 	{
 		GetConfig();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("styleid=$styleid&stylename=$r[stylename]");
 		printerror("DefAdminStyleSuccess","AdminStyle.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -122,7 +122,7 @@ function DefAdminStyle($styleid,$userid,$username){
 	}
 }
 
-//åˆ é™¤åå°æ ·å¼
+//É¾³ıºóÌ¨ÑùÊ½
 function DelAdminStyle($styleid,$userid,$username){
 	global $empire,$dbtbpre;
 	$styleid=(int)$styleid;
@@ -130,7 +130,7 @@ function DelAdminStyle($styleid,$userid,$username){
 	{
 		printerror("EmptyAdminStyleid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"adminstyle");
 	$r=$empire->fetch1("select stylename,path,isdefault from {$dbtbpre}enewsadminstyle where styleid=$styleid");
 	if($r['isdefault'])
@@ -141,7 +141,7 @@ function DelAdminStyle($styleid,$userid,$username){
 	if($sql)
 	{
 		UpAdminstyle();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("styleid=$styleid&stylename=$r[stylename]");
 		printerror("DelAdminStyleSuccess","AdminStyle.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -158,22 +158,22 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ åå°æ ·å¼
+//Ôö¼ÓºóÌ¨ÑùÊ½
 if($enews=="AddAdminStyle")
 {
 	AddAdminstyle($_POST,$logininid,$loginin);
 }
-//ä¿®æ”¹åå°æ ·å¼
+//ĞŞ¸ÄºóÌ¨ÑùÊ½
 elseif($enews=="EditAdminStyle")
 {
 	EditAdminStyle($_POST,$logininid,$loginin);
 }
-//é»˜è®¤åå°æ ·å¼
+//Ä¬ÈÏºóÌ¨ÑùÊ½
 elseif($enews=="DefAdminStyle")
 {
 	DefAdminStyle($_GET['styleid'],$logininid,$loginin);
 }
-//åˆ é™¤åå°æ ·å¼
+//É¾³ıºóÌ¨ÑùÊ½
 elseif($enews=="DelAdminStyle")
 {
 	DelAdminStyle($_GET['styleid'],$logininid,$loginin);
@@ -183,7 +183,7 @@ $sql=$empire->query("select styleid,stylename,path,isdefault from {$dbtbpre}enew
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -191,7 +191,7 @@ $sql=$empire->query("select styleid,stylename,path,isdefault from {$dbtbpre}enew
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td><p>ä½ç½®ï¼š<a href="AdminStyle.php<?=$ecms_hashur['whehref']?>">ç®¡ç†åå°æ ·å¼</a></p>
+    <td><p>Î»ÖÃ£º<a href="AdminStyle.php<?=$ecms_hashur['whehref']?>">¹ÜÀíºóÌ¨ÑùÊ½</a></p>
       </td>
   </tr>
 </table>
@@ -199,27 +199,27 @@ $sql=$empire->query("select styleid,stylename,path,isdefault from {$dbtbpre}enew
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td height="25">å¢åŠ åå°æ ·å¼: 
+      <td height="25">Ôö¼ÓºóÌ¨ÑùÊ½: 
         <input name=enews type=hidden id="enews" value=AddAdminStyle>
         </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> æ ·å¼åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> ÑùÊ½Ãû³Æ: 
         <input name="stylename" type="text" id="stylename">
-        æ ·å¼ç›®å½•:adminstyle/ 
+        ÑùÊ½Ä¿Â¼:adminstyle/ 
         <input name="path" type="text" id="path" size="6">
-        (è¯·å¡«å†™æ•°å­—) 
-        <input type="submit" name="Submit" value="å¢åŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        (ÇëÌîĞ´Êı×Ö) 
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="7%"><div align="center">ID</div></td>
-    <td width="29%" height="25"><div align="center">æ ·å¼åç§°</div></td>
-    <td width="30%"><div align="center">æ ·å¼ç›®å½•</div></td>
-    <td width="34%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="29%" height="25"><div align="center">ÑùÊ½Ãû³Æ</div></td>
+    <td width="30%"><div align="center">ÑùÊ½Ä¿Â¼</div></td>
+    <td width="34%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -247,11 +247,11 @@ $sql=$empire->query("select styleid,stylename,path,isdefault from {$dbtbpre}enew
           <input name="path" type="text" id="path" value="<?=$r[path]?>" size="6">
         </div></td>
       <td height="25"><div align="center">
-          <input type="button" name="Submit4" value="è®¾ä¸ºé»˜è®¤" onclick="self.location.href='AdminStyle.php?enews=DefAdminStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['href']?>';"> 
+          <input type="button" name="Submit4" value="ÉèÎªÄ¬ÈÏ" onclick="self.location.href='AdminStyle.php?enews=DefAdminStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['href']?>';"> 
 		  &nbsp;
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="self.location.href='AdminStyle.php?enews=DelAdminStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['href']?>';">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="self.location.href='AdminStyle.php?enews=DelAdminStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['href']?>';">
         </div></td>
     </tr>
   </form>

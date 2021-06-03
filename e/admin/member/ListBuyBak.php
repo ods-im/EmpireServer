@@ -9,7 +9,7 @@ require("../../data/dbcache/MemberLevel.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -18,7 +18,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"member");
 $userid=(int)$_GET['userid'];
 $username=ehtmlspecialchars($_GET['username']);
@@ -26,11 +26,11 @@ $search="&username=".$username."&userid=".$userid.$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=20;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=20;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $totalquery="select count(*) as total from {$dbtbpre}enewsbuybak where userid='$userid'";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query="select * from {$dbtbpre}enewsbuybak where userid='$userid'";
 $query=$query." order by buytime desc limit $offset,$line";
 $sql=$empire->query($query);
@@ -39,46 +39,46 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>è´­ä¹°è®°å½•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ºÂò¼ÇÂ¼</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="98%%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>æŸ¥çœ‹<b><?=$username?></b>è´­ä¹°è®°å½•</td>
+    <td>²é¿´<b><?=$username?></b>¹ºÂò¼ÇÂ¼</td>
   </tr>
 </table>
 <br>
 <table width="98%%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td width="11%"><div align="center">å……å€¼ç±»å‹</div></td>
-    <td width="37%" height="25"><div align="center">å……å€¼å¡å·</div></td>
-    <td width="11%" height="25"><div align="center">å……å€¼é‡‘é¢</div></td>
-    <td width="11%" height="25"><div align="center">è´­ä¹°ç‚¹æ•°</div></td>
-    <td width="11%"><div align="center">æœ‰æ•ˆæœŸ</div></td>
-    <td width="19%" height="25"><div align="center">è´­ä¹°æ—¶é—´</div></td>
+    <td width="11%"><div align="center">³äÖµÀàĞÍ</div></td>
+    <td width="37%" height="25"><div align="center">³äÖµ¿¨ºÅ</div></td>
+    <td width="11%" height="25"><div align="center">³äÖµ½ğ¶î</div></td>
+    <td width="11%" height="25"><div align="center">¹ºÂòµãÊı</div></td>
+    <td width="11%"><div align="center">ÓĞĞ§ÆÚ</div></td>
+    <td width="19%" height="25"><div align="center">¹ºÂòÊ±¼ä</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
   {
-		//ç±»å‹
+		//ÀàĞÍ
 		if($r['type']==0)
 		{
-			$type='ç‚¹å¡å……å€¼';
+			$type='µã¿¨³äÖµ';
 		}
 		elseif($r['type']==1)
 		{
-			$type='åœ¨çº¿å……å€¼';
+			$type='ÔÚÏß³äÖµ';
 		}
 		elseif($r['type']==2)
 		{
-			$type='å……å€¼ç‚¹æ•°';
+			$type='³äÖµµãÊı';
 		}
 		elseif($r['type']==3)
 		{
-			$type='å……å€¼é‡‘é¢';
+			$type='³äÖµ½ğ¶î';
 		}
 		else
 		{

@@ -17,11 +17,11 @@ if(empty($p))
 {$p=1;}
 $btb=explode(",",$b_table);
 $tbcount=count($btb);
-//æœ€åä¸€ä¸ªæ–‡ä»¶
+//×îºóÒ»¸öÎÄ¼ş
 if($p>=$tb[$btb[$t]])
 {
 	$t++;
-	//æ¢å¤å®Œæ¯•
+	//»Ö¸´Íê±Ï
 	if($t>=$tbcount)
 	{
 		if($ecms_config['db']['dbname']!=$mydbname)
@@ -29,20 +29,20 @@ if($p>=$tb[$btb[$t]])
 			$use=$empire->usequery("use ".$ecms_config['db']['dbname']);
 		}
 		$enews="ReData";
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("dbname=".$mydbname."&path=".$mypath);
 		$varmessage=$fun_r['ReDataSuccess']."<br><br>".$fun_r['TotalUseTime'].ToChangeUseTime($stime);
 		$GLOBALS['varmessage']=$varmessage;
 		printerror('VarMessage','../../ReData.php'.hReturnEcmsHashStrHref2(1),0,1);
 	}
 	$nfile=$btb[$t]."_1.php";
-	//è¿›å…¥ä¸‹ä¸€ä¸ªè¡¨
+	//½øÈëÏÂÒ»¸ö±í
 	//echo $btb[$t-1].$fun_r['ReOneTableSuccess']."<script>self.location.href='$nfile?t=$t&p=0&mydbname=$mydbname&mypath=$mypath&stime=$stime".hReturnEcmsHashStrHref(0)."';</script>";
 
 	echo"<meta http-equiv=\"refresh\" content=\"".$waitbaktime.";url=$nfile?t=$t&p=0&mydbname=$mydbname&mypath=$mypath&stime=$stime&waitbaktime=$waitbaktime".hReturnEcmsHashStrHref(0)."\">".$btb[$t-1].$fun_r['ReOneTableSuccess'];
 	exit();
 }
-//è¿›å…¥ä¸‹ä¸€ä¸ªæ–‡ä»¶
+//½øÈëÏÂÒ»¸öÎÄ¼ş
 $p++;
 $nfile=$btb[$t]."_".$p.".php";
 //echo $fun_r['ReOneDataSuccess'].Ebak_EchoReDataSt($btb[$t],$tbcount,$t,$tb[$btb[$t]],$p)."<script>self.location.href='$nfile?t=$t&p=$p&mydbname=$mydbname&mypath=$mypath&stime=$stime".hReturnEcmsHashStrHref(0)."';</script>";

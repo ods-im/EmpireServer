@@ -79,7 +79,7 @@ function EchoReturnedText () {
 
 
 function edoshowkey(showid,vname,baseurl){
-	document.getElementById(showid).innerHTML='<img src="'+baseurl+'e/ShowKey/?v='+vname+'&t='+Math.random()+'" name="'+vname+'KeyImg" id="'+vname+'KeyImg" align="bottom" onclick=edoshowkey("'+showid+'","'+vname+'","'+baseurl+'") title="鐪嬩笉娓呮,鐐瑰嚮鍒锋柊">';
+	document.getElementById(showid).innerHTML='<img src="'+baseurl+'e/ShowKey/?v='+vname+'&t='+Math.random()+'" name="'+vname+'KeyImg" id="'+vname+'KeyImg" align="bottom" onclick=edoshowkey("'+showid+'","'+vname+'","'+baseurl+'") title="看不清楚,点击刷新">';
 }
 
 function edozoomimg(o){

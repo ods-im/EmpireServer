@@ -1,7 +1,7 @@
 <?php
 define('InEmpireCMSQfun',TRUE);
 
-//è‡ªå®šä¹‰å­—æ®µè¿”å›æ¨¡æ¿å­—æ®µå¤„ç†
+//×Ô¶¨Òå×Ö¶Î·µ»ØÄ£°å×Ö¶Î´¦Àí
 function doReturnAddTempf($temp){
 	$record="<!--record-->";
 	$field="<!--field--->";
@@ -20,23 +20,23 @@ function doReturnAddTempf($temp){
 	return $str;
 }
 
-//è¿”å›å­—æ®µ
+//·µ»Ø×Ö¶Î
 function ReturnAddF($modid,$rdata=0){
 	global $empire,$dbtbpre;
 	$modid=(int)$modid;
 	$record="<!--record-->";
 	$field="<!--field--->";
 	$mr=$empire->fetch1("select tempvar,enter,listandf,setandf,listtempvar from {$dbtbpre}enewsmod where mid='$modid'");
-	//æ¨¡æ¿å­—æ®µ
-	if($rdata==1)//å†…å®¹
+	//Ä£°å×Ö¶Î
+	if($rdata==1)//ÄÚÈİ
 	{
 		$ret_r['tempvar']=doReturnAddTempf($mr['tempvar']);
 	}
-	elseif($rdata==2)//åˆ—è¡¨
+	elseif($rdata==2)//ÁĞ±í
 	{
 		$ret_r['listtempvar']=doReturnAddTempf($mr['listtempvar']);
 	}
-	else//å…¨éƒ¨
+	else//È«²¿
 	{
 		$ret_r['tempvar']=doReturnAddTempf($mr['tempvar']);
 		$ret_r['listtempvar']=doReturnAddTempf($mr['listtempvar']);
@@ -46,7 +46,7 @@ function ReturnAddF($modid,$rdata=0){
 	return $ret_r;
 }
 
-//æ›¿æ¢phpä»£ç 
+//Ìæ»»php´úÂë
 function RepPhpAspJspcode($string){
 	//$string=str_replace("<?xml","[!--ecms.xml--]",$string);
 	$string=str_replace("<\\","&lt;\\",$string);
@@ -62,7 +62,7 @@ function RepPhpAspJspcode($string){
 }
 
 
-//ç»„åˆå¤é€‰æ¡†æ•°æ®
+//×éºÏ¸´Ñ¡¿òÊı¾İ
 function ReturnFBCheckboxAddF($r,$f,$checkboxf){
 	$val=$r;
 	if(is_array($r)&&strstr($checkboxf,','.$f.','))
@@ -81,10 +81,10 @@ function ReturnFBCheckboxAddF($r,$f,$checkboxf){
 	return $val;
 }
 
-//æäº¤åé¦ˆä¿¡æ¯
+//Ìá½»·´À¡ĞÅÏ¢
 function AddFeedback($add){
 	global $empire,$dbtbpre,$level_r,$public_r;
-	CheckCanPostUrl();//éªŒè¯æ¥æº
+	CheckCanPostUrl();//ÑéÖ¤À´Ô´
 	if($add['bid'])
 	{
 		$bid=(int)$add['bid'];
@@ -97,19 +97,19 @@ function AddFeedback($add){
 	{
 		printerror("EmptyFeedbackname","history.go(-1)",1);
     }
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$keyvname='checkfeedbackkey';
 	if($public_r['fbkey_ok'])
 	{
 		ecmsCheckShowKey($keyvname,$add['key'],1);
 	}
-	//ç‰ˆé¢æ˜¯å¦å­˜åœ¨
+	//°æÃæÊÇ·ñ´æÔÚ
 	$br=$empire->fetch1("select bid,enter,mustenter,filef,groupid,checkboxf from {$dbtbpre}enewsfeedbackclass where bid='$bid';");
 	if(empty($br['bid']))
 	{
 		printerror("EmptyFeedback","history.go(-1)",1);
 	}
-	//æƒé™
+	//È¨ÏŞ
 	$user=array();
 	if($br['groupid'])
 	{
@@ -119,17 +119,17 @@ function AddFeedback($add){
 			printerror("HaveNotEnLevel","history.go(-1)",1);
 		}
 	}
-	//å®åéªŒè¯
+	//ÊµÃûÑéÖ¤
 	eCheckHaveTruename('fb',$user['userid'],$user['username'],$user['isern'],$user['checked'],0);
 
 	$pr=$empire->fetch1("select feedbacktfile,feedbackfilesize,feedbackfiletype from {$dbtbpre}enewspublic limit 1");
-	//å¿…å¡«é¡¹
+	//±ØÌîÏî
 	$mustr=explode(",",$br['mustenter']);
 	$count=count($mustr);
 	for($i=1;$i<$count-1;$i++)
 	{
 		$mf=$mustr[$i];
-		if(strstr($br['filef'],",".$mf.","))//é™„ä»¶
+		if(strstr($br['filef'],",".$mf.","))//¸½¼ş
 		{
 			if(!$pr['feedbacktfile'])
 			{
@@ -150,7 +150,7 @@ function AddFeedback($add){
 		}
 	}
 	$saytime=date("Y-m-d H:i:s");
-	//å­—æ®µå¤„ç†
+	//×Ö¶Î´¦Àí
 	$dh="";
 	$tranf="";
 	$record="<!--record-->";
@@ -161,7 +161,7 @@ function AddFeedback($add){
 	{
 		$er1=explode($field,$er[$i]);
 		$f=$er1[1];
-		//é™„ä»¶
+		//¸½¼ş
 		$add[$f]=str_replace('[!#@-','ecms',$add[$f]);
 		if(strstr($br['filef'],",".$f.","))
 		{
@@ -171,7 +171,7 @@ function AddFeedback($add){
 				{
 					printerror("NotOpenFBFile","",1);
 				}
-				$filetype=GetFiletype($_FILES[$f]['name']);//å–å¾—æ–‡ä»¶ç±»å‹
+				$filetype=GetFiletype($_FILES[$f]['name']);//È¡µÃÎÄ¼şÀàĞÍ
 				if(CheckSaveTranFiletype($filetype))
 				{
 					printerror("NotQTranFiletype","",1);
@@ -180,7 +180,7 @@ function AddFeedback($add){
 				{
 					printerror("NotQTranFiletype","",1);
 				}
-				if($_FILES[$f]['size']>$pr['feedbackfilesize']*1024)//æ–‡ä»¶å¤§å°
+				if($_FILES[$f]['size']>$pr['feedbackfilesize']*1024)//ÎÄ¼ş´óĞ¡
 				{
 					printerror("TooBigQTranFile","",1);
 				}
@@ -208,7 +208,7 @@ function AddFeedback($add){
 	$userid=(int)getcvar('mluserid');
 	$username=RepPostVar(getcvar('mlusername'));
 	$filepass=ReturnTranFilepass();
-	//ä¸Šä¼ é™„ä»¶
+	//ÉÏ´«¸½¼ş
 	if($tranf)
 	{
 		$dh="";
@@ -221,7 +221,7 @@ function AddFeedback($add){
 			if($tfr['tran'])
 			{
 				$filepath=$tfr[filepath];
-				//å†™å…¥æ•°æ®åº“
+				//Ğ´ÈëÊı¾İ¿â
 				$filetime=$saytime;
 				$filesize=(int)$_FILES[$tf]['size'];
 				eInsertFileTable($tfr[filename],$filesize,$tfr[filepath],'[Member]'.$username,$classid,'[FB]'.addslashes(RepPostStr($add[title])),$type,$filepass,$filepass,$public_r[fpath],0,4,0);
@@ -242,9 +242,9 @@ function AddFeedback($add){
 	$eipport=egetipport();
 	$sql=$empire->query("insert into {$dbtbpre}enewsfeedback(bid,saytime,ip,filepath,filename,userid,username,haveread,eipport".$addf.") values('$bid','$saytime','$ip','$filepath','$filename','$userid','$username',0,'$eipport'".$addval.");");
 	$fid=$empire->lastid();
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileOther(4,$fid,$filepass,'other');
-	ecmsEmptyShowKey($keyvname);//æ¸…ç©ºéªŒè¯ç 
+	ecmsEmptyShowKey($keyvname);//Çå¿ÕÑéÖ¤Âë
 	if($sql)
 	{
 		$reurl=DoingReturnUrl("../tool/feedback/?bid=$bid",$add['ecmsfrom']);
@@ -254,21 +254,21 @@ function AddFeedback($add){
 	{printerror("DbError","history.go(-1)",1);}
 }
 
-//--------------å‘é€é”™è¯¯æŠ¥å‘Š
+//--------------·¢ËÍ´íÎó±¨¸æ
 function AddError($add){
 	global $empire,$class_r,$dbtbpre,$public_r;
-	CheckCanPostUrl();//éªŒè¯æ¥æº
+	CheckCanPostUrl();//ÑéÖ¤À´Ô´
 	$id=(int)$add['id'];
 	$classid=(int)$add['classid'];
 	if(!$classid||!$id||!trim($add[errortext]))
 	{printerror("EmptyErrortext","history.go(-1)",1);}
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$keyvname='checkreportkey';
 	if($public_r['reportkey'])
 	{
 		ecmsCheckShowKey($keyvname,$add['key'],1);
 	}
-	//è¿”å›æ ‡é¢˜é“¾æ¥
+	//·µ»Ø±êÌâÁ´½Ó
 	if(empty($class_r[$classid][tbname]))
 	{
 		printerror("ErrorUrl","history.go(-1)",1);
@@ -285,7 +285,7 @@ function AddError($add){
 	$errortext=RepPostStr($add[errortext]);
 	$errortime=date("Y-m-d H:i:s");
 	$sql=$empire->query("insert into {$dbtbpre}enewsdownerror(id,errortext,errorip,errortime,email,classid,cid) values($id,'".addslashes($errortext)."','$ip','$errortime','".addslashes($email)."',$classid,'$cid');");
-	ecmsEmptyShowKey($keyvname);//æ¸…ç©ºéªŒè¯ç 
+	ecmsEmptyShowKey($keyvname);//Çå¿ÕÑéÖ¤Âë
 	if($sql)
 	{
 		printerror("AddErrorSuccess",$titleurl,1);
@@ -297,7 +297,7 @@ function AddError($add){
 }
 
 
-//æ›¿æ¢å…¨å±€æ¨¡æ¿å˜é‡
+//Ìæ»»È«¾ÖÄ£°å±äÁ¿
 function ReplaceTempvar($temp){
 	global $empire;
 	if(empty($temp))

@@ -5,14 +5,14 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='ä¿®æ”¹èµ„æ–™';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;ä¿®æ”¹å®‰å…¨ä¿¡æ¯";
+$public_diyr['pagetitle']='ÐÞ¸Ä×ÊÁÏ';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../cp/>»áÔ±ÖÐÐÄ</a>&nbsp;>&nbsp;ÐÞ¸Ä°²È«ÐÅÏ¢";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr>
     <td width="50%" height="30" bgcolor="#FFFFFF">&nbsp;</td>
-    <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="../EditInfo/">ä¿®æ”¹åŸºæœ¬èµ„æ–™</a>]&nbsp;&nbsp;</div></td>
+    <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="../EditInfo/">ÐÞ¸Ä»ù±¾×ÊÁÏ</a>]&nbsp;&nbsp;</div></td>
   </tr>
 </table>
 <br>
@@ -20,37 +20,37 @@ require(ECMS_PATH.'e/template/incfile/header.php');
   <form name=userinfoform method=post enctype="multipart/form-data" action=../doaction.php>
     <input type=hidden name=enews value=EditSafeInfo>
     <tr class="header"> 
-      <td height="25" colspan="2">å¯†ç å®‰å…¨ä¿®æ”¹</td>
+      <td height="25" colspan="2">ÃÜÂë°²È«ÐÞ¸Ä</td>
     </tr>
     <tr> 
-      <td width='21%' height="25" bgcolor="#FFFFFF"> <div align='left'>ç”¨æˆ·å </div></td>
+      <td width='21%' height="25" bgcolor="#FFFFFF"> <div align='left'>ÓÃ»§Ãû </div></td>
       <td width='79%' height="25" bgcolor="#FFFFFF"> 
         <?=$user[username]?>
       </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> <div align='left'>åŽŸå¯†ç </div></td>
+      <td height="25" bgcolor="#FFFFFF"> <div align='left'>Ô­ÃÜÂë</div></td>
       <td height="25" bgcolor="#FFFFFF"> <input name='oldpassword' type='password' id='oldpassword' size="38" maxlength='20'>
-        (ä¿®æ”¹å¯†ç æˆ–é‚®ç®±æ—¶éœ€è¦å¯†ç éªŒè¯)</td>
+        (ÐÞ¸ÄÃÜÂë»òÓÊÏäÊ±ÐèÒªÃÜÂëÑéÖ¤)</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> <div align='left'>æ–°å¯†ç </div></td>
+      <td height="25" bgcolor="#FFFFFF"> <div align='left'>ÐÂÃÜÂë</div></td>
       <td height="25" bgcolor="#FFFFFF"> <input name='password' type='password' id='password' size="38" maxlength='20'>
-        (ä¸æƒ³ä¿®æ”¹è¯·ç•™ç©º)</td>
+        (²»ÏëÐÞ¸ÄÇëÁô¿Õ)</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> <div align='left'>ç¡®è®¤æ–°å¯†ç </div></td>
+      <td height="25" bgcolor="#FFFFFF"> <div align='left'>È·ÈÏÐÂÃÜÂë</div></td>
       <td height="25" bgcolor="#FFFFFF"> <input name='repassword' type='password' id='repassword' size="38" maxlength='20'>
-        (ä¸æƒ³ä¿®æ”¹è¯·ç•™ç©º)</td>
+        (²»ÏëÐÞ¸ÄÇëÁô¿Õ)</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> <div align='left'>é‚®ç®±</div></td>
+      <td height="25" bgcolor="#FFFFFF"> <div align='left'>ÓÊÏä</div></td>
       <td height="25" bgcolor="#FFFFFF"> <input name='email' type='text' id='email' value='<?=$user[email]?>' size="38" maxlength='50'>
       </td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"> <input type='submit' name='Submit' value='ä¿®æ”¹ä¿¡æ¯'>
+      <td height="25" bgcolor="#FFFFFF"> <input type='submit' name='Submit' value='ÐÞ¸ÄÐÅÏ¢'>
       </td>
     </tr>
   </form>

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,17 +15,17 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"table");
 $enews=RepPostStr($_GET['enews'],1);
-$url="<a href=ListTable.php".$ecms_hashur['whehref'].">ç®¡ç†æ•°æ®è¡¨</a>&nbsp;>&nbsp;å¤åˆ¶æ•°æ®è¡¨";
+$url="<a href=ListTable.php".$ecms_hashur['whehref'].">¹ÜÀíÊı¾İ±í</a>&nbsp;>&nbsp;¸´ÖÆÊı¾İ±í";
 $tid=(int)$_GET['tid'];
 $r=$empire->fetch1("select tid,tbname,tname,tsay,yhid from {$dbtbpre}enewstable where tid=$tid");
 if(!$r['tbname'])
 {
 	printerror("ErrorUrl","");
 }
-//ä¼˜åŒ–æ–¹æ¡ˆ
+//ÓÅ»¯·½°¸
 $yh_options='';
 $yhsql=$empire->query("select id,yhname from {$dbtbpre}enewsyh order by id");
 while($yhr=$empire->fetch($yhsql))
@@ -43,15 +43,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¤åˆ¶æ•°æ®è¡¨</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¸´ÖÆÊı¾İ±í</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td>ä½ç½®ï¼š 
+    <td>Î»ÖÃ£º 
       <?=$url?>
     </td>
   </tr>
@@ -60,39 +60,39 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr> 
-      <td height="25" colspan="2" class="header">å¤åˆ¶æ•°æ®è¡¨</td>
+      <td height="25" colspan="2" class="header">¸´ÖÆÊı¾İ±í</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#F8F8F8">æºæ•°æ®è¡¨å</td>
+      <td height="25" bgcolor="#F8F8F8">Ô´Êı¾İ±íÃû</td>
       <td height="25" bgcolor="#FFFFFF"><font color=red><b><? echo $dbtbpre."ecms_".$r['tbname'];?></b></font></td>
     </tr>
     <tr> 
-      <td width="23%" height="25" bgcolor="#F8F8F8">æ–°æ•°æ®è¡¨å</td>
+      <td width="23%" height="25" bgcolor="#F8F8F8">ĞÂÊı¾İ±íÃû</td>
       <td width="77%" height="25" bgcolor="#FFFFFF"><strong>
         <?=$dbtbpre?>
         ecms_</strong> <input name="newtbname" type="text" id="newtbname" value="<?=$r[tbname]?>1">
-        *<font color="#666666">(å¦‚:news,åªèƒ½ç”±å­—æ¯ã€æ•°å­—çº¿ç»„æˆ)</font></td>
+        *<font color="#666666">(Èç:news,Ö»ÄÜÓÉ×ÖÄ¸¡¢Êı×ÖÏß×é³É)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#F8F8F8">æ–°æ•°æ®è¡¨æ ‡è¯†</td>
+      <td height="25" bgcolor="#F8F8F8">ĞÂÊı¾İ±í±êÊ¶</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="tname" type="text" id="tname" value="<?=$r[tname]?>1" size="38">
-        *<font color="#666666">(å¦‚:æ–°é—»æ•°æ®è¡¨)</font></td>
+        *<font color="#666666">(Èç:ĞÂÎÅÊı¾İ±í)</font></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#F8F8F8">ä½¿ç”¨ä¼˜åŒ–æ–¹æ¡ˆ</td>
+      <td height="25" bgcolor="#F8F8F8">Ê¹ÓÃÓÅ»¯·½°¸</td>
       <td height="25" bgcolor="#FFFFFF"><select name="yhid" id="yhid">
-          <option name="0">ä¸ä½¿ç”¨</option>
+          <option name="0">²»Ê¹ÓÃ</option>
           <?=$yh_options?>
-        </select> <input type="button" name="Submit63" value="ç®¡ç†ä¼˜åŒ–æ–¹æ¡ˆ" onclick="window.open('../db/ListYh.php<?=$ecms_hashur['whehref']?>');"></td>
+        </select> <input type="button" name="Submit63" value="¹ÜÀíÓÅ»¯·½°¸" onclick="window.open('../db/ListYh.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
     <tr> 
-      <td height="25" valign="top" bgcolor="#F8F8F8">æ–°å¤‡æ³¨</td>
+      <td height="25" valign="top" bgcolor="#F8F8F8">ĞÂ±¸×¢</td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="tsay" cols="70" rows="8" id="tsay"><?=$r[tsay]?></textarea></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#F8F8F8">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="æäº¤"> 
-        <input type="reset" name="Submit2" value="é‡ç½®"> <input name="tid" type="hidden" id="tid" value="<?=$tid?>"> 
+      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="Ìá½»"> 
+        <input type="reset" name="Submit2" value="ÖØÖÃ"> <input name="tid" type="hidden" id="tid" value="<?=$tid?>"> 
         <input name="enews" type="hidden" id="enews" value="CopyNewTable"> </td>
     </tr>
   </table>

@@ -5,38 +5,38 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='ç‚¹å¡å……å€¼è®°å½•';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;ç‚¹å¡å……å€¼è®°å½•";
+$public_diyr['pagetitle']='µã¿¨³äÖµ¼ÇÂ¼';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;µã¿¨³äÖµ¼ÇÂ¼";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
       <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
           <tr class="header"> 
-            <td width="12%"><div align="center">ç±»å‹</div></td>
-            <td width="36%" height="25"><div align="center">å……å€¼å¡å·</div></td>
-            <td width="10%" height="25"><div align="center">å……å€¼é‡‘é¢</div></td>
-            <td width="10%" height="25"><div align="center">è´­ä¹°ç‚¹æ•°</div></td>
-			<td width="10%"><div align="center">æœ‰æ•ˆæœŸ</div></td>
-            <td width="22%" height="25"><div align="center">è´­ä¹°æ—¶é—´</div></td>
+            <td width="12%"><div align="center">ÀàĞÍ</div></td>
+            <td width="36%" height="25"><div align="center">³äÖµ¿¨ºÅ</div></td>
+            <td width="10%" height="25"><div align="center">³äÖµ½ğ¶î</div></td>
+            <td width="10%" height="25"><div align="center">¹ºÂòµãÊı</div></td>
+			<td width="10%"><div align="center">ÓĞĞ§ÆÚ</div></td>
+            <td width="22%" height="25"><div align="center">¹ºÂòÊ±¼ä</div></td>
           </tr>
 		<?php
 		while($r=$empire->fetch($sql))
 		{
-			//ç±»å‹
+			//ÀàĞÍ
 			if($r['type']==0)
 			{
-				$type='ç‚¹å¡å……å€¼';
+				$type='µã¿¨³äÖµ';
 			}
 			elseif($r['type']==1)
 			{
-				$type='åœ¨çº¿å……å€¼';
+				$type='ÔÚÏß³äÖµ';
 			}
 			elseif($r['type']==2)
 			{
-				$type='å……å€¼ç‚¹æ•°';
+				$type='³äÖµµãÊı';
 			}
 			elseif($r['type']==3)
 			{
-				$type='å……å€¼é‡‘é¢';
+				$type='³äÖµ½ğ¶î';
 			}
 			else
 			{

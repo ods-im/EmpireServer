@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,9 +15,9 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//å‚æ•°
+//²ÎÊı
 $returnform=RepPostVar($_GET['returnform']);
-//åŸºç›®å½•
+//»ùÄ¿Â¼
 $basepath="../../..";
 $filepath=RepPostStr($_GET['filepath'],1);
 if(strstr($filepath,".."))
@@ -37,15 +37,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>é€‰æ‹©ç›®å½•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ñ¡ÔñÄ¿Â¼</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="56%">ä½ç½®ï¼š<a href="ChangePath.php<?=$ecms_hashur['whehref']?>">é€‰æ‹©ç›®å½•</a></td>
+    <td width="56%">Î»ÖÃ£º<a href="ChangePath.php<?=$ecms_hashur['whehref']?>">Ñ¡ÔñÄ¿Â¼</a></td>
     <td width="44%"><div align="right"> </div></td>
   </tr>
 </table>
@@ -53,10 +53,10 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <?=$ecms_hashur['eform']?>
     <tr class="header"> 
-      <td><div align="center">é€‰æ‹©</div></td>
-      <td height="25">æ–‡ä»¶å (å½“å‰ç›®å½•ï¼š<strong>/ 
+      <td><div align="center">Ñ¡Ôñ</div></td>
+      <td height="25">ÎÄ¼şÃû (µ±Ç°Ä¿Â¼£º<strong>/ 
         <?=$filepath?>
-        </strong>) &nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="javascript:history.go(-1);">è¿”å›</a>]</td>
+        </strong>) &nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="javascript:history.go(-1);">·µ»Ø</a>]</td>
     </tr>
     <?php
 	while($file=@readdir($hand))
@@ -73,7 +73,7 @@ $empire=null;
 		{
 			continue;
 		}
-		//ç›®å½•
+		//Ä¿Â¼
 		if(is_dir($openpath."/".$file))
 		{
 			$filelink="ChangePath.php?filepath=".$truefile."&returnform=".$returnform.$ecms_hashur['ehref'];
@@ -82,7 +82,7 @@ $empire=null;
 			$checkbox="";
 			$target="";
 		}
-		//æ–‡ä»¶
+		//ÎÄ¼ş
 		else
 		{
 			continue;
@@ -92,7 +92,7 @@ $empire=null;
       <td width="12%"><div align="center">
           <input name="path" type="checkbox" id="path" value="../../<?=$truefile?>/" onclick="<?=$returnform?>=this.value;window.close();">
         </div></td>
-      <td width="88%" height="25"><img src="../../data/images/dir/<?=$img?>" width="23" height="22"><a href="<?=$filelink?>" title="æŸ¥çœ‹ä¸‹çº§ç›®å½•"> 
+      <td width="88%" height="25"><img src="../../data/images/dir/<?=$img?>" width="23" height="22"><a href="<?=$filelink?>" title="²é¿´ÏÂ¼¶Ä¿Â¼"> 
         <?=$filename?>
         </a></td>
     </tr>

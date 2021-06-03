@@ -13,17 +13,17 @@ if(!defined('InEmpireCMS'))
   <tr class="header"> 
     <td width="4%"><div align="center"></div></td>
     <td width="8%"><div align="center">ID</div></td>
-    <td width="42%"><div align="center">æ–‡ä»¶å</div></td>
-    <td width="15%"><div align="center">å¤§å°</div></td>
-    <td width="21%"><div align="center">ä¸Šä¼ æ—¶é—´</div></td>
-    <td width="10%"><div align="center">é€‰æ‹©</div></td>
+    <td width="42%"><div align="center">ÎÄ¼şÃû</div></td>
+    <td width="15%"><div align="center">´óĞ¡</div></td>
+    <td width="21%"><div align="center">ÉÏ´«Ê±¼ä</div></td>
+    <td width="10%"><div align="center">Ñ¡Ôñ</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
   {
 	$filesize=ChTheFilesize($r[filesize]);
-	$filetype=substr(GetFiletype($r[filename]),1);//å–å¾—æ–‡ä»¶ç±»å‹
-	//æ–‡ä»¶
+	$filetype=substr(GetFiletype($r[filename]),1);//È¡µÃÎÄ¼şÀàĞÍ
+	//ÎÄ¼ş
 	$fspath=ReturnFileSavePath($r[classid],$r[fpath]);
 	$filepath=$r[path]?$r[path].'/':$r[path];
 	$file=$fspath['fileurl'].$filepath.$r[filename];
@@ -62,7 +62,7 @@ if(!defined('InEmpireCMS'))
       </div></td>
     <td colspan="5" bgcolor="#FFFFFF">&nbsp;&nbsp;
       <?=$returnpage?>
-      &nbsp;&nbsp; <input type="submit" name="Submit32" value="åˆ é™¤é€‰ä¸­" onclick="document.dofile.enews.value='TDelFile_all';">
+      &nbsp;&nbsp; <input type="submit" name="Submit32" value="É¾³ıÑ¡ÖĞ" onclick="document.dofile.enews.value='TDelFile_all';">
     </td>
   </tr>
 </table>

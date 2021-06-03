@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//楠岃瘉鐢ㄦ埛
+//验证用户
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -21,11 +21,11 @@ if(empty($ztid))
 {
 	$ztid=(int)$_POST['ztid'];
 }
-//楠岃瘉鏉冮檺
+//验证权限
 //CheckLevel($logininid,$loginin,$classid,"zt");
 $returnandlevel=CheckAndUsernamesLevel('dozt',$ztid,$logininid,$loginin,$loginlevel);
 
-//涓撻
+//专题
 if(!$ztid)
 {
 	printerror('ErrorUrl','');
@@ -41,7 +41,7 @@ $filepath_r['actionurl']='SpecialPathfile.php';
 $filepathr['filepath']=$ztr['ztpath'].'/uploadfile';
 $filepathr['filelevel']='dozt';
 $filepathr['addpostvar']='<input type="hidden" name="ztid" value="'.$ztid.'">';
-$filepathr['url']='浣嶇疆锛氫笓棰橈細<b>'.$ztr['ztname'].'</b> &gt; 绠＄悊涓撻闄勪欢';
+$filepathr['url']='位置：专题：<b>'.$ztr['ztname'].'</b> &gt; 管理专题附件';
 
 include('../file/TruePathfile.php');
 

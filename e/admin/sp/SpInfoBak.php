@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,13 +17,13 @@ $loginadminstyleid=$lur['adminstyleid'];
 $ecms_hashur=hReturnEcmsHashStrAll();
 
 $spid=(int)$_GET['spid'];
-//ç¢ç‰‡
+//ËéÆ¬
 $spr=$empire->fetch1("select spid,spname,varname,sptype,maxnum,groupid,userclass,username from {$dbtbpre}enewssp where spid='$spid'");
 if(!$spr['spid']||$spr[sptype]!=3)
 {
 	printerror('ErrorUrl','');
 }
-//éªŒè¯æ“ä½œæƒé™
+//ÑéÖ¤²Ù×÷È¨ÏŞ
 CheckDoLevel($lur,$spr[groupid],$spr[userclass],$spr[username]);
 $sr=$empire->fetch1("select sid from {$dbtbpre}enewssp_3 where spid='$spid'");
 if(!$sr['sid'])
@@ -35,23 +35,23 @@ $sql=$empire->query("select bid,sid,spid,lastuser,lasttime from {$dbtbpre}enewss
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç¢ç‰‡ä¿¡æ¯ä¿®æ”¹è®°å½•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ËéÆ¬ĞÅÏ¢ĞŞ¸Ä¼ÇÂ¼</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
     <tr> 
-    <td height="25">ä½ç½®ï¼šç¢ç‰‡ <b><?=$spr[spname]?></b> çš„ä¿®æ”¹è®°å½•</td>
+    <td height="25">Î»ÖÃ£ºËéÆ¬ <b><?=$spr[spname]?></b> µÄĞŞ¸Ä¼ÇÂ¼</td>
     </tr>
 </table>
 
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td width="52%" height="25"> <div align="center">ä¿®æ”¹æ—¶é—´</div></td>
-    <td width="29%" height="25"> <div align="center">ä¿®æ”¹è€…</div></td>
-    <td width="19%"><div align="center">è¿˜åŸ</div></td>
+    <td width="52%" height="25"> <div align="center">ĞŞ¸ÄÊ±¼ä</div></td>
+    <td width="29%" height="25"> <div align="center">ĞŞ¸ÄÕß</div></td>
+    <td width="19%"><div align="center">»¹Ô­</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
@@ -64,7 +64,7 @@ $sql=$empire->query("select bid,sid,spid,lastuser,lasttime from {$dbtbpre}enewss
     <td height="25"><div align="center"> 
         <?=$r[lastuser]?>
       </div></td>
-    <td><div align="center">[<a href="ListSpInfo.php?enews=SpInfoReBak&spid=<?=$spid?>&sid=<?=$r['sid']?>&bid=<?=$r[bid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦è¿˜åŸ?');">è¿˜åŸ</a>]</div></td>
+    <td><div align="center">[<a href="ListSpInfo.php?enews=SpInfoReBak&spid=<?=$spid?>&sid=<?=$r['sid']?>&bid=<?=$r[bid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒª»¹Ô­?');">»¹Ô­</a>]</div></td>
   </tr>
   <?php
   }

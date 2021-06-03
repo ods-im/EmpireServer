@@ -19,15 +19,15 @@
 [!--textarea--]
 [!--img--]
 <input name="[!--enews.var--]" type="text" id="[!--enews.var--]" value="<?=$ecmsfirstpost==1?"[!--enews.def.val--]":ehtmlspecialchars($addr[[!--enews.var--]])?>" size="[!--fsize.w--]">
-<a onclick="window.open('[!--enews.path--]ecmseditor/FileMain.php?modtype=[!--enews.modtype--]&type=1&classid=&filepass=<?=$filepass?>&sinfo=1&doing=2&field=[!--enews.var--]<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="閫夋嫨宸蹭笂浼犵殑鍥剧墖"><img src="[!--enews.path--]../data/images/changeimg.gif" border="0" align="absbottom"></a> 
+<a onclick="window.open('[!--enews.path--]ecmseditor/FileMain.php?modtype=[!--enews.modtype--]&type=1&classid=&filepass=<?=$filepass?>&sinfo=1&doing=2&field=[!--enews.var--]<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="选择已上传的图片"><img src="[!--enews.path--]../data/images/changeimg.gif" border="0" align="absbottom"></a> 
 [!--img--]
 [!--flash--]
 <input name="[!--enews.var--]" type="text" id="[!--enews.var--]" value="<?=$ecmsfirstpost==1?"[!--enews.def.val--]":ehtmlspecialchars($addr[[!--enews.var--]])?>" size="[!--fsize.w--]">
-<a onclick="window.open('[!--enews.path--]ecmseditor/FileMain.php?modtype=[!--enews.modtype--]&type=2&classid=&filepass=<?=$filepass?>&sinfo=1&doing=2&field=[!--enews.var--]<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="閫夋嫨宸蹭笂浼犵殑FLASH"><img src="[!--enews.path--]../data/images/changeflash.gif" border="0" align="absbottom"></a> 
+<a onclick="window.open('[!--enews.path--]ecmseditor/FileMain.php?modtype=[!--enews.modtype--]&type=2&classid=&filepass=<?=$filepass?>&sinfo=1&doing=2&field=[!--enews.var--]<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="选择已上传的FLASH"><img src="[!--enews.path--]../data/images/changeflash.gif" border="0" align="absbottom"></a> 
 [!--flash--]
 [!--file--]
 <input name="[!--enews.var--]" type="text" id="[!--enews.var--]" value="<?=$ecmsfirstpost==1?"[!--enews.def.val--]":ehtmlspecialchars($addr[[!--enews.var--]])?>" size="[!--fsize.w--]">
-<a onclick="window.open('[!--enews.path--]ecmseditor/FileMain.php?modtype=[!--enews.modtype--]&type=0&classid=&filepass=<?=$filepass?>&sinfo=1&doing=2&field=[!--enews.var--]<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="閫夋嫨宸蹭笂浼犵殑鏂囦欢"><img src="[!--enews.path--]../data/images/changefile.gif" border="0" align="absbottom"></a>
+<a onclick="window.open('[!--enews.path--]ecmseditor/FileMain.php?modtype=[!--enews.modtype--]&type=0&classid=&filepass=<?=$filepass?>&sinfo=1&doing=2&field=[!--enews.var--]<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="选择已上传的文件"><img src="[!--enews.path--]../data/images/changefile.gif" border="0" align="absbottom"></a>
 [!--file--]
 [!--date--]
 <input name="[!--enews.var--]" type="text" id="[!--enews.var--]" value="<?=$ecmsfirstpost==1?"[!--enews.def.val--]":ehtmlspecialchars($addr[[!--enews.var--]])?>" size="[!--fsize.w--]" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">

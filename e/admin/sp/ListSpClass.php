@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,17 +16,17 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"sp");
 
-//å¢åŠ ç¢ç‰‡åˆ†ç±»
+//Ôö¼ÓËéÆ¬·ÖÀà
 function AddSpClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[classname])
 	{
 		printerror("EmptySpClassname","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"sp");
 	$add['classname']=hRepPostStr($add['classname'],1);
 	$add['classsay']=hRepPostStr($add['classsay'],1);
@@ -34,7 +34,7 @@ function AddSpClass($add,$userid,$username){
 	$classid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$add[classname]);
 		printerror("AddSpClassSuccess","AddSpClass.php?enews=AddSpClass".hReturnEcmsHashStrHref2(0));
 	}
@@ -42,7 +42,7 @@ function AddSpClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ç¢ç‰‡åˆ†ç±»
+//ĞŞ¸ÄËéÆ¬·ÖÀà
 function EditSpClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$add[classid];
@@ -50,14 +50,14 @@ function EditSpClass($add,$userid,$username){
 	{
 		printerror("EmptySpClassname","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"sp");
 	$add['classname']=hRepPostStr($add['classname'],1);
 	$add['classsay']=hRepPostStr($add['classsay'],1);
 	$sql=$empire->query("update {$dbtbpre}enewsspclass set classname='$add[classname]',classsay='$add[classsay]' where classid='$classid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$add[classname]);
 		printerror("EditSpClassSuccess","ListSpClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -65,7 +65,7 @@ function EditSpClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ç¢ç‰‡åˆ†ç±»
+//É¾³ıËéÆ¬·ÖÀà
 function DelSpClass($classid,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
@@ -73,13 +73,13 @@ function DelSpClass($classid,$userid,$username){
 	{
 		printerror("NotDelSpClassid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"sp");
 	$r=$empire->fetch1("select classname from {$dbtbpre}enewsspclass where classid='$classid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsspclass where classid='$classid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$r[classname]);
 		printerror("DelSpClassSuccess","ListSpClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -94,15 +94,15 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="AddSpClass")//å¢åŠ ç¢ç‰‡åˆ†ç±»
+if($enews=="AddSpClass")//Ôö¼ÓËéÆ¬·ÖÀà
 {
 	AddSpClass($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditSpClass")//ä¿®æ”¹ç¢ç‰‡åˆ†ç±»
+elseif($enews=="EditSpClass")//ĞŞ¸ÄËéÆ¬·ÖÀà
 {
 	EditSpClass($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelSpClass")//åˆ é™¤ç¢ç‰‡åˆ†ç±»
+elseif($enews=="DelSpClass")//É¾³ıËéÆ¬·ÖÀà
 {
 	$classid=$_GET['classid'];
 	DelSpClass($classid,$logininid,$loginin);
@@ -112,33 +112,33 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select classid,classname from {$dbtbpre}enewsspclass";
 $totalquery="select count(*) as total from {$dbtbpre}enewsspclass";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by classid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-$url="<a href=ListSp.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡</a>&nbsp;>&nbsp;<a href=ListSpClass.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡åˆ†ç±»</a>";
+$url="<a href=ListSp.php".$ecms_hashur['whehref'].">¹ÜÀíËéÆ¬</a>&nbsp;>&nbsp;<a href=ListSpClass.php".$ecms_hashur['whehref'].">¹ÜÀíËéÆ¬·ÖÀà</a>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç¢ç‰‡åˆ†ç±»</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ËéÆ¬·ÖÀà</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr> 
-    <td width="50%">ä½ç½®: 
+    <td width="50%">Î»ÖÃ: 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ç¢ç‰‡åˆ†ç±»" onclick="self.location.href='AddSpClass.php?enews=AddSpClass<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓËéÆ¬·ÖÀà" onclick="self.location.href='AddSpClass.php?enews=AddSpClass<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -146,8 +146,8 @@ $url="<a href=ListSp.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡</a>&nbsp;>&nbsp
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="9%" height="25"><div align="center">ID</div></td>
-    <td width="70%" height="25"><div align="center">åˆ†ç±»åç§°</div></td>
-    <td width="21%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="70%" height="25"><div align="center">·ÖÀàÃû³Æ</div></td>
+    <td width="21%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -160,8 +160,8 @@ $url="<a href=ListSp.php".$ecms_hashur['whehref'].">ç®¡ç†ç¢ç‰‡</a>&nbsp;>&nbsp
     <td height="25" align="center"> 
       <a href="ListSp.php?<?=$ecms_hashur['ehref']?>&cid=<?=$r[classid]?>" target="_blank"><?=$r[classname]?></a>
     </td>
-    <td height="25"><div align="center">[<a href="AddSpClass.php?enews=EditSpClass&classid=<?=$r[classid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="ListSpClass.php?enews=DelSpClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+    <td height="25"><div align="center">[<a href="AddSpClass.php?enews=EditSpClass&classid=<?=$r[classid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="ListSpClass.php?enews=DelSpClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

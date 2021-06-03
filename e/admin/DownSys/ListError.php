@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//验证用户
+//��֤�û�
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,13 +17,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//验证权限
+//��֤Ȩ��
 CheckLevel($logininid,$loginin,$classid,"downerror");
 
-//删除单个报告
+//ɾ����������
 function DelError($errorid,$userid,$username){
 	global $empire,$dbtbpre;
-	//验证权限
+	//��֤Ȩ��
 	CheckLevel($userid,$username,$classid,"downerror");
 	$errorid=(int)$errorid;
 	if(empty($errorid))
@@ -33,7 +33,7 @@ function DelError($errorid,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsdownerror where errorid='$errorid'");
 	if($sql)
 	{
-		//操作日志
+		//������־
 		insert_dolog("errorid=$errorid");
 		printerror("DelErrorSuccess","ListError.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -43,10 +43,10 @@ function DelError($errorid,$userid,$username){
 	}
 }
 
-//批量删除报告
+//����ɾ������
 function DelError_all($errorid,$userid,$username){
 	global $empire,$dbtbpre;
-	//验证权限
+	//��֤Ȩ��
 	CheckLevel($userid,$username,$classid,"downerror");
 	$count=count($errorid);
 	if(empty($count))
@@ -61,7 +61,7 @@ function DelError_all($errorid,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsdownerror where ".$add);
 	if($sql)
 	{
-		//操作日志
+		//������־
 		insert_dolog("");
 		printerror("DelErrorSuccess","ListError.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -78,13 +78,13 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//删除单个错误报告
+//ɾ���������󱨸�
 if($enews=="DelError")
 {
 	$errorid=$_GET['errorid'];
 	DelError($errorid,$logininid,$loginin);
 }
-//批量删除错误报告
+//����ɾ�����󱨸�
 elseif($enews=="DelError_all")
 {
 	$errorid=$_POST['errorid'];
@@ -93,10 +93,10 @@ elseif($enews=="DelError_all")
 $start=0;
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
-$line=15;//每行显示
+$line=15;//ÿ����ʾ
 $page_line=15;
 $offset=$page*$line;
-//类别
+//���
 $search='';
 $search.=$ecms_hashur['ehref'];
 $add="";
@@ -107,12 +107,12 @@ if($cid)
 	$search.="&cid=$cid";
 }
 $totalquery="select count(*) as total from {$dbtbpre}enewsdownerror".$add;
-$num=$empire->gettotal($totalquery);//取得总条数
+$num=$empire->gettotal($totalquery);//ȡ��������
 $query="select * from {$dbtbpre}enewsdownerror".$add;
 $query.=" order by errorid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//分类
+//����
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewserrorclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -128,8 +128,8 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>管理错误报告</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>�������󱨸�</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -147,9 +147,9 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td>位置：<a href="ListError.php<?=$ecms_hashur['whehref']?>">管理错误报告</a></td>
+    <td>λ�ã�<a href="ListError.php<?=$ecms_hashur['whehref']?>">�������󱨸�</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="管理错误报告分类" onclick="self.location.href='ErrorClass.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="�������󱨸����" onclick="self.location.href='ErrorClass.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -157,15 +157,15 @@ function CheckAll(form)
   <form name="chclassform" method="get" action="ListError.php">
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25">限制显示： 
+      <td height="25">������ʾ�� 
         <select name="cid" onchange="document.chclassform.submit()">
-          <option value="0">显示所有分类</option>
+          <option value="0">��ʾ���з���</option>
           <?=$cstr?>
         </select> </td>
     </tr>
   </form>
 </table>
-<form name="form1" method="post" action="ListError.php" onsubmit="return confirm('确认要删除？');">
+<form name="form1" method="post" action="ListError.php" onsubmit="return confirm('ȷ��Ҫɾ����');">
 <?=$ecms_hashur['form']?>
 <input type=hidden name=cid value="<?=$cid?>">
 <?
@@ -176,7 +176,7 @@ while($r=$empire->fetch($sql))
 		$tr=$empire->fetch1("select title,isurl,titleurl,classid,id from {$dbtbpre}ecms_".$class_r[$r[classid]][tbname]." where id='$r[id]' limit 1");
 		$titleurl=sys_ReturnBqTitleLink($tr);
 	}
-	//分类
+	//����
 	$cr[classname]="---";
 	if($r[cid])
 	{
@@ -185,21 +185,21 @@ while($r=$empire->fetch($sql))
 ?>
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
     <tr bgcolor="#FFFFFF" class="header"> 
-      <td width="57%" height="25">信息标题：<a href="<?=$titleurl?>" target=_blank>
+      <td width="57%" height="25">��Ϣ���⣺<a href="<?=$titleurl?>" target=_blank>
         <?=stripSlashes($tr[title])?>
         </a></td>
-      <td width="28%" height="25">所属分类：<a href="ListError.php?cid=<?=$r[cid]?><?=$ecms_hashur['ehref']?>"><?=$cr[classname]?></a></td>
+      <td width="28%" height="25">�������ࣺ<a href="ListError.php?cid=<?=$r[cid]?><?=$ecms_hashur['ehref']?>"><?=$cr[classname]?></a></td>
       <td width="15%"><div align="center">
           <input name="errorid[]" type="checkbox" id="errorid[]" value="<?=$r[errorid]?>">
-          <a href="ListError.php?enews=DelError&errorid=<?=$r[errorid]?>&cid=<?=$cid?><?=$ecms_hashur['href']?>" onclick="return confirm('确认要删除？');">删除</a></div></td>
+          <a href="ListError.php?enews=DelError&errorid=<?=$r[errorid]?>&cid=<?=$cid?><?=$ecms_hashur['href']?>" onclick="return confirm('ȷ��Ҫɾ����');">ɾ��</a></div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">发布者IP： 
+      <td height="25">������IP�� 
         <?=$r[errorip]?>
         &nbsp;(
         <?=stripSlashes($r[email])?>
         ) </td>
-      <td height="25" colspan="2">发布时间： 
+      <td height="25" colspan="2">����ʱ�䣺 
         <?=$r[errortime]?>
       </td>
     </tr>
@@ -224,9 +224,9 @@ while($r=$empire->fetch($sql))
     <td height="25">
       <?=$returnpage?>
       &nbsp;&nbsp;
-      <input type=submit name=submit value=批量删除><input type=hidden name=enews value=DelError_all>
+      <input type=submit name=submit value=����ɾ��><input type=hidden name=enews value=DelError_all>
       &nbsp;&nbsp;<input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
-      全选</td>
+      ȫѡ</td>
   </tr>
 </table>
 </form>

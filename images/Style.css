@@ -35,7 +35,7 @@ BODY {
 	
 }
 TD {
-	FONT-SIZE: 9pt; COLOR: #552c55; LINE-HEIGHT: 150%; FONT-FAMILY: å®‹ä½“
+	FONT-SIZE: 9pt; COLOR: #552c55; LINE-HEIGHT: 150%; FONT-FAMILY: ËÎÌå
 }
 A.bottom:link {
 	COLOR: #79628e
@@ -53,28 +53,28 @@ A.bottom:active {
 	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 70px; BORDER-BOTTOM: 0px; HEIGHT: 18px; BACKGROUND-COLOR: #f7f7f7
 }
 .nav_class_title {
-	FONT-WEIGHT: bold; FONT-SIZE: 12px; FONT-FAMILY: Tahoma, Verdana, "å®‹ä½“"; TEXT-ALIGN: center
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; FONT-FAMILY: Tahoma, Verdana, "ËÎÌå"; TEXT-ALIGN: center
 }
 .nav_class_content {
-	FONT-SIZE: 12px; COLOR: #777777; FONT-FAMILY: Tahoma, Verdana, "å®‹ä½“"; TEXT-ALIGN: center
+	FONT-SIZE: 12px; COLOR: #777777; FONT-FAMILY: Tahoma, Verdana, "ËÎÌå"; TEXT-ALIGN: center
 }
 .nav_class_date {
-	FONT-SIZE: 12px; FILTER: dropshadow(color=#FFFFFF, offx=1, offy=1, positive=1); COLOR: #888888; FONT-FAMILY: Tahoma, Verdana, "å®‹ä½“"; TEXT-ALIGN: center
+	FONT-SIZE: 12px; FILTER: dropshadow(color=#FFFFFF, offx=1, offy=1, positive=1); COLOR: #888888; FONT-FAMILY: Tahoma, Verdana, "ËÎÌå"; TEXT-ALIGN: center
 }
 .announce_td {
-	FONT-SIZE: 9pt; FILTER: dropshadow(color=#FFFFFF, offx=1, offy=1, positive=1); COLOR: #79628e; FONT-FAMILY: "å®‹ä½“"; HEIGHT: 14px
+	FONT-SIZE: 9pt; FILTER: dropshadow(color=#FFFFFF, offx=1, offy=1, positive=1); COLOR: #79628e; FONT-FAMILY: "ËÎÌå"; HEIGHT: 14px
 }
 .title_td {
-	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #ff9900; FONT-FAMILY: Tahoma, Verdana, "å®‹ä½“"; TEXT-ALIGN: center
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #ff9900; FONT-FAMILY: Tahoma, Verdana, "ËÎÌå"; TEXT-ALIGN: center
 }
 .content_td {
-	FONT-SIZE: 9pt; FILTER: dropshadow(color=#FFFFFF, offx=1, offy=1, positive=1); COLOR: #552c55; FONT-FAMILY: "å®‹ä½“"; HEIGHT: 14px
+	FONT-SIZE: 9pt; FILTER: dropshadow(color=#FFFFFF, offx=1, offy=1, positive=1); COLOR: #552c55; FONT-FAMILY: "ËÎÌå"; HEIGHT: 14px
 }
 .copyright_table {
 	BORDER-TOP-WIDTH: 1px; BORDER-RIGHT: #c0c0c0 1px solid;  BORDER-BOTTOM-WIDTH: 1px; BORDER-LEFT: #c0c0c0 1px solid
 }
 .copyright_td {
-	FONT-SIZE: 9pt; FILTER: dropshadow(color=#FFFFFF, offx=1, offy=1, positive=1); COLOR: #4d2a7c; FONT-FAMILY: "å®‹ä½“"; HEIGHT: 14px
+	FONT-SIZE: 9pt; FILTER: dropshadow(color=#FFFFFF, offx=1, offy=1, positive=1); COLOR: #4d2a7c; FONT-FAMILY: "ËÎÌå"; HEIGHT: 14px
 }
 .header					{ font: 9pt Tahoma, Verdana; color: #FFFFFF; font-weight: bold; background-color: #698CC3 }
 .header a				{ color: #FFFFFF }

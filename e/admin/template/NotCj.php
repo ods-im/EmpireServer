@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,13 +16,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"notcj");
 
-//å¢åŠ é‡‡é›†éšæœºå­—ç¬¦
+//Ôö¼Ó²É¼¯Ëæ»ú×Ö·û
 function AddNotcj($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"notcj");
 	if(empty($add[word]))
 	{
@@ -34,7 +34,7 @@ function AddNotcj($add,$userid,$username){
 	GetNotcj();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id");
 		printerror("AddNotcjSuccess","NotCj.php".hReturnEcmsHashStrHref2(1));
     }
@@ -44,10 +44,10 @@ function AddNotcj($add,$userid,$username){
     }
 }
 
-//ä¿®æ”¹é‡‡é›†éšæœºå­—ç¬¦
+//ĞŞ¸Ä²É¼¯Ëæ»ú×Ö·û
 function EditNotcj($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"notcj");
 	$id=(int)$add['id'];
 	if(empty($add[word])||!$id)
@@ -59,7 +59,7 @@ function EditNotcj($add,$userid,$username){
 	GetNotcj();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id");
 		printerror("EditNotcjSuccess","NotCj.php".hReturnEcmsHashStrHref2(1));
     }
@@ -69,10 +69,10 @@ function EditNotcj($add,$userid,$username){
     }
 }
 
-//åˆ é™¤é‡‡é›†éšæœºå­—ç¬¦
+//É¾³ı²É¼¯Ëæ»ú×Ö·û
 function DelNotcj($id,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"notcj");
 	$id=(int)$id;
 	if(!$id)
@@ -83,7 +83,7 @@ function DelNotcj($id,$userid,$username){
 	GetNotcj();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id");
 		printerror("DelNotcjSuccess","NotCj.php".hReturnEcmsHashStrHref2(1));
     }
@@ -93,7 +93,7 @@ function DelNotcj($id,$userid,$username){
     }
 }
 
-//ç”Ÿæˆéšæœºå­—ç¬¦ç¼“å­˜
+//Éú³ÉËæ»ú×Ö·û»º´æ
 function GetNotcj(){
 	global $empire,$dbtbpre;
 	$file=ECMS_PATH."e/data/dbcache/notcj.php";
@@ -119,17 +119,17 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ éšæœºå­—ç¬¦
+//Ôö¼ÓËæ»ú×Ö·û
 if($enews=="AddNotcj")
 {
 	AddNotcj($_POST,$logininid,$loginin);
 }
-//ä¿®æ”¹éšæœºå­—ç¬¦
+//ĞŞ¸ÄËæ»ú×Ö·û
 elseif($enews=="EditNotcj")
 {
 	EditNotcj($_POST,$logininid,$loginin);
 }
-//åˆ é™¤éšæœºå­—ç¬¦
+//É¾³ıËæ»ú×Ö·û
 elseif($enews=="DelNotcj")
 {
 	$id=$_GET['id'];
@@ -142,11 +142,11 @@ $search=$ecms_hashur['ehref'];
 $start=0;
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
-$line=15;//æ¯è¡Œæ˜¾ç¤º
+$line=15;//Ã¿ĞĞÏÔÊ¾
 $page_line=15;
 $offset=$page*$line;
 $totalquery="select count(*) as total from {$dbtbpre}enewsnotcj";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query="select id,word from {$dbtbpre}enewsnotcj";
 $query.=" order by id desc limit $offset,$line";
 $sql=$empire->query($query);
@@ -155,22 +155,22 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†é˜²é‡‡é›†éšæœºå­—ç¬¦</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí·À²É¼¯Ëæ»ú×Ö·û</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼šé˜²é‡‡é›†ç®¡ç† &gt; <a href="NotCj.php<?=$ecms_hashur['whehref']?>">ç®¡ç†é˜²é‡‡é›†éšæœºå­—ç¬¦</a></td>
+    <td>Î»ÖÃ£º·À²É¼¯¹ÜÀí &gt; <a href="NotCj.php<?=$ecms_hashur['whehref']?>">¹ÜÀí·À²É¼¯Ëæ»ú×Ö·û</a></td>
   </tr>
 </table>
 <form name="form1" method="post" action="NotCj.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25">å¢åŠ é˜²é‡‡é›†éšæœºå­—ç¬¦: 
+      <td height="25">Ôö¼Ó·À²É¼¯Ëæ»ú×Ö·û: 
         <input type=hidden name=enews value=AddNotcj>
         </td>
     </tr>
@@ -180,16 +180,16 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
       </td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF"><input type="submit" name="Submit" value="å¢åŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25" bgcolor="#FFFFFF"><input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header">
     <td width="7%"><div align="center">ID</div></td>
-    <td width="75%" height="25">é˜²é‡‡é›†éšæœºå­—ç¬¦</td>
-    <td width="18%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="75%" height="25">·À²É¼¯Ëæ»ú×Ö·û</td>
+    <td width="18%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -205,9 +205,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
       <td height="25"><textarea name="word" cols="65" rows="8" id="word"><?=$word?></textarea> 
       </td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="self.location.href='NotCj.php?enews=DelNotcj&id=<?=$r[id]?><?=$ecms_hashur['href']?>';">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="self.location.href='NotCj.php?enews=DelNotcj&id=<?=$r[id]?><?=$ecms_hashur['href']?>';">
         </div></td>
     </tr>
 	</form>

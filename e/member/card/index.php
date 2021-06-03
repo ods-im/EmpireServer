@@ -6,10 +6,10 @@ require("../class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
-//鏄惁鐧婚檰
+eCheckCloseMods('member');//关闭模块
+//是否登陆
 $user=islogin();
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/card.php');
 db_close();
 $empire=null;

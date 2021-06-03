@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,13 +17,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"pl");
 $search='';
 $start=0;
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
-//æ¯é¡µæ˜¾ç¤º
+//Ã¿Ò³ÏÔÊ¾
 $line=(int)$_GET['line'];
 if($line>0&&$line<1000)
 {
@@ -38,7 +38,7 @@ $offset=$page*$line;
 $search.=$ecms_hashur['ehref'];
 $add='';
 $and='';
-//è¯„è®ºè¡¨
+//ÆÀÂÛ±í
 $restb=(int)$_GET['restb'];
 if($restb)
 {
@@ -52,14 +52,14 @@ else
 {
 	$restb=$public_r['pldeftb'];
 }
-//å•ä¸ª
+//µ¥¸ö
 $id=(int)$_GET['id'];
 if($id)
 {
 	$add.=" where id='$id'";
 	$search.="&id=$id";
 }
-//ä¸“é¢˜ID
+//×¨ÌâID
 $ztid=(int)$_GET['ztid'];
 if($ztid)
 {
@@ -72,7 +72,7 @@ if($ztid)
 	}
 	$search.="&ztid=$ztid";
 }
-//å•ä¸ª
+//µ¥¸ö
 $classid=(int)$_GET['classid'];
 if($classid)
 {
@@ -87,7 +87,7 @@ if($classid)
 	}
 	$search.="&classid=$classid";
 }
-//å®¡æ ¸
+//ÉóºË
 $checked=(int)$_GET['checked'];
 if($checked)
 {
@@ -95,7 +95,7 @@ if($checked)
 	$add.=$and."checked='".($checked==1?0:1)."'";
 	$search.="&checked=$checked";
 }
-//æ¨è
+//ÍÆ¼ö
 $isgood=(int)$_GET['isgood'];
 if($isgood)
 {
@@ -103,13 +103,13 @@ if($isgood)
 	$add.=$and."isgood=1";
 	$search.="&isgood=$isgood";
 }
-//æœç´¢
+//ËÑË÷
 $keyboard=RepPostVar2($_GET['keyboard']);
 if($keyboard)
 {
 	$and=empty($add)?' where ':' and ';
 	$show=(int)$_GET['show'];
-	if($show==1)//å‘è¡¨è€…
+	if($show==1)//·¢±íÕß
 	{
 		$add.=$and."(username like '%".$keyboard."%')";
 	}
@@ -117,7 +117,7 @@ if($keyboard)
 	{
 		$add.=$and."(sayip like '%".$keyboard."%')";
 	}
-	elseif($show==3)//å†…å®¹
+	elseif($show==3)//ÄÚÈİ
 	{
 		$add.=$and."(saytext like '%".$keyboard."%')";
 	}
@@ -125,7 +125,7 @@ if($keyboard)
 }
 $totalquery="select count(*) as total from {$dbtbpre}enewspl_".$restb.$add;
 $query="select plid,username,saytime,sayip,id,classid,checked,zcnum,fdnum,userid,isgood,saytext,pubid,eipport from {$dbtbpre}enewspl_".$restb.$add;
-//å–å¾—æ€»æ¡æ•°
+//È¡µÃ×ÜÌõÊı
 $totalnum=(int)$_GET['totalnum'];
 if($totalnum>0)
 {
@@ -139,14 +139,14 @@ $query.=" order by plid desc limit $offset,$line";
 $sql=$empire->query($query);
 $search.='&totalnum='.$num;
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//ä½ç½®
-$url="<a href=ListAllPl.php?restb=$restb".$ecms_hashur['ehref'].">ç®¡ç†è¯„è®º - åˆ†è¡¨".$restb."</a>";
+//Î»ÖÃ
+$url="<a href=ListAllPl.php?restb=$restb".$ecms_hashur['ehref'].">¹ÜÀíÆÀÂÛ - ·Ö±í".$restb."</a>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†è¯„è®º</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÆÀÂÛ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -170,15 +170,15 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="38%">ä½ç½®ï¼š 
+    <td width="38%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td width="62%"><div align="right" class="emenubutton"> 
-        <input type="button" name="Submit5" value="ç®¡ç†è¯„è®ºè¡¨æƒ…" onclick="self.location.href='plface.php<?=$ecms_hashur['whehref']?>';">&nbsp;&nbsp;&nbsp;
-		<input type="button" name="Submit5" value="è®¾ç½®è¯„è®ºå‚æ•°" onclick="self.location.href='SetPl.php<?=$ecms_hashur['whehref']?>';">&nbsp;&nbsp;&nbsp;
-		<input type="button" name="Submit5" value="è‡ªå®šä¹‰è¯„è®ºå­—æ®µ" onclick="self.location.href='ListPlF.php<?=$ecms_hashur['whehref']?>';">&nbsp;&nbsp;&nbsp;
-		<input type="button" name="Submit5" value="ç®¡ç†è¯„è®ºåˆ†è¡¨" onclick="self.location.href='ListPlDataTable.php<?=$ecms_hashur['whehref']?>';">&nbsp;&nbsp;&nbsp;
-		<input type="button" name="Submit52" value="æ‰¹é‡åˆ é™¤è¯„è®º" onclick="self.location.href='DelMorePl.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀíÆÀÂÛ±íÇé" onclick="self.location.href='plface.php<?=$ecms_hashur['whehref']?>';">&nbsp;&nbsp;&nbsp;
+		<input type="button" name="Submit5" value="ÉèÖÃÆÀÂÛ²ÎÊı" onclick="self.location.href='SetPl.php<?=$ecms_hashur['whehref']?>';">&nbsp;&nbsp;&nbsp;
+		<input type="button" name="Submit5" value="×Ô¶¨ÒåÆÀÂÛ×Ö¶Î" onclick="self.location.href='ListPlF.php<?=$ecms_hashur['whehref']?>';">&nbsp;&nbsp;&nbsp;
+		<input type="button" name="Submit5" value="¹ÜÀíÆÀÂÛ·Ö±í" onclick="self.location.href='ListPlDataTable.php<?=$ecms_hashur['whehref']?>';">&nbsp;&nbsp;&nbsp;
+		<input type="button" name="Submit52" value="ÅúÁ¿É¾³ıÆÀÂÛ" onclick="self.location.href='DelMorePl.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -187,32 +187,32 @@ function CheckAll(form)
   <form name="form2" method="get" action="ListAllPl.php">
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td>ä¿¡æ¯IDï¼š 
+      <td>ĞÅÏ¢ID£º 
         <input name="id" type="text" id="id" value="<?=$id?>" size="6">
-        ä¸“é¢˜IDï¼š
+        ×¨ÌâID£º
         <input name="ztid" type="text" id="ztid" value="<?=$ztid?>" size="6">
-        å…³é”®å­—ï¼š 
+        ¹Ø¼ü×Ö£º 
         <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>"> 
         <select name="show" id="show">
-          <option value="1"<?=$show==1?' selected':''?>>å‘è¡¨è€…</option>
-          <option value="2"<?=$show==2?' selected':''?>>IPåœ°å€</option>
-		  <option value="3"<?=$show==3?' selected':''?>>è¯„è®ºå†…å®¹</option>
+          <option value="1"<?=$show==1?' selected':''?>>·¢±íÕß</option>
+          <option value="2"<?=$show==2?' selected':''?>>IPµØÖ·</option>
+		  <option value="3"<?=$show==3?' selected':''?>>ÆÀÂÛÄÚÈİ</option>
         </select>
         <select name="checked" id="checked">
-          <option value="0"<?=$checked==0?' selected':''?>>ä¸é™</option>
-          <option value="1"<?=$checked==1?' selected':''?>>å·²å®¡æ ¸</option>
-          <option value="2"<?=$checked==2?' selected':''?>>æœªå®¡æ ¸</option>
+          <option value="0"<?=$checked==0?' selected':''?>>²»ÏŞ</option>
+          <option value="1"<?=$checked==1?' selected':''?>>ÒÑÉóºË</option>
+          <option value="2"<?=$checked==2?' selected':''?>>Î´ÉóºË</option>
         </select>
         <span id="listplclassnav"></span>
 		<input name="isgood" type="checkbox" id="isgood" value="1"<?=$isgood==1?' checked':''?>>
-        æ¨è
+        ÍÆ¼ö
         <select name="line" id="line">
-          <option value="30"<?=$line==30?' selected':''?>>æ¯é¡µ30æ¡</option>
-          <option value="50"<?=$line==50?' selected':''?>>æ¯é¡µ50æ¡</option>
-          <option value="100"<?=$line==100?' selected':''?>>æ¯é¡µ100æ¡</option>
+          <option value="30"<?=$line==30?' selected':''?>>Ã¿Ò³30Ìõ</option>
+          <option value="50"<?=$line==50?' selected':''?>>Ã¿Ò³50Ìõ</option>
+          <option value="100"<?=$line==100?' selected':''?>>Ã¿Ò³100Ìõ</option>
         </select>
         &nbsp;
-        <input type="submit" name="Submit2" value="æœç´¢è¯„è®º">
+        <input type="submit" name="Submit2" value="ËÑË÷ÆÀÂÛ">
 		<input type=hidden name=restb value=<?=$restb?>>
       </td>
     </tr>
@@ -221,7 +221,7 @@ function CheckAll(form)
     </tr>
 	</form>
   </table>
-<form name="form1" method="post" action="../ecmspl.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+<form name="form1" method="post" action="../ecmspl.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
 <?=$ecms_hashur['form']?>
 <input type=hidden name=classid value=<?=$classid?>>
 <input type=hidden name=id value=<?=$id?>>
@@ -230,17 +230,17 @@ function CheckAll(form)
   <input name="docheck" type="hidden" id="docheck" value="0">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" style="WORD-BREAK: break-all; WORD-WRAP: break-word">
     <tr class="header"> 
-      <td width="4%" height="25"><div align="center">é€‰æ‹©</div></td>
-      <td width="21%" height="25"><div align="center">ç½‘å</div></td>
-      <td width="51%" height="25"><div align="center">è¯„è®ºå†…å®¹(åŒå‡»å†…å®¹ï¼Œè¿›å…¥ä¿¡æ¯è¯„è®ºé¡µ)</div></td>
-      <td width="24%" height="25"><div align="center">æ‰€å±ä¿¡æ¯</div></td>
+      <td width="4%" height="25"><div align="center">Ñ¡Ôñ</div></td>
+      <td width="21%" height="25"><div align="center">ÍøÃû</div></td>
+      <td width="51%" height="25"><div align="center">ÆÀÂÛÄÚÈİ(Ë«»÷ÄÚÈİ£¬½øÈëĞÅÏ¢ÆÀÂÛÒ³)</div></td>
+      <td width="24%" height="25"><div align="center">ËùÊôĞÅÏ¢</div></td>
     </tr>
     <?php
 	while($r=$empire->fetch($sql))
 	{
 		if(!empty($r[checked]))
 		{
-			$checked=" title='æœªå®¡æ ¸' style='background:#99C4E3'";
+			$checked=" title='Î´ÉóºË' style='background:#99C4E3'";
 			$checkednc='<br>NC';
 		}
 		else
@@ -254,16 +254,16 @@ function CheckAll(form)
 		}
 		if(empty($r['username']))
 		{
-			$r['username']='åŒ¿å';
+			$r['username']='ÄäÃû';
 		}
 		$r['saytime']=date('Y-m-d H:i:s',$r['saytime']);
 		if($r[isgood])
 		{
 			$r[saytime]='<font color=red>'.$r[saytime].'</font>';
 		}
-		//æ›¿æ¢è¡¨æƒ…
+		//Ìæ»»±íÇé
 		$saytext=RepPltextFace(stripSlashes($r['saytext']));
-		//ä¸“é¢˜
+		//×¨Ìâ
 		$title='';
 		if($r['pubid']<0)
 		{
@@ -273,12 +273,12 @@ function CheckAll(form)
 			$pagefunr=eReturnRewritePlUrl($r['classid'],0,'dozt',0,0,1);
 			$plurl=$pagefunr['pageurl'];
 		}
-		else//ä¿¡æ¯
+		else//ĞÅÏ¢
 		{
 			if($class_r[$r[classid]][tbname])
 			{
 				$index_r=$empire->fetch1("select checked from {$dbtbpre}ecms_".$class_r[$r[classid]][tbname]."_index where id='$r[id]' limit 1");
-				//è¿”å›è¡¨
+				//·µ»Ø±í
 				$infotb=ReturnInfoMainTbname($class_r[$r[classid]][tbname],$index_r['checked']);
 				$infor=$empire->fetch1("select isurl,titleurl,classid,id,title from ".$infotb." where id='$r[id]' limit 1");
 				$titleurl=sys_ReturnBqTitleLink($infor);
@@ -295,7 +295,7 @@ function CheckAll(form)
       <td height="25" valign="top"><div align="center"> 
           <table width="100%" border="0" cellspacing="1" cellpadding="3">
             <tr> 
-              <td width="20%">ç½‘å</td>
+              <td width="20%">ÍøÃû</td>
               <td width="80%"> 
                 <?=$r[username]?>
               </td>
@@ -307,7 +307,7 @@ function CheckAll(form)
               </td>
             </tr>
             <tr> 
-              <td>æ—¶é—´</td>
+              <td>Ê±¼ä</td>
               <td> 
                 <?=$r['saytime']?>
               </td>
@@ -331,15 +331,15 @@ function CheckAll(form)
           <input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
         </div></td>
       <td height="25" colspan="3"> <div align="right">
-          <input type="submit" name="Submit" value="å®¡æ ¸è¯„è®º" onClick="document.form1.enews.value='CheckPl_all';document.form1.docheck.value='0';">
+          <input type="submit" name="Submit" value="ÉóºËÆÀÂÛ" onClick="document.form1.enews.value='CheckPl_all';document.form1.docheck.value='0';">
           &nbsp;&nbsp;&nbsp; 
-		  <input type="submit" name="Submit" value="å–æ¶ˆå®¡æ ¸è¯„è®º" onClick="document.form1.enews.value='CheckPl_all';document.form1.docheck.value='1';">
+		  <input type="submit" name="Submit" value="È¡ÏûÉóºËÆÀÂÛ" onClick="document.form1.enews.value='CheckPl_all';document.form1.docheck.value='1';">
           &nbsp;&nbsp;&nbsp;
-          <input type="submit" name="Submit3" value="æ¨èè¯„è®º" onClick="document.form1.enews.value='DoGoodPl_all';document.form1.isgood.value='1';">
+          <input type="submit" name="Submit3" value="ÍÆ¼öÆÀÂÛ" onClick="document.form1.enews.value='DoGoodPl_all';document.form1.isgood.value='1';">
           &nbsp;&nbsp;&nbsp; 
-          <input type="submit" name="Submit4" value="å–æ¶ˆæ¨èè¯„è®º" onClick="document.form1.enews.value='DoGoodPl_all';document.form1.isgood.value='0';">
+          <input type="submit" name="Submit4" value="È¡ÏûÍÆ¼öÆÀÂÛ" onClick="document.form1.enews.value='DoGoodPl_all';document.form1.isgood.value='0';">
           &nbsp;&nbsp;&nbsp; 
-          <input type="submit" name="Submit" value="åˆ é™¤" onClick="document.form1.enews.value='DelPl_all';">
+          <input type="submit" name="Submit" value="É¾³ı" onClick="document.form1.enews.value='DelPl_all';">
           <input name="enews" type="hidden" id="enews" value="DelPl_all">
         </div></td>
     </tr>
@@ -350,7 +350,7 @@ function CheckAll(form)
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="4"><font color="#666666">è¯´æ˜ï¼šå¤šé€‰æ¡†ä¸ºè“è‰²ä»£è¡¨æœªå®¡æ ¸è¯„è®ºï¼ŒåŠ ç²—ç½‘åä¸ºç™»é™†ä¼šå‘˜ï¼Œå‘å¸ƒæ—¶é—´çº¢è‰²ä¸ºæ¨èè¯„è®º</font></td>
+      <td height="25" colspan="4"><font color="#666666">ËµÃ÷£º¶àÑ¡¿òÎªÀ¶É«´ú±íÎ´ÉóºËÆÀÂÛ£¬¼Ó´ÖÍøÃûÎªµÇÂ½»áÔ±£¬·¢²¼Ê±¼äºìÉ«ÎªÍÆ¼öÆÀÂÛ</font></td>
     </tr>
   </table>
 </form>

@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,17 +16,17 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"shopps");
 
-//å¢åŠ é…é€æ–¹å¼
+//Ôö¼ÓÅäËÍ·½Ê½
 function AddPs($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add[pname]))
 	{
 		printerror("EmptyPayname","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shopps");
 	$add[price]=(float)$add[price];
 	$add['isclose']=(int)$add['isclose'];
@@ -36,7 +36,7 @@ function AddPs($add,$userid,$username){
 	$pid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("pid=".$pid."<br>pname=".$add[pname]);
 		printerror("AddPayfsSuccess","AddPs.php?enews=AddPs".hReturnEcmsHashStrHref2(0));
 	}
@@ -46,7 +46,7 @@ function AddPs($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹é…é€æ–¹å¼
+//ĞŞ¸ÄÅäËÍ·½Ê½
 function EditPs($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[pid]=(int)$add[pid];
@@ -54,7 +54,7 @@ function EditPs($add,$userid,$username){
 	{
 		printerror("EmptyPayname","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shopps");
 	$add[price]=(float)$add[price];
 	$add['isclose']=(int)$add['isclose'];
@@ -63,7 +63,7 @@ function EditPs($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsshopps set pname='".eaddslashes($add[pname])."',price='$add[price]',otherprice='$add[otherprice]',psay='".eaddslashes($add[psay])."',isclose='$add[isclose]' where pid='$add[pid]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("pid=".$add[pid]."<br>pname=".$add[pname]);
 		printerror("EditPayfsSuccess","ListPs.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -73,7 +73,7 @@ function EditPs($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤é…é€æ–¹å¼
+//É¾³ıÅäËÍ·½Ê½
 function DelPs($pid,$userid,$username){
 	global $empire,$dbtbpre;
 	$pid=(int)$pid;
@@ -81,13 +81,13 @@ function DelPs($pid,$userid,$username){
 	{
 		printerror("EmptyPayfsid","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shopps");
 	$r=$empire->fetch1("select pname from {$dbtbpre}enewsshopps where pid='$pid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsshopps where pid='$pid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("pid=".$pid."<br>pname=".$r[pname]);
 		printerror("DelPayfsSuccess","ListPs.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -97,7 +97,7 @@ function DelPs($pid,$userid,$username){
 	}
 }
 
-//è®¾ç½®ä¸ºé»˜è®¤é…é€æ–¹å¼
+//ÉèÖÃÎªÄ¬ÈÏÅäËÍ·½Ê½
 function DefPs($pid,$userid,$username){
 	global $empire,$dbtbpre;
 	$pid=(int)$pid;
@@ -105,14 +105,14 @@ function DefPs($pid,$userid,$username){
 	{
 		printerror("EmptyPayfsid","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shopps");
 	$r=$empire->fetch1("select pname from {$dbtbpre}enewsshopps where pid='$pid'");
 	$upsql=$empire->query("update {$dbtbpre}enewsshopps set isdefault=0");
 	$sql=$empire->query("update {$dbtbpre}enewsshopps set isdefault=1 where pid='$pid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("pid=".$pid."<br>pname=".$r[pname]);
 		printerror("DefPayfsSuccess","ListPs.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -154,11 +154,11 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=16;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=18;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=16;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=18;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select * from {$dbtbpre}enewsshopps";
-$num=$empire->num($query);//å–å¾—æ€»æ¡æ•°
+$num=$empire->num($query);//È¡µÃ×ÜÌõÊı
 $query=$query." order by pid limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -166,18 +166,18 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†é…é€æ–¹å¼</title>
+<title>¹ÜÀíÅäËÍ·½Ê½</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href="ListPs.php<?=$ecms_hashur['whehref']?>">ç®¡ç†é…é€æ–¹å¼</a>&nbsp;&nbsp;&nbsp; 
+    <td width="50%" height="25">Î»ÖÃ£º<a href="ListPs.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÅäËÍ·½Ê½</a>&nbsp;&nbsp;&nbsp; 
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit" value="å¢åŠ é…é€æ–¹å¼" onclick="self.location.href='AddPs.php?enews=AddPs<?=$ecms_hashur['ehref']?>'">
+        <input type="button" name="Submit" value="Ôö¼ÓÅäËÍ·½Ê½" onclick="self.location.href='AddPs.php?enews=AddPs<?=$ecms_hashur['ehref']?>'">
       </div></td>
   </tr>
 </table>
@@ -186,11 +186,11 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="5%" height="25"> <div align="center">ID</div></td>
-    <td width="36%" height="25"> <div align="center">é…é€æ–¹å¼</div></td>
-    <td width="15%"><div align="center">ä»·æ ¼</div></td>
-    <td width="11%"><div align="center">é»˜è®¤</div></td>
-    <td width="11%"><div align="center">å¯ç”¨</div></td>
-    <td width="22%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="36%" height="25"> <div align="center">ÅäËÍ·½Ê½</div></td>
+    <td width="15%"><div align="center">¼Û¸ñ</div></td>
+    <td width="11%"><div align="center">Ä¬ÈÏ</div></td>
+    <td width="11%"><div align="center">ÆôÓÃ</div></td>
+    <td width="22%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -205,10 +205,10 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
       </div></td>
     <td><div align="center"> 
         <?=$r[price]?>
-        å…ƒ </div></td>
-    <td><div align="center"><?=$r[isdefault]==1?'æ˜¯':'--'?></div></td>
-    <td><div align="center"><?=$r[isclose]==1?'å…³é—­':'å¼€å¯'?></div></td>
-    <td height="25"> <div align="center">[<a href="AddPs.php?enews=EditPs&pid=<?=$r[pid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] [<a href="ListPs.php?enews=DefPs&pid=<?=$r[pid]?><?=$ecms_hashur['href']?>">è®¾ä¸ºé»˜è®¤</a>] [<a href="ListPs.php?enews=DelPs&pid=<?=$r[pid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+        Ôª </div></td>
+    <td><div align="center"><?=$r[isdefault]==1?'ÊÇ':'--'?></div></td>
+    <td><div align="center"><?=$r[isclose]==1?'¹Ø±Õ':'¿ªÆô'?></div></td>
+    <td height="25"> <div align="center">[<a href="AddPs.php?enews=EditPs&pid=<?=$r[pid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] [<a href="ListPs.php?enews=DefPs&pid=<?=$r[pid]?><?=$ecms_hashur['href']?>">ÉèÎªÄ¬ÈÏ</a>] [<a href="ListPs.php?enews=DelPs&pid=<?=$r[pid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

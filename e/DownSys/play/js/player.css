@@ -5,6 +5,6 @@
 #myPosBar 		{ position: absolute; left: 10px; top: 1px; width: 29px; height: 12px; z-index: 3;cursor:hand}
 #myVolBar 		{ position: absolute; left: 270px; top: 70px; width: 11px; height: 8px; z-index: 3;cursor:hand}
 #myBalBar 		{ position: absolute; left: 286px; top: 84px; width: 11px; height: 8px; z-index: 3;cursor:hand}
-td				{ font-family: "å®‹ä½“"; font-size: 9pt;color:#EEEEEE;}
-body			{ font-family: "å®‹ä½“"; font-size: 9pt;color:#EEEEEE;line-height: 13pt}
-div				{ font-family: "å®‹ä½“"; font-size: 9pt;color:#EEEEEE;}
+td				{ font-family: "ËÎÌå"; font-size: 9pt;color:#EEEEEE;}
+body			{ font-family: "ËÎÌå"; font-size: 9pt;color:#EEEEEE;line-height: 13pt}
+div				{ font-family: "ËÎÌå"; font-size: 9pt;color:#EEEEEE;}

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,21 +15,21 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"pubvar");
 $enews=ehtmlspecialchars($_GET['enews']);
 $cid=(int)$_GET['cid'];
 $r[myorder]=0;
-$url="<a href=ListPubVar.php".$ecms_hashur['whehref'].">ç®¡ç†æ‰©å±•å˜é‡</a>&nbsp;>&nbsp;å¢åŠ æ‰©å±•å˜é‡";
-//ä¿®æ”¹
+$url="<a href=ListPubVar.php".$ecms_hashur['whehref'].">¹ÜÀíÀ©Õ¹±äÁ¿</a>&nbsp;>&nbsp;Ôö¼ÓÀ©Õ¹±äÁ¿";
+//ĞŞ¸Ä
 if($enews=="EditPubVar")
 {
 	$varid=(int)$_GET['varid'];
 	$r=$empire->fetch1("select myvar,varname,varvalue,varsay,classid,tocache,myorder from {$dbtbpre}enewspubvar where varid='$varid'");
 	$r[varvalue]=ehtmlspecialchars($r[varvalue]);
-	$url="<a href=ListPubVar.php".$ecms_hashur['whehref'].">ç®¡ç†æ‰©å±•å˜é‡</a>&nbsp;>&nbsp;ä¿®æ”¹æ‰©å±•å˜é‡ï¼š".$r[myvar];
+	$url="<a href=ListPubVar.php".$ecms_hashur['whehref'].">¹ÜÀíÀ©Õ¹±äÁ¿</a>&nbsp;>&nbsp;ĞŞ¸ÄÀ©Õ¹±äÁ¿£º".$r[myvar];
 }
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewspubvarclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -47,15 +47,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ æ‰©å±•å˜é‡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼ÓÀ©Õ¹±äÁ¿</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 
@@ -63,48 +63,48 @@ $empire=null;
   <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å¢åŠ æ‰©å±•å˜é‡ 
+      <td height="25" colspan="2">Ôö¼ÓÀ©Õ¹±äÁ¿ 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="varid" type="hidden" value="<?=$varid?>"> 
         <input name="cid" type="hidden" value="<?=$cid?>">
         <input name="oldmyvar" type="hidden" id="oldmyvar" value="<?=$r[myvar]?>">
         <input name="oldtocache" type="hidden" id="oldtocache" value="<?=$r[tocache]?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">å˜é‡å(*)</td>
+      <td width="19%" height="25">±äÁ¿Ãû(*)</td>
       <td width="81%" height="25"> <input name="myvar" type="text" value="<?=$r[myvar]?>">
-        <font color="#666666">(ç”±è‹±æ–‡ä¸æ•°å­—ç»„æˆï¼Œä¸”ä¸èƒ½ä»¥æ•°å­—å¼€å¤´ã€‚å¦‚ï¼š&quot;title&quot;)</font></td>
+        <font color="#666666">(ÓÉÓ¢ÎÄÓëÊı×Ö×é³É£¬ÇÒ²»ÄÜÒÔÊı×Ö¿ªÍ·¡£Èç£º&quot;title&quot;)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ‰€å±åˆ†ç±»</td>
+      <td height="25">ËùÊô·ÖÀà</td>
       <td height="25"><select name="classid">
-          <option value="0">ä¸éš¶å±äºä»»ä½•åˆ†ç±»</option>
+          <option value="0">²»Á¥ÊôÓÚÈÎºÎ·ÖÀà</option>
           <?=$cstr?>
-        </select> <input type="button" name="Submit6222322" value="ç®¡ç†åˆ†ç±»" onclick="window.open('PubVarClass.php<?=$ecms_hashur['whehref']?>');"></td>
+        </select> <input type="button" name="Submit6222322" value="¹ÜÀí·ÖÀà" onclick="window.open('PubVarClass.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å˜é‡æ ‡è¯†(*)</td>
+      <td height="25">±äÁ¿±êÊ¶(*)</td>
       <td height="25"><input name="varname" type="text" value="<?=$r[varname]?>"> 
-        <font color="#666666">(å¦‚ï¼šæ ‡é¢˜)</font></td>
+        <font color="#666666">(Èç£º±êÌâ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">å˜é‡è¯´æ˜</td>
+      <td height="25">±äÁ¿ËµÃ÷</td>
       <td height="25"><input name="varsay" type="text" id="varsay" value="<?=$r[varsay]?>" size="60"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ˜¯å¦å†™å…¥ç¼“å­˜</td>
+      <td height="25">ÊÇ·ñĞ´Èë»º´æ</td>
       <td height="25"><input type="radio" name="tocache" value="1"<?=$r[tocache]==1?' checked':''?>>
-        å†™å…¥ç¼“å­˜ 
+        Ğ´Èë»º´æ 
         <input type="radio" name="tocache" value="0"<?=$r[tocache]==0?' checked':''?>>
-        ä¸å†™å…¥ç¼“å­˜<font color="#666666">ï¼ˆå¤§å†…å®¹ä¸å»ºè®®å†™å…¥ç¼“å­˜ï¼Œç¼“å­˜è°ƒç”¨å˜é‡ï¼š$public_r['add_å˜é‡å']ï¼‰</font></td>
+        ²»Ğ´Èë»º´æ<font color="#666666">£¨´óÄÚÈİ²»½¨ÒéĞ´Èë»º´æ£¬»º´æµ÷ÓÃ±äÁ¿£º$public_r['add_±äÁ¿Ãû']£©</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å˜é‡æ’åº</td>
+      <td height="25">±äÁ¿ÅÅĞò</td>
       <td height="25"><input name="myorder" type="text" value="<?=$r[myorder]?>">
-        <font color="#666666">(å€¼è¶Šå°æ˜¾ç¤ºè¶Šå‰é¢)</font></td>
+        <font color="#666666">(ÖµÔ½Ğ¡ÏÔÊ¾Ô½Ç°Ãæ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><strong>å˜é‡å€¼</strong></td>
-      <td height="25">è¯·å°†å˜é‡å†…å®¹<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.varvalue.value);document.form1.varvalue.select()" title="ç‚¹å‡»å¤åˆ¶æ¨¡æ¿å†…å®¹"><strong>å¤åˆ¶åˆ°Dreamweaver(æ¨è)</strong></a>æˆ–è€…ä½¿ç”¨<a href="#ecms" onclick="window.open('../template/editor.php?<?=$ecms_hashur['ehref']?>&getvar=opener.document.form1.varvalue.value&returnvar=opener.document.form1.varvalue.value&fun=ReturnHtml&notfullpage=1','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>æ¨¡æ¿åœ¨çº¿ç¼–è¾‘</strong></a>è¿›è¡Œå¯è§†åŒ–ç¼–è¾‘</td>
+      <td height="25"><strong>±äÁ¿Öµ</strong></td>
+      <td height="25">Çë½«±äÁ¿ÄÚÈİ<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.varvalue.value);document.form1.varvalue.select()" title="µã»÷¸´ÖÆÄ£°åÄÚÈİ"><strong>¸´ÖÆµ½Dreamweaver(ÍÆ¼ö)</strong></a>»òÕßÊ¹ÓÃ<a href="#ecms" onclick="window.open('../template/editor.php?<?=$ecms_hashur['ehref']?>&getvar=opener.document.form1.varvalue.value&returnvar=opener.document.form1.varvalue.value&fun=ReturnHtml&notfullpage=1','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>Ä£°åÔÚÏß±à¼­</strong></a>½øĞĞ¿ÉÊÓ»¯±à¼­</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"><div align="center"> 
@@ -113,7 +113,7 @@ $empire=null;
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> &nbsp; <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> &nbsp; <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

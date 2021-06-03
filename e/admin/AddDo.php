@@ -5,7 +5,7 @@ require("../class/db_sql.php");
 require("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -14,30 +14,30 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"do");
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href=ListDo.php".$ecms_hashur['whehref'].">ç®¡ç†åˆ·æ–°ä»»åŠ¡</a>&nbsp;>&nbsp;å¢åŠ å®šæ—¶åˆ·æ–°ä»»åŠ¡";
+$url="<a href=ListDo.php".$ecms_hashur['whehref'].">¹ÜÀíË¢ĞÂÈÎÎñ</a>&nbsp;>&nbsp;Ôö¼Ó¶¨Ê±Ë¢ĞÂÈÎÎñ";
 $cdoing=(int)$_GET['cdoing'];
 $cname='';
 $class='';
 $r[dotime]=30;
 $r[isopen]=1;
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditDo")
 {
 	$doid=(int)$_GET['doid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsdo where doid='$doid'");
-	$url="<a href=ListDo.php".$ecms_hashur['whehref'].">ç®¡ç†åˆ·æ–°ä»»åŠ¡</a>&nbsp;>&nbsp;ä¿®æ”¹å®šæ—¶åˆ·æ–°ä»»åŠ¡";
+	$url="<a href=ListDo.php".$ecms_hashur['whehref'].">¹ÜÀíË¢ĞÂÈÎÎñ</a>&nbsp;>&nbsp;ĞŞ¸Ä¶¨Ê±Ë¢ĞÂÈÎÎñ";
 	if($cdoing&&$cdoing<>$r['doing'])
 	{
 		$r[classid]='';
 	}
 }
-//æ ç›®
+//À¸Ä¿
 if($r['doing']==1||$cdoing==1)
 {
-	$cname='æ ç›®';
+	$cname='À¸Ä¿';
 	$fcfile="../data/fc/ListEnews.php";
 	$fcjsfile="../data/fc/cmsclass.js";
 	if(file_exists($fcjsfile)&&file_exists($fcfile))
@@ -55,9 +55,9 @@ if($r['doing']==1||$cdoing==1)
 		$class=ShowClass_AddClass(str_replace(',','|',$r[classid]),"n",0,"|-",0,3);
 	}
 }
-elseif($r['doing']==2||$cdoing==2)//ä¸“é¢˜
+elseif($r['doing']==2||$cdoing==2)//×¨Ìâ
 {
-	$cname='ä¸“é¢˜';
+	$cname='×¨Ìâ';
 	$ztsql=$empire->query("select ztid,ztname from {$dbtbpre}enewszt order by ztid");
 	while($ztr=$empire->fetch($ztsql))
 	{
@@ -65,9 +65,9 @@ elseif($r['doing']==2||$cdoing==2)//ä¸“é¢˜
 		$class.="<option value='$ztr[ztid]'".$selected.">$ztr[ztname]</option>";
 	}
 }
-elseif($r['doing']==3||$cdoing==3)//è‡ªå®šä¹‰åˆ—è¡¨
+elseif($r['doing']==3||$cdoing==3)//×Ô¶¨ÒåÁĞ±í
 {
-	$cname='åˆ—è¡¨';
+	$cname='ÁĞ±í';
 	$ulsql=$empire->query("select listid,listname from {$dbtbpre}enewsuserlist order by listid");
 	while($ulr=$empire->fetch($ulsql))
 	{
@@ -75,9 +75,9 @@ elseif($r['doing']==3||$cdoing==3)//è‡ªå®šä¹‰åˆ—è¡¨
 		$class.="<option value='$ulr[listid]'".$selected.">$ulr[listname]</option>";
 	}
 }
-elseif($r['doing']==4||$cdoing==4)//è‡ªå®šä¹‰é¡µé¢
+elseif($r['doing']==4||$cdoing==4)//×Ô¶¨ÒåÒ³Ãæ
 {
-	$cname='é¡µé¢';
+	$cname='Ò³Ãæ';
 	$upsql=$empire->query("select id,title from {$dbtbpre}enewspage order by id");
 	while($upr=$empire->fetch($upsql))
 	{
@@ -85,7 +85,7 @@ elseif($r['doing']==4||$cdoing==4)//è‡ªå®šä¹‰é¡µé¢
 		$class.="<option value='$upr[id]'".$selected.">$upr[title]</option>";
 	}
 }
-elseif($r['doing']==5||$cdoing==5)//è‡ªå®šä¹‰JS
+elseif($r['doing']==5||$cdoing==5)//×Ô¶¨ÒåJS
 {
 	$cname='JS';
 	$jssql=$empire->query("select jsid,jsname from {$dbtbpre}enewsuserjs order by jsid");
@@ -95,9 +95,9 @@ elseif($r['doing']==5||$cdoing==5)//è‡ªå®šä¹‰JS
 		$class.="<option value='$jsr[jsid]'".$selected.">$jsr[jsname]</option>";
 	}
 }
-elseif($r['doing']==6||$cdoing==6)//æ ‡é¢˜åˆ†ç±»é¡µé¢
+elseif($r['doing']==6||$cdoing==6)//±êÌâ·ÖÀàÒ³Ãæ
 {
-	$cname='æ ‡é¢˜åˆ†ç±»';
+	$cname='±êÌâ·ÖÀà';
 	$infotypesql=$empire->query("select typeid,tname from {$dbtbpre}enewsinfotype order by typeid");
 	while($infotyper=$empire->fetch($infotypesql))
 	{
@@ -115,8 +115,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å®šæ—¶åˆ·æ–°ä»»åŠ¡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¶¨Ê±Ë¢ĞÂÈÎÎñ</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function selectalls(doselect,formvar)
@@ -134,7 +134,7 @@ function selectalls(doselect,formvar)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 
@@ -142,55 +142,55 @@ function selectalls(doselect,formvar)
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å¢åŠ å®šæ—¶åˆ·æ–°ä»»åŠ¡ 
+      <td height="25" colspan="2">Ôö¼Ó¶¨Ê±Ë¢ĞÂÈÎÎñ 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="doid" type="hidden" value="<?=$doid?>"></td>
     </tr>
 	<tr bgcolor="#FFFFFF"> 
-      <td height="25">ä»»åŠ¡ç±»å‹ï¼š</td>
+      <td height="25">ÈÎÎñÀàĞÍ£º</td>
       <td height="25"> <select name="doing" size="8" style="width:270" onchange="self.location.href='AddDo.php?<?=$ecms_hashur['ehref']?>&enews=<?=$enews?>&doid=<?=$doid?>&cdoing='+this.options[this.selectedIndex].value;">
-          <option value="0"<?=$r[doing]==0?' selected':''?>>åˆ·æ–°é¦–é¡µ</option>
-          <option value="1"<?=$r[doing]==1?' selected':''?>>åˆ·æ–°æ ç›®é¡µé¢</option>
-		  <option value="6"<?=$r[doing]==6?' selected':''?>>åˆ·æ–°æ ‡é¢˜åˆ†ç±»é¡µé¢</option>
-		  <option value="2"<?=$r[doing]==2?' selected':''?>>åˆ·æ–°ä¸“é¢˜é¡µé¢</option>
-		  <option value="3"<?=$r[doing]==3?' selected':''?>>åˆ·æ–°è‡ªå®šä¹‰åˆ—è¡¨</option>
-		  <option value="4"<?=$r[doing]==4?' selected':''?>>åˆ·æ–°è‡ªå®šä¹‰é¡µé¢</option>
-		  <option value="5"<?=$r[doing]==5?' selected':''?>>åˆ·æ–°è‡ªå®šä¹‰JS</option>
+          <option value="0"<?=$r[doing]==0?' selected':''?>>Ë¢ĞÂÊ×Ò³</option>
+          <option value="1"<?=$r[doing]==1?' selected':''?>>Ë¢ĞÂÀ¸Ä¿Ò³Ãæ</option>
+		  <option value="6"<?=$r[doing]==6?' selected':''?>>Ë¢ĞÂ±êÌâ·ÖÀàÒ³Ãæ</option>
+		  <option value="2"<?=$r[doing]==2?' selected':''?>>Ë¢ĞÂ×¨ÌâÒ³Ãæ</option>
+		  <option value="3"<?=$r[doing]==3?' selected':''?>>Ë¢ĞÂ×Ô¶¨ÒåÁĞ±í</option>
+		  <option value="4"<?=$r[doing]==4?' selected':''?>>Ë¢ĞÂ×Ô¶¨ÒåÒ³Ãæ</option>
+		  <option value="5"<?=$r[doing]==5?' selected':''?>>Ë¢ĞÂ×Ô¶¨ÒåJS</option>
         </select>
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="22%" height="25">ä»»åŠ¡åï¼š</td>
+      <td width="22%" height="25">ÈÎÎñÃû£º</td>
       <td width="78%" height="25"><input name="doname" type="text" value="<?=$r[doname]?>" size="38">
-        <font color="#666666">(æ¯”å¦‚é¦–é¡µå®šæ—¶åˆ·æ–°)</font></td>
+        <font color="#666666">(±ÈÈçÊ×Ò³¶¨Ê±Ë¢ĞÂ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">ä»»åŠ¡çŠ¶æ€ï¼š</td>
+      <td height="25">ÈÎÎñ×´Ì¬£º</td>
       <td height="25"><input type="radio" name="isopen" value="1"<?=$r[isopen]==1?' checked':''?>>
-        å¼€å¯
+        ¿ªÆô
         <input type="radio" name="isopen" value="0"<?=$r[isopen]==0?' checked':''?>>
-        å…³é—­</td>
+        ¹Ø±Õ</td>
     </tr>
 	<tr bgcolor="#FFFFFF"> 
-      <td height="25">æ‰§è¡Œæ—¶é—´é—´éš”ï¼š</td>
+      <td height="25">Ö´ĞĞÊ±¼ä¼ä¸ô£º</td>
       <td height="25"><input name="dotime" type="text" value="<?=$r[dotime]?>" size="38">
-        åˆ†é’Ÿ<font color="#666666">(å°äº5åˆ†é’Ÿç³»ç»Ÿå°†è§†ä¸º5åˆ†é’Ÿ)</font></td>
+        ·ÖÖÓ<font color="#666666">(Ğ¡ÓÚ5·ÖÖÓÏµÍ³½«ÊÓÎª5·ÖÖÓ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><p>é€‰æ‹©<?=$cname?>ï¼š<br>
+      <td height="25"><p>Ñ¡Ôñ<?=$cname?>£º<br>
           <br>
           <br>
-          <font color="#666666">(é¦–é¡µåˆ·æ–°æ­¤æ å¤±æ•ˆï¼›<br>
-          å¯åŒæ—¶é€‰æ‹©å¤šä¸ªï¼›<br>
-          è¯´æ˜ï¼šé€‰æ‹©è¶Šå¤šå ç”¨èµ„æºè¶Šå¤§.</font><font color="#666666">)</font></p>
+          <font color="#666666">(Ê×Ò³Ë¢ĞÂ´ËÀ¸Ê§Ğ§£»<br>
+          ¿ÉÍ¬Ê±Ñ¡Ôñ¶à¸ö£»<br>
+          ËµÃ÷£ºÑ¡ÔñÔ½¶àÕ¼ÓÃ×ÊÔ´Ô½´ó.</font><font color="#666666">)</font></p>
         </td>
       <td height="25"><select name="classid[]" size="16" multiple style="width:270" id="classidselect">
           <?=$class?>
         </select>
-        [<a href="#empirecms" onclick="selectalls(0,'classidselect')">å…¨éƒ¨å–æ¶ˆ</a>]</td>
+        [<a href="#empirecms" onclick="selectalls(0,'classidselect')">È«²¿È¡Ïû</a>]</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

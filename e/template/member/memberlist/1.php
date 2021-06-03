@@ -6,16 +6,16 @@ if(!defined('InEmpireCMS'))
 ?>
 <?php
 
-//é…ç½®æŸ¥è¯¢è‡ªå®šä¹‰å­—æ®µåˆ—è¡¨,é€—å·å¼€å¤´ï¼Œå¤šä¸ªç”¨é€—å·æ ¼å¼€ï¼Œæ ¼å¼â€œui.å­—æ®µåâ€
+//ÅäÖÃ²éÑ¯×Ô¶¨Òå×Ö¶ÎÁĞ±í,¶ººÅ¿ªÍ·£¬¶à¸öÓÃ¶ººÅ¸ñ¿ª£¬¸ñÊ½¡°ui.×Ö¶ÎÃû¡±
 $useraddf=',ui.userpic';
 
-//åˆ†é¡µSQL
+//·ÖÒ³SQL
 $query='select '.eReturnSelectMemberF('userid,username,email,registertime,groupid','u.').$useraddf.' from '.eReturnMemberTable().' u'.$add." order by u.".egetmf('userid')." desc limit $offset,$line";
 $sql=$empire->query($query);
 
-//å¯¼èˆª
-$public_diyr['pagetitle']='ä¼šå‘˜åˆ—è¡¨';
-$url="<a href='../../../'>é¦–é¡µ</a>&nbsp;>&nbsp;ä¼šå‘˜åˆ—è¡¨";
+//µ¼º½
+$public_diyr['pagetitle']='»áÔ±ÁĞ±í';
+$url="<a href='../../../'>Ê×Ò³</a>&nbsp;>&nbsp;»áÔ±ÁĞ±í";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
@@ -24,18 +24,18 @@ require(ECMS_PATH.'e/template/incfile/header.php');
     <input type="hidden" name="groupid" value="<?=$groupid?>">
     <tr class="header"> 
       <td width="10%"><div align="center">ID</div></td>
-      <td width="38%" height="25"><div align="center">ç”¨æˆ·å</div></td>
-      <td width="30%" height="25"><div align="center">æ³¨å†Œæ—¶é—´</div></td>
+      <td width="38%" height="25"><div align="center">ÓÃ»§Ãû</div></td>
+      <td width="30%" height="25"><div align="center">×¢²áÊ±¼ä</div></td>
       <td width="22%" height="25"><div align="center"></div></td>
     </tr>
     <?php
 	while($r=$empire->fetch($sql))
 	{
-		//æ³¨å†Œæ—¶é—´
+		//×¢²áÊ±¼ä
 		$registertime=eReturnMemberRegtime($r['registertime'],"Y-m-d H:i:s");
-		//ç”¨æˆ·ç»„
+		//ÓÃ»§×é
 		$groupname=$level_r[$r['groupid']]['groupname'];
-		//ç”¨æˆ·å¤´åƒ
+		//ÓÃ»§Í·Ïñ
 		$userpic=$r['userpic']?$r['userpic']:$public_r[newsurl].'e/data/images/nouserpic.gif';
 	?>
     <tr bgcolor="#FFFFFF"> 
@@ -48,8 +48,8 @@ require(ECMS_PATH.'e/template/incfile/header.php');
       <td height="25"><div align="center"> 
           <?=$registertime?>
         </div></td>
-      <td height="25"><div align="center"> [<a href="<?=$public_r[newsurl]?>e/member/ShowInfo/?userid=<?=$r['userid']?>" target="_blank">ä¼šå‘˜èµ„æ–™</a>] 
-          [<a href="<?=$public_r[newsurl]?>e/space/?userid=<?=$r['userid']?>" target="_blank">ä¼šå‘˜ç©ºé—´</a>]</div></td>
+      <td height="25"><div align="center"> [<a href="<?=$public_r[newsurl]?>e/member/ShowInfo/?userid=<?=$r['userid']?>" target="_blank">»áÔ±×ÊÁÏ</a>] 
+          [<a href="<?=$public_r[newsurl]?>e/space/?userid=<?=$r['userid']?>" target="_blank">»áÔ±¿Õ¼ä</a>]</div></td>
     </tr>
     <?
   	}
@@ -60,7 +60,7 @@ require(ECMS_PATH.'e/template/incfile/header.php');
       </td>
       <td height="25"> <div align="center"> 
           <input name="keyboard[]" type="text" id="keyboard" size="10">
-          <input type="submit" name="Submit" value="æœç´¢">
+          <input type="submit" name="Submit" value="ËÑË÷">
         </div></td>
     </tr>
   </form>

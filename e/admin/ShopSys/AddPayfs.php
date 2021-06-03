@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,21 +15,21 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"shoppayfs");
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href=ListPayfs.php".$ecms_hashur['whehref'].">ç®¡ç†æ”¯ä»˜æ–¹å¼</a>&nbsp;>&nbsp;å¢åŠ æ”¯ä»˜æ–¹å¼";
+$url="<a href=ListPayfs.php".$ecms_hashur['whehref'].">¹ÜÀíÖ§¸¶·½Ê½</a>&nbsp;>&nbsp;Ôö¼ÓÖ§¸¶·½Ê½";
 if($enews=="EditPayfs")
 {
 	$payid=(int)$_GET['payid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsshoppayfs where payid='$payid'");
-	$url="<a href=ListPayfs.php".$ecms_hashur['whehref'].">ç®¡ç†æ”¯ä»˜æ–¹å¼</a>&nbsp;>&nbsp;ä¿®æ”¹æ”¯ä»˜æ–¹å¼ï¼š<b>".$r[payname]."</b>";
+	$url="<a href=ListPayfs.php".$ecms_hashur['whehref'].">¹ÜÀíÖ§¸¶·½Ê½</a>&nbsp;>&nbsp;ĞŞ¸ÄÖ§¸¶·½Ê½£º<b>".$r[payname]."</b>";
 	if($r[userpay])
 	{$userpay=" checked";}
 	if($r[userfen])
 	{$userfen=" checked";}
 }
-//--------------------htmlç¼–è¾‘å™¨
+//--------------------html±à¼­Æ÷
 include('../ecmseditor/eshoweditor.php');
 $loadeditorjs=ECMS_ShowEditorJS('../ecmseditor/infoeditor/');
 db_close();
@@ -38,10 +38,10 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>æ”¯ä»˜æ–¹å¼</title>
+<title>Ö§¸¶·½Ê½</title>
 <?=$loadeditorjs?>
 <script>
 function on()
@@ -54,7 +54,7 @@ var f=document.add
 f.paysay.value=f.HTML.value;
 }
 function br(){
-if(!confirm("æ˜¯å¦å¤ä½ï¼Ÿ")){return false;}
+if(!confirm("ÊÇ·ñ¸´Î»£¿")){return false;}
 document.add.title.select()
 }
 </script>
@@ -63,52 +63,52 @@ document.add.title.select()
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="add" method="post" action="ListPayfs.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="21%" height="25">å¢åŠ æ”¯ä»˜æ–¹å¼</td>
+      <td width="21%" height="25">Ôö¼ÓÖ§¸¶·½Ê½</td>
       <td width="79%" height="25"><input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
         <input name="payid" type="hidden" id="payid" value="<?=$payid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ–¹å¼åç§°:</td>
+      <td height="25">·½Ê½Ãû³Æ:</td>
       <td height="25"><input name="payname" type="text" id="payname" value="<?=$r[payname]?>">
-        (å¦‚:é‚®å±€æ±‡æ¬¾) </td>
+        (Èç:ÓÊ¾Ö»ã¿î) </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
       <td height="25"><input name="userpay" type="checkbox" id="userpay" value="1"<?=$userpay?>>
-        <strong>ç›´æ¥åˆ’å¸</strong>(éåˆ’å¸è¯·å‹¿é€‰æ‹©)</td>
+        <strong>Ö±½Ó»®ÕÊ</strong>(·Ç»®ÕÊÇëÎğÑ¡Ôñ)</td>
     </tr>
     <tr bgcolor="#FFFFFF">
       <td height="25">&nbsp;</td>
       <td height="25"><input name="userfen" type="checkbox" id="userfen" value="1"<?=$userfen?>>
-        <strong>ç‚¹æ•°è´­ä¹°</strong>(éç‚¹æ•°è´­ä¹°è¯·å‹¿é€‰æ‹©)</td>
+        <strong>µãÊı¹ºÂò</strong>(·ÇµãÊı¹ºÂòÇëÎğÑ¡Ôñ)</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">åœ¨çº¿æ”¯ä»˜åœ°å€:</td>
+      <td height="25">ÔÚÏßÖ§¸¶µØÖ·:</td>
       <td height="25"><input name="payurl" type="text" id="payurl" value="<?=$r[payurl]?>" size="52">
-        (åœ¨çº¿æ”¯ä»˜/æ‰‹æœºæ”¯ä»˜è¯·å¡«å†™)</td>
+        (ÔÚÏßÖ§¸¶/ÊÖ»úÖ§¸¶ÇëÌîĞ´)</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">è¯¦ç»†è¯´æ˜:</td>
+      <td height="25" valign="top">ÏêÏ¸ËµÃ÷:</td>
       <td height="25">
 	  <?=ECMS_ShowEditorVar('paysay',$r[paysay],'Default','../ecmseditor/infoeditor/')?>      </td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ˜¯å¦å¯ç”¨</td>
+      <td height="25">ÊÇ·ñÆôÓÃ</td>
       <td height="25"><input type="radio" name="isclose" value="0"<?=$r[isclose]==0?' checked':''?>>
-      å¼€å¯
+      ¿ªÆô
         <input type="radio" name="isclose" value="1"<?=$r[isclose]==1?' checked':''?>>
-      å…³é—­</td>
+      ¹Ø±Õ</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"> <input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"> <input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

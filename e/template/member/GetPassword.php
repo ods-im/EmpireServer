@@ -5,39 +5,39 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='å–å›žå¯†ç ';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;å–å›žå¯†ç ";
+$public_diyr['pagetitle']='È¡»ØÃÜÂë';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../cp/>»áÔ±ÖÐÐÄ</a>&nbsp;>&nbsp;È¡»ØÃÜÂë";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <br>
 <table width="500" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <form name="GetPassForm" method="POST" action="../doaction.php">
     <tr class="header"> 
-      <td height="25" colspan="2"><div align="center">å–å›žå¯†ç </div></td>
+      <td height="25" colspan="2"><div align="center">È¡»ØÃÜÂë</div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="23%" height="25">ç”¨æˆ·å</td>
+      <td width="23%" height="25">ÓÃ»§Ãû</td>
       <td width="77%"><input name="username" type="text" id="username" size="38"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">é‚®ç®±</td>
+      <td height="25">ÓÊÏä</td>
       <td><input name="email" type="text" id="email" size="38"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">éªŒè¯ç </td>
+      <td height="25">ÑéÖ¤Âë</td>
       <td>
 	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr> 
                   <td width="52"><input name="key" type="text" id="key" size="6"> 
                   </td>
-                  <td id="getpasswordshowkey"><a href="#EmpireCMS" onclick="edoshowkey('getpasswordshowkey','getpassword','<?=$public_r['newsurl']?>');" title="ç‚¹å‡»æ˜¾ç¤ºéªŒè¯ç ">ç‚¹å‡»æ˜¾ç¤ºéªŒè¯ç </a></td>
+                  <td id="getpasswordshowkey"><a href="#EmpireCMS" onclick="edoshowkey('getpasswordshowkey','getpassword','<?=$public_r['newsurl']?>');" title="µã»÷ÏÔÊ¾ÑéÖ¤Âë">µã»÷ÏÔÊ¾ÑéÖ¤Âë</a></td>
                 </tr>
             </table>
 	  </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp; </td>
-      <td> <input type="submit" name="button" value="æäº¤"> <input name="enews" type="hidden" id="enews" value="SendPassword"></td>
+      <td> <input type="submit" name="button" value="Ìá½»"> <input name="enews" type="hidden" id="enews" value="SendPassword"></td>
     </tr>
   </form>
 </table>

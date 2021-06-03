@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -18,7 +18,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 
-//æ¨é€ä¿¡æ¯
+//ÍÆËÍĞÅÏ¢
 function PushInfoToZt($add,$userid,$username){
 	global $empire,$dbtbpre,$class_r;
 	$classid=(int)$add['classid'];
@@ -32,7 +32,7 @@ function PushInfoToZt($add,$userid,$username){
 		echo"<script>window.close();</script>";
 		exit();
 	}
-	//è¡¨å
+	//±íÃû
 	$tbname='';
 	if($classid)
 	{
@@ -68,13 +68,13 @@ function PushInfoToZt($add,$userid,$username){
 		$dh=',';
 		AddMoreInfoToZt($true_ztid,$true_cid,$tbname,$where,1);
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("classid=$classid&tid=$tid<br>ztid=".$ztids."<br>id=".$id);
-	echo"<script>alert('æ¨é€æˆåŠŸ');window.close();</script>";
+	echo"<script>alert('ÍÆËÍ³É¹¦');window.close();</script>";
 	exit();
 }
 
-//è¿”å›æ‰€å±é€‰æ‹©ä¸“é¢˜
+//·µ»ØËùÊôÑ¡Ôñ×¨Ìâ
 function ReturnZtToInfo($add,$userid,$username){
 	global $empire,$dbtbpre,$class_r;
 	$ztid=$add['ztid'];
@@ -121,7 +121,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=='PushInfoToZt')//é€‰æ‹©ä¸“é¢˜
+if($enews=='PushInfoToZt')//Ñ¡Ôñ×¨Ìâ
 {
 	if($_POST['sinfo'])
 	{
@@ -131,13 +131,13 @@ if($enews=='PushInfoToZt')//é€‰æ‹©ä¸“é¢˜
 }
 
 $add='';
-//åˆ†ç±»
+//·ÖÀà
 $zcid=(int)$_GET['zcid'];
 if($zcid)
 {
 	$add.=" and zcid='$zcid'";
 }
-//æ ç›®
+//À¸Ä¿
 $classid=(int)$_GET['classid'];
 if($classid)
 {
@@ -145,16 +145,16 @@ if($classid)
 	$add.=" and (classid=0 or classid='$classid' or (".$classwhere."))";
 }
 $sinfo=(int)$_GET['sinfo'];
-//è¡¨ID
+//±íID
 $tid=(int)$_GET['tid'];
 //ID
 $id=RepPostStr($_GET['id'],1);
 if(empty($sinfo)&&!$id)
 {
-	echo"<script>alert('è¯·é€‰æ‹©ä¿¡æ¯');window.close();</script>";
+	echo"<script>alert('ÇëÑ¡ÔñĞÅÏ¢');window.close();</script>";
 	exit();
 }
-//ä¿¡æ¯
+//ĞÅÏ¢
 $info_ztids='';
 $info_cids='';
 if($sinfo&&$id)
@@ -183,10 +183,10 @@ elseif($sinfo&&empty($id))
 	$firstpost=1;
 }
 $time=time();
-//ä¸“é¢˜
+//×¨Ìâ
 $query="select ztid,ztname from {$dbtbpre}enewszt where usezt=0 and (endtime=0 or endtime>$time)".$add." order by myorder,ztid desc";
 $sql=$empire->query($query);
-//åˆ†ç±»
+//·ÖÀà
 $zcstr="";
 $zcsql=$empire->query("select classid,classname from {$dbtbpre}enewsztclass order by classid");
 while($zcr=$empire->fetch($zcsql))
@@ -202,15 +202,15 @@ while($zcr=$empire->fetch($zcsql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ¨é€ä¿¡æ¯åˆ°ä¸“é¢˜</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÍÆËÍĞÅÏ¢µ½×¨Ìâ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr> 
-    <td>ä½ç½®: æ¨é€ä¿¡æ¯åˆ°ä¸“é¢˜
+    <td>Î»ÖÃ: ÍÆËÍĞÅÏ¢µ½×¨Ìâ
 <div align="right"> </div></td>
   </tr>
 </table>
@@ -219,9 +219,9 @@ while($zcr=$empire->fetch($zcsql))
 <form name="searchform" method="GET" action="PushToZt.php">
 <?=$ecms_hashur['eform']?>
   <tr> 
-      <td> é€‰æ‹©ä¸“é¢˜åˆ†ç±»ï¼š 
+      <td> Ñ¡Ôñ×¨Ìâ·ÖÀà£º 
         <select name="select" id="select" onchange=window.location='PushToZt.php?<?=$ecms_hashur['ehref']?>&classid=<?=$classid?>&tid=<?=$tid?>&id=<?=$id?>&sinfo=<?=$sinfo?>&oldztids=<?=$info_ztids?>&oldcids=<?=$info_cids?>&zcid='+this.options[this.selectedIndex].value>
-          <option value="0">æ‰€æœ‰åˆ†ç±»</option>
+          <option value="0">ËùÓĞ·ÖÀà</option>
           <?=$zcstr?>
         </select></td>
   </tr>
@@ -236,13 +236,13 @@ while($zcr=$empire->fetch($zcsql))
 	  if(empty($sinfo))
 	  {
 	  ?>
-	  æ¨é€ä¿¡æ¯IDï¼š<?=$id?>
+	  ÍÆËÍĞÅÏ¢ID£º<?=$id?>
 	  <?php
 	  }
 	  else
 	  {
 	  ?>
-	  æ¨é€ä¿¡æ¯ï¼š<script>document.write(opener.document.add.title.value);</script>
+	  ÍÆËÍĞÅÏ¢£º<script>document.write(opener.document.add.title.value);</script>
 	  <?php
 	  }
 	  ?>
@@ -251,7 +251,7 @@ while($zcr=$empire->fetch($zcsql))
   </table>
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
     <tr class="header"> 
-      <td width="74%" height="25"> ä¸“é¢˜åç§°</td>
+      <td width="74%" height="25"> ×¨ÌâÃû³Æ</td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -269,7 +269,7 @@ while($zcr=$empire->fetch($zcsql))
 	  <tr bgcolor="#FFFFFF">
       <td height="25"><table width="98%" border="0" align="center" cellpadding="3" cellspacing="1">
 			<tr>
-				<td><input type="radio" name="cid[<?=$r['ztid']?>]" value="-<?=$r[ztid]?>"<?=empty($check)||$firstpost==1||($check&&$info_cids&&strstr(','.$info_cids.',',',-'.$r[ztid].','))?' checked':''?>> ä¸å±ä¸“é¢˜å­ç±»</td>
+				<td><input type="radio" name="cid[<?=$r['ztid']?>]" value="-<?=$r[ztid]?>"<?=empty($check)||$firstpost==1||($check&&$info_cids&&strstr(','.$info_cids.',',',-'.$r[ztid].','))?' checked':''?>> ²»Êô×¨Ìâ×ÓÀà</td>
 			</tr>
 		<?php
 		$csql=$empire->query("select cid,cname from {$dbtbpre}enewszttype where ztid='$r[ztid]'");
@@ -289,9 +289,9 @@ while($zcr=$empire->fetch($zcsql))
   ?>
     <tr bgcolor="#FFFFFF"> 
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit2" value="ç¡®å®šæ¨é€">
+          <input type="submit" name="Submit2" value="È·¶¨ÍÆËÍ">
           &nbsp;&nbsp; 
-          <input type="button" name="Submit3" value="å–æ¶ˆ" onclick="window.close();">
+          <input type="button" name="Submit3" value="È¡Ïû" onclick="window.close();">
           <input name="enews" type="hidden" id="enews" value="PushInfoToZt">
           <input name="classid" type="hidden" id="classid" value="<?=$classid?>">
           <input name="tid" type="hidden" id="tid" value="<?=$tid?>">

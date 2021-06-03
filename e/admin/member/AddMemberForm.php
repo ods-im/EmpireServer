@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,32 +15,32 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"memberf");
 $enews=ehtmlspecialchars($_GET['enews']);
 $ftype=" checked";
 $record="<!--record-->";
 $field="<!--field--->";
-$url="<a href='ListMemberForm.php".$ecms_hashur['whehref']."'>ç®¡ç†ä¼šå‘˜è¡¨å•</a>&nbsp;>&nbsp;å¢åŠ ä¼šå‘˜è¡¨å•";
-$postword='å¢åŠ ä¼šå‘˜è¡¨å•';
+$url="<a href='ListMemberForm.php".$ecms_hashur['whehref']."'>¹ÜÀí»áÔ±±íµ¥</a>&nbsp;>&nbsp;Ôö¼Ó»áÔ±±íµ¥";
+$postword='Ôö¼Ó»áÔ±±íµ¥';
 if($enews=="AddMemberForm"&&$_GET['docopy'])
 {
 	$fid=(int)$_GET['fid'];
 	$ftype="";
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsmemberform where fid='$fid'");
-	$url="<a href='ListMemberForm.php".$ecms_hashur['whehref']."'>ç®¡ç†ä¼šå‘˜è¡¨å•</a>&nbsp;>&nbsp;å¤åˆ¶ä¼šå‘˜è¡¨å•: ".$r['fname'];
-	$postword='å¤åˆ¶ä¼šå‘˜è¡¨å•';
+	$url="<a href='ListMemberForm.php".$ecms_hashur['whehref']."'>¹ÜÀí»áÔ±±íµ¥</a>&nbsp;>&nbsp;¸´ÖÆ»áÔ±±íµ¥: ".$r['fname'];
+	$postword='¸´ÖÆ»áÔ±±íµ¥';
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditMemberForm")
 {
 	$fid=(int)$_GET['fid'];
 	$ftype="";
-	$url="<a href='ListMemberForm.php".$ecms_hashur['whehref']."'>ç®¡ç†ä¼šå‘˜è¡¨å•</a>&nbsp;>&nbsp;ä¿®æ”¹ä¼šå‘˜è¡¨å•";
-	$postword='ä¿®æ”¹ä¼šå‘˜è¡¨å•';
+	$url="<a href='ListMemberForm.php".$ecms_hashur['whehref']."'>¹ÜÀí»áÔ±±íµ¥</a>&nbsp;>&nbsp;ĞŞ¸Ä»áÔ±±íµ¥";
+	$postword='ĞŞ¸Ä»áÔ±±íµ¥';
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsmemberform where fid='$fid'");
 }
-//å–å¾—å­—æ®µ
+//È¡µÃ×Ö¶Î
 $no=0;
 $fsql=$empire->query("select f,fname from {$dbtbpre}enewsmemberf order by myorder,fid");
 while($fr=$empire->fetch($fsql))
@@ -53,12 +53,12 @@ while($fr=$empire->fetch($fsql))
 	}
 	$like=$field.$fr[f].$record;
 	$slike=",".$fr[f].",";
-	//å½•å…¥é¡¹
+	//Â¼ÈëÏî
 	$enterchecked="";
 	if(strstr($r[enter],$like))
 	{
 		$enterchecked=" checked";
-		//å–å¾—å­—æ®µæ ‡è¯†
+		//È¡µÃ×Ö¶Î±êÊ¶
 		$dor=explode($like,$r[enter]);
 		if(strstr($dor[0],$record))
 		{
@@ -72,7 +72,7 @@ while($fr=$empire->fetch($fsql))
 		}
 	}
 	$entercheckbox="<input name=center[] type=checkbox value='".$fr[f]."'".$enterchecked.">";
-	//å‰å°æ˜¾ç¤ºé¡¹
+	//Ç°Ì¨ÏÔÊ¾Ïî
 	if(strstr($r[viewenter],$like))
 	{
 		$viewenterchecked=" checked";
@@ -82,19 +82,19 @@ while($fr=$empire->fetch($fsql))
 		$viewenterchecked="";
 	}
 	$viewentercheckbox="<input name=venter[] type=checkbox value='".$fr[f]."'".$viewenterchecked.">";
-	//å¿…å¡«é¡¹
+	//±ØÌîÏî
 	$mustfchecked="";
 	if(strstr($r[mustenter],$slike))
 	{$mustfchecked=" checked";}
 	$mustfcheckbox="<input name=menter[] type=checkbox value='".$fr[f]."'".$mustfchecked.">";
-	//æœç´¢é¡¹
+	//ËÑË÷Ïî
 	$searchchecked="";
 	if(strstr($r[searchvar],$slike))
 	{
 		$searchchecked=" checked";
 	}
 	$searchcheckbox="<input name=schange[] type=checkbox value='".$fr[f]."'".$searchchecked.">";
-	//å¯å¢åŠ 
+	//¿ÉÔö¼Ó
 	$canaddfchecked="";
 	if(strstr($r[canaddf],$slike))
 	{
@@ -105,7 +105,7 @@ while($fr=$empire->fetch($fsql))
 		$canaddfchecked=" checked";
 	}
 	$canaddfcheckbox="<input name=canadd[] type=checkbox value='".$fr[f]."'".$canaddfchecked.">";
-	//å¯ä¿®æ”¹
+	//¿ÉĞŞ¸Ä
 	$caneditfchecked="";
 	if(strstr($r[caneditf],$slike))
 	{
@@ -149,15 +149,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ ä¼šå‘˜è¡¨å•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼Ó»áÔ±±íµ¥</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="../ecmsmember.php">
@@ -169,43 +169,43 @@ $empire=null;
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">è¡¨å•åç§°</td>
+      <td width="19%" height="25">±íµ¥Ãû³Æ</td>
       <td width="81%" height="25"><input name="fname" type="text" id="fname" value="<?=$r[fname]?>" size="43">
-        <font color="#666666">(æ¯”å¦‚ï¼šä¸ªäººæ³¨å†Œ) </font></td>
+        <font color="#666666">(±ÈÈç£º¸öÈË×¢²á) </font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">é€‰æ‹©æœ¬è¡¨å•çš„å­—æ®µé¡¹<br>
-        <br> <br> <input type="button" name="Submit3" value="å­—æ®µç®¡ç†" onclick="window.open('ListMemberF.php<?=$ecms_hashur['whehref']?>');"> 
+      <td height="25" valign="top">Ñ¡Ôñ±¾±íµ¥µÄ×Ö¶ÎÏî<br>
+        <br> <br> <input type="button" name="Submit3" value="×Ö¶Î¹ÜÀí" onclick="window.open('ListMemberF.php<?=$ecms_hashur['whehref']?>');"> 
       </td>
       <td height="25" valign="top"><table width="100%" border="0" cellspacing="1" cellpadding="3">
           <tr bgcolor="#DBEAF5"> 
-            <td width="26%" height="25"> <div align="center">å­—æ®µæ ‡è¯†</div></td>
-            <td width="25%" height="25"> <div align="center">å­—æ®µå</div></td>
-            <td width="8%"> <div align="center">å½•å…¥é¡¹</div></td>
-            <td width="8%"> <div align="center">å¿…å¡«é¡¹</div></td>
-            <td width="8%"><div align="center">å¯å¢åŠ </div></td>
-            <td width="8%"><div align="center">å¯ä¿®æ”¹</div></td>
-            <td width="8%"><div align="center">æœç´¢é¡¹</div></td>
-            <td width="9%"><div align="center">å‰å°æ˜¾ç¤º</div></td>
+            <td width="26%" height="25"> <div align="center">×Ö¶Î±êÊ¶</div></td>
+            <td width="25%" height="25"> <div align="center">×Ö¶ÎÃû</div></td>
+            <td width="8%"> <div align="center">Â¼ÈëÏî</div></td>
+            <td width="8%"> <div align="center">±ØÌîÏî</div></td>
+            <td width="8%"><div align="center">¿ÉÔö¼Ó</div></td>
+            <td width="8%"><div align="center">¿ÉĞŞ¸Ä</div></td>
+            <td width="8%"><div align="center">ËÑË÷Ïî</div></td>
+            <td width="9%"><div align="center">Ç°Ì¨ÏÔÊ¾</div></td>
           </tr>
           <?=$data?>
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top"><p>å½•å…¥è¡¨å•æ¨¡æ¿<br>
+      <td height="25" valign="top"><p>Â¼Èë±íµ¥Ä£°å<br>
           <br>
           (<font color="#FF0000"> 
           <input name="ftype" type="checkbox" id="ftype" value="1"<?=$ftype?>>
-          è‡ªåŠ¨ç”Ÿæˆè¡¨å•</font>)</p></td>
+          ×Ô¶¯Éú³É±íµ¥</font>)</p></td>
       <td height="25"><textarea name="ftemp" cols="75" rows="20" id="ftemp" style="WIDTH: 100%"><?=ehtmlspecialchars(stripSlashes($r[ftemp]))?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">æ³¨é‡Šï¼š</td>
+      <td height="25" valign="top">×¢ÊÍ£º</td>
       <td height="25"><textarea name="fzs" cols="75" rows="10" id="fzs" style="WIDTH: 100%"><?=stripSlashes($r[fzs])?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

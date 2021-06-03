@@ -2,7 +2,7 @@
 
 define('EmpireCMS_VERSION','7.5');
 
-define('EmpireCMS_CHARVER','UTF-8');
+define('EmpireCMS_CHARVER','GBK');
 
 define('EmpireCMS_LASTTIME','201804091030');
 

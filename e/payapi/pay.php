@@ -3,58 +3,58 @@ require("../class/connect.php");
 require("../class/db_sql.php");
 require("../class/q_functions.php");
 require("../member/class/user.php");
-eCheckCloseMods('pay');//å…³é—­æ¨¡å—
+eCheckCloseMods('pay');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
 
 $money=(float)$_POST['money'];
 if($money<=0)
 {
-	printerror('æ”¯ä»˜é‡‘é¢ä¸èƒ½ä¸º0','',1,0,1);
+	printerror('Ö§¸¶½ğ¶î²»ÄÜÎª0','',1,0,1);
 }
 $payid=(int)$_POST['payid'];
 if(!$payid)
 {
-	printerror('è¯·é€‰æ‹©æ”¯ä»˜å¹³å°','',1,0,1);
+	printerror('ÇëÑ¡ÔñÖ§¸¶Æ½Ì¨','',1,0,1);
 }
 $payr=$empire->fetch1("select * from {$dbtbpre}enewspayapi where payid='$payid' and isclose=0");
 if(!$payr[payid])
 {
-	printerror('è¯·é€‰æ‹©æ”¯ä»˜å¹³å°','',1,0,1);
+	printerror('ÇëÑ¡ÔñÖ§¸¶Æ½Ì¨','',1,0,1);
 }
 $ddno='';
 $productname='';
 $productsay='';
 $phome=$_POST['phome'];
-if($phome=='PayToFen')//è´­ä¹°ç‚¹æ•°
+if($phome=='PayToFen')//¹ºÂòµãÊı
 {
-	$productname='è´­ä¹°ç‚¹æ•°';
+	$productname='¹ºÂòµãÊı';
 }
-elseif($phome=='PayToMoney')//å­˜é¢„ä»˜æ¬¾
+elseif($phome=='PayToMoney')//´æÔ¤¸¶¿î
 {
-	$productname='å­˜é¢„ä»˜æ¬¾';
+	$productname='´æÔ¤¸¶¿î';
 }
-elseif($phome=='ShopPay')//å•†åŸæ”¯ä»˜
+elseif($phome=='ShopPay')//ÉÌ³ÇÖ§¸¶
 {
-	$productname='å•†åŸæ”¯ä»˜';
+	$productname='ÉÌ³ÇÖ§¸¶';
 }
 else
 {
-	printerror('æ‚¨æ¥è‡ªçš„é“¾æ¥ä¸å­˜åœ¨','',1,0,1);
+	printerror('ÄúÀ´×ÔµÄÁ´½Ó²»´æÔÚ','',1,0,1);
 }
 
 include('payfun.php');
 
 if($phome=='PayToFen'||$phome=='PayToMoney')
 {
-	$user=islogin();//æ˜¯å¦ç™»é™†
+	$user=islogin();//ÊÇ·ñµÇÂ½
 	$pr=$empire->fetch1("select paymoneytofen,payminmoney from {$dbtbpre}enewspublic limit 1");
 	if($money<$pr['payminmoney'])
 	{
-		printerror('é‡‘é¢ä¸èƒ½å°äº '.$pr['payminmoney'].' å…ƒ','',1,0,1);
+		printerror('½ğ¶î²»ÄÜĞ¡ÓÚ '.$pr['payminmoney'].' Ôª','',1,0,1);
 	}
 	$productname.=",UID:".$user['userid'].",UName:".$user['username'];
-	$productsay="ç”¨æˆ·ID:".$user['userid'].",ç”¨æˆ·å:".$user['username'];
+	$productsay="ÓÃ»§ID:".$user['userid'].",ÓÃ»§Ãû:".$user['username'];
 }
 elseif($phome=='ShopPay')
 {
@@ -62,21 +62,21 @@ elseif($phome=='ShopPay')
 	$ddr=PayApiShopDdMoney($ddid);
 	if($money!=$ddr['tmoney'])
 	{
-		printerror('è®¢å•é‡‘é¢æœ‰è¯¯','',1,0,1);
+		printerror('¶©µ¥½ğ¶îÓĞÎó','',1,0,1);
 	}
 	$ddno=$ddr[ddno];
-	$productname="æ”¯ä»˜è®¢å•å·:".$ddno;
-	$productsay="è®¢å•å·:".$ddno;
+	$productname="Ö§¸¶¶©µ¥ºÅ:".$ddno;
+	$productsay="¶©µ¥ºÅ:".$ddno;
 }
 
 esetcookie("payphome",$phome,0);
-//è¿”å›åœ°å€å‰ç¼€
+//·µ»ØµØÖ·Ç°×º
 $PayReturnUrlQz=$public_r['newsurl'];
 if(!stristr($public_r['newsurl'],'://'))
 {
 	$PayReturnUrlQz=eReturnDomain().$public_r['newsurl'];
 }
-//ç¼–ç 
+//±àÂë
 if($ecms_config['sets']['pagechar']!='gb2312')
 {
 	@include_once("../class/doiconv.php");

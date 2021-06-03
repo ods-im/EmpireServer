@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"pubvar");
 
-//å¢åŠ å˜é‡
+//Ôö¼Ó±äÁ¿
 function AddPubVar($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[myvar]=RepPostVar($add[myvar]);
@@ -27,9 +27,9 @@ function AddPubVar($add,$userid,$username){
 	{
 		printerror("EmptyPubVar","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"pubvar");
-	//éªŒè¯é‡å¤
+	//ÑéÖ¤ÖØ¸´
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewspubvar where myvar='$add[myvar]' limit 1");
 	if($num)
 	{
@@ -49,7 +49,7 @@ function AddPubVar($add,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("varid=".$lastid."<br>var=".$add[myvar]);
 		printerror("AddPubVarSuccess","AddPubVar.php?enews=AddPubVar".hReturnEcmsHashStrHref2(0));
 	}
@@ -57,7 +57,7 @@ function AddPubVar($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹å˜é‡
+//ĞŞ¸Ä±äÁ¿
 function EditPubVar($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[varid]=(int)$add['varid'];
@@ -66,7 +66,7 @@ function EditPubVar($add,$userid,$username){
 	{
 		printerror("EmptyPubVar","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"pubvar");
 	if($add[myvar]!=$add[oldmyvar])
 	{
@@ -89,7 +89,7 @@ function EditPubVar($add,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("varid=".$add[varid]."<br>var=".$add[myvar]);
 		printerror("EditPubVarSuccess","ListPubVar.php?classid=$add[cid]".hReturnEcmsHashStrHref2(0));
 	}
@@ -97,7 +97,7 @@ function EditPubVar($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤å˜é‡
+//É¾³ı±äÁ¿
 function DelPubVar($varid,$cid,$userid,$username){
 	global $empire,$dbtbpre;
 	$varid=(int)$varid;
@@ -105,7 +105,7 @@ function DelPubVar($varid,$cid,$userid,$username){
 	{
 		printerror("NotDelPubVarid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"pubvar");
 	$r=$empire->fetch1("select myvar,tocache from {$dbtbpre}enewspubvar where varid='$varid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewspubvar where varid='$varid'");
@@ -115,7 +115,7 @@ function DelPubVar($varid,$cid,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("varid=".$varid."<br>var=".$r[myvar]);
 		printerror("DelPubVarSuccess","ListPubVar.php?classid=$cid".hReturnEcmsHashStrHref2(0));
 	}
@@ -130,19 +130,19 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ å˜é‡
+//Ôö¼Ó±äÁ¿
 if($enews=="AddPubVar")
 {
 	$add=$_POST;
 	AddPubVar($add,$logininid,$loginin);
 }
-//ä¿®æ”¹å˜é‡
+//ĞŞ¸Ä±äÁ¿
 elseif($enews=="EditPubVar")
 {
 	$add=$_POST;
 	EditPubVar($add,$logininid,$loginin);
 }
-//åˆ é™¤å˜é‡
+//É¾³ı±äÁ¿
 elseif($enews=="DelPubVar")
 {
 	$varid=$_GET['varid'];
@@ -155,12 +155,12 @@ $search.=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select varid,myvar,varvalue,varname,tocache,classid from {$dbtbpre}enewspubvar";
 $totalquery="select count(*) as total from {$dbtbpre}enewspubvar";
-//åˆ†ç±»
+//·ÖÀà
 $add='';
 $classid=(int)$_GET['classid'];
 if($classid)
@@ -170,11 +170,11 @@ if($classid)
 }
 $query.=$add;
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by myorder,varid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewspubvarclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -190,19 +190,19 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†æ‰©å±•å˜é‡</title>
+<title>¹ÜÀíÀ©Õ¹±äÁ¿</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®: <a href="ListPubVar.php<?=$ecms_hashur['whehref']?>">ç®¡ç†æ‰©å±•å˜é‡</a></td>
+    <td width="50%" height="25">Î»ÖÃ: <a href="ListPubVar.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÀ©Õ¹±äÁ¿</a></td>
     <td><div align="right" class="emenubutton"> 
-        <input type="button" name="Submit5" value="å¢åŠ æ‰©å±•å˜é‡" onclick="self.location.href='AddPubVar.php?enews=AddPubVar<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓÀ©Õ¹±äÁ¿" onclick="self.location.href='AddPubVar.php?enews=AddPubVar<?=$ecms_hashur['ehref']?>';">
         &nbsp;&nbsp; 
-        <input type="button" name="Submit5" value="ç®¡ç†æ‰©å±•å˜é‡åˆ†ç±»" onclick="self.location.href='PubVarClass.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀíÀ©Õ¹±äÁ¿·ÖÀà" onclick="self.location.href='PubVarClass.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -210,9 +210,9 @@ while($cr=$empire->fetch($csql))
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
       
-    <td> é€‰æ‹©åˆ†ç±»ï¼š 
+    <td> Ñ¡Ôñ·ÖÀà£º 
       <select name="classid" id="classid" onchange=window.location='ListPubVar.php?<?=$ecms_hashur['ehref']?>&classid='+this.options[this.selectedIndex].value>
-          <option value="0">æ˜¾ç¤ºæ‰€æœ‰åˆ†ç±»</option>
+          <option value="0">ÏÔÊ¾ËùÓĞ·ÖÀà</option>
 		  <?=$cstr?>
         </select>
       </td>
@@ -222,17 +222,17 @@ while($cr=$empire->fetch($csql))
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="5%" height="25"> <div align="center">ID</div></td>
-    <td width="28%" height="25"> <div align="center">å˜é‡å</div></td>
-    <td width="28%" height="25"> <div align="center">å˜é‡æ ‡è¯†</div></td>
-    <td width="17%"><div align="center">æ‰€å±åˆ†ç±»</div></td>
-    <td width="8%"><div align="center">å†™å…¥ç¼“å­˜</div></td>
-    <td width="14%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="28%" height="25"> <div align="center">±äÁ¿Ãû</div></td>
+    <td width="28%" height="25"> <div align="center">±äÁ¿±êÊ¶</div></td>
+    <td width="17%"><div align="center">ËùÊô·ÖÀà</div></td>
+    <td width="8%"><div align="center">Ğ´Èë»º´æ</div></td>
+    <td width="14%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
   {
-  	//åˆ†ç±»
-	$cname='æœªåˆ†ç±»';
+  	//·ÖÀà
+	$cname='Î´·ÖÀà';
 	if($r['classid'])
 	{
 		$lcr=$empire->fetch1("select classname from {$dbtbpre}enewspubvarclass where classid='$r[classid]'");
@@ -240,11 +240,11 @@ while($cr=$empire->fetch($csql))
 	}
   	if($r[tocache])
   	{
-  		$tocache='<font color=red>å†™å…¥</font>';
+  		$tocache='<font color=red>Ğ´Èë</font>';
   	}
   	else
   	{
- 	 	$tocache='ä¸å†™å…¥';
+ 	 	$tocache='²»Ğ´Èë';
   	}
   ?>
   <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
@@ -261,7 +261,7 @@ while($cr=$empire->fetch($csql))
     <td><div align="center">
         <?=$tocache?>
       </div></td>
-    <td height="25"> <div align="center">[<a href="AddPubVar.php?enews=EditPubVar&varid=<?=$r[varid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="ListPubVar.php?enews=DelPubVar&varid=<?=$r[varid]?>&cid=<?=$classid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td height="25"> <div align="center">[<a href="AddPubVar.php?enews=EditPubVar&varid=<?=$r[varid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="ListPubVar.php?enews=DelPubVar&varid=<?=$r[varid]?>&cid=<?=$classid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?php
   }
@@ -276,24 +276,24 @@ while($cr=$empire->fetch($csql))
 <br>
 <table width="100%" border="0" cellspacing="1" cellpadding="3" class="tableborder">
   <tr class="header">
-    <td height="25">æ‰©å±•å˜é‡è°ƒç”¨è¯´æ˜</td>
+    <td height="25">À©Õ¹±äÁ¿µ÷ÓÃËµÃ÷</td>
   </tr>
   <tr>
     <td height="25" bgcolor="#FFFFFF">
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
-          <td><strong>1ã€å†™å…¥ç¼“å­˜çš„å˜é‡è°ƒç”¨</strong></td>
+          <td><strong>1¡¢Ğ´Èë»º´æµÄ±äÁ¿µ÷ÓÃ</strong></td>
         </tr>
         <tr> 
-          <td height="30" valign="top">åœ¨ä»»æ„phpæˆ–æ¨¡æ¿ä¸­ç”¨$public_r['add_å˜é‡å']å¯å–å¾—å˜é‡å†…å®¹ã€‚</td>
+          <td height="30" valign="top">ÔÚÈÎÒâphp»òÄ£°åÖĞÓÃ$public_r['add_±äÁ¿Ãû']¿ÉÈ¡µÃ±äÁ¿ÄÚÈİ¡£</td>
         </tr>
         <tr> 
-          <td><strong>2ã€æ²¡æœ‰å†™å…¥ç¼“å­˜çš„å˜é‡è°ƒç”¨</strong></td>
+          <td><strong>2¡¢Ã»ÓĞĞ´Èë»º´æµÄ±äÁ¿µ÷ÓÃ</strong></td>
         </tr>
         <tr> 
-          <td valign="top">å¯ä»¥ç”¨å†…ç½®å˜é‡è¿”å›å‡½æ•°(æ•°æ®åº“è¯»å–å˜é‡å†…å®¹)ï¼šReturnPublicAddVar(å˜é‡å)ã€‚å–å¤šä¸ªå˜é‡å†…å®¹å¯ç”¨é€—å·éš”å¼€ï¼Œä¾‹å­ï¼š<br>
-            å–å¾—å•å˜é‡å†…å®¹ï¼š$value=ReturnPublicAddVar('myvar'); //$valueå°±æ˜¯å˜é‡å†…å®¹ã€‚<br>
-            å–å¾—å¤šä¸ªå˜é‡å†…å®¹ï¼š$value=ReturnPublicAddVar('myvar1,myvar2,myvar3'); //$value['myvar1']æ‰æ˜¯å˜é‡å†…å®¹ã€‚</td>
+          <td valign="top">¿ÉÒÔÓÃÄÚÖÃ±äÁ¿·µ»Øº¯Êı(Êı¾İ¿â¶ÁÈ¡±äÁ¿ÄÚÈİ)£ºReturnPublicAddVar(±äÁ¿Ãû)¡£È¡¶à¸ö±äÁ¿ÄÚÈİ¿ÉÓÃ¶ººÅ¸ô¿ª£¬Àı×Ó£º<br>
+            È¡µÃµ¥±äÁ¿ÄÚÈİ£º$value=ReturnPublicAddVar('myvar'); //$value¾ÍÊÇ±äÁ¿ÄÚÈİ¡£<br>
+            È¡µÃ¶à¸ö±äÁ¿ÄÚÈİ£º$value=ReturnPublicAddVar('myvar1,myvar2,myvar3'); //$value['myvar1']²ÅÊÇ±äÁ¿ÄÚÈİ¡£</td>
         </tr>
       </table></td>
   </tr>

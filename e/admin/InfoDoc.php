@@ -5,7 +5,7 @@ require("../class/db_sql.php");
 require("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -14,16 +14,16 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"infodoc");
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href=InfoDoc.php".$ecms_hashur['whehref'].">ä¿¡æ¯æ‰¹é‡å½’æ¡£</a>";
-//--------------------æ“ä½œçš„æ ç›®
+$url="<a href=InfoDoc.php".$ecms_hashur['whehref'].">ĞÅÏ¢ÅúÁ¿¹éµµ</a>";
+//--------------------²Ù×÷µÄÀ¸Ä¿
 $fcfile="../data/fc/ListEnews.php";
 $do_class="<script src=../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
 {$do_class=ShowClass_AddClass("","n",0,"|-",0,0);}
-//è¡¨
+//±í
 $selecttable="";
 $tsql=$empire->query("select tid,tbname,tname from {$dbtbpre}enewstable order by tid");
 while($tr=$empire->fetch($tsql))
@@ -36,8 +36,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¿¡æ¯æ‰¹é‡å½’æ¡£</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ĞÅÏ¢ÅúÁ¿¹éµµ</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="ecmseditor/js/jstime/WdatePicker.js"></script>
 </head>
@@ -45,15 +45,15 @@ $empire=null;
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 
-<form name="form1" method="get" action="ecmsinfo.php" onsubmit="return confirm('ç¡®è®¤è¦æ‰§è¡Œæ­¤æ“ä½œï¼Ÿ');">
+<form name="form1" method="get" action="ecmsinfo.php" onsubmit="return confirm('È·ÈÏÒªÖ´ĞĞ´Ë²Ù×÷£¿');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2"><div align="center">ä¿¡æ¯æ‰¹é‡å½’æ¡£ 
+      <td height="25" colspan="2"><div align="center">ĞÅÏ¢ÅúÁ¿¹éµµ 
           <input name="enews" type="hidden" id="enews" value="InfoToDoc">
           <input name="ecmsdoc" type="hidden" id="ecmsdoc" value="2">
           <input name="docfrom" type="hidden" id="docfrom" value="InfoDoc.php<?=$ecms_hashur['whehref']?>">
@@ -70,56 +70,56 @@ $empire=null;
           </div></td>
       <td width="72%" valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
           <tr bgcolor="#FFFFFF"> 
-            <td width="26%" height="32">å½’æ¡£æ•°æ®è¡¨</td>
+            <td width="26%" height="32">¹éµµÊı¾İ±í</td>
             <td width="74%"><select name="tbname" id="tbname">
-                <option value=''>------ é€‰æ‹©æ•°æ®è¡¨ ------</option>
+                <option value=''>------ Ñ¡ÔñÊı¾İ±í ------</option>
                 <?=$selecttable?>
               </select></td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="32"> <input name="retype" type="radio" value="0" checked>
-              æŒ‰å¤©æ•°å½’æ¡£ </td>
-            <td>å½’æ¡£å¤§äº <input name="doctime" type="text" id="doctime" value="100" size="6">
-              å¤©çš„ä¿¡æ¯</td>
+              °´ÌìÊı¹éµµ </td>
+            <td>¹éµµ´óÓÚ <input name="doctime" type="text" id="doctime" value="100" size="6">
+              ÌìµÄĞÅÏ¢</td>
           </tr>
           <tr bgcolor="#FFFFFF">
             <td height="32">&nbsp;</td>
-            <td>è¿˜åŸå½’æ¡£å°äº
+            <td>»¹Ô­¹éµµĞ¡ÓÚ
               <input name="doctime1" type="text" id="doctime1" value="100" size="6">
-              å¤©çš„ä¿¡æ¯</td>
+              ÌìµÄĞÅÏ¢</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="32"> <input name="retype" type="radio" value="1">
-              æŒ‰æ—¶é—´å½’æ¡£</td>
-            <td>ä» 
+              °´Ê±¼ä¹éµµ</td>
+            <td>´Ó 
               <input name="startday" type="text" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-              åˆ° 
+              µ½ 
               <input name="endday" type="text" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-              ä¹‹é—´çš„ä¿¡æ¯</td>
+              Ö®¼äµÄĞÅÏ¢</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="32"> <input name="retype" type="radio" value="2">
-              æŒ‰IDå½’æ¡£</td>
-            <td>ä» 
+              °´ID¹éµµ</td>
+            <td>´Ó 
               <input name="startid" type="text" value="0" size="6">
-              åˆ° 
+              µ½ 
               <input name="endid" type="text" value="0" size="6">
-              ä¹‹é—´çš„ä¿¡æ¯</td>
+              Ö®¼äµÄĞÅÏ¢</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td height="32">æ‰§è¡Œæ“ä½œ</td>
+            <td height="32">Ö´ĞĞ²Ù×÷</td>
             <td><input name="doing" type="radio" value="0" checked>
-              å½’æ¡£ <input type="radio" name="doing" value="1">
-              è¿˜åŸå½’æ¡£</td>
+              ¹éµµ <input type="radio" name="doing" value="1">
+              »¹Ô­¹éµµ</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="32">&nbsp;</td>
-            <td><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+            <td><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td height="32" colspan="2"> <font color="#666666"><strong>è¯´æ˜:</strong><br>
-              é€‰æ‹©å¤šä¸ªæ ç›®è¯·ç”¨CTRL/SHIFT<br>
-              å¦‚æœå½’æ¡£èµ·å§‹æ—¶é—´ä¸IDä¸å¡«åˆ™ä¸é™åˆ¶ä¸‹é™</font></td>
+            <td height="32" colspan="2"> <font color="#666666"><strong>ËµÃ÷:</strong><br>
+              Ñ¡Ôñ¶à¸öÀ¸Ä¿ÇëÓÃCTRL/SHIFT<br>
+              Èç¹û¹éµµÆğÊ¼Ê±¼äÓëID²»ÌîÔò²»ÏŞÖÆÏÂÏŞ</font></td>
           </tr>
         </table></td>
     </tr>

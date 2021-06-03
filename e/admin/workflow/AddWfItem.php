@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"workflow");
 $wfid=(int)$_GET['wfid'];
 if(!$wfid)
@@ -28,26 +28,26 @@ if(!$wfr['wfid'])
 	printerror('ErrorUrl','');
 }
 $enews=ehtmlspecialchars($_GET['enews']);
-$postword='å¢åŠ èŠ‚ç‚¹';
-$url="<a href=ListWf.php".$ecms_hashur['whehref'].">ç®¡ç†å·¥ä½œæµ</a> &gt; ".$wfr[wfname]." &gt; <a href='ListWfItem.php?wfid=$wfid".$ecms_hashur['ehref']."'>ç®¡ç†èŠ‚ç‚¹</a> &gt; å¢åŠ èŠ‚ç‚¹";
-//å¤åˆ¶
+$postword='Ôö¼Ó½Úµã';
+$url="<a href=ListWf.php".$ecms_hashur['whehref'].">¹ÜÀí¹¤×÷Á÷</a> &gt; ".$wfr[wfname]." &gt; <a href='ListWfItem.php?wfid=$wfid".$ecms_hashur['ehref']."'>¹ÜÀí½Úµã</a> &gt; Ôö¼Ó½Úµã";
+//¸´ÖÆ
 if($enews=="AddWorkflowItem"&&$_GET['docopy'])
 {
 	$tid=(int)$_GET['tid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsworkflowitem where tid='$tid'");
-	$url="<a href=ListWf.php".$ecms_hashur['whehref'].">ç®¡ç†å·¥ä½œæµ</a> &gt; ".$wfr[wfname]." &gt; <a href='ListWfItem.php?wfid=$wfid".$ecms_hashur['ehref']."'>ç®¡ç†èŠ‚ç‚¹</a> &gt; å¤åˆ¶èŠ‚ç‚¹ï¼š<b>".$r[tname]."</b>";
+	$url="<a href=ListWf.php".$ecms_hashur['whehref'].">¹ÜÀí¹¤×÷Á÷</a> &gt; ".$wfr[wfname]." &gt; <a href='ListWfItem.php?wfid=$wfid".$ecms_hashur['ehref']."'>¹ÜÀí½Úµã</a> &gt; ¸´ÖÆ½Úµã£º<b>".$r[tname]."</b>";
 	$username=substr($r[username],1,-1);
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditWorkflowItem")
 {
-	$postword='ä¿®æ”¹èŠ‚ç‚¹';
+	$postword='ĞŞ¸Ä½Úµã';
 	$tid=(int)$_GET['tid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsworkflowitem where tid='$tid'");
-	$url="<a href=ListWf.php".$ecms_hashur['whehref'].">ç®¡ç†å·¥ä½œæµ</a> &gt; ".$wfr[wfname]." &gt; <a href='ListWfItem.php?wfid=$wfid".$ecms_hashur['ehref']."'>ç®¡ç†èŠ‚ç‚¹</a> &gt; ä¿®æ”¹èŠ‚ç‚¹ï¼š<b>".$r[tname]."</b>";
+	$url="<a href=ListWf.php".$ecms_hashur['whehref'].">¹ÜÀí¹¤×÷Á÷</a> &gt; ".$wfr[wfname]." &gt; <a href='ListWfItem.php?wfid=$wfid".$ecms_hashur['ehref']."'>¹ÜÀí½Úµã</a> &gt; ĞŞ¸Ä½Úµã£º<b>".$r[tname]."</b>";
 	$username=substr($r[username],1,-1);
 }
-//ç”¨æˆ·ç»„
+//ÓÃ»§×é
 $group='';
 $groupsql=$empire->query("select groupid,groupname from {$dbtbpre}enewsgroup order by groupid");
 while($groupr=$empire->fetch($groupsql))
@@ -59,7 +59,7 @@ while($groupr=$empire->fetch($groupsql))
 	}
 	$group.="<option value='".$groupr[groupid]."'".$select.">".$groupr[groupname]."</option>";
 }
-//éƒ¨é—¨
+//²¿ÃÅ
 $userclass='';
 $ucsql=$empire->query("select classid,classname from {$dbtbpre}enewsuserclass order by classid");
 while($ucr=$empire->fetch($ucsql))
@@ -71,7 +71,7 @@ while($ucr=$empire->fetch($ucsql))
 	}
 	$userclass.="<option value='".$ucr[classid]."'".$select.">".$ucr[classname]."</option>";
 }
-//åŸèŠ‚ç‚¹
+//Ô­½Úµã
 $items='';
 $maxtno=0;
 $ytsql=$empire->query("select tid,tname,tno from {$dbtbpre}enewsworkflowitem where wfid='$wfid'");
@@ -98,9 +98,9 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>å·¥ä½œæµ</title>
+<title>¹¤×÷Á÷</title>
 <script>
 function selectalls(doselect,formvar)
 {  
@@ -117,7 +117,7 @@ function selectalls(doselect,formvar)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListWfItem.php">
@@ -130,75 +130,75 @@ function selectalls(doselect,formvar)
         <input name="wfid" type="hidden" id="wfid" value="<?=$wfid?>"> </td>
     </tr>
     <tr> 
-      <td width="18%" height="25" bgcolor="#FFFFFF">èŠ‚ç‚¹ç¼–å·</td>
+      <td width="18%" height="25" bgcolor="#FFFFFF">½Úµã±àºÅ</td>
       <td width="82%" height="25" bgcolor="#FFFFFF"> <input name="tno" type="text" id="tno" value="<?=$r[tno]?>" size="42"> 
         <select name="changetno" id="changetno" onchange="document.form1.tno.value=this.options[this.selectedIndex].value">
-          <option>é€‰æ‹©</option>
-          <option value="1">èµ·å§‹ç¼–å·(1)</option>
-          <option value="100">ç»“æŸç¼–å·(100)</option>
+          <option>Ñ¡Ôñ</option>
+          <option value="1">ÆğÊ¼±àºÅ(1)</option>
+          <option value="100">½áÊø±àºÅ(100)</option>
         </select> </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">èŠ‚ç‚¹åç§°</td>
+      <td height="25" bgcolor="#FFFFFF">½ÚµãÃû³Æ</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="tname" type="text" id="tname" value="<?=$r[tname]?>" size="42"></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">çŠ¶æ€è¯´æ˜</td>
+      <td height="25" bgcolor="#FFFFFF">×´Ì¬ËµÃ÷</td>
       <td height="25" bgcolor="#FFFFFF"><input name="tstatus" type="text" id="tstatus" value="<?=$r[tstatus]?>" size="42"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">èŠ‚ç‚¹æè¿°</td>
+      <td height="25" bgcolor="#FFFFFF">½ÚµãÃèÊö</td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="ttext" cols="60" rows="5" id="varname3"><?=ehtmlspecialchars($r[ttext])?></textarea></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">æ¥æ”¶å¯¹è±¡</td>
+      <td height="25" colspan="2">½ÓÊÕ¶ÔÏó</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç”¨æˆ·</td>
+      <td height="25" bgcolor="#FFFFFF">ÓÃ»§</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="username" type="text" id="username" value="<?=$username?>" size="42"> 
         <font color="#666666"> 
-        <input type="button" name="Submit3" value="é€‰æ‹©" onclick="window.open('../ChangeUser.php?field=username&form=form1<?=$ecms_hashur['ehref']?>','','width=300,height=520,scrollbars=yes');">
-        (å¤šä¸ªç”¨æˆ·ç”¨â€œ,â€é€—å·éš”å¼€)</font></td>
+        <input type="button" name="Submit3" value="Ñ¡Ôñ" onclick="window.open('../ChangeUser.php?field=username&form=form1<?=$ecms_hashur['ehref']?>','','width=300,height=520,scrollbars=yes');">
+        (¶à¸öÓÃ»§ÓÃ¡°,¡±¶ººÅ¸ô¿ª)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç”¨æˆ·ç»„</td>
+      <td height="25" bgcolor="#FFFFFF">ÓÃ»§×é</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="groupid[]" size="5" multiple id="groupidselect" style="width:180">
           <?=$group?>
         </select>
-        [<a href="#empirecms" onclick="selectalls(0,'groupidselect')">å…¨éƒ¨å–æ¶ˆ</a>]</td>
+        [<a href="#empirecms" onclick="selectalls(0,'groupidselect')">È«²¿È¡Ïû</a>]</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">éƒ¨é—¨</td>
+      <td height="25" bgcolor="#FFFFFF">²¿ÃÅ</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="userclass[]" size="5" multiple id="userclassselect" style="width:180">
           <?=$userclass?>
         </select>
-        [<a href="#empirecms" onclick="selectalls(0,'userclassselect')">å…¨éƒ¨å–æ¶ˆ</a>]</td>
+        [<a href="#empirecms" onclick="selectalls(0,'userclassselect')">È«²¿È¡Ïû</a>]</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æµè½¬æ–¹å¼</td>
+      <td height="25" bgcolor="#FFFFFF">Á÷×ª·½Ê½</td>
       <td height="25" bgcolor="#FFFFFF"><input type="radio" name="lztype" value="0"<?=$r[lztype]==0?' checked':''?>>
-        æ™®é€šæµè½¬ 
+        ÆÕÍ¨Á÷×ª 
         <input type="radio" name="lztype" value="1"<?=$r[lztype]==1?' checked':''?>>
-        ä¼šç­¾</td>
+        »áÇ©</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">è¿”å·¥æ—¶æ‰“å›</td>
+      <td height="25" bgcolor="#FFFFFF">·µ¹¤Ê±´ò»Ø</td>
       <td height="25" bgcolor="#FFFFFF"><select name="tbdo" id="tbdo">
-          <option value="0"<?=$r[tbdo]==0?' selected':''?>>æ‰“å›ä½œè€…</option>
+          <option value="0"<?=$r[tbdo]==0?' selected':''?>>´ò»Ø×÷Õß</option>
           <?=$items?>
         </select></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å¦å†³æ—¶æ“ä½œ</td>
+      <td height="25" bgcolor="#FFFFFF">·ñ¾öÊ±²Ù×÷</td>
       <td height="25" bgcolor="#FFFFFF"><select name="tddo" id="tddo">
-          <option value="0"<?=$r[tddo]==0?' selected':''?>>ä¸æ“ä½œ</option>
-          <option value="1"<?=$r[tddo]==1?' selected':''?>>åˆ é™¤ä¿¡æ¯</option>
+          <option value="0"<?=$r[tddo]==0?' selected':''?>>²»²Ù×÷</option>
+          <option value="1"<?=$r[tddo]==1?' selected':''?>>É¾³ıĞÅÏ¢</option>
         </select></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="æäº¤"> 
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="Ìá½»"> 
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

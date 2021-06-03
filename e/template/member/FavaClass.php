@@ -5,15 +5,15 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='æ”¶è—å¤¹åˆ†ç±»';
-$url="<a href=../../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;<a href=../../fava/>æ”¶è—å¤¹</a>&nbsp;>&nbsp;ç®¡ç†åˆ†ç±»";
+$public_diyr['pagetitle']='ÊÕ²Ø¼Ğ·ÖÀà';
+$url="<a href=../../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;<a href=../../fava/>ÊÕ²Ø¼Ğ</a>&nbsp;>&nbsp;¹ÜÀí·ÖÀà";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <script>
 function DelFavaClass(cid)
 {
 var ok;
-ok=confirm("ç¡®è®¤è¦åˆ é™¤?");
+ok=confirm("È·ÈÏÒªÉ¾³ı?");
 if(ok)
 {
 self.location.href='../../doaction.php?enews=DelFavaClass&cid='+cid;
@@ -23,11 +23,11 @@ self.location.href='../../doaction.php?enews=DelFavaClass&cid='+cid;
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
           <form name="form1" method="post" action="../../doaction.php">
             <tr class="header"> 
-              <td height="25">å¢åŠ æ”¶è—å¤¹åˆ†ç±»</td>
+              <td height="25">Ôö¼ÓÊÕ²Ø¼Ğ·ÖÀà</td>
             </tr>
             <tr> 
-              <td height="25" bgcolor="#FFFFFF">åˆ†ç±»åç§°: 
-                <input name="cname" type="text" id="cname"> <input type="submit" name="Submit" value="å¢åŠ "> 
+              <td height="25" bgcolor="#FFFFFF">·ÖÀàÃû³Æ: 
+                <input name="cname" type="text" id="cname"> <input type="submit" name="Submit" value="Ôö¼Ó"> 
               <input name="enews" type="hidden" id="enews" value="AddFavaClass"></td>
             </tr>
           </form>
@@ -36,8 +36,8 @@ self.location.href='../../doaction.php?enews=DelFavaClass&cid='+cid;
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
           <tr class="header"> 
             <td width="10%" height="25"> <div align="center">ID</div></td>
-            <td width="56%"><div align="center">åˆ†ç±»åç§°</div></td>
-            <td width="34%"><div align="center">æ“ä½œ</div></td>
+            <td width="56%"><div align="center">·ÖÀàÃû³Æ</div></td>
+            <td width="34%"><div align="center">²Ù×÷</div></td>
           </tr>
 		<?php
 		while($r=$empire->fetch($sql))
@@ -54,9 +54,9 @@ self.location.href='../../doaction.php?enews=DelFavaClass&cid='+cid;
                   <input name="cname" type="text" id="cname" value="<?=stripSlashes($r[cname])?>">
                 </div></td>
               <td><div align="center"> 
-                  <input type="submit" name="Submit2" value="ä¿®æ”¹">
+                  <input type="submit" name="Submit2" value="ĞŞ¸Ä">
                   &nbsp; 
-                  <input type="button" name="Submit3" value="åˆ é™¤" onclick="javascript:DelFavaClass(<?=$r[cid]?>);">
+                  <input type="button" name="Submit3" value="É¾³ı" onclick="javascript:DelFavaClass(<?=$r[cid]?>);">
                 </div></td>
             </tr>
           </form>

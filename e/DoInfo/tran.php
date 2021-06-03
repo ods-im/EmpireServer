@@ -3,7 +3,7 @@ require("../class/connect.php");
 include("../class/db_sql.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//鍏抽棴
+//关闭
 if($public_r['addnews_ok'])
 {
 	printerror("NotOpenCQInfo","",9);
@@ -29,7 +29,7 @@ if($type==1)
 	}
 	$filetype=$pr['qaddtranimgtype'];
 	$filesize=$pr['qaddtransize'];
-	$word="涓婁紶鍥剧墖";
+	$word="上传图片";
 }
 elseif($type==2)
 {
@@ -39,7 +39,7 @@ elseif($type==2)
 	}
 	$filetype="|.swf|";
 	$filesize=$pr['qaddtranfilesize'];
-	$word="涓婁紶FLASH";
+	$word="上传FLASH";
 }
 else
 {
@@ -49,7 +49,7 @@ else
 	}
 	$filetype=$pr['qaddtranfiletype'];
 	$filesize=$pr['qaddtranfilesize'];
-	$word="涓婁紶闄勪欢";
+	$word="上传附件";
 }
 $filetype=substr($filetype,1,strlen($filetype));
 $filetype=substr($filetype,0,strlen($filetype)-1);
@@ -62,7 +62,7 @@ else
 {
 	$enews="MTranFile";
 }
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/DoInfo/tran.php');
 db_close();
 $empire=null;

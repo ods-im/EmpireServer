@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"execsql");
 
-//æ‰§è¡ŒSQLè¯­å¥
+//Ö´ĞĞSQLÓï¾ä
 function DoExecSql($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$dosave=(int)$add['dosave'];
@@ -32,7 +32,7 @@ function DoExecSql($add,$userid,$username){
 		printerror("EmptySqltext","history.go(-1)");
 	}
 	$query=ClearAddsData($query);
-	//ä¿å­˜
+	//±£´æ
 	if($dosave==1)
 	{
 		$add['sqlname']=hRepPostStr($add['sqlname'],1);
@@ -40,12 +40,12 @@ function DoExecSql($add,$userid,$username){
 	}
 	$query=RepSqlTbpre($query);
 	DoRunQuery($query);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("query=".$query);
 	printerror("DoExecSqlSuccess","DoSql.php".hReturnEcmsHashStrHref2(1));
 }
 
-//è¿è¡ŒSQL
+//ÔËĞĞSQL
 function DoRunQuery($sql){
 	global $empire;
 	$sql=str_replace("\r","\n",$sql);
@@ -71,7 +71,7 @@ function DoRunQuery($sql){
 	}
 }
 
-//å¢åŠ SQLè¯­å¥
+//Ôö¼ÓSQLÓï¾ä
 function AddSql($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add['sqlname']||!$add['sqltext'])
@@ -84,7 +84,7 @@ function AddSql($add,$userid,$username){
 	$lastid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=".$lastid."<br>sqlname=".$add[sqlname]);
 		printerror("AddSqlSuccess","AddSql.php?enews=AddSql".hReturnEcmsHashStrHref2(0));
 	}
@@ -94,7 +94,7 @@ function AddSql($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹SQLè¯­å¥
+//ĞŞ¸ÄSQLÓï¾ä
 function EditSql($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$id=(int)$add[id];
@@ -107,7 +107,7 @@ function EditSql($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewssql set sqlname='".$add['sqlname']."',sqltext='".addslashes($add[sqltext])."' where id='$id'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=".$id."<br>sqlname=".$add[sqlname]);
 		printerror("EditSqlSuccess","ListSql.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -117,7 +117,7 @@ function EditSql($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤SQLè¯­å¥
+//É¾³ıSQLÓï¾ä
 function DelSql($id,$userid,$username){
 	global $empire,$dbtbpre;
 	$id=(int)$id;
@@ -129,7 +129,7 @@ function DelSql($id,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewssql where id='$id'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=".$id."<br>sqlname=".$r[sqlname]);
 		printerror("DelSqlSuccess","ListSql.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -139,7 +139,7 @@ function DelSql($id,$userid,$username){
 	}
 }
 
-//è¿è¡ŒSQLè¯­å¥
+//ÔËĞĞSQLÓï¾ä
 function ExecSql($id,$userid,$username){
 	global $empire,$dbtbpre;
 	$id=(int)$id;
@@ -154,7 +154,7 @@ function ExecSql($id,$userid,$username){
     }
 	$query=RepSqlTbpre($r['sqltext']);
 	DoRunQuery($query);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("query=".$query);
 	printerror("DoExecSqlSuccess","ListSql.php".hReturnEcmsHashStrHref2(1));
 }
@@ -167,61 +167,61 @@ if($enews)
 	hCheckEcmsRHash();
 	@set_time_limit(0);
 }
-//æ‰§è¡ŒSQLè¯­å¥
+//Ö´ĞĞSQLÓï¾ä
 if($enews=='DoExecSql')
 {
 	DoExecSql($_POST,$logininid,$loginin);
 }
-elseif($enews=='AddSql')//å¢åŠ 
+elseif($enews=='AddSql')//Ôö¼Ó
 {
 	AddSql($_POST,$logininid,$loginin);
 }
-elseif($enews=='EditSql')//ä¿®æ”¹
+elseif($enews=='EditSql')//ĞŞ¸Ä
 {
 	EditSql($_POST,$logininid,$loginin);
 }
-elseif($enews=='DelSql')//åˆ é™¤
+elseif($enews=='DelSql')//É¾³ı
 {
 	DelSql($_GET['id'],$logininid,$loginin);
 }
-elseif($enews=='ExecSql')//æ‰§è¡Œ
+elseif($enews=='ExecSql')//Ö´ĞĞ
 {
 	ExecSql($_GET['id'],$logininid,$loginin);
 }
 
-$url="<a href=DoSql.php".$ecms_hashur['whehref'].">æ‰§è¡ŒSQLè¯­å¥</a>";
+$url="<a href=DoSql.php".$ecms_hashur['whehref'].">Ö´ĞĞSQLÓï¾ä</a>";
 db_close();
 $empire=null;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ‰§è¡ŒSQLè¯­å¥</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ö´ĞĞSQLÓï¾ä</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td height="25">ä½ç½®ï¼š
+    <td height="25">Î»ÖÃ£º
       <?=$url?>
     </td>
     <td width="50%"><div align="right" class="emenubutton"> 
-        <input type="button" name="Submit5" value="å¢åŠ SQLè¯­å¥" onclick="self.location.href='AddSql.php?enews=AddSql<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
-        <input type="button" name="Submit4" value="ç®¡ç†SQLè¯­å¥" onclick="self.location.href='ListSql.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓSQLÓï¾ä" onclick="self.location.href='AddSql.php?enews=AddSql<?=$ecms_hashur['ehref']?>';">&nbsp;&nbsp;
+        <input type="button" name="Submit4" value="¹ÜÀíSQLÓï¾ä" onclick="self.location.href='ListSql.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
 
-<form action="DoSql.php" method="POST" name="sqlform" onsubmit="return confirm('ç¡®è®¤è¦æ‰§è¡Œï¼Ÿ');">
+<form action="DoSql.php" method="POST" name="sqlform" onsubmit="return confirm('È·ÈÏÒªÖ´ĞĞ£¿');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25"><div align="center">æ‰§è¡ŒSQLè¯­å¥</div></td>
+      <td height="25"><div align="center">Ö´ĞĞSQLÓï¾ä</div></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="center">(å¤šæ¡è¯­å¥è¯·ç”¨&quot;å›è½¦&quot;æ ¼å¼€,æ¯æ¡è¯­å¥ä»¥&quot;;&quot;ç»“æŸï¼Œæ•°æ®è¡¨å‰ç¼€å¯ç”¨ï¼šâ€œ[!db.pre!]&quot;è¡¨ç¤º)</div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="center">(¶àÌõÓï¾äÇëÓÃ&quot;»Ø³µ&quot;¸ñ¿ª,Ã¿ÌõÓï¾äÒÔ&quot;;&quot;½áÊø£¬Êı¾İ±íÇ°×º¿ÉÓÃ£º¡°[!db.pre!]&quot;±íÊ¾)</div></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><div align="center"> 
@@ -230,21 +230,21 @@ $empire=null;
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><div align="center"> 
-          <input type="submit" name="Submit" value=" æ‰§è¡ŒSQL">
+          <input type="submit" name="Submit" value=" Ö´ĞĞSQL">
           &nbsp;&nbsp; 
-          <input type="reset" name="Submit2" value="é‡ç½®">
+          <input type="reset" name="Submit2" value="ÖØÖÃ">
           <input name="enews" type="hidden" id="enews" value="DoExecSql" onclick="document.sqlform.dosave.value=0;">
           <input name="dosave" type="hidden" id="dosave" value="0">
         </div></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF"><div align="center">SQLåç§°ï¼š 
+      <td height="25" bgcolor="#FFFFFF"><div align="center">SQLÃû³Æ£º 
           <input name="sqlname" type="text" id="sqlname">
-          <input type="submit" name="Submit3" value="æ‰§è¡ŒSQLå¹¶ä¿å­˜" onclick="document.sqlform.dosave.value=1;">
+          <input type="submit" name="Submit3" value="Ö´ĞĞSQL²¢±£´æ" onclick="document.sqlform.dosave.value=1;">
         </div></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="center">æ­¤åŠŸèƒ½å½±å“åˆ°æ•´ä¸ªç³»ç»Ÿçš„æ•°æ®,è¯·æ…ç”¨.</div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="center">´Ë¹¦ÄÜÓ°Ïìµ½Õû¸öÏµÍ³µÄÊı¾İ,ÇëÉ÷ÓÃ.</div></td>
     </tr>
   </table>
   </form>

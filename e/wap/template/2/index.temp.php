@@ -12,7 +12,7 @@ if($pr['wapshowmid'])
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <title><?=$pagetitle?> - Powered by EmpireCMS</title>
 <meta name="keywords" content="<?=$pagekey?>" />
 <meta name="description" content="<?=$pagedes?>" />
@@ -24,14 +24,14 @@ if($bclassid)
 {
 	$returnurl="index.php?style=$wapstyle&amp;bclassid=".($class_r[$bclassid]['bclassid']?$class_r[$bclassid]['bclassid']:0);
 ?>
-<p><b>瀛愭爮鐩垪琛細</b><?=$class_r[$bclassid]['classname']?></p>
+<p><b>子栏目列表：</b><?=$class_r[$bclassid]['classname']?></p>
 <?php
 }
 else
 {
 	$returnurl="index.php?style=$wapstyle";
 ?>
-<p><b>缃戠珯鏍忕洰:</b><?=$pagetitle?></p>
+<p><b>网站栏目:</b><?=$pagetitle?></p>
 <?php
 }
 ?>
@@ -48,7 +48,7 @@ while($r=$empire->fetch($sql))
 	}
 	else
 	{
-		$showsonclass=" <small>(<a href=\"$indexurl\">涓嬬骇鏍忕洰</a>)</small>";
+		$showsonclass=" <small>(<a href=\"$indexurl\">下级栏目</a>)</small>";
 	}
 ?>
 <a href="<?=$classurl?>"><?=$r['classname']?></a><?=$showsonclass?><br />
@@ -56,6 +56,6 @@ while($r=$empire->fetch($sql))
 }
 ?>
 </p>
-<p><a href="<?=$returnurl?>">杩斿洖</a> <a href="index.php?style=<?=$wapstyle?>">缃戠珯棣栭〉</a></p>
+<p><a href="<?=$returnurl?>">返回</a> <a href="index.php?style=<?=$wapstyle?>">网站首页</a></p>
 </body>
 </html>

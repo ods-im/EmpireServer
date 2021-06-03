@@ -6,7 +6,7 @@ require("../../member/class/user.php");
 require("../../data/dbcache/class.php");
 require("../../data/dbcache/MemberLevel.php");
 require("../class/DownSysFun.php");
-eCheckCloseMods('down');//å…³é—­æ¨¡å—
+eCheckCloseMods('down');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
@@ -14,7 +14,7 @@ if(!$public_r['opengetdown'])
 {
 	printerror('CloseGetDown','',1);
 }
-//éªŒè¯IP
+//ÑéÖ¤IP
 //eCheckAccessDoIp('downinfo');
 $id=(int)$_GET['id'];
 $pathid=(int)$_GET['pathid'];
@@ -31,17 +31,17 @@ if(!$r['id']||$r['classid']!=$classid)
 {
 	printerror('ExiestSoftid','',1);
 }
-//å‰¯è¡¨
+//¸±±í
 $finfor=$empire->fetch1("select ".ReturnSqlFtextF($mid)." from {$dbtbpre}ecms_".$tbname."_data_".$r[stb]." where id='$r[id]' limit 1");
 $r=array_merge($r,$finfor);
-//åŒºåˆ†ä¸‹è½½åœ°å€
+//Çø·ÖÏÂÔØµØÖ·
 $path_r=explode("\r\n",$r[downpath]);
 if(!$path_r[$pathid])
 {
 	printerror('ExiestSoftid','',1);
 }
 $showdown_r=explode("::::::",$path_r[$pathid]);
-//ä¸‹è½½æƒé™
+//ÏÂÔØÈ¨ÏŞ
 $nockpass='';
 $downgroup=$showdown_r[2];
 $user=array();
@@ -50,7 +50,7 @@ if($downgroup)
 	$user=islogin();
 	$nockpass=qReturnLoginPassNoCK($user['userid'],$user['username'],$user['rnd'],0);
 }
-//éªŒè¯ç 
+//ÑéÖ¤Âë
 $ip=egetip();
 $pass=md5(md5($classid."-!ecms!".$id."-!ecms!".$pathid).ReturnDownSysCheckIp()."wm_chief".$public_r[downpass].$user[userid]);
 $p=$user[userid].":::".$user[rnd].":::".$nockpass;

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,17 +15,17 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"group");
 
-//å¢åŠ ç”¨æˆ·ç»„
+//Ôö¼ÓÓÃ»§×é
 function AddGroup($groupname,$gr,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($groupname))
 	{printerror("EmptyGroupname","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"group");
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$gr[doall]=(int)$gr[doall];
 	$gr[dopublic]=(int)$gr[dopublic];
 	$gr[doclass]=(int)$gr[doclass];
@@ -138,7 +138,7 @@ function AddGroup($groupname,$gr,$userid,$username){
 	$groupid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("groupid=".$groupid."<br>groupname=".$groupname);
 		printerror("AddGroupSuccess","AddGroup.php?enews=AddGroup".hReturnEcmsHashStrHref2(0));
 	}
@@ -146,15 +146,15 @@ function AddGroup($groupname,$gr,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ç”¨æˆ·ç»„
+//ĞŞ¸ÄÓÃ»§×é
 function EditGroup($groupid,$groupname,$gr,$userid,$username){
 	global $empire,$dbtbpre;
 	$groupid=(int)$groupid;
 	if(empty($groupname)||empty($groupid))
 	{printerror("EmptyGroupname","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"group");
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$gr[doall]=(int)$gr[doall];
 	$gr[dopublic]=(int)$gr[dopublic];
 	$gr[doclass]=(int)$gr[doclass];
@@ -266,7 +266,7 @@ function EditGroup($groupid,$groupname,$gr,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsgroup set groupname='$groupname',doall=$gr[doall],dopublic=$gr[dopublic],doclass=$gr[doclass],dotemplate=$gr[dotemplate],dopicnews=$gr[dopicnews],dofile=$gr[dofile],douser=$gr[douser],dolog=$gr[dolog],domember=$gr[domember],dobefrom=$gr[dobefrom],doword=$gr[doword],dokey=$gr[dokey],doad=$gr[doad],dovote=$gr[dovote],dogroup=$gr[dogroup],docj=$gr[docj],dobq=$gr[dobq],domovenews=$gr[domovenews],dopostdata=$gr[dopostdata],dochangedata=$gr[dochangedata],dopl=$gr[dopl],dof=$gr[dof],dom=$gr[dom],dodo=$gr[dodo],dodbdata=$gr[dodbdata],dorepnewstext=$gr[dorepnewstext],dotempvar=$gr[dotempvar],dostats=$gr[dostats],dowriter=$gr[dowriter],dototaldata=$gr[dototaldata],dosearchkey=$gr[dosearchkey],dozt=$gr[dozt],docard=$gr[docard],dolink=$gr[dolink],doselfinfo=$gr[doselfinfo],dotable=$gr[dotable],doexecsql=$gr[doexecsql],dodownurl=$gr[dodownurl],dodeldownrecord=$gr[dodeldownrecord],doshoppayfs=$gr[doshoppayfs],doshopps=$gr[doshopps],doshopdd=$gr[doshopdd],dogbook=$gr[dogbook],dofeedback=$gr[dofeedback],donotcj=$gr[donotcj],dodownerror=$gr[dodownerror],douserpage=$gr[douserpage],dodelinfodata=$gr[dodelinfodata],doaddinfo=$gr[doaddinfo],doeditinfo=$gr[doeditinfo],dodelinfo=$gr[dodelinfo],doadminstyle=$gr[doadminstyle],dorepdownpath=$gr[dorepdownpath],douserjs=$gr[douserjs],douserlist=$gr[douserlist],domsg=$gr[domsg],dosendemail=$gr[dosendemail],dosetmclass=$gr[dosetmclass],doinfodoc=$gr[doinfodoc],dotempgroup=$gr[dotempgroup],dofeedbackf=$gr[dofeedbackf],dotask=$gr[dotask],domemberf=$gr[domemberf],dospacestyle=$gr[dospacestyle],dospacedata=$gr[dospacedata],dovotemod=$gr[dovotemod],doplayer=$gr[doplayer],dowap=$gr[dowap],dopay=$gr[dopay],dobuygroup=$gr[dobuygroup],dosearchall=$gr[dosearchall],doinfotype='$gr[doinfotype]',doplf='$gr[doplf]',dopltable='$gr[dopltable]',dochadminstyle='$gr[dochadminstyle]',dotags='$gr[dotags]',dosp='$gr[dosp]',doyh='$gr[doyh]',dofirewall='$gr[dofirewall]',dosetsafe='$gr[dosetsafe]',douserclass='$gr[douserclass]',doworkflow='$gr[doworkflow]',domenu='$gr[domenu]',dopubvar='$gr[dopubvar]',doclassf='$gr[doclassf]',doztf='$gr[doztf]',dofiletable='$gr[dofiletable]',docheckinfo='$gr[docheckinfo]',dogoodinfo='$gr[dogoodinfo]',dodocinfo='$gr[dodocinfo]',domoveinfo='$gr[domoveinfo]',dodttemp='$gr[dodttemp]',doloadcj='$gr[doloadcj]',domustcheck='$gr[domustcheck]',docheckedit='$gr[docheckedit]',domemberconnect='$gr[domemberconnect]',doprecode='$gr[doprecode]',domoreport='$gr[domoreport]',docanhtml='$gr[docanhtml]',dodelclass='$gr[dodelclass]',doinfofile='$gr[doinfofile]',doingroup='$gr[doingroup]',domembergroup='$gr[domembergroup]',doviewgroup='$gr[doviewgroup]',domadmingroup='$gr[domadmingroup]',dochmoreport='$gr[dochmoreport]',doisqf='$gr[doisqf]' where groupid='$groupid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("groupid=".$groupid."<br>groupname=".$groupname);
 		printerror("EditGroupSuccess","ListGroup.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -274,19 +274,19 @@ function EditGroup($groupid,$groupname,$gr,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ç”¨æˆ·ç»„
+//É¾³ıÓÃ»§×é
 function DelGroup($groupid,$userid,$username){
 	global $empire,$dbtbpre;
 	$groupid=(int)$groupid;
 	if(empty($groupid))
 	{printerror("NotDelGroupid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"group");
 	$r=$empire->fetch1("select groupname from {$dbtbpre}enewsgroup where groupid='$groupid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsgroup where groupid='$groupid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("groupid=".$groupid."<br>groupname=".$r[groupname]);
 		printerror("DelGroupSuccess","ListGroup.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -300,14 +300,14 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ ç”¨æˆ·ç»„
+//Ôö¼ÓÓÃ»§×é
 if($enews=="AddGroup")
 {
 	$groupname=$_POST['groupname'];
 	$gr=$_POST['gr'];
 	AddGroup($groupname,$gr,$logininid,$loginin);
 }
-//ä¿®æ”¹ç”¨æˆ·ç»„
+//ĞŞ¸ÄÓÃ»§×é
 elseif($enews=="EditGroup")
 {
 	$groupid=$_POST['groupid'];
@@ -315,7 +315,7 @@ elseif($enews=="EditGroup")
 	$gr=$_POST['gr'];
 	EditGroup($groupid,$groupname,$gr,$logininid,$loginin);
 }
-//åˆ é™¤ç”¨æˆ·ç»„
+//É¾³ıÓÃ»§×é
 elseif($enews=="DelGroup")
 {
 	$groupid=$_GET['groupid'];
@@ -323,13 +323,13 @@ elseif($enews=="DelGroup")
 }
 
 $sql=$empire->query("select groupid,groupname from {$dbtbpre}enewsgroup order by groupid desc");
-$url="ä½ç½®ï¼š<a href=ListGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ç”¨æˆ·ç»„</a>";
+$url="Î»ÖÃ£º<a href=ListGroup.php".$ecms_hashur['whehref'].">¹ÜÀíÓÃ»§×é</a>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç”¨æˆ·ç»„</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÓÃ»§×é</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -340,7 +340,7 @@ $url="ä½ç½®ï¼š<a href=ListGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ç”¨æˆ·ç»„<
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ç”¨æˆ·ç»„" onclick="self.location.href='AddGroup.php?enews=AddGroup<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓÓÃ»§×é" onclick="self.location.href='AddGroup.php?enews=AddGroup<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -348,8 +348,8 @@ $url="ä½ç½®ï¼š<a href=ListGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ç”¨æˆ·ç»„<
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header">
     <td width="13%"><div align="center">ID</div></td>
-    <td width="63%" height="25"><div align="center">ç”¨æˆ·ç»„åç§°</div></td>
-    <td width="24%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="63%" height="25"><div align="center">ÓÃ»§×éÃû³Æ</div></td>
+    <td width="24%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -358,8 +358,8 @@ $url="ä½ç½®ï¼š<a href=ListGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ç”¨æˆ·ç»„<
     <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'">
       <td><div align="center"><?=$r[groupid]?></div></td>
       <td height="25"><div align="center"><?=$r[groupname]?></div></td>
-      <td height="25"><div align="center"> [<a href="AddGroup.php?enews=EditGroup&groupid=<?=$r[groupid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="ListGroup.php?enews=DelGroup&groupid=<?=$r[groupid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤æ­¤ç”¨æˆ·ç»„ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+      <td height="25"><div align="center"> [<a href="AddGroup.php?enews=EditGroup&groupid=<?=$r[groupid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="ListGroup.php?enews=DelGroup&groupid=<?=$r[groupid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı´ËÓÃ»§×é£¿');">É¾³ı</a>]</div></td>
     </tr>
   <?
   }

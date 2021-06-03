@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,11 +15,11 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"card");
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href=ListCard.php".$ecms_hashur['whehref'].">ç®¡ç†ç‚¹å¡</a> &gt; <a href=AddMoreCard.php".$ecms_hashur['whehref'].">æ‰¹é‡å¢åŠ ç‚¹å¡</a>";
-//----------ä¼šå‘˜ç»„
+$url="<a href=ListCard.php".$ecms_hashur['whehref'].">¹ÜÀíµã¿¨</a> &gt; <a href=AddMoreCard.php".$ecms_hashur['whehref'].">ÅúÁ¿Ôö¼Óµã¿¨</a>";
+//----------»áÔ±×é
 $sql=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($level_r=$empire->fetch($sql))
 {
@@ -29,8 +29,8 @@ while($level_r=$empire->fetch($sql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ‰¹é‡å¢åŠ ç‚¹å¡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÅúÁ¿Ôö¼Óµã¿¨</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 </head>
@@ -38,71 +38,71 @@ while($level_r=$empire->fetch($sql))
 <body>
 <table width="98%%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListCard.php">
   <table width="60%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2"><div align="center">æ‰¹é‡å¢åŠ ç‚¹å¡ 
+      <td height="25" colspan="2"><div align="center">ÅúÁ¿Ôö¼Óµã¿¨ 
           <input name="enews" type="hidden" id="enews" value="AddMoreCard">
         </div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="36%" height="25">æ‰¹é‡ç”Ÿæˆç‚¹å¡æ•°é‡ï¼š</td>
+      <td width="36%" height="25">ÅúÁ¿Éú³Éµã¿¨ÊıÁ¿£º</td>
       <td width="64%" height="25"><input name="donum" type="text" id="donum" value="10" size="6">
-        ä¸ª</td>
+        ¸ö</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç‚¹å¡å¸å·ä½æ•°ï¼š</td>
+      <td height="25">µã¿¨ÕÊºÅÎ»Êı£º</td>
       <td height="25"><input name="cardnum" type="text" id="cardnum" value="8" size="6">
-        ä½ </td>
+        Î» </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç‚¹å¡å¯†ç ä½æ•°ï¼š</td>
+      <td height="25">µã¿¨ÃÜÂëÎ»Êı£º</td>
       <td height="25"><input name="passnum" type="text" id="passnum" value="6" size="6">
-        ä½ </td>
+        Î» </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç‚¹å¡é‡‘é¢ï¼š</td>
+      <td height="25">µã¿¨½ğ¶î£º</td>
       <td height="25"><input name="money" type="text" id="money" value="10" size="6">
-        å…ƒ</td>
+        Ôª</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç‚¹æ•°ï¼š</td>
+      <td height="25">µãÊı£º</td>
       <td height="25"><input name="cardfen" type="text" id="cardfen" value="0" size="6">
-        ç‚¹</td>
+        µã</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td rowspan="3">å……å€¼æœ‰æ•ˆæœŸ:</td>
+      <td rowspan="3">³äÖµÓĞĞ§ÆÚ:</td>
       <td height="25"><input name="carddate" type="text" id="carddate" value="0" size="6">
-        å¤©</td>
+        Ìì</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å……å€¼è®¾ç½®è½¬å‘ä¼šå‘˜ç»„: 
+      <td height="25">³äÖµÉèÖÃ×ªÏò»áÔ±×é: 
         <select name="cdgroupid" id="select2">
-          <option value=0>ä¸è®¾ç½®</option>
+          <option value=0>²»ÉèÖÃ</option>
           <?=$group?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">åˆ°æœŸåè½¬å‘çš„ä¼šå‘˜ç»„: 
+      <td height="25">µ½ÆÚºó×ªÏòµÄ»áÔ±×é: 
         <select name="cdzgroupid" id="cdzgroupid">
-          <option value=0>ä¸è®¾ç½®</option>
+          <option value=0>²»ÉèÖÃ</option>
           <?=$group?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">åˆ°æœŸæ—¶é—´ï¼š</td>
+      <td height="25">µ½ÆÚÊ±¼ä£º</td>
       <td height="25"><input name="endtime" type="text" id="endtime" value="0000-00-00" size="20" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        (0000-00-00ä¸ºä¸é™åˆ¶)</td>
+        (0000-00-00Îª²»ÏŞÖÆ)</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"><div align="center"> 
-          <input type="submit" name="Submit" value="æäº¤">
+          <input type="submit" name="Submit" value="Ìá½»">
           &nbsp; 
-          <input type="reset" name="Submit2" value="é‡ç½®">
+          <input type="reset" name="Submit2" value="ÖØÖÃ">
         </div></td>
     </tr>
   </table>

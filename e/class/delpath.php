@@ -1,12 +1,12 @@
 <?php
 define('InEmpireCMSDelPath',TRUE);
 
-//鍒犻櫎鐩綍
-//鏈▼搴忕敱wm_chief鍘熷垱锛屽瑕佽浆杞斤紝璇锋敞鏄庝綔鑰呬笌鏉ユ簮(http://www.phome.net)
+//删除目录
+//本程序由wm_chief原创，如要转载，请注明作者与来源(http://www.phome.net)
 class del_path{
 	function wm_chief_delpath($del_path)
 	{
-		if(!file_exists($del_path))//鐩爣鐩綍涓嶅瓨鍦ㄥ垯寤虹珛
+		if(!file_exists($del_path))//目标目录不存在则建立
 		{
 			echo"Directory not found.";
 			return false;
@@ -18,7 +18,7 @@ class del_path{
 			$i++;
 			if($file!="."&&$file!="..")
 			{
-				//鐩綍
+				//目录
 				if(is_dir($del_path."/".$file))
 				{
 					$del_s_path=$del_path."/".$file;
@@ -35,16 +35,16 @@ class del_path{
 		$this->wm_chief_path($del_path);
 		return true;
 	}
-	//鍒犻櫎鏂囦欢
+	//删除文件
 	function wm_chief_file($del_file)
 	{
 		@unlink($del_file);
 	}
-	//鍒犻櫎鐩綍
+	//删除目录
 	function wm_chief_path($del_path)
 	{
 		@rmdir($del_path);
 	}
 }
-//鏈▼搴忕敱wm_chief鍘熷垱锛屽瑕佽浆杞斤紝璇锋敞鏄庝綔鑰呬笌鏉ユ簮(http://www.phome.net)
+//本程序由wm_chief原创，如要转载，请注明作者与来源(http://www.phome.net)
 ?>

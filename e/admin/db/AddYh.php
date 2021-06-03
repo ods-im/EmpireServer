@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//И╙▄Х╞│Г■╗Ф┬╥
+//яИж╓сц╩╖
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//И╙▄Х╞│Ф²┐И≥░
+//яИж╓х╗оч
 CheckLevel($logininid,$loginin,$classid,"yh");
 $enews=RepPostStr($_GET['enews'],1);
-$url="<a href=ListYh.php".$ecms_hashur['whehref'].">Г╝║Г░├Д╪≤Е▄√Ф√╧Ф║┬</a> &gt; Е╒·Е┼═Д╪≤Е▄√Ф√╧Ф║┬";
+$url="<a href=ListYh.php".$ecms_hashur['whehref'].">╧эюМсе╩╞╥╫╟╦</a> &gt; тЖ╪ссе╩╞╥╫╟╦";
 $r[hlist]=30;
 $r[qlist]=30;
 $r[bqnew]=30;
@@ -33,19 +33,19 @@ $r[dobq]=1;
 $r[dojs]=1;
 $r[dosbq]=0;
 $r[rehtml]=0;
-//Е╓█Е┬╤
+//╦╢жф
 if($enews=="AddYh"&&$_GET['docopy'])
 {
 	$id=(int)$_GET['id'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsyh where id='$id'");
-	$url="<a href=ListYh.php".$ecms_hashur['whehref'].">Г╝║Г░├Д╪≤Е▄√Ф√╧Ф║┬</a> &gt; Е╓█Е┬╤Д╪≤Е▄√Ф√╧Ф║┬О╪ <b>".$r[yhname]."</b>";
+	$url="<a href=ListYh.php".$ecms_hashur['whehref'].">╧эюМсе╩╞╥╫╟╦</a> &gt; ╦╢жфсе╩╞╥╫╟╦ё╨<b>".$r[yhname]."</b>";
 }
-//Д©╝Ф■╧
+//пч╦д
 if($enews=="EditYh")
 {
 	$id=(int)$_GET['id'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsyh where id='$id'");
-	$url="<a href=ListYh.php".$ecms_hashur['whehref'].">Г╝║Г░├Д╪≤Е▄√Ф√╧Ф║┬</a> -&gt; Д©╝Ф■╧Д╪≤Е▄√Ф√╧Ф║┬О╪ <b>".$r[yhname]."</b>";
+	$url="<a href=ListYh.php".$ecms_hashur['whehref'].">╧эюМсе╩╞╥╫╟╦</a> -&gt; пч╦дсе╩╞╥╫╟╦ё╨<b>".$r[yhname]."</b>";
 }
 db_close();
 $empire=null;
@@ -53,122 +53,122 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>Д╪≤Е▄√Ф√╧Ф║┬</title>
+<title>се╩╞╥╫╟╦</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>Д╫█Г╫╝О╪ <?=$url?></td>
+    <td>н╩жцё╨<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListYh.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">Е╒·Е┼═Д╪≤Е▄√Ф√╧Ф║┬ 
+      <td height="25" colspan="2">тЖ╪ссе╩╞╥╫╟╦ 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="id" type="hidden" id="id" value="<?=$id?>"> 
       </td>
     </tr>
     <tr> 
-      <td width="20%" height="25" bgcolor="#FFFFFF">Ф√╧Ф║┬Е░█Г╖╟:</td>
+      <td width="20%" height="25" bgcolor="#FFFFFF">╥╫╟╦цШЁф:</td>
       <td width="80%" height="25" bgcolor="#FFFFFF"> <input name="yhname" type="text" id="yhname" value="<?=$r[yhname]?>" size="42"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Ф√╧Ф║┬Х╞╢Ф≤▌О╪ </td>
+      <td height="25" bgcolor="#FFFFFF">╥╫╟╦к╣цВё╨</td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="yhtext" cols="45" rows="4" id="yhtext"><?=ehtmlspecialchars($r[yhtext])?></textarea></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">Д©║Ф│╞Е┬≈Х║╗</td>
+      <td height="25" colspan="2">пео╒ап╠М</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Е░▌Е▐╟Г╝║Г░├Е┬≈Х║╗О╪ </td>
-      <td height="25" bgcolor="#FFFFFF"> Ф≤╬Г╓╨ 
+      <td height="25" bgcolor="#FFFFFF">╨Сл╗╧эюМап╠Мё╨</td>
+      <td height="25" bgcolor="#FFFFFF"> отй╬ 
         <input name="hlist" type="text" id="hlist" value="<?=$r[hlist]?>" size="8">
-        Е╓╘Е├┘Г └Д©║Ф│╞ <font color="#666666">(0Д╦╨Д╦█И≥░)</font></td>
+        лЛдз╣дпео╒ <font color="#666666">(0н╙╡╩оч)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Е┴█Е▐╟Г╝║Г░├Е┬≈Х║╗О╪ </td>
-      <td height="25" bgcolor="#FFFFFF">Ф≤╬Г╓╨ 
+      <td height="25" bgcolor="#FFFFFF">г╟л╗╧эюМап╠Мё╨</td>
+      <td height="25" bgcolor="#FFFFFF">отй╬ 
         <input name="qmlist" type="text" id="qmlist" value="<?=$r[qmlist]?>" size="8">
-        Е╓╘Е├┘Г └Д©║Ф│╞ <font color="#666666">(0Д╦╨Д╦█И≥░)</font></td>
+        лЛдз╣дпео╒ <font color="#666666">(0н╙╡╩оч)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Е┴█Е▐╟Д©║Ф│╞Е┬≈Х║╗О╪ </td>
-      <td height="25" bgcolor="#FFFFFF">Ф≤╬Г╓╨ 
+      <td height="25" bgcolor="#FFFFFF">г╟л╗пео╒ап╠Мё╨</td>
+      <td height="25" bgcolor="#FFFFFF">отй╬ 
         <input name="qlist" type="text" id="qlist" value="<?=$r[qlist]?>" size="8">
-        Е╓╘Е├┘Г └Д©║Ф│╞ <font color="#666666">(0Д╦╨Д╦█И≥░)</font></td>
+        лЛдз╣дпео╒ <font color="#666666">(0н╙╡╩оч)</font></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">Ф═┤Г╜╬Х╟┐Г■╗ </td>
+      <td height="25" colspan="2">╠Йг╘╣Всц </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Д╪≤Е▄√Х▄┐Е⌡╢О╪ </td>
+      <td height="25" bgcolor="#FFFFFF">се╩╞╥╤н╖ё╨</td>
       <td height="25" bgcolor="#FFFFFF"><input name="dobq" type="checkbox" id="dobq" value="1"<?=$r[dobq]==1?' checked':''?>>
-        Ф═┤Г╜╬Х╟┐Г■╗ 
+        ╠Йг╘╣Всц 
         <input name="dojs" type="checkbox" id="dojs" value="1"<?=$r[dojs]==1?' checked':''?>>
-        JSХ╟┐Г■╗ 
+        JS╣Всц 
         <input name="dosbq" type="checkbox" id="dosbq" value="1"<?=$r[dosbq]==1?' checked':''?>>
-        Д╪ Е▒≤Г╘╨И≈╢Ф═┤Г╜╬Х╟┐Г■╗</td>
+        ╩Ат╠©у╪Д╠Йг╘╣Всц</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Ф°─Ф√╟Д©║Ф│╞О╪ </td>
-      <td height="25" bgcolor="#FFFFFF">Х╟┐Г■╗ 
+      <td height="25" bgcolor="#FFFFFF">вНпбпео╒ё╨</td>
+      <td height="25" bgcolor="#FFFFFF">╣Всц 
         <input name="bqnew" type="text" id="hlist3" value="<?=$r[bqnew]?>" size="8">
-        Е╓╘Е├┘Г └Д©║Ф│╞ <font color="#666666">(0Д╦╨Д╦█И≥░)</font></td>
+        лЛдз╣дпео╒ <font color="#666666">(0н╙╡╩оч)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Г┌╧Е┤╩Ф▌▓Х║▄О╪ </td>
-      <td height="25" bgcolor="#FFFFFF">Х╟┐Г■╗ 
+      <td height="25" bgcolor="#FFFFFF">╣Ц╩Вееппё╨</td>
+      <td height="25" bgcolor="#FFFFFF">╣Всц 
         <input name="bqhot" type="text" id="bqnew" value="<?=$r[bqhot]?>" size="8">
-        Е╓╘Е├┘Г └Д©║Ф│╞ <font color="#666666">(0Д╦╨Д╦█И≥░)</font></td>
+        лЛдз╣дпео╒ <font color="#666666">(0н╙╡╩оч)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Ф▌╗Х█░Д©║Ф│╞О╪ </td>
-      <td height="25" bgcolor="#FFFFFF">Х╟┐Г■╗ 
+      <td height="25" bgcolor="#FFFFFF">мф╪Жпео╒ё╨</td>
+      <td height="25" bgcolor="#FFFFFF">╣Всц 
         <input name="bqgood" type="text" id="bqnew2" value="<?=$r[bqgood]?>" size="8">
-        Е╓╘Е├┘Г └Д©║Ф│╞ <font color="#666666">(0Д╦╨Д╦█И≥░)</font></td>
+        лЛдз╣дпео╒ <font color="#666666">(0н╙╡╩оч)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Х╞└Х╝╨Ф▌▓Х║▄О╪ </td>
-      <td height="25" bgcolor="#FFFFFF">Х╟┐Г■╗ 
+      <td height="25" bgcolor="#FFFFFF">фюбшееппё╨</td>
+      <td height="25" bgcolor="#FFFFFF">╣Всц 
         <input name="bqpl" type="text" id="bqnew3" value="<?=$r[bqpl]?>" size="8">
-        Е╓╘Е├┘Г └Д©║Ф│╞ <font color="#666666">(0Д╦╨Д╦█И≥░)</font></td>
+        лЛдз╣дпео╒ <font color="#666666">(0н╙╡╩оч)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Е╓╢Ф²║Д©║Ф│╞О╪ </td>
-      <td height="25" bgcolor="#FFFFFF">Х╟┐Г■╗ 
+      <td height="25" bgcolor="#FFFFFF">м╥лУпео╒ё╨</td>
+      <td height="25" bgcolor="#FFFFFF">╣Всц 
         <input name="bqfirst" type="text" id="bqnew4" value="<?=$r[bqfirst]?>" size="8">
-        Е╓╘Е├┘Г └Д©║Ф│╞ <font color="#666666">(0Д╦╨Д╦█И≥░)</font></td>
+        лЛдз╣дпео╒ <font color="#666666">(0н╙╡╩оч)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Д╦▀Х╫╫Ф▌▓Х║▄О╪ </td>
-      <td height="25" bgcolor="#FFFFFF">Х╟┐Г■╗ 
+      <td height="25" bgcolor="#FFFFFF">обтьееппё╨</td>
+      <td height="25" bgcolor="#FFFFFF">╣Всц 
         <input name="bqdown" type="text" id="bqnew5" value="<?=$r[bqdown]?>" size="8">
-        Е╓╘Е├┘Г └Д©║Ф│╞ <font color="#666666">(0Д╦╨Д╦█И≥░)</font></td>
+        лЛдз╣дпео╒ <font color="#666666">(0н╙╡╩оч)</font></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">Е┘╤Е╝┐Г⌡╦Е┘Ё</td>
+      <td height="25" colspan="2">фДкЭоЮ╧ь</td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">Е├┘Е╝╧И║╣Г■÷Ф┬░Х▄┐Е⌡╢О╪ </td>
-      <td height="25" bgcolor="#FFFFFF">Г■÷Ф┬░ 
+      <td height="25" bgcolor="#FFFFFF">дзхщрЁиЗЁи╥╤н╖ё╨</td>
+      <td height="25" bgcolor="#FFFFFF">иЗЁи 
         <input name="rehtml" type="text" id="rehtml" value="<?=$r[rehtml]?>" size="8">
-        Е╓╘Е├┘Г └Д©║Ф│╞ <font color="#666666">(0Д╦╨Д╦█И≥░)</font></td>
+        лЛдз╣дпео╒ <font color="#666666">(0н╙╡╩оч)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">Г⌡╦Е┘ЁИ⌠╬Ф▌╔Фё─Г╢╒Х▄┐Е⌡╢О╪ </td>
-      <td height="25" bgcolor="#FFFFFF"> Ф÷╔Х╞╒ 
+      <td height="25" bgcolor="#FFFFFF">оЮ╧ьа╢╫с╪ЛкВ╥╤н╖ё╨</td>
+      <td height="25" bgcolor="#FFFFFF"> ╡Ия╞ 
         <input name="otherlink" type="text" id="otherlink" value="<?=$r[otherlink]?>" size="8">
-        Е╓╘Е├┘Г └Д©║Ф│╞ <font color="#666666">(0Д╦╨Д╦█И≥░)</font></td>
+        лЛдз╣дпео╒ <font color="#666666">(0н╙╡╩оч)</font></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="Ф▐░Д╨╓"> 
-        <input type="reset" name="Submit2" value="И┤█Г╫╝"></td>
+      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="лА╫╩"> 
+        <input type="reset" name="Submit2" value="жьжц"></td>
     </tr>
   </table>
 </form>

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,45 +15,45 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"template");
-$url="<a href=LoadTemp.php".$ecms_hashur['whehref'].">æ‰¹é‡å¯¼å…¥æ ç›®æ¨¡æ¿</a>";
+$url="<a href=LoadTemp.php".$ecms_hashur['whehref'].">ÅúÁ¿µ¼ÈëÀ¸Ä¿Ä£°å</a>";
 db_close();
 $empire=null;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ‰¹é‡å¯¼å…¥æ ç›®æ¨¡æ¿</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÅúÁ¿µ¼ÈëÀ¸Ä¿Ä£°å</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 
-<form name="form1" method="post" action="../ecmstemp.php" onsubmit="return confirm('ç¡®è®¤è¦å¯¼å…¥ï¼Ÿ');">
+<form name="form1" method="post" action="../ecmstemp.php" onsubmit="return confirm('È·ÈÏÒªµ¼Èë£¿');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25"><div align="center">æ‰¹é‡å¯¼å…¥æ ç›®æ¨¡æ¿ 
+      <td height="25"><div align="center">ÅúÁ¿µ¼ÈëÀ¸Ä¿Ä£°å 
           <input name="enews" type="hidden" id="enews" value="LoadTempInClass">
         </div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25"> <div align="center"><br>
-          <input type="submit" name="Submit" value="å¼€å§‹å¯¼å…¥æ¨¡æ¿">
+          <input type="submit" name="Submit" value="¿ªÊ¼µ¼ÈëÄ£°å">
           <br>
           <br>
         </div></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25"><div align="center">(è¯´æ˜ï¼šéç»ˆææ ç›®æœ‰æ•ˆï¼Œè¯·å°†è¦å¯¼å…¥çš„æ¨¡æ¿ä¸Šä¼ è‡³ï¼š<a href="ShowLoadTempPath.php<?=$ecms_hashur['whehref']?>" target="_blank"><strong>/e/data/LoadTemp</strong></a>,ç„¶åç‚¹å‡»å¯¼å…¥æ¨¡æ¿ï¼<br>
-          æ¨¡æ¿æ–‡ä»¶å‘½åå½¢å¼ï¼š<strong><font color="#FF0000">æ ç›®ID.htm</font></strong> ,ç³»ç»Ÿä¼šæœç´¢ç›¸åº”çš„&quot;IDæ–‡ä»¶&quot;è¿›è¡Œå¯¼å…¥ï¼)</div></td>
+      <td height="25"><div align="center">(ËµÃ÷£º·ÇÖÕ¼«À¸Ä¿ÓĞĞ§£¬Çë½«Òªµ¼ÈëµÄÄ£°åÉÏ´«ÖÁ£º<a href="ShowLoadTempPath.php<?=$ecms_hashur['whehref']?>" target="_blank"><strong>/e/data/LoadTemp</strong></a>,È»ºóµã»÷µ¼ÈëÄ£°å£®<br>
+          Ä£°åÎÄ¼şÃüÃûĞÎÊ½£º<strong><font color="#FF0000">À¸Ä¿ID.htm</font></strong> ,ÏµÍ³»áËÑË÷ÏàÓ¦µÄ&quot;IDÎÄ¼ş&quot;½øĞĞµ¼Èë£®)</div></td>
     </tr>
   </table>
 </form>

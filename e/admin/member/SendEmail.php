@@ -7,7 +7,7 @@ require("../../member/class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"sendemail");
 $enews=$_POST['enews'];
 if($enews)
@@ -32,7 +32,7 @@ if($enews=="SendEmail")
 	DoSendMsg($_POST,1,$logininid,$loginin);
 }
 $groupid=(int)$_GET['groupid'];
-//----------ä¼šå‘˜ç»„
+//----------»áÔ±×é
 $sql=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($level_r=$empire->fetch($sql))
 {
@@ -48,53 +48,53 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å‘é€é‚®ä»¶</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>·¢ËÍÓÊ¼þ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®: <a href="SendEmail.php<?=$ecms_hashur['whehref']?>">å‘é€é‚®ä»¶</a>&nbsp;(<a href="../SetEnews.php<?=$ecms_hashur['whehref']?>" target="_blank">é‚®ä»¶å‘é€è®¾ç½®</a>)</td>
+    <td>Î»ÖÃ: <a href="SendEmail.php<?=$ecms_hashur['whehref']?>">·¢ËÍÓÊ¼þ</a>&nbsp;(<a href="../SetEnews.php<?=$ecms_hashur['whehref']?>" target="_blank">ÓÊ¼þ·¢ËÍÉèÖÃ</a>)</td>
   </tr>
 </table>
-<form name="sendform" method="post" action="SendEmail.php" onsubmit="return confirm('ç¡®è®¤è¦å‘é€?');">
+<form name="sendform" method="post" action="SendEmail.php" onsubmit="return confirm('È·ÈÏÒª·¢ËÍ?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2"><div align="center">å‘é€é‚®ä»¶ 
+      <td height="25" colspan="2"><div align="center">·¢ËÍÓÊ¼þ 
           <input name="enews" type="hidden" id="enews" value="SendEmail">
         </div></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æŽ¥æ”¶ä¼šå‘˜ç»„</td>
+      <td height="25" bgcolor="#FFFFFF">½ÓÊÕ»áÔ±×é</td>
       <td bgcolor="#FFFFFF"> <select name="groupid[]" size="5" multiple id="groupid[]">
           <?=$membergroup?>
-        </select> <font color="#666666">(å…¨é€‰ç”¨&quot;CTRL+A&quot;,é€‰æ‹©å¤šä¸ªç”¨CTRL/SHIFT+ç‚¹å‡»é€‰æ‹©)</font></td>
+        </select> <font color="#666666">(È«Ñ¡ÓÃ&quot;CTRL+A&quot;,Ñ¡Ôñ¶à¸öÓÃCTRL/SHIFT+µã»÷Ñ¡Ôñ)</font></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">æŽ¥æ”¶ä¼šå‘˜ç”¨æˆ·å</td>
+      <td height="25" bgcolor="#FFFFFF">½ÓÊÕ»áÔ±ÓÃ»§Ãû</td>
       <td bgcolor="#FFFFFF"><input name="username" type="text" id="username" size="60">
-        <font color="#666666">(å¤šä¸ªç”¨æˆ·åâ€œ|â€éš”å¼€)</font></td>
+        <font color="#666666">(¶à¸öÓÃ»§Ãû¡°|¡±¸ô¿ª)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ¯ç»„å‘é€ä¸ªæ•°</td>
+      <td height="25" bgcolor="#FFFFFF">Ã¿×é·¢ËÍ¸öÊý</td>
       <td bgcolor="#FFFFFF"><input name="line" type="text" id="line" value="100" size="8"> 
       </td>
     </tr>
     <tr> 
-      <td width="23%" height="25" bgcolor="#FFFFFF">æ ‡é¢˜</td>
+      <td width="23%" height="25" bgcolor="#FFFFFF">±êÌâ</td>
       <td width="77%" bgcolor="#FFFFFF"><input name="title" type="text" id="title" size="60"></td>
     </tr>
     <tr> 
-      <td height="25" valign="top" bgcolor="#FFFFFF"> <div align="left">å†…å®¹<br>
-          (æ”¯æŒhtmlä»£ç )</div></td>
+      <td height="25" valign="top" bgcolor="#FFFFFF"> <div align="left">ÄÚÈÝ<br>
+          (Ö§³Öhtml´úÂë)</div></td>
       <td bgcolor="#FFFFFF"><textarea name="msgtext" cols="60" rows="16" id="msgtext"></textarea></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><div align="left"></div></td>
-      <td bgcolor="#FFFFFF"><input type="submit" name="Submit" value="å‘é€"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td bgcolor="#FFFFFF"><input type="submit" name="Submit" value="·¢ËÍ"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

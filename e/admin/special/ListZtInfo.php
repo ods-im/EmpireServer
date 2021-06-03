@@ -8,7 +8,7 @@ require('../../data/dbcache/class.php');
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -23,11 +23,11 @@ if(empty($ztid))
 {
 	$ztid=(int)$_POST['ztid'];
 }
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 //CheckLevel($logininid,$loginin,$classid,"zt");
 $returnandlevel=CheckAndUsernamesLevel('dozt',$ztid,$logininid,$loginin,$loginlevel);
 
-//åˆ é™¤ä¸“é¢˜ä¿¡æ¯
+//É¾³ı×¨ÌâĞÅÏ¢
 function DoDelZtInfo($add,$userid,$username){
 	global $empire,$dbtbpre;
 	//CheckLevel($userid,$username,$classid,"zt");
@@ -45,11 +45,11 @@ function DoDelZtInfo($add,$userid,$username){
 	}
 	$zids=eArrayReturnInids($zid);
 	DelZtInfo("zid in (".$zids.") and ztid='$ztid'");
-	insert_dolog("ztid=$ztid");//æ“ä½œæ—¥å¿—
+	insert_dolog("ztid=$ztid");//²Ù×÷ÈÕÖ¾
 	printerror('DelZtInfoSuccess',EcmsGetReturnUrl());
 }
 
-//è½¬ç§»ä¸“é¢˜ä¿¡æ¯
+//×ªÒÆ×¨ÌâĞÅÏ¢
 function DoMoveZtInfo($add,$userid,$username){
 	global $empire,$dbtbpre;
 	//CheckLevel($userid,$username,$classid,"zt");
@@ -74,14 +74,14 @@ function DoMoveZtInfo($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsztinfo set cid='$to_cid' where zid in (".$zids.") and ztid='$ztid'");
 	if($sql)
 	{
-		insert_dolog("ztid=$ztid&to_cid=$to_cid");//æ“ä½œæ—¥å¿—
+		insert_dolog("ztid=$ztid&to_cid=$to_cid");//²Ù×÷ÈÕÖ¾
 		printerror('MoveZtInfoSuccess',EcmsGetReturnUrl());
 	}
 	else
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ¨èä¸“é¢˜ä¿¡æ¯
+//ÍÆ¼ö×¨ÌâĞÅÏ¢
 function DoGoodZtInfo($add,$userid,$username){
 	global $empire,$dbtbpre;
 	//CheckLevel($userid,$username,$classid,"zt");
@@ -103,14 +103,14 @@ function DoGoodZtInfo($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsztinfo set isgood='$isgood' where zid in (".$zids.") and ztid='$ztid'");
 	if($sql)
 	{
-		insert_dolog("ztid=$ztid&isgood=$isgood");//æ“ä½œæ—¥å¿—
+		insert_dolog("ztid=$ztid&isgood=$isgood");//²Ù×÷ÈÕÖ¾
 		printerror('GoodZtInfoSuccess',EcmsGetReturnUrl());
 	}
 	else
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ä¸“é¢˜ä¿¡æ¯å‘å¸ƒæ—¶é—´
+//ĞŞ¸Ä×¨ÌâĞÅÏ¢·¢²¼Ê±¼ä
 function DoEditZtInfoTime($add,$userid,$username){
 	global $empire,$dbtbpre;
 	//CheckLevel($userid,$username,$classid,"zt");
@@ -133,7 +133,7 @@ function DoEditZtInfoTime($add,$userid,$username){
 		$donewstime=$newstime[$i]?to_time($newstime[$i]):time();
 		$empire->query("update {$dbtbpre}enewsztinfo set newstime='$donewstime' where zid='$dozid' and ztid='$ztid'");
 	}
-	insert_dolog("ztid=$ztid");//æ“ä½œæ—¥å¿—
+	insert_dolog("ztid=$ztid");//²Ù×÷ÈÕÖ¾
 	printerror('EditZtInfoTimeSuccess',EcmsGetReturnUrl());
 }
 
@@ -144,19 +144,19 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="DoDelZtInfo")//åˆ é™¤ä¸“é¢˜ä¿¡æ¯
+if($enews=="DoDelZtInfo")//É¾³ı×¨ÌâĞÅÏ¢
 {
 	DoDelZtInfo($_POST,$logininid,$loginin);
 }
-elseif($enews=="DoMoveZtInfo")//è½¬ç§»ä¸“é¢˜ä¿¡æ¯
+elseif($enews=="DoMoveZtInfo")//×ªÒÆ×¨ÌâĞÅÏ¢
 {
 	DoMoveZtInfo($_POST,$logininid,$loginin);
 }
-elseif($enews=="DoGoodZtInfo")//æ¨èä¸“é¢˜ä¿¡æ¯
+elseif($enews=="DoGoodZtInfo")//ÍÆ¼ö×¨ÌâĞÅÏ¢
 {
 	DoGoodZtInfo($_POST,$logininid,$loginin);
 }
-elseif($enews=="DoEditZtInfoTime")//ä¿®æ”¹ä¸“é¢˜ä¿¡æ¯å‘å¸ƒæ—¶é—´
+elseif($enews=="DoEditZtInfoTime")//ĞŞ¸Ä×¨ÌâĞÅÏ¢·¢²¼Ê±¼ä
 {
 	DoEditZtInfoTime($_POST,$logininid,$loginin);
 }
@@ -164,7 +164,7 @@ else
 {}
 
 
-//ä¸“é¢˜
+//×¨Ìâ
 if(!$ztid)
 {
 	printerror('ErrorUrl','');
@@ -178,40 +178,40 @@ if(!$ztr['ztid'])
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=intval($public_r['hlistinfonum']);//æ¯é¡µæ˜¾ç¤º
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=intval($public_r['hlistinfonum']);//Ã¿Ò³ÏÔÊ¾
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $add='';
 $search='&ztid='.$ztid.$ecms_hashur['ehref'];
-//ä¸“é¢˜å­ç±»
+//×¨Ìâ×ÓÀà
 $cid=(int)$_GET['cid'];
 if($cid)
 {
 	$add.=" and cid='$cid'";
 	$search.='&cid='.$cid;
 }
-//ç³»ç»Ÿæ¨¡å‹
+//ÏµÍ³Ä£ĞÍ
 $mid=(int)$_GET['mid'];
 if($mid)
 {
 	$add.=" and mid='$mid'";
 	$search.='&mid='.$mid;
 }
-//æ ç›®
+//À¸Ä¿
 $classid=(int)$_GET['classid'];
 if($classid)
 {
 	$add.=' and '.($class_r[$classid][islast]?"classid='$classid'":"(".ReturnClass($class_r[$classid][sonclass]).")");
 	$search.='&classid='.$classid;
 }
-//æ¨è
+//ÍÆ¼ö
 $isgood=(int)$_GET['isgood'];
 if($isgood)
 {
 	$add.=" and isgood>0";
 	$search.='&isgood='.$isgood;
 }
-//æ’åº
+//ÅÅĞò
 $myorder=(int)$_GET['myorder'];
 $search.='&myorder='.$myorder;
 if($myorder==1)
@@ -240,7 +240,7 @@ $query="select zid,cid,id,classid,mid,isgood,newstime from {$dbtbpre}enewsztinfo
 $query=$query." order by ".$doorder." limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//ä¸“é¢˜å­ç±»
+//×¨Ìâ×ÓÀà
 $csql=$empire->query("select cid,cname from {$dbtbpre}enewszttype where ztid='$ztid'");
 $ztcs='';
 $moveztcs='';
@@ -258,9 +258,9 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†ä¸“é¢˜ä¿¡æ¯</title>
+<title>¹ÜÀí×¨ÌâĞÅÏ¢</title>
 <script>
 function CheckAll(form)
   {
@@ -277,11 +277,11 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td width="36%" height="25">ä½ç½®ï¼šä¸“é¢˜ï¼š<b><?=$ztr['ztname']?></b> &gt; <a href="ListZtInfo.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>">ç®¡ç†ä¸“é¢˜ä¿¡æ¯</a></td>
+    <td width="36%" height="25">Î»ÖÃ£º×¨Ìâ£º<b><?=$ztr['ztname']?></b> &gt; <a href="ListZtInfo.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>">¹ÜÀí×¨ÌâĞÅÏ¢</a></td>
     <td width="64%"><div align="right" class="emenubutton">
-        <input type="button" name="Submit6" value="ç»„åˆä¸“é¢˜" onclick="window.open('TogZt.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>');"> 
+        <input type="button" name="Submit6" value="×éºÏ×¨Ìâ" onclick="window.open('TogZt.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>');"> 
 		&nbsp;&nbsp;
-		<input type="button" name="Submit6" value="ç®¡ç†ä¸“é¢˜å­ç±»" onclick="window.open('ZtType.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>');">
+		<input type="button" name="Submit6" value="¹ÜÀí×¨Ìâ×ÓÀà" onclick="window.open('ZtType.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>');">
       </div></td>
   </tr>
 </table>
@@ -292,20 +292,20 @@ function CheckAll(form)
       <td width="100%"> <div align="right">
           <input name="ztid" type="hidden" id="ztid" value="<?=$ztid?>">
           <select name="cid" id="cid">
-            <option value="0">æ‰€æœ‰ä¸“é¢˜å­ç±»</option>
+            <option value="0">ËùÓĞ×¨Ìâ×ÓÀà</option>
             <?=$ztcs?>
           </select>
           <span id="searchclassnav"></span> 
           <select name="myorder" id="myorder">
-            <option value="1"<?=$myorder==1?' selected':''?>>æŒ‰ä¸“é¢˜ä¿¡æ¯IDé™åºæ’åº</option>
-            <option value="2"<?=$myorder==2?' selected':''?>>æŒ‰ä¸“é¢˜ä¿¡æ¯IDå‡åºæ’åº</option>
-            <option value="3"<?=$myorder==3?' selected':''?>>æŒ‰å‘å¸ƒæ—¶é—´é™åºæ’åº</option>
-            <option value="4"<?=$myorder==4?' selected':''?>>æŒ‰å‘å¸ƒæ—¶é—´å‡åºæ’åº</option>
+            <option value="1"<?=$myorder==1?' selected':''?>>°´×¨ÌâĞÅÏ¢ID½µĞòÅÅĞò</option>
+            <option value="2"<?=$myorder==2?' selected':''?>>°´×¨ÌâĞÅÏ¢IDÉıĞòÅÅĞò</option>
+            <option value="3"<?=$myorder==3?' selected':''?>>°´·¢²¼Ê±¼ä½µĞòÅÅĞò</option>
+            <option value="4"<?=$myorder==4?' selected':''?>>°´·¢²¼Ê±¼äÉıĞòÅÅĞò</option>
           </select>
           </select>
           <input name="isgood" type="checkbox" id="isgood" value="1"<?=$isgood==1?' checked':''?>>
-          æ¨è 
-          <input type="submit" name="Submit2" value="æ˜¾ç¤º">
+          ÍÆ¼ö 
+          <input type="submit" name="Submit2" value="ÏÔÊ¾">
         </div></td>
     </tr>
   </form>
@@ -313,20 +313,20 @@ function CheckAll(form)
 <br>
   
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name="listform" method="post" action="ListZtInfo.php" onsubmit="return confirm('ç¡®è®¤è¦æ‰§è¡Œæ­¤æ“ä½œï¼Ÿ');">
+  <form name="listform" method="post" action="ListZtInfo.php" onsubmit="return confirm('È·ÈÏÒªÖ´ĞĞ´Ë²Ù×÷£¿');">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
       <td width="3%"><div align="center"></div></td>
-      <td width="13%"><div align="center">ä¸“é¢˜å­ç±»</div></td>
+      <td width="13%"><div align="center">×¨Ìâ×ÓÀà</div></td>
       <td width="6%" height="25"><div align="center">ID</div></td>
-      <td width="43%" height="25"><div align="center">æ ‡é¢˜</div></td>
-      <td width="28%" height="25"> <div align="center">å‘å¸ƒæ—¶é—´</div></td>
-      <td width="7%"><div align="center">æ“ä½œ</div></td>
+      <td width="43%" height="25"><div align="center">±êÌâ</div></td>
+      <td width="28%" height="25"> <div align="center">·¢²¼Ê±¼ä</div></td>
+      <td width="7%"><div align="center">²Ù×÷</div></td>
     </tr>
     <?php
 	while($zr=$empire->fetch($sql))
 	{
-		//ä¸“é¢˜å­ç±»
+		//×¨Ìâ×ÓÀà
 		$cname='---';
 		if($zr['cid'])
 		{
@@ -346,21 +346,21 @@ function CheckAll(form)
 		{
 			$addecmscheck='&ecmscheck=1';
 		}
-		//çŠ¶æ€
+		//×´Ì¬
 		$st='';
-		if($zr['isgood'])//æ¨è
+		if($zr['isgood'])//ÍÆ¼ö
 		{
-			$st.="<font color=red>[æ¨".$zr['isgood']."]</font>";
+			$st.="<font color=red>[ÍÆ".$zr['isgood']."]</font>";
 		}
 		$oldtitle=$r[title];
 		$r[title]=stripSlashes(sub($r[title],0,36,false));
-		//æ—¶é—´
+		//Ê±¼ä
 		$truetime=date("Y-m-d H:i:s",$r[truetime]);
 		$lastdotime=date("Y-m-d H:i:s",$r[lastdotime]);
-		//å®¡æ ¸
+		//ÉóºË
 		if(empty($index_r['checked']))
 		{
-			$checked=" title='æœªå®¡æ ¸' style='background:#99C4E3'";
+			$checked=" title='Î´ÉóºË' style='background:#99C4E3'";
 			$titleurl="../ShowInfo.php?classid=$r[classid]&id=$r[id]".$addecmscheck.$ecms_hashur['ehref'];
 		}
 		else
@@ -368,14 +368,14 @@ function CheckAll(form)
 			$checked="";
 			$titleurl=sys_ReturnBqTitleLink($r);
 		}
-		//å–å¾—ç±»åˆ«å
+		//È¡µÃÀà±ğÃû
 		$do=$r[classid];
 		$dob=$class_r[$r[classid]][bclassid];
-		//æ ‡é¢˜å›¾ç‰‡
+		//±êÌâÍ¼Æ¬
 		$showtitlepic="";
 		if($r[titlepic])
 		{
-			$showtitlepic="<a href='".$r[titlepic]."' title='é¢„è§ˆæ ‡é¢˜å›¾ç‰‡' target=_blank><img src='../../data/images/showimg.gif' border=0></a>";
+			$showtitlepic="<a href='".$r[titlepic]."' title='Ô¤ÀÀ±êÌâÍ¼Æ¬' target=_blank><img src='../../data/images/showimg.gif' border=0></a>";
 		}
 		$myid=$r['id'];
 	?>
@@ -397,7 +397,7 @@ function CheckAll(form)
           </a> 
           <?=$qf?>
           <br>
-          <font color="#574D5C">æ ç›®:<a href='../ListNews.php?bclassid=<?=$class_r[$r[classid]][bclassid]?>&classid=<?=$r[classid]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>'> 
+          <font color="#574D5C">À¸Ä¿:<a href='../ListNews.php?bclassid=<?=$class_r[$r[classid]][bclassid]?>&classid=<?=$r[classid]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>'> 
           <font color="#574D5C"> 
           <?=$class_r[$dob][classname]?>
           </font> </a> > <a href='../ListNews.php?bclassid=<?=$class_r[$r[classid]][bclassid]?>&classid=<?=$r[classid]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>'> 
@@ -408,7 +408,7 @@ function CheckAll(form)
           <input name="dozid[]" type="hidden" id="dozid[]" value="<?=$zr[zid]?>">
           <input name="newstime[]" type="text" value="<?=date("Y-m-d H:i:s",$zr[newstime])?>" size="22">
         </div></td>
-      <td><div align="center">[<a href="../AddNews.php?enews=EditNews&id=<?=$r[id]?>&classid=<?=$r[classid]?>&bclassid=<?=$class_r[$r[classid]][bclassid]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>" title="<? echo"å¢åŠ æ—¶é—´ï¼š".$truetime."\r\næœ€åä¿®æ”¹ï¼š".$lastdotime;?>" target="_blank">ä¿®æ”¹</a>]</div></td>
+      <td><div align="center">[<a href="../AddNews.php?enews=EditNews&id=<?=$r[id]?>&classid=<?=$r[classid]?>&bclassid=<?=$class_r[$r[classid]][bclassid]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>" title="<? echo"Ôö¼ÓÊ±¼ä£º".$truetime."\r\n×îºóĞŞ¸Ä£º".$lastdotime;?>" target="_blank">ĞŞ¸Ä</a>]</div></td>
     </tr>
     <?
 	}
@@ -418,27 +418,27 @@ function CheckAll(form)
           <input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
         </div></td>
       <td height="25" colspan="5"> <div align="right"> 
-          <input type="submit" name="Submit3" value="ä»ä¸“é¢˜ç§»é™¤" onclick="document.listform.enews.value='DoDelZtInfo';document.listform.action='ListZtInfo.php';">
+          <input type="submit" name="Submit3" value="´Ó×¨ÌâÒÆ³ı" onclick="document.listform.enews.value='DoDelZtInfo';document.listform.action='ListZtInfo.php';">
           <select name="isgood" id="isgood">
-            <option value="0">ä¸æ¨è</option>
-            <option value="1">1çº§æ¨è</option>
-            <option value="2">2çº§æ¨è</option>
-            <option value="3">3çº§æ¨è</option>
-            <option value="4">4çº§æ¨è</option>
-            <option value="5">5çº§æ¨è</option>
-            <option value="6">6çº§æ¨è</option>
-            <option value="7">7çº§æ¨è</option>
-            <option value="8">8çº§æ¨è</option>
-            <option value="9">9çº§æ¨è</option>
+            <option value="0">²»ÍÆ¼ö</option>
+            <option value="1">1¼¶ÍÆ¼ö</option>
+            <option value="2">2¼¶ÍÆ¼ö</option>
+            <option value="3">3¼¶ÍÆ¼ö</option>
+            <option value="4">4¼¶ÍÆ¼ö</option>
+            <option value="5">5¼¶ÍÆ¼ö</option>
+            <option value="6">6¼¶ÍÆ¼ö</option>
+            <option value="7">7¼¶ÍÆ¼ö</option>
+            <option value="8">8¼¶ÍÆ¼ö</option>
+            <option value="9">9¼¶ÍÆ¼ö</option>
           </select>
-          <input type="submit" name="Submit82" value="æ¨è" onClick="document.listform.enews.value='DoGoodZtInfo';document.listform.doing.value='1';document.listform.action='ListZtInfo.php';">
+          <input type="submit" name="Submit82" value="ÍÆ¼ö" onClick="document.listform.enews.value='DoGoodZtInfo';document.listform.doing.value='1';document.listform.action='ListZtInfo.php';">
           <span id="moveclassnav">
-          <input type="submit" name="Submit8223" value="æ‰¹é‡ä¿®æ”¹æ—¶é—´" onClick="document.listform.enews.value='DoEditZtInfoTime';document.listform.action='ListZtInfo.php';">
+          <input type="submit" name="Submit8223" value="ÅúÁ¿ĞŞ¸ÄÊ±¼ä" onClick="document.listform.enews.value='DoEditZtInfoTime';document.listform.action='ListZtInfo.php';">
           <select name="to_cid" id="to_cid">
-            <option value="">é€‰æ‹©ä¸“é¢˜å­ç±»</option>
+            <option value="">Ñ¡Ôñ×¨Ìâ×ÓÀà</option>
             <?=$moveztcs?>
           </select>
-          <input type="submit" name="Submit8222" value="è½¬ç§»" onClick="document.listform.enews.value='DoMoveZtInfo';document.listform.action='ListZtInfo.php';">
+          <input type="submit" name="Submit8222" value="×ªÒÆ" onClick="document.listform.enews.value='DoMoveZtInfo';document.listform.action='ListZtInfo.php';">
           <input name="enews" type="hidden" id="enews" value="DoGoodZtInfo">
           <input type=hidden name=doing value=0>
           </span> </div></td>
@@ -449,7 +449,7 @@ function CheckAll(form)
         <input name="ztid" type="hidden" id="ztid" value="<?=$ztid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25" colspan="6"><font color="#666666">è¯´æ˜ï¼šä¿¡æ¯æ˜¯æŒ‰å‘å¸ƒæ—¶é—´æ’åºï¼Œå¦‚æœè¦æ”¹é¡ºåºå¯ä»¥ä¿®æ”¹å‘å¸ƒæ—¶é—´ï¼Œå‘å¸ƒæ—¶é—´è®¾ç½®ç©ºåˆ™æ”¹ä¸ºå½“å‰æ—¶é—´ã€‚</font></td>
+      <td height="25" colspan="6"><font color="#666666">ËµÃ÷£ºĞÅÏ¢ÊÇ°´·¢²¼Ê±¼äÅÅĞò£¬Èç¹ûÒª¸ÄË³Ğò¿ÉÒÔĞŞ¸Ä·¢²¼Ê±¼ä£¬·¢²¼Ê±¼äÉèÖÃ¿ÕÔò¸ÄÎªµ±Ç°Ê±¼ä¡£</font></td>
     </tr>
   </form>
 </table>

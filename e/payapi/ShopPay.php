@@ -3,37 +3,37 @@ require("../class/connect.php");
 require("../class/db_sql.php");
 require("../class/q_functions.php");
 require("../member/class/user.php");
-eCheckCloseMods('pay');//å…³é—­æ¨¡å—
+eCheckCloseMods('pay');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
-//æ”¯ä»˜å¹³å°
+//Ö§¸¶Æ½Ì¨
 $paytype=RepPostVar($_GET['paytype']);
 if(!$paytype)
 {
-	printerror('è¯·é€‰æ‹©æ”¯ä»˜å¹³å°','',1,0,1);
+	printerror('ÇëÑ¡ÔñÖ§¸¶Æ½Ì¨','',1,0,1);
 }
 $payr=$empire->fetch1("select * from {$dbtbpre}enewspayapi where paytype='$paytype' and isclose=0 limit 1");
 if(!$payr[payid])
 {
-	printerror('è¯·é€‰æ‹©æ”¯ä»˜å¹³å°','',1,0,1);
+	printerror('ÇëÑ¡ÔñÖ§¸¶Æ½Ì¨','',1,0,1);
 }
 
 include('payfun.php');
 
-//è®¢å•ä¿¡æ¯
+//¶©µ¥ĞÅÏ¢
 $ddid=(int)getcvar('paymoneyddid');
 $ddr=PayApiShopDdMoney($ddid);
 $money=$ddr['tmoney'];
 if(!$money)
 {
-	printerror('è®¢å•é‡‘é¢æœ‰è¯¯','',1,0,1);
+	printerror('¶©µ¥½ğ¶îÓĞÎó','',1,0,1);
 }
 $ddno=$ddr[ddno];
-$productname="æ”¯ä»˜è®¢å•å·:".$ddno;
-$productsay="è®¢å•å·:".$ddno;
+$productname="Ö§¸¶¶©µ¥ºÅ:".$ddno;
+$productsay="¶©µ¥ºÅ:".$ddno;
 
 esetcookie("payphome","ShopPay",0);
-//è¿”å›åœ°å€å‰ç¼€
+//·µ»ØµØÖ·Ç°×º
 $PayReturnUrlQz=$public_r['newsurl'];
 if(!stristr($public_r['newsurl'],'://'))
 {

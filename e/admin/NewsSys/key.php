@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,26 +16,26 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"key");
 
-//å¢åŠ å…³é”®å­—
+//Ôö¼Ó¹Ø¼ü×Ö
 function AddKey($keyname,$keyurl,$userid,$username){
 	global $empire,$dbtbpre;
 	$cid=(int)$_POST['cid'];
 	$fcid=(int)$_POST['fcid'];
 	if(!$keyname||!$keyurl)
 	{printerror("EmptyKeyname","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"key");
 	$keyname=hRepPostStr($keyname,1);
 	$keyurl=hRepPostStr($keyurl,1);
 	$sql=$empire->query("insert into {$dbtbpre}enewskey(keyname,keyurl,cid) values('$keyname','$keyurl','$cid');");
 	$keyid=$empire->lastid();
-	GetConfig();//æ›´æ–°ç¼“å­˜
+	GetConfig();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("keyid=".$keyid."<br>keyname=".$keyname);
 		printerror("AddKeySuccess","key.php?fcid=$fcid".hReturnEcmsHashStrHref2(0));
 	}
@@ -43,23 +43,23 @@ function AddKey($keyname,$keyurl,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹å…³é”®å­—
+//ĞŞ¸Ä¹Ø¼ü×Ö
 function EditKey($keyid,$keyname,$keyurl,$userid,$username){
 	global $empire,$dbtbpre;
 	$cid=(int)$_POST['cid'];
 	$fcid=(int)$_POST['fcid'];
 	if(!$keyname||!$keyurl||!$keyid)
 	{printerror("EmptyKeyname","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"key");
 	$keyid=(int)$keyid;
 	$keyname=hRepPostStr($keyname,1);
 	$keyurl=hRepPostStr($keyurl,1);
 	$sql=$empire->query("update {$dbtbpre}enewskey set keyname='$keyname',keyurl='$keyurl',cid='$cid' where keyid='$keyid'");
-	GetConfig();//æ›´æ–°ç¼“å­˜
+	GetConfig();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("keyid=".$keyid."<br>keyname=".$keyname);
 		printerror("EditKeySuccess","key.php?fcid=$fcid".hReturnEcmsHashStrHref2(0));
 	}
@@ -67,21 +67,21 @@ function EditKey($keyid,$keyname,$keyurl,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤å…³é”®å­—
+//É¾³ı¹Ø¼ü×Ö
 function DelKey($keyid,$userid,$username){
 	global $empire,$dbtbpre;
 	$fcid=(int)$_GET['fcid'];
 	$keyid=(int)$keyid;
 	if(!$keyid)
 	{printerror("NotDelKeyid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"key");
 	$r=$empire->fetch1("select keyname from {$dbtbpre}enewskey where keyid='$keyid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewskey where keyid='$keyid'");
-	GetConfig();//æ›´æ–°ç¼“å­˜
+	GetConfig();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("keyid=".$keyid."<br>keyname=".$r[keyname]);
 		printerror("DelKeySuccess","key.php?fcid=$fcid".hReturnEcmsHashStrHref2(0));
 	}
@@ -96,14 +96,14 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ å…³é”®å­—
+//Ôö¼Ó¹Ø¼ü×Ö
 if($enews=="AddKey")
 {
 	$keyname=$_POST['keyname'];
 	$keyurl=$_POST['keyurl'];
 	AddKey($keyname,$keyurl,$logininid,$loginin);
 }
-//ä¿®æ”¹å…³é”®å­—
+//ĞŞ¸Ä¹Ø¼ü×Ö
 elseif($enews=="EditKey")
 {
 	$keyid=$_POST['keyid'];
@@ -111,7 +111,7 @@ elseif($enews=="EditKey")
 	$keyurl=$_POST['keyurl'];
 	EditKey($keyid,$keyname,$keyurl,$logininid,$loginin);
 }
-//åˆ é™¤å…³é”®å­—
+//É¾³ı¹Ø¼ü×Ö
 elseif($enews=="DelKey")
 {
 	$keyid=$_GET['keyid'];
@@ -123,13 +123,13 @@ else
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $search='';
 $search.=$ecms_hashur['ehref'];
 $add='';
-//åˆ†ç±»
+//·ÖÀà
 $fcid=(int)$_GET['fcid'];
 if($fcid)
 {
@@ -141,7 +141,7 @@ $num=$empire->gettotal($totalquery);
 $query="select keyid,keyname,keyurl,cid from {$dbtbpre}enewskey".$add." order by keyid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//åˆ†ç±»
+//·ÖÀà
 $cstr='';
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewskeyclass");
 while($cr=$empire->fetch($csql))
@@ -152,17 +152,17 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å…³é”®å­—</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹Ø¼ü×Ö</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="56%">ä½ç½®ï¼š<a href="key.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å†…å®¹å…³é”®å­—</a></td>
+    <td width="56%">Î»ÖÃ£º<a href="key.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÄÚÈİ¹Ø¼ü×Ö</a></td>
     <td width="44%"><div align="right" class="emenubutton">
-        <input type="button" name="Submit52" value="ç®¡ç†å†…å®¹å…³é”®å­—åˆ†ç±»" onclick="self.location.href='KeyClass.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit52" value="¹ÜÀíÄÚÈİ¹Ø¼ü×Ö·ÖÀà" onclick="self.location.href='KeyClass.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -170,9 +170,9 @@ while($cr=$empire->fetch($csql))
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
 
   <tr> 
-    <td> é€‰æ‹©åˆ†ç±»ï¼š 
+    <td> Ñ¡Ôñ·ÖÀà£º 
       <select name="fcid" id="fcid" onchange=window.location='key.php?<?=$ecms_hashur['ehref']?>&fcid='+this.options[this.selectedIndex].value>
-        <option value="0">æ˜¾ç¤ºæ‰€æœ‰åˆ†ç±»</option>
+        <option value="0">ÏÔÊ¾ËùÓĞ·ÖÀà</option>
 		<?=$fcid?str_replace("'$fcid'>","'$fcid' selected>",$cstr):$cstr?>
       </select> </td>
   </tr>
@@ -185,20 +185,20 @@ while($cr=$empire->fetch($csql))
   <input type=hidden name=enews value=AddKey>
   <input type=hidden name=fcid value=<?=$fcid?>>
     <tr class="header">
-      <td height="25">å¢åŠ å…³é”®å­—:</td>
+      <td height="25">Ôö¼Ó¹Ø¼ü×Ö:</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> å…³é”®å­—: 
+      <td height="25" bgcolor="#FFFFFF"> ¹Ø¼ü×Ö: 
         <input name="keyname" type="text" id="keyname">
-        é“¾æ¥åœ°å€:
+        Á´½ÓµØÖ·:
         <input name="keyurl" type="text" id="keyurl" value="http://" size="30">
-        æ‰€å±åˆ†ç±»:
+        ËùÊô·ÖÀà:
         <select name="cid" id="cid">
-          <option value="0">ä¸éš¶å±åˆ†ç±»</option>
+          <option value="0">²»Á¥Êô·ÖÀà</option>
 		  <?=$cstr?>
         </select> 
-        <input type="submit" name="Submit" value="å¢åŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
 	</form>
   </table>
@@ -206,8 +206,8 @@ while($cr=$empire->fetch($csql))
 
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td width="70%" height="25">å…³é”®å­—</td>
-    <td width="30%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="70%" height="25">¹Ø¼ü×Ö</td>
+    <td width="30%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -219,19 +219,19 @@ while($cr=$empire->fetch($csql))
     <input type=hidden name=keyid value=<?=$r[keyid]?>>
 	<input type=hidden name=fcid value=<?=$fcid?>>
     <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
-      <td height="25">å…³é”®å­—: 
+      <td height="25">¹Ø¼ü×Ö: 
         <input name="keyname" type="text" id="keyname" value="<?=$r[keyname]?>">
-        é“¾æ¥åœ°å€: 
+        Á´½ÓµØÖ·: 
         <input name="keyurl" type="text" id="keyurl" value="<?=$r[keyurl]?>" size="30">
-        æ‰€å±åˆ†ç±»: 
+        ËùÊô·ÖÀà: 
         <select name="cid" id="cid">
-          <option value="0">ä¸éš¶å±åˆ†ç±»</option>
+          <option value="0">²»Á¥Êô·ÖÀà</option>
           <?=$r[cid]?str_replace("'$r[cid]'>","'$r[cid]' selected>",$cstr):$cstr?>
         </select> </td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="if(confirm('ç¡®è®¤è¦åˆ é™¤?')){self.location.href='key.php?enews=DelKey&keyid=<?=$r[keyid]?>&fcid=<?=$fcid?><?=$ecms_hashur['href']?>';}">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="if(confirm('È·ÈÏÒªÉ¾³ı?')){self.location.href='key.php?enews=DelKey&keyid=<?=$r[keyid]?>&fcid=<?=$fcid?><?=$ecms_hashur['href']?>';}">
         </div></td>
     </tr>
   </form>

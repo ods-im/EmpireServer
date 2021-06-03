@@ -6,7 +6,7 @@ if(!defined('InEmpireCMS'))
 ?>
 <?php
 $public_diyr['pagetitle']=$word;
-$url="<a href=../../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;<a href=../../friend/?cid=".$fcid.">å¥½å‹åˆ—è¡¨</a>&nbsp;>&nbsp;".$word;
+$url="<a href=../../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;<a href=../../friend/?cid=".$fcid.">ºÃÓÑÁĞ±í</a>&nbsp;>&nbsp;".$word;
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?> 
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
@@ -15,26 +15,26 @@ require(ECMS_PATH.'e/template/incfile/header.php');
               <td height="25" colspan="2"><?=$word?></td>
             </tr>
             <tr> 
-              <td width="17%" height="25" bgcolor="#FFFFFF">ç”¨æˆ·å: </td>
+              <td width="17%" height="25" bgcolor="#FFFFFF">ÓÃ»§Ãû: </td>
               <td width="83%" bgcolor="#FFFFFF"><input name="fname" type="text" id="fname" value="<?=$fname?>">
                 (*)</td>
             </tr>
             <tr> 
-              <td height="25" bgcolor="#FFFFFF">æ‰€å±åˆ†ç±»ï¼š</td>
+              <td height="25" bgcolor="#FFFFFF">ËùÊô·ÖÀà£º</td>
               <td bgcolor="#FFFFFF"><select name="cid">
-                  <option value="0">ä¸è®¾ç½®</option>
+                  <option value="0">²»ÉèÖÃ</option>
                   <?=$select?>
                 </select>
-                [<a href="../FriendClass/" target="_blank">ç®¡ç†åˆ†ç±»</a>]</td>
+                [<a href="../FriendClass/" target="_blank">¹ÜÀí·ÖÀà</a>]</td>
             </tr>
             <tr> 
-              <td height="25" bgcolor="#FFFFFF">å¤‡æ³¨ï¼š</td>
+              <td height="25" bgcolor="#FFFFFF">±¸×¢£º</td>
               <td bgcolor="#FFFFFF"><input name="fsay" type="text" id="fname3" value="<?=stripSlashes($r[fsay])?>" size="38"></td>
             </tr>
             <tr> 
               <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-              <td bgcolor="#FFFFFF"><input type="submit" name="Submit" value="æäº¤">
-                <input type="reset" name="Submit2" value="é‡ç½®">
+              <td bgcolor="#FFFFFF"><input type="submit" name="Submit" value="Ìá½»">
+                <input type="reset" name="Submit2" value="ÖØÖÃ">
                 <input name="enews" type="hidden" id="enews" value="<?=$enews?>">
                 <input name="fid" type="hidden" id="fid" value="<?=$fid?>">
                 <input name="fcid" type="hidden" id="fcid" value="<?=$fcid?>">

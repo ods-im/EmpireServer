@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"execsql");
 
 $enews=RepPostStr($_GET['enews'],1);
@@ -23,14 +23,14 @@ if(empty($enews))
 {
 	$enews='AddSql';
 }
-$url="<a href='ListSql.php".$ecms_hashur['whehref']."'>ç®¡ç†SQLè¯­å¥</a>&nbsp;>&nbsp;å¢åŠ SQLè¯­å¥";
-$postword='å¢åŠ SQLè¯­å¥';
+$url="<a href='ListSql.php".$ecms_hashur['whehref']."'>¹ÜÀíSQLÓï¾ä</a>&nbsp;>&nbsp;Ôö¼ÓSQLÓï¾ä";
+$postword='Ôö¼ÓSQLÓï¾ä';
 if($enews=='EditSql')
 {
 	$id=intval($_GET['id']);
 	$r=$empire->fetch1("select * from {$dbtbpre}enewssql where id='$id'");
-	$url="<a href='ListSql.php".$ecms_hashur['whehref']."'>ç®¡ç†SQLè¯­å¥</a>&nbsp;>&nbsp;ä¿®æ”¹SQLè¯­å¥: <b>".$r[sqlname]."</b>";
-	$postword='ä¿®æ”¹SQLè¯­å¥';
+	$url="<a href='ListSql.php".$ecms_hashur['whehref']."'>¹ÜÀíSQLÓï¾ä</a>&nbsp;>&nbsp;ĞŞ¸ÄSQLÓï¾ä: <b>".$r[sqlname]."</b>";
+	$postword='ĞŞ¸ÄSQLÓï¾ä';
 }
 db_close();
 $empire=null;
@@ -38,7 +38,7 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title><?=$postword?></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -46,7 +46,7 @@ $empire=null;
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 
@@ -57,7 +57,7 @@ $empire=null;
       <td height="25"><div align="center"><?=$postword?></div></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="center">(å¤šæ¡è¯­å¥è¯·ç”¨&quot;å›è½¦&quot;æ ¼å¼€,æ¯æ¡è¯­å¥ä»¥&quot;;&quot;ç»“æŸï¼Œæ•°æ®è¡¨å‰ç¼€å¯ç”¨ï¼šâ€œ[!db.pre!]&quot;è¡¨ç¤º)</div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="center">(¶àÌõÓï¾äÇëÓÃ&quot;»Ø³µ&quot;¸ñ¿ª,Ã¿ÌõÓï¾äÒÔ&quot;;&quot;½áÊø£¬Êı¾İ±íÇ°×º¿ÉÓÃ£º¡°[!db.pre!]&quot;±íÊ¾)</div></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"><div align="center"> 
@@ -65,10 +65,10 @@ $empire=null;
         </div></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="center">SQLåç§°ï¼š 
+      <td height="25" bgcolor="#FFFFFF"><div align="center">SQLÃû³Æ£º 
           <input name="sqlname" type="text" id="sqlname" value="<?=$r[sqlname]?>">
-          <input type="submit" name="Submit3" value="ä¿å­˜">
-          &nbsp;<input type="reset" name="Submit2" value="é‡ç½®">
+          <input type="submit" name="Submit3" value="±£´æ">
+          &nbsp;<input type="reset" name="Submit2" value="ÖØÖÃ">
           <input name="enews" type="hidden" id="enews" value="<?=$enews?>">
           <input name="id" type="hidden" id="id" value="<?=$id?>">
         </div></td>

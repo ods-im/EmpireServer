@@ -1,8 +1,8 @@
 <?php
 require("../../class/connect.php");
 $editor=1;
-eCheckCloseMods('fb');//å…³é—­æ¨¡å—
-//åˆ†ç±»id
+eCheckCloseMods('fb');//¹Ø±ÕÄ£¿é
+//·ÖÀàid
 $bid=(int)$_GET['bid'];
 if(empty($bid))
 {
@@ -16,7 +16,7 @@ if(empty($br['bid']))
 {
 	printerror("EmptyFeedback","",1);
 }
-//æƒé™
+//È¨ÏŞ
 if($br['groupid'])
 {
 	include("../../class/q_functions.php");
@@ -25,12 +25,12 @@ if($br['groupid'])
 	include("../../data/dbcache/MemberLevel.php");
 	if($level_r[$br[groupid]][level]>$level_r[$user[groupid]][level])
 	{
-		echo"<script>alert('æ‚¨çš„ä¼šå‘˜çº§åˆ«ä¸è¶³(".$level_r[$br[groupid]][groupname].")ï¼Œæ²¡æœ‰æƒé™æäº¤ä¿¡æ¯!');history.go(-1);</script>";
+		echo"<script>alert('ÄúµÄ»áÔ±¼¶±ğ²»×ã(".$level_r[$br[groupid]][groupname].")£¬Ã»ÓĞÈ¨ÏŞÌá½»ĞÅÏ¢!');history.go(-1);</script>";
 		exit();
 	}
 }
 esetcookie("feedbackbid",$bid);
 $bname=$br['bname'];
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;ä¿¡æ¯åé¦ˆ";
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;ĞÅÏ¢·´À¡";
 @include("temp/feedback".$bid.".php");
 ?>

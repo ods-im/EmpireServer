@@ -5,32 +5,32 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='æ”¶è—å¤¹';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;æ”¶è—å¤¹";
+$public_diyr['pagetitle']='ÊÕ²Ø¼Ğ';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;ÊÕ²Ø¼Ğ";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
       <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
           <form name="form1" method="post" action="">
             <tr> 
-              <td width="50%" height="30" bgcolor="#FFFFFF">é€‰æ‹©åˆ†ç±»: 
+              <td width="50%" height="30" bgcolor="#FFFFFF">Ñ¡Ôñ·ÖÀà: 
                 <select name="cid" id="select" onchange=window.location='../fava/?cid='+this.options[this.selectedIndex].value>
-                  <option value="0">æ˜¾ç¤ºå…¨éƒ¨</option>
+                  <option value="0">ÏÔÊ¾È«²¿</option>
                   <?=$select?>
                 </select></td>
-              <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="FavaClass/">ç®¡ç†åˆ†ç±»</a>]&nbsp;&nbsp;</div></td>
+              <td width="50%" bgcolor="#FFFFFF"><div align="right">[<a href="FavaClass/">¹ÜÀí·ÖÀà</a>]&nbsp;&nbsp;</div></td>
             </tr>
           </form>
 </table>
         <br>
         <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
-          <form name=favaform method=post action="../doaction.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+          <form name=favaform method=post action="../doaction.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
             <input type=hidden value=DelFava_All name=enews>
             <tr class="header"> 
               <td width="4%" height="25"><div align="center"></div></td>
-              <td width="57%"><div align="center">æ ‡é¢˜</div></td>
-              <td width="12%"><div align="center">ç‚¹å‡»</div></td>
-              <td width="20%"><div align="center">æ”¶è—æ—¶é—´</div></td>
-              <td width="7%"><div align="center">é€‰æ‹©</div></td>
+              <td width="57%"><div align="center">±êÌâ</div></td>
+              <td width="12%"><div align="center">µã»÷</div></td>
+              <td width="20%"><div align="center">ÊÕ²ØÊ±¼ä</div></td>
+              <td width="7%"><div align="center">Ñ¡Ôñ</div></td>
             </tr>
             <?php
 			while($fr=$empire->fetch($sql))
@@ -38,11 +38,11 @@ require(ECMS_PATH.'e/template/incfile/header.php');
 				if(empty($class_r[$fr[classid]][tbname]))
 				{continue;}
 				$r=$empire->fetch1("select title,isurl,titleurl,onclick,classid,id from {$dbtbpre}ecms_".$class_r[$fr[classid]][tbname]." where id='$fr[id]' limit 1");
-				//æ ‡é¢˜é“¾æ¥
+				//±êÌâÁ´½Ó
 				$titlelink=sys_ReturnBqTitleLink($r);
 				if(!$r['id'])
 				{
-					$r['title']="æ­¤ä¿¡æ¯å·²åˆ é™¤";
+					$r['title']="´ËĞÅÏ¢ÒÑÉ¾³ı";
 					$titlelink="#EmpireCMS";
 				}
 			?>
@@ -68,10 +68,10 @@ require(ECMS_PATH.'e/template/incfile/header.php');
               <td height="25" colspan="5"> &nbsp;&nbsp;&nbsp; 
                 <?=$returnpage?>
                 &nbsp;&nbsp; <select name="cid">
-                  <option value="0">è¯·é€‰æ‹©è¦è½¬ç§»çš„ç›®æ ‡åˆ†ç±»</option>
+                  <option value="0">ÇëÑ¡ÔñÒª×ªÒÆµÄÄ¿±ê·ÖÀà</option>
                   <?=$select?>
-                </select> <input type="submit" name="Submit" value="è½¬ç§»é€‰ä¸­" onclick="document.favaform.enews.value='MoveFava_All'"> 
-              &nbsp;&nbsp; <input type="submit" name="Submit" value="åˆ é™¤é€‰ä¸­" onclick="document.favaform.enews.value='DelFava_All'"></td>
+                </select> <input type="submit" name="Submit" value="×ªÒÆÑ¡ÖĞ" onclick="document.favaform.enews.value='MoveFava_All'"> 
+              &nbsp;&nbsp; <input type="submit" name="Submit" value="É¾³ıÑ¡ÖĞ" onclick="document.favaform.enews.value='DelFava_All'"></td>
             </tr>
           </form>
         </table>

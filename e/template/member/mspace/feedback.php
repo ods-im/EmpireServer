@@ -5,8 +5,8 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='ç®¡ç†åé¦ˆ';
-$url="<a href='../../../'>é¦–é¡µ</a>&nbsp;>&nbsp;<a href='../cp/'>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;ç®¡ç†åé¦ˆ";
+$public_diyr['pagetitle']='¹ÜÀí·´À¡';
+$url="<a href='../../../'>Ê×Ò³</a>&nbsp;>&nbsp;<a href='../cp/'>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;¹ÜÀí·´À¡";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <script>
@@ -21,12 +21,12 @@ function CheckAll(form)
   }
 </script>
         <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-		<form name="feedbackform" method="post" action="index.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+		<form name="feedbackform" method="post" action="index.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
 		<tr class="header"> 
 		  <td width="6%" height="25"><div align="center"><input type='checkbox' name='chkall' value='on' onClick='CheckAll(this.form)'></div></td>
-		  <td width="58%"><div align="center">æ ‡é¢˜(ç‚¹å‡»æŸ¥çœ‹)</div></td>
-		  <td width="25%"><div align="center">æäº¤æ—¶é—´</div></td>
-			<td width="11%"><div align="center">åˆ é™¤</div></td>
+		  <td width="58%"><div align="center">±êÌâ(µã»÷²é¿´)</div></td>
+		  <td width="25%"><div align="center">Ìá½»Ê±¼ä</div></td>
+			<td width="11%"><div align="center">É¾³ı</div></td>
 		</tr>
 		<?php
 		while($r=$empire->fetch($sql))
@@ -38,7 +38,7 @@ function CheckAll(form)
 			}
 			else
 			{
-				$r['uname']='æ¸¸å®¢';
+				$r['uname']='ÓÎ¿Í';
 			}
 		?>
         <tr bgcolor="#FFFFFF"> 
@@ -52,7 +52,7 @@ function CheckAll(form)
 			<?=$r[addtime]?>
 			</div></td>
 			<td height="25"><div align="center">
-			<a href="index.php?enews=DelMemberFeedback&fid=<?=$r[fid]?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>
+			<a href="index.php?enews=DelMemberFeedback&fid=<?=$r[fid]?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>
 			</div></td>
 		</tr>
 		  <?
@@ -62,7 +62,7 @@ function CheckAll(form)
 			<td height="25" colspan="4"> 
 			<?=$returnpage?>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="submit" name="Submit" value="æ‰¹é‡åˆ é™¤">
+			<input type="submit" name="Submit" value="ÅúÁ¿É¾³ı">
 			<input name="enews" type="hidden" id="enews" value="DelMemberFeedback_All"></td>
 		  </tr>
 		</form>

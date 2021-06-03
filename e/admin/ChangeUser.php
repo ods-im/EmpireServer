@@ -6,7 +6,7 @@ require("../class/functions.php");
 require LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -21,12 +21,12 @@ $page=RepPIntvar($page);
 $start=0;
 $field=RepPostVar($_GET['field']);
 $form=RepPostVar($_GET['form']);
-$line=20;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=20;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $search="&field=$field&form=$form".$ecms_hashur['ehref'];
 $query="select * from {$dbtbpre}enewsuser";
-$num=$empire->num($query);//å–å¾—æ€»æ¡æ•°
+$num=$empire->num($query);//È¡µÃ×ÜÌõÊı
 $query=$query." order by userid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -34,8 +34,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>é€‰æ‹©ç”¨æˆ·</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ñ¡ÔñÓÃ»§</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function ChangeUser(user){
@@ -43,7 +43,7 @@ function ChangeUser(user){
 	var str;
 	var r;
 	str=','+opener.document.<?=$form?>.<?=$field?>.value+',';
-	//é‡å¤
+	//ÖØ¸´
 	r=str.split(','+user+',');
 	if(r.length!=1)
 	{
@@ -62,8 +62,8 @@ function ChangeUser(user){
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="15%" height="25"><div align="center">ID</div></td>
-    <td width="52%" height="25"><div align="center">ç”¨æˆ·å(ç‚¹å‡»é€‰æ‹©)</div></td>
-    <td width="33%"><div align="center">ç­‰çº§</div></td>
+    <td width="52%" height="25"><div align="center">ÓÃ»§Ãû(µã»÷Ñ¡Ôñ)</div></td>
+    <td width="33%"><div align="center">µÈ¼¶</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -75,7 +75,7 @@ function ChangeUser(user){
         <?=$r[userid]?>
       </div></td>
     <td height="25"><div align="center"> 
-        <a href="#empirecms" onclick="javascript:ChangeUser('<?=$r[username]?>');" title="é€‰æ‹©"><?=$r[username]?></a>
+        <a href="#empirecms" onclick="javascript:ChangeUser('<?=$r[username]?>');" title="Ñ¡Ôñ"><?=$r[username]?></a>
       </div></td>
     <td><div align="center"> 
         <?=$gr[groupname]?>

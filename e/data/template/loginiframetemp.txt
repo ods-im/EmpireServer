@@ -4,7 +4,7 @@ if(!defined('InEmpireCMS'))
 {
 	exit();
 }
-eCheckCloseMods('member');//å…³é—­æ¨¡å—
+eCheckCloseMods('member');//¹Ø±ÕÄ£¿é
 $myuserid=(int)getcvar('mluserid');
 $r=array();
 $mhavelogin=0;
@@ -16,7 +16,7 @@ if($myuserid)
 	$link=db_connect();
 	$empire=new mysqlquery();
 	$mhavelogin=1;
-	//æ•°æ®
+	//Êı¾İ
 	$myusername=RepPostVar(getcvar('mlusername'));
 	$myrnd=RepPostVar(getcvar('mlrnd'));
 	$qcklgr=qCheckLoginAuthstr();
@@ -34,17 +34,17 @@ if($myuserid)
 			$mhavelogin=0;
 		}
 	}
-	//ä¼šå‘˜ç­‰çº§
+	//»áÔ±µÈ¼¶
 	if(empty($r[groupid]))
 	{$groupid=eReturnMemberDefGroupid();}
 	else
 	{$groupid=$r[groupid];}
 	$groupname=$level_r[$groupid]['groupname'];
-	//ç‚¹æ•°
+	//µãÊı
 	$userfen=$r[userfen];
-	//ä½™é¢
+	//Óà¶î
 	$money=$r[money];
-	//å¤©æ•°
+	//ÌìÊı
 	$userdate=0;
 	if($r[userdate])
 	{
@@ -54,11 +54,11 @@ if($myuserid)
 		else
 		{$userdate=round($userdate/(24*3600));}
 	}
-	//æ˜¯å¦æœ‰çŸ­æ¶ˆæ¯
+	//ÊÇ·ñÓĞ¶ÌÏûÏ¢
 	$havemsg="";
 	if($r[havemsg])
 	{
-		$havemsg="<a href='".$public_r['newsurl']."e/member/msg/' target=_blank><font color=red>æ‚¨æœ‰æ–°æ¶ˆæ¯</font></a>";
+		$havemsg="<a href='".$public_r['newsurl']."e/member/msg/' target=_blank><font color=red>ÄúÓĞĞÂÏûÏ¢</font></a>";
 	}
 	//$myusername=$r[username];
 }

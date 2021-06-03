@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 
-//è¿”å›SQL
+//·µ»ØSQL
 function UserSearchDoKeyboard($f,$hh,$keyboard){
 	$keyboard=RepPostVar2($keyboard);
 	if(empty($keyboard))
@@ -26,8 +26,8 @@ function UserSearchDoKeyboard($f,$hh,$keyboard){
 }
 
 $editor=1;
-eCheckCloseMods('member');//å…³é—­æ¨¡å—
-eCheckCloseMods('mlist');//å…³é—­æ¨¡å—
+eCheckCloseMods('member');//¹Ø±ÕÄ£¿é
+eCheckCloseMods('mlist');//¹Ø±ÕÄ£¿é
 if($public_r['memberlistlevel'])
 {
 	$user=islogin();
@@ -41,13 +41,13 @@ $add='';
 $where=' where ';
 $query='';
 $totalquery='';
-//ç”¨æˆ·ç»„
+//ÓÃ»§×é
 $truegroupid=0;
 $formid=0;
 $groupid=RepPostVar($_GET['groupid']);
 if($groupid)
 {
-	if(strstr($groupid,','))//å¤šç”¨æˆ·ç»„
+	if(strstr($groupid,','))//¶àÓÃ»§×é
 	{
 		$gids='';
 		$dh='';
@@ -71,7 +71,7 @@ if($groupid)
 	$where=' and ';
 	$search.='&groupid='.$groupid;
 }
-//æœç´¢
+//ËÑË÷
 $sear=$_GET['sear'];
 if($sear)
 {
@@ -162,9 +162,9 @@ $add=" LEFT JOIN {$dbtbpre}enewsmemberadd ui ON u.".egetmf('userid')."=ui.userid
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=$public_r['member_num'];//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=10;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=$public_r['member_num'];//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=10;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $totalnum=(int)$_GET['totalnum'];
 if(!$public_r['usetotalnum'])
 {
@@ -173,7 +173,7 @@ if(!$public_r['usetotalnum'])
 if($totalnum<1)
 {
 	$totalquery="select count(*) as total from ".eReturnMemberTable()." u".$add;
-	$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+	$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 }
 else
 {
@@ -185,7 +185,7 @@ if($public_r['usetotalnum'])
 }
 //checkpageno
 eCheckListPageNo($page,$line,$num);
-//æ¨¡æ¿
+//Ä£°å
 $tempid=(int)$_GET['tempid'];
 if(empty($tempid))
 {

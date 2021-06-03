@@ -1,6 +1,6 @@
 <?php
 
-//æ›´æ–°æ•°æ®åº“ç¼“å­˜
+//¸üĞÂÊı¾İ¿â»º´æ
 function Moreport_ChangeCacheAll($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$ecms_config,$fun_r;
 	$addcs=Moreport_ChangeAddCs($add);
@@ -37,7 +37,7 @@ function Moreport_ChangeCacheAll($add,$userid,$username){
 	exit();
 }
 
-//æ›´æ–°æ ç›®ç¼“å­˜æ–‡ä»¶
+//¸üĞÂÀ¸Ä¿»º´æÎÄ¼ş
 function Moreport_UpdateClassfileAll($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$ecms_config,$fun_r;
 	$addcs=Moreport_ChangeAddCs($add);
@@ -74,7 +74,7 @@ function Moreport_UpdateClassfileAll($add,$userid,$username){
 	exit();
 }
 
-//æ›´æ–°åŠ¨æ€é¡µé¢
+//¸üĞÂ¶¯Ì¬Ò³Ãæ
 function Moreport_ReDtPageAll($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$ecms_config,$fun_r;
 	$addcs=Moreport_ChangeAddCs($add);
@@ -111,7 +111,7 @@ function Moreport_ReDtPageAll($add,$userid,$username){
 	exit();
 }
 
-//æ¸…ç†ä¸´æ—¶æ–‡ä»¶
+//ÇåÀíÁÙÊ±ÎÄ¼ş
 function Moreport_ClearTmpfileAll($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$ecms_config,$fun_r;
 	$addcs=Moreport_ChangeAddCs($add);
@@ -148,13 +148,13 @@ function Moreport_ClearTmpfileAll($add,$userid,$username){
 	exit();
 }
 
-//æ›´æ–°é¦–é¡µæ–‡ä»¶
+//¸üĞÂÊ×Ò³ÎÄ¼ş
 function Moreport_ReIndexfileAll($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$ecms_config,$fun_r;
 	$addcs=Moreport_ChangeAddCs($add);
 	if(!$add['doreindex'])
 	{
-		insert_dolog("");//æ“ä½œæ—¥å¿—
+		insert_dolog("");//²Ù×÷ÈÕÖ¾
 		printerror("MoreportChangeAllDataSuccess","ListMoreport.php".hReturnEcmsHashStrHref2(1));
 	}
 	$start=(int)$add['start'];
@@ -178,7 +178,7 @@ function Moreport_ReIndexfileAll($add,$userid,$username){
 	}
 	if(empty($b))
 	{
-		insert_dolog("");//æ“ä½œæ—¥å¿—
+		insert_dolog("");//²Ù×÷ÈÕÖ¾
 		printerror("MoreportChangeAllDataSuccess","ListMoreport.php".hReturnEcmsHashStrHref2(1));
 		//echo $fun_r[MoreportReIndexfileSuccess]."<script>self.location.href='ListMoreport.php?enews=MoreportReIndexfileAll&start=0".$addcs.hReturnEcmsHashStrHref(0)."';</script>";
 		exit();
@@ -187,7 +187,7 @@ function Moreport_ReIndexfileAll($add,$userid,$username){
 	exit();
 }
 
-//é™„åŠ å‚æ•°
+//¸½¼Ó²ÎÊı
 function Moreport_ChangeAddCs($add){
 	$docache=(int)$add['docache'];
 	$doclassfile=(int)$add['doclassfile'];
@@ -218,29 +218,29 @@ function Moreport_ChangeAddCs($add){
 	return $cs;
 }
 
-//æ›´æ–°æ•°æ®
+//¸üĞÂÊı¾İ
 function Moreport_ChangeData($portr,$ecms=0){
 	global $empire,$dbtbpre,$public_r,$ecms_config;
 	$ecms_config['sets']['deftempid']=$portr['tempgid'];
-	if($ecms==1)//æ›´æ–°åŠ¨æ€é¡µé¢
+	if($ecms==1)//¸üĞÂ¶¯Ì¬Ò³Ãæ
 	{
-		GetPlTempPage();//è¯„è®ºåˆ—è¡¨æ¨¡æ¿
-		GetPlJsPage();//è¯„è®ºJSæ¨¡æ¿
-		ReCptemp();//æ§åˆ¶é¢æ¿æ¨¡æ¿
-		GetSearch();//ä¸‰æœç´¢è¡¨å•æ¨¡æ¿
-		GetPrintPage();//æ‰“å°æ¨¡æ¿
-		GetDownloadPage();//ä¸‹è½½åœ°å€é¡µé¢
-		ReGbooktemp();//ç•™è¨€æ¿æ¨¡æ¿
-		ReLoginIframe();//ç™»é™†çŠ¶æ€æ¨¡æ¿
-		ReSchAlltemp();//å…¨ç«™æœç´¢æ¨¡æ¿
-		//é˜²é‡‡é›†ç¼“å­˜
+		GetPlTempPage();//ÆÀÂÛÁĞ±íÄ£°å
+		GetPlJsPage();//ÆÀÂÛJSÄ£°å
+		ReCptemp();//¿ØÖÆÃæ°åÄ£°å
+		GetSearch();//ÈıËÑË÷±íµ¥Ä£°å
+		GetPrintPage();//´òÓ¡Ä£°å
+		GetDownloadPage();//ÏÂÔØµØÖ·Ò³Ãæ
+		ReGbooktemp();//ÁôÑÔ°åÄ£°å
+		ReLoginIframe();//µÇÂ½×´Ì¬Ä£°å
+		ReSchAlltemp();//È«Õ¾ËÑË÷Ä£°å
+		//·À²É¼¯»º´æ
 		$yfile=ECMS_PATH.'e/data/dbcache/notcj.php';
 		$nfile=ECMS_SELFPATH.'e/data/dbcache/notcj.php';
 		@copy($yfile,$nfile);
 	}
-	elseif($ecms==2)//æ¸…ç†ä¸´æ—¶æ–‡ä»¶
+	elseif($ecms==2)//ÇåÀíÁÙÊ±ÎÄ¼ş
 	{
-		//ä¸´æ—¶æ–‡ä»¶ç›®å½•
+		//ÁÙÊ±ÎÄ¼şÄ¿Â¼
 		$tmppath=ECMS_SELFPATH.'e/data/tmp';
 		$hand=@opendir($tmppath);
 		while($file=@readdir($hand))
@@ -256,7 +256,7 @@ function Moreport_ChangeData($portr,$ecms=0){
 			}
 		}
 	}
-	elseif($ecms==3)//æ›´æ–°æ ç›®ç¼“å­˜æ–‡ä»¶
+	elseif($ecms==3)//¸üĞÂÀ¸Ä¿»º´æÎÄ¼ş
 	{
 		$ypath=ECMS_PATH.'d/js';
 		$npath=ECMS_SELFPATH.'d/js';
@@ -271,7 +271,7 @@ function Moreport_ChangeData($portr,$ecms=0){
 		$npath=ECMS_SELFPATH.'e/data/template';
 		CopyPath($ypath,$npath);
 	}
-	elseif($ecms==4)//æ›´æ–°åŠ¨æ€é¦–é¡µ
+	elseif($ecms==4)//¸üĞÂ¶¯Ì¬Ê×Ò³
 	{
 		if($portr['mustdt']||$public_r['indexpagedt'])
 		{
@@ -279,15 +279,15 @@ function Moreport_ChangeData($portr,$ecms=0){
 			@copy(ECMS_SELFPATH.'e/data/template/dtindexpage.txt',ECMS_SELFPATH.'index.php');
 		}
 	}
-	else//æ›´æ–°æ•°æ®åº“ç¼“å­˜
+	else//¸üĞÂÊı¾İ¿â»º´æ
 	{
-		//æ›´æ–°å‚æ•°è®¾ç½®
+		//¸üĞÂ²ÎÊıÉèÖÃ
 		GetConfig(1);
-		//æ›´æ–°ç±»åˆ«
+		//¸üĞÂÀà±ğ
 		GetClass();
-		//æ›´æ–°ä¼šå‘˜ç»„
+		//¸üĞÂ»áÔ±×é
 		GetMemberLevel();
-		//æ›´æ–°å…¨ç«™æœç´¢æ•°æ®è¡¨
+		//¸üĞÂÈ«Õ¾ËÑË÷Êı¾İ±í
 		GetSearchAllTb();
 	}
 }

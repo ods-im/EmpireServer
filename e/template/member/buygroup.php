@@ -5,14 +5,14 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='åœ¨çº¿å……å€¼';
-$url="<a href='../../../'>é¦–é¡µ</a>&nbsp;>&nbsp;<a href='../cp/'>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;åœ¨çº¿å……å€¼";
+$public_diyr['pagetitle']='ÔÚÏß³äÖµ';
+$url="<a href='../../../'>Ê×Ò³</a>&nbsp;>&nbsp;<a href='../cp/'>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;ÔÚÏß³äÖµ";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <form name="payform" method="post" action="../../payapi/BuyGroupPay.php">
     <tr class="header"> 
-      <td height="25">è¯·é€‰æ‹©è¦è´­ä¹°çš„å……å€¼ç±»å‹ï¼š</td>
+      <td height="25">ÇëÑ¡ÔñÒª¹ºÂòµÄ³äÖµÀàĞÍ£º</td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -29,9 +29,9 @@ require(ECMS_PATH.'e/template/incfile/header.php');
             </td>
             <td width="97%"> 
               <?=$r[gmoney]?>
-              å…ƒ ï¼ˆ 
+              Ôª £¨ 
               <?=$r[gname]?>
-              ï¼‰</td>
+              £©</td>
           </tr>
           <tr> 
             <td>&nbsp;</td>
@@ -45,14 +45,14 @@ require(ECMS_PATH.'e/template/incfile/header.php');
   }
   ?>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ”¯ä»˜å¹³å°ï¼š
+      <td height="25">Ö§¸¶Æ½Ì¨£º
         <SELECT name="payid" style="WIDTH: 120px">
           <?=$pays?>
         </SELECT></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><input type="submit" name="Submit" value="é©¬ä¸Šå……å€¼">
-        &nbsp;&nbsp; <input type="button" name="Submit2" value="è¿”å›" onclick="self.location.href='../../../';"> 
+      <td height="25"><input type="submit" name="Submit" value="ÂíÉÏ³äÖµ">
+        &nbsp;&nbsp; <input type="button" name="Submit2" value="·µ»Ø" onclick="self.location.href='../../../';"> 
       </td>
     </tr>
   </form>

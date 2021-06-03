@@ -5,104 +5,104 @@ if(!defined('InEmpireCMS'))
 }
 ?><table width=100% align=center cellpadding=3 cellspacing=1 class=tableborder>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å½±ç‰‡å(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>Ó°Æ¬Ãû(*)</td>
     <td bgcolor=ffffff><table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#DBEAF5">
 <tr> 
   <td height="25" bgcolor="#FFFFFF">
-	<?=$tts?"<select name='ttid'><option value='0'>æ ‡é¢˜åˆ†ç±»</option>$tts</select>":""?>
+	<?=$tts?"<select name='ttid'><option value='0'>±êÌâ·ÖÀà</option>$tts</select>":""?>
 	<input type=text name=title value="<?=ehtmlspecialchars(stripSlashes($r[title]))?>" size="60"> 
-	<input type="button" name="button" value="å›¾æ–‡" onclick="document.add.title.value=document.add.title.value+'(å›¾æ–‡)';"> 
+	<input type="button" name="button" value="Í¼ÎÄ" onclick="document.add.title.value=document.add.title.value+'(Í¼ÎÄ)';"> 
   </td>
 </tr>
 <tr> 
-  <td height="25" bgcolor="#FFFFFF">å±æ€§: 
-	<input name="titlefont[b]" type="checkbox" value="b"<?=$titlefontb?>>ç²—ä½“
-	<input name="titlefont[i]" type="checkbox" value="i"<?=$titlefonti?>>æ–œä½“
-	<input name="titlefont[s]" type="checkbox" value="s"<?=$titlefonts?>>åˆ é™¤çº¿
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;é¢œè‰²: <input name="titlecolor" type="text" value="<?=stripSlashes($r[titlecolor])?>" size="10" class="color">
+  <td height="25" bgcolor="#FFFFFF">ÊôĞÔ: 
+	<input name="titlefont[b]" type="checkbox" value="b"<?=$titlefontb?>>´ÖÌå
+	<input name="titlefont[i]" type="checkbox" value="i"<?=$titlefonti?>>Ğ±Ìå
+	<input name="titlefont[s]" type="checkbox" value="s"<?=$titlefonts?>>É¾³ıÏß
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÑÕÉ«: <input name="titlecolor" type="text" value="<?=stripSlashes($r[titlecolor])?>" size="10" class="color">
   </td>
 </tr>
 </table>
 </td>
   </tr>
   <tr> 
-    <td width='16%' height=25 bgcolor='ffffff'>ç‰¹æ®Šå±æ€§</td>
+    <td width='16%' height=25 bgcolor='ffffff'>ÌØÊâÊôĞÔ</td>
     <td bgcolor='ffffff'>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#DBEAF5">
   <tr>
-    <td height="25" bgcolor="#FFFFFF">ä¿¡æ¯å±æ€§: 
+    <td height="25" bgcolor="#FFFFFF">ĞÅÏ¢ÊôĞÔ: 
       <input name="checked" type="checkbox" value="1"<?=$r[checked]?' checked':''?>>
-      å®¡æ ¸ &nbsp;&nbsp; æ¨è 
+      ÉóºË &nbsp;&nbsp; ÍÆ¼ö 
       <select name="isgood" id="isgood">
-        <option value="0">ä¸æ¨è</option>
+        <option value="0">²»ÍÆ¼ö</option>
 	<?=$ftnr['igname']?>
       </select>
-      &nbsp;&nbsp; å¤´æ¡ 
+      &nbsp;&nbsp; Í·Ìõ 
       <select name="firsttitle" id="firsttitle">
-        <option value="0">éå¤´æ¡</option>
+        <option value="0">·ÇÍ·Ìõ</option>
 	<?=$ftnr['ftname']?>
       </select></td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF">å…³é”®å­—&nbsp;&nbsp;&nbsp;: 
+    <td height="25" bgcolor="#FFFFFF">¹Ø¼ü×Ö&nbsp;&nbsp;&nbsp;: 
       <input name="keyboard" type="text" size="52" value="<?=stripSlashes($r[keyboard])?>">
-      <font color="#666666">(å¤šä¸ªè¯·ç”¨&quot;,&quot;éš”å¼€)</font></td>
+      <font color="#666666">(¶à¸öÇëÓÃ&quot;,&quot;¸ô¿ª)</font></td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF">å¤–éƒ¨é“¾æ¥: 
+    <td height="25" bgcolor="#FFFFFF">Íâ²¿Á´½Ó: 
       <input name="titleurl" type="text" value="<?=stripSlashes($r[titleurl])?>" size="52">
-      <font color="#666666">(å¡«å†™åä¿¡æ¯è¿æ¥åœ°å€å°†ä¸ºæ­¤é“¾æ¥)</font></td>
+      <font color="#666666">(ÌîĞ´ºóĞÅÏ¢Á¬½ÓµØÖ·½«Îª´ËÁ´½Ó)</font></td>
   </tr>
 </table>
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å‘å¸ƒæ—¶é—´</td>
-    <td bgcolor=ffffff><input name="newstime" type="text" value="<?=$r[newstime]?>" size="28" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd HH:mm:ss'})"><input type=button name=button value="è®¾ä¸ºå½“å‰æ—¶é—´" onclick="document.add.newstime.value='<?=$todaytime?>'">
+    <td width=16% height=25 bgcolor=ffffff>·¢²¼Ê±¼ä</td>
+    <td bgcolor=ffffff><input name="newstime" type="text" value="<?=$r[newstime]?>" size="28" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd HH:mm:ss'})"><input type=button name=button value="ÉèÎªµ±Ç°Ê±¼ä" onclick="document.add.newstime.value='<?=$todaytime?>'">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å½±ç‰‡ç¼©ç•¥å›¾</td>
+    <td width=16% height=25 bgcolor=ffffff>Ó°Æ¬ËõÂÔÍ¼</td>
     <td bgcolor=ffffff><input name="titlepic" type="text" id="titlepic" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[titlepic]))?>" size="45">
-<a onclick="window.open('ecmseditor/FileMain.php?type=1&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=titlepic<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../data/images/changeimg.gif" border="0" align="absbottom"></a> 
+<a onclick="window.open('ecmseditor/FileMain.php?type=1&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=titlepic<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../data/images/changeimg.gif" border="0" align="absbottom"></a> 
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å½±ç‰‡ç±»å‹</td>
-    <td bgcolor=ffffff><select name="movietype" id="movietype"><option value="æ¸¯å°å½±è§†"<?=$r[movietype]=="æ¸¯å°å½±è§†"?' selected':''?>>æ¸¯å°å½±è§†</option><option value="æµ·å¤–å½±è§†"<?=$r[movietype]=="æµ·å¤–å½±è§†"?' selected':''?>>æµ·å¤–å½±è§†</option><option value="å¤§é™†å½±è§†"<?=$r[movietype]=="å¤§é™†å½±è§†"?' selected':''?>>å¤§é™†å½±è§†</option><option value="æ—¥éŸ©å½±è§†"<?=$r[movietype]=="æ—¥éŸ©å½±è§†"?' selected':''?>>æ—¥éŸ©å½±è§†</option></select>ï¼Œæ¨èç­‰çº§ï¼š<select name="star" id="star"><option value="1"<?=$r[star]=="1"?' selected':''?>>1æ˜Ÿ</option><option value="2"<?=$r[star]=="2"||$ecmsfirstpost==1?' selected':''?>>2æ˜Ÿ</option><option value="3"<?=$r[star]=="3"?' selected':''?>>3æ˜Ÿ</option><option value="4"<?=$r[star]=="4"?' selected':''?>>4æ˜Ÿ</option><option value="5"<?=$r[star]=="5"?' selected':''?>>5æ˜Ÿ</option></select>ï¼Œæ‰£é™¤ç‚¹æ•°ï¼š
+    <td width=16% height=25 bgcolor=ffffff>Ó°Æ¬ÀàĞÍ</td>
+    <td bgcolor=ffffff><select name="movietype" id="movietype"><option value="¸ÛÌ¨Ó°ÊÓ"<?=$r[movietype]=="¸ÛÌ¨Ó°ÊÓ"?' selected':''?>>¸ÛÌ¨Ó°ÊÓ</option><option value="º£ÍâÓ°ÊÓ"<?=$r[movietype]=="º£ÍâÓ°ÊÓ"?' selected':''?>>º£ÍâÓ°ÊÓ</option><option value="´óÂ½Ó°ÊÓ"<?=$r[movietype]=="´óÂ½Ó°ÊÓ"?' selected':''?>>´óÂ½Ó°ÊÓ</option><option value="ÈÕº«Ó°ÊÓ"<?=$r[movietype]=="ÈÕº«Ó°ÊÓ"?' selected':''?>>ÈÕº«Ó°ÊÓ</option></select>£¬ÍÆ¼öµÈ¼¶£º<select name="star" id="star"><option value="1"<?=$r[star]=="1"?' selected':''?>>1ĞÇ</option><option value="2"<?=$r[star]=="2"||$ecmsfirstpost==1?' selected':''?>>2ĞÇ</option><option value="3"<?=$r[star]=="3"?' selected':''?>>3ĞÇ</option><option value="4"<?=$r[star]=="4"?' selected':''?>>4ĞÇ</option><option value="5"<?=$r[star]=="5"?' selected':''?>>5ĞÇ</option></select>£¬¿Û³ıµãÊı£º
 <input name="moviefen" type="text" id="moviefen" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[moviefen]))?>" size="">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å‡ºå“å…¬å¸</td>
+    <td width=16% height=25 bgcolor=ffffff>³öÆ·¹«Ë¾</td>
     <td bgcolor=ffffff>
 <input name="company" type="text" id="company" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[company]))?>" size="">
-ï¼Œå‡ºå“æ—¶é—´ï¼š
+£¬³öÆ·Ê±¼ä£º
 <input name="movietime" type="text" id="movietime" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[movietime]))?>" size="">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>ä¸»æ¼”</td>
+    <td width=16% height=25 bgcolor=ffffff>Ö÷Ñİ</td>
     <td bgcolor=ffffff>
 <input name="player" type="text" id="player" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[player]))?>" size="">
-ï¼Œå¯¼æ¼”&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ï¼š
+£¬µ¼Ñİ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;£º
 <input name="playadmin" type="text" id="playadmin" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[playadmin]))?>" size="">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å½±ç‰‡æ–‡ä»¶</td>
-    <td bgcolor=ffffff>å½±ç‰‡æ ¼å¼ï¼š<input name="filetype" type="text" id="filetype" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[filetype]))?>" size="8">
+    <td width=16% height=25 bgcolor=ffffff>Ó°Æ¬ÎÄ¼ş</td>
+    <td bgcolor=ffffff>Ó°Æ¬¸ñÊ½£º<input name="filetype" type="text" id="filetype" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[filetype]))?>" size="8">
 <select name="select2" onchange="document.add.filetype.value=this.value">
-        <option value="">ç±»å‹</option>
+        <option value="">ÀàĞÍ</option>
         <option value=".rm">.rm</option>
         <option value=".rmvb">.rmvb</option>
         <option value=".mp3">.mp3</option>
         <option value=".asf">.asf</option>
         <option value=".wmv">.wmv</option>
         <option value=".avi">.avi</option>
-      </select>ï¼Œå½±ç‰‡å¤§å°ï¼š<input name="filesize" type="text" id="filesize" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[filesize]))?>" size="12">
+      </select>£¬Ó°Æ¬´óĞ¡£º<input name="filesize" type="text" id="filesize" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[filesize]))?>" size="12">
 <select name="select" onchange="document.add.filesize.value+=this.value">
-        <option value="">å•ä½</option>
+        <option value="">µ¥Î»</option>
         <option value=" MB">MB</option>
         <option value=" KB">KB</option>
         <option value=" GB">GB</option>
@@ -110,15 +110,15 @@ if(!defined('InEmpireCMS'))
       </select></td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å½±ç‰‡å±æ€§</td>
-    <td bgcolor=ffffff>å¸¦å®½è¦æ±‚ï¼š
+    <td width=16% height=25 bgcolor=ffffff>Ó°Æ¬ÊôĞÔ</td>
+    <td bgcolor=ffffff>´ø¿íÒªÇó£º
 <input name="playdk" type="text" id="playdk" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[playdk]))?>" size="">
-ï¼Œç‰‡é•¿ï¼š
+£¬Æ¬³¤£º
 <input name="playtime" type="text" id="playtime" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[playtime]))?>" size="">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>ä¸‹è½½åœ°å€</td>
+    <td width=16% height=25 bgcolor=ffffff>ÏÂÔØµØÖ·</td>
     <td bgcolor=ffffff><script>
 function doadd()
 {var i;
@@ -129,35 +129,35 @@ oldi=parseInt(document.add.editnum.value);
 for(i=1;i<=document.add.downnum.value;i++)
 {
 j=i+oldi;
-str=str+"<tr><td width=7%> <div align=center>"+j+"</div></td><td width=19%><div align=left><input name=downname[] type=text id=downname[] value=ä¸‹è½½åœ°å€"+j+" size=17></div></td><td width=40%><input name=downpath[] type=text size=36 id=downpath"+j+" ondblclick=SpOpenChFile(0,'downpath"+j+"')><select name=thedownqz[]><option value=''>--åœ°å€å‰ç¼€--</option><?=$newdownqz?></select></td><td width=21%><div align=center><select name=downuser[] id=select><option value=0>æ¸¸å®¢</option><?=$ygroup?></select></div></td><td width=13%><div align=center><input name=fen[] type=text id=fen[] value=0 size=6></div></td></tr>";
+str=str+"<tr><td width=7%> <div align=center>"+j+"</div></td><td width=19%><div align=left><input name=downname[] type=text id=downname[] value=ÏÂÔØµØÖ·"+j+" size=17></div></td><td width=40%><input name=downpath[] type=text size=36 id=downpath"+j+" ondblclick=SpOpenChFile(0,'downpath"+j+"')><select name=thedownqz[]><option value=''>--µØÖ·Ç°×º--</option><?=$newdownqz?></select></td><td width=21%><div align=center><select name=downuser[] id=select><option value=0>ÓÎ¿Í</option><?=$ygroup?></select></div></td><td width=13%><div align=center><input name=fen[] type=text id=fen[] value=0 size=6></div></td></tr>";
 }
 document.getElementById("adddown").innerHTML="<table width='100%' border=0 cellspacing=1 cellpadding=3>"+str+"</table>";
 }
 </script>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td height="25">ä¸‹è½½åœ°å€å‰ç¼€&nbsp;:
+    <td height="25">ÏÂÔØµØÖ·Ç°×º&nbsp;:
       <input name="downurl_qz" type="text" size="32">
       <select name="changeurl_qz" onchange="document.add.downurl_qz.value=document.add.changeurl_qz.value">
-        <option value="" selected>é€‰æ‹©å‰ç¼€</option>
+        <option value="" selected>Ñ¡ÔñÇ°×º</option>
         <?=$downurlqz?>
       </select>
 	  </td>
   </tr>
   <tr>
-    <td height="25">é€‰æ‹©/ä¸Šä¼ é™„ä»¶:
+    <td height="25">Ñ¡Ôñ/ÉÏ´«¸½¼ş:
       <input name="changedown_url" id="changedown_url" type="text" size="32">
-      <input type="button" name="Submit" value="é€‰æ‹©" onclick="window.open('ecmseditor/FileMain.php?type=0&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=changedown_url<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');">&nbsp;
-	  <input type="button" name="Submit" value="å¤åˆ¶" onclick="document.getElementById('changedown_url').focus();document.getElementById('changedown_url').select();clipboardData.setData('text',document.getElementById('changedown_url').value);"></td>
+      <input type="button" name="Submit" value="Ñ¡Ôñ" onclick="window.open('ecmseditor/FileMain.php?type=0&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=changedown_url<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');">&nbsp;
+	  <input type="button" name="Submit" value="¸´ÖÆ" onclick="document.getElementById('changedown_url').focus();document.getElementById('changedown_url').select();clipboardData.setData('text',document.getElementById('changedown_url').value);"></td>
   </tr>
   <tr> 
     <td><table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
         <tr> 
-          <td width="7%"> <div align="center">ç¼–å·</div></td>
-          <td width="19%"><div align="left">ä¸‹è½½åç§°</div></td>
-          <td width="40%">ä¸‹è½½åœ°å€ <font color="#666666">(åŒå‡»é€‰æ‹©)</font></td>
-          <td width="21%"> <div align="center">æƒé™</div></td>
-          <td width="13%"> <div align="center">ç‚¹æ•°</div></td>
+          <td width="7%"> <div align="center">±àºÅ</div></td>
+          <td width="19%"><div align="left">ÏÂÔØÃû³Æ</div></td>
+          <td width="40%">ÏÂÔØµØÖ· <font color="#666666">(Ë«»÷Ñ¡Ôñ)</font></td>
+          <td width="21%"> <div align="center">È¨ÏŞ</div></td>
+          <td width="13%"> <div align="center">µãÊı</div></td>
         </tr>
       </table></td>
   </tr>
@@ -176,15 +176,15 @@ document.getElementById("adddown").innerHTML="<table width='100%' border=0 cells
            <tr> 
               <td width='7%'> <div align=center><?=$pathi?></div></td>
               <td width='19%'> <div align=left> 
-                  <input name=downname[] type=text value='ä¸‹è½½åœ°å€<?=$pathi?>' size=17>
+                  <input name=downname[] type=text value='ÏÂÔØµØÖ·<?=$pathi?>' size=17>
                     </div></td>
               <td width='40%'>
 	      <input name=downpath[] type=text size=36 id='downpath<?=$pathi?>' ondblclick="SpOpenChFile(0,'downpath<?=$pathi?>');">
-	      <select name=thedownqz[]><option value=''>--åœ°å€å‰ç¼€--</option><?=$newdownqz?></select> 
+	      <select name=thedownqz[]><option value=''>--µØÖ·Ç°×º--</option><?=$newdownqz?></select> 
                   </td>
                   <td width='21%'><div align=center> 
                       <select name=downuser[]>
-                        <option value=0>æ¸¸å®¢</option>
+                        <option value=0>ÓÎ¿Í</option>
                         <?=$ygroup?>
                       </select>
                     </div></td>
@@ -205,18 +205,18 @@ document.getElementById("adddown").innerHTML="<table width='100%' border=0 cells
 	if($r[downpath])
 	{
 		$r[downpath]=stripSlashes($r[downpath]);
-		//ä¸‹è½½åœ°å€
+		//ÏÂÔØµØÖ·
 		$j=0;
 		$d_record=explode("\r\n",$r[downpath]);
 		for($i=0;$i<count($d_record);$i++)
 		{
 			$j=$i+1;
 			$d_field=explode("::::::",$d_record[$i]);
-			//æƒé™
+			//È¨ÏŞ
 			$tgroup=str_replace(" value=".$d_field[2].">"," value=".$d_field[2]." selected>",$ygroup);
-			//åœ°å€å‰ç¼€
+			//µØÖ·Ç°×º
 			$tnewdownqz=str_replace(" value='".$d_field[4]."'>"," value='".$d_field[4]."' selected>",$newdownqz);
-			$downloadpath.="<tr><td width='7%'><div align=center>".$j."</div></td><td width='19%'><div align=left><input name=downname[] type=text id=downname[] value='".$d_field[0]."' size=17></div></td><td width='40%'><input name=downpath[] type=text id=downpath".$j." value='".$d_field[1]."' size=36 ondblclick=\"SpOpenChFile(0,'downpath".$j."');\"><select name=thedownqz[]><option value=''>--åœ°å€å‰ç¼€--</option>".$tnewdownqz."</select><input type=hidden name=pathid[] value=".$j."><input type=checkbox name=delpathid[] value=".$j.">åˆ </td><td width='21%'><div align=center><select name=downuser[] id=select><option value=0>æ¸¸å®¢</option>".$tgroup."</select></div></td><td width='13%'><div align=center><input name=fen[] type=text id=fen[] value='".$d_field[3]."' size=6></div></td></tr>";
+			$downloadpath.="<tr><td width='7%'><div align=center>".$j."</div></td><td width='19%'><div align=left><input name=downname[] type=text id=downname[] value='".$d_field[0]."' size=17></div></td><td width='40%'><input name=downpath[] type=text id=downpath".$j." value='".$d_field[1]."' size=36 ondblclick=\"SpOpenChFile(0,'downpath".$j."');\"><select name=thedownqz[]><option value=''>--µØÖ·Ç°×º--</option>".$tnewdownqz."</select><input type=hidden name=pathid[] value=".$j."><input type=checkbox name=delpathid[] value=".$j.">É¾</td><td width='21%'><div align=center><select name=downuser[] id=select><option value=0>ÓÎ¿Í</option>".$tgroup."</select></div></td><td width='13%'><div align=center><input name=fen[] type=text id=fen[] value='".$d_field[3]."' size=6></div></td></tr>";
 		}
 		$editnum=$j;
 		$downloadpath="<table width='100%' border=0 cellspacing=1 cellpadding=3>".$downloadpath."</table>";
@@ -227,8 +227,8 @@ document.getElementById("adddown").innerHTML="<table width='100%' border=0 cells
     </td>
   </tr>
   <tr> 
-    <td height="25">ä¸‹è½½åœ°å€æ‰©å±•æ•°é‡: <input name="editnum" type="hidden" id="editnum" value="<?=$editnum?>">
-      <input name="downnum" type="text" id="downnum" value="1" size="6"> <input type="button" name="Submit5" value="è¾“å‡ºåœ°å€" onclick="javascript:doadd();"></td>
+    <td height="25">ÏÂÔØµØÖ·À©Õ¹ÊıÁ¿: <input name="editnum" type="hidden" id="editnum" value="<?=$editnum?>">
+      <input name="downnum" type="text" id="downnum" value="1" size="6"> <input type="button" name="Submit5" value="Êä³öµØÖ·" onclick="javascript:doadd();"></td>
   </tr>
   <tr> 
     <td id=adddown></td>
@@ -237,7 +237,7 @@ document.getElementById("adddown").innerHTML="<table width='100%' border=0 cells
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>åœ¨çº¿è§‚çœ‹æ’­æ”¾å™¨</td>
+    <td width=16% height=25 bgcolor=ffffff>ÔÚÏß¹Û¿´²¥·ÅÆ÷</td>
     <td bgcolor=ffffff>
 <?php
 $player_sql=$empire->query("select id,player from {$dbtbpre}enewsplayer");
@@ -252,13 +252,13 @@ while($player_r=$empire->fetch($player_sql))
 }
 ?>
 <select name="playerid">
-<option value=0>è‡ªåŠ¨è¯†åˆ«</option>
+<option value=0>×Ô¶¯Ê¶±ğ</option>
 <?=$player_class?>
 </select>
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>åœ¨çº¿è§‚çœ‹åœ°å€</td>
+    <td width=16% height=25 bgcolor=ffffff>ÔÚÏß¹Û¿´µØÖ·</td>
     <td bgcolor=ffffff><script>
 function dooadd()
 {var i;
@@ -269,33 +269,33 @@ oldi=parseInt(document.add.oeditnum.value);
 for(i=1;i<=document.add.odownnum.value;i++)
 {
 j=i+oldi;
-str=str+"<tr><td width=7%> <div align=center>"+j+"</div></td><td width=19%><div align=left><input name=odownname[] type=text value="+j+" size=17></div></td><td width=40%><input name=odownpath[] type=text size=36 id=odownpath"+j+" ondblclick=SpOpenChFile(0,'odownpath"+j+"')><select name=othedownqz[]><option value=''>--åœ°å€å‰ç¼€--</option><?=$newdownqz?></select></td><td width=21%><div align=center><select name=odownuser[] id=select><option value=0>æ¸¸å®¢</option><?=$ygroup?></select></div></td><td width=13%><div align=center><input name=ofen[] type=text value=0 size=6></div></td></tr>";
+str=str+"<tr><td width=7%> <div align=center>"+j+"</div></td><td width=19%><div align=left><input name=odownname[] type=text value="+j+" size=17></div></td><td width=40%><input name=odownpath[] type=text size=36 id=odownpath"+j+" ondblclick=SpOpenChFile(0,'odownpath"+j+"')><select name=othedownqz[]><option value=''>--µØÖ·Ç°×º--</option><?=$newdownqz?></select></td><td width=21%><div align=center><select name=odownuser[] id=select><option value=0>ÓÎ¿Í</option><?=$ygroup?></select></div></td><td width=13%><div align=center><input name=ofen[] type=text value=0 size=6></div></td></tr>";
 }
 document.getElementById("addonline").innerHTML="<table width='100%' border=0 cellspacing=1 cellpadding=3>"+str+"</table>";
 }
 </script>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr> 
-    <td height="25">è§‚çœ‹åœ°å€å‰ç¼€&nbsp;: 
+    <td height="25">¹Û¿´µØÖ·Ç°×º&nbsp;: 
       <input name="onlineurl_qz" type="text" size="32"> <select name="changeonlineurl_qz" onchange="document.add.onlineurl_qz.value=document.add.changeonlineurl_qz.value">
-        <option value="" selected>é€‰æ‹©å‰ç¼€</option>
+        <option value="" selected>Ñ¡ÔñÇ°×º</option>
         <?=$downurlqz?>
       </select>
       </td>
   </tr>
   <tr> 
-    <td height="25">é€‰æ‹©/ä¸Šä¼ é™„ä»¶: 
-      <input name="changeonline_url" id="changeonline_url" type="text" size="32"> <input type="button" name="Submit" value="é€‰æ‹©" onclick="window.open('ecmseditor/FileMain.php?type=0&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=changeonline_url<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');">&nbsp;
-	  <input type="button" name="Submit" value="å¤åˆ¶" onclick="document.getElementById('changeonline_url').focus();document.getElementById('changeonline_url').select();clipboardData.setData('text',document.getElementById('changeonline_url').value);"></td>
+    <td height="25">Ñ¡Ôñ/ÉÏ´«¸½¼ş: 
+      <input name="changeonline_url" id="changeonline_url" type="text" size="32"> <input type="button" name="Submit" value="Ñ¡Ôñ" onclick="window.open('ecmseditor/FileMain.php?type=0&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=changeonline_url<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');">&nbsp;
+	  <input type="button" name="Submit" value="¸´ÖÆ" onclick="document.getElementById('changeonline_url').focus();document.getElementById('changeonline_url').select();clipboardData.setData('text',document.getElementById('changeonline_url').value);"></td>
   </tr>
   <tr> 
     <td><table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
         <tr> 
-          <td width="7%"> <div align="center">ç¼–å·</div></td>
-          <td width="19%"><div align="left">è§‚çœ‹åç§°</div></td>
-          <td width="40%">è§‚çœ‹åœ°å€ <font color="#666666">(åŒå‡»é€‰æ‹©)</font></td>
-          <td width="21%"> <div align="center">æƒé™</div></td>
-          <td width="13%"> <div align="center">ç‚¹æ•°</div></td>
+          <td width="7%"> <div align="center">±àºÅ</div></td>
+          <td width="19%"><div align="left">¹Û¿´Ãû³Æ</div></td>
+          <td width="40%">¹Û¿´µØÖ· <font color="#666666">(Ë«»÷Ñ¡Ôñ)</font></td>
+          <td width="21%"> <div align="center">È¨ÏŞ</div></td>
+          <td width="13%"> <div align="center">µãÊı</div></td>
         </tr>
       </table></td>
   </tr>
@@ -318,11 +318,11 @@ document.getElementById("addonline").innerHTML="<table width='100%' border=0 cel
                     </div></td>
                   <td width='40%'> 
 		  <input name=odownpath[] type=text id='odownpath<?=$opathi?>' size=36 ondblclick="SpOpenChFile(0,'odownpath<?=$opathi?>');">
-		  <select name=othedownqz[]><option value=''>--åœ°å€å‰ç¼€--</option><?=$newdownqz?></select> 
+		  <select name=othedownqz[]><option value=''>--µØÖ·Ç°×º--</option><?=$newdownqz?></select> 
                   </td>
                   <td width='21%'><div align=center> 
                       <select name=odownuser[] id=select>
-                        <option value=0>æ¸¸å®¢</option>
+                        <option value=0>ÓÎ¿Í</option>
                         <?=$ygroup?>
                       </select>
                     </div></td>
@@ -348,11 +348,11 @@ document.getElementById("addonline").innerHTML="<table width='100%' border=0 cel
 		{
 			$j=$i+1;
 			$od_field=explode("::::::",$od_record[$i]);
-			//æƒé™
+			//È¨ÏŞ
 			$tgroup=str_replace(" value=".$od_field[2].">"," value=".$od_field[2]." selected>",$ygroup);
-			//åœ°å€å‰ç¼€
+			//µØÖ·Ç°×º
 			$tnewdownqz=str_replace(" value='".$od_field[4]."'>"," value='".$od_field[4]."' selected>",$newdownqz);
-			$onlinemoviepath.="<tr><td width='7%'><div align=center>".$j."</div></td><td width='19%'><div align=left><input name=odownname[] type=text value='".$od_field[0]."' size=17></div></td><td width='40%'><input name=odownpath[] type=text value='".$od_field[1]."' size=36 id=odownpath".$j." ondblclick=\"SpOpenChFile(0,'odownpath".$j."');\"><select name=othedownqz[]><option value=''>--åœ°å€å‰ç¼€--</option>".$tnewdownqz."</select><input type=hidden name=opathid[] value=".$j."><input type=checkbox name=odelpathid[] value=".$j.">åˆ </td><td width='21%'><div align=center><select name=odownuser[] id=select><option value=0>æ¸¸å®¢</option>".$tgroup."</select></div></td><td width='13%'><div align=center><input name=ofen[] type=text value='".$od_field[3]."' size=6></div></td></tr>";
+			$onlinemoviepath.="<tr><td width='7%'><div align=center>".$j."</div></td><td width='19%'><div align=left><input name=odownname[] type=text value='".$od_field[0]."' size=17></div></td><td width='40%'><input name=odownpath[] type=text value='".$od_field[1]."' size=36 id=odownpath".$j." ondblclick=\"SpOpenChFile(0,'odownpath".$j."');\"><select name=othedownqz[]><option value=''>--µØÖ·Ç°×º--</option>".$tnewdownqz."</select><input type=hidden name=opathid[] value=".$j."><input type=checkbox name=odelpathid[] value=".$j.">É¾</td><td width='21%'><div align=center><select name=odownuser[] id=select><option value=0>ÓÎ¿Í</option>".$tgroup."</select></div></td><td width='13%'><div align=center><input name=ofen[] type=text value='".$od_field[3]."' size=6></div></td></tr>";
 		}
 		$oeditnum=$j;
 		$onlinemoviepath="<table width='100%' border=0 cellspacing=1 cellpadding=3>".$onlinemoviepath."</table>";
@@ -363,8 +363,8 @@ document.getElementById("addonline").innerHTML="<table width='100%' border=0 cel
     </td>
   </tr>
   <tr> 
-    <td height="25">åœ¨çº¿åœ°å€æ‰©å±•æ•°é‡: <input name="oeditnum" type="hidden" id="oeditnum" value="<?=$oeditnum?>">
-      <input name="odownnum" type="text" id="odownnum" value="1" size="6"> <input type="button" name="Submit5" value="è¾“å‡ºåœ°å€" onclick="javascript:dooadd();"></td>
+    <td height="25">ÔÚÏßµØÖ·À©Õ¹ÊıÁ¿: <input name="oeditnum" type="hidden" id="oeditnum" value="<?=$oeditnum?>">
+      <input name="odownnum" type="text" id="odownnum" value="1" size="6"> <input type="button" name="Submit5" value="Êä³öµØÖ·" onclick="javascript:dooadd();"></td>
   </tr>
   <tr> 
     <td id=addonline></td>
@@ -373,7 +373,7 @@ document.getElementById("addonline").innerHTML="<table width='100%' border=0 cel
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å½±ç‰‡ç®€ä»‹(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>Ó°Æ¬¼ò½é(*)</td>
     <td bgcolor=ffffff><textarea name="moviesay" cols="80" rows="10" id="moviesay"><?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[moviesay]))?></textarea>
 </td>
   </tr>

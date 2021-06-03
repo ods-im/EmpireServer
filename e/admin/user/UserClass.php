@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,24 +15,24 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"user");
 
-//å¢åŠ éƒ¨é—¨
+//Ôö¼Ó²¿ÃÅ
 function AddUserClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[classname])
 	{
 		printerror("EmptyUserClass","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"user");
 	$add[classname]=hRepPostStr($add[classname],1);
 	$sql=$empire->query("insert into {$dbtbpre}enewsuserclass(classname) values('".$add[classname]."');");
 	$lastid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$lastid."<br>classname=".$add[classname]);
 		printerror("AddUserClassSuccess","UserClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -40,7 +40,7 @@ function AddUserClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹éƒ¨é—¨
+//ĞŞ¸Ä²¿ÃÅ
 function EditUserClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$add[classid];
@@ -48,13 +48,13 @@ function EditUserClass($add,$userid,$username){
 	{
 		printerror("EmptyUserClass","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"user");
 	$add[classname]=hRepPostStr($add[classname],1);
 	$sql=$empire->query("update {$dbtbpre}enewsuserclass set classname='".$add[classname]."' where classid='$classid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$add[classname]);
 		printerror("EditUserClassSuccess","UserClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -62,7 +62,7 @@ function EditUserClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤éƒ¨é—¨
+//É¾³ı²¿ÃÅ
 function DelUserClass($classid,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
@@ -70,13 +70,13 @@ function DelUserClass($classid,$userid,$username){
 	{
 		printerror("NotDelUserClassid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"user");
 	$r=$empire->fetch1("select classname from {$dbtbpre}enewsuserclass where classid='$classid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsuserclass where classid='$classid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$r[classname]);
 		printerror("DelUserClassSuccess","UserClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -91,15 +91,15 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="AddUserClass")//å¢åŠ éƒ¨é—¨
+if($enews=="AddUserClass")//Ôö¼Ó²¿ÃÅ
 {
 	AddUserClass($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditUserClass")//ä¿®æ”¹éƒ¨é—¨
+elseif($enews=="EditUserClass")//ĞŞ¸Ä²¿ÃÅ
 {
 	EditUserClass($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelUserClass")//åˆ é™¤éƒ¨é—¨
+elseif($enews=="DelUserClass")//É¾³ı²¿ÃÅ
 {
 	$classid=$_GET['classid'];
 	DelUserClass($classid,$logininid,$loginin);
@@ -112,7 +112,7 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewsuserclass orde
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -120,7 +120,7 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewsuserclass orde
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td><p>ä½ç½®ï¼š<a href="ListUser.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ç”¨æˆ·</a> &gt; <a href="UserClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†éƒ¨é—¨</a></p>
+    <td><p>Î»ÖÃ£º<a href="ListUser.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÓÃ»§</a> &gt; <a href="UserClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀí²¿ÃÅ</a></p>
       </td>
   </tr>
 </table>
@@ -128,23 +128,23 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewsuserclass orde
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td height="25">å¢åŠ éƒ¨é—¨: 
+      <td height="25">Ôö¼Ó²¿ÃÅ: 
         <input name=enews type=hidden id="enews" value=AddUserClass>
         </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> éƒ¨é—¨åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> ²¿ÃÅÃû³Æ: 
         <input name="classname" type="text" id="classname">
-        <input type="submit" name="Submit" value="å¢åŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header">
     <td width="10%"><div align="center">ID</div></td>
-    <td width="59%" height="25"><div align="center">éƒ¨é—¨åç§°</div></td>
-    <td width="31%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="59%" height="25"><div align="center">²¿ÃÅÃû³Æ</div></td>
+    <td width="31%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -160,9 +160,9 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewsuserclass orde
           <input name="classname" type="text" id="classname" value="<?=$r[classname]?>">
         </div></td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="if(confirm('ç¡®è®¤è¦åˆ é™¤?')){self.location.href='UserClass.php?enews=DelUserClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>';}">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="if(confirm('È·ÈÏÒªÉ¾³ı?')){self.location.href='UserClass.php?enews=DelUserClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>';}">
         </div></td>
     </tr>
   </form>

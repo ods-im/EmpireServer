@@ -22,12 +22,12 @@ while($r=$empire->fetch($sql))
 	{
 		$r[stylepic]="../../data/images/notemp.gif";
 	}
-	//褰撳墠妯℃澘
+	//当前模板
 	if($r['styleid']==$addr[spacestyleid])
 	{
 		$r[stylename]='<b>'.$r[stylename].'</b>';
 	}
-	$var="<a title=\"".$r[stylesay]."\"><img src='$r[stylepic]' width=92 height=100 border=0></a><br><span style='line-height=15pt'>".$r[stylename]."</span><br><span style='line-height=15pt'>[<a href='index.php?enews=ChangeSpaceStyle&styleid=".$r[styleid]."'>閫夊畾</a>]</span>";
+	$var="<a title=\"".$r[stylesay]."\"><img src='$r[stylepic]' width=92 height=100 border=0></a><br><span style='line-height=15pt'>".$r[stylename]."</span><br><span style='line-height=15pt'>[<a href='index.php?enews=ChangeSpaceStyle&styleid=".$r[styleid]."'>选定</a>]</span>";
 	$tlistvar=str_replace("<!--list.var".$ti."-->",$var,$tlistvar);
 	if($ti>=4)
 	{
@@ -36,15 +36,15 @@ while($r=$empire->fetch($sql))
 		$ti=0;
 	}
 }
-//妯℃澘
+//模板
 if($ti!=0&&$ti<4)
 {
 	$templist.=$tlistvar;
 }
 $templist=$header.$templist.$footer;
 
-$public_diyr['pagetitle']='閫夋嫨绌洪棿妯℃澘';
-$url="<a href='../../../'>棣栭〉</a>&nbsp;>&nbsp;<a href='../cp/'>浼氬憳涓績</a>&nbsp;>&nbsp;閫夋嫨绌洪棿妯℃澘";
+$public_diyr['pagetitle']='选择空间模板';
+$url="<a href='../../../'>首页</a>&nbsp;>&nbsp;<a href='../cp/'>会员中心</a>&nbsp;>&nbsp;选择空间模板";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

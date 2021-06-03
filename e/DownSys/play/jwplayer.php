@@ -3,7 +3,7 @@ if(!defined('InEmpireCMS'))
 {
 	exit();
 }
-//æ‰£ç‚¹
+//¿Ûµã
 ViewOnlineKFen($showdown_r,$u,$u['userid'],$classid,$id,$pathid,$r);
 
 $width=550;
@@ -13,7 +13,7 @@ $openheight=$height+60;
 ?>
 <HTML>
 <HEAD>
-<TITLE><?=$r['title']?> --- åª’ä½“æ’­æ”¾å™¨</TITLE>
+<TITLE><?=$r['title']?> --- Ã½Ìå²¥·ÅÆ÷</TITLE>
 <META HTTP-EQUIV="Expires" CONTENT="0">
 <link rel="stylesheet" href="js/player.css">
 <script language="javascript">
@@ -24,7 +24,7 @@ window.focus()
 <SCRIPT language=javascript>
 function click() {
 if (event.button==2) {
-alert('å¯¹ä¸èµ·ï¼Œæ‚¨æƒ³åšä»€ä¹ˆï¼Ÿ')
+alert('¶Ô²»Æğ£¬ÄúÏë×öÊ²Ã´£¿')
 }
 }
 document.onmousedown=click

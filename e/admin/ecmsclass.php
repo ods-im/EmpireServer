@@ -16,7 +16,7 @@ if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -33,90 +33,90 @@ if($public_r['phpmode'])
 	include("../class/ftp.php");
 	$incftp=1;
 }
-//é˜²é‡‡é›†
+//·À²É¼¯
 if($public_r['opennotcj'])
 {
 	@include("../data/dbcache/notcj.php");
 }
 require("../class/classfun.php");
-if($enews=="AddZt")//å¢åŠ ä¸“é¢˜
+if($enews=="AddZt")//Ôö¼Ó×¨Ìâ
 {
 	AddZt($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditZt")//ä¿®æ”¹ä¸“é¢˜
+elseif($enews=="EditZt")//ĞŞ¸Ä×¨Ìâ
 {
 	EditZt($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelZt")//åˆ é™¤ä¸“é¢˜
+elseif($enews=="DelZt")//É¾³ı×¨Ìâ
 {
 	$ztid=$_GET['ztid'];
 	DelZt($ztid,$logininid,$loginin);
 }
-elseif($enews=="AddClass")//å¢åŠ æ ç›®
+elseif($enews=="AddClass")//Ôö¼ÓÀ¸Ä¿
 {
 	AddClass($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditClass")//ä¿®æ”¹æ ç›®
+elseif($enews=="EditClass")//ĞŞ¸ÄÀ¸Ä¿
 {
 	EditClass($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelClass")//åˆ é™¤æ ç›®
+elseif($enews=="DelClass")//É¾³ıÀ¸Ä¿
 {
 	$classid=$_GET['classid'];
 	DelClass($classid,$logininid,$loginin);
 }
-elseif($enews=="ChangeClassIslast")//ç»ˆææ ç›®å±æ€§è½¬æ¢
+elseif($enews=="ChangeClassIslast")//ÖÕ¼«À¸Ä¿ÊôĞÔ×ª»»
 {
 	ChangeClassIslast($_POST['reclassid'],$logininid,$loginin);
 }
-elseif($enews=="EditClassOrder")//ä¿®æ”¹æ ç›®é¡ºåº
+elseif($enews=="EditClassOrder")//ĞŞ¸ÄÀ¸Ä¿Ë³Ğò
 {
 	$classid=$_POST['classid'];
 	$myorder=$_POST['myorder'];
 	EditClassOrder($classid,$myorder,$logininid,$loginin);
 }
-elseif($enews=="ChangeSonclass")//æ›´æ–°æ ç›®å…³ç³»
+elseif($enews=="ChangeSonclass")//¸üĞÂÀ¸Ä¿¹ØÏµ
 {
 	$start=$_GET['start'];
 	ChangeSonclass($start,$logininid,$loginin);
 }
-elseif($enews=="DelFcListClass")//åˆ é™¤æ ç›®ç¼“å­˜æ–‡ä»¶
+elseif($enews=="DelFcListClass")//É¾³ıÀ¸Ä¿»º´æÎÄ¼ş
 {
 	DelFcListClass();
 }
-elseif($enews=="SetMoreClass")//æ‰¹é‡è®¾ç½®æ ç›®
+elseif($enews=="SetMoreClass")//ÅúÁ¿ÉèÖÃÀ¸Ä¿
 {
 	SetMoreClass($_POST,$logininid,$loginin);
 }
-elseif($enews=='AddClassF')//å¢åŠ æ ç›®å­—æ®µ
+elseif($enews=='AddClassF')//Ôö¼ÓÀ¸Ä¿×Ö¶Î
 {
 	AddClassF($_POST,$logininid,$loginin);
 }
-elseif($enews=='EditClassF')//ä¿®æ”¹æ ç›®å­—æ®µ
+elseif($enews=='EditClassF')//ĞŞ¸ÄÀ¸Ä¿×Ö¶Î
 {
 	EditClassF($_POST,$logininid,$loginin);
 }
-elseif($enews=='DelClassF')//åˆ é™¤æ ç›®å­—æ®µ
+elseif($enews=='DelClassF')//É¾³ıÀ¸Ä¿×Ö¶Î
 {
 	DelClassF($_GET,$logininid,$loginin);
 }
-elseif($enews=='EditClassFOrder')//ä¿®æ”¹æ ç›®å­—æ®µé¡ºåº
+elseif($enews=='EditClassFOrder')//ĞŞ¸ÄÀ¸Ä¿×Ö¶ÎË³Ğò
 {
 	EditClassFOrder($_POST['fid'],$_POST['myorder'],$logininid,$loginin);
 }
-elseif($enews=='AddZtF')//å¢åŠ ä¸“é¢˜å­—æ®µ
+elseif($enews=='AddZtF')//Ôö¼Ó×¨Ìâ×Ö¶Î
 {
 	AddZtF($_POST,$logininid,$loginin);
 }
-elseif($enews=='EditZtF')//ä¿®æ”¹ä¸“é¢˜å­—æ®µ
+elseif($enews=='EditZtF')//ĞŞ¸Ä×¨Ìâ×Ö¶Î
 {
 	EditZtF($_POST,$logininid,$loginin);
 }
-elseif($enews=='DelZtF')//åˆ é™¤ä¸“é¢˜å­—æ®µ
+elseif($enews=='DelZtF')//É¾³ı×¨Ìâ×Ö¶Î
 {
 	DelZtF($_GET,$logininid,$loginin);
 }
-elseif($enews=='EditZtFOrder')//ä¿®æ”¹ä¸“é¢˜å­—æ®µé¡ºåº
+elseif($enews=='EditZtFOrder')//ĞŞ¸Ä×¨Ìâ×Ö¶ÎË³Ğò
 {
 	EditZtFOrder($_POST['fid'],$_POST['myorder'],$logininid,$loginin);
 }

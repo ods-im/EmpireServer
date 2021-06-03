@@ -7,7 +7,7 @@ require("../../member/class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,22 +16,22 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"member");
 $r=array();
 $userdate=0;
 $enews=ehtmlspecialchars($_GET['enews']);
 $changegroupid=(int)$_GET['changegroupid'];
-$url="<a href=ListMember.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼šå‘˜</a>&nbsp;>&nbsp;å¢åŠ ä¼šå‘˜";
+$url="<a href=ListMember.php".$ecms_hashur['whehref'].">¹ÜÀí»áÔ±</a>&nbsp;>&nbsp;Ôö¼Ó»áÔ±";
 if($enews=="EditMember")
 {
 	$userid=(int)$_GET['userid'];
-	//å–å¾—ç”¨æˆ·èµ„æ–™
+	//È¡µÃÓÃ»§×ÊÁÏ
 	$r=ReturnUserInfo($userid);
 	$r['groupid']=$r['groupid']?$r['groupid']:eReturnMemberDefGroupid();
 	$addr=$empire->fetch1("select * from {$dbtbpre}enewsmemberadd where userid='$userid' limit 1");
-	$url="<a href=ListMember.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼šå‘˜</a>&nbsp;>&nbsp;ä¿®æ”¹ä¼šå‘˜èµ„æ–™ï¼š<b>".$r[username]."</b>";
-	//æ—¶é—´
+	$url="<a href=ListMember.php".$ecms_hashur['whehref'].">¹ÜÀí»áÔ±</a>&nbsp;>&nbsp;ĞŞ¸Ä»áÔ±×ÊÁÏ£º<b>".$r[username]."</b>";
+	//Ê±¼ä
 	if($r[userdate])
 	{
 		$userdate=$r[userdate]-time();
@@ -55,7 +55,7 @@ if($changegroupid)
 {
 	$r['groupid']=$changegroupid;
 }
-//----------ä¼šå‘˜ç»„
+//----------»áÔ±×é
 $sql=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($level_r=$empire->fetch($sql))
 {
@@ -70,7 +70,7 @@ while($level_r=$empire->fetch($sql))
 	{$zselect="";}
 	$zgroup.="<option value=".$level_r[groupid].$zselect.">".$level_r[groupname]."</option>";
 }
-//å†…éƒ¨ç»„
+//ÄÚ²¿×é
 $ingroup='';
 $inmsql=$empire->query("select * from {$dbtbpre}enewsingroup order by myorder");
 while($inm_r=$empire->fetch($inmsql))
@@ -81,7 +81,7 @@ while($inm_r=$empire->fetch($inmsql))
 	{$select="";}
 	$ingroup.="<option value=".$inm_r['gid'].$select.">".$inm_r['gname']."</option>";
 }
-//ç®¡ç†ç»„
+//¹ÜÀí×é
 $magname='';
 $magadminname='';
 if($r['agid'])
@@ -93,15 +93,15 @@ if($r['agid'])
 	{
 		if($magr['isadmin']==9)
 		{
-			$magadminname='ç®¡ç†å‘˜ ('.$magr['isadmin'].')';
+			$magadminname='¹ÜÀíÔ± ('.$magr['isadmin'].')';
 		}
 		elseif($magr['isadmin']==5)
 		{
-			$magadminname='ç‰ˆä¸» ('.$magr['isadmin'].')';
+			$magadminname='°æÖ÷ ('.$magr['isadmin'].')';
 		}
 		elseif($magr['isadmin']==1)
 		{
-			$magadminname='å®ä¹ ç‰ˆä¸» ('.$magr['isadmin'].')';
+			$magadminname='ÊµÏ°°æÖ÷ ('.$magr['isadmin'].')';
 		}
 		else
 		{
@@ -109,7 +109,7 @@ if($r['agid'])
 		}
 	}
 }
-//é£æ ¼
+//·ç¸ñ
 $spacestyle='';
 $spacesql=$empire->query("select styleid,stylename from {$dbtbpre}enewsspacestyle");
 while($spacer=$empire->fetch($spacesql))
@@ -121,22 +121,22 @@ while($spacer=$empire->fetch($spacesql))
 	}
 	$spacestyle.="<option value='$spacer[styleid]'".$selected.">".$spacer[stylename]."</option>";
 }
-//å–å¾—è¡¨å•
+//È¡µÃ±íµ¥
 $formid=GetMemberFormId($r[groupid]);
 $formfile='../../data/html/memberform'.$formid.'.php';
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¿®æ”¹èµ„æ–™</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ĞŞ¸Ä×ÊÁÏ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListMember.php" enctype="multipart/form-data">
@@ -145,73 +145,73 @@ $formfile='../../data/html/memberform'.$formid.'.php';
     <input type=hidden name=add[oldusername] value='<?=$r[username]?>'>
     <input type=hidden name=add[userid] value='<?=$userid?>'>
     <tr class="header"> 
-      <td height="25" colspan="2">ä¿®æ”¹èµ„æ–™ 
+      <td height="25" colspan="2">ĞŞ¸Ä×ÊÁÏ 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="25%" height="25">ç”¨æˆ·å</td>
+      <td width="25%" height="25">ÓÃ»§Ãû</td>
       <td width="75%" height="25"><input name=add[username] type=text id="add[username]" value='<?=$r[username]?>'></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å¯†ç </td>
+      <td height="25">ÃÜÂë</td>
       <td height="25"><input name="add[password]" type="password" id="add[password]">
-        (ä¿®æ”¹æ—¶ï¼šå¦‚ä¸æƒ³ä¿®æ”¹,è¯·ç•™ç©º)</td>
+        (ĞŞ¸ÄÊ±£ºÈç²»ÏëĞŞ¸Ä,ÇëÁô¿Õ)</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å®¡æ ¸</td>
+      <td height="25">ÉóºË</td>
       <td height="25"><input name="add[checked]" type="checkbox" id="add[checked]" value="1"<?=$r[checked]==1?' checked':''?>>
-        å®¡æ ¸é€šè¿‡</td>
+        ÉóºËÍ¨¹ı</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">å®åçŠ¶æ€</td>
-      <td height="25"><input type="radio" name="add[isern]" value="0"<?=$r['isern']==0?' checked':''?>>æœªå®å
-        <input type="radio" name="add[isern]" value="1"<?=$r['isern']==1?' checked':''?>>å·²å®å</td>
+      <td height="25">ÊµÃû×´Ì¬</td>
+      <td height="25"><input type="radio" name="add[isern]" value="0"<?=$r['isern']==0?' checked':''?>>Î´ÊµÃû
+        <input type="radio" name="add[isern]" value="1"<?=$r['isern']==1?' checked':''?>>ÒÑÊµÃû</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">æ‰€å±ä¼šå‘˜ç»„<br> <br> <input type="button" name="Submit3" value="ç®¡ç†ä¼šå‘˜ç»„" onclick="window.open('ListMemberGroup.php<?=$ecms_hashur['whehref']?>');">      </td>
+      <td height="25" valign="top">ËùÊô»áÔ±×é<br> <br> <input type="button" name="Submit3" value="¹ÜÀí»áÔ±×é" onclick="window.open('ListMemberGroup.php<?=$ecms_hashur['whehref']?>');">      </td>
       <td height="25"><select name="add[groupid]" size="6" id="add[groupid]" onchange="self.location.href='AddMember.php?<?=$ecms_hashur['ehref']?>&enews=EditMember&userid=<?=$userid?>&changegroupid='+this.options[this.selectedIndex].value;">
           <?=$group?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ‰€å±å†…éƒ¨ç»„</td>
+      <td height="25">ËùÊôÄÚ²¿×é</td>
       <td height="25"><select name="add[ingid]" id="add[ingid]">
-        <option value="0"<?=$r['ingid']==0?' selected':''?>>ä¸å±äº</option>
+        <option value="0"<?=$r['ingid']==0?' selected':''?>>²»ÊôÓÚ</option>
 		<?=$ingroup?>
       </select>      </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">é‚®ç®±</td>
+      <td height="25">ÓÊÏä</td>
       <td height="25"><input name="add[email]" type="text" id="add[email]" value="<?=$r[email]?>" size="35"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å‰©ä½™å¤©æ•°</td>
+      <td height="25">Ê£ÓàÌìÊı</td>
       <td height="25"><input name=add[userdate] type=text id="add[userdate]" value='<?=$userdate?>' size="6">
-        å¤©ï¼Œåˆ°æœŸåè½¬å‘ç”¨æˆ·ç»„: 
+        Ìì£¬µ½ÆÚºó×ªÏòÓÃ»§×é: 
         <select name="add[zgroupid]" id="add[zgroupid]">
-          <option value="0">ä¸è®¾ç½®</option>
+          <option value="0">²»ÉèÖÃ</option>
           <?=$zgroup?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç‚¹æ•°</td>
+      <td height="25">µãÊı</td>
       <td height="25"><input name=add[userfen] type=text id="add[userfen]" value='<?=$r[userfen]?>' size="6">
-        ç‚¹</td>
+        µã</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å¸æˆ·ä½™é¢</td>
+      <td height="25">ÕÊ»§Óà¶î</td>
       <td height="25"><input name=add[money] type=text id="add[money]" value='<?=$r[money]?>' size="6">
-        å…ƒ </td>
+        Ôª </td>
     </tr>
     
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ‰€å±ç®¡ç†ç»„</td>
+      <td height="25">ËùÊô¹ÜÀí×é</td>
       <td height="25">
 	  <?php
 	  if($r['agid'])
 	  {
 	  ?>
-	  ç»„IDï¼š<?=$r['agid']?>ï¼Œç»„åç§°ï¼š<a href="#ecms" title="<?=$magadminname?>"><?=$magname?></a>
+	  ×éID£º<?=$r['agid']?>£¬×éÃû³Æ£º<a href="#ecms" title="<?=$magadminname?>"><?=$magname?></a>
 	  <?php
 	  }
 	  else
@@ -223,19 +223,19 @@ $formfile='../../data/html/memberform'.$formid.'.php';
 	  ?>	  </td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ³¨å†Œæ—¶é—´</td>
+      <td height="25">×¢²áÊ±¼ä</td>
       <td height="25"><?=eReturnMemberRegtime($r['registertime'],"Y-m-d H:i:s")?></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ³¨å†ŒIP</td>
+      <td height="25">×¢²áIP</td>
       <td height="25"><?=$addr[regip]?>:<?=$addr[regipport]?></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æœ€åç™»å½•</td>
-      <td height="25">æ€»ç™»å½•æ¬¡æ•°ï¼š<?=$addr[loginnum]?>ï¼Œæ—¶é—´ï¼š<?=date("Y-m-d H:i:s",$addr[lasttime])?>ï¼Œç™»å½•IPï¼š<?=$addr[lastip]?>:<?=$addr[lastipport]?></td>
+      <td height="25">×îºóµÇÂ¼</td>
+      <td height="25">×ÜµÇÂ¼´ÎÊı£º<?=$addr[loginnum]?>£¬Ê±¼ä£º<?=date("Y-m-d H:i:s",$addr[lasttime])?>£¬µÇÂ¼IP£º<?=$addr[lastip]?>:<?=$addr[lastipport]?></td>
     </tr>
     <tr bgcolor="#FFFFFF" class="header"> 
-      <td height="25" colspan="2">å…¶ä»–ä¿¡æ¯</td>
+      <td height="25" colspan="2">ÆäËûĞÅÏ¢</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"> 
@@ -244,25 +244,25 @@ $formfile='../../data/html/memberform'.$formid.'.php';
 	  ?>      </td>
     </tr>
     <tr bgcolor="#FFFFFF" class="header">
-      <td height="25" colspan="2">ä¼šå‘˜ç©ºé—´è®¾ç½®</td>
+      <td height="25" colspan="2">»áÔ±¿Õ¼äÉèÖÃ</td>
     </tr>
 	<tr bgcolor="#FFFFFF"> 
-      <td height="25">ç©ºé—´ä½¿ç”¨æ¨¡æ¿</td>
+      <td height="25">¿Õ¼äÊ¹ÓÃÄ£°å</td>
       <td height="25"><select name="add[spacestyleid]" id="add[spacestyleid]">
           <?=$spacestyle?>
-        </select> <input type="button" name="Submit32" value="ç®¡ç†ç©ºé—´æ¨¡æ¿" onclick="window.open('ListSpaceStyle.php<?=$ecms_hashur['whehref']?>');"></td>
+        </select> <input type="button" name="Submit32" value="¹ÜÀí¿Õ¼äÄ£°å" onclick="window.open('ListSpaceStyle.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">ç©ºé—´åç§°</td>
+      <td height="25">¿Õ¼äÃû³Æ</td>
       <td height="25"><input name="add[spacename]" type="text" id="add[spacename]" value="<?=ehtmlspecialchars(stripSlashes($addr['spacename']))?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">ç©ºé—´å…¬å‘Š</td>
+      <td height="25">¿Õ¼ä¹«¸æ</td>
       <td height="25"><textarea name="add[spacegg]" cols="60" rows="6" id="add[spacegg]"><?=stripSlashes($addr['spacegg'])?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="ä¿®æ”¹"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="ĞŞ¸Ä"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

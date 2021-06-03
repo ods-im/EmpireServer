@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"link");
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href='ListLink.php".$ecms_hashur['whehref']."'>ç®¡ç†å‹æƒ…é“¾æ¥</a>  &gt; å¢åŠ å‹æƒ…é“¾æ¥";
+$url="<a href='ListLink.php".$ecms_hashur['whehref']."'>¹ÜÀíÓÑÇéÁ´½Ó</a>  &gt; Ôö¼ÓÓÑÇéÁ´½Ó";
 $r[lurl]="http://";
 $r[width]=88;
 $r[height]=31;
@@ -36,9 +36,9 @@ if($enews=="EditLink")
 	{$target1=" selected";}
 	if(empty($r[checked]))
 	{$checked="";}
-	$url="<a href='ListLink.php".$ecms_hashur['whehref']."'>ç®¡ç†å‹æƒ…é“¾æ¥</a>  &gt; ä¿®æ”¹å‹æƒ…é“¾æ¥ï¼š<b>".$r[lname]."</b>";
+	$url="<a href='ListLink.php".$ecms_hashur['whehref']."'>¹ÜÀíÓÑÇéÁ´½Ó</a>  &gt; ĞŞ¸ÄÓÑÇéÁ´½Ó£º<b>".$r[lname]."</b>";
 }
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewslinkclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -56,79 +56,79 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>å‹æƒ…é“¾æ¥</title>
+<title>ÓÑÇéÁ´½Ó</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListLink.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å¢åŠ å‹æƒ…é“¾æ¥ <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
+      <td height="25" colspan="2">Ôö¼ÓÓÑÇéÁ´½Ó <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
         <input name="lid" type="hidden" id="lid" value="<?=$lid?>"> <input name="cid" type="hidden" id="cid" value="<?=$cid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="26%" height="25">ç«™ç‚¹åç§°:(*)</td>
+      <td width="26%" height="25">Õ¾µãÃû³Æ:(*)</td>
       <td width="74%" height="25"> <input name="lname" type="text" id="lname" value="<?=$r[lname]?>" size="42"> 
         <input name="checked" type="checkbox" id="checked" value="1"<?=$checked?>>
-        æ˜¾ç¤º</td>
+        ÏÔÊ¾</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td rowspan="2" valign="top">ç«™ç‚¹å›¾æ ‡:</td>
+      <td rowspan="2" valign="top">Õ¾µãÍ¼±ê:</td>
       <td height="25"> <input name="lpic" type="text" id="lpic" value="<?=$r[lpic]?>" size="42"> 
-        <a onclick="window.open('../ecmseditor/FileMain.php?modtype=5&type=1&classid=&doing=2&field=lpic<?=$ecms_hashur['ehref']?>','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../../data/images/changeimg.gif" width="22" height="22" border="0" align="absbottom"></a> 
+        <a onclick="window.open('../ecmseditor/FileMain.php?modtype=5&type=1&classid=&doing=2&field=lpic<?=$ecms_hashur['ehref']?>','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../../data/images/changeimg.gif" width="22" height="22" border="0" align="absbottom"></a> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å®½ 
+      <td height="25">¿í 
         <input name="width" type="text" id="width" value="<?=$r[width]?>" size="6">
-        * é«˜ 
+        * ¸ß 
         <input name="height" type="text" id="height" value="<?=$r[height]?>" size="6">
-        (ä¸é€‰æ‹©å›¾ç‰‡ä¸ºæ–‡å­—é“¾æ¥)</td>
+        (²»Ñ¡ÔñÍ¼Æ¬ÎªÎÄ×ÖÁ´½Ó)</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç«™ç‚¹åœ°å€:(*)</td>
+      <td height="25">Õ¾µãµØÖ·:(*)</td>
       <td height="25"> <input name="lurl" type="text" id="lurl" value="<?=$r[lurl]?>" size="42"> 
         <select name=target>
-          <option value="_blank"<?=$target0?>>åœ¨æ–°çª—å£æ‰“å¼€</option>
-          <option value="_parent"<?=$target1?>>åœ¨åŸçª—å£æ‰“å¼€</option>
+          <option value="_blank"<?=$target0?>>ÔÚĞÂ´°¿Ú´ò¿ª</option>
+          <option value="_parent"<?=$target1?>>ÔÚÔ­´°¿Ú´ò¿ª</option>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ‰€å±åˆ†ç±»ï¼š</td>
+      <td height="25">ËùÊô·ÖÀà£º</td>
       <td height="25"><select name="classid" id="classid">
-          <option value="0">ä¸éš¶å±äºä»»ä½•åˆ†ç±»</option>
+          <option value="0">²»Á¥ÊôÓÚÈÎºÎ·ÖÀà</option>
           <?=$cstr?>
         </select>
-        <input type="button" name="Submit3" value="ç®¡ç†åˆ†ç±»" onclick="window.open('LinkClass.php<?=$ecms_hashur['whehref']?>');"></td>
+        <input type="button" name="Submit3" value="¹ÜÀí·ÖÀà" onclick="window.open('LinkClass.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç‚¹å‡»:</td>
+      <td height="25">µã»÷:</td>
       <td height="25"><input name="onclick" type="text" id="onclick" value="<?=$r[onclick]?>" size="6"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ˜¾ç¤ºé¡ºåº:</td>
+      <td height="25">ÏÔÊ¾Ë³Ğò:</td>
       <td height="25"><input name="myorder" type="text" id="myorder" value="<?=$r[myorder]?>" size="6">
-        (è¶Šå°è¶Šå‰é¢)</td>
+        (Ô½Ğ¡Ô½Ç°Ãæ)</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç«™é•¿Email:</td>
+      <td height="25">Õ¾³¤Email:</td>
       <td height="25"><input name="email" type="text" id="email" value="<?=$r[email]?>" size="42"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç«™ç‚¹ç®€ä»‹:</td>
+      <td height="25">Õ¾µã¼ò½é:</td>
       <td height="25"><textarea name="lsay" cols="60" rows="6" id="lsay"><?=ehtmlspecialchars($r[lsay])?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"> <input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"> <input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

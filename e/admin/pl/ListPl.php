@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -21,9 +21,9 @@ $ecms_hashur=hReturnEcmsHashStrAll();
 $classid=(int)$_GET['classid'];
 $bclassid=(int)$_GET['bclassid'];
 $id=(int)$_GET['id'];
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"news");
-//å®¡æ ¸è¡¨
+//ÉóºË±í
 $search='';
 $search.=$ecms_hashur['ehref'];
 $addecmscheck='';
@@ -39,20 +39,20 @@ if(!$classid||!$class_r[$classid][tbname]||!$id)
 {
 	printerror('ErrorUrl','');
 }
-//ä¿¡æ¯
+//ĞÅÏ¢
 $index_r=$empire->fetch1("select classid,checked from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_index where id='$id' limit 1");
 if(!$index_r['classid']||$index_r['classid']!=$classid)
 {
 	printerror('ErrorUrl','');
 }
-//è¿”å›è¡¨
+//·µ»Ø±í
 $infotb=ReturnInfoMainTbname($class_r[$index_r[classid]][tbname],$index_r['checked']);
 $n_r=$empire->fetch1("select classid,title,restb from ".$infotb." where id='$id' limit 1");
 $pubid=ReturnInfoPubid($classid,$id);
 $start=0;
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
-//æ¯é¡µæ˜¾ç¤º
+//Ã¿Ò³ÏÔÊ¾
 $line=(int)$_GET['line'];
 if($line>0&&$line<1000)
 {
@@ -66,21 +66,21 @@ $page_line=12;
 $offset=$page*$line;
 $search.="&bclassid=$bclassid&classid=$classid&id=$id";
 $add='';
-//æ¨è
+//ÍÆ¼ö
 $isgood=(int)$_GET['isgood'];
 if($isgood)
 {
 	$add.=' and isgood=1';
 	$search.="&isgood=$isgood";
 }
-//å®¡æ ¸
+//ÉóºË
 $checked=(int)$_GET['checked'];
 if($checked)
 {
 	$add.=" and checked='".($checked==1?0:1)."'";
 	$search.="&checked=$checked";
 }
-//æœç´¢
+//ËÑË÷
 $keyboard=RepPostVar2($_GET['keyboard']);
 if($keyboard)
 {
@@ -102,7 +102,7 @@ if($keyboard)
 }
 $query="select plid,username,saytime,sayip,checked,zcnum,fdnum,userid,isgood,saytext,pubid,eipport from {$dbtbpre}enewspl_".$n_r['restb']." where pubid='$pubid'".$add;
 $totalquery="select count(*) as total from {$dbtbpre}enewspl_".$n_r['restb']." where pubid='$pubid'".$add;
-//å–å¾—æ€»æ¡æ•°
+//È¡µÃ×ÜÌõÊı
 $totalnum=(int)$_GET['totalnum'];
 if($totalnum>0)
 {
@@ -116,14 +116,14 @@ $query.=" order by plid desc limit $offset,$line";
 $sql=$empire->query($query);
 $search.='&totalnum='.$num;
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//å¯¼èˆª
-$url=AdminReturnClassLink($classid).'&nbsp;>&nbsp;<a href="../../public/InfoUrl/?classid='.$classid.'&id='.$id.'" target="_blank">'.stripSlashes($n_r[title]).'</a>&nbsp;>&nbsp;ç®¡ç†è¯„è®º';
+//µ¼º½
+$url=AdminReturnClassLink($classid).'&nbsp;>&nbsp;<a href="../../public/InfoUrl/?classid='.$classid.'&id='.$id.'" target="_blank">'.stripSlashes($n_r[title]).'</a>&nbsp;>&nbsp;¹ÜÀíÆÀÂÛ';
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†è¯„è®º</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÆÀÂÛ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -147,7 +147,7 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®:<?=$url?></td>
+    <td>Î»ÖÃ:<?=$url?></td>
   </tr>
 </table>
 
@@ -155,26 +155,26 @@ function CheckAll(form)
   <form name="form2" method="get" action="ListPl.php">
   <?=$ecms_hashur['eform']?>
     <tr>
-      <td>å…³é”®å­—ï¼š 
+      <td>¹Ø¼ü×Ö£º 
         <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
         <select name="show" id="show">
-          <option value="1"<?=$show==1?' selected':''?>>å‘è¡¨è€…</option>
-          <option value="2"<?=$show==2?' selected':''?>>IPåœ°å€</option>
-		  <option value="3"<?=$show==3?' selected':''?>>è¯„è®ºå†…å®¹</option>
+          <option value="1"<?=$show==1?' selected':''?>>·¢±íÕß</option>
+          <option value="2"<?=$show==2?' selected':''?>>IPµØÖ·</option>
+		  <option value="3"<?=$show==3?' selected':''?>>ÆÀÂÛÄÚÈİ</option>
         </select>
 		<select name="checked" id="checked">
-          <option value="0"<?=$checked==0?' selected':''?>>ä¸é™</option>
-          <option value="1"<?=$checked==1?' selected':''?>>å·²å®¡æ ¸</option>
-          <option value="2"<?=$checked==2?' selected':''?>>æœªå®¡æ ¸</option>
+          <option value="0"<?=$checked==0?' selected':''?>>²»ÏŞ</option>
+          <option value="1"<?=$checked==1?' selected':''?>>ÒÑÉóºË</option>
+          <option value="2"<?=$checked==2?' selected':''?>>Î´ÉóºË</option>
         </select>
         <input name="isgood" type="checkbox" id="isgood" value="1"<?=$isgood==1?' checked':''?>>
-        æ¨è
+        ÍÆ¼ö
         <select name="line" id="line">
-          <option value="30"<?=$line==30?' selected':''?>>æ¯é¡µ30æ¡</option>
-          <option value="50"<?=$line==50?' selected':''?>>æ¯é¡µ50æ¡</option>
-          <option value="100"<?=$line==100?' selected':''?>>æ¯é¡µ100æ¡</option>
+          <option value="30"<?=$line==30?' selected':''?>>Ã¿Ò³30Ìõ</option>
+          <option value="50"<?=$line==50?' selected':''?>>Ã¿Ò³50Ìõ</option>
+          <option value="100"<?=$line==100?' selected':''?>>Ã¿Ò³100Ìõ</option>
         </select>
-        <input type="submit" name="Submit2" value="æœç´¢è¯„è®º">
+        <input type="submit" name="Submit2" value="ËÑË÷ÆÀÂÛ">
         <input name=id type=hidden id="id" value=<?=$id?>>
         <input name=classid type=hidden id="classid" value=<?=$classid?>>
         <input name=bclassid type=hidden id="bclassid" value=<?=$bclassid?>></td>
@@ -192,10 +192,10 @@ function CheckAll(form)
   <input name="docheck" type="hidden" id="docheck" value="0">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" style="WORD-BREAK: break-all; WORD-WRAP: break-word">
     <tr class="header"> 
-      <td width="4%" height="25"><div align="center">é€‰æ‹©</div></td>
-      <td width="19%" height="25"><div align="center">ç½‘å</div></td>
-      <td width="49%" height="25"><div align="center">è¯„è®ºå†…å®¹</div></td>
-      <td width="14%" height="25"><div align="center">å‘è¡¨æ—¶é—´</div></td>
+      <td width="4%" height="25"><div align="center">Ñ¡Ôñ</div></td>
+      <td width="19%" height="25"><div align="center">ÍøÃû</div></td>
+      <td width="49%" height="25"><div align="center">ÆÀÂÛÄÚÈİ</div></td>
+      <td width="14%" height="25"><div align="center">·¢±íÊ±¼ä</div></td>
       <td width="14%" height="25"><div align="center">IP</div></td>
     </tr>
     <?php
@@ -203,7 +203,7 @@ function CheckAll(form)
 	{
 		if(!empty($r[checked]))
 		{
-			$checked=" title='æœªå®¡æ ¸' style='background:#99C4E3'";
+			$checked=" title='Î´ÉóºË' style='background:#99C4E3'";
 			$checkednc='<br>NC';
 		}
 		else
@@ -217,14 +217,14 @@ function CheckAll(form)
 		}
 		if(empty($r['username']))
 		{
-			$r['username']='åŒ¿å';
+			$r['username']='ÄäÃû';
 		}
 		$r['saytime']=date('Y-m-d H:i:s',$r['saytime']);
 		if($r[isgood])
 		{
 			$r[saytime]='<font color=red>'.$r[saytime].'</font>';
 		}
-		//æ›¿æ¢è¡¨æƒ…
+		//Ìæ»»±íÇé
 		$saytext=RepPltextFace(stripSlashes($r['saytext']));
 	?>
     <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'" id=pl<?=$r[plid]?>> 
@@ -254,15 +254,15 @@ function CheckAll(form)
           <input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
         </div></td>
       <td height="25" colspan="4"> <div align="right"> 
-          <input type="submit" name="Submit" value="å®¡æ ¸è¯„è®º" onClick="document.form1.enews.value='CheckPl_all';document.form1.docheck.value='0';">
+          <input type="submit" name="Submit" value="ÉóºËÆÀÂÛ" onClick="document.form1.enews.value='CheckPl_all';document.form1.docheck.value='0';">
           &nbsp;&nbsp;&nbsp; 
-		  <input type="submit" name="Submit" value="å–æ¶ˆå®¡æ ¸è¯„è®º" onClick="document.form1.enews.value='CheckPl_all';document.form1.docheck.value='1';">
+		  <input type="submit" name="Submit" value="È¡ÏûÉóºËÆÀÂÛ" onClick="document.form1.enews.value='CheckPl_all';document.form1.docheck.value='1';">
           &nbsp;&nbsp;&nbsp;
-          <input type="submit" name="Submit3" value="æ¨èè¯„è®º" onClick="document.form1.enews.value='DoGoodPl_all';document.form1.isgood.value='1';">
+          <input type="submit" name="Submit3" value="ÍÆ¼öÆÀÂÛ" onClick="document.form1.enews.value='DoGoodPl_all';document.form1.isgood.value='1';">
           &nbsp;&nbsp;&nbsp; 
-          <input type="submit" name="Submit4" value="å–æ¶ˆæ¨èè¯„è®º" onClick="document.form1.enews.value='DoGoodPl_all';document.form1.isgood.value='0';">
+          <input type="submit" name="Submit4" value="È¡ÏûÍÆ¼öÆÀÂÛ" onClick="document.form1.enews.value='DoGoodPl_all';document.form1.isgood.value='0';">
           &nbsp;&nbsp; &nbsp; 
-          <input type="submit" name="Submit" value="åˆ é™¤" onClick="document.form1.enews.value='DelPl_all';">
+          <input type="submit" name="Submit" value="É¾³ı" onClick="document.form1.enews.value='DelPl_all';">
           <input name="enews" type="hidden" id="enews" value="DelPl_all">
         </div></td>
     </tr>
@@ -273,7 +273,7 @@ function CheckAll(form)
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="5"><font color="#666666">è¯´æ˜ï¼šå¤šé€‰æ¡†ä¸ºè“è‰²ä»£è¡¨æœªå®¡æ ¸è¯„è®ºï¼ŒåŠ ç²—ç½‘åä¸ºç™»é™†ä¼šå‘˜ï¼Œå‘å¸ƒæ—¶é—´çº¢è‰²ä¸ºæ¨èè¯„è®º</font></td>
+      <td height="25" colspan="5"><font color="#666666">ËµÃ÷£º¶àÑ¡¿òÎªÀ¶É«´ú±íÎ´ÉóºËÆÀÂÛ£¬¼Ó´ÖÍøÃûÎªµÇÂ½»áÔ±£¬·¢²¼Ê±¼äºìÉ«ÎªÍÆ¼öÆÀÂÛ</font></td>
     </tr>
   </table>
 </form>

@@ -7,7 +7,7 @@ require("../../member/class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"card");
 $enews=$_POST['enews'];
 if($enews)
@@ -36,30 +36,30 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ‰¹é‡èµ é€ç‚¹æ•°</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÅúÁ¿ÔùËÍµãÊı</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="98%%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®: <a href="GetFen.php<?=$ecms_hashur['whehref']?>">æ‰¹é‡èµ é€ç‚¹æ•°</a></td>
+    <td>Î»ÖÃ: <a href="GetFen.php<?=$ecms_hashur['whehref']?>">ÅúÁ¿ÔùËÍµãÊı</a></td>
   </tr>
 </table>
 <form name="form1" method="post" action="GetFen.php">
   <table width="60%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25"><div align="center">æ‰¹é‡å¢åŠ ç‚¹æ•° 
+      <td height="25"><div align="center">ÅúÁ¿Ôö¼ÓµãÊı 
           <input name="enews" type="hidden" id="enews" value="GetFen">
         </div></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="center">è¯·è¾“å…¥ç‚¹æ•°ï¼š 
+      <td height="25" bgcolor="#FFFFFF"><div align="center">ÇëÊäÈëµãÊı£º 
           <input name="cardfen" type="text" id="cardfen" value="0" size="6">
-          ç‚¹ 
-          <input type="submit" name="Submit" value="æ‰¹é‡å¢åŠ ">
+          µã 
+          <input type="submit" name="Submit" value="ÅúÁ¿Ôö¼Ó">
         </div></td>
     </tr>
   </table>

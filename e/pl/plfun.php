@@ -1,15 +1,15 @@
 <?php
-//å‘è¡¨è¯„è®º
+//·¢±íÆÀÂÛ
 function AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$add){
 	global $empire,$dbtbpre,$public_r,$class_r,$level_r;
-	//éªŒè¯æœ¬æ—¶é—´å…è®¸æ“ä½œ
+	//ÑéÖ¤±¾Ê±¼äÔÊĞí²Ù×÷
 	eCheckTimeCloseDo('pl');
-	//éªŒè¯IP
+	//ÑéÖ¤IP
 	eCheckAccessDoIp('pl');
 	$id=(int)$id;
 	$repid=(int)$repid;
 	$classid=(int)$classid;
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$keyvname='checkplkey';
 	if($public_r['plkey_ok'])
 	{
@@ -23,7 +23,7 @@ function AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$
 	$mrnd=RepPostVar(getcvar('mlrnd'));
 	$ur=array();
 	$cklgr=array();
-	if($muserid)//å·²ç™»é™†
+	if($muserid)//ÒÑµÇÂ½
 	{
 		$cklgr=qCheckLoginAuthstr();
 		if($cklgr['islogin'])
@@ -49,7 +49,7 @@ function AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$
 	}
 	else
 	{
-		if(empty($nomember))//éåŒ¿å
+		if(empty($nomember))//·ÇÄäÃû
 		{
 			if(!$username||!$password)
 			{
@@ -88,10 +88,10 @@ function AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$
 			printerror("NotLevelToPl","history.go(-1)",1);
 		}
 	}
-	//å®åéªŒè¯
+	//ÊµÃûÑéÖ¤
 	eCheckHaveTruename('pl',$ur['userid'],$ur['username'],$ur['isern'],$ur['checked'],0);
 
-	//ä¸“é¢˜
+	//×¨Ìâ
 	$doaction=$add['doaction'];
 	if($doaction=='dozt')
 	{
@@ -99,7 +99,7 @@ function AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$
 		{
 			printerror("EmptyPl","history.go(-1)",1);
 		}
-		//æ˜¯å¦å…³é—­è¯„è®º
+		//ÊÇ·ñ¹Ø±ÕÆÀÂÛ
 		$r=$empire->fetch1("select ztid,closepl,checkpl,restb from {$dbtbpre}enewszt where ztid='$classid'");
 		if(!$r['ztid'])
 		{
@@ -109,7 +109,7 @@ function AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$
 		{
 			printerror("CloseClassPl","history.go(-1)",1);
 		}
-		//å®¡æ ¸
+		//ÉóºË
 		if($r['checkpl'])
 		{$checked=1;}
 		else
@@ -120,18 +120,18 @@ function AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$
 		$pagefunr=eReturnRewritePlUrl($classid,$id,'dozt',0,0,1);
 		$returl=$pagefunr['pageurl'];
 	}
-	else//ä¿¡æ¯
+	else//ĞÅÏ¢
 	{
 		if(!trim($saytext)||!$id||!$classid)
 		{
 			printerror("EmptyPl","history.go(-1)",1);
 		}
-		//è¡¨å­˜åœ¨
+		//±í´æÔÚ
 		if(empty($class_r[$classid][tbname]))
 		{
 			printerror("ErrorUrl","history.go(-1)",1);
 		}
-		//æ˜¯å¦å…³é—­è¯„è®º
+		//ÊÇ·ñ¹Ø±ÕÆÀÂÛ
 		$r=$empire->fetch1("select classid,stb,restb from {$dbtbpre}ecms_".$class_r[$classid][tbname]." where id='$id' limit 1");
 		if(!$r['classid']||$r['classid']!=$classid)
 		{
@@ -141,14 +141,14 @@ function AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$
 		{
 			printerror("CloseClassPl","history.go(-1)",1);
 		}
-		//å•ä¿¡æ¯å…³é—­è¯„è®º
+		//µ¥ĞÅÏ¢¹Ø±ÕÆÀÂÛ
 		$pubid=ReturnInfoPubid($classid,$id);
 		$finfor=$empire->fetch1("select closepl from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_data_".$r['stb']." where id='$id' limit 1");
 		if($finfor['closepl'])
 		{
 			printerror("CloseInfoPl","history.go(-1)",1);
 		}
-		//å®¡æ ¸
+		//ÉóºË
 		if($class_r[$classid][checkpl])
 		{$checked=1;}
 		else
@@ -157,7 +157,7 @@ function AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$
 		$pagefunr=eReturnRewritePlUrl($classid,$id,'doinfo',0,0,1);
 		$returl=$pagefunr['pageurl'];
 	}
-	//è®¾ç½®å‚æ•°
+	//ÉèÖÃ²ÎÊı
 	$plsetr=$empire->fetch1("select pltime,plsize,plincludesize,plclosewords,plmustf,plf,plmaxfloor,plquotetemp from {$dbtbpre}enewspl_set limit 1");
 	if(strlen($saytext)>$plsetr['plsize'])
 	{
@@ -183,28 +183,28 @@ function AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$
 	if($repid)
 	{
 		$saytext=RepPlTextQuote($repid,$saytext,$plsetr,$restb);
-		CkPlQuoteFloor($plsetr['plmaxfloor'],$saytext);//éªŒè¯æ¥¼å±‚
+		CkPlQuoteFloor($plsetr['plmaxfloor'],$saytext);//ÑéÖ¤Â¥²ã
 	}
-	//è¿‡æ»¤å­—ç¬¦
+	//¹ıÂË×Ö·û
 	$saytext=ReplacePlWord($plsetr['plclosewords'],$saytext);
 	if($level_r[$mgroupid]['plchecked'])
 	{
 		$checked=0;
 	}
 	$ret_r=ReturnPlAddF($add,$plsetr,0);
-	//ä¸»è¡¨
+	//Ö÷±í
 	$sql=$empire->query("insert into {$dbtbpre}enewspl_".$restb."(pubid,username,sayip,saytime,id,classid,checked,zcnum,fdnum,userid,isgood,saytext,eipport".$ret_r['fields'].") values('$pubid','".$username."','$sayip','$saytime','$id','$classid','$checked',0,0,'$muserid',0,'".addslashes($saytext)."','$eipport'".$ret_r['values'].");");
 	$plid=$empire->lastid();
 	if($doaction!='dozt')
 	{
-		//ä¿¡æ¯è¡¨åŠ 1
+		//ĞÅÏ¢±í¼Ó1
 		$usql=$empire->query("update {$dbtbpre}ecms_".$class_r[$classid][tbname]." set plnum=plnum+1 where id='$id' limit 1");
 	}
-	//æ›´æ–°æ–°è¯„è®ºæ•°
+	//¸üĞÂĞÂÆÀÂÛÊı
 	DoUpdateAddDataNum('pl',$restb,1);
-	//è®¾ç½®æœ€åå‘è¡¨æ—¶é—´
+	//ÉèÖÃ×îºó·¢±íÊ±¼ä
 	$set1=esetcookie("lastpltime",time(),time()+3600*24);
-	ecmsEmptyShowKey($keyvname);//æ¸…ç©ºéªŒè¯ç 
+	ecmsEmptyShowKey($keyvname);//Çå¿ÕÑéÖ¤Âë
 	if($sql)
 	{
 		$reurl=DoingReturnUrl($returl,$_POST['ecmsfrom']);
@@ -214,7 +214,7 @@ function AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$
 	{printerror("DbError","history.go(-1)",1);}
 }
 
-//æ›¿æ¢å›å¤
+//Ìæ»»»Ø¸´
 function RepPlTextQuote($repid,$saytext,$pr,$restb){
 	global $public_r,$empire,$dbtbpre,$fun_r;
 	$quotetemp=stripSlashes($pr['plquotetemp']);
@@ -235,14 +235,14 @@ function RepPlTextQuote($repid,$saytext,$pr,$restb){
 	return $restr;
 }
 
-//å»æ‰åŸå¼•ç”¨
+//È¥µôÔ­ÒıÓÃ
 function RepYPlQuote($text){
 	$preg_str="/<div (.+?)<\/div>/is";
 	$text=preg_replace($preg_str,"",$text);
 	return $text;
 }
 
-//éªŒè¯å¼•ç”¨æ¥¼æ•°
+//ÑéÖ¤ÒıÓÃÂ¥Êı
 function CkPlQuoteFloor($plmaxfloor,$saytext){
 	if(!$plmaxfloor)
 	{
@@ -256,7 +256,7 @@ function CkPlQuoteFloor($plmaxfloor,$saytext){
 	}
 }
 
-//ç¦ç”¨å­—ç¬¦
+//½ûÓÃ×Ö·û
 function ReplacePlWord($plclosewords,$text){
 	global $empire,$dbtbpre;
 	if(empty($text))
@@ -267,7 +267,7 @@ function ReplacePlWord($plclosewords,$text){
 	return $text;
 }
 
-//è¿”å›å­—æ®µ
+//·µ»Ø×Ö¶Î
 function ReturnPlAddF($add,$pr,$ecms=0){
 	global $empire,$dbtbpre;
 	$fr=explode(',',$pr['plf']);
@@ -278,7 +278,7 @@ function ReturnPlAddF($add,$pr,$ecms=0){
 	{
 		$f=$fr[$i];
 		$fval=RepPostStr($add[$f]);
-		//å¿…å¡«
+		//±ØÌî
 		if(strstr($pr[plmustf],','.$f.','))
 		{
 			if(!trim($fval))
@@ -295,7 +295,7 @@ function ReturnPlAddF($add,$pr,$ecms=0){
 	return $ret_r;
 }
 
-//æ”¯æŒ/åå¯¹è¯„è®º
+//Ö§³Ö/·´¶ÔÆÀÂÛ
 function DoForPl($add){
 	global $empire,$dbtbpre,$class_r;
 	$classid=(int)$add['classid'];
@@ -303,7 +303,7 @@ function DoForPl($add){
 	$plid=(int)$add['plid'];
 	$dopl=(int)$add['dopl'];
 	$doajax=(int)$add['doajax'];
-	//ä¸“é¢˜
+	//×¨Ìâ
 	$doaction=$add['doaction'];
 	if($doaction=='dozt')
 	{
@@ -318,7 +318,7 @@ function DoForPl($add){
 		}
 		$pubid='-'.$classid;
 	}
-	else//ä¿¡æ¯
+	else//ĞÅÏ¢
 	{
 		if(!$classid||!$id||!$plid||!$class_r[$classid][tbname])
 		{
@@ -331,7 +331,7 @@ function DoForPl($add){
 		}
 		$pubid=ReturnInfoPubid($classid,$id);
 	}
-	//è¿ç»­å‘è¡¨
+	//Á¬Ğø·¢±í
 	if(getcvar('lastforplid'.$plid))
 	{
 		$doajax==1?ajax_printerror('','','ReDoForPl',1):printerror('ReDoForPl','',1);
@@ -349,7 +349,7 @@ function DoForPl($add){
 	$sql=$empire->query("update {$dbtbpre}enewspl_".$infor['restb']." set ".$f."=".$f."+1 where plid='$plid' and pubid='$pubid'");
 	if($sql)
 	{
-		esetcookie('lastforplid'.$plid,$plid,time()+30*24*3600);	//æœ€åå‘å¸ƒ
+		esetcookie('lastforplid'.$plid,$plid,time()+30*24*3600);	//×îºó·¢²¼
 		if($doajax==1)
 		{
 			$nr=$empire->fetch1("select ".$f." from {$dbtbpre}enewspl_".$infor['restb']." where plid='$plid' and pubid='$pubid'");

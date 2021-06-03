@@ -5,7 +5,7 @@ require('../../class/db_sql.php');
 require('../../class/functions.php');
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -22,50 +22,50 @@ if(!$ztr['ztid'])
 {
 	printerror('ErrorUrl','');
 }
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 //CheckLevel($logininid,$loginin,$classid,"zt");
 $returnandlevel=CheckAndUsernamesLevel('dozt',$ztid,$logininid,$loginin,$loginlevel);
 
-$url="<a href='ListZt.php".$ecms_hashur['whehref']."'>ç®¡ç†ä¸“é¢˜</a>&nbsp;>&nbsp;<a href='ZtType.php?ztid=$ztid".$ecms_hashur['ehref']."'>".$ztr['ztname']."</a>&nbsp;>&nbsp;<a href='ZtType.php?ztid=$ztid".$ecms_hashur['ehref']."'>ç®¡ç†ä¸“é¢˜å­ç±»</a>&nbsp;>&nbsp;å¢åŠ ä¸“é¢˜å­ç±»";
-$postword='å¢åŠ ä¸“é¢˜å­ç±»';
-//åˆä½¿åŒ–æ•°æ®
+$url="<a href='ListZt.php".$ecms_hashur['whehref']."'>¹ÜÀí×¨Ìâ</a>&nbsp;>&nbsp;<a href='ZtType.php?ztid=$ztid".$ecms_hashur['ehref']."'>".$ztr['ztname']."</a>&nbsp;>&nbsp;<a href='ZtType.php?ztid=$ztid".$ecms_hashur['ehref']."'>¹ÜÀí×¨Ìâ×ÓÀà</a>&nbsp;>&nbsp;Ôö¼Ó×¨Ìâ×ÓÀà";
+$postword='Ôö¼Ó×¨Ìâ×ÓÀà';
+//³õÊ¹»¯Êı¾İ
 $r[myorder]=0;
 $r[reorder]="newstime DESC";
 $r[maxnum]=0;
 $r[tnum]=25;
 $r[ttype]=".html";
 $r[islist]=1;
-//å¤åˆ¶
+//¸´ÖÆ
 $docopy=RepPostStr($_GET['docopy'],1);
 if($docopy&&$enews=="AddZtType")
 {
 	$copyclass=1;
 }
 $ecmsfirstpost=1;
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditZtType"||$copyclass)
 {
 	$ecmsfirstpost=0;
 	if($copyclass)
 	{
-		$thisdo="å¤åˆ¶";
+		$thisdo="¸´ÖÆ";
 	}
 	else
 	{
-		$thisdo="ä¿®æ”¹";
+		$thisdo="ĞŞ¸Ä";
 	}
 	$cid=(int)$_GET['cid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewszttype where cid='$cid'");
 	$addr=$empire->fetch1("select * from {$dbtbpre}enewszttypeadd where cid='$cid'");
-	$url="<a href='ListZt.php".$ecms_hashur['whehref']."'>ç®¡ç†ä¸“é¢˜</a>&nbsp;>&nbsp;<a href='ZtType.php?ztid=$ztid".$ecms_hashur['ehref']."'>".$ztr['ztname']."</a>&nbsp;>&nbsp;<a href='ZtType.php?ztid=$ztid".$ecms_hashur['ehref']."'>ç®¡ç†ä¸“é¢˜å­ç±»</a>&nbsp;>&nbsp;".$thisdo."ä¸“é¢˜å­ç±»ï¼š".$r[cname];
-	$postword=$thisdo.'ä¸“é¢˜å­ç±»';
-	//å¤åˆ¶åˆ†ç±»
+	$url="<a href='ListZt.php".$ecms_hashur['whehref']."'>¹ÜÀí×¨Ìâ</a>&nbsp;>&nbsp;<a href='ZtType.php?ztid=$ztid".$ecms_hashur['ehref']."'>".$ztr['ztname']."</a>&nbsp;>&nbsp;<a href='ZtType.php?ztid=$ztid".$ecms_hashur['ehref']."'>¹ÜÀí×¨Ìâ×ÓÀà</a>&nbsp;>&nbsp;".$thisdo."×¨Ìâ×ÓÀà£º".$r[cname];
+	$postword=$thisdo.'×¨Ìâ×ÓÀà';
+	//¸´ÖÆ·ÖÀà
 	if($copyclass)
 	{
 		$r[cname].='(1)';
 	}
 }
-//åˆ—è¡¨æ¨¡æ¿
+//ÁĞ±íÄ£°å
 $mod_options='';
 $listtemp_options='';
 $msql=$empire->query("select mid,mname,usemod from {$dbtbpre}enewsmod order by myorder,mid");
@@ -79,7 +79,7 @@ while($mr=$empire->fetch($msql))
 		{$m_d="";}
 		$mod_options.="<option value=".$mr[mid].$m_d.">".$mr[mname]."</option>";
 	}
-	//åˆ—è¡¨æ¨¡æ¿
+	//ÁĞ±íÄ£°å
 	$listtemp_options.="<option value=0 style='background:#99C4E3'>".$mr[mname]."</option>";
 	$l_sql=$empire->query("select tempid,tempname from ".GetTemptb("enewslisttemp")." where modid='$mr[mid]'");
 	while($l_r=$empire->fetch($l_sql))
@@ -91,7 +91,7 @@ while($mr=$empire->fetch($msql))
 		$listtemp_options.="<option value=".$l_r[tempid].$l_d."> |-".$l_r[tempname]."</option>";
 	}
 }
-//å°é¢æ¨¡æ¿
+//·âÃæÄ£°å
 $classtemp='';
 $classtempsql=$empire->query("select tempid,tempname from ".GetTemptb("enewsclasstemp")." order by tempid");
 while($classtempr=$empire->fetch($classtempsql))
@@ -103,33 +103,33 @@ while($classtempr=$empire->fetch($classtempsql))
 	}
 	$classtemp.="<option value='".$classtempr[tempid]."'".$select.">".$classtempr[tempname]."</option>";
 }
-//å½“å‰ä½¿ç”¨çš„æ¨¡æ¿ç»„
+//µ±Ç°Ê¹ÓÃµÄÄ£°å×é
 $thegid=GetDoTempGid();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ ä¸“é¢˜å­ç±»</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼Ó×¨Ìâ×ÓÀà</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
-//æ£€æŸ¥
+//¼ì²é
 function CheckForm(obj){
 	if(obj.tname.value=='')
 	{
-		alert("è¯·è¾“å…¥åˆ†ç±»åç§°");
+		alert("ÇëÊäÈë·ÖÀàÃû³Æ");
 		obj.tname.focus();
 		return false;
 	}
 	if(obj.tpath.value=="")
 	{
-		alert("è¯·è¾“å…¥åˆ†ç±»ç›®å½•");
+		alert("ÇëÊäÈë·ÖÀàÄ¿Â¼");
 		obj.tpath.focus();
 		return false;
 	}
 	if(obj.listtempid.value==0)
 	{
-		alert("è¯·é€‰æ‹©åˆ—è¡¨æ¨¡æ¿");
+		alert("ÇëÑ¡ÔñÁĞ±íÄ£°å");
 		obj.listtempid.focus();
 		return false;
 	}
@@ -141,7 +141,7 @@ function CheckForm(obj){
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š 
+    <td>Î»ÖÃ£º 
       <?=$url?>
     </td>
   </tr>
@@ -157,84 +157,84 @@ function CheckForm(obj){
         <input type=hidden name=enews value=<?=$enews?>> <input name="ztid" type="hidden" id="ztid" value="<?=$ztid?>"></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">åŸºæœ¬å±æ€§</td>
+      <td height="25" colspan="2">»ù±¾ÊôĞÔ</td>
     </tr>
     <tr> 
-      <td width="24%" height="25" bgcolor="#FFFFFF">åˆ†ç±»åç§°(*)</td>
+      <td width="24%" height="25" bgcolor="#FFFFFF">·ÖÀàÃû³Æ(*)</td>
       <td width="76%" height="25" bgcolor="#FFFFFF"> <input name="cname" type="text" id="cname" value="<?=$r[cname]?>" size="38"> 
         <input name="cid" type="hidden" id="cid" value="<?=$cid?>"> </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ’åº</td>
+      <td height="25" bgcolor="#FFFFFF">ÅÅĞò</td>
       <td bgcolor="#FFFFFF"><input name="myorder" type="text" id="myorder" value="<?=$r[myorder]?>" size="38"> 
-        <font color="#666666"> (å€¼è¶Šå°è¶Šå‰é¢)</font></td>
+        <font color="#666666"> (ÖµÔ½Ğ¡Ô½Ç°Ãæ)</font></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é¡µé¢è®¾ç½®</td>
+      <td height="25" colspan="2">Ò³ÃæÉèÖÃ</td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">æ–‡ä»¶å</td>
+      <td height="25" bgcolor="#FFFFFF">ÎÄ¼şÃû</td>
       <td height="25" bgcolor="#FFFFFF"><input name="tfile" type="text" id="tfile" value="<?=$r[tfile]?>" size="38">
-        <font color="#666666">(ä¸è®¾ç½®ç³»ç»Ÿè‡ªåŠ¨ç”Ÿæˆå‘½åä¸ºï¼štype+å­ç±»ID)</font></td>
+        <font color="#666666">(²»ÉèÖÃÏµÍ³×Ô¶¯Éú³ÉÃüÃûÎª£ºtype+×ÓÀàID)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ–‡ä»¶æ‰©å±•å</td>
+      <td height="25" bgcolor="#FFFFFF">ÎÄ¼şÀ©Õ¹Ãû</td>
       <td height="25" bgcolor="#FFFFFF"><input name="ttype" type="text" id="ttype" value="<?=$r[ttype]?>" size="38"> 
         <select name="select" onchange="document.form1.ttype.value=this.value">
-          <option value=".html">æ‰©å±•å</option>
+          <option value=".html">À©Õ¹Ãû</option>
           <option value=".html">.html</option>
           <option value=".htm">.htm</option>
           <option value=".php">.php</option>
           <option value=".shtml">.shtml</option>
-        </select> <font color="#666666">(å¦‚.html,.xml,.htmç­‰)</font></td>
+        </select> <font color="#666666">(Èç.html,.xml,.htmµÈ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">é¡µé¢æ˜¾ç¤ºæ¨¡å¼</td>
+      <td height="25" bgcolor="#FFFFFF">Ò³ÃæÏÔÊ¾Ä£Ê½</td>
       <td height="25" bgcolor="#FFFFFF"> <input type="radio" name="islist" value="1"<?=$r[islist]==1?' checked':''?>>
-        åˆ—è¡¨å¼ 
+        ÁĞ±íÊ½ 
         <input type="radio" name="islist" value="2"<?=$r[islist]==2?' checked':''?>>
-        å•é¡µå¼ 
+        µ¥Ò³Ê½ 
         <input name="oldislist" type="hidden" id="oldislist" value="<?=$r[islist]?>"> 
-        <font color="#666666">(åˆ—è¡¨å¼è¦é€‰æ‹©åˆ—è¡¨æ¨¡æ¿ã€å•é¡µå¼è¦å½•å…¥é¡µé¢å†…å®¹)</font></td>
+        <font color="#666666">(ÁĞ±íÊ½ÒªÑ¡ÔñÁĞ±íÄ£°å¡¢µ¥Ò³Ê½ÒªÂ¼ÈëÒ³ÃæÄÚÈİ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ‰€ç”¨åˆ—è¡¨æ¨¡æ¿</td>
+      <td height="25" bgcolor="#FFFFFF">ËùÓÃÁĞ±íÄ£°å</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="listtempid" id="listtempid">
           <?=$listtemp_options?>
-        </select> <input type="button" name="Submit622" value="ç®¡ç†åˆ—è¡¨æ¨¡æ¿" onclick="window.open('../template/ListListtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');">      </td>
+        </select> <input type="button" name="Submit622" value="¹ÜÀíÁĞ±íÄ£°å" onclick="window.open('../template/ListListtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');">      </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åˆ—è¡¨å¼é¡µé¢æ’åºæ–¹å¼</td>
+      <td height="25" bgcolor="#FFFFFF">ÁĞ±íÊ½Ò³ÃæÅÅĞò·½Ê½</td>
       <td height="25" bgcolor="#FFFFFF"><input name="reorder" type="text" id="reorder" value="<?=$r[reorder]?>" size="38"> 
         <select name="orderselect" onchange="document.form1.reorder.value=this.value">
           <option value="newstime DESC"></option>
-          <option value="newstime DESC">æŒ‰å‘å¸ƒæ—¶é—´é™åºæ’åº</option>
-          <option value="id DESC">æŒ‰ä¿¡æ¯IDé™åºæ’åº</option>
-          <option value="zid DESC">æŒ‰åŠ å…¥IDé™åºæ’åº</option>
-		  <option value="isgood DESC,newstime DESC">æŒ‰æ¨èç½®é¡¶æ’åº</option>
+          <option value="newstime DESC">°´·¢²¼Ê±¼ä½µĞòÅÅĞò</option>
+          <option value="id DESC">°´ĞÅÏ¢ID½µĞòÅÅĞò</option>
+          <option value="zid DESC">°´¼ÓÈëID½µĞòÅÅĞò</option>
+		  <option value="isgood DESC,newstime DESC">°´ÍÆ¼öÖÃ¶¥ÅÅĞò</option>
         </select></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ˜¾ç¤ºæ€»è®°å½•æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">ÏÔÊ¾×Ü¼ÇÂ¼Êı</td>
       <td height="25" bgcolor="#FFFFFF"><input name="maxnum" type="text" id="maxnum" value="<?=$r[maxnum]?>" size="38">
-        æ¡ <font color="#666666">(0ä¸ºæ˜¾ç¤ºæ‰€æœ‰è®°å½•)</font></td>
+        Ìõ <font color="#666666">(0ÎªÏÔÊ¾ËùÓĞ¼ÇÂ¼)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı</td>
       <td height="25" bgcolor="#FFFFFF"><input name="tnum" type="text" id="tnum" value="<?=$r[tnum]?>" size="38">
-        æ¡è®°å½•</td>
+        Ìõ¼ÇÂ¼</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">é¡µé¢å†…å®¹<font color="#666666">(æ”¯æŒæ ‡ç­¾åŒå°é¢æ¨¡æ¿)</font></td>
-      <td height="25" bgcolor="#FFFFFF">è¯·å°†å†…å®¹<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.classtext.value);document.form1.classtext.select()" title="ç‚¹å‡»å¤åˆ¶æ¨¡æ¿å†…å®¹"><strong>å¤åˆ¶åˆ°Dreamweaver(æ¨è)</strong></a>æˆ–è€…ä½¿ç”¨<a href="#ecms" onclick="window.open('../template/editor.php?<?=$ecms_hashur['ehref']?>&getvar=opener.document.form1.classtext.value&returnvar=opener.document.form1.classtext.value&fun=ReturnHtml','editclasstext','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>æ¨¡æ¿åœ¨çº¿ç¼–è¾‘</strong></a>è¿›è¡Œå¯è§†åŒ–ç¼–è¾‘</td>
+      <td height="25" bgcolor="#FFFFFF">Ò³ÃæÄÚÈİ<font color="#666666">(Ö§³Ö±êÇ©Í¬·âÃæÄ£°å)</font></td>
+      <td height="25" bgcolor="#FFFFFF">Çë½«ÄÚÈİ<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.classtext.value);document.form1.classtext.select()" title="µã»÷¸´ÖÆÄ£°åÄÚÈİ"><strong>¸´ÖÆµ½Dreamweaver(ÍÆ¼ö)</strong></a>»òÕßÊ¹ÓÃ<a href="#ecms" onclick="window.open('../template/editor.php?<?=$ecms_hashur['ehref']?>&getvar=opener.document.form1.classtext.value&returnvar=opener.document.form1.classtext.value&fun=ReturnHtml','editclasstext','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>Ä£°åÔÚÏß±à¼­</strong></a>½øĞĞ¿ÉÊÓ»¯±à¼­</td>
     </tr>
     <tr> 
       <td height="25" colspan="2" bgcolor="#FFFFFF"> <textarea name="classtext" cols="80" rows="23" id="classtext" style="WIDTH: 100%"><?=ehtmlspecialchars(stripSlashes($addr[classtext]))?></textarea></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <div align="center"></div></td>
-      <td bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="æäº¤"> &nbsp;&nbsp; 
-        <input type="reset" name="Submit2" value="é‡ç½®"> </td>
+      <td bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="Ìá½»"> &nbsp;&nbsp; 
+        <input type="reset" name="Submit2" value="ÖØÖÃ"> </td>
     </tr>
   </form>
 </table>

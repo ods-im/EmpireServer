@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,28 +16,28 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"template");
 
-//å¢åŠ é¦–é¡µæ–¹æ¡ˆ
+//Ôö¼ÓÊ×Ò³·½°¸
 function AddIndexpage($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[tempname]||!$add[temptext])
 	{
 		printerror("EmptyIndexpageName","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$gid=(int)$add['gid'];
 	$add[tempname]=hRepPostStr($add[tempname],1);
 	$add[temptext]=RepPhpAspJspcode($add[temptext]);
 	$sql=$empire->query("insert into {$dbtbpre}enewsindexpage(tempname,temptext) values('".$add[tempname]."','".eaddslashes2($add[temptext])."');");
 	$tempid=$empire->lastid();
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('indexpage',1,$tempid,$add[tempname],$add[temptext],0,0,'',0,0,'',0,0,0,$userid,$username);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=$tempid&tempname=$add[tempname]");
 		printerror("AddIndexpageSuccess","AddIndexpage.php?enews=AddIndexpage&gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -47,7 +47,7 @@ function AddIndexpage($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹é¦–é¡µæ–¹æ¡ˆ
+//ĞŞ¸ÄÊ×Ò³·½°¸
 function EditIndexpage($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	$tempid=(int)$add[tempid];
@@ -55,24 +55,24 @@ function EditIndexpage($add,$userid,$username){
 	{
 		printerror("EmptyIndexpageName","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$gid=(int)$add['gid'];
 	$add[tempname]=hRepPostStr($add[tempname],1);
 	$add[temptext]=RepPhpAspJspcode($add[temptext]);
 	$sql=$empire->query("update {$dbtbpre}enewsindexpage set tempname='".$add[tempname]."',temptext='".eaddslashes2($add[temptext])."' where tempid='$tempid'");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('indexpage',1,$tempid,$add[tempname],$add[temptext],0,0,'',0,0,'',0,0,0,$userid,$username);
-	//åˆ·æ–°é¦–é¡µ
+	//Ë¢ĞÂÊ×Ò³
 	if($tempid==$public_r['indexpageid'])
 	{
 		NewsBq($classid,eaddslashes($add[temptext]),1,0);
-		//åˆ é™¤åŠ¨æ€æ¨¡æ¿ç¼“å­˜æ–‡ä»¶
+		//É¾³ı¶¯Ì¬Ä£°å»º´æÎÄ¼ş
 		DelOneTempTmpfile('indexpage');
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=$tempid&tempname=$add[tempname]");
 		printerror("EditIndexpageSuccess","ListIndexpage.php?gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -82,7 +82,7 @@ function EditIndexpage($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤é¦–é¡µæ–¹æ¡ˆ
+//É¾³ıÊ×Ò³·½°¸
 function DelIndexpage($tempid,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	$tempid=(int)$tempid;
@@ -90,7 +90,7 @@ function DelIndexpage($tempid,$userid,$username){
 	{
 		printerror("NotChangeIndexpageid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$gid=(int)$_GET['gid'];
 	$r=$empire->fetch1("select tempname from {$dbtbpre}enewsindexpage where tempid='$tempid'");
@@ -98,22 +98,22 @@ function DelIndexpage($tempid,$userid,$username){
 	if($tempid==$public_r['indexpageid'])
 	{
 		$empire->query("update {$dbtbpre}enewspublic set indexpageid=0");
-		GetConfig();//æ›´æ–°ç¼“å­˜
+		GetConfig();//¸üĞÂ»º´æ
 	}
-	//åˆ é™¤å¤‡ä»½è®°å½•
+	//É¾³ı±¸·İ¼ÇÂ¼
 	DelEbakTempAll('indexpage',1,$tempid);
-	//åˆ·æ–°é¦–é¡µ
+	//Ë¢ĞÂÊ×Ò³
 	if($tempid==$public_r['indexpageid'])
 	{
 		$indextempr=$empire->fetch1("select indextemp from ".GetTemptb("enewspubtemp")." limit 1");
 		$indextemp=$indextempr['indextemp'];
 		NewsBq($classid,$indextemp,1,0);
-		//åˆ é™¤åŠ¨æ€æ¨¡æ¿ç¼“å­˜æ–‡ä»¶
+		//É¾³ı¶¯Ì¬Ä£°å»º´æÎÄ¼ş
 		DelOneTempTmpfile('indexpage');
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=$tempid&tempname=$r[tempname]");
 		printerror("DelIndexpageSuccess","ListIndexpage.php?gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -123,7 +123,7 @@ function DelIndexpage($tempid,$userid,$username){
 	}
 }
 
-//å¯ç”¨é¦–é¡µæ–¹æ¡ˆ
+//ÆôÓÃÊ×Ò³·½°¸
 function DefIndexpage($tempid,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	$tempid=(int)$tempid;
@@ -131,7 +131,7 @@ function DefIndexpage($tempid,$userid,$username){
 	{
 		printerror("NotChangeIndexpageid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$gid=(int)$_GET['gid'];
 	$r=$empire->fetch1("select tempname,temptext from {$dbtbpre}enewsindexpage where tempid='$tempid'");
@@ -147,12 +147,12 @@ function DefIndexpage($tempid,$userid,$username){
 		$mess='DefIndexpageSuccess';
 		$sql=$empire->query("update {$dbtbpre}enewspublic set indexpageid='$tempid'");
 	}
-	GetConfig();//æ›´æ–°ç¼“å­˜
-	//åˆ·æ–°é¦–é¡µ
+	GetConfig();//¸üĞÂ»º´æ
+	//Ë¢ĞÂÊ×Ò³
 	if($def)
 	{
 		NewsBq($classid,$r[temptext],1,0);
-		//åˆ é™¤åŠ¨æ€æ¨¡æ¿ç¼“å­˜æ–‡ä»¶
+		//É¾³ı¶¯Ì¬Ä£°å»º´æÎÄ¼ş
 		DelOneTempTmpfile('indexpage');
 	}
 	else
@@ -160,12 +160,12 @@ function DefIndexpage($tempid,$userid,$username){
 		$indextempr=$empire->fetch1("select indextemp from ".GetTemptb("enewspubtemp")." limit 1");
 		$indextemp=$indextempr['indextemp'];
 		NewsBq($classid,$indextemp,1,0);
-		//åˆ é™¤åŠ¨æ€æ¨¡æ¿ç¼“å­˜æ–‡ä»¶
+		//É¾³ı¶¯Ì¬Ä£°å»º´æÎÄ¼ş
 		DelOneTempTmpfile('indexpage');
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=$tempid&tempname=$r[tempname]&def=$def");
 		printerror($mess,"ListIndexpage.php?gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -175,7 +175,7 @@ function DefIndexpage($tempid,$userid,$username){
 	}
 }
 
-//æ“ä½œ
+//²Ù×÷
 $enews=$_POST['enews'];
 if(empty($enews))
 {$enews=$_GET['enews'];}
@@ -187,39 +187,39 @@ if($enews)
 	include("../../data/dbcache/MemberLevel.php");
 	include("../../class/tempfun.php");
 }
-//å¢åŠ é¦–é¡µæ–¹æ¡ˆ
+//Ôö¼ÓÊ×Ò³·½°¸
 if($enews=="AddIndexpage")
 {
 	AddIndexpage($_POST,$logininid,$loginin);
 }
-//ä¿®æ”¹é¦–é¡µæ–¹æ¡ˆ
+//ĞŞ¸ÄÊ×Ò³·½°¸
 elseif($enews=="EditIndexpage")
 {
 	EditIndexpage($_POST,$logininid,$loginin);
 }
-//åˆ é™¤é¦–é¡µæ–¹æ¡ˆ
+//É¾³ıÊ×Ò³·½°¸
 elseif($enews=="DelIndexpage")
 {
 	DelIndexpage($_GET['tempid'],$logininid,$loginin);
 }
-//å¯ç”¨é¦–é¡µæ–¹æ¡ˆ
+//ÆôÓÃÊ×Ò³·½°¸
 elseif($enews=="DefIndexpage")
 {
 	DefIndexpage($_GET['tempid'],$logininid,$loginin);
 }
 
 $gid=(int)$_GET['gid'];
-$url="<a href=ListIndexpage.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†é¦–é¡µæ–¹æ¡ˆ</a>";
+$url="<a href=ListIndexpage.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀíÊ×Ò³·½°¸</a>";
 $search="&gid=$gid".$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select tempid,tempname from {$dbtbpre}enewsindexpage";
 $totalquery="select count(*) as total from {$dbtbpre}enewsindexpage";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by tempid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -227,19 +227,19 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†é¦–é¡µæ–¹æ¡ˆ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÊ×Ò³·½°¸</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton"> 
-        <input type="button" name="Submit5" value="å¢åŠ é¦–é¡µæ–¹æ¡ˆ" onclick="self.location.href='AddIndexpage.php?enews=AddIndexpage&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓÊ×Ò³·½°¸" onclick="self.location.href='AddIndexpage.php?enews=AddIndexpage&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -248,24 +248,24 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="5%" height="25"><div align="center">ID</div></td>
-    <td width="49%" height="25"><div align="center">æ–¹æ¡ˆåç§°</div></td>
-    <td width="17%"><div align="center">å¯ç”¨/å–æ¶ˆ</div></td>
-    <td width="29%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="49%" height="25"><div align="center">·½°¸Ãû³Æ</div></td>
+    <td width="17%"><div align="center">ÆôÓÃ/È¡Ïû</div></td>
+    <td width="29%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
   {
-  	//é»˜è®¤æ–¹æ¡ˆ
+  	//Ä¬ÈÏ·½°¸
 	if($public_r['indexpageid']==$r['tempid'])
 	{
 		$bgcolor='#DBEAF5';
-		$openindexpage='å–æ¶ˆæ­¤æ–¹æ¡ˆ';
+		$openindexpage='È¡Ïû´Ë·½°¸';
 		$movejs='';
 	}
 	else
 	{
 		$bgcolor='#ffffff';
-		$openindexpage='å¯ç”¨æ­¤æ–¹æ¡ˆ';
+		$openindexpage='ÆôÓÃ´Ë·½°¸';
 		$movejs=' onmouseout="this.style.backgroundColor=\'#ffffff\'" onmouseover="this.style.backgroundColor=\'#C3EFFF\'"';
 	}
   ?>
@@ -276,11 +276,11 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td height="25"><div align="center"> 
         <?=$r[tempname]?>
       </div></td>
-    <td><div align="center"> <a href="ListIndexpage.php?enews=DefIndexpage&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®å®šè®¾ç½®?');"><?=$openindexpage?></a></div></td>
-    <td height="25"><div align="center"> [<a href="AddIndexpage.php?enews=EditIndexpage&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="AddIndexpage.php?enews=AddIndexpage&docopy=1&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>] 
-        [<a href="../ecmstemp.php?enews=PreviewIndexpage&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" target="_blank">é¢„è§ˆ</a>] 
-        [<a href="ListIndexpage.php?enews=DelIndexpage&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td><div align="center"> <a href="ListIndexpage.php?enews=DefIndexpage&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·¶¨ÉèÖÃ?');"><?=$openindexpage?></a></div></td>
+    <td height="25"><div align="center"> [<a href="AddIndexpage.php?enews=EditIndexpage&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="AddIndexpage.php?enews=AddIndexpage&docopy=1&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>] 
+        [<a href="../ecmstemp.php?enews=PreviewIndexpage&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" target="_blank">Ô¤ÀÀ</a>] 
+        [<a href="ListIndexpage.php?enews=DelIndexpage&tempid=<?=$r[tempid]?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }
@@ -293,7 +293,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 </table>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr>
-    <td height="25"><font color="#666666">è¯´æ˜ï¼šé¦–é¡µæ–¹æ¡ˆï¼šå¯ä»¥å°†æŸä¸€æ–¹æ¡ˆä½œä¸ºä¸´æ—¶é¦–é¡µï¼Œç‰¹åˆ«æ˜¯åœ¨èŠ‚å‡æ—¥åˆ¶ä½œç‰¹åˆ«é¦–é¡µéå¸¸æœ‰ç”¨ã€‚å…¨éƒ¨å–æ¶ˆæ—¶ä¸ºä½¿ç”¨é»˜è®¤é¦–é¡µæ¨¡æ¿ã€‚</font></td>
+    <td height="25"><font color="#666666">ËµÃ÷£ºÊ×Ò³·½°¸£º¿ÉÒÔ½«Ä³Ò»·½°¸×÷ÎªÁÙÊ±Ê×Ò³£¬ÌØ±ğÊÇÔÚ½Ú¼ÙÈÕÖÆ×÷ÌØ±ğÊ×Ò³·Ç³£ÓĞÓÃ¡£È«²¿È¡ÏûÊ±ÎªÊ¹ÓÃÄ¬ÈÏÊ×Ò³Ä£°å¡£</font></td>
   </tr>
 </table>
 </body>

@@ -6,7 +6,7 @@ require("../class/functions.php");
 require("../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"totaldata");
 $totaltype=(int)$_POST['totaltype'];
 $classid=(int)$_POST['classid'];
@@ -29,7 +29,7 @@ $nochecknum=0;
 $checknum=0;
 $bfb=0;
 $and=' where ';
-//æŒ‰ç±»åˆ«ç»Ÿè®¡
+//°´Àà±ðÍ³¼Æ
 if($totaltype==0)
 {
 	$tbname='';
@@ -37,20 +37,20 @@ if($totaltype==0)
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//æœªå®¡æ ¸
+	//Î´ÉóºË
 	$query="select count(*) as total from {$dbtbpre}ecms_".$class_r[$classid][tbname]."_check";
-	//å·²å®¡æ ¸
+	//ÒÑÉóºË
 	$query1="select count(*) as total from {$dbtbpre}ecms_".$class_r[$classid][tbname];
-	//ç‚¹å‡»
+	//µã»÷
 	$onclickquery="select avg(onclick) as total from {$dbtbpre}ecms_".$class_r[$classid][tbname];
 	if($classid)
 	{
-		//ä¸­çº§ç±»åˆ«
+		//ÖÐ¼¶Àà±ð
 		if(empty($class_r[$classid][islast]))
 		{
 			$where=ReturnClass($class_r[$classid][sonclass]);
 		}
-		//ç»ˆæžç±»åˆ«
+		//ÖÕ¼«Àà±ð
 		else
 		{
 			$where="classid='$classid'";
@@ -61,7 +61,7 @@ if($totaltype==0)
 		$and=' and ';
 	}
 }
-//æŒ‰è¡¨ç»Ÿè®¡
+//°´±íÍ³¼Æ
 elseif($totaltype==1)
 {
 	$classid=0;
@@ -69,18 +69,18 @@ elseif($totaltype==1)
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//æœªå®¡æ ¸
+	//Î´ÉóºË
 	$query="select count(*) as total from {$dbtbpre}ecms_".$tbname."_check";
-	//å·²å®¡æ ¸
+	//ÒÑÉóºË
 	$query1="select count(*) as total from {$dbtbpre}ecms_".$tbname;
-	//ç‚¹å‡»
+	//µã»÷
 	$onclickquery="select avg(onclick) as total from {$dbtbpre}ecms_".$tbname;
 }
 else
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-//æ—¶é—´
+//Ê±¼ä
 if($startday&&$endday)
 {
 	$start=$startday." 00:00:00";
@@ -91,7 +91,7 @@ if($startday&&$endday)
 	$onclickquery.=$timeadd;
 	$and=' and ';
 }
-//ç”¨æˆ·
+//ÓÃ»§
 if($userid)
 {
 	$useradd=$and."userid='$userid'";
@@ -100,7 +100,7 @@ if($userid)
 	$onclickquery.=$useradd;
 	$and=' and ';
 }
-//æ•°æ®è¡¨
+//Êý¾Ý±í
 $htb=0;
 $tbsql=$empire->query("select tbname,tname from {$dbtbpre}enewstable order by tid");
 while($tbr=$empire->fetch($tbsql))
@@ -119,21 +119,21 @@ if($totaltype==1&&$htb==0)
 }
 if($classid||$tbname)
 {
-	//å®¡æ ¸
+	//ÉóºË
 	$checknum=$empire->gettotal($query1);
-	//æœªå®¡æ ¸
+	//Î´ÉóºË
 	$nochecknum=$empire->gettotal($query);
-	//æ€»ä¿¡æ¯æ•°
+	//×ÜÐÅÏ¢Êý
 	$allnum=$checknum+$nochecknum;
-	//ç‚¹å‡»çŽ‡
+	//µã»÷ÂÊ
 	$onclick=$empire->gettotal($onclickquery);
 }
-//æ ç›®
+//À¸Ä¿
 $fcfile="../data/fc/ListEnews.php";
 $class="<script src=../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
 {$class=ShowClass_AddClass("",$classid,0,"|-",0,0);}
-//ç”¨æˆ·
+//ÓÃ»§
 $usersql=$empire->query("select userid,username from {$dbtbpre}enewsuser order by userid");
 while($userr=$empire->fetch($usersql))
 {
@@ -149,8 +149,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç»Ÿè®¡æ•°æ®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Í³¼ÆÊý¾Ý</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="ecmseditor/js/jstime/WdatePicker.js"></script>
 </head>
@@ -158,7 +158,7 @@ $empire=null;
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<a href="TotalData.php<?=$ecms_hashur['whehref']?>">ç»Ÿè®¡æ•°æ®</a></td>
+    <td height="25">Î»ÖÃ£º<a href="TotalData.php<?=$ecms_hashur['whehref']?>">Í³¼ÆÊý¾Ý</a></td>
   </tr>
 </table>
 
@@ -166,57 +166,57 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['eform']?>
     <tr class="header"> 
-      <td height="25" colspan="2">ç»Ÿè®¡æ•°æ® 
+      <td height="25" colspan="2">Í³¼ÆÊý¾Ý 
         <input name="enews" type="hidden" id="enews" value="TotalData"> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td width="19%" height="25"><input name="totaltype" type="radio" value="0"<?=$totaltype==0?' checked':''?>>
-        æŒ‰æ ç›®ç»Ÿè®¡</td>
+        °´À¸Ä¿Í³¼Æ</td>
       <td width="81%" height="25"><select name="classid" id="classid">
           <?=$class?>
         </select>
-        ï¼ˆå¦‚é€‰æ‹©çˆ¶æ ç›®ï¼Œå°†ç»Ÿè®¡äºŽæ‰€æœ‰å­æ ç›®ï¼‰ </td>
+        £¨ÈçÑ¡Ôñ¸¸À¸Ä¿£¬½«Í³¼ÆÓÚËùÓÐ×ÓÀ¸Ä¿£© </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25"><input name="totaltype" type="radio" value="1"<?=$totaltype==1?' checked':''?>>
-        æŒ‰æ•°æ®è¡¨ç»Ÿè®¡</td>
+        °´Êý¾Ý±íÍ³¼Æ</td>
       <td height="25"><select name="tbname" id="tbname">
           <?=$tbstr?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å½•å…¥è€…ï¼š</td>
+      <td height="25">Â¼ÈëÕß£º</td>
       <td height="25"><select name="userid" id="userid">
-          <option value="0">æ‰€æœ‰å½•å…¥è€…</option>
+          <option value="0">ËùÓÐÂ¼ÈëÕß</option>
           <?=$user?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ—¶é—´èŒƒå›´ï¼š</td>
-      <td height="25">ä»Ž 
+      <td height="25">Ê±¼ä·¶Î§£º</td>
+      <td height="25">´Ó 
         <input name="startday" type="text" value="<?=$startday?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        åˆ° 
+        µ½ 
         <input name="endday" type="text" value="<?=$endday?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        ä¹‹é—´çš„æ•°æ®(ä¸¤è¾¹ä¸ºç©ºåˆ™ä¸ºä¸é™åˆ¶æ—¥æœŸ)</td>
+        Ö®¼äµÄÊý¾Ý(Á½±ßÎª¿ÕÔòÎª²»ÏÞÖÆÈÕÆÚ)</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="å¼€å§‹ç»Ÿè®¡"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="¿ªÊ¼Í³¼Æ"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr bgcolor="#FFFFFF"> 
-    <td height="25" colspan="4"> <div align="center">ç»Ÿè®¡æ—¶é—´ï¼š 
+    <td height="25" colspan="4"> <div align="center">Í³¼ÆÊ±¼ä£º 
         <?=date("Y-m-d H:i:s")?>
       </div></td>
   </tr>
   <tr class="header"> 
-    <td width="23%" height="25"><div align="center">æ€»ä¿¡æ¯æ•°</div></td>
-    <td width="23%" height="25"> <p align="center">æœªå®¡æ ¸æ•°</p></td>
-    <td width="23%" height="25"> <div align="center">å·²å®¡æ ¸æ•°</div></td>
-    <td width="15%"><div align="center">å¹³å‡ç‚¹å‡»æ•°</div></td>
+    <td width="23%" height="25"><div align="center">×ÜÐÅÏ¢Êý</div></td>
+    <td width="23%" height="25"> <p align="center">Î´ÉóºËÊý</p></td>
+    <td width="23%" height="25"> <div align="center">ÒÑÉóºËÊý</div></td>
+    <td width="15%"><div align="center">Æ½¾ùµã»÷Êý</div></td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
     <td height="25"><div align="center"><font color=red> 

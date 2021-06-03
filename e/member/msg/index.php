@@ -7,14 +7,14 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 $user=islogin();
 $start=0;
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $add='';
 $search='';
-$line=20;//姣忚鏄剧ず
+$line=20;//每行显示
 $page_line=10;
 $offset=$page*$line;
 $totalquery="select count(*) as total from {$dbtbpre}enewsqmsg where to_username='$user[username]'";
@@ -23,7 +23,7 @@ $num=$empire->gettotal($totalquery);
 $query.=" order by mid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page1($num,$line,$page_line,$start,$page,$search);
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/msg.php');
 db_close();
 $empire=null;

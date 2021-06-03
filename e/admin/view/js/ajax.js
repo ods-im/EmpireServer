@@ -81,7 +81,7 @@ function EchoReturnedReTitle() {
 			{
 				if(messagereturn=='1')
 				{
-					document.getElementById('eajaxretitle').innerHTML='<font color="red"æ ‡é¢˜å·²å­˜åœ¨</font>';
+					document.getElementById('eajaxretitle').innerHTML='<font color="red"±êÌâÒÑ´æÔÚ</font>';
 				}
 				else
 				{
@@ -96,7 +96,7 @@ function EchoReturnedReTitle() {
 
 
 function edohshowkey(showid,vname,baseurl){
-	document.getElementById(showid).innerHTML='<img src="'+baseurl+'ShowKey.php?v='+vname+'&t='+Math.random()+'" name="'+vname+'KeyImg" id="'+vname+'KeyImg" align="bottom" onclick=edohshowkey("'+showid+'","'+vname+'","'+baseurl+'") title="çœ‹ä¸æ¸…æ¥š,ç‚¹å‡»åˆ·æ–°">';
+	document.getElementById(showid).innerHTML='<img src="'+baseurl+'ShowKey.php?v='+vname+'&t='+Math.random()+'" name="'+vname+'KeyImg" id="'+vname+'KeyImg" align="bottom" onclick=edohshowkey("'+showid+'","'+vname+'","'+baseurl+'") title="¿´²»Çå³þ,µã»÷Ë¢ÐÂ">';
 }
 
 function edozoomimg(o){

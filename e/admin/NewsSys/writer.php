@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,24 +16,24 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"writer");
 
-//------------------å¢åŠ ä½œè€…
+//------------------Ôö¼Ó×÷Õß
 function AddWriter($writer,$email,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$writer)
 	{printerror("EmptyWriter","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"writer");
 	$writer=hRepPostStr($writer,1);
 	$email=hRepPostStr($email,1);
 	$sql=$empire->query("insert into {$dbtbpre}enewswriter(writer,email) values('$writer','$email');");
 	$lastid=$empire->lastid();
-	GetConfig();//æ›´æ–°ç¼“å­˜
+	GetConfig();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("wid=".$lastid."<br>writer=".$writer);
 		printerror("AddWriterSuccess","writer.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -41,21 +41,21 @@ function AddWriter($writer,$email,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//----------------ä¿®æ”¹ä½œè€…
+//----------------ĞŞ¸Ä×÷Õß
 function EditWriter($wid,$writer,$email,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$writer||!$wid)
 	{printerror("EmptyWriter","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"writer");
 	$wid=(int)$wid;
 	$writer=hRepPostStr($writer,1);
 	$email=hRepPostStr($email,1);
 	$sql=$empire->query("update {$dbtbpre}enewswriter set writer='$writer',email='$email' where wid='$wid'");
-	GetConfig();//æ›´æ–°ç¼“å­˜
+	GetConfig();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("wid=".$wid."<br>writer=".$writer);
 		printerror("EditWriterSuccess","writer.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -63,20 +63,20 @@ function EditWriter($wid,$writer,$email,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//---------------åˆ é™¤ä½œè€…
+//---------------É¾³ı×÷Õß
 function DelWriter($wid,$userid,$username){
 	global $empire,$dbtbpre;
 	$wid=(int)$wid;
 	if(!$wid)
 	{printerror("NotDelWid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"writer");
 	$r=$empire->fetch1("select writer from {$dbtbpre}enewswriter where wid='$wid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewswriter where wid='$wid'");
-	GetConfig();//æ›´æ–°ç¼“å­˜
+	GetConfig();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("wid=".$wid."<br>writer=".$r[writer]);
 		printerror("DelWriterSuccess","writer.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -115,9 +115,9 @@ else
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $search='';
 $search.=$ecms_hashur['ehref'];
 $totalquery="select count(*) as total from {$dbtbpre}enewswriter";
@@ -131,39 +131,39 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ä½œè€…</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí×÷Õß</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="writer.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä½œè€…</a></td>
+    <td>Î»ÖÃ£º<a href="writer.php<?=$ecms_hashur['whehref']?>">¹ÜÀí×÷Õß</a></td>
   </tr>
 </table>
 <form name="form1" method="post" action="writer.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td height="25">å¢åŠ ä½œè€…: 
+      <td height="25">Ôö¼Ó×÷Õß: 
         <input name=enews type=hidden id="enews" value=AddWriter>
         </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> ä½œè€…åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> ×÷ÕßÃû³Æ: 
         <input name="writer" type="text" id="writer" value="<?=$addwritername?>">
-        è”ç³»é‚®ç®±: 
+        ÁªÏµÓÊÏä: 
         <input name="email" type="text" id="email" value="mailto:" size="36"> 
-        <input type="submit" name="Submit" value="å¢åŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td width="70%" height="25">ä½œè€…</td>
-    <td width="30%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="70%" height="25">×÷Õß</td>
+    <td width="30%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -174,15 +174,15 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <input type=hidden name=enews value=EditWriter>
     <input type=hidden name=wid value=<?=$r[wid]?>>
     <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
-      <td height="25">ä½œè€…åç§°: 
+      <td height="25">×÷ÕßÃû³Æ: 
         <input name="writer" type="text" id="writer" value="<?=$r[writer]?>">
-        è”ç³»é‚®ç®±: 
+        ÁªÏµÓÊÏä: 
         <input name="email" type="text" id="email" value="<?=$r[email]?>" size="30"> 
       </td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="if(confirm('ç¡®è®¤è¦åˆ é™¤?')){self.location.href='writer.php?enews=DelWriter&wid=<?=$r[wid]?><?=$ecms_hashur['href']?>';}">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="if(confirm('È·ÈÏÒªÉ¾³ı?')){self.location.href='writer.php?enews=DelWriter&wid=<?=$r[wid]?><?=$ecms_hashur['href']?>';}">
         </div></td>
     </tr>
   </form>

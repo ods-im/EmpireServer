@@ -3,14 +3,14 @@ require("../class/connect.php");
 require("../class/db_sql.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//å…³é—­æŠ•ç¨¿
+//¹Ø±ÕÍ¶¸å
 if($public_r['addnews_ok'])
 {
 	printerror("CloseQAdd","",1);
 }
-//éªŒè¯æœ¬æ—¶é—´å…è®¸æ“ä½œ
+//ÑéÖ¤±¾Ê±¼äÔÊĞí²Ù×÷
 eCheckTimeCloseDo('info');
-//éªŒè¯IP
+//ÑéÖ¤IP
 eCheckAccessDoIp('postinfo');
 $mid=(int)$_GET['mid'];
 if(empty($mid))
@@ -26,10 +26,10 @@ $muserid=(int)getcvar('mluserid');
 $musername=RepPostVar(getcvar('mlusername'));
 if(empty($musername))
 {
-	$musername="æ¸¸å®¢";
+	$musername="ÓÎ¿Í";
 }
 $classjs=$public_r['newsurl']."d/js/js/addinfo".$mid.".js";
-//å¯¼å…¥æ¨¡æ¿
+//µ¼ÈëÄ£°å
 require(ECMS_PATH.'e/template/DoInfo/ChangeClass.php');
 db_close();
 $empire=null;

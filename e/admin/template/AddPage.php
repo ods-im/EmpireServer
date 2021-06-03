@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"userpage");
 $gid=(int)$_GET['gid'];
 if(!$gid)
@@ -26,22 +26,22 @@ $cid=ehtmlspecialchars($_GET['cid']);
 $enews=ehtmlspecialchars($_GET['enews']);
 $r[path]='../../page.html';
 $r['tempid']=0;
-$url="<a href=ListPage.php".$ecms_hashur['whehref'].">ç®¡ç†è‡ªå®šä¹‰é¡µé¢</a>&nbsp;>&nbsp;å¢åŠ è‡ªå®šä¹‰é¡µé¢";
-//å¤åˆ¶
+$url="<a href=ListPage.php".$ecms_hashur['whehref'].">¹ÜÀí×Ô¶¨ÒåÒ³Ãæ</a>&nbsp;>&nbsp;Ôö¼Ó×Ô¶¨ÒåÒ³Ãæ";
+//¸´ÖÆ
 if($enews=="AddUserpage"&&$_GET['docopy'])
 {
 	$id=(int)$_GET['id'];
 	$r=$empire->fetch1("select id,title,path,pagetext,classid,pagetitle,pagekeywords,pagedescription,tempid from {$dbtbpre}enewspage where id='$id'");
-	$url="<a href=ListPage.php".$ecms_hashur['whehref'].">ç®¡ç†è‡ªå®šä¹‰é¡µé¢</a>&nbsp;>&nbsp;å¤åˆ¶è‡ªå®šä¹‰é¡µé¢ï¼š<b>".$r[title]."</b>";
+	$url="<a href=ListPage.php".$ecms_hashur['whehref'].">¹ÜÀí×Ô¶¨ÒåÒ³Ãæ</a>&nbsp;>&nbsp;¸´ÖÆ×Ô¶¨ÒåÒ³Ãæ£º<b>".$r[title]."</b>";
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditUserpage")
 {
 	$id=(int)$_GET['id'];
 	$r=$empire->fetch1("select id,title,path,pagetext,classid,pagetitle,pagekeywords,pagedescription,tempid from {$dbtbpre}enewspage where id='$id'");
-	$url="<a href=ListPage.php".$ecms_hashur['whehref'].">ç®¡ç†è‡ªå®šä¹‰é¡µé¢</a>&nbsp;>&nbsp;ä¿®æ”¹è‡ªå®šä¹‰é¡µé¢ï¼š<b>".$r[title]."</b>";
+	$url="<a href=ListPage.php".$ecms_hashur['whehref'].">¹ÜÀí×Ô¶¨ÒåÒ³Ãæ</a>&nbsp;>&nbsp;ĞŞ¸Ä×Ô¶¨ÒåÒ³Ãæ£º<b>".$r[title]."</b>";
 }
-//æ¨¡å¼
+//Ä£Ê½
 $pagemod=1;
 if($r['tempid'])
 {
@@ -51,7 +51,7 @@ if($_GET['ChangePagemod'])
 {
 	$pagemod=(int)$_GET['ChangePagemod'];
 }
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewspageclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -65,7 +65,7 @@ while($cr=$empire->fetch($csql))
 }
 if($pagemod==2)
 {
-//æ¨¡æ¿
+//Ä£°å
 $pagetempsql=$empire->query("select tempid,tempname from ".GetTemptb("enewspagetemp")." order by tempid");
 while($pagetempr=$empire->fetch($pagetempsql))
 {
@@ -81,9 +81,9 @@ while($pagetempr=$empire->fetch($pagetempsql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<title>å¢åŠ ç”¨æˆ·è‡ªå®šä¹‰é¡µé¢</title>
+<title>Ôö¼ÓÓÃ»§×Ô¶¨ÒåÒ³Ãæ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function ReturnHtml(html)
@@ -107,7 +107,7 @@ function tempturnit(ss)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <br>
@@ -115,72 +115,72 @@ function tempturnit(ss)
   <form name="form1" method="post" action="../ecmscom.php">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å¢åŠ ç”¨æˆ·è‡ªå®šä¹‰é¡µé¢ 
+      <td height="25" colspan="2">Ôö¼ÓÓÃ»§×Ô¶¨ÒåÒ³Ãæ 
         <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> <input name="id" type="hidden" id="id" value="<?=$id?>"> 
         <input name="oldpath" type="hidden" id="oldpath" value="<?=$r[path]?>"> 
         <input name="cid" type="hidden" id="cid" value="<?=$cid?>"> <input name="gid" type="hidden" id="gid" value="<?=$gid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">é¡µé¢æ¨¡å¼ï¼š</td>
+      <td height="25">Ò³ÃæÄ£Ê½£º</td>
       <td height="25"><input type="radio" name="pagemod" value="1" onclick="self.location.href='AddPage.php?enews=<?=$enews?>&id=<?=$id?>&cid=<?=$cid?>&docopy=<?=RepPostStr($_GET['docopy'],1)?>&gid=<?=$gid?>&ChangePagemod=1<?=$ecms_hashur['ehref']?>';"<?=$pagemod==1?' checked':''?>>
-        ç›´æ¥é¡µé¢å¼ 
+        Ö±½ÓÒ³ÃæÊ½ 
         <input type="radio" name="pagemod" value="2" onclick="self.location.href='AddPage.php?enews=<?=$enews?>&id=<?=$id?>&cid=<?=$cid?>&docopy=<?=RepPostStr($_GET['docopy'],1)?>&gid=<?=$gid?>&ChangePagemod=2<?=$ecms_hashur['ehref']?>';"<?=$pagemod==2?' checked':''?>>
-        é‡‡ç”¨æ¨¡æ¿å¼</td>
+        ²ÉÓÃÄ£°åÊ½</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">é¡µé¢åç§°(*)</td>
+      <td width="19%" height="25">Ò³ÃæÃû³Æ(*)</td>
       <td width="81%" height="25"> <input name="title" type="text" id="title" value="<?=$r[title]?>" size="42"> 
-        <font color="#666666">(å¦‚ï¼šè”ç³»æˆ‘ä»¬)</font></td>
+        <font color="#666666">(Èç£ºÁªÏµÎÒÃÇ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ–‡ä»¶å(*)</td>
+      <td height="25">ÎÄ¼şÃû(*)</td>
       <td height="25"><input name="path" type="text" id="path" value="<?=$r[path]?>" size="42"> 
-        <input type="button" name="Submit4" value="é€‰æ‹©ç›®å½•" onclick="window.open('../file/ChangePath.php?returnform=opener.document.form1.path.value<?=$ecms_hashur['ehref']?>','','width=400,height=500,scrollbars=yes');"> 
-        <font color="#666666">(å¦‚ï¼š../../about.htmlï¼Œæ”¾äºæ ¹ç›®å½•)</font></td>
+        <input type="button" name="Submit4" value="Ñ¡ÔñÄ¿Â¼" onclick="window.open('../file/ChangePath.php?returnform=opener.document.form1.path.value<?=$ecms_hashur['ehref']?>','','width=400,height=500,scrollbars=yes');"> 
+        <font color="#666666">(Èç£º../../about.html£¬·ÅÓÚ¸ùÄ¿Â¼)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ‰€å±åˆ†ç±»</td>
+      <td height="25">ËùÊô·ÖÀà</td>
       <td height="25"><select name="classid" id="classid">
-          <option value="0">ä¸éš¶å±äºä»»ä½•ç±»åˆ«</option>
+          <option value="0">²»Á¥ÊôÓÚÈÎºÎÀà±ğ</option>
           <?=$cstr?>
-        </select> <input type="button" name="Submit6222322" value="ç®¡ç†åˆ†ç±»" onclick="window.open('PageClass.php<?=$ecms_hashur['whehref']?>');"></td>
+        </select> <input type="button" name="Submit6222322" value="¹ÜÀí·ÖÀà" onclick="window.open('PageClass.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
 	<?php
 	if($pagemod==2)
 	{
 	?>
     <tr bgcolor="#FFFFFF">
-      <td height="25">ä½¿ç”¨çš„æ¨¡æ¿</td>
+      <td height="25">Ê¹ÓÃµÄÄ£°å</td>
       <td height="25"><select name="tempid" id="tempid">
           <?=$pagetemp?>
         </select> 
-        <input type="button" name="Submit62223" value="ç®¡ç†è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿" onclick="window.open('../template/ListPagetemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>');"></td>
+        <input type="button" name="Submit62223" value="¹ÜÀí×Ô¶¨ÒåÒ³ÃæÄ£°å" onclick="window.open('../template/ListPagetemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>');"></td>
     </tr>
 	<?php
 	}
 	?>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç½‘é¡µæ ‡é¢˜</td>
+      <td height="25">ÍøÒ³±êÌâ</td>
       <td height="25"><input name="pagetitle" type="text" id="pagetitle" value="<?=ehtmlspecialchars(stripSlashes($r[pagetitle]))?>" size="42"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç½‘é¡µå…³é”®è¯</td>
+      <td height="25">ÍøÒ³¹Ø¼ü´Ê</td>
       <td height="25"><input name="pagekeywords" type="text" id="pagekeywords" value="<?=ehtmlspecialchars(stripSlashes($r[pagekeywords]))?>" size="42"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç½‘é¡µæè¿°</td>
+      <td height="25">ÍøÒ³ÃèÊö</td>
       <td height="25"><input name="pagedescription" type="text" id="pagedescription" value="<?=ehtmlspecialchars(stripSlashes($r[pagedescription]))?>" size="42"></td>
     </tr>
 	<?php
 	if($pagemod==2)
 	{
-		//--------------------htmlç¼–è¾‘å™¨
+		//--------------------html±à¼­Æ÷
 		include('../ecmseditor/eshoweditor.php');
 		$loadeditorjs=ECMS_ShowEditorJS('../ecmseditor/infoeditor/');
 	?>
 		<?=$loadeditorjs?>
 	<tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top"><strong>é¡µé¢å†…å®¹</strong>(*)</td>
+      <td height="25" valign="top"><strong>Ò³ÃæÄÚÈİ</strong>(*)</td>
       <td height="25"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
@@ -194,8 +194,8 @@ function tempturnit(ss)
 	{
 	?>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top"><strong>é¡µé¢å†…å®¹</strong>(*)</td>
-      <td height="25">è¯·å°†é¡µé¢å†…å®¹<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.pagetext.value);document.form1.pagetext.select()" title="ç‚¹å‡»å¤åˆ¶æ¨¡æ¿å†…å®¹"><strong>å¤åˆ¶åˆ°Dreamweaver(æ¨è)</strong></a>æˆ–è€…ä½¿ç”¨<a href="#ecms" onclick="window.open('editor.php?getvar=opener.document.form1.pagetext.value&returnvar=opener.document.form1.pagetext.value&fun=ReturnHtml<?=$ecms_hashur['ehref']?>','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>æ¨¡æ¿åœ¨çº¿ç¼–è¾‘</strong></a>è¿›è¡Œå¯è§†åŒ–ç¼–è¾‘</td>
+      <td height="25" valign="top"><strong>Ò³ÃæÄÚÈİ</strong>(*)</td>
+      <td height="25">Çë½«Ò³ÃæÄÚÈİ<a href="#ecms" onclick="window.clipboardData.setData('Text',document.form1.pagetext.value);document.form1.pagetext.select()" title="µã»÷¸´ÖÆÄ£°åÄÚÈİ"><strong>¸´ÖÆµ½Dreamweaver(ÍÆ¼ö)</strong></a>»òÕßÊ¹ÓÃ<a href="#ecms" onclick="window.open('editor.php?getvar=opener.document.form1.pagetext.value&returnvar=opener.document.form1.pagetext.value&fun=ReturnHtml<?=$ecms_hashur['ehref']?>','edittemp','width=880,height=600,scrollbars=auto,resizable=yes');"><strong>Ä£°åÔÚÏß±à¼­</strong></a>½øĞĞ¿ÉÊÓ»¯±à¼­</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2" valign="top"><div align="center"> 
@@ -207,7 +207,7 @@ function tempturnit(ss)
 	?>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
 	</form>
 	<?php
@@ -215,33 +215,33 @@ function tempturnit(ss)
 	{
 	?>
 	<tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="2">&nbsp;&nbsp;[<a href="#ecms" onclick="tempturnit(showtempvar);">æ˜¾ç¤ºæ¨¡æ¿å˜é‡è¯´æ˜</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('EnewsBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=500,scrollbars=yes,resizable=yes');">æŸ¥çœ‹æ¨¡æ¿æ ‡ç­¾è¯­æ³•</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹JSè°ƒç”¨åœ°å€</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListTempvar.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹å…¬å…±æ¨¡æ¿å˜é‡</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListBqtemp.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹æ ‡ç­¾æ¨¡æ¿</a>]</td>
+      <td height="25" colspan="2">&nbsp;&nbsp;[<a href="#ecms" onclick="tempturnit(showtempvar);">ÏÔÊ¾Ä£°å±äÁ¿ËµÃ÷</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('EnewsBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=500,scrollbars=yes,resizable=yes');">²é¿´Ä£°å±êÇ©Óï·¨</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´JSµ÷ÓÃµØÖ·</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListTempvar.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´¹«¹²Ä£°å±äÁ¿</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListBqtemp.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´±êÇ©Ä£°å</a>]</td>
     </tr>
     <tr bgcolor="#FFFFFF" id="showtempvar" style="display:none"> 
       <td height="25" colspan="2"><table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
           <tr bgcolor="#FFFFFF"> 
             <td width="33%" height="25"> <input name="textfield" type="text" value="[!--pagetitle--]">
-              : ç½‘é¡µæ ‡é¢˜</td>
+              : ÍøÒ³±êÌâ</td>
             <td width="34%"><input name="textfield2" type="text" value="[!--pagekeywords--]">
-              : ç½‘é¡µå…³é”®è¯</td>
+              : ÍøÒ³¹Ø¼ü´Ê</td>
             <td width="33%"><input name="textfield3" type="text" value="[!--pagedescription--]">
-              : ç½‘é¡µæè¿°</td>
+              : ÍøÒ³ÃèÊö</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td height="25"><input name="textfield322" type="text" value="[!--pagename--]">
-              : é¡µé¢åç§°</td>
+              : Ò³ÃæÃû³Æ</td>
             <td><input name="textfield3222" type="text" value="[!--pageid--]">
-              : é¡µé¢ID</td>
+              : Ò³ÃæID</td>
             <td><input name="textfield4" type="text" value="[!--news.url--]">
-              : ç½‘ç«™åœ°å€</td>
+              : ÍøÕ¾µØÖ·</td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td height="25"><strong>æ”¯æŒå…¬å…±æ¨¡æ¿å˜é‡</strong></td>
-            <td><strong>æ”¯æŒæ‰€æœ‰æ¨¡æ¿æ ‡ç­¾</strong></td>
+            <td height="25"><strong>Ö§³Ö¹«¹²Ä£°å±äÁ¿</strong></td>
+            <td><strong>Ö§³ÖËùÓĞÄ£°å±êÇ©</strong></td>
             <td>&nbsp;</td>
           </tr>
         </table></td>

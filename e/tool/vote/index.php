@@ -18,13 +18,13 @@ $r_exp="\r\n";
 $f_exp="::::::";
 if($r['voteclass'])
 {
-	$voteclass="å¤šé€‰";
+	$voteclass="¶àÑ¡";
 }
 else
 {
-	$voteclass="å•é€‰";
+	$voteclass="µ¥Ñ¡";
 }
-//å¯¼å…¥æ¨¡æ¿
+//µ¼ÈëÄ£°å
 require(ECMS_PATH.'e/template/tool/vote.php');
 db_close();
 $empire=null;

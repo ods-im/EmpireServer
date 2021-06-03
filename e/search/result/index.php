@@ -5,7 +5,7 @@ require("../../data/dbcache/class.php");
 require("../../class/q_functions.php");
 require "../".LoadLang("pub/fun.php");
 $editor=1;
-eCheckCloseMods('search');//å…³é—­æ¨¡å—
+eCheckCloseMods('search');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
 $getvar=$_GET['getvar'];
@@ -17,7 +17,7 @@ else
 {
 	$getfrom="../../../search/";
 }
-//æœç´¢ç»“æœ
+//ËÑË÷½á¹û
 $searchid=(int)$_GET['searchid'];
 if(empty($searchid))
 {
@@ -31,9 +31,9 @@ if(empty($search_r['searchid'])||InfoIsInTable($search_r[tbname]))
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$page_line=$public_r['search_pagenum'];//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$line=$public_r['search_num'];//æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$page_line=$public_r['search_pagenum'];//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$line=$public_r['search_num'];//Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $search="&searchid=".$searchid;
 $myorder=$search_r[orderby];
 if(empty($search_r[myorder]))
@@ -50,7 +50,7 @@ $query="select * from {$dbtbpre}ecms_".$search_r[tbname].($add?' where '.substr(
 $query.=" order by ".$myorder." limit $offset,$line";
 $sql=$empire->query($query);
 $listpage=page1($num,$line,$page_line,$start,$page,$search);
-//å–å¾—æ¨¡æ¿
+//È¡µÃÄ£°å
 if($search_r['tempid'])
 {
 	$tempr=$empire->fetch1("select temptext,subnews,listvar,rownum,showdate,modid,subtitle,docode from ".GetTemptb("enewssearchtemp")." where tempid='".$search_r['tempid']."' limit 1");
@@ -64,7 +64,7 @@ else
 	$tempr=$empire->fetch1("select temptext,subnews,listvar,rownum,showdate,modid,subtitle,docode from ".GetTemptb("enewssearchtemp")." where tempid='".$class_r[$search_r[trueclassid]][searchtempid]."' limit 1");
 }
 $have_class=1;
-//æ›¿æ¢å…¬å…±æ¨¡æ¿å˜é‡
+//Ìæ»»¹«¹²Ä£°å±äÁ¿
 $listtemp=$tempr[temptext];
 if($public_r['searchtempvar'])
 {
@@ -88,9 +88,9 @@ $subtitle=$tempr[subtitle];
 $docode=$tempr[docode];
 $modid=$tempr[modid];
 $listvar=str_replace('[!--news.url--]',$public_r[newsurl],$tempr[listvar]);
-//å­—æ®µ
+//×Ö¶Î
 $ret_r=ReturnReplaceListF($tempr[modid]);
-//å–å¾—åˆ—è¡¨æ¨¡æ¿
+//È¡µÃÁĞ±íÄ£°å
 $list_exp="[!--empirenews.listtemp--]";
 $list_r=explode($list_exp,$listtemp);
 $listtext=$list_r[1];
@@ -98,11 +98,11 @@ $no=$offset+1;
 $changerow=1;
 while($r=$empire->fetch($sql))
 {
-	//æ›¿æ¢åˆ—è¡¨å˜é‡
+	//Ìæ»»ÁĞ±í±äÁ¿
 	$repvar=ReplaceListVars($no,$listvar,$subnews,$subtitle,$formatdate,$url,$have_class,$r,$ret_r,$docode);
 	$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 	$changerow+=1;
-	//è¶…è¿‡è¡Œæ•°
+	//³¬¹ıĞĞÊı
 	if($changerow>$rownum)
 	{
 		$changerow=1;
@@ -113,7 +113,7 @@ while($r=$empire->fetch($sql))
 }
 db_close();
 $empire=null;
-//å¤šä½™æ•°æ®
+//¶àÓàÊı¾İ
 if($changerow<=$rownum&&$listtext<>$list_r[1])
 {
 	$string.=$listtext;

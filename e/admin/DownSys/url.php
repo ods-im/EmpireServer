@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,15 +15,15 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"downurl");
 
-//å¢åŠ urlåœ°å€
+//Ôö¼ÓurlµØÖ·
 function AddDownurl($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add[urlname]))
 	{printerror("EmptyDownurl","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"downurl");
 	$downtype=(int)$add['downtype'];
 	$add['urlname']=hRepPostStr($add['urlname'],1);
@@ -32,7 +32,7 @@ function AddDownurl($add,$userid,$username){
 	$urlid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("urlid=".$urlid);
 		printerror("AddDownurlSuccess","url.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -40,13 +40,13 @@ function AddDownurl($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹urlåœ°å€
+//ĞŞ¸ÄurlµØÖ·
 function EditDownurl($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[urlid]=(int)$add[urlid];
 	if(empty($add[urlname])||empty($add[urlid]))
 	{printerror("EmptyDownurl","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"downurl");
 	$downtype=(int)$add['downtype'];
 	$add['urlname']=hRepPostStr($add['urlname'],1);
@@ -54,7 +54,7 @@ function EditDownurl($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsdownurlqz set urlname='$add[urlname]',url='$add[url]',downtype='$downtype' where urlid='$add[urlid]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("urlid=".$add[urlid]);
 		printerror("EditDownurlSuccess","url.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -62,18 +62,18 @@ function EditDownurl($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤urlåœ°å€
+//É¾³ıurlµØÖ·
 function DelDownurl($urlid,$userid,$username){
 	global $empire,$dbtbpre;
 	$urlid=(int)$urlid;
 	if(empty($urlid))
 	{printerror("NotChangeDownurlid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"downurl");
 	$sql=$empire->query("delete from {$dbtbpre}enewsdownurlqz where urlid='$urlid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("urlid=".$urlid);
 		printerror("DelDownurlSuccess","url.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -88,17 +88,17 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ å‰ç¼€
+//Ôö¼ÓÇ°×º
 if($enews=="AddDownurl")
 {
 	AddDownurl($_POST,$logininid,$loginin);
 }
-//ä¿®æ”¹å‰ç¼€
+//ĞŞ¸ÄÇ°×º
 elseif($enews=="EditDownurl")
 {
 	EditDownurl($_POST,$logininid,$loginin);
 }
-//åˆ é™¤å‰ç¼€
+//É¾³ıÇ°×º
 elseif($enews=="DelDownurl")
 {
 	$urlid=$_GET['urlid'];
@@ -111,15 +111,15 @@ $sql=$empire->query("select urlid,urlname,url,downtype from {$dbtbpre}enewsdownu
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ä¸‹è½½åœ°å€å‰ç¼€</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÏÂÔØµØÖ·Ç°×º</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="url.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¸‹è½½åœ°å€å‰ç¼€</a></td>
+    <td>Î»ÖÃ£º<a href="url.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÏÂÔØµØÖ·Ç°×º</a></td>
   </tr>
 </table>
 <form name="form1" method="post" action="url.php">
@@ -127,25 +127,25 @@ $sql=$empire->query("select urlid,urlname,url,downtype from {$dbtbpre}enewsdownu
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr> 
-      <td height="25" class="header">å¢åŠ ä¸‹è½½åœ°å€å‰ç¼€:</td>
+      <td height="25" class="header">Ôö¼ÓÏÂÔØµØÖ·Ç°×º:</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> Ãû³Æ: 
         <input name="urlname" type="text" id="urlname">
-        åœ°å€: 
+        µØÖ·: 
         <input name="url" type="text" id="url" value="http://" size="38">
-        ä¸‹è½½æ–¹å¼: <select name="downtype" id="downtype">
+        ÏÂÔØ·½Ê½: <select name="downtype" id="downtype">
           <option value="0">HEADER</option>
           <option value="1">META</option>
           <option value="2">READ</option>
-        </select> <input type="submit" name="Submit" value="å¢åŠ "> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        </select> <input type="submit" name="Submit" value="Ôö¼Ó"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td width="74%" height="25">ä¸‹è½½åœ°å€å‰ç¼€ç®¡ç†:</td>
-    <td width="26%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="74%" height="25">ÏÂÔØµØÖ·Ç°×º¹ÜÀí:</td>
+    <td width="26%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -156,9 +156,9 @@ $sql=$empire->query("select urlid,urlname,url,downtype from {$dbtbpre}enewsdownu
   <input type=hidden name=enews value=EditDownurl>
   <input type=hidden name=urlid value=<?=$r[urlid]?>>
   <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
-      <td height="25">åç§°: 
+      <td height="25">Ãû³Æ: 
         <input name="urlname" type="text" id="urlname" value="<?=$r[urlname]?>">
-        åœ°å€: 
+        µØÖ·: 
         <input name="url" type="text" id="url" value="<?=$r[url]?>" size="30">
         <select name="downtype" id="downtype">
           <option value="0"<?=$r['downtype']==0?' selected':''?>>HEADER</option>
@@ -166,8 +166,8 @@ $sql=$empire->query("select urlid,urlname,url,downtype from {$dbtbpre}enewsdownu
           <option value="2"<?=$r['downtype']==2?' selected':''?>>READ</option>
         </select> </td>
     <td height="25"><div align="center">
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">&nbsp;
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="if(confirm('ç¡®è®¤è¦åˆ é™¤?')){self.location.href='url.php?enews=DelDownurl&urlid=<?=$r[urlid]?><?=$ecms_hashur['href']?>';}">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">&nbsp;
+          <input type="button" name="Submit4" value="É¾³ı" onclick="if(confirm('È·ÈÏÒªÉ¾³ı?')){self.location.href='url.php?enews=DelDownurl&urlid=<?=$r[urlid]?><?=$ecms_hashur['href']?>';}">
         </div></td>
   </tr>
   </form>
@@ -180,12 +180,12 @@ $sql=$empire->query("select urlid,urlname,url,downtype from {$dbtbpre}enewsdownu
 <br>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" class=tableborder>
   <tr> 
-    <td height="26" bgcolor="#FFFFFF"><strong>ä¸‹è½½æ–¹å¼è¯´æ˜ï¼š</strong></td>
+    <td height="26" bgcolor="#FFFFFF"><strong>ÏÂÔØ·½Ê½ËµÃ÷£º</strong></td>
   </tr>
   <tr>
-    <td height="26" bgcolor="#FFFFFF"><strong>HEADERï¼š</strong>ä½¿ç”¨headerè½¬å‘ï¼Œé€šå¸¸è®¾ä¸ºè¿™ä¸ªã€‚<br>
-      <strong>METAï¼š</strong>ç›´æ¥è½¬è‡ªï¼Œå¦‚æœæ˜¯FTPåœ°å€æ¨èé€‰æ‹©è¿™ä¸ªã€‚<br>
-      <strong>READï¼š</strong>ä½¿ç”¨PHPç¨‹åºè¯»å–ï¼Œé˜²ç›—é“¾è¾ƒå¼ºï¼Œä½†è¾ƒå èµ„æºï¼ŒæœåŠ¡å™¨æœ¬åœ°å°æ–‡ä»¶å¯é€‰æ‹©ã€‚</td>
+    <td height="26" bgcolor="#FFFFFF"><strong>HEADER£º</strong>Ê¹ÓÃheader×ªÏò£¬Í¨³£ÉèÎªÕâ¸ö¡£<br>
+      <strong>META£º</strong>Ö±½Ó×ª×Ô£¬Èç¹ûÊÇFTPµØÖ·ÍÆ¼öÑ¡ÔñÕâ¸ö¡£<br>
+      <strong>READ£º</strong>Ê¹ÓÃPHP³ÌĞò¶ÁÈ¡£¬·ÀµÁÁ´½ÏÇ¿£¬µ«½ÏÕ¼×ÊÔ´£¬·şÎñÆ÷±¾µØĞ¡ÎÄ¼ş¿ÉÑ¡Ôñ¡£</td>
   </tr>
 </table>
 </body>

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,9 +15,9 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"file");
-$url="<a href=TranMoreFile.php".$ecms_hashur['whehref'].">æ‰¹é‡ä¸Šä¼ é™„ä»¶</a>";
+$url="<a href=TranMoreFile.php".$ecms_hashur['whehref'].">ÅúÁ¿ÉÏ´«¸½¼ş</a>";
 $filenum=(int)$_GET['filenum'];
 if(empty($filenum))
 {$filenum=10;}
@@ -29,15 +29,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¸Šä¼ é™„ä»¶</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÉÏ´«¸½¼ş</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="31%" height="25">ä½ç½®ï¼š 
+    <td width="31%" height="25">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td width="69%"><div align="right" class="emenubutton">
@@ -49,10 +49,10 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25">æ‰¹é‡ä¸Šä¼ é™„ä»¶</td>
+      <td height="25">ÅúÁ¿ÉÏ´«¸½¼ş</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">è¯·é€‰æ‹©è¦ä¸Šä¼ çš„é™„ä»¶ä¸ªæ•°ï¼š <select name="filenum" id="filenum" onchange=window.location='TranMoreFile.php?<?=$ecms_hashur['ehref']?>&filenum='+this.options[this.selectedIndex].value>
+      <td height="25" bgcolor="#FFFFFF">ÇëÑ¡ÔñÒªÉÏ´«µÄ¸½¼ş¸öÊı£º <select name="filenum" id="filenum" onchange=window.location='TranMoreFile.php?<?=$ecms_hashur['ehref']?>&filenum='+this.options[this.selectedIndex].value>
           <option value="1"<?=$n1?>>1</option>
           <option value="2"<?=$n2?>>2</option>
           <option value="3"<?=$n3?>>3</option>
@@ -74,19 +74,19 @@ $empire=null;
           <option value="19"<?=$n19?>>19</option>
           <option value="20"<?=$n20?>>20</option>
         </select>
-        ï¼Œä¸Šä¼ é™„ä»¶ç±»åˆ«ï¼š 
+        £¬ÉÏ´«¸½¼şÀà±ğ£º 
         <select name="type">
-        <option value="1">å›¾ç‰‡</option>
-        <option value="2">Flashæ–‡ä»¶</option>
-<option value="3">å¤šåª’ä½“æ–‡ä»¶</option>
-        <option value="0">å…¶ä»–é™„ä»¶</option>
+        <option value="1">Í¼Æ¬</option>
+        <option value="2">FlashÎÄ¼ş</option>
+<option value="3">¶àÃ½ÌåÎÄ¼ş</option>
+        <option value="0">ÆäËû¸½¼ş</option>
       </select></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <table width="100%" border="0" cellpadding="3" cellspacing="1">
           <tr bgcolor="#DBEAF5"> 
-            <td width="35%">æ–‡ä»¶</td>
-            <td width="65%">ç¼–å·ï¼ˆä¾¿äºç®¡ç†é™„ä»¶ï¼‰</td>
+            <td width="35%">ÎÄ¼ş</td>
+            <td width="65%">±àºÅ£¨±ãÓÚ¹ÜÀí¸½¼ş£©</td>
           </tr>
           <?
 		  for($i=0;$i<$filenum;$i++)
@@ -102,7 +102,7 @@ $empire=null;
         </table></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="å¼€å§‹ä¸Šä¼ "> 
+      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="¿ªÊ¼ÉÏ´«"> 
         <input name="enews" type="hidden" id="enews" value="TranMoreFile"></td>
     </tr>
   </table>

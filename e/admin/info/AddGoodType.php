@@ -7,7 +7,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,43 +16,43 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"class");
 $ttype=(int)$_GET['ttype'];
-$ttypetitle=$ttype==0?'æ¨è':'å¤´æ¡';
+$ttypetitle=$ttype==0?'ÍÆ¼ö':'Í·Ìõ';
 $enews=RepPostStr($_GET['enews'],1);
-$url="<a href='ListGoodType.php?ttype=".$ttype.$ecms_hashur['ehref']."'>ç®¡ç†".$ttypetitle."çº§åˆ«</a>&nbsp;>&nbsp;å¢åŠ ".$ttypetitle."çº§åˆ«";
-$postword="å¢åŠ ".$ttypetitle."çº§åˆ«";
+$url="<a href='ListGoodType.php?ttype=".$ttype.$ecms_hashur['ehref']."'>¹ÜÀí".$ttypetitle."¼¶±ğ</a>&nbsp;>&nbsp;Ôö¼Ó".$ttypetitle."¼¶±ğ";
+$postword="Ôö¼Ó".$ttypetitle."¼¶±ğ";
 $docopy=ehtmlspecialchars($_GET['docopy']);
-//åˆä½¿åŒ–æ•°æ®
+//³õÊ¹»¯Êı¾İ
 $tid=0;
 $r[myorder]=0;
 $r[levelid]=1;
 $r[showall]=0;
 $ecmsfirstpost=1;
-//å¤åˆ¶
+//¸´ÖÆ
 if($docopy)
 {
 	$tid=(int)$_GET['tid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsgoodtype where tid='$tid'");
-	$url="<a href='ListGoodType.php?ttype=".$ttype.$ecms_hashur['ehref']."'>ç®¡ç†".$ttypetitle."çº§åˆ«</a>&nbsp;>&nbsp;å¤åˆ¶".$ttypetitle."çº§åˆ«ï¼š".$r['tname'];
+	$url="<a href='ListGoodType.php?ttype=".$ttype.$ecms_hashur['ehref']."'>¹ÜÀí".$ttypetitle."¼¶±ğ</a>&nbsp;>&nbsp;¸´ÖÆ".$ttypetitle."¼¶±ğ£º".$r['tname'];
 	$r['tname'].='(1)';
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditGoodType")
 {
 	$ecmsfirstpost=0;
 	$tid=(int)$_GET['tid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsgoodtype where tid='$tid'");
-	$url="<a href='ListGoodType.php?ttype=".$ttype.$ecms_hashur['ehref']."'>ç®¡ç†".$ttypetitle."çº§åˆ«</a>&nbsp;>&nbsp;ä¿®æ”¹".$ttypetitle."çº§åˆ«ï¼š".$r['tname'];
-	$postword="ä¿®æ”¹".$ttypetitle."çº§åˆ«";
+	$url="<a href='ListGoodType.php?ttype=".$ttype.$ecms_hashur['ehref']."'>¹ÜÀí".$ttypetitle."¼¶±ğ</a>&nbsp;>&nbsp;ĞŞ¸Ä".$ttypetitle."¼¶±ğ£º".$r['tname'];
+	$postword="ĞŞ¸Ä".$ttypetitle."¼¶±ğ";
 }
 if($ecmsfirstpost==1)
 {
 	$maxr=$empire->fetch1("select levelid from {$dbtbpre}enewsgoodtype where ttype='$ttype' order by levelid desc limit 1");
 	$r['levelid']=$maxr['levelid']+1;
 }
-//ç”¨æˆ·ç»„
+//ÓÃ»§×é
 $group='';
 $groupsql=$empire->query("select groupid,groupname from {$dbtbpre}enewsgroup order by groupid");
 while($groupr=$empire->fetch($groupsql))
@@ -64,14 +64,14 @@ while($groupr=$empire->fetch($groupsql))
 	}
 	$group.="<option value='".$groupr[groupid]."'".$select.">".$groupr[groupname]."</option>";
 }
-//å½“å‰ä½¿ç”¨çš„æ¨¡æ¿ç»„
+//µ±Ç°Ê¹ÓÃµÄÄ£°å×é
 $thegid=GetDoTempGid();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title><?=$ttypetitle?>çº§åˆ«</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title><?=$ttypetitle?>¼¶±ğ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function selectalls(doselect,formvar)
@@ -90,7 +90,7 @@ function selectalls(doselect,formvar)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š 
+    <td>Î»ÖÃ£º 
       <?=$url?>
     </td>
   </tr>
@@ -108,51 +108,51 @@ function selectalls(doselect,formvar)
     </tr>
     
     <tr>
-      <td height="25" bgcolor="#FFFFFF"><?=$ttypetitle?>çº§åˆ«</td>
+      <td height="25" bgcolor="#FFFFFF"><?=$ttypetitle?>¼¶±ğ</td>
       <td bgcolor="#FFFFFF"><input name="levelid" type="text" id="levelid" value="<?=$r[levelid]?>" size="38">
-        <font color="#666666">(å¡«1~255ä¹‹é—´æ•°å­—)</font></td>
+        <font color="#666666">(Ìî1~255Ö®¼äÊı×Ö)</font></td>
     </tr>
     <tr> 
-      <td width="24%" height="25" bgcolor="#FFFFFF">çº§åˆ«åç§°</td>
+      <td width="24%" height="25" bgcolor="#FFFFFF">¼¶±ğÃû³Æ</td>
       <td width="76%" bgcolor="#FFFFFF"> <input name="tname" type="text" id="tname" value="<?=$r[tname]?>" size="38"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ’åº</td>
+      <td height="25" bgcolor="#FFFFFF">ÅÅĞò</td>
       <td bgcolor="#FFFFFF"><input name="myorder" type="text" id="myorder" value="<?=$r[myorder]?>" size="38"> 
-        <font color="#666666"> (å€¼è¶Šå¤§æ˜¾ç¤ºè¶Šå‰é¢)</font></td>
+        <font color="#666666"> (ÖµÔ½´óÏÔÊ¾Ô½Ç°Ãæ)</font></td>
     </tr>
     <tr>
-      <td height="25" valign="top" bgcolor="#FFFFFF">å¯é€‰æ‹©çš„ç”¨æˆ·ç»„<br>
+      <td height="25" valign="top" bgcolor="#FFFFFF">¿ÉÑ¡ÔñµÄÓÃ»§×é<br>
         <br>
-          <font color="#666666">(ä¸é€‰ä¸ºä¸é™ï¼Œ<br>
-          é€‰æ‹©å¤šä¸ªç”¨CTRL/SHIFT)</font></td>
+          <font color="#666666">(²»Ñ¡Îª²»ÏŞ£¬<br>
+          Ñ¡Ôñ¶à¸öÓÃCTRL/SHIFT)</font></td>
       <td bgcolor="#FFFFFF"><select name="groupid[]" size="8" multiple id="groupidselect" style="width:180">
         <?=$group?>
             </select>
-[<a href="#empirecms" onclick="selectalls(0,'groupidselect')">å…¨éƒ¨å–æ¶ˆ</a>]</td>
+[<a href="#empirecms" onclick="selectalls(0,'groupidselect')">È«²¿È¡Ïû</a>]</td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">åœ¨ç®¡ç†æ‰€æœ‰ä¿¡æ¯é¡µæ˜¾ç¤º</td>
+      <td height="25" bgcolor="#FFFFFF">ÔÚ¹ÜÀíËùÓĞĞÅÏ¢Ò³ÏÔÊ¾</td>
       <td bgcolor="#FFFFFF"><input type="radio" name="showall" value="0"<?=$r['showall']==0?' checked':''?>>
-        æ˜¯
+        ÊÇ
           <input type="radio" name="showall" value="1"<?=$r['showall']==1?' checked':''?>>
-        å¦</td>
+        ·ñ</td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">åªåœ¨è¿™äº›ç»ˆææ ç›®æ˜¾ç¤º</td>
+      <td height="25" bgcolor="#FFFFFF">Ö»ÔÚÕâĞ©ÖÕ¼«À¸Ä¿ÏÔÊ¾</td>
       <td bgcolor="#FFFFFF"><input name="showcid" type="text" id="showcid" value="<?=substr($r['showcid'],1,-1)?>" size="38">
-      <input type="button" name="Submit622232" value="ç®¡ç†æ ç›®" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>');">
-      <font color="#666666">(å¤šä¸ªæ ç›®IDç”¨åŠè§’é€—å·â€œ,â€éš”å¼€)</font></td>
+      <input type="button" name="Submit622232" value="¹ÜÀíÀ¸Ä¿" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>');">
+      <font color="#666666">(¶à¸öÀ¸Ä¿IDÓÃ°ë½Ç¶ººÅ¡°,¡±¸ô¿ª)</font></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">ä¸åœ¨è¿™äº›ç»ˆææ ç›®æ˜¾ç¤º</td>
+      <td height="25" bgcolor="#FFFFFF">²»ÔÚÕâĞ©ÖÕ¼«À¸Ä¿ÏÔÊ¾</td>
       <td bgcolor="#FFFFFF"><input name="hiddencid" type="text" id="hiddencid" value="<?=substr($r['hiddencid'],1,-1)?>" size="38">
-      <font color="#666666">(å¡«å†™ç»ˆææ ç›®IDï¼Œå¤šä¸ªæ ç›®IDç”¨åŠè§’é€—å·â€œ,â€éš”å¼€)</font></td>
+      <font color="#666666">(ÌîĞ´ÖÕ¼«À¸Ä¿ID£¬¶à¸öÀ¸Ä¿IDÓÃ°ë½Ç¶ººÅ¡°,¡±¸ô¿ª)</font></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <div align="center"></div></td>
-      <td bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="æäº¤"> &nbsp;&nbsp; 
-        <input type="reset" name="Submit2" value="é‡ç½®"> </td>
+      <td bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="Ìá½»"> &nbsp;&nbsp; 
+        <input type="reset" name="Submit2" value="ÖØÖÃ"> </td>
     </tr>
   </form>
 </table>

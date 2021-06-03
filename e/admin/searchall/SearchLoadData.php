@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,17 +15,17 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"searchall");
 $lid=$_GET['lid'];
 $count=count($lid);
 if(!$count)
 {
-	echo"<script>alert('è¯·è‡³å°‘é€‰æ‹©ä¸€ä¸ªæ•°æ®æº');window.close();</script>";
+	echo"<script>alert('ÇëÖÁÉÙÑ¡ÔñÒ»¸öÊı¾İÔ´');window.close();</script>";
 	exit();
 }
 $url="LoadSearchAll.php?".$ecms_hashur['href']."&enews=LoadSearchAll&lid=";
-echo"<link href='../adminstyle/".$loginadminstyleid."/adminstyle.css' rel='stylesheet' type='text/css'><center>å¯¼å…¥å…¨ç«™æœç´¢è¡¨çš„æ•°æ®æºæ€»ä¸ªæ•°ä¸º:<font color=red>$count</font>ä¸ª</center><br>";
+echo"<link href='../adminstyle/".$loginadminstyleid."/adminstyle.css' rel='stylesheet' type='text/css'><center>µ¼ÈëÈ«Õ¾ËÑË÷±íµÄÊı¾İÔ´×Ü¸öÊıÎª:<font color=red>$count</font>¸ö</center><br>";
 for($i=0;$i<$count;$i++)
 {
 	$id=intval($lid[$i]);
@@ -35,7 +35,7 @@ for($i=0;$i<$count;$i++)
 		continue;
 	}
 	$trueurl=$url.$id;
-	echo"<table width='100%' border=0 align=center cellpadding=3 cellspacing=1 class=tableborder><tr class=header><td>å¯¼å…¥æ•°æ®è¡¨ï¼š".$lr[tbname]."</td></tr><tr><td bgcolor='#ffffff'><iframe frameborder=0 height=35 id='lid".$id."' scrolling=no src=\"".$trueurl."\" width=\"100%\"></iframe></td></tr></table>";
+	echo"<table width='100%' border=0 align=center cellpadding=3 cellspacing=1 class=tableborder><tr class=header><td>µ¼ÈëÊı¾İ±í£º".$lr[tbname]."</td></tr><tr><td bgcolor='#ffffff'><iframe frameborder=0 height=35 id='lid".$id."' scrolling=no src=\"".$trueurl."\" width=\"100%\"></iframe></td></tr></table>";
 }
 db_close();
 $empire=null;

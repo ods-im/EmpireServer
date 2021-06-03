@@ -3,15 +3,15 @@ function Init(){
 
 	// Initicalize State String
 
-	WM_STATE[0]="æ’­æ”¾å·²ç»åœæ­¢";
-	WM_STATE[1]="æš‚åœæ’­æ”¾";
-	WM_STATE[2]="æ­£åœ¨æ’­æ”¾";
-	WM_STATE[3]="ç­‰å¾…åª’ä½“æµå¼€å§‹â€¦â€¦";
-	WM_STATE[4]="æ­£åœ¨å¿«è¿›â€¦â€¦";
-	WM_STATE[5]="æ­£åœ¨å¿«é€€â€¦â€¦";
-	WM_STATE[6]="æ­£åœ¨æœç´¢â€¦â€¦";
-	WM_STATE[7]="æ­£åœ¨æœç´¢â€¦â€¦";
-	WM_STATE[8]="æ²¡æœ‰æ‰“å¼€çš„åª’ä½“æµ";
+	WM_STATE[0]="²¥·ÅÒÑ¾­Í£Ö¹";
+	WM_STATE[1]="ÔİÍ£²¥·Å";
+	WM_STATE[2]="ÕıÔÚ²¥·Å";
+	WM_STATE[3]="µÈ´ıÃ½ÌåÁ÷¿ªÊ¼¡­¡­";
+	WM_STATE[4]="ÕıÔÚ¿ì½ø¡­¡­";
+	WM_STATE[5]="ÕıÔÚ¿ìÍË¡­¡­";
+	WM_STATE[6]="ÕıÔÚËÑË÷¡­¡­";
+	WM_STATE[7]="ÕıÔÚËÑË÷¡­¡­";
+	WM_STATE[8]="Ã»ÓĞ´ò¿ªµÄÃ½ÌåÁ÷";
 	WM_STATE[9]="Transitioning";
 	WM_STATE[10]="Ready";
 
@@ -42,14 +42,14 @@ function StreamMedia(){
 
 function StreamMonitor(){
 	if(Player.DisplaySize!=3){
-		strInfo="WindowsMedia æ ¼å¼ ";
+		strInfo="WindowsMedia ¸ñÊ½ ";
 		if (BROD!=1){
-			strInfo+="â€¦â€¦è§†é¢‘ç‚¹æ’­";
+			strInfo+="¡­¡­ÊÓÆµµã²¥";
 			if(!DRAG_POS&&GetStateFlag()==2){
 				myPosBar.style.left= TRACE_LEFT + Player.CurrentPosition/Player.Duration*TRACE_WIDTH-8;
 			}
 		}else{
-			strInfo+="â€¦â€¦ç½‘ç»œç›´æ’­";
+			strInfo+="¡­¡­ÍøÂçÖ±²¥";
 		}
 		strInfo+= GetStateString(GetStateFlag());//+(TRACE_LEFT+Player.CurrentPosition/Player.Duration*TRACE_WIDTH);
 		if(Player.PlayState==2){
@@ -60,7 +60,7 @@ function StreamMonitor(){
 			m_min=Math.round(m_min)%60;
 			ShowTime(m_hour,m_min,m_sec);
 			strInfo+="<BR>"
-			strInfo+= (" å¸¦å®½ï¼š"+Math.round(Player.Bandwidth/1000)+"Kbps ");
+			strInfo+= (" ´ø¿í£º"+Math.round(Player.Bandwidth/1000)+"Kbps ");
 			strInfo+=strMsg;
 		}
 		info.innerHTML=strInfo;
@@ -70,7 +70,7 @@ function StreamMonitor(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 //function _ShowInfo(){
-//	strInfo="çŠ¶æ€ï¼š";
+//	strInfo="×´Ì¬£º";
 //	strInfo=strInfo + GetStateString(GetStateFlag());
 //	info.innerHTML=strInfo;
 //	if(!DRAG_POS) 
@@ -82,7 +82,7 @@ function StreamMonitor(){
 /////////////////////////////////////////////////////////////////////////////////////////////
 function ShowBufferingPro(){
 	if(Player.BufferingProgress<100){
-		strMsg="æ­£åœ¨ç¼“å†²â€¦â€¦"+Player.BufferingProgress+"%";
+		strMsg="ÕıÔÚ»º³å¡­¡­"+Player.BufferingProgress+"%";
 		info.innerHTML=strMsg;
 		setTimeout('ShowBufferingPro()',100);
 	}else{
@@ -172,7 +172,7 @@ function SetMute(){
 
 	IS_NUTE=!IS_NUTE;
 	Player.Mute=IS_NUTE;
-	mutebar.alt=(IS_NUTE)?"è§£é™¤é™éŸ³":"é™éŸ³";
+	mutebar.alt=(IS_NUTE)?"½â³ı¾²Òô":"¾²Òô";
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -252,7 +252,7 @@ function Play(){
 
 	if (document.all.Player.PlayState==2||document.all.Player.OpenState<5) return;//if is playing
 	document.all.Player.Play();
-	document.all.playpause.alt="æ’­æ”¾";
+	document.all.playpause.alt="²¥·Å";
 //	document.all.playpause.src="images/pause_d.gif";
 
 }
@@ -262,7 +262,7 @@ function Pause(){
 
 	if (document.all.Player.PlayState!=2)  return;//if not playing	
 	document.all.Player.Pause();
-	document.all.playpause.alt="æš‚åœ";
+	document.all.playpause.alt="ÔİÍ£";
 //	document.all.playpause.src="images/play_d.gif";
 }
 
@@ -272,7 +272,7 @@ function Stop(){
 	if (document.all.Player.PlayState==0||document.all.Player.PlayState==8)
 		return;
 	document.all.Player.Stop();
-	document.all.playpause.alt="æ’­æ”¾";
+	document.all.playpause.alt="²¥·Å";
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////

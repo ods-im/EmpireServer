@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,14 +15,14 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"m");
 $enews=$_GET['enews'];
 if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¯¼å‡ºæ¨¡å‹
+//µ¼³öÄ£ĞÍ
 if($enews=="LoadOutMod")
 {
 	include("../../class/moddofun.php");
@@ -34,42 +34,42 @@ if(!$tid||!$tbname)
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-$url="æ•°æ®è¡¨:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListM.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">ç®¡ç†ç³»ç»Ÿæ¨¡å‹</a>";
+$url="Êı¾İ±í:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListM.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">¹ÜÀíÏµÍ³Ä£ĞÍ</a>";
 $sql=$empire->query("select * from {$dbtbpre}enewsmod where tid='$tid' order by myorder,mid");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ç³»ç»Ÿæ¨¡å‹</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÏµÍ³Ä£ĞÍ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <br>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td class="emenubutton"><input type="button" name="Submit2" value="å¢åŠ ç³»ç»Ÿæ¨¡å‹" onclick="self.location.href='AddM.php?enews=AddM&tid=<?=$tid?>&tbname=<?=$tbname?><?=$ecms_hashur['ehref']?>';">
+    <td class="emenubutton"><input type="button" name="Submit2" value="Ôö¼ÓÏµÍ³Ä£ĞÍ" onclick="self.location.href='AddM.php?enews=AddM&tid=<?=$tid?>&tbname=<?=$tbname?><?=$ecms_hashur['ehref']?>';">
       &nbsp;&nbsp;&nbsp;
-      <input type="button" name="Submit22" value="å¯¼å…¥ç³»ç»Ÿæ¨¡å‹" onclick="window.open('LoadInM.php<?=$ecms_hashur['whehref']?>','','width=520,height=300,scrollbars=yes,top=130,left=120');"></td>
+      <input type="button" name="Submit22" value="µ¼ÈëÏµÍ³Ä£ĞÍ" onclick="window.open('LoadInM.php<?=$ecms_hashur['whehref']?>','','width=520,height=300,scrollbars=yes,top=130,left=120');"></td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="5%" height="25"><div align="center">ID</div></td>
-    <td width="33%" height="25"><div align="center">æ¨¡å‹åç§°</div></td>
-    <td width="7%"><div align="center">å¯ç”¨</div></td>
-    <td width="55%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="33%" height="25"><div align="center">Ä£ĞÍÃû³Æ</div></td>
+    <td width="7%"><div align="center">ÆôÓÃ</div></td>
+    <td width="55%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
   {
-  	//é»˜è®¤
+  	//Ä¬ÈÏ
 	$defbgcolor='#ffffff';
 	$movejs=' onmouseout="this.style.backgroundColor=\'#ffffff\'" onmouseover="this.style.backgroundColor=\'#C3EFFF\'"';
 	if($r[isdefault])
@@ -77,8 +77,8 @@ $sql=$empire->query("select * from {$dbtbpre}enewsmod where tid='$tid' order by 
 		$defbgcolor='#DBEAF5';
 		$movejs='';
 	}
-	$do="[<a href='../../DoInfo/ChangeClass.php?mid=".$r[mid]."' target=_blank>æŠ•ç¨¿åœ°å€</a>]&nbsp;&nbsp;[<a href='AddM.php?tid=$tid&tbname=$tbname&enews=AddM&mid=".$r[mid].$ecms_hashur['ehref']."&docopy=1'>å¤åˆ¶</a>]&nbsp;&nbsp;[<a href='ListM.php?tid=$tid&tbname=$tbname&enews=LoadOutMod&mid=".$r[mid].$ecms_hashur['href']."' onclick=\"return confirm('ç¡®è®¤è¦å¯¼å‡º?');\">å¯¼å‡º</a>]&nbsp;&nbsp;[<a href='../ecmsmod.php?tid=$tid&tbname=$tbname&enews=DefM&mid=".$r[mid].$ecms_hashur['href']."' onclick=\"return confirm('ç¡®è®¤è¦è®¾ç½®ä¸ºé»˜è®¤ç³»ç»Ÿæ¨¡å‹?');\">è®¾ä¸ºé»˜è®¤</a>]&nbsp;&nbsp;[<a href='AddM.php?tid=$tid&tbname=$tbname&enews=EditM&mid=".$r[mid].$ecms_hashur['ehref']."'>ä¿®æ”¹</a>]&nbsp;&nbsp;[<a href='../ecmsmod.php?tid=$tid&tbname=$tbname&enews=DelM&mid=".$r[mid].$ecms_hashur['href']."' onclick=\"return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');\">åˆ é™¤</a>]";
-	$usemod=$r[usemod]==0?'æ˜¯':'<font color="red">å¦</font>';
+	$do="[<a href='../../DoInfo/ChangeClass.php?mid=".$r[mid]."' target=_blank>Í¶¸åµØÖ·</a>]&nbsp;&nbsp;[<a href='AddM.php?tid=$tid&tbname=$tbname&enews=AddM&mid=".$r[mid].$ecms_hashur['ehref']."&docopy=1'>¸´ÖÆ</a>]&nbsp;&nbsp;[<a href='ListM.php?tid=$tid&tbname=$tbname&enews=LoadOutMod&mid=".$r[mid].$ecms_hashur['href']."' onclick=\"return confirm('È·ÈÏÒªµ¼³ö?');\">µ¼³ö</a>]&nbsp;&nbsp;[<a href='../ecmsmod.php?tid=$tid&tbname=$tbname&enews=DefM&mid=".$r[mid].$ecms_hashur['href']."' onclick=\"return confirm('È·ÈÏÒªÉèÖÃÎªÄ¬ÈÏÏµÍ³Ä£ĞÍ?');\">ÉèÎªÄ¬ÈÏ</a>]&nbsp;&nbsp;[<a href='AddM.php?tid=$tid&tbname=$tbname&enews=EditM&mid=".$r[mid].$ecms_hashur['ehref']."'>ĞŞ¸Ä</a>]&nbsp;&nbsp;[<a href='../ecmsmod.php?tid=$tid&tbname=$tbname&enews=DelM&mid=".$r[mid].$ecms_hashur['href']."' onclick=\"return confirm('È·ÈÏÒªÉ¾³ı£¿');\">É¾³ı</a>]";
+	$usemod=$r[usemod]==0?'ÊÇ':'<font color="red">·ñ</font>';
 	?>
   <tr bgcolor="<?=$defbgcolor?>"<?=$movejs?>> 
     <td height="32"><div align="center"> 

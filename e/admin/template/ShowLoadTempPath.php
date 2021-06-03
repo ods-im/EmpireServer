@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"template");
 $bakpath="../../data/LoadTemp";
 $hand=@opendir($bakpath);
@@ -23,22 +23,22 @@ $hand=@opendir($bakpath);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æŸ¥çœ‹å¯¼å…¥æ¨¡æ¿ç›®å½•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²é¿´µ¼ÈëÄ£°åÄ¿Â¼</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td>ä½ç½®ï¼šæŸ¥çœ‹å¯¼å…¥æ¨¡æ¿ç›®å½•</td>
+    <td>Î»ÖÃ£º²é¿´µ¼ÈëÄ£°åÄ¿Â¼</td>
   </tr>
 </table>
 <br>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr bgcolor="#0472BC"> 
     <td width="45%" height="25" bgcolor="#698CC3"> 
-      <div align="left"><strong><font color="#FFFFFF">å¯¼å…¥æ¨¡æ¿ç›®å½•(e/data/LoadTemp)</font></strong></div></td>
+      <div align="left"><strong><font color="#FFFFFF">µ¼ÈëÄ£°åÄ¿Â¼(e/data/LoadTemp)</font></strong></div></td>
   </tr>
   <?
   while($file=@readdir($hand))

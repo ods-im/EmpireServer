@@ -4,46 +4,46 @@ require("../class/db_sql.php");
 require("../class/q_functions.php");
 require("../member/class/user.php");
 require("../data/dbcache/MemberLevel.php");
-eCheckCloseMods('pay');//å…³é—­æ¨¡å—
+eCheckCloseMods('pay');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
-//æ˜¯å¦ç™»é™†
+//ÊÇ·ñµÇÂ½
 $user=islogin();
-//æ”¯ä»˜å¹³å°
+//Ö§¸¶Æ½Ì¨
 $payid=intval($_POST['payid']);
 if(!$payid)
 {
-	printerror('è¯·é€‰æ‹©æ”¯ä»˜å¹³å°','',1,0,1);
+	printerror('ÇëÑ¡ÔñÖ§¸¶Æ½Ì¨','',1,0,1);
 }
-//å……å€¼ç±»å‹
+//³äÖµÀàĞÍ
 $id=intval($_POST['id']);
 if(!$id)
 {
-	printerror('è¯·é€‰æ‹©å……å€¼ç±»å‹','',1,0,1);
+	printerror('ÇëÑ¡Ôñ³äÖµÀàĞÍ','',1,0,1);
 }
 $payr=$empire->fetch1("select * from {$dbtbpre}enewspayapi where payid='$payid' and isclose=0 limit 1");
 if(!$payr[payid])
 {
-	printerror('è¯·é€‰æ‹©æ”¯ä»˜å¹³å°','',1,0,1);
+	printerror('ÇëÑ¡ÔñÖ§¸¶Æ½Ì¨','',1,0,1);
 }
 $buyr=$empire->fetch1("select * from {$dbtbpre}enewsbuygroup where id='$id'");
 if(!$buyr['id'])
 {
-	printerror('è¯·é€‰æ‹©å……å€¼ç±»å‹','',1,0,1);
+	printerror('ÇëÑ¡Ôñ³äÖµÀàĞÍ','',1,0,1);
 }
-//æƒé™
+//È¨ÏŞ
 if($buyr[buygroupid]&&$level_r[$buyr[buygroupid]][level]>$level_r[$user[groupid]][level])
 {
-	printerror('æ­¤å……å€¼ç±»å‹éœ€è¦ '.$level_r[$buyr[buygroupid]][groupname].' ä¼šå‘˜çº§åˆ«ä»¥ä¸Š','',1,0,1);
+	printerror('´Ë³äÖµÀàĞÍĞèÒª '.$level_r[$buyr[buygroupid]][groupname].' »áÔ±¼¶±ğÒÔÉÏ','',1,0,1);
 }
-//æœ‰æ•ˆæœŸéªŒè¯
+//ÓĞĞ§ÆÚÑéÖ¤
 if($buyr['gdate']&&$user['groupid']!=$buyr['ggroupid'])
 {
 	if($user['userdate']&&$user['userdate']>=time())
 	{
 		if(!$public_r['mhavedatedo'])
 		{
-			printerror('æ‚¨å½“å‰çš„ä¼šå‘˜ç»„æœ‰æ•ˆæœŸæœªåˆ°ï¼Œä¸èƒ½å……å€¼æ–°ä¼šå‘˜ç»„','',1,0,1);
+			printerror('Äúµ±Ç°µÄ»áÔ±×éÓĞĞ§ÆÚÎ´µ½£¬²»ÄÜ³äÖµĞÂ»áÔ±×é','',1,0,1);
 		}
 	}
 }
@@ -52,21 +52,21 @@ include('payfun.php');
 $money=$buyr['gmoney'];
 if(!$money)
 {
-	printerror('æ­¤å……å€¼ç±»å‹é‡‘é¢æœ‰è¯¯','',1,0,1);
+	printerror('´Ë³äÖµÀàĞÍ½ğ¶îÓĞÎó','',1,0,1);
 }
 $ddno='';
-$productname="å……å€¼ç±»å‹:".$buyr['gname'].",UID:".$user['userid'].",UName:".$user['username'];
-$productsay="ç”¨æˆ·ID:".$user['userid'].",ç”¨æˆ·å:".$user['username'];
+$productname="³äÖµÀàĞÍ:".$buyr['gname'].",UID:".$user['userid'].",UName:".$user['username'];
+$productsay="ÓÃ»§ID:".$user['userid'].",ÓÃ»§Ãû:".$user['username'];
 
 esetcookie("payphome","BuyGroupPay",0);
 esetcookie("paymoneybgid",$id,0);
-//è¿”å›åœ°å€å‰ç¼€
+//·µ»ØµØÖ·Ç°×º
 $PayReturnUrlQz=$public_r['newsurl'];
 if(!stristr($public_r['newsurl'],'://'))
 {
 	$PayReturnUrlQz=eReturnDomain().$public_r['newsurl'];
 }
-//ç¼–ç 
+//±àÂë
 if($ecms_config['sets']['pagechar']!='gb2312')
 {
 	@include_once("../class/doiconv.php");

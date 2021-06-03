@@ -8,7 +8,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,10 +17,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"ingroup");
 
-//å¢åŠ ä¼šå‘˜å†…éƒ¨ç»„
+//Ôö¼Ó»áÔ±ÄÚ²¿×é
 function AddInGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(empty($add['gname']))
@@ -30,12 +30,12 @@ function AddInGroup($add,$userid,$username){
 	$add['gname']=hRepPostStr($add['gname'],1);
 	$add['myorder']=(int)$add['myorder'];
 	$sql=$empire->query("insert into {$dbtbpre}enewsingroup(gname,myorder) values('$add[gname]','$add[myorder]');");
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	GetMemberLevel();
 	if($sql)
 	{
 		$gid=$empire->lastid();
-		insert_dolog("gid=$gid&gname=$add[gname]");//æ“ä½œæ—¥å¿—
+		insert_dolog("gid=$gid&gname=$add[gname]");//²Ù×÷ÈÕÖ¾
 		printerror("AddInGroupSuccess","AddInGroup.php?enews=AddInGroup".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -44,7 +44,7 @@ function AddInGroup($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ä¼šå‘˜å†…éƒ¨ç»„
+//ĞŞ¸Ä»áÔ±ÄÚ²¿×é
 function EditInGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$gid=intval($add['gid']);
@@ -55,11 +55,11 @@ function EditInGroup($add,$userid,$username){
 	$add['gname']=hRepPostStr($add['gname'],1);
 	$add['myorder']=(int)$add['myorder'];
 	$sql=$empire->query("update {$dbtbpre}enewsingroup set gname='$add[gname]',myorder='$add[myorder]' where gid='$gid'");
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	GetMemberLevel();
 	if($sql)
 	{
-		insert_dolog("gid=$gid&gname=$add[gname]");//æ“ä½œæ—¥å¿—
+		insert_dolog("gid=$gid&gname=$add[gname]");//²Ù×÷ÈÕÖ¾
 		printerror("EditInGroupSuccess","ListInGroup.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
@@ -68,7 +68,7 @@ function EditInGroup($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤ä¼šå‘˜å†…éƒ¨ç»„
+//É¾³ı»áÔ±ÄÚ²¿×é
 function DelInGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$gid=intval($add['gid']);
@@ -82,11 +82,11 @@ function DelInGroup($add,$userid,$username){
 		printerror('EmptyInGroupid','history.go(-1)');
 	}
 	$sql=$empire->query("delete from {$dbtbpre}enewsingroup where gid='$gid'");
-	//æ›´æ–°ç¼“å­˜
+	//¸üĞÂ»º´æ
 	GetMemberLevel();
 	if($sql)
 	{
-		insert_dolog("gid=$gid&gname=$r[gname]");//æ“ä½œæ—¥å¿—
+		insert_dolog("gid=$gid&gname=$r[gname]");//²Ù×÷ÈÕÖ¾
 		printerror("DelInGroupSuccess","ListInGroup.php".hReturnEcmsHashStrHref2(1));
 	}
 	else
@@ -120,12 +120,12 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=16;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=25;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=16;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=25;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select * from {$dbtbpre}enewsingroup";
 $totalquery="select count(*) as total from {$dbtbpre}enewsingroup";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by gid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -133,17 +133,17 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ä¼šå‘˜å†…éƒ¨ç»„</title>
+<title>»áÔ±ÄÚ²¿×é</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href="ListInGroup.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¼šå‘˜å†…éƒ¨ç»„</a></td>
+    <td width="50%" height="25">Î»ÖÃ£º<a href="ListInGroup.php<?=$ecms_hashur['whehref']?>">¹ÜÀí»áÔ±ÄÚ²¿×é</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ä¼šå‘˜å†…éƒ¨ç»„" onclick="self.location.href='AddInGroup.php?enews=AddInGroup<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó»áÔ±ÄÚ²¿×é" onclick="self.location.href='AddInGroup.php?enews=AddInGroup<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -152,9 +152,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="6%" height="25"> <div align="center">ID</div></td>
-    <td width="49%" height="25"> <div align="center">ç»„åç§°</div></td>
-    <td width="24%"><div align="center">ä¼šå‘˜æ•°</div></td>
-    <td width="21%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="49%" height="25"> <div align="center">×éÃû³Æ</div></td>
+    <td width="24%"><div align="center">»áÔ±Êı</div></td>
+    <td width="21%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
@@ -170,8 +170,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td height="25"> <div align="center"> 
         <?=$r[gname]?>
       </div></td>
-    <td><div align="center"><a href="ListMember.php?sear=1&ingid=<?=$r['gid']?><?=$ecms_hashur['ehref']?>" target="_blank" title="ç‚¹å‡»æŸ¥çœ‹åˆ—è¡¨"><?=$membernum?></a></div></td>
-    <td height="25"> <div align="center"> [<a href="AddInGroup.php?enews=EditInGroup&gid=<?=$r[gid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="ListInGroup.php?enews=DelInGroup&gid=<?=$r[gid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td><div align="center"><a href="ListMember.php?sear=1&ingid=<?=$r['gid']?><?=$ecms_hashur['ehref']?>" target="_blank" title="µã»÷²é¿´ÁĞ±í"><?=$membernum?></a></div></td>
+    <td height="25"> <div align="center"> [<a href="AddInGroup.php?enews=EditInGroup&gid=<?=$r[gid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="ListInGroup.php?enews=DelInGroup&gid=<?=$r[gid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

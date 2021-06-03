@@ -22,39 +22,39 @@ document.add.softfj.value=a.replace("/"+str,"");
 </script>
 <table width=100% align=center cellpadding=3 cellspacing=1 class="tableborder">
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>è½¯ä»¶åç§°(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>Èí¼þÃû³Æ(*)</td>
     <td bgcolor=ffffff><input name="title" type="text" size="42" value="<?=$ecmsfirstpost==1?"":DoReqValue($mid,'title',stripSlashes($r[title]))?>">
 </td>
   </tr>
   <tr>
-    <td width='16%' height=25 bgcolor='ffffff'>å…³é”®å­—</td>
+    <td width='16%' height=25 bgcolor='ffffff'>¹Ø¼ü×Ö</td>
     <td bgcolor='ffffff'>
 <input name="keyboard" type="text" size=42 value="<?=stripSlashes($r[keyboard])?>">
-<font color="#666666">(å¤šä¸ªè¯·ç”¨&quot;,&quot;éš”å¼€)</font>
+<font color="#666666">(¶à¸öÇëÓÃ&quot;,&quot;¸ô¿ª)</font>
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>è½¯ä»¶é¢„è§ˆå›¾</td>
+    <td width=16% height=25 bgcolor=ffffff>Èí¼þÔ¤ÀÀÍ¼</td>
     <td bgcolor=ffffff><input type="file" name="titlepicfile" size="45">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>è½¯ä»¶ä½œè€…</td>
+    <td width=16% height=25 bgcolor=ffffff>Èí¼þ×÷Õß</td>
     <td bgcolor=ffffff><input name="softwriter" type="text" id="softwriter" value="<?=$ecmsfirstpost==1?"":DoReqValue($mid,'softwriter',stripSlashes($r[softwriter]))?>" size="42">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>åŽ‚å•†ä¸»é¡µ</td>
+    <td width=16% height=25 bgcolor=ffffff>³§ÉÌÖ÷Ò³</td>
     <td bgcolor=ffffff><input name="homepage" type="text" id="homepage" value="<?=$ecmsfirstpost==1?"http://":DoReqValue($mid,'homepage',stripSlashes($r[homepage]))?>" size="42">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>ç³»ç»Ÿæ¼”ç¤º</td>
+    <td width=16% height=25 bgcolor=ffffff>ÏµÍ³ÑÝÊ¾</td>
     <td bgcolor=ffffff><input name="demo" type="text" id="demo" value="<?=$ecmsfirstpost==1?"http://":DoReqValue($mid,'demo',stripSlashes($r[demo]))?>" size="42">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>è¿è¡ŒçŽ¯å¢ƒ</td>
+    <td width=16% height=25 bgcolor=ffffff>ÔËÐÐ»·¾³</td>
     <td bgcolor=ffffff><input name="softfj" type="text" id="softfj" value="<?=$ecmsfirstpost==1?"":DoReqValue($mid,'softfj',stripSlashes($r[softfj]))?>" size="42">
 </td>
   </tr>
@@ -70,20 +70,20 @@ document.add.softfj.value=a.replace("/"+str,"");
       Other</td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>è½¯ä»¶å±žæ€§</td>
-    <td bgcolor=ffffff>è½¯ä»¶è¯­è¨€ï¼š<select name="language" id="language"><option value="ç®€ä½“ä¸­æ–‡"<?=$r[language]=="ç®€ä½“ä¸­æ–‡"?' selected':''?>>ç®€ä½“ä¸­æ–‡</option><option value="ç¹ä½“ä¸­æ–‡"<?=$r[language]=="ç¹ä½“ä¸­æ–‡"?' selected':''?>>ç¹ä½“ä¸­æ–‡</option><option value="è‹±æ–‡"<?=$r[language]=="è‹±æ–‡"?' selected':''?>>è‹±æ–‡</option><option value="å¤šå›½è¯­è¨€"<?=$r[language]=="å¤šå›½è¯­è¨€"?' selected':''?>>å¤šå›½è¯­è¨€</option></select>ï¼Œè½¯ä»¶ç±»åž‹ï¼š<select name="softtype" id="softtype"><option value="å›½äº§è½¯ä»¶"<?=$r[softtype]=="å›½äº§è½¯ä»¶"?' selected':''?>>å›½äº§è½¯ä»¶</option><option value="æ±‰åŒ–è½¯ä»¶"<?=$r[softtype]=="æ±‰åŒ–è½¯ä»¶"?' selected':''?>>æ±‰åŒ–è½¯ä»¶</option><option value="å›½å¤–è½¯ä»¶"<?=$r[softtype]=="å›½å¤–è½¯ä»¶"?' selected':''?>>å›½å¤–è½¯ä»¶</option></select>ï¼ŒæŽˆæƒå½¢å¼ï¼š<select name="softsq" id="softsq"><option value="å…±äº«è½¯ä»¶"<?=$r[softsq]=="å…±äº«è½¯ä»¶"?' selected':''?>>å…±äº«è½¯ä»¶</option><option value="å…è´¹è½¯ä»¶"<?=$r[softsq]=="å…è´¹è½¯ä»¶"?' selected':''?>>å…è´¹è½¯ä»¶</option><option value="è‡ªç”±è½¯ä»¶"<?=$r[softsq]=="è‡ªç”±è½¯ä»¶"?' selected':''?>>è‡ªç”±è½¯ä»¶</option><option value="è¯•ç”¨è½¯ä»¶"<?=$r[softsq]=="è¯•ç”¨è½¯ä»¶"?' selected':''?>>è¯•ç”¨è½¯ä»¶</option><option value="æ¼”ç¤ºè½¯ä»¶"<?=$r[softsq]=="æ¼”ç¤ºè½¯ä»¶"?' selected':''?>>æ¼”ç¤ºè½¯ä»¶</option><option value="å•†ä¸šè½¯ä»¶"<?=$r[softsq]=="å•†ä¸šè½¯ä»¶"?' selected':''?>>å•†ä¸šè½¯ä»¶</option></select></td>
+    <td width=16% height=25 bgcolor=ffffff>Èí¼þÊôÐÔ</td>
+    <td bgcolor=ffffff>Èí¼þÓïÑÔ£º<select name="language" id="language"><option value="¼òÌåÖÐÎÄ"<?=$r[language]=="¼òÌåÖÐÎÄ"?' selected':''?>>¼òÌåÖÐÎÄ</option><option value="·±ÌåÖÐÎÄ"<?=$r[language]=="·±ÌåÖÐÎÄ"?' selected':''?>>·±ÌåÖÐÎÄ</option><option value="Ó¢ÎÄ"<?=$r[language]=="Ó¢ÎÄ"?' selected':''?>>Ó¢ÎÄ</option><option value="¶à¹úÓïÑÔ"<?=$r[language]=="¶à¹úÓïÑÔ"?' selected':''?>>¶à¹úÓïÑÔ</option></select>£¬Èí¼þÀàÐÍ£º<select name="softtype" id="softtype"><option value="¹ú²úÈí¼þ"<?=$r[softtype]=="¹ú²úÈí¼þ"?' selected':''?>>¹ú²úÈí¼þ</option><option value="ºº»¯Èí¼þ"<?=$r[softtype]=="ºº»¯Èí¼þ"?' selected':''?>>ºº»¯Èí¼þ</option><option value="¹úÍâÈí¼þ"<?=$r[softtype]=="¹úÍâÈí¼þ"?' selected':''?>>¹úÍâÈí¼þ</option></select>£¬ÊÚÈ¨ÐÎÊ½£º<select name="softsq" id="softsq"><option value="¹²ÏíÈí¼þ"<?=$r[softsq]=="¹²ÏíÈí¼þ"?' selected':''?>>¹²ÏíÈí¼þ</option><option value="Ãâ·ÑÈí¼þ"<?=$r[softsq]=="Ãâ·ÑÈí¼þ"?' selected':''?>>Ãâ·ÑÈí¼þ</option><option value="×ÔÓÉÈí¼þ"<?=$r[softsq]=="×ÔÓÉÈí¼þ"?' selected':''?>>×ÔÓÉÈí¼þ</option><option value="ÊÔÓÃÈí¼þ"<?=$r[softsq]=="ÊÔÓÃÈí¼þ"?' selected':''?>>ÊÔÓÃÈí¼þ</option><option value="ÑÝÊ¾Èí¼þ"<?=$r[softsq]=="ÑÝÊ¾Èí¼þ"?' selected':''?>>ÑÝÊ¾Èí¼þ</option><option value="ÉÌÒµÈí¼þ"<?=$r[softsq]=="ÉÌÒµÈí¼þ"?' selected':''?>>ÉÌÒµÈí¼þ</option></select></td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>æ–‡ä»¶</td>
-    <td bgcolor=ffffff>æ–‡ä»¶ç±»åž‹ï¼š<input name="filetype" type="text" id="filetype" value="<?=$ecmsfirstpost==1?"":DoReqValue($mid,'filetype',stripSlashes($r[filetype]))?>" size="10">
+    <td width=16% height=25 bgcolor=ffffff>ÎÄ¼þ</td>
+    <td bgcolor=ffffff>ÎÄ¼þÀàÐÍ£º<input name="filetype" type="text" id="filetype" value="<?=$ecmsfirstpost==1?"":DoReqValue($mid,'filetype',stripSlashes($r[filetype]))?>" size="10">
 <select name="select2" onchange="document.add.filetype.value=this.value">
-        <option value="">ç±»åž‹</option>
+        <option value="">ÀàÐÍ</option>
         <option value=".zip">.zip</option>
         <option value=".rar">.rar</option>
         <option value=".exe">.exe</option>
-      </select>ï¼Œæ–‡ä»¶å¤§å°ï¼š<input name="filesize" type="text" id="filesize" value="<?=$ecmsfirstpost==1?"":DoReqValue($mid,'filesize',stripSlashes($r[filesize]))?>" size="10">
+      </select>£¬ÎÄ¼þ´óÐ¡£º<input name="filesize" type="text" id="filesize" value="<?=$ecmsfirstpost==1?"":DoReqValue($mid,'filesize',stripSlashes($r[filesize]))?>" size="10">
 <select name="select" onchange="document.add.filesize.value+=this.value">
-        <option value="">å•ä½</option>
+        <option value="">µ¥Î»</option>
         <option value=" MB">MB</option>
         <option value=" KB">KB</option>
         <option value=" GB">GB</option>
@@ -91,12 +91,12 @@ document.add.softfj.value=a.replace("/"+str,"");
       </select></td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>ä¸Šä¼ è½¯ä»¶(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>ÉÏ´«Èí¼þ(*)</td>
     <td bgcolor=ffffff><input type="file" name="downpathfile" size="45">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>è½¯ä»¶ç®€ä»‹(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>Èí¼þ¼ò½é(*)</td>
     <td bgcolor=ffffff><textarea name="softsay" cols="60" rows="10" id="softsay"><?=$ecmsfirstpost==1?"":DoReqValue($mid,'softsay',stripSlashes($r[softsay]))?></textarea>
 </td>
   </tr>

@@ -7,8 +7,8 @@ if(!defined('InEmpireCMS'))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>ä¸Šä¼ é™„ä»¶</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>ÉÏ´«¸½¼ş</title>
 		<link type="text/css" href="images/editorpage.css" rel=stylesheet>
 		<script>
 		function EcmsEditorReturnDoAction0(str){
@@ -22,7 +22,7 @@ if(!defined('InEmpireCMS'))
 			var ctypes,actypes,cfiletype,sfile,sfocus;
 			if(obj.file.value=='')
 			{
-				alert('è¯·é€‰æ‹©è¦ä¸Šä¼ çš„æ–‡ä»¶');
+				alert('ÇëÑ¡ÔñÒªÉÏ´«µÄÎÄ¼ş');
 				obj.file.focus();
 				return false;
 			}
@@ -37,7 +37,7 @@ if(!defined('InEmpireCMS'))
 			filetype=sfile.substring(s+1).toLowerCase();
 			return '.'+filetype;
 		}
-		//è¿”å›ç¼–å·
+		//·µ»Ø±àºÅ
 		function ExpStr(str,exp){
 			var pos,len,ext;
 			pos=str.lastIndexOf(exp)+1;
@@ -68,7 +68,7 @@ if(!defined('InEmpireCMS'))
 			filename=GetFname(str);
 			obj.no.value=filename;
 		}
-		//é¢„è§ˆ
+		//Ô¤ÀÀ
 		function echoViewFile(obj,doshow){
 			var imgstr,filetype,fn,filename,furl,sizestr;
 			if(obj.inserturl.value=='')
@@ -91,7 +91,7 @@ if(!defined('InEmpireCMS'))
 			{
 				sizestr="&nbsp;("+obj.filesize.value+")";
 			}
-			imgstr="<div style='padding:6px'><fieldset><legend>"+fn+"</legend><table cellpadding=0 cellspacing=0 border=0><tr><td><img src='<?=$public_r[newsurl]?>e/data/images/downfile.jpg' alt='æ–‡ä»¶ç±»å‹: "+filetype+"' border=0 style='vertical-align:baseline'></td><td> <a href='"+furl+"' title='"+fn+"' target='_blank'>"+filename+"</a>"+sizestr+"</td></tr></table></fieldset></div>";
+			imgstr="<div style='padding:6px'><fieldset><legend>"+fn+"</legend><table cellpadding=0 cellspacing=0 border=0><tr><td><img src='<?=$public_r[newsurl]?>e/data/images/downfile.jpg' alt='ÎÄ¼şÀàĞÍ: "+filetype+"' border=0 style='vertical-align:baseline'></td><td> <a href='"+furl+"' title='"+fn+"' target='_blank'>"+filename+"</a>"+sizestr+"</td></tr></table></fieldset></div>";
 			if(doshow==0)
 			{
 				document.getElementById("ViewFile").innerHTML=imgstr;
@@ -116,12 +116,12 @@ if(!defined('InEmpireCMS'))
 	  <input type=hidden name=doecmspage id=doecmspage value="<?=$doecmspage?>">
       
       <tr> 
-        <td><strong>æœ¬åœ°ä¸Šä¼ </strong><br> 
+        <td><strong>±¾µØÉÏ´«</strong><br> 
           <input type="file" name="file" id="file" style="width: 100%">        </td>
       </tr>
       
       <tr> 
-        <td height="30"> <input type="submit" name="Submit2" value="ä¸Š ä¼ ">        </td>
+        <td height="30"> <input type="submit" name="Submit2" value="ÉÏ ´«">        </td>
       </tr>
     </form>
   </table>

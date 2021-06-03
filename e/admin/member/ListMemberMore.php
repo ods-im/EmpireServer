@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"member");
 
 include("../../member/class/user.php");
@@ -24,13 +24,13 @@ include("../../data/dbcache/MemberLevel.php");
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=15;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
+$line=15;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
 
-//æœç´¢
+//ËÑË÷
 $search='';
 $search.=$ecms_hashur['ehref'];
-//è‡ªå®šä¹‰æ¯é¡µæ•°é‡
+//×Ô¶¨ÒåÃ¿Ò³ÊıÁ¿
 $showline=(int)$_GET['showline'];
 if($showline)
 {
@@ -44,7 +44,7 @@ if($showline)
 		$search.='&showline='.$showline;
 	}
 }
-$offset=$page*$line;//æ€»åç§»é‡
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 
 $and='';
 if($_GET['sear'])
@@ -53,39 +53,39 @@ if($_GET['sear'])
 	if($keyboard)
 	{
 		$show=RepPostStr($_GET['show'],1);
-		if($show==1)//ç”¨æˆ·ID
+		if($show==1)//ÓÃ»§ID
 		{
 			$and.=" where userid='$keyboard'";	
 		}
-		elseif($show==2)//æ³¨å†ŒIP
+		elseif($show==2)//×¢²áIP
 		{
 			$and.=" where regip like '%$keyboard%'";
 		}
-		elseif($show==3)//æœ€åç™»å½•IP
+		elseif($show==3)//×îºóµÇÂ¼IP
 		{
 			$and.=" where lastip like '%$keyboard%'";
 		}
-		elseif($show==4)//ç©ºé—´åç§°
+		elseif($show==4)//¿Õ¼äÃû³Æ
 		{
 			$and.=" where spacename like '%$keyboard%'";
 		}
-		elseif($show==5)//ç©ºé—´å…¬å‘Š
+		elseif($show==5)//¿Õ¼ä¹«¸æ
 		{
 			$and.=" where spacegg like '%$keyboard%'";
 		}
-		elseif($show==6)//æ‰‹æœº
+		elseif($show==6)//ÊÖ»ú
 		{
 			$and.=" where phone like '%$keyboard%'";
 		}
-		elseif($show==7)//å§“å
+		elseif($show==7)//ĞÕÃû
 		{
 			$and.=" where truename like '%$keyboard%'";
 		}
-		elseif($show==8)//å…¬å¸å
+		elseif($show==8)//¹«Ë¾Ãû
 		{
 			$and.=" where company like '%$keyboard%'";
 		}
-		elseif($show==9)//è”ç³»åœ°å€
+		elseif($show==9)//ÁªÏµµØÖ·
 		{
 			$and.=" where address like '%$keyboard%'";
 		}
@@ -94,13 +94,13 @@ if($_GET['sear'])
 }
 $query="select * from {$dbtbpre}enewsmemberadd".$and;
 $totalquery="select count(*) as total from {$dbtbpre}enewsmemberadd".$and;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by userid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-$url="<a href=ListMemberMore.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼šå‘˜(è¯¦ç»†)</a>";
+$url="<a href=ListMemberMore.php".$ecms_hashur['whehref'].">¹ÜÀí»áÔ±(ÏêÏ¸)</a>";
 
-//----------å†…éƒ¨ç»„
+//----------ÄÚ²¿×é
 $ingroup='';
 $chingroup='';
 $inmsql=$empire->query("select * from {$dbtbpre}enewsingroup order by myorder");
@@ -118,8 +118,8 @@ while($inm_r=$empire->fetch($inmsql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ä¼šå‘˜(è¯¦ç»†)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí»áÔ±(ÏêÏ¸)</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -137,7 +137,7 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®: 
+    <td width="50%">Î»ÖÃ: 
       <?=$url?>
     </td>
     <td><div align="right"> </div></td>
@@ -147,28 +147,28 @@ function CheckAll(form)
 <form name="searchm" method="get" action="ListMemberMore.php">
 <?=$ecms_hashur['eform']?>
   <tr>
-    <td><div align="center">æœç´¢ï¼š
+    <td><div align="center">ËÑË÷£º
           <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
           <select name="show" id="show">
-            <option value="1"<?=$show==1?' selected':''?>>ç”¨æˆ·ID</option>
-			<option value="2"<?=$show==2?' selected':''?>>æ³¨å†ŒIP</option>
-			<option value="3"<?=$show==3?' selected':''?>>æœ€åç™»å½•IP</option>
-			<option value="4"<?=$show==4?' selected':''?>>ç©ºé—´åç§°</option>
-			<option value="5"<?=$show==5?' selected':''?>>ç©ºé—´å…¬å‘Š</option>
-			<option value="6"<?=$show==6?' selected':''?>>æ‰‹æœº</option>
-			<option value="7"<?=$show==7?' selected':''?>>å§“å</option>
-			<option value="8"<?=$show==8?' selected':''?>>å…¬å¸å</option>
-			<option value="9"<?=$show==9?' selected':''?>>è”ç³»åœ°å€</option>
+            <option value="1"<?=$show==1?' selected':''?>>ÓÃ»§ID</option>
+			<option value="2"<?=$show==2?' selected':''?>>×¢²áIP</option>
+			<option value="3"<?=$show==3?' selected':''?>>×îºóµÇÂ¼IP</option>
+			<option value="4"<?=$show==4?' selected':''?>>¿Õ¼äÃû³Æ</option>
+			<option value="5"<?=$show==5?' selected':''?>>¿Õ¼ä¹«¸æ</option>
+			<option value="6"<?=$show==6?' selected':''?>>ÊÖ»ú</option>
+			<option value="7"<?=$show==7?' selected':''?>>ĞÕÃû</option>
+			<option value="8"<?=$show==8?' selected':''?>>¹«Ë¾Ãû</option>
+			<option value="9"<?=$show==9?' selected':''?>>ÁªÏµµØÖ·</option>
           </select>
-          æ¯é¡µæ˜¾ç¤º
+          Ã¿Ò³ÏÔÊ¾
           <input name="showline" type="text" id="showline" value="<?=$line?>" size="5">
-          <input type="submit" name="Submit" value="æœç´¢">
+          <input type="submit" name="Submit" value="ËÑË÷">
           <input name="sear" type="hidden" id="sear" value="1">
         </div></td>
   </tr>
 </form>
 </table>
-<form name="memberform" method=post action=ListMember.php onsubmit="return confirm('ç¡®è®¤è¦æ‰§è¡Œæ“ä½œ?');">
+<form name="memberform" method=post action=ListMember.php onsubmit="return confirm('È·ÈÏÒªÖ´ĞĞ²Ù×÷?');">
 <?=$ecms_hashur['form']?>
 <?
 while($r=$empire->fetch($sql))
@@ -177,29 +177,29 @@ while($r=$empire->fetch($sql))
 	$username=$ur['username'];
 	if(empty($ur['checked']))
 	{
-		$checked=" title='æœªå®¡æ ¸' style='background:#99C4E3'";
+		$checked=" title='Î´ÉóºË' style='background:#99C4E3'";
 		$namefont1="<font color='gray'>";
 		$namefont2="</font>";
-		$checkedtitle=' (<font color=red>æœªå®¡æ ¸</font>)';
+		$checkedtitle=' (<font color=red>Î´ÉóºË</font>)';
 	}
 	else
 	{
 		$checked="";
 		$namefont1="";
 		$namefont2="";
-		$checkedtitle=' (å·²å®¡æ ¸)';
+		$checkedtitle=' (ÒÑÉóºË)';
 	}
 	if(empty($ur['isern']))
 	{
-		$isernstatus=' <æ²¡æœ‰å®å>';
-		$isernstatus2=' (<font color=red>æ²¡æœ‰å®å</font>)';
+		$isernstatus=' <Ã»ÓĞÊµÃû>';
+		$isernstatus2=' (<font color=red>Ã»ÓĞÊµÃû</font>)';
 	}
 	else
 	{
-		$isernstatus=' <å·²å®å>';
-		$isernstatus2=' (å·²å®å)';
+		$isernstatus=' <ÒÑÊµÃû>';
+		$isernstatus2=' (ÒÑÊµÃû)';
 	}
-	//ç®¡ç†ç»„
+	//¹ÜÀí×é
 	$magname='';
 	$magadminname='';
 	if($ur['agid'])
@@ -209,15 +209,15 @@ while($r=$empire->fetch($sql))
 		{
 			if($aglevel_r[$ur['agid']]['isadmin']==9)
 			{
-				$magadminname='ç®¡ç†å‘˜ ('.$aglevel_r[$ur['agid']]['isadmin'].')';
+				$magadminname='¹ÜÀíÔ± ('.$aglevel_r[$ur['agid']]['isadmin'].')';
 			}
 			elseif($aglevel_r[$ur['agid']]['isadmin']==5)
 			{
-				$magadminname='ç‰ˆä¸» ('.$aglevel_r[$ur['agid']]['isadmin'].')';
+				$magadminname='°æÖ÷ ('.$aglevel_r[$ur['agid']]['isadmin'].')';
 			}
 			elseif($aglevel_r[$ur['agid']]['isadmin']==1)
 			{
-				$magadminname='å®ä¹ ç‰ˆä¸» ('.$aglevel_r[$ur['agid']]['isadmin'].')';
+				$magadminname='ÊµÏ°°æÖ÷ ('.$aglevel_r[$ur['agid']]['isadmin'].')';
 			}
 			else
 			{
@@ -225,7 +225,7 @@ while($r=$empire->fetch($sql))
 			}
 		}
 	}
-	//å†…éƒ¨ç»„
+	//ÄÚ²¿×é
 	$migname='';
 	if($ur['ingid'])
 	{
@@ -239,23 +239,23 @@ while($r=$empire->fetch($sql))
       </div></td> 
       <td width="97%" height="27"><table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr>
-          <td width="14%">IDï¼š<?=$r['userid']?></td>
-          <td width="20%">ç”¨æˆ·åï¼š<a href="../../space/?userid=<?=$r['userid']?>" title="æŸ¥çœ‹ä¼šå‘˜ç©ºé—´" target="_blank"><?=$namefont1?><?=$username?><?=$namefont2?></a></td>
-          <td width="14%">å†…éƒ¨ç»„ï¼š<?=$migname?></td>
-          <td width="20%">æ³¨å†Œæ—¶é—´ï¼š<?=eReturnMemberRegtime($ur['registertime'],"Y-m-d H:i:s")?></td>
-          <td width="20%">æ³¨å†ŒIPï¼š<?=$r['regip']?>:<?=$r['regipport']?></td>
-          <td width="12%" rowspan="2"><div align="center">[<a href="AddMember.php?enews=EditMember&userid=<?=$r['userid']?><?=$ecms_hashur['ehref']?>" target="_blank">ä¿®æ”¹</a>]
+          <td width="14%">ID£º<?=$r['userid']?></td>
+          <td width="20%">ÓÃ»§Ãû£º<a href="../../space/?userid=<?=$r['userid']?>" title="²é¿´»áÔ±¿Õ¼ä" target="_blank"><?=$namefont1?><?=$username?><?=$namefont2?></a></td>
+          <td width="14%">ÄÚ²¿×é£º<?=$migname?></td>
+          <td width="20%">×¢²áÊ±¼ä£º<?=eReturnMemberRegtime($ur['registertime'],"Y-m-d H:i:s")?></td>
+          <td width="20%">×¢²áIP£º<?=$r['regip']?>:<?=$r['regipport']?></td>
+          <td width="12%" rowspan="2"><div align="center">[<a href="AddMember.php?enews=EditMember&userid=<?=$r['userid']?><?=$ecms_hashur['ehref']?>" target="_blank">ĞŞ¸Ä</a>]
             &nbsp;
-            [<a href="ListMember.php?enews=DelMember&userid=<?=$r['userid']?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]
+            [<a href="ListMember.php?enews=DelMember&userid=<?=$r['userid']?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]
             </div>
           </div></td>
         </tr>
         <tr>
-          <td>ç®¡ç†ç»„ï¼š<?=$magname?></td>
-          <td>ä¼šå‘˜ç»„ï¼š<?=$level_r[$ur['groupid']][groupname]?></td>
-          <td>ç™»å½•æ¬¡æ•°ï¼š<?=$r['loginnum']?></td>
-          <td>æœ€åç™»å½•ï¼š<?=date("Y-m-d H:i:s",$r['lasttime'])?></td>
-          <td>æœ€åIPï¼š<?=$r['lastip']?>:<?=$r['lastipport']?></td>
+          <td>¹ÜÀí×é£º<?=$magname?></td>
+          <td>»áÔ±×é£º<?=$level_r[$ur['groupid']][groupname]?></td>
+          <td>µÇÂ¼´ÎÊı£º<?=$r['loginnum']?></td>
+          <td>×îºóµÇÂ¼£º<?=date("Y-m-d H:i:s",$r['lasttime'])?></td>
+          <td>×îºóIP£º<?=$r['lastip']?>:<?=$r['lastipport']?></td>
           </tr>
       </table></td>  
     </tr>
@@ -264,28 +264,28 @@ while($r=$empire->fetch($sql))
     <td height="23" bgcolor="#FFFFFF">&nbsp;      </td>
     <td height="23" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="1" cellpadding="3">
       <tr>
-        <td width="50%" height="23">æ³¨å†Œèµ„æ–™<?=$checkedtitle?><?=$isernstatus2?></td>
-        <td width="50%">ç©ºé—´åç§°å’Œå…¬å‘Š</td>
+        <td width="50%" height="23">×¢²á×ÊÁÏ<?=$checkedtitle?><?=$isernstatus2?></td>
+        <td width="50%">¿Õ¼äÃû³ÆºÍ¹«¸æ</td>
       </tr>
       <tr>
-        <td><textarea name="textarea" cols="60" style="WIDTH:100%" rows="8">ç”¨æˆ·åï¼š<?=$username."\r\n"?>
-é‚®ç®±åœ°å€ï¼š<?=$ur['email']."\r\n"?>
-å…¬å¸åç§°ï¼š<?=stripSlashes($r['company'])."\r\n"?>
-çœŸå®å§“åï¼š<?=stripSlashes($r['truename'])."\r\n"?>
-è”ç³»ç”µè¯ï¼š<?=stripSlashes($r['mycall'])."\r\n"?>
-ä¼ çœŸå·ç ï¼š<?=stripSlashes($r['fax'])."\r\n"?>
-æ‰‹æœºå·ç ï¼š<?=stripSlashes($r['phone'])."\r\n"?>
-QQå·ç ï¼š<?=stripSlashes($r['oicq'])."\r\n"?>
-MSNï¼š<?=stripSlashes($r['msn'])."\r\n"?>
-ä¼šå‘˜å¤´åƒï¼š<?=$r['userpic']."\r\n"?>
-ç½‘ç«™åœ°å€ï¼š<?=stripSlashes($r['homepage'])."\r\n"?>
-è”ç³»åœ°å€ï¼š<?=stripSlashes($r['address'])."\r\n"?>
-é‚®ç¼–ï¼š<?=stripSlashes($r['zip'])."\r\n"?>
-ç®€ä»‹ï¼š<?="\r\n"?>
+        <td><textarea name="textarea" cols="60" style="WIDTH:100%" rows="8">ÓÃ»§Ãû£º<?=$username."\r\n"?>
+ÓÊÏäµØÖ·£º<?=$ur['email']."\r\n"?>
+¹«Ë¾Ãû³Æ£º<?=stripSlashes($r['company'])."\r\n"?>
+ÕæÊµĞÕÃû£º<?=stripSlashes($r['truename'])."\r\n"?>
+ÁªÏµµç»°£º<?=stripSlashes($r['mycall'])."\r\n"?>
+´«ÕæºÅÂë£º<?=stripSlashes($r['fax'])."\r\n"?>
+ÊÖ»úºÅÂë£º<?=stripSlashes($r['phone'])."\r\n"?>
+QQºÅÂë£º<?=stripSlashes($r['oicq'])."\r\n"?>
+MSN£º<?=stripSlashes($r['msn'])."\r\n"?>
+»áÔ±Í·Ïñ£º<?=$r['userpic']."\r\n"?>
+ÍøÕ¾µØÖ·£º<?=stripSlashes($r['homepage'])."\r\n"?>
+ÁªÏµµØÖ·£º<?=stripSlashes($r['address'])."\r\n"?>
+ÓÊ±à£º<?=stripSlashes($r['zip'])."\r\n"?>
+¼ò½é£º<?="\r\n"?>
 <?=stripSlashes($r['saytext'])?>
 </textarea></td>
-        <td><textarea name="textarea2" cols="60" style="WIDTH:100%" rows="8">ç©ºé—´åç§°ï¼š<?=stripSlashes($r['spacename'])."\r\n"?>
-ç©ºé—´å…¬å‘Šï¼š<?="\r\n"?>
+        <td><textarea name="textarea2" cols="60" style="WIDTH:100%" rows="8">¿Õ¼äÃû³Æ£º<?=stripSlashes($r['spacename'])."\r\n"?>
+¿Õ¼ä¹«¸æ£º<?="\r\n"?>
 <?=stripSlashes($r['spacegg'])?>
 </textarea></td>
       </tr>
@@ -298,30 +298,30 @@ MSNï¼š<?=stripSlashes($r['msn'])."\r\n"?>
 ?>
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class=tableborder>
     <tr>
-      <td width="3%" bgcolor="#FFFFFF"><div align="center"><input type=checkbox name=chkall value=on onclick="CheckAll(this.form)" title="å…¨é€‰"></div></td> 
+      <td width="3%" bgcolor="#FFFFFF"><div align="center"><input type=checkbox name=chkall value=on onclick="CheckAll(this.form)" title="È«Ñ¡"></div></td> 
       <td height="30" bgcolor="#FFFFFF">
         <select name="toingid" id="toingid">
-        <option value="0">å–æ¶ˆå†…éƒ¨ç»„</option>
+        <option value="0">È¡ÏûÄÚ²¿×é</option>
 		<?=$chingroup?>
       </select>
-        <input type="submit" name="Submit32" value="è½¬ç§»å†…éƒ¨ç»„" onclick="document.memberform.enews.value='DoMoveInGroupMember_all';">
+        <input type="submit" name="Submit32" value="×ªÒÆÄÚ²¿×é" onclick="document.memberform.enews.value='DoMoveInGroupMember_all';">
         &nbsp;&nbsp;&nbsp; 
-        <input type="submit" name="Submit3" value="å®¡æ ¸" onclick="document.memberform.enews.value='DoCheckMember_all';document.memberform.docheck.value='1';"> &nbsp;&nbsp;&nbsp;
-		<input type="submit" name="Submit3" value="å–æ¶ˆå®¡æ ¸" onclick="document.memberform.enews.value='DoCheckMember_all';document.memberform.docheck.value='0';"> &nbsp;&nbsp;&nbsp;
-		  <input type="submit" name="Submit2" value="åˆ é™¤" onclick="document.memberform.enews.value='DelMember_all';">
+        <input type="submit" name="Submit3" value="ÉóºË" onclick="document.memberform.enews.value='DoCheckMember_all';document.memberform.docheck.value='1';"> &nbsp;&nbsp;&nbsp;
+		<input type="submit" name="Submit3" value="È¡ÏûÉóºË" onclick="document.memberform.enews.value='DoCheckMember_all';document.memberform.docheck.value='0';"> &nbsp;&nbsp;&nbsp;
+		  <input type="submit" name="Submit2" value="É¾³ı" onclick="document.memberform.enews.value='DelMember_all';">
         &nbsp;
         <input name="enews" type="hidden" id="enews" value="DelMember_all">
 		<input name="docheck" type="hidden" id="docheck" value="1">      </td>
   </tr>
     <tr>
       <td bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="30" bgcolor="#FFFFFF">åˆ†é¡µ: 
+      <td height="30" bgcolor="#FFFFFF">·ÖÒ³: 
         <?=$returnpage?></td>
     </tr>
 </table>
   <table width="100%" border="0" cellspacing="1" cellpadding="3">
     <tr>
-      <td height="30"><font color="#666666">è¯´æ˜ï¼šå¤šé€‰æ¡†ä¸ºè“è‰²æˆ–ç”¨æˆ·åç°è‰²ä»£è¡¨æœªå®¡æ ¸ä¼šå‘˜. </font></td>
+      <td height="30"><font color="#666666">ËµÃ÷£º¶àÑ¡¿òÎªÀ¶É«»òÓÃ»§Ãû»ÒÉ«´ú±íÎ´ÉóºË»áÔ±. </font></td>
     </tr>
   </table>
 </form>

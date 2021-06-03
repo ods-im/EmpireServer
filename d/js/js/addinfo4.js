@@ -1,1 +1,1 @@
-document.write("<option value=6>|-FLASHé¢‘é“</option><option value=50 style=\'background:99C4E3\'>&nbsp;&nbsp;|-æ¸¸æˆ</option><option value=51 style=\'background:99C4E3\'>&nbsp;&nbsp;|-éŸ³ä¹MV</option>");
+document.write("<option value=6>|-FLASHÆµµÀ</option><option value=50 style=\'background:99C4E3\'>&nbsp;&nbsp;|-ÓÎÏ·</option><option value=51 style=\'background:99C4E3\'>&nbsp;&nbsp;|-ÒôÀÖMV</option>");

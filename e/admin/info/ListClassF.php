@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,43 +15,43 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"classf");
-$url="<a href='../ListClass.php".$ecms_hashur['whehref']."'>ç®¡ç†æ ç›®</a>&nbsp;>&nbsp;<a href='ListClassF.php".$ecms_hashur['whehref']."'>ç®¡ç†æ ç›®å­—æ®µ</a>";
+$url="<a href='../ListClass.php".$ecms_hashur['whehref']."'>¹ÜÀíÀ¸Ä¿</a>&nbsp;>&nbsp;<a href='ListClassF.php".$ecms_hashur['whehref']."'>¹ÜÀíÀ¸Ä¿×Ö¶Î</a>";
 $sql=$empire->query("select * from {$dbtbpre}enewsclassf order by myorder,fid");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†å­—æ®µ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí×Ö¶Î</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit2" value="å¢åŠ æ ç›®å­—æ®µ" onclick="self.location.href='AddClassF.php?enews=AddClassF<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit2" value="Ôö¼ÓÀ¸Ä¿×Ö¶Î" onclick="self.location.href='AddClassF.php?enews=AddClassF<?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-		<input type="button" name="Submit2" value="ç®¡ç†æ ç›®" onclick="self.location.href='../ListClass.php<?=$ecms_hashur['whehref']?>';">
+		<input type="button" name="Submit2" value="¹ÜÀíÀ¸Ä¿" onclick="self.location.href='../ListClass.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
-<form name="form1" method="post" action="../ecmsclass.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+<form name="form1" method="post" action="../ecmsclass.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="6%" height="25"><div align="center">é¡ºåº</div></td>
+      <td width="6%" height="25"><div align="center">Ë³Ğò</div></td>
       <td width="27%" height="25">
-<div align="center">å­—æ®µå</div></td>
+<div align="center">×Ö¶ÎÃû</div></td>
       <td width="27%">
-<div align="center">å­—æ®µæ ‡è¯†</div></td>
-      <td width="23%"><div align="center">å­—æ®µç±»å‹</div></td>
-      <td width="17%" height="25"><div align="center">æ“ä½œ</div></td>
+<div align="center">×Ö¶Î±êÊ¶</div></td>
+      <td width="23%"><div align="center">×Ö¶ÎÀàĞÍ</div></td>
+      <td width="17%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -80,7 +80,7 @@ $sql=$empire->query("select * from {$dbtbpre}enewsclassf order by myorder,fid");
 	  	  <?=$ftype?>
 	  </div></td>
       <td height="25"><div align="center"> 
-         [<a href='AddClassF.php?enews=EditClassF&fid=<?=$r[fid]?><?=$ecms_hashur['ehref']?>'>ä¿®æ”¹</a>]&nbsp;&nbsp;[<a href='../ecmsclass.php?enews=DelClassF&fid=<?=$r[fid]?><?=$ecms_hashur['href']?>' onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]
+         [<a href='AddClassF.php?enews=EditClassF&fid=<?=$r[fid]?><?=$ecms_hashur['ehref']?>'>ĞŞ¸Ä</a>]&nbsp;&nbsp;[<a href='../ecmsclass.php?enews=DelClassF&fid=<?=$r[fid]?><?=$ecms_hashur['href']?>' onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]
         </div></td>
     </tr>
     <?
@@ -88,8 +88,8 @@ $sql=$empire->query("select * from {$dbtbpre}enewsclassf order by myorder,fid");
 	?>
     <tr bgcolor="ffffff"> 
       <td height="25">&nbsp;</td>
-      <td height="25" colspan="4"><input type="submit" name="Submit" value="ä¿®æ”¹å­—æ®µé¡ºåº">
-        <font color="#666666">(å€¼è¶Šå°è¶Šå‰é¢)</font> 
+      <td height="25" colspan="4"><input type="submit" name="Submit" value="ĞŞ¸Ä×Ö¶ÎË³Ğò">
+        <font color="#666666">(ÖµÔ½Ğ¡Ô½Ç°Ãæ)</font> 
         <input name="enews" type="hidden" id="enews" value="EditClassFOrder"> 
       </td>
     </tr>
@@ -97,12 +97,12 @@ $sql=$empire->query("select * from {$dbtbpre}enewsclassf order by myorder,fid");
 </form>
 <table width="100%" border="0" cellspacing="1" cellpadding="3" class="tableborder">
   <tr class="header">
-    <td height="25">å­—æ®µè°ƒç”¨è¯´æ˜</td>
+    <td height="25">×Ö¶Îµ÷ÓÃËµÃ÷</td>
   </tr>
   <tr>
-    <td height="25" bgcolor="#FFFFFF">ä½¿ç”¨å†…ç½®è°ƒç”¨æ ç›®è‡ªå®šä¹‰å­—æ®µå‡½æ•°ï¼šReturnClassAddField(æ ç›®ID,å­—æ®µå)ï¼Œæ ç›®ID=0ä¸ºå½“å‰æ ç›®IDã€‚å–å¤šä¸ªå­—æ®µå†…å®¹å¯ç”¨é€—å·éš”å¼€ï¼Œä¾‹å­ï¼š<br>
-      å–å¾—'classtext'å­—æ®µå†…å®¹ï¼š$value=ReturnClassAddField(0,'classtext'); //$valueå°±æ˜¯å­—æ®µå†…å®¹ã€‚<br>
-      å–å¾—å¤šä¸ªå­—æ®µå†…å®¹ï¼š$value=ReturnClassAddField(1,'classid,classtext'); //$value['classtext']æ‰æ˜¯å­—æ®µå†…å®¹ã€‚</td>
+    <td height="25" bgcolor="#FFFFFF">Ê¹ÓÃÄÚÖÃµ÷ÓÃÀ¸Ä¿×Ô¶¨Òå×Ö¶Îº¯Êı£ºReturnClassAddField(À¸Ä¿ID,×Ö¶ÎÃû)£¬À¸Ä¿ID=0Îªµ±Ç°À¸Ä¿ID¡£È¡¶à¸ö×Ö¶ÎÄÚÈİ¿ÉÓÃ¶ººÅ¸ô¿ª£¬Àı×Ó£º<br>
+      È¡µÃ'classtext'×Ö¶ÎÄÚÈİ£º$value=ReturnClassAddField(0,'classtext'); //$value¾ÍÊÇ×Ö¶ÎÄÚÈİ¡£<br>
+      È¡µÃ¶à¸ö×Ö¶ÎÄÚÈİ£º$value=ReturnClassAddField(1,'classid,classtext'); //$value['classtext']²ÅÊÇ×Ö¶ÎÄÚÈİ¡£</td>
   </tr>
 </table>
 </body>

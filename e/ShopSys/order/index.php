@@ -5,15 +5,15 @@ require("../../class/db_sql.php");
 require("../../data/dbcache/class.php");
 require("../../member/class/user.php");
 require('../class/ShopSysFun.php');
-eCheckCloseMods('shop');//鍏抽棴妯″潡
+eCheckCloseMods('shop');//关闭模块
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
 $shoppr=ShopSys_ReturnSet();
-//楠岃瘉鏉冮檺
+//验证权限
 ShopCheckAddDdGroup($shoppr);
 $addressid=(int)$_GET['addressid'];
-//鐢ㄦ埛淇℃伅
+//用户信息
 $user=array();
 $useraddr=array();
 $user[userid]=0;
@@ -21,7 +21,7 @@ $email='';
 if(getcvar('mluserid'))
 {
 	$user=islogin();
-	//鍦板潃
+	//地址
 	$addressr=ShopSys_GetAddress($addressid);
 	if($addressr['addressid'])
 	{
@@ -34,7 +34,7 @@ if(getcvar('mluserid'))
 		$useraddr=$empire->fetch1("select truename,oicq,msn,`mycall`,phone,address,zip from {$dbtbpre}enewsmemberadd where userid='$user[userid]' limit 1");
 	}
 }
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/ShopSys/order.php');
 db_close();
 $empire=null;

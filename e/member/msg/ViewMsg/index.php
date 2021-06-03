@@ -6,7 +6,7 @@ require("../../class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=2;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 $user=islogin();
 $mid=(int)$_GET['mid'];
 if(empty($mid))
@@ -20,7 +20,7 @@ if(empty($r[mid]))
 }
 if($r['issys'])
 {
-	$r[from_username]="<b>绯荤粺淇℃伅</b>";
+	$r[from_username]="<b>系统信息</b>";
 }
 if(!$r['haveread'])
 {
@@ -32,7 +32,7 @@ if(!$r['haveread'])
 	$usql=$empire->query("update ".eReturnMemberTable()." set ".egetmf('havemsg')."='$newhavemsg' where ".egetmf('userid')."='$user[userid]'");
 	$usql=$empire->query("update {$dbtbpre}enewsqmsg set haveread=1 where mid=$mid");
 }
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/ViewMsg.php');
 db_close();
 $empire=null;

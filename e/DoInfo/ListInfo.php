@@ -7,9 +7,9 @@ require("../class/q_functions.php");
 require LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯æ˜¯å¦ç™»é™†
+//ÑéÖ¤ÊÇ·ñµÇÂ½
 $user=islogin();
-//å–å¾—æ¨¡å‹id
+//È¡µÃÄ£ĞÍid
 $mid=(int)$_GET['mid'];
 if(!$mid)
 {
@@ -29,12 +29,12 @@ if(!$public_r['usetotalnum'])
 $start=0;
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
-$line=25;//æ¯è¡Œæ˜¾ç¤º
+$line=25;//Ã¿ĞĞÏÔÊ¾
 $page_line=10;
 $offset=$page*$line;
 $add='';
 $search="&mid=$mid";
-//å®¡æ ¸è¡¨
+//ÉóºË±í
 $ecmscheck=(int)$_GET['ecmscheck'];
 $addecmscheck='';
 $indexchecked=1;
@@ -45,7 +45,7 @@ if($ecmscheck)
 	$indexchecked=0;
 }
 $infotb=ReturnInfoMainTbname($mr['tbname'],$indexchecked);
-//æ˜¾ç¤ºæ–¹å¼
+//ÏÔÊ¾·½Ê½
 if($public_r['qlistinfomod'])
 {
 	$modnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsmod where tbname='$mr[tbname]'");
@@ -54,7 +54,7 @@ if($public_r['qlistinfomod'])
 		$add.=' and ('.ReturnClass($mr['sonclass']).')';
 	}
 }
-//æœç´¢
+//ËÑË÷
 $sear=RepPostStr($_GET['sear'],1);
 $keyboard='';
 $show='';
@@ -62,14 +62,14 @@ if($sear)
 {
 	$keyboard=RepPostVar2($_GET['keyboard']);
 	$show=RepPostStr($_GET['show'],1);
-	//å…³é”®å­—
+	//¹Ø¼ü×Ö
 	if($keyboard)
 	{
 		$add.=" and (title like '%$keyboard%')";
 	}
 	$search.="&sear=1&keyboard=$keyboard&show=$show";
 }
-//ä¼˜åŒ–
+//ÓÅ»¯
 $yhid=$etable_r[$mr[tbname]][yhid];
 $yhvar='qmlist';
 $yhadd='';
@@ -77,11 +77,11 @@ if($yhid)
 {
 	$yhadd=ReturnYhSql($yhid,$yhvar,1);
 }
-//ä¿¡æ¯è¡¨
+//ĞÅÏ¢±í
 $totalquery="select count(*) as total from ".$infotb." where ".$yhadd."userid='$user[userid]' and ismember=1".$add;
 if($totalnum<1)
 {
-	$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+	$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 }
 else
 {
@@ -94,7 +94,7 @@ if($public_r['usetotalnum'])
 //checkpageno
 eCheckListPageNo($page,$line,$num);
 $returnpage=page1($num,$line,$page_line,$start,$page,$search);
-//å¯¼å…¥é¡µé¢
+//µ¼ÈëÒ³Ãæ
 $deftempfile=ECMS_PATH.'e/data/html/list/qlistinfo.php';
 if($mr[listfile])
 {

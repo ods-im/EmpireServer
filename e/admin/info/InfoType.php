@@ -8,7 +8,7 @@ require '../'.LoadLang('pub/fun.php');
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,10 +17,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"infotype");
 
-//å¤„ç†åˆ†ç±»å­—æ®µå˜é‡
+//´¦Àí·ÖÀà×Ö¶Î±äÁ¿
 function DoPostInfoTypeVar($add){
 	if(empty($add['ttype']))
 	{
@@ -47,14 +47,14 @@ function DoPostInfoTypeVar($add){
 	$add['repagenum']=(int)$add['repagenum'];
 	$add['ttype']=hRepPostStr($add['ttype'],1);
 	$add['timg']=hRepPostStr($add['timg'],1);
-	//ç›®å½•
+	//Ä¿Â¼
 	$add['tpath']=trim($add['tpath']);
 	$add['tpath']=$add['pripath'].$add['tpath'];
 	$add['tpath']=hRepPostStr($add['tpath'],1);
 	return $add;
 }
 
-//å¢åŠ åˆ†ç±»
+//Ôö¼Ó·ÖÀà
 function AddInfoType($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[mid]||!$add[tname]||!$add[listtempid]||!$add[tpath])
@@ -64,27 +64,27 @@ function AddInfoType($add,$userid,$username){
 	$add=DoPostInfoTypeVar($add);
 	CheckLevel($userid,$username,$classid,"infotype");
 	$createpath=ECMS_PATH.$add[tpath];
-	//æ£€æµ‹ç›®å½•æ˜¯å¦å­˜åœ¨
+	//¼ì²âÄ¿Â¼ÊÇ·ñ´æÔÚ
 	if(file_exists($createpath))
 	{
 		printerror("ReInfoTypePath","");
 	}
-	CreateInfoTypePath($add[tpath]);//å»ºç«‹ç›®å½•
-	//å–å¾—è¡¨å
+	CreateInfoTypePath($add[tpath]);//½¨Á¢Ä¿Â¼
+	//È¡µÃ±íÃû
 	$ecms_fclast=time();
 	$tabler=GetModTable($add[mid]);
 	$tabler[tid]=(int)$tabler[tid];
 	$sql=$empire->query("insert into {$dbtbpre}enewsinfotype(tname,mid,myorder,yhid,tnum,listtempid,tpath,ttype,maxnum,reorder,tid,tbname,timg,intro,pagekey,newline,hotline,goodline,hotplline,firstline,jstempid,nrejs,listdt,repagenum,fclast) values('$add[tname]','$add[mid]','$add[myorder]','$add[yhid]','$add[tnum]','$add[listtempid]','$add[tpath]','$add[ttype]','$add[maxnum]','$add[reorder]','$tabler[tid]','$tabler[tbname]','$add[timg]','$add[intro]','$add[pagekey]','$add[newline]','$add[hotline]','$add[goodline]','$add[hotplline]','$add[firstline]','$add[jstempid]','$add[nrejs]','$add[listdt]','$add[repagenum]','$ecms_fclast');");
 	$typeid=$empire->lastid();
-	//ç”Ÿæˆé¡µé¢
+	//Éú³ÉÒ³Ãæ
 	if($add[listdt]==0)
 	{
 		//ListHtml($typeid,$ret_r,5);
 	}
-	GetClass();//æ›´æ–°ç¼“å­˜
+	GetClass();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("typeid=".$typeid."<br>tname=".$add[tname]);
 		printerror("AddInfoTypeSuccess","InfoType.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -92,7 +92,7 @@ function AddInfoType($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹åˆ†ç±»
+//ĞŞ¸Ä·ÖÀà
 function EditInfoType($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$typeid=(int)$add['typeid'];
@@ -102,7 +102,7 @@ function EditInfoType($add,$userid,$username){
     }
 	$add=DoPostInfoTypeVar($add);
 	CheckLevel($userid,$username,$classid,"infotype");
-	//æ”¹å˜ç›®å½•
+	//¸Ä±äÄ¿Â¼
 	if($add[oldtpath]<>$add[tpath])
 	{
 		$createpath=ECMS_PATH.$add[tpath];
@@ -113,28 +113,28 @@ function EditInfoType($add,$userid,$username){
 		if($add['oldpripath']==$add['pripath'])
 		{
 			$new=ECMS_PATH;
-			@rename($new.$add[oldtpath],$new.$add[tpath]);//æ”¹å˜ç›®å½•å
+			@rename($new.$add[oldtpath],$new.$add[tpath]);//¸Ä±äÄ¿Â¼Ãû
 		}
 		else
 		{
-			CreateInfoTypePath($add[tpath]);//å»ºç«‹ç›®å½•
+			CreateInfoTypePath($add[tpath]);//½¨Á¢Ä¿Â¼
 		}
     }
-	//å–å¾—è¡¨å
+	//È¡µÃ±íÃû
 	$ecms_fclast=time();
 	$tabler=GetModTable($add[mid]);
 	$tabler[tid]=(int)$tabler[tid];
-	//ä¿®æ”¹
+	//ĞŞ¸Ä
 	$sql=$empire->query("update {$dbtbpre}enewsinfotype set tname='$add[tname]',mid='$add[mid]',myorder='$add[myorder]',yhid='$add[yhid]',tnum='$add[tnum]',listtempid='$add[listtempid]',tpath='$add[tpath]',ttype='$add[ttype]',maxnum='$add[maxnum]',reorder='$add[reorder]',tid='$tabler[tid]',tbname='$tabler[tbname]',timg='$add[timg]',intro='$add[intro]',pagekey='$add[pagekey]',newline='$add[newline]',hotline='$add[hotline]',goodline='$add[goodline]',hotplline='$add[hotplline]',firstline='$add[firstline]',jstempid='$add[jstempid]',nrejs='$add[nrejs]',listdt='$add[listdt]',repagenum='$add[repagenum]',fclast='$ecms_fclast' where typeid='$typeid'");
-	GetClass();//æ›´æ–°ç¼“å­˜
-	//ç”Ÿæˆé¡µé¢
+	GetClass();//¸üĞÂ»º´æ
+	//Éú³ÉÒ³Ãæ
 	if($add[listdt]==0)
 	{
 		ListHtml($typeid,$ret_r,5);
 	}
 	if($sql)
 	{
-		insert_dolog("typeid=".$typeid."<br>tname=".$add[tname]);//æ“ä½œæ—¥å¿—
+		insert_dolog("typeid=".$typeid."<br>tname=".$add[tname]);//²Ù×÷ÈÕÖ¾
 		printerror("EditInfoTypeSuccess","InfoType.php?mid=$add[fmid]".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -143,7 +143,7 @@ function EditInfoType($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤åˆ†ç±»
+//É¾³ı·ÖÀà
 function DelInfoType($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$typeid=(int)$add[typeid];
@@ -157,7 +157,7 @@ function DelInfoType($add,$userid,$username){
 	{
 		printerror("NotDelInfoTypeid","history.go(-1)");
 	}
-	//åˆ é™¤æ ‡é¢˜åˆ†ç±»
+	//É¾³ı±êÌâ·ÖÀà
 	$sql=$empire->query("delete from {$dbtbpre}enewsinfotype where typeid='$typeid'");
 	$delpath=ECMS_PATH.$r[tpath];
 	$del=DelPath($delpath);
@@ -167,14 +167,14 @@ function DelInfoType($add,$userid,$username){
 		$eautodofname='delpath|'.$r['tpath'].'||';
 		eAutodo_AddDo('eDelFileTT',0,0,0,0,0,$eautodofname);
 	}
-	//æ”¹å˜ä¿¡æ¯åˆ†ç±»å€¼
+	//¸Ä±äĞÅÏ¢·ÖÀàÖµ
 	$usql=$empire->query("update {$dbtbpre}ecms_".$r[tbname]." set ttid=0 where ttid='$typeid'");
 	$usql=$empire->query("update {$dbtbpre}ecms_".$r[tbname]."_check set ttid=0 where ttid='$typeid'");
 	$usql=$empire->query("update {$dbtbpre}ecms_".$r[tbname]."_doc set ttid=0 where ttid='$typeid'");
-	GetClass();//æ›´æ–°ç¼“å­˜
+	GetClass();//¸üĞÂ»º´æ
 	if($sql)
 	{
-		insert_dolog("typeid=".$typeid."<br>tname=".$r[tname]);//æ“ä½œæ—¥å¿—
+		insert_dolog("typeid=".$typeid."<br>tname=".$r[tname]);//²Ù×÷ÈÕÖ¾
 		printerror("DelInfoTypeSuccess","InfoType.php?mid=$add[fmid]".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -183,7 +183,7 @@ function DelInfoType($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹åˆ†ç±»é¡ºåº
+//ĞŞ¸Ä·ÖÀàË³Ğò
 function EditInfoTypeOrder($typeid,$myorder,$userid,$username){
 	global $empire,$dbtbpre;
 	CheckLevel($userid,$username,$classid,"infotype");
@@ -193,7 +193,7 @@ function EditInfoTypeOrder($typeid,$myorder,$userid,$username){
 		$typeid[$i]=(int)$typeid[$i];
 		$sql=$empire->query("update {$dbtbpre}enewsinfotype set myorder='$newmyorder' where typeid='$typeid[$i]'");
     }
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("EditInfoTypeOrderSuccess",EcmsGetReturnUrl());
 }
@@ -208,19 +208,19 @@ if($enews)
 	include('../../class/copypath.php');
 	include('../../class/t_functions.php');
 }
-if($enews=="AddInfoType")//å¢åŠ åˆ†ç±»
+if($enews=="AddInfoType")//Ôö¼Ó·ÖÀà
 {
 	AddInfoType($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditInfoType")//ä¿®æ”¹åˆ†ç±»
+elseif($enews=="EditInfoType")//ĞŞ¸Ä·ÖÀà
 {
 	EditInfoType($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelInfoType")//åˆ é™¤åˆ†ç±»
+elseif($enews=="DelInfoType")//É¾³ı·ÖÀà
 {
 	DelInfoType($_GET,$logininid,$loginin);
 }
-elseif($enews=="EditInfoTypeOrder")//ä¿®æ”¹åˆ†ç±»æ’åº
+elseif($enews=="EditInfoTypeOrder")//ĞŞ¸Ä·ÖÀàÅÅĞò
 {
 	EditInfoTypeOrder($_POST['typeid'],$_POST['myorder'],$logininid,$loginin);
 }
@@ -231,9 +231,9 @@ $search.=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=50;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=50;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select typeid,tname,mid,myorder,tpath from {$dbtbpre}enewsinfotype";
 $totalquery="select count(*) as total from {$dbtbpre}enewsinfotype";
 $add='';
@@ -245,11 +245,11 @@ if($mid)
 }
 $query.=$add;
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by myorder,typeid limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//æ¨¡å‹
+//Ä£ĞÍ
 $mstr="";
 $msql=$empire->query("select mid,mname from {$dbtbpre}enewsmod where usemod=0 order by myorder,mid");
 while($mr=$empire->fetch($msql))
@@ -265,8 +265,8 @@ while($mr=$empire->fetch($msql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ ‡é¢˜åˆ†ç±»</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>±êÌâ·ÖÀà</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -284,34 +284,34 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="69%" height="25">ä½ç½®ï¼š<a href="InfoType.php<?=$ecms_hashur['whehref']?>">ç®¡ç†æ ‡é¢˜åˆ†ç±»</a> </td>
+    <td width="69%" height="25">Î»ÖÃ£º<a href="InfoType.php<?=$ecms_hashur['whehref']?>">¹ÜÀí±êÌâ·ÖÀà</a> </td>
     <td width="31%"><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ æ ‡é¢˜åˆ†ç±»" onclick="self.location.href='AddInfoType.php?enews=AddInfoType<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó±êÌâ·ÖÀà" onclick="self.location.href='AddInfoType.php?enews=AddInfoType<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td>é€‰æ‹©æ‰€å±ç³»ç»Ÿæ¨¡å‹ï¼š 
+    <td>Ñ¡ÔñËùÊôÏµÍ³Ä£ĞÍ£º 
       <select name="mid" id="mid" onchange="window.location='InfoType.php?<?=$ecms_hashur['ehref']?>&mid='+this.options[this.selectedIndex].value;">
-        <option value="0">ä¸é™ç³»ç»Ÿæ¨¡å‹</option>
+        <option value="0">²»ÏŞÏµÍ³Ä£ĞÍ</option>
         <?=$mstr?>
       </select> </td>
   </tr>
 </table>
 <br>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name="infotypeform" method="post" action="InfoType.php" onsubmit="return confirm('ç¡®è®¤è¦æäº¤?');">
+  <form name="infotypeform" method="post" action="InfoType.php" onsubmit="return confirm('È·ÈÏÒªÌá½»?');">
   <?=$ecms_hashur['form']?>
     <input name="fmid" type="hidden" id="fmid" value="<?=$mid?>">
     <tr class="header"> 
-      <td width="4%"><div align="center">é€‰æ‹© </div></td>
+      <td width="4%"><div align="center">Ñ¡Ôñ </div></td>
       <td width="6%"><div align="center">ID</div></td>
-      <td width="4%"><div align="center">æ’åº</div></td>
-      <td width="32%" height="25"><div align="center">åˆ†ç±»åç§°</div></td>
-      <td width="21%"><div align="center">æ‰€å±ç³»ç»Ÿæ¨¡å‹</div></td>
-      <td width="16%" height="25"><div align="center">æ“ä½œ</div></td>
-      <td width="17%">æ“ä½œ</td>
+      <td width="4%"><div align="center">ÅÅĞò</div></td>
+      <td width="32%" height="25"><div align="center">·ÖÀàÃû³Æ</div></td>
+      <td width="21%"><div align="center">ËùÊôÏµÍ³Ä£ĞÍ</div></td>
+      <td width="16%" height="25"><div align="center">²Ù×÷</div></td>
+      <td width="17%">²Ù×÷</td>
     </tr>
     <?php
   while($r=$empire->fetch($sql))
@@ -336,12 +336,12 @@ function CheckAll(form)
       <td><div align="center">[<a href="InfoType.php?mid=<?=$modr[mid]?><?=$ecms_hashur['ehref']?>"> 
           <?=$modr[mname]?>
           </a>]</div></td>
-      <td height="25"><a href="AddInfoType.php?enews=EditInfoType&typeid=<?=$r[typeid]?>&fmid=<?=$mid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a> 
-        <a href="AddInfoType.php?enews=AddInfoType&docopy=1&typeid=<?=$r[typeid]?>&fmid=<?=$mid?><?=$ecms_hashur['ehref']?>">å¤åˆ¶</a> 
-        <a href="InfoType.php?enews=DelInfoType&typeid=<?=$r[typeid]?>&fmid=<?=$mid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a></td>
-      <td><a href="../ecmschtml.php?enews=ReTtHtml&typeid=<?=$r[typeid]?>&fmid=<?=$mid?><?=$ecms_hashur['href']?>">åˆ·æ–°</a> 
+      <td height="25"><a href="AddInfoType.php?enews=EditInfoType&typeid=<?=$r[typeid]?>&fmid=<?=$mid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a> 
+        <a href="AddInfoType.php?enews=AddInfoType&docopy=1&typeid=<?=$r[typeid]?>&fmid=<?=$mid?><?=$ecms_hashur['ehref']?>">¸´ÖÆ</a> 
+        <a href="InfoType.php?enews=DelInfoType&typeid=<?=$r[typeid]?>&fmid=<?=$mid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a></td>
+      <td><a href="../ecmschtml.php?enews=ReTtHtml&typeid=<?=$r[typeid]?>&fmid=<?=$mid?><?=$ecms_hashur['href']?>">Ë¢ĞÂ</a> 
         <a href='../ecmschtml.php?enews=ReSingleJs&doing=1&classid=<?=$r[typeid]?><?=$ecms_hashur['href']?>'>JS</a> 
-        <a href="#ecms" onclick="window.open('../view/TtUrl.php?ttid=<?=$r[typeid]?><?=$ecms_hashur['ehref']?>','','width=500,height=250');">è°ƒç”¨</a></td>
+        <a href="#ecms" onclick="window.open('../view/TtUrl.php?ttid=<?=$r[typeid]?><?=$ecms_hashur['ehref']?>','','width=500,height=250');">µ÷ÓÃ</a></td>
     </tr>
     <?
   }
@@ -351,14 +351,14 @@ function CheckAll(form)
           <input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
         </div></td>
       <td height="25" colspan="6"> <div align="right">
-          <input type="submit" name="Submit" value="åˆ·æ–°é¡µé¢" onClick="document.infotypeform.enews.value='GoReListHtmlMore';document.infotypeform.action='../ecmschtml.php';">
+          <input type="submit" name="Submit" value="Ë¢ĞÂÒ³Ãæ" onClick="document.infotypeform.enews.value='GoReListHtmlMore';document.infotypeform.action='../ecmschtml.php';">
 		  &nbsp;&nbsp;
-          <input type="submit" name="Submit52" value="ä¿®æ”¹æ’åº" onClick="document.infotypeform.enews.value='EditInfoTypeOrder';document.infotypeform.action='InfoType.php';">
+          <input type="submit" name="Submit52" value="ĞŞ¸ÄÅÅĞò" onClick="document.infotypeform.enews.value='EditInfoTypeOrder';document.infotypeform.action='InfoType.php';">
           &nbsp; 
           <input name="enews" type="hidden" id="enews" value="EditInfoTypeOrder">
           <input name="gore" type="hidden" id="gore" value="2">
           <input name="from" type="hidden" id="from" value="info/InfoType.php<?=$ecms_hashur['whehref']?>">
-          &nbsp; <font color="#666666">(æ’åºå€¼è¶Šå°è¶Šå‰é¢)</font></div></td>
+          &nbsp; <font color="#666666">(ÅÅĞòÖµÔ½Ğ¡Ô½Ç°Ãæ)</font></div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="7"> 

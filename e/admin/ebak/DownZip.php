@@ -6,7 +6,7 @@ require("../../class/functions.php");
 require("class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"dbdata");
 $bakzippath=$public_r['bakdbzip'];
 $p=ehtmlspecialchars($_GET['p']);
@@ -25,29 +25,29 @@ $file=$bakzippath."/".$f;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¸‹è½½å‹ç¼©åŒ…</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÏÂÔØÑ¹Ëõ°ü</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td height="30"> <div align="center">ä¸‹è½½å‹ç¼©åŒ…(ç›®å½•ï¼š 
+    <td height="30"> <div align="center">ÏÂÔØÑ¹Ëõ°ü(Ä¿Â¼£º 
         <?=$p?>
         )</div></td>
   </tr>
   <tr> 
     <td height="30" bgcolor="#FFFFFF"> 
-      <div align="center">[<a href="<?=$file?>">ä¸‹è½½å‹ç¼©åŒ…</a>]</div></td>
+      <div align="center">[<a href="<?=$file?>">ÏÂÔØÑ¹Ëõ°ü</a>]</div></td>
   </tr>
   <tr> 
     <td height="30" bgcolor="#FFFFFF"> 
-      <div align="center">[<a href="phome.php?f=<?=$f?>&phome=DelZip<?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤å‹ç¼©åŒ…</a>]</div></td>
+      <div align="center">[<a href="phome.php?f=<?=$f?>&phome=DelZip<?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ıÑ¹Ëõ°ü</a>]</div></td>
   </tr>
   <tr>
     <td height="30" bgcolor="#FFFFFF">
-<div align="center">ï¼ˆ<font color="#FF0000">è¯´æ˜ï¼šå®‰å…¨èµ·è§ï¼Œä¸‹è½½å®Œæ¯•è¯·é©¬ä¸Šåˆ é™¤å‹ç¼©åŒ…ï¼</font>ï¼‰</div></td>
+<div align="center">£¨<font color="#FF0000">ËµÃ÷£º°²È«Æğ¼û£¬ÏÂÔØÍê±ÏÇëÂíÉÏÉ¾³ıÑ¹Ëõ°ü£®</font>£©</div></td>
   </tr>
 </table>
 </body>

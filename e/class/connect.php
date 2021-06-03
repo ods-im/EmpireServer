@@ -76,7 +76,7 @@ if($ecms_config['sets']['webdebug']==0)
 	error_reporting(0);
 }
 
-//è¶…æ—¶è®¾ç½®
+//³¬Ê±ÉèÖÃ
 if(defined('EmpireCMSAdmin'))
 {
 	if($public_r['php_adminouttime'])
@@ -92,7 +92,7 @@ else
 	}
 }
 
-//é¡µé¢ç¼–ç 
+//Ò³Ãæ±àÂë
 if($ecms_config['sets']['setpagechar']==1)
 {
 	if($ecms_config['sets']['pagechar']=='gb2312'||$ecms_config['sets']['pagechar']=='big5'||$ecms_config['sets']['pagechar']=='utf-8')
@@ -101,7 +101,7 @@ if($ecms_config['sets']['setpagechar']==1)
 	}
 }
 
-//æ—¶åŒº
+//Ê±Çø
 if(function_exists('date_default_timezone_set'))
 {
 	@date_default_timezone_set($ecms_config['sets']['timezone']);
@@ -116,13 +116,13 @@ else
 	include(ECMS_PATH.'e/class/db/db_mysql.php');
 }
 
-//ç¦æ­¢IP
+//½ûÖ¹IP
 eCheckAccessIp(0);
 DoSafeCheckFromurl();
 
 if(defined('EmpireCMSAdmin'))
 {
-	eCheckAccessIp(1);//ç¦æ­¢IP
+	eCheckAccessIp(1);//½ûÖ¹IP
 	EcmsCheckUserAgent($ecms_config['esafe']['ckhuseragent']);
 	//FireWall
 	if(!empty($ecms_config['fw']['eopen']))
@@ -149,7 +149,7 @@ if($ecms_config['sets']['selfmoreportid']>1)
 	EcmsDefMoreport($ecms_config['sets']['selfmoreportid']);
 }
 
-//--------------- æ•°æ®åº“ ---------------
+//--------------- Êı¾İ¿â ---------------
 
 function db_connect(){
 	global $ecms_config;
@@ -162,7 +162,7 @@ function return_dblink($query){
 	return $dblink;
 }
 
-//è®¾ç½®ç¼–ç 
+//ÉèÖÃ±àÂë
 function DoSetDbChar($dbchar){
 	global $link;
 	if($dbchar&&$dbchar!='auto')
@@ -177,28 +177,28 @@ function db_close(){
 }
 
 
-//--------------- å…¬å…± ---------------
+//--------------- ¹«¹² ---------------
 
-//è®¾ç½®COOKIE
+//ÉèÖÃCOOKIE
 function esetcookie($var,$val,$life=0,$ecms=0){
 	global $ecms_config;
-	//secureå±æ€§
+	//secureÊôĞÔ
 	$cksecure=$ecms_config['cks']['cksecure'];
 	if(!empty($cksecure))
 	{
 		$secure=0;
-		if($cksecure==2)//å¼€å¯
+		if($cksecure==2)//¿ªÆô
 		{
 			$secure=1;
 		}
-		elseif($cksecure==3)//åå°å¼€å¯
+		elseif($cksecure==3)//ºóÌ¨¿ªÆô
 		{
 			if(defined('EmpireCMSAdmin'))
 			{
 				$secure=1;
 			}
 		}
-		elseif($cksecure==4)//å‰å°å¼€å¯
+		elseif($cksecure==4)//Ç°Ì¨¿ªÆô
 		{
 			if(!defined('EmpireCMSAdmin'))
 			{
@@ -212,23 +212,23 @@ function esetcookie($var,$val,$life=0,$ecms=0){
 	{
 		$secure=eCheckUseHttps();
 	}
-	//httponlyå±æ€§
+	//httponlyÊôĞÔ
 	$ckhttponly=$ecms_config['cks']['ckhttponly'];
 	$httponly=0;
 	if(!empty($ckhttponly))
 	{
-		if($ckhttponly==1)//å¼€å¯
+		if($ckhttponly==1)//¿ªÆô
 		{
 			$httponly=1;
 		}
-		elseif($ckhttponly==2)//åå°å¼€å¯
+		elseif($ckhttponly==2)//ºóÌ¨¿ªÆô
 		{
 			if(defined('EmpireCMSAdmin'))
 			{
 				$httponly=1;
 			}
 		}
-		elseif($ckhttponly==3)//å‰å°å¼€å¯
+		elseif($ckhttponly==3)//Ç°Ì¨¿ªÆô
 		{
 			if(!defined('EmpireCMSAdmin'))
 			{
@@ -238,7 +238,7 @@ function esetcookie($var,$val,$life=0,$ecms=0){
 		else
 		{}
 	}
-	//è®¾ç½®
+	//ÉèÖÃ
 	$varpre=empty($ecms)?$ecms_config['cks']['ckvarpre']:$ecms_config['cks']['ckadminvarpre'];
 	$ckpath=$ecms_config['cks']['ckpath'];
 	if(PHP_VERSION<'5.2.0')
@@ -255,14 +255,14 @@ function esetcookie($var,$val,$life=0,$ecms=0){
 	}
 }
 
-//è¿”å›cookie
+//·µ»Øcookie
 function getcvar($var,$ecms=0){
 	global $ecms_config;
 	$tvar=empty($ecms)?$ecms_config['cks']['ckvarpre'].$var:$ecms_config['cks']['ckadminvarpre'].$var;
 	return $_COOKIE[$tvar];
 }
 
-//é”™è¯¯æç¤º
+//´íÎóÌáÊ¾
 function printerror($error="",$gotourl="",$ecms=0,$noautourl=0,$novar=0){
 	global $empire,$editor,$public_r,$ecms_config;
 	if($editor==1){$a="../";}
@@ -290,7 +290,7 @@ function printerror($error="",$gotourl="",$ecms=0,$noautourl=0,$novar=0){
 	{$gotourl_js="self.location.href='$gotourl';";}
 	if(empty($error))
 	{$error="DbError";}
-	if($ecms==9)//å‰å°å¼¹å‡ºå¯¹è¯æ¡†
+	if($ecms==9)//Ç°Ì¨µ¯³ö¶Ô»°¿ò
 	{
 		@include $a.LoadLang("pub/q_message.php");
 		$error=empty($novar)?$qmessage_r[$error]:$error;
@@ -299,7 +299,7 @@ function printerror($error="",$gotourl="",$ecms=0,$noautourl=0,$novar=0){
 		$empire=null;
 		exit();
 	}
-	elseif($ecms==8)//åå°å¼¹å‡ºå¯¹è¯æ¡†
+	elseif($ecms==8)//ºóÌ¨µ¯³ö¶Ô»°¿ò
 	{
 		@include $a.LoadLang("pub/message.php");
 		$error=empty($novar)?$message_r[$error]:$error;
@@ -308,7 +308,7 @@ function printerror($error="",$gotourl="",$ecms=0,$noautourl=0,$novar=0){
 		$empire=null;
 		exit();
 	}
-	elseif($ecms==7)//å‰å°å¼¹å‡ºå¯¹è¯æ¡†å¹¶å…³é—­çª—å£
+	elseif($ecms==7)//Ç°Ì¨µ¯³ö¶Ô»°¿ò²¢¹Ø±Õ´°¿Ú
 	{
 		@include $a.LoadLang("pub/q_message.php");
 		$error=empty($novar)?$qmessage_r[$error]:$error;
@@ -317,7 +317,7 @@ function printerror($error="",$gotourl="",$ecms=0,$noautourl=0,$novar=0){
 		$empire=null;
 		exit();
 	}
-	elseif($ecms==6)//åå°å¼¹å‡ºå¯¹è¯æ¡†å¹¶å…³é—­çª—å£
+	elseif($ecms==6)//ºóÌ¨µ¯³ö¶Ô»°¿ò²¢¹Ø±Õ´°¿Ú
 	{
 		@include $a.LoadLang("pub/message.php");
 		$error=empty($novar)?$message_r[$error]:$error;
@@ -343,7 +343,7 @@ function printerror($error="",$gotourl="",$ecms=0,$noautourl=0,$novar=0){
 	exit();
 }
 
-//é”™è¯¯æç¤º2ï¼šç›´æ¥æ–‡å­—
+//´íÎóÌáÊ¾2£ºÖ±½ÓÎÄ×Ö
 function printerror2($error='',$gotourl='',$ecms=0,$noautourl=0){
 	global $empire,$public_r;
 	if(strstr($gotourl,"(")||empty($gotourl))
@@ -361,11 +361,11 @@ function printerror2($error='',$gotourl='',$ecms=0,$noautourl=0){
 	}
 	else
 	{$gotourl_js="self.location.href='$gotourl';";}
-	if($ecms==9)//å¼¹å‡ºå¯¹è¯æ¡†
+	if($ecms==9)//µ¯³ö¶Ô»°¿ò
 	{
 		echo"<script>alert('".$error."');".$gotourl_js."</script>";
 	}
-	elseif($ecms==7)//å¼¹å‡ºå¯¹è¯æ¡†å¹¶å…³é—­çª—å£
+	elseif($ecms==7)//µ¯³ö¶Ô»°¿ò²¢¹Ø±Õ´°¿Ú
 	{
 		echo"<script>alert('".$error."');window.close();</script>";
 	}
@@ -377,7 +377,7 @@ function printerror2($error='',$gotourl='',$ecms=0,$noautourl=0){
 	exit();
 }
 
-//ajaxé”™è¯¯æç¤º
+//ajax´íÎóÌáÊ¾
 function ajax_printerror($result='',$ajaxarea='ajaxarea',$error='',$ecms=0,$novar=0){
 	global $empire,$editor,$public_r,$ecms_config;
 	if($editor==1){$a="../";}
@@ -410,7 +410,7 @@ function ajax_printerror($result='',$ajaxarea='ajaxarea',$error='',$ecms=0,$nova
 	exit();
 }
 
-//ç›´æ¥è½¬å‘
+//Ö±½Ó×ªÏò
 function printerrortourl($gotourl='',$error='',$sec=0){
 	global $empire,$editor,$public_r,$ecms_config;
 	echo'<meta http-equiv="refresh" content="'.$sec.';url='.$gotourl.'">'.$error;
@@ -419,7 +419,7 @@ function printerrortourl($gotourl='',$error='',$sec=0){
 	exit();
 }
 
-//ç¼–ç è½¬æ¢
+//±àÂë×ª»»
 function DoIconvVal($code,$targetcode,$str,$inc=0){
 	global $editor;
 	if($editor==1){$a="../";}
@@ -435,7 +435,7 @@ function DoIconvVal($code,$targetcode,$str,$inc=0){
 	return $str;
 }
 
-//åˆå§‹åŒ–è®¿é—®ç«¯
+//³õÊ¼»¯·ÃÎÊ¶Ë
 function EcmsDefMoreport($pid){
 	global $public_r,$ecms_config,$emoreport_r;
 	if(empty($public_r['ckhavemoreport']))
@@ -452,7 +452,7 @@ function EcmsDefMoreport($pid){
 		echo'This visit port is close!';
 		exit();
 	}
-	//å…³é—­åå°
+	//¹Ø±ÕºóÌ¨
 	if(defined('EmpireCMSAdmin')&&$emoreport_r[$pid]['openadmin'])
 	{
 		if($emoreport_r[$pid]['openadmin']==1)
@@ -478,7 +478,7 @@ function EcmsDefMoreport($pid){
 	}
 }
 
-//é‡ç½®ä¸ºä¸»è®¿é—®ç«¯æ¨¡æ¿ç»„ID
+//ÖØÖÃÎªÖ÷·ÃÎÊ¶ËÄ£°å×éID
 function Moreport_ResetMainTempGid(){
 	global $ecms_config,$public_r,$emoreport_r;
 	$pid=(int)$ecms_config['sets']['selfmoreportid'];
@@ -489,7 +489,7 @@ function Moreport_ResetMainTempGid(){
 	$ecms_config['sets']['deftempid']=$public_r['deftempid']?$public_r['deftempid']:1;
 }
 
-//è½¬å‘è®¿é—®ç«¯ç›®å½•
+//×ªÏò·ÃÎÊ¶ËÄ¿Â¼
 function Moreport_eSetSelfPath($pid,$ecms=0){
 	global $empire,$dbtbpre,$public_r,$ecms_config;
 	$pid=(int)$pid;
@@ -506,7 +506,7 @@ function Moreport_eSetSelfPath($pid,$ecms=0){
 	}
 	define('ECMS_SELFPATH',$pr['ppath']);
 	$ecms_config['sets']['deftempid']=$pr['tempgid'];
-	//ç¼“å­˜æ¨¡æ¿
+	//»º´æÄ£°å
 	if($ecms==1)
 	{
 		$tr=$empire->fetch1("select downsofttemp,onlinemovietemp,listpagetemp from ".GetTemptb("enewspubtemp")." limit 1");
@@ -522,13 +522,13 @@ function eAutodo_AddDo($dotype,$classid,$id,$tid,$userid,$pid,$fname='',$ckdoall
 	return '';
 }
 
-//è¿”å›æ˜¯å¦å¼ºåˆ¶åŠ¨æ€é¡µ
+//·µ»ØÊÇ·ñÇ¿ÖÆ¶¯Ì¬Ò³
 function Moreport_ReturnMustDt(){
 	global $ecms_config;
 	return $ecms_config['sets']['pagemustdt'];
 }
 
-//è¿”å›æ˜¯å¦å¼ºåˆ¶åŠ¨æ€é¡µ(åŠ çŠ¶æ€)
+//·µ»ØÊÇ·ñÇ¿ÖÆ¶¯Ì¬Ò³(¼Ó×´Ì¬)
 function Moreport_ReturnMustDtAnd(){
 	global $ecms_config;
 	if(defined('ECMS_SELFPATH')&&$ecms_config['sets']['pagemustdt'])
@@ -541,7 +541,7 @@ function Moreport_ReturnMustDtAnd(){
 	}
 }
 
-//è¿”å›å¼ºåˆ¶åŠ¨æ€é¡µçŠ¶æ€
+//·µ»ØÇ¿ÖÆ¶¯Ì¬Ò³×´Ì¬
 function Moreport_ReturnDtStatus($dt){
 	global $ecms_config;
 	if($ecms_config['sets']['pagemustdt'])
@@ -554,14 +554,14 @@ function Moreport_ReturnDtStatus($dt){
 	}
 }
 
-//è¿”å›å†…å®¹é¡µåœ°å€(è®¿é—®ç«¯)
+//·µ»ØÄÚÈİÒ³µØÖ·(·ÃÎÊ¶Ë)
 function Moreport_ReturnTitleUrl($classid,$id){
 		$rewriter=eReturnRewriteInfoUrl($classid,$id,1);
 		$titleurl=$rewriter['pageurl'];
 		return $titleurl;
 }
 
-//è¿”å›æ ç›®é¡µåœ°å€(è®¿é—®ç«¯)
+//·µ»ØÀ¸Ä¿Ò³µØÖ·(·ÃÎÊ¶Ë)
 function Moreport_ReturnClassUrl($classid){
 	global $public_r,$class_r;
 	if($class_r[$classid]['wburl'])
@@ -576,67 +576,67 @@ function Moreport_ReturnClassUrl($classid){
 	return $classurl;
 }
 
-//è¿”å›æ ‡é¢˜åˆ†ç±»é¡µåœ°å€(è®¿é—®ç«¯)
+//·µ»Ø±êÌâ·ÖÀàÒ³µØÖ·(·ÃÎÊ¶Ë)
 function Moreport_ReturnInfoTypeUrl($typeid){
 	$rewriter=eReturnRewriteTitleTypeUrl($typeid,1);
 	$url=$rewriter['pageurl'];
 	return $url;
 }
 
-//è¿”å›é¦–é¡µåœ°å€(è®¿é—®ç«¯)
+//·µ»ØÊ×Ò³µØÖ·(·ÃÎÊ¶Ë)
 function Moreport_ReturnIndexUrl(){
 	global $public_r;
 	$file=$public_r['newsurl'].'index.php';
 	return $file;
 }
 
-//æ ¹æ®ç¼–å·è¿”å›æ¨¡æ¿è¡¨å
+//¸ù¾İ±àºÅ·µ»ØÄ£°å±íÃû
 function eTnoGetTempTbname($no){
-	if($no==1)//æ ‡ç­¾æ¨¡æ¿
+	if($no==1)//±êÇ©Ä£°å
 	{
 		$temptb='enewsbqtemp';
 	}
-	elseif($no==2)//JSæ¨¡æ¿
+	elseif($no==2)//JSÄ£°å
 	{
 		$temptb='enewsjstemp';
 	}
-	elseif($no==3)//åˆ—è¡¨æ¨¡æ¿
+	elseif($no==3)//ÁĞ±íÄ£°å
 	{
 		$temptb='enewslisttemp';
 	}
-	elseif($no==4)//å†…å®¹æ¨¡æ¿
+	elseif($no==4)//ÄÚÈİÄ£°å
 	{
 		$temptb='enewsnewstemp';
 	}
-	elseif($no==5)//å…¬å…±æ¨¡æ¿
+	elseif($no==5)//¹«¹²Ä£°å
 	{
 		$temptb='enewspubtemp';
 	}
-	elseif($no==6)//æœç´¢æ¨¡æ¿
+	elseif($no==6)//ËÑË÷Ä£°å
 	{
 		$temptb='enewssearchtemp';
 	}
-	elseif($no==7)//æ¨¡æ¿å˜é‡
+	elseif($no==7)//Ä£°å±äÁ¿
 	{
 		$temptb='enewstempvar';
 	}
-	elseif($no==8)//æŠ•ç¥¨æ¨¡æ¿
+	elseif($no==8)//Í¶Æ±Ä£°å
 	{
 		$temptb='enewsvotetemp';
 	}
-	elseif($no==9)//å°é¢æ¨¡æ¿
+	elseif($no==9)//·âÃæÄ£°å
 	{
 		$temptb='enewsclasstemp';
 	}
-	elseif($no==10)//è¯„è®ºæ¨¡æ¿
+	elseif($no==10)//ÆÀÂÛÄ£°å
 	{
 		$temptb='enewspltemp';
 	}
-	elseif($no==11)//æ‰“å°æ¨¡æ¿
+	elseif($no==11)//´òÓ¡Ä£°å
 	{
 		$temptb='enewsprinttemp';
 	}
-	elseif($no==12)//è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿
+	elseif($no==12)//×Ô¶¨ÒåÒ³ÃæÄ£°å
 	{
 		$temptb='enewspagetemp';
 	}
@@ -647,7 +647,7 @@ function eTnoGetTempTbname($no){
 	return $temptb;
 }
 
-//æ¨¡æ¿è¡¨è½¬æ¢
+//Ä£°å±í×ª»»
 function GetTemptb($temptb){
 	global $public_r,$ecms_config,$dbtbpre;
 	if(!empty($ecms_config['sets']['deftempid']))
@@ -665,7 +665,7 @@ function GetTemptb($temptb){
 	return $dbtbpre.$temptb.$en;
 }
 
-//è¿”å›æ“ä½œæ¨¡æ¿è¡¨
+//·µ»Ø²Ù×÷Ä£°å±í
 function GetDoTemptb($temptb,$gid){
 	global $dbtbpre;
 	if(!empty($gid)&&$gid!=1)
@@ -675,7 +675,7 @@ function GetDoTemptb($temptb,$gid){
 	return $dbtbpre.$temptb.$en;
 }
 
-//è¿”å›å½“å‰ä½¿ç”¨æ¨¡æ¿ç»„ID
+//·µ»Øµ±Ç°Ê¹ÓÃÄ£°å×éID
 function GetDoTempGid(){
 	global $ecms_config,$public_r;
 	if($ecms_config['sets']['deftempid'])
@@ -693,13 +693,13 @@ function GetDoTempGid(){
 	return $gid;
 }
 
-//å¯¼å…¥è¯­è¨€åŒ…
+//µ¼ÈëÓïÑÔ°ü
 function LoadLang($file){
 	global $ecms_config;
 	return "../data/language/".$ecms_config['sets']['elang']."/".$file;
 }
 
-//å–å¾—IP
+//È¡µÃIP
 function egetip(){
 	global $ecms_config;
 	if(getenv('HTTP_CLIENT_IP')&&strcasecmp(getenv('HTTP_CLIENT_IP'),'unknown')) 
@@ -726,7 +726,7 @@ function egetip(){
 	return $ip;
 }
 
-//å–å¾—IPé™„åŠ 
+//È¡µÃIP¸½¼Ó
 function egetipadd(){
 	global $ecms_config;
 	if($ecms_config['sets']['getiptype']==2)
@@ -744,13 +744,13 @@ function egetipadd(){
 	return $ip;
 }
 
-//å–å¾—ç«¯å£
+//È¡µÃ¶Ë¿Ú
 function egetipport(){
 	$ipport=(int)$_SERVER['REMOTE_PORT'];
 	return $ipport;
 }
 
-//æ£€æŸ¥åœ°å€
+//¼ì²éµØÖ·
 function ecms_eCheckNotUrl($str){
 	if(stristr($str,'/')||stristr($str,':')||stristr($str,"\\")||stristr($str,'&')||stristr($str,'?')||stristr($str,'#')||stristr($str,'@')||stristr($str,'"')||stristr($str,"'")||stristr($str,'%'))
 	{
@@ -759,7 +759,7 @@ function ecms_eCheckNotUrl($str){
 	return $str;
 }
 
-//è¿”å›æ¥æºåœ°å€
+//·µ»ØÀ´Ô´µØÖ·
 function EcmsGetReturnUrl(){
 	global $public_r;
 	$from=$_SERVER['HTTP_REFERER']?$_SERVER['HTTP_REFERER']:$public_r['newsurl'];
@@ -845,35 +845,35 @@ function eToCheckIsUrl2($url){
 //checkstrtype
 function eCheckStrType($type,$str,$doing=0){
 	$ret=0;
-	if($type==1)//æ•°å­—
+	if($type==1)//Êı×Ö
 	{
 		if(preg_match('/^[0-9]+$/',$str))
 		{
 			$ret=1;
 		}
 	}
-	elseif($type==2)//å­—æ¯
+	elseif($type==2)//×ÖÄ¸
 	{
 		if(preg_match('/^[A-Za-z]+$/',$str))
 		{
 			$ret=1;
 		}
 	}
-	elseif($type==3)//å­—æ¯+æ•°å­—
+	elseif($type==3)//×ÖÄ¸+Êı×Ö
 	{
 		if(preg_match('/^[A-Za-z0-9]+$/',$str))
 		{
 			$ret=1;
 		}
 	}
-	elseif($type==4)//å­—æ¯+æ•°å­—+ä¸‹åˆ’çº¿
+	elseif($type==4)//×ÖÄ¸+Êı×Ö+ÏÂ»®Ïß
 	{
 		if(preg_match('/^[A-Za-z0-9_]+$/',$str))
 		{
 			$ret=1;
 		}
 	}
-	elseif($type==5)//å­—æ¯+æ•°å­—+ä¸‹åˆ’çº¿+ç‚¹
+	elseif($type==5)//×ÖÄ¸+Êı×Ö+ÏÂ»®Ïß+µã
 	{
 		if(preg_match('/^[A-Za-z0-9\-\._]+$/',$str))
 		{
@@ -894,7 +894,7 @@ function eCheckStrType($type,$str,$doing=0){
 	return $ret;
 }
 
-//è¿”å›åœ°å€
+//·µ»ØµØÖ·
 function DoingReturnUrl($url,$from=''){
 	if(empty($from))
 	{
@@ -907,7 +907,7 @@ function DoingReturnUrl($url,$from=''){
 	return RepPostStrUrl($from);
 }
 
-//htmlspecialcharså¤„ç†
+//htmlspecialchars´¦Àí
 function ehtmlspecialchars($val,$flags=ENT_COMPAT){
 	global $ecms_config;
 	if(PHP_VERSION>='5.4.0')
@@ -929,7 +929,7 @@ function ehtmlspecialchars($val,$flags=ENT_COMPAT){
 	return $val;
 }
 
-//addslasheså¤„ç†
+//addslashes´¦Àí
 function eaddslashes($val,$ckmq=1){
 	if($ckmq==1&&MAGIC_QUOTES_GPC)
 	{
@@ -939,7 +939,7 @@ function eaddslashes($val,$ckmq=1){
 	return $val;
 }
 
-//addslasheså¤„ç†
+//addslashes´¦Àí
 function eaddslashes2($val,$ckmq=1){
 	if($ckmq==1&&MAGIC_QUOTES_GPC)
 	{
@@ -949,7 +949,7 @@ function eaddslashes2($val,$ckmq=1){
 	return $val;
 }
 
-//stripSlasheså¤„ç†
+//stripSlashes´¦Àí
 function estripSlashes($val,$ckmq=1){
 	if($ckmq==1&&!MAGIC_QUOTES_GPC)
 	{
@@ -959,7 +959,7 @@ function estripSlashes($val,$ckmq=1){
 	return $val;
 }
 
-//stripSlasheså¤„ç†
+//stripSlashes´¦Àí
 function estripSlashes2($val,$ckmq=1){
 	if($ckmq==1&&!MAGIC_QUOTES_GPC)
 	{
@@ -969,7 +969,7 @@ function estripSlashes2($val,$ckmq=1){
 	return $val;
 }
 
-//å˜é‡æ­£æ•°å‹å¤„ç†
+//±äÁ¿ÕıÊıĞÍ´¦Àí
 function RepPIntvar($val){
 	$val=intval($val);
 	if($val<0)
@@ -979,7 +979,7 @@ function RepPIntvar($val){
 	return $val;
 }
 
-//å‚æ•°å¤„ç†å‡½æ•°
+//²ÎÊı´¦Àíº¯Êı
 function RepPostVar($val){
 	if($val!=addslashes($val))
 	{
@@ -1006,7 +1006,7 @@ function RepPostVar($val){
 	return $val;
 }
 
-//å‚æ•°å¤„ç†å‡½æ•°2
+//²ÎÊı´¦Àíº¯Êı2
 function RepPostVar2($val){
 	if($val!=addslashes($val))
 	{
@@ -1032,7 +1032,7 @@ function RepPostVar2($val){
 	return $val;
 }
 
-//å‚æ•°å¤„ç†å‡½æ•°3
+//²ÎÊı´¦Àíº¯Êı3
 function RepPostVar3($val){
 	if($val!=addslashes($val))
 	{
@@ -1058,7 +1058,7 @@ function RepPostVar3($val){
 	return $val;
 }
 
-//éªŒè¯ç¼–ç å­—ç¬¦
+//ÑéÖ¤±àÂë×Ö·û
 function CkPostStrCharYh($val){
 	if($val!=addslashes($val))
 	{
@@ -1067,7 +1067,7 @@ function CkPostStrCharYh($val){
 	return $val;
 }
 
-//å¤„ç†æäº¤å­—ç¬¦
+//´¦ÀíÌá½»×Ö·û
 function RepPostStr($val,$ecms=0,$phck=0){
 	if($phck==1)
 	{
@@ -1084,7 +1084,7 @@ function RepPostStr($val,$ecms=0,$phck=0){
 	return $val;
 }
 
-//å¤„ç†æäº¤å­—ç¬¦2
+//´¦ÀíÌá½»×Ö·û2
 function RepPostStr2($val,$phck=0){
 	if($phck==1)
 	{
@@ -1097,20 +1097,20 @@ function RepPostStr2($val,$phck=0){
 	return $val;
 }
 
-//å¤„ç†åœ°å€
+//´¦ÀíµØÖ·
 function RepPostStrUrl($val,$phck=0){
 	$val=str_replace('&amp;','&',RepPostStr($val,1,$phck));
 	return $val;
 }
 
-//ä¿å­˜æ•°æ®å¤„ç†
+//±£´æÊı¾İ´¦Àí
 function dgdb_tosave($val,$phck=0){
 	$val=RepPostStr($val,0,$phck);
 	$val=addslashes($val);
 	return $val;
 }
 
-//ä¿å­˜æ•°æ®å¤„ç†(url)
+//±£´æÊı¾İ´¦Àí(url)
 function dgdb_tosaveurl($val,$phck=0){
 	$val=RepPostStr($val,0,$phck);
 	$val=str_replace('&amp;','&',$val);
@@ -1118,13 +1118,13 @@ function dgdb_tosaveurl($val,$phck=0){
 	return $val;
 }
 
-//æ•°æ®æ˜¾ç¤º
+//Êı¾İÏÔÊ¾
 function dgdb_toshow($val){
 	$val=stripSlashes($val);
 	return $val;
 }
 
-//å¤„ç†æ˜¾ç¤ºå­—ç¬¦
+//´¦ÀíÏÔÊ¾×Ö·û
 function eDoRepShowStr($val,$isurl=0){
 	$val=ehtmlspecialchars($val,ENT_QUOTES);
 	if($isurl==1)
@@ -1134,7 +1134,7 @@ function eDoRepShowStr($val,$isurl=0){
 	return $val;
 }
 
-//å¤„ç†æ™®é€šå­—ç¬¦
+//´¦ÀíÆÕÍ¨×Ö·û
 function eDoRepPostComStr($val,$isurl=0){
 	$val=ehtmlspecialchars($val,ENT_QUOTES);
 	if($isurl==1)
@@ -1144,7 +1144,7 @@ function eDoRepPostComStr($val,$isurl=0){
 	return $val;
 }
 
-//å¤„ç†æäº¤å­—ç¬¦
+//´¦ÀíÌá½»×Ö·û
 function hRepPostStr($val,$ecms=0,$phck=0){
 	if($phck==1)
 	{
@@ -1159,7 +1159,7 @@ function hRepPostStr($val,$ecms=0,$phck=0){
 	return $val;
 }
 
-//å¤„ç†æäº¤å­—ç¬¦2
+//´¦ÀíÌá½»×Ö·û2
 function hRepPostStr2($val,$phck=0){
 	if($phck==1)
 	{
@@ -1170,7 +1170,7 @@ function hRepPostStr2($val,$phck=0){
 	return $val;
 }
 
-//å¤„ç†ç¼–ç å­—ç¬¦
+//´¦Àí±àÂë×Ö·û
 function CkPostStrChar($val){
 	if(substr($val,-1)=="\\")
 	{
@@ -1178,7 +1178,7 @@ function CkPostStrChar($val){
 	}
 }
 
-//è¿”å›è½¬ä¹‰
+//·µ»Ø×ªÒå
 function egetzy($n='2'){
 	if($n=='rn')
 	{
@@ -1214,12 +1214,12 @@ function egetzy($n='2'){
 	return $str;
 }
 
-//éªŒè¯å­—ç¬¦æ˜¯å¦ç©º
+//ÑéÖ¤×Ö·ûÊÇ·ñ¿Õ
 function CheckValEmpty($val){
 	return strlen($val)==0?1:0;
 }
 
-//è¿”å›IDåˆ—è¡¨
+//·µ»ØIDÁĞ±í
 function eReturnInids($ids){
 	if(empty($ids))
 	{
@@ -1246,7 +1246,7 @@ function eReturnInids($ids){
 	return $retids;
 }
 
-//æ•°ç»„è¿”å›IDåˆ—è¡¨
+//Êı×é·µ»ØIDÁĞ±í
 function eArrayReturnInids($r){
 	$count=count($r);
 	if(!$count)
@@ -1272,7 +1272,7 @@ function eArrayReturnInids($r){
 	return $retids;
 }
 
-//è¿”å›çˆ¶æ ç›®IDåˆ—è¡¨
+//·µ»Ø¸¸À¸Ä¿IDÁĞ±í
 function eReturnInFcids($featherclass){
 	if(!$featherclass||$featherclass=='|')
 	{
@@ -1299,7 +1299,7 @@ function eReturnInFcids($featherclass){
 	return $cids;
 }
 
-//è¿”å›ç»„åˆ—è¡¨
+//·µ»Ø×éÁĞ±í
 function eReturnSetGroups($groupid,$isnum=1){
 	$count=count($groupid);
 	if($count==0)
@@ -1318,7 +1318,7 @@ function eReturnSetGroups($groupid,$isnum=1){
 	return $ids;
 }
 
-//å–å¾—è¡¨é‡Œçš„æ¨¡å‹ID
+//È¡µÃ±íÀïµÄÄ£ĞÍID
 function eGetTableModids($tid,$tbname){
 	global $empire,$dbtbpre;
 	$mids='';
@@ -1336,13 +1336,13 @@ function eGetTableModids($tid,$tbname){
 	return $mids;
 }
 
-//æ›¿æ¢æ¨¡æ¿å˜é‡å­—ç¬¦
+//Ìæ»»Ä£°å±äÁ¿×Ö·û
 function RepTempvarPostStr($val){
 	$val=str_replace('[!--','[!---',$val);
 	return $val;
 }
 
-//æ›¿æ¢æ¨¡æ¿å˜é‡å­—ç¬¦
+//Ìæ»»Ä£°å±äÁ¿×Ö·û
 function RepTempvarPostStrT($val,$ispagef=0){
 	if($ispagef==1)
 	{
@@ -1356,7 +1356,7 @@ function RepTempvarPostStrT($val,$ispagef=0){
 	return $val;
 }
 
-//å–å¾—æ–‡ä»¶æ‰©å±•å
+//È¡µÃÎÄ¼şÀ©Õ¹Ãû
 function GetFiletype($filename){
 	$filer=explode(".",$filename);
 	$count=count($filer)-1;
@@ -1370,7 +1370,7 @@ function RepGetFiletype($filetype){
 	return $filetype;
 }
 
-//å–å¾—æ–‡ä»¶å
+//È¡µÃÎÄ¼şÃû
 function GetFilename($filename){
 	if(strstr($filename,"\\"))
 	{
@@ -1385,7 +1385,7 @@ function GetFilename($filename){
 	return $filer[$count];
 }
 
-//è¿”å›ç›®å½•å‡½æ•°
+//·µ»ØÄ¿Â¼º¯Êı
 function eReturnCPath($path,$ypath=''){
 	if(strstr($path,'..')||strstr($path,"\\")||strstr($path,'%')||strstr($path,':'))
 	{
@@ -1394,7 +1394,7 @@ function eReturnCPath($path,$ypath=''){
 	return $path;
 }
 
-//éªŒè¯æ–‡ä»¶åæ ¼å¼å‡½æ•°
+//ÑéÖ¤ÎÄ¼şÃû¸ñÊ½º¯Êı
 function eReturnCkCFile($path){
 	if(strstr($path,'..')||strstr($path,"\\")||strstr($path,'/')||strstr($path,'%')||strstr($path,':'))
 	{
@@ -1403,7 +1403,7 @@ function eReturnCkCFile($path){
 	return 1;
 }
 
-//å­—ç¬¦æˆªå–å‡½æ•°
+//×Ö·û½ØÈ¡º¯Êı
 function sub($string,$start=0,$length,$mode=false,$dot='',$rephtml=0){
 	global $ecms_config;
 	$strlen=strlen($string);
@@ -1465,12 +1465,12 @@ function sub($string,$start=0,$length,$mode=false,$dot='',$rephtml=0){
 	return $strcut.$dot;
 }
 
-//æˆªå–å­—æ•°
+//½ØÈ¡×ÖÊı
 function esub($string,$length,$dot='',$rephtml=0){
 	return sub($string,0,$length,false,$dot,$rephtml);
 }
 
-//å–å¾—éšæœºæ•°
+//È¡µÃËæ»úÊı
 function make_password($pw_length){
 	$low_ascii_bound=48;
 	$upper_ascii_bound=122;
@@ -1492,7 +1492,7 @@ function make_password($pw_length){
 	return $password1;
 }
 
-//å–å¾—éšæœºæ•°(æ•°å­—)
+//È¡µÃËæ»úÊı(Êı×Ö)
 function no_make_password($pw_length){
 	$low_ascii_bound=48;
 	$upper_ascii_bound=57;
@@ -1514,7 +1514,7 @@ function no_make_password($pw_length){
 	return $password1;
 }
 
-//å–å¾—éšæœºæ•°(å­—æ¯)
+//È¡µÃËæ»úÊı(×ÖÄ¸)
 function abc_make_password($pw_length){
 	$low_ascii_bound=65;
 	$upper_ascii_bound=122;
@@ -1543,7 +1543,7 @@ function EcmsGetProgramNo(){
 	return $pno;
 }
 
-//éšæœºæ•°å­—
+//Ëæ»úÊı×Ö
 function EcmsRandInt($min=0,$max=0,$ecms=0){
 	mt_srand();
 	if($max)
@@ -1557,7 +1557,7 @@ function EcmsRandInt($min=0,$max=0,$ecms=0){
 	return $rnd;
 }
 
-//é¢œè‰²è½¬RGB
+//ÑÕÉ«×ªRGB
 function ToReturnRGB($rgb){
 	$rgb=str_replace('#','',ehtmlspecialchars($rgb));
     return array(
@@ -1567,7 +1567,7 @@ function ToReturnRGB($rgb){
     );
 }
 
-//éªŒè¯é¡µç æ˜¯å¦æœ‰æ•ˆ
+//ÑéÖ¤Ò³ÂëÊÇ·ñÓĞĞ§
 function eCheckListPageNo($page,$line,$totalnum){
 	$page=(int)$page;
 	$line=(int)$line;
@@ -1587,7 +1587,7 @@ function eCheckListPageNo($page,$line,$totalnum){
 	}
 }
 
-//å‰å°åˆ†é¡µ
+//Ç°Ì¨·ÖÒ³
 function page1($num,$line,$page_line,$start,$page,$search){
 	global $fun_r;
 	$num=(int)$num;
@@ -1601,17 +1601,17 @@ function page1($num,$line,$page_line,$start,$page,$search){
 	}
 	$search=RepPostStr($search,1);
 	$url=eReturnSelfPage(0).'?page';
-	$snum=2;//æœ€å°é¡µæ•°
-	$totalpage=ceil($num/$line);//å–å¾—æ€»é¡µæ•°
+	$snum=2;//×îĞ¡Ò³Êı
+	$totalpage=ceil($num/$line);//È¡µÃ×ÜÒ³Êı
 	$firststr='<a title="'.$fun_r['trecord'].'">&nbsp;<b>'.$num.'</b> </a>&nbsp;&nbsp;';
-	//ä¸Šä¸€é¡µ
+	//ÉÏÒ»Ò³
 	if($page<>0)
 	{
 		$toppage='<a href="'.$url.'=0'.$search.'">'.$fun_r['startpage'].'</a>&nbsp;';
 		$pagepr=$page-1;
 		$prepage='<a href="'.$url.'='.$pagepr.$search.'">'.$fun_r['pripage'].'</a>';
 	}
-	//ä¸‹ä¸€é¡µ
+	//ÏÂÒ»Ò³
 	if($page!=$totalpage-1)
 	{
 		$pagenex=$page+1;
@@ -1640,9 +1640,9 @@ function page1($num,$line,$page_line,$start,$page,$search){
 	return $returnstr;
 }
 
-//---------- ä¼ªé™æ€ ----------
+//---------- Î±¾²Ì¬ ----------
 
-//è¿”å›å†…å®¹ä¼ªé™æ€
+//·µ»ØÄÚÈİÎ±¾²Ì¬
 function eReturnRewriteInfoUrl($classid,$id,$ecms=0){
 	global $public_r;
 	if(empty($public_r['rewriteinfo']))
@@ -1665,7 +1665,7 @@ function eReturnRewriteInfoUrl($classid,$id,$ecms=0){
 	return $r;
 }
 
-//è¿”å›æ ç›®åˆ—è¡¨ä¼ªé™æ€
+//·µ»ØÀ¸Ä¿ÁĞ±íÎ±¾²Ì¬
 function eReturnRewriteClassUrl($classid,$ecms=0){
 	global $public_r;
 	if(empty($public_r['rewriteclass']))
@@ -1688,7 +1688,7 @@ function eReturnRewriteClassUrl($classid,$ecms=0){
 	return $r;
 }
 
-//è¿”å›æ ‡é¢˜åˆ†ç±»åˆ—è¡¨ä¼ªé™æ€
+//·µ»Ø±êÌâ·ÖÀàÁĞ±íÎ±¾²Ì¬
 function eReturnRewriteTitleTypeUrl($ttid,$ecms=0){
 	global $public_r;
 	if(empty($public_r['rewriteinfotype']))
@@ -1711,7 +1711,7 @@ function eReturnRewriteTitleTypeUrl($ttid,$ecms=0){
 	return $r;
 }
 
-//è¿”å›TAGSåˆ—è¡¨ä¼ªé™æ€
+//·µ»ØTAGSÁĞ±íÎ±¾²Ì¬
 function eReturnRewriteTagsUrl($tagid,$tagname,$ecms=0){
 	global $public_r;
 	$tagname=urlencode($tagname);
@@ -1735,7 +1735,7 @@ function eReturnRewriteTagsUrl($tagid,$tagname,$ecms=0){
 	return $r;
 }
 
-//è¿”å›è¯„è®ºåˆ—è¡¨ä¼ªé™æ€
+//·µ»ØÆÀÂÛÁĞ±íÎ±¾²Ì¬
 function eReturnRewritePlUrl($classid,$id,$doaction='doinfo',$myorder=0,$tempid=0,$ecms=0){
 	global $public_r;
 	if(empty($public_r['rewritepl']))
@@ -1765,34 +1765,34 @@ function eReturnRewritePlUrl($classid,$id,$doaction='doinfo',$myorder=0,$tempid=
 	return $r;
 }
 
-//ä¼ªé™æ€é“¾æ¥åœ°å€ä¸­è½¬
+//Î±¾²Ì¬Á´½ÓµØÖ·ÖĞ×ª
 function eReturnRewriteLink($type,$classid,$id){
-	if($type=='infopage')//ä¿¡æ¯é¡µ
+	if($type=='infopage')//ĞÅÏ¢Ò³
 	{
 		$url=eReturnRewriteInfoUrl($classid,$id);
 	}
-	elseif($type=='ttpage')//æ ‡é¢˜åˆ†ç±»é¡µ
+	elseif($type=='ttpage')//±êÌâ·ÖÀàÒ³
 	{
 		$url=eReturnRewriteTitleTypeUrl($classid);
 	}
-	elseif($type=='tagspage')//Tagsåˆ—è¡¨é¡µ
+	elseif($type=='tagspage')//TagsÁĞ±íÒ³
 	{
 		$url=eReturnRewriteTagsUrl($classid,$id);
 	}
-	else//æ ç›®é¡µ
+	else//À¸Ä¿Ò³
 	{
 		$url=eReturnRewriteClassUrl($classid);
 	}
 	return $url;
 }
 
-//ä¼ªé™æ€æ›¿æ¢åˆ†é¡µå·
+//Î±¾²Ì¬Ìæ»»·ÖÒ³ºÅ
 function eReturnRewritePageLink($r,$page){
-	//åŠ¨é™
+	//¶¯¾²
 	$truepage=$page+1;
 	if($r['repagenum']&&$truepage<=$r['repagenum'])
 	{
-		//æ–‡ä»¶å
+		//ÎÄ¼şÃû
 		if(empty($r['dofile']))
 		{
 			$r['dofile']='index';
@@ -1811,7 +1811,7 @@ function eReturnRewritePageLink($r,$page){
 	return $url;
 }
 
-//ä¼ªé™æ€æ›¿æ¢åˆ†é¡µå·(é™æ€)
+//Î±¾²Ì¬Ìæ»»·ÖÒ³ºÅ(¾²Ì¬)
 function eReturnRewritePageLink2($r,$page){
 	if($r['rewrite']==1)
 	{
@@ -1824,7 +1824,7 @@ function eReturnRewritePageLink2($r,$page){
 	return $url;
 }
 
-//å‰å°åˆ†é¡µ(ä¼ªé™æ€)
+//Ç°Ì¨·ÖÒ³(Î±¾²Ì¬)
 function InfoUsePage($num,$line,$page_line,$start,$page,$search,$add){
 	global $fun_r;
 	$num=(int)$num;
@@ -1837,17 +1837,17 @@ function InfoUsePage($num,$line,$page_line,$start,$page,$search,$add){
 		return '';
 	}
 	$search=RepPostStr($search,1);
-	$snum=2;//æœ€å°é¡µæ•°
-	$totalpage=ceil($num/$line);//å–å¾—æ€»é¡µæ•°
+	$snum=2;//×îĞ¡Ò³Êı
+	$totalpage=ceil($num/$line);//È¡µÃ×ÜÒ³Êı
 	$firststr='<a title="'.$fun_r['trecord'].'">&nbsp;<b>'.$num.'</b> </a>&nbsp;&nbsp;';
-	//ä¸Šä¸€é¡µ
+	//ÉÏÒ»Ò³
 	if($page<>0)
 	{
 		$toppage='<a href="'.eReturnRewritePageLink($add,0).'">'.$fun_r['startpage'].'</a>&nbsp;';
 		$pagepr=$page-1;
 		$prepage='<a href="'.eReturnRewritePageLink($add,$pagepr).'">'.$fun_r['pripage'].'</a>';
 	}
-	//ä¸‹ä¸€é¡µ
+	//ÏÂÒ»Ò³
 	if($page!=$totalpage-1)
 	{
 		$pagenex=$page+1;
@@ -1876,7 +1876,7 @@ function InfoUsePage($num,$line,$page_line,$start,$page,$search,$add){
 	return $returnstr;
 }
 
-//æ—¶é—´è½¬æ¢å‡½æ•°
+//Ê±¼ä×ª»»º¯Êı
 function to_time($datetime){
 	if(strlen($datetime)==10)
 	{
@@ -1889,13 +1889,13 @@ function to_time($datetime){
 	return intval($dbtime);
 }
 
-//æ—¶æœŸè½¬æ—¥æœŸ
+//Ê±ÆÚ×ªÈÕÆÚ
 function date_time($time,$format="Y-m-d H:i:s"){
 	$threadtime=date($format,$time);
 	return $threadtime;
 }
 
-//æ ¼å¼åŒ–æ—¥æœŸ
+//¸ñÊ½»¯ÈÕÆÚ
 function format_datetime($newstime,$format){
 	if($newstime=="0000-00-00 00:00:00")
 	{return $newstime;}
@@ -1904,7 +1904,7 @@ function format_datetime($newstime,$format){
 	return $newdate;
 }
 
-//æ—¶é—´è½¬æ¢å‡½æ•°
+//Ê±¼ä×ª»»º¯Êı
 function to_date($date){
 	$date.=" 00:00:00";
 	$r=explode(" ",$date);
@@ -1914,19 +1914,19 @@ function to_date($date){
 	return intval($dbtime);
 }
 
-//é€‰æ‹©æ—¶é—´
+//Ñ¡ÔñÊ±¼ä
 function ToChangeTime($time,$day){
 	$truetime=$time-$day*24*3600;
 	$date=date_time($truetime,"Y-m-d");
 	return $date;
 }
 
-//åˆ é™¤æ–‡ä»¶
+//É¾³ıÎÄ¼ş
 function DelFiletext($filename){
 	@unlink($filename);
 }
 
-//å–å¾—æ–‡ä»¶å†…å®¹
+//È¡µÃÎÄ¼şÄÚÈİ
 function ReadFiletext($filepath){
 	$filepath=trim($filepath);
 	$ishttp=0;
@@ -1939,7 +1939,7 @@ function ReadFiletext($filepath){
 		$ishttp=1;
 	}
 	$htmlfp=@fopen($filepath,"r");
-	//è¿œç¨‹
+	//Ô¶³Ì
 	if($ishttp==1)
 	{
 		while($data=@fread($htmlfp,500000))
@@ -1947,7 +1947,7 @@ function ReadFiletext($filepath){
 			$string.=$data;
 		}
 	}
-	//æœ¬åœ°
+	//±¾µØ
 	else
 	{
 		$string=@fread($htmlfp,@filesize($filepath));
@@ -1956,7 +1956,7 @@ function ReadFiletext($filepath){
 	return $string;
 }
 
-//å†™æ–‡ä»¶
+//Ğ´ÎÄ¼ş
 function WriteFiletext($filepath,$string){
 	global $public_r;
 	$string=stripSlashes($string);
@@ -1969,7 +1969,7 @@ function WriteFiletext($filepath,$string){
 	}
 }
 
-//å†™æ–‡ä»¶
+//Ğ´ÎÄ¼ş
 function WriteFiletext_n($filepath,$string){
 	global $public_r;
 	$fp=@fopen($filepath,"w");
@@ -1981,7 +1981,7 @@ function WriteFiletext_n($filepath,$string){
 	}
 }
 
-//æ ‡é¢˜å±æ€§å
+//±êÌâÊôĞÔºó
 function DoTitleFont($titlefont,$title){
 	if(empty($titlefont))
 	{
@@ -1994,19 +1994,19 @@ function DoTitleFont($titlefont,$title){
 	}
 	if(empty($r[1]))
 	{return $title;}
-	//ç²—ä½“
+	//´ÖÌå
 	if(strstr($r[1],"b"))
 	{$title="<strong>".$title."</strong>";}
-	//æ–œä½“
+	//Ğ±Ìå
 	if(strstr($r[1],"i"))
 	{$title="<i>".$title."</i>";}
-	//åˆ é™¤çº¿
+	//É¾³ıÏß
 	if(strstr($r[1],"s"))
 	{$title="<s>".$title."</s>";}
 	return $title;
 }
 
-//è¿”å›å¤´æ¡çº§åˆ«åç§°æƒé™
+//·µ»ØÍ·Ìõ¼¶±ğÃû³ÆÈ¨ÏŞ
 function ReturnFirsttitleNameCkLevel($r,$groupid,$classid){
 	if(defined('EmpireCMSAdmin'))
 	{
@@ -2045,7 +2045,7 @@ function ReturnFirsttitleNameCkLevel($r,$groupid,$classid){
 	return 1;
 }
 
-//è¿”å›å¤´æ¡çº§åˆ«åç§°
+//·µ»ØÍ·Ìõ¼¶±ğÃû³Æ
 function ReturnFirsttitleNameList($firsttitle,$isgood){
 	global $empire,$dbtbpre,$lur,$classid,$class_r;
 	$classid=(int)$classid;
@@ -2054,14 +2054,14 @@ function ReturnFirsttitleNameList($firsttitle,$isgood){
 		$classid=0;
 	}
 	$groupid=(int)$lur['groupid'];
-	$first_r=array();//å¤´æ¡
+	$first_r=array();//Í·Ìõ
 	$ftn='';
-	$good_r=array();//æ¨è
+	$good_r=array();//ÍÆ¼ö
 	$gn='';
 	$sql=$empire->query("select tname,ttype,levelid,groupid,showall,showcid,hiddencid from {$dbtbpre}enewsgoodtype order by myorder desc,levelid");
 	while($r=$empire->fetch($sql))
 	{
-		if($r['ttype']==1)//å¤´æ¡
+		if($r['ttype']==1)//Í·Ìõ
 		{
 			$first_r[$r['levelid']]=$r['tname'];
 			$selected='';
@@ -2074,7 +2074,7 @@ function ReturnFirsttitleNameList($firsttitle,$isgood){
 				$ftn.='<option value="'.$r['levelid'].'"'.$selected.'>'.$r['tname'].'</option>';
 			}
 		}
-		else//æ¨è
+		else//ÍÆ¼ö
 		{
 			$good_r[$r['levelid']]=$r['tname'];
 			$selected='';
@@ -2095,18 +2095,18 @@ function ReturnFirsttitleNameList($firsttitle,$isgood){
 	return $ret_r;
 }
 
-//æ›¿æ¢å…¨è§’é€—å·
+//Ìæ»»È«½Ç¶ººÅ
 function DoReplaceQjDh($text){
-	return str_replace('ï¼Œ',',',$text);
+	return str_replace('£¬',',',$text);
 }
 
-//åŠè§’è½¬å…¨è§’
+//°ë½Ç×ªÈ«½Ç
 function eDoBjToQj($text){
-	$text=str_replace(array('&','"','\'','<','>'),array('ï¼†','â€','â€™','ï¼œ','ï¼'),$text);
+	$text=str_replace(array('&','"','\'','<','>'),array('£¦','£¢','£§','£¼','£¾'),$text);
 	return $text;
 }
 
-//ç»™ä¿¡æ¯å­—æ®µè½¬å…¨è§’
+//¸øĞÅÏ¢×Ö¶Î×ªÈ«½Ç
 function eDoInfoTbfToQj($tbname,$f,$fval,$qjf){
 	global $public_r;
 	if(empty($qjf))
@@ -2121,13 +2121,13 @@ function eDoInfoTbfToQj($tbname,$f,$fval,$qjf){
 	return $fval;
 }
 
-//å»ºç«‹ç›®å½•å‡½æ•°
+//½¨Á¢Ä¿Â¼º¯Êı
 function DoMkdir($path){
 	global $public_r;
-	//ä¸å­˜åœ¨åˆ™å»ºç«‹
+	//²»´æÔÚÔò½¨Á¢
 	if(!file_exists($path))
 	{
-		//å®‰å…¨æ¨¡å¼
+		//°²È«Ä£Ê½
 		if($public_r[phpmode])
 		{
 			$pr[0]=$path;
@@ -2148,13 +2148,13 @@ function DoMkdir($path){
 	return true;
 }
 
-//å»ºç«‹ä¸Šçº§ç›®å½•
+//½¨Á¢ÉÏ¼¶Ä¿Â¼
 function DoFileMkDir($file){
 	$path=dirname($file.'empirecms.txt');
 	DoMkdir($path);
 }
 
-//è®¾ç½®ä¸Šä¼ æ–‡ä»¶æƒé™
+//ÉèÖÃÉÏ´«ÎÄ¼şÈ¨ÏŞ
 function DoChmodFile($file){
 	global $public_r;
 	if($public_r['filechmod']!=1)
@@ -2163,13 +2163,13 @@ function DoChmodFile($file){
 	}
 }
 
-//æ›¿æ¢æ–œæ‰›
+//Ìæ»»Ğ±¿¸
 function DoRepFileXg($file){
 	$file=str_replace("\\","/",$file);
 	return $file;
 }
 
-//è¿”å›æ ç›®é“¾æ¥å­—ç¬¦ä¸²
+//·µ»ØÀ¸Ä¿Á´½Ó×Ö·û´®
 function ReturnClassLink($classid){
 	global $class_r,$public_r,$fun_r;
 	if(empty($class_r[$classid][featherclass]))
@@ -2183,10 +2183,10 @@ function ReturnClassLink($classid){
 		{
 			$class_r[$r[$i]][listdt]=1;
 		}
-		//é™æ€åˆ—è¡¨
+		//¾²Ì¬ÁĞ±í
 		if(empty($class_r[$r[$i]][listdt]))
 		{
-			//æ— ç»‘å®šåŸŸå
+			//ÎŞ°ó¶¨ÓòÃû
 			if(empty($class_r[$r[$i]][classurl]))
 			{$url=$public_r[newsurl].$class_r[$r[$i]][classpath]."/";}
 			else
@@ -2202,11 +2202,11 @@ function ReturnClassLink($classid){
 	return $string;
 }
 
-//è¿”å›ä¸“é¢˜é“¾æ¥å­—ç¬¦ä¸²
+//·µ»Ø×¨ÌâÁ´½Ó×Ö·û´®
 function ReturnZtLink($ztid){
 	global $class_zr,$public_r,$fun_r;
 	$string="<a href=\"".ReturnSiteIndexUrl()."\">".$fun_r['index']."</a>";
-	//æ— ç»‘å®šåŸŸå
+	//ÎŞ°ó¶¨ÓòÃû
 	if(empty($class_zr[$ztid][zturl]))
 	{$url=$public_r[newsurl].$class_zr[$ztid][ztpath]."/";}
 	else
@@ -2215,7 +2215,7 @@ function ReturnZtLink($ztid){
 	return $string;
 }
 
-//è¿”å›æ ‡é¢˜åˆ†ç±»é“¾æ¥å­—ç¬¦ä¸²
+//·µ»Ø±êÌâ·ÖÀàÁ´½Ó×Ö·û´®
 function ReturnInfoTypeLink($typeid){
 	global $class_tr,$public_r,$fun_r;
 	$string="<a href=\"".ReturnSiteIndexUrl()."\">".$fun_r['index']."</a>";
@@ -2237,14 +2237,14 @@ function ReturnInfoTypeLink($typeid){
 	return $string;
 }
 
-//è¿”å›å•é¡µé“¾æ¥å­—ç¬¦ä¸²
+//·µ»Øµ¥Ò³Á´½Ó×Ö·û´®
 function ReturnUserPLink($title,$titleurl){
 	global $public_r,$fun_r;
 	$string='<a href="'.ReturnSiteIndexUrl().'">'.$fun_r['index'].'</a>&nbsp;'.$public_r[navfh].'&nbsp;'.$title;
 	return $string;
 }
 
-//è¿”å›æ ‡é¢˜é“¾æ¥(é™æ€)
+//·µ»Ø±êÌâÁ´½Ó(¾²Ì¬)
 function sys_ReturnBqTitleLink($r){
 	global $public_r;
 	if(empty($r['isurl']))
@@ -2270,12 +2270,12 @@ function sys_ReturnBqTitleLink($r){
 	}
 }
 
-//è¿”å›æ ‡é¢˜é“¾æ¥(åŠ¨æ€)
+//·µ»Ø±êÌâÁ´½Ó(¶¯Ì¬)
 function sys_ReturnBqTitleLinkDt($r){
 	global $public_r,$class_r;
 	if(empty($r['isurl']))
 	{
-		if($class_r[$r[classid]][showdt]==1)//åŠ¨æ€ç”Ÿæˆ
+		if($class_r[$r[classid]][showdt]==1)//¶¯Ì¬Éú³É
 		{
 			$titleurl=$public_r[newsurl]."e/action/ShowInfo/?classid=$r[classid]&id=$r[id]";
 			return $titleurl;
@@ -2297,7 +2297,7 @@ function sys_ReturnBqTitleLinkDt($r){
 		}
 		$iclasspath=ReturnSaveInfoPath($r[classid],$r[id]);
 		$newspath=empty($r[newspath])?'':$r[newspath]."/";
-		if($class_r[$r[classid]][classurl]&&$class_r[$r[classid]][ipath]=='')//åŸŸå
+		if($class_r[$r[classid]][classurl]&&$class_r[$r[classid]][ipath]=='')//ÓòÃû
 		{
 			$titleurl=$class_r[$r[classid]][classurl]."/".$newspath.$filename;
 		}
@@ -2313,7 +2313,7 @@ function sys_ReturnBqTitleLinkDt($r){
 	return addslashes($titleurl);
 }
 
-//ä¸­è½¬å–å¾—ä¿¡æ¯åœ°å€
+//ÖĞ×ªÈ¡µÃĞÅÏ¢µØÖ·
 function GotoGetTitleUrl($classid,$id,$newspath,$filename,$groupid,$isurl,$titleurl){
 	$r['classid']=$classid;
 	$r['id']=$id;
@@ -2326,7 +2326,7 @@ function GotoGetTitleUrl($classid,$id,$newspath,$filename,$groupid,$isurl,$title
 	return $infourl;
 }
 
-//è¿”å›æ ‡é¢˜é“¾æ¥(è§¦å‘)
+//·µ»Ø±êÌâÁ´½Ó(´¥·¢)
 function sys_ReturnBqAutoTitleLink($r){
 	global $public_r,$class_r;
 	if(empty($r['isurl']))
@@ -2348,7 +2348,7 @@ function sys_ReturnBqAutoTitleLink($r){
 		}
 		$iclasspath=ReturnSaveInfoPath($r[classid],$r[id]);
 		$newspath=empty($r[newspath])?'':$r[newspath]."/";
-		if($class_r[$r[classid]][classurl]&&$class_r[$r[classid]][ipath]=='')//åŸŸå
+		if($class_r[$r[classid]][classurl]&&$class_r[$r[classid]][ipath]=='')//ÓòÃû
 		{
 			$titleurl=$class_r[$r[classid]][classurl]."/".$newspath.$filename;
 		}
@@ -2371,13 +2371,13 @@ function sys_ReturnBqAutoTitleLink($r){
 	return $titleurl;
 }
 
-//è¿”å›å†…å®¹é¡µåœ°å€å‰ç¼€
+//·µ»ØÄÚÈİÒ³µØÖ·Ç°×º
 function ReturnInfoPageQz($r){
 	global $public_r,$class_r;
 	$ret_r['titleurl']='';
 	$ret_r['filetype']='';
 	$ret_r['nametype']=0;
-	//åŠ¨æ€é¡µé¢
+	//¶¯Ì¬Ò³Ãæ
 	if($class_r[$r[classid]][showdt]==2)
 	{
 		$rewriter=eReturnRewriteInfoUrl($r['classid'],$r['id'],0);
@@ -2388,12 +2388,12 @@ function ReturnInfoPageQz($r){
 		$ret_r['nametype']=1;
 		return $ret_r;
 	}
-	//é™æ€é¡µé¢
+	//¾²Ì¬Ò³Ãæ
 	$ret_r['filetype']=$r[groupid]?'.php':$class_r[$r[classid]][filetype];
 	$filename=$r[filename];
 	$iclasspath=ReturnSaveInfoPath($r[classid],$r[id]);
 	$newspath=empty($r[newspath])?'':$r[newspath]."/";
-	if($class_r[$r[classid]][classurl]&&$class_r[$r[classid]][ipath]=='')//åŸŸå
+	if($class_r[$r[classid]][classurl]&&$class_r[$r[classid]][ipath]=='')//ÓòÃû
 	{
 		$ret_r['titleurl']=$class_r[$r[classid]][classurl]."/".$newspath.$filename;
 	}
@@ -2404,7 +2404,7 @@ function ReturnInfoPageQz($r){
 	return $ret_r;
 }
 
-//è¿”å›æ ç›®é“¾æ¥
+//·µ»ØÀ¸Ä¿Á´½Ó
 function sys_ReturnBqClassname($r,$have_class=0){
 	global $public_r,$class_r;
 	if($have_class)
@@ -2414,12 +2414,12 @@ function sys_ReturnBqClassname($r,$have_class=0){
 		{
 			$class_r[$r[classid]][listdt]=1;
 		}
-		//å¤–éƒ¨æ ç›®
+		//Íâ²¿À¸Ä¿
 		if($class_r[$r[classid]][wburl])
 		{
 			$classurl=$class_r[$r[classid]][wburl];
 		}
-		//åŠ¨æ€åˆ—è¡¨
+		//¶¯Ì¬ÁĞ±í
 		elseif($class_r[$r[classid]][listdt])
 		{
 			$rewriter=eReturnRewriteClassUrl($r['classid'],1);
@@ -2438,7 +2438,7 @@ function sys_ReturnBqClassname($r,$have_class=0){
 		else
 		{$classname=$class_r[$r[classid]][bname];}
 		$myadd="[<a href=".$classurl.">".$classname."</a>]";
-		//åªè¿”å›é“¾æ¥
+		//Ö»·µ»ØÁ´½Ó
 		if($have_class==9)
 		{$myadd=$classurl;}
 	}
@@ -2447,7 +2447,7 @@ function sys_ReturnBqClassname($r,$have_class=0){
 	return $myadd;
 }
 
-//è¿”å›ä¸“é¢˜é“¾æ¥
+//·µ»Ø×¨ÌâÁ´½Ó
 function sys_ReturnBqZtname($r){
 	global $public_r,$class_zr;
 	if($class_zr[$r[ztid]][zturl])
@@ -2461,7 +2461,7 @@ function sys_ReturnBqZtname($r){
 	return $zturl;
 }
 
-//è¿”å›æ ‡é¢˜åˆ†ç±»é“¾æ¥
+//·µ»Ø±êÌâ·ÖÀàÁ´½Ó
 function sys_ReturnBqInfoTypeUrl($typeid){
 	global $public_r,$class_tr;
 	//moreport
@@ -2481,7 +2481,7 @@ function sys_ReturnBqInfoTypeUrl($typeid){
 	return $url;
 }
 
-//æ–‡ä»¶å¤§å°æ ¼å¼è½¬æ¢
+//ÎÄ¼ş´óĞ¡¸ñÊ½×ª»»
 function ChTheFilesize($size){
 	if($size>=1024*1024)//MB
 	{
@@ -2498,14 +2498,14 @@ function ChTheFilesize($size){
 	return $filesize;
 }
 
-//å–å¾—è¡¨è®°å½•
+//È¡µÃ±í¼ÇÂ¼
 function eGetTableRowNum($tbname){
 	global $empire,$dbtbpre;
 	$total_r=$empire->fetch1("SHOW TABLE STATUS LIKE '".$tbname."';");
 	return $total_r['Rows'];
 }
 
-//æ›´æ–°æ ç›®ä¿¡æ¯æ•°
+//¸üĞÂÀ¸Ä¿ĞÅÏ¢Êı
 function AddClassInfos($classid,$addallstr,$addstr,$checked=1){
 	global $empire,$dbtbpre;
 	$updatestr='';
@@ -2529,7 +2529,7 @@ function AddClassInfos($classid,$addallstr,$addstr,$checked=1){
 	$empire->query("update {$dbtbpre}enewsclass set ".$updatestr." where classid='$classid' limit 1");
 }
 
-//è¿”å›æ ç›®ä¿¡æ¯æ•°
+//·µ»ØÀ¸Ä¿ĞÅÏ¢Êı
 function ReturnClassInfoNum($cr,$ecms=0){
 	global $empire,$dbtbpre,$class_r;
 	if($cr['islast'])
@@ -2545,7 +2545,7 @@ function ReturnClassInfoNum($cr,$ecms=0){
 	return $num;
 }
 
-//é‡ç½®æ ç›®ä¿¡æ¯æ•°
+//ÖØÖÃÀ¸Ä¿ĞÅÏ¢Êı
 function ResetClassInfos($classid){
 	global $empire,$dbtbpre,$class_r;
 	$infos=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$class_r[$classid]['tbname']." where classid='$classid'");
@@ -2554,7 +2554,7 @@ function ResetClassInfos($classid){
 	$empire->query("update {$dbtbpre}enewsclass set allinfos='$allinfos',infos='$infos' where classid='$classid' limit 1");
 }
 
-//å•ä¿¡æ¯è¯„è®ºæ•°
+//µ¥ĞÅÏ¢ÆÀÂÛÊı
 function UpdateSingleInfoPlnum($classid,$id,$checked=1){
 	global $empire,$dbtbpre,$class_r;
 	$tbname=$class_r[$classid]['tbname'];
@@ -2577,10 +2577,10 @@ function UpdateSingleInfoPlnum($classid,$id,$checked=1){
 	$empire->query("update ".$infotb." set plnum='$plnum' where id='$id' limit 1");
 }
 
-//ä¿¡æ¯æ•°ç»Ÿè®¡åŠ 1
+//ĞÅÏ¢ÊıÍ³¼Æ¼Ó1
 function DoUpdateAddDataNum($type='info',$stb,$addnum=1){
 	global $empire,$dbtbpre;
-	if($type=='info')//ä¿¡æ¯
+	if($type=='info')//ĞÅÏ¢
 	{
 		$lasttimef='lasttimeinfo';
 		$lastnumf='lastnuminfo';
@@ -2590,7 +2590,7 @@ function DoUpdateAddDataNum($type='info',$stb,$addnum=1){
 		$yesterdaynumf='yesterdaynuminfo';
 		$sqladdf=',todaytimeinfo,todaytimepl,todaynuminfo,todaynumpl';
 	}
-	elseif($type=='pl')//è¯„è®º
+	elseif($type=='pl')//ÆÀÂÛ
 	{
 		$lasttimef='lasttimepl';
 		$lastnumf='lastnumpl';
@@ -2626,7 +2626,7 @@ function DoUpdateAddDataNum($type='info',$stb,$addnum=1){
 		}
 		$sqladdupdate.=",".$lastnumtbf."='".$tbnums."'";
 	}
-	//ä»Šæ—¥ç»Ÿè®¡
+	//½ñÈÕÍ³¼Æ
 	if($sqladdf)
 	{
 		$todaydate=date('Y-m-d');
@@ -2662,16 +2662,16 @@ function DoUpdateAddDataNum($type='info',$stb,$addnum=1){
 	$empire->query("update {$dbtbpre}enewspublic_up set ".$lastnumf."=".$lastnumf."+".$addnum.$sqladdupdate." limit 1");
 }
 
-//é‡ç½®ä¿¡æ¯æ•°ç»Ÿè®¡
+//ÖØÖÃĞÅÏ¢ÊıÍ³¼Æ
 function DoResetAddDataNum($type='info'){
 	global $empire,$dbtbpre;
-	if($type=='info')//ä¿¡æ¯
+	if($type=='info')//ĞÅÏ¢
 	{
 		$lasttimef='lasttimeinfo';
 		$lastnumf='lastnuminfo';
 		$lastnumtbf='lastnuminfotb';
 	}
-	elseif($type=='pl')//è¯„è®º
+	elseif($type=='pl')//ÆÀÂÛ
 	{
 		$lasttimef='lasttimepl';
 		$lastnumf='lastnumpl';
@@ -2685,7 +2685,7 @@ function DoResetAddDataNum($type='info'){
 	$empire->query("update {$dbtbpre}enewspublic_up set ".$lasttimef."='$time',".$lastnumf."=0,".$lastnumtbf."='' limit 1");
 }
 
-//æ›´æ–°æ˜¨æ—¥ä¿¡æ¯æ•°ç»Ÿè®¡
+//¸üĞÂ×òÈÕĞÅÏ¢ÊıÍ³¼Æ
 function DoUpdateYesterdayAddDataNum(){
 	global $empire,$dbtbpre;
 	$pur=$empire->fetch1("select * from {$dbtbpre}enewspublic_up limit 1");
@@ -2708,7 +2708,7 @@ function DoUpdateYesterdayAddDataNum(){
 	$empire->query("update {$dbtbpre}enewspublic_up set todaytimeinfo='$time',todaytimepl='$time',todaynuminfo=0,yesterdaynuminfo='$yesterdaynuminfo',todaynumpl=0,yesterdaynumpl='$yesterdaynumpl' limit 1");
 }
 
-//è¿”å›æ ç›®è‡ªå®šä¹‰å­—æ®µå†…å®¹
+//·µ»ØÀ¸Ä¿×Ô¶¨Òå×Ö¶ÎÄÚÈİ
 function ReturnClassAddField($classid,$f){
 	global $empire,$dbtbpre,$navclassid;
 	if(empty($classid))
@@ -2726,7 +2726,7 @@ function ReturnClassAddField($classid,$f){
 	}
 }
 
-//è¿”å›ä¸“é¢˜è‡ªå®šä¹‰å­—æ®µå†…å®¹
+//·µ»Ø×¨Ìâ×Ô¶¨Òå×Ö¶ÎÄÚÈİ
 function ReturnZtAddField($classid,$f){
 	global $empire,$dbtbpre,$navclassid;
 	if(empty($classid))
@@ -2744,7 +2744,7 @@ function ReturnZtAddField($classid,$f){
 	}
 }
 
-//è¿”å›æ‰©å±•å˜é‡å€¼
+//·µ»ØÀ©Õ¹±äÁ¿Öµ
 function ReturnPublicAddVar($myvar){
 	global $empire,$dbtbpre;
 	if(strstr($myvar,','))
@@ -2766,7 +2766,7 @@ function ReturnPublicAddVar($myvar){
 	}
 }
 
-//è¿”å›æ’åºå­—æ®µ
+//·µ»ØÅÅĞò×Ö¶Î
 function ReturnDoOrderF($mid,$orderby,$myorder){
 	global $emod_r;
 	$orderby=str_replace(',','',$orderby);
@@ -2796,7 +2796,7 @@ function ReturnDoOrderF($mid,$orderby,$myorder){
 	return $rr;
 }
 
-//è¿”å›ç½®é¡¶
+//·µ»ØÖÃ¶¥
 function ReturnSetTopSql($ecms){
 	global $public_r;
 	if(empty($public_r['settop']))
@@ -2828,7 +2828,7 @@ function ReturnSetTopSql($ecms){
 	return '';
 }
 
-//è¿”å›ä¼˜åŒ–æ–¹æ¡ˆSQL
+//·µ»ØÓÅ»¯·½°¸SQL
 function ReturnYhSql($yhid,$yhvar,$ecms=0){
 	global $eyh_r;
 	if(empty($yhid))
@@ -2844,7 +2844,7 @@ function ReturnYhSql($yhid,$yhvar,$ecms=0){
 	return $query;
 }
 
-//è¿”å›ä¼˜åŒ–+æ¡ä»¶SQL
+//·µ»ØÓÅ»¯+Ìõ¼şSQL
 function ReturnYhAndSql($yhadd,$where,$ecms=0){
 	if($yhadd.$where=='')
 	{
@@ -2864,7 +2864,7 @@ function ReturnYhAndSql($yhadd,$where,$ecms=0){
 	}
 }
 
-//è¿”å›åˆ—è¡¨æŸ¥è¯¢å­—æ®µ
+//·µ»ØÁĞ±í²éÑ¯×Ö¶Î
 function ReturnSqlListF($mid){
 	global $emod_r;
 	if(empty($mid))
@@ -2875,7 +2875,7 @@ function ReturnSqlListF($mid){
 	return $f;
 }
 
-//è¿”å›å†…å®¹æŸ¥è¯¢å­—æ®µ
+//·µ»ØÄÚÈİ²éÑ¯×Ö¶Î
 function ReturnSqlTextF($mid,$ecms=0){
 	global $emod_r;
 	if(empty($mid))
@@ -2886,7 +2886,7 @@ function ReturnSqlTextF($mid,$ecms=0){
 	return $f;
 }
 
-//è¿”å›å†…å®¹å‰¯è¡¨æŸ¥è¯¢å­—æ®µ
+//·µ»ØÄÚÈİ¸±±í²éÑ¯×Ö¶Î
 function ReturnSqlFtextF($mid){
 	global $emod_r;
 	if(empty($mid))
@@ -2897,15 +2897,15 @@ function ReturnSqlFtextF($mid){
 	return $f;
 }
 
-//è¿”å›ä¿¡æ¯è¡¨
+//·µ»ØĞÅÏ¢±í
 function ReturnInfoTbname($tbname,$checked=1,$stb=1){
 	global $dbtbpre;
-	if(empty($checked))//å¾…å®¡æ ¸
+	if(empty($checked))//´ıÉóºË
 	{
 		$r['tbname']=$dbtbpre.'ecms_'.$tbname.'_check';
 		$r['datatbname']=$dbtbpre.'ecms_'.$tbname.'_check_data';
 	}
-	else//å·²å®¡æ ¸
+	else//ÒÑÉóºË
 	{
 		$r['tbname']=$dbtbpre.'ecms_'.$tbname;
 		$r['datatbname']=$dbtbpre.'ecms_'.$tbname.'_data_'.$stb;
@@ -2913,26 +2913,26 @@ function ReturnInfoTbname($tbname,$checked=1,$stb=1){
 	return $r;
 }
 
-//è¿”å›ä¿¡æ¯ä¸»è¡¨
+//·µ»ØĞÅÏ¢Ö÷±í
 function ReturnInfoMainTbname($tbname,$checked=1){
 	global $dbtbpre;
 	return empty($checked)?$dbtbpre.'ecms_'.$tbname.'_check':$dbtbpre.'ecms_'.$tbname;
 }
 
-//è¿”å›ä¿¡æ¯å‰¯è¡¨
+//·µ»ØĞÅÏ¢¸±±í
 function ReturnInfoDataTbname($tbname,$checked=1,$stb=1){
 	global $dbtbpre;
 	return empty($checked)?$dbtbpre.'ecms_'.$tbname.'_check_data':$dbtbpre.'ecms_'.$tbname.'_data_'.$stb;
 }
 
-//ä¸»è¡¨ä¿¡æ¯
+//Ö÷±íĞÅÏ¢
 function ReturnIndexTableInfo($tbname,$f,$classid,$id){
 	global $dbtbpre;
 	$r=$empire->fetch1("select ".$f." from {$dbtbpre}ecms_".$tbname."_index where id='$id' limit 1");
 	return $r;
 }
 
-//è¿”å›è¯„è®ºè¡¨å
+//·µ»ØÆÀÂÛ±íÃû
 function eReturnRestb($restb){
 	global $public_r,$dbtbpre;
 	$restb=(int)$restb;
@@ -2943,7 +2943,7 @@ function eReturnRestb($restb){
 	return $dbtbpre.'enewspl_'.$restb;
 }
 
-//è¿”å›é™„ä»¶è¡¨å
+//·µ»Ø¸½¼ş±íÃû
 function eReturnFstb($fstb){
 	global $public_r,$dbtbpre;
 	$fstb=(int)$fstb;
@@ -2954,7 +2954,7 @@ function eReturnFstb($fstb){
 	return $dbtbpre.'enewsfile_'.$fstb;
 }
 
-//è¿”å›å…¬å…±è¡¨ç´¢å¼•ID
+//·µ»Ø¹«¹²±íË÷ÒıID
 function ReturnInfoPubid($classid,$id,$tid=0){
 	global $class_r;
 	$classid=(int)$classid;
@@ -2968,13 +2968,13 @@ function ReturnInfoPubid($classid,$id,$tid=0){
 	return $pubid;
 }
 
-//æ˜¯å¦å†…éƒ¨è¡¨
+//ÊÇ·ñÄÚ²¿±í
 function InfoIsInTable($tbname){
 	global $etable_r;
 	return $etable_r[$tbname]['intb']==1?true:false;
 }
 
-//æ£€éªŒå­—æ®µæ˜¯å¦å­˜åœ¨
+//¼ìÑé×Ö¶ÎÊÇ·ñ´æÔÚ
 function eCheckTbHaveField($tid,$tbname,$f){
 	global $empire,$dbtbpre;
 	$where=$tid?"tid='$tid' and ":"tbname='$tbname' and ";
@@ -2991,10 +2991,10 @@ function eCheckTbHaveField($tid,$tbname,$f){
 	return $num;
 }
 
-//éªŒè¯æ¨¡æ¿æ˜¯å¦å¼€å¯åŠ¨æ€ä½¿ç”¨
+//ÑéÖ¤Ä£°åÊÇ·ñ¿ªÆô¶¯Ì¬Ê¹ÓÃ
 function DtTempIsClose($tempid,$type='listtemp'){
 	global $public_r;
-	if($type=='listtemp')//åˆ—è¡¨æ¨¡æ¿
+	if($type=='listtemp')//ÁĞ±íÄ£°å
 	{
 		if($public_r['closelisttemp']&&strstr(','.$public_r['closelisttemp'].',',','.$tempid.','))
 		{
@@ -3004,7 +3004,7 @@ function DtTempIsClose($tempid,$type='listtemp'){
 	}
 }
 
-//è¡¥é›¶
+//²¹Áã
 function ReturnAllInt($val,$num){
 	$len=strlen($val);
 	$zeronum=$num-$len;
@@ -3051,7 +3051,7 @@ function ReturnAllInt($val,$num){
 	return $val;
 }
 
-//è¿”å›æ›¿æ¢åˆ—è¡¨
+//·µ»ØÌæ»»ÁĞ±í
 function ReturnReplaceListF($mid){
 	global $emod_r;
 	$r['mid']=$mid;
@@ -3060,7 +3060,7 @@ function ReturnReplaceListF($mid){
 	return $r;
 }
 
-//è¿”å›æ›¿æ¢å†…å®¹
+//·µ»ØÌæ»»ÄÚÈİ
 function ReturnReplaceTextF($mid){
 	global $emod_r;
 	$r['mid']=$mid;
@@ -3069,7 +3069,7 @@ function ReturnReplaceTextF($mid){
 	return $r;
 }
 
-//æ›¿æ¢åˆ—è¡¨æ¨¡æ¿/æ ‡ç­¾æ¨¡æ¿/æœç´¢æ¨¡æ¿
+//Ìæ»»ÁĞ±íÄ£°å/±êÇ©Ä£°å/ËÑË÷Ä£°å
 function ReplaceListVars($no,$listtemp,$subnews,$subtitle,$formatdate,$url,$haveclass=0,$r,$field,$docode=0){
 	global $empire,$public_r,$class_r,$class_zr,$fun_r,$dbtbpre,$emod_r,$class_tr,$level_r,$navclassid,$etable_r;
 	if($haveclass)
@@ -3094,22 +3094,22 @@ function ReplaceListVars($no,$listtemp,$subnews,$subtitle,$formatdate,$url,$have
 		$f=$fr[$i];
 		$value=$r[$f];
 		$spf=0;
-		if($f=='title')//æ ‡é¢˜
+		if($f=='title')//±êÌâ
 		{
-	        if(!empty($subtitle))//æˆªå–å­—ç¬¦
+	        if(!empty($subtitle))//½ØÈ¡×Ö·û
 	        {
 				$value=sub($value,0,$subtitle,false);
 	        }
 			$value=DoTitleFont($r[titlefont],$value);
 			$spf=1;
 		}
-		elseif($f=='newstime')//æ—¶é—´
+		elseif($f=='newstime')//Ê±¼ä
 		{
 			//$value=date($formatdate,$value);
 			$value=format_datetime($value,$formatdate);
 			$spf=1;
 		}
-		elseif($f=='titlepic')//æ ‡é¢˜å›¾ç‰‡
+		elseif($f=='titlepic')//±êÌâÍ¼Æ¬
 		{
 			if(empty($value))
 		    {
@@ -3117,35 +3117,35 @@ function ReplaceListVars($no,$listtemp,$subnews,$subtitle,$formatdate,$url,$have
 			}
 			$spf=1;
 		}
-		elseif(strstr($emod_r[$mid]['smalltextf'],','.$f.','))//ç®€ä»‹
+		elseif(strstr($emod_r[$mid]['smalltextf'],','.$f.','))//¼ò½é
 		{
-			if(!empty($subnews))//æˆªå–å­—ç¬¦
+			if(!empty($subnews))//½ØÈ¡×Ö·û
 			{
 				$value=sub($value,0,$subnews,false);
 			}
 		}
-		elseif($f=='befrom')//ä¿¡æ¯æ¥æº
+		elseif($f=='befrom')//ĞÅÏ¢À´Ô´
 		{
 			$spf=1;
 		}
-		elseif($f=='writer')//ä½œè€…
+		elseif($f=='writer')//×÷Õß
 		{
 			$spf=1;
 		}
 		if($spf==0&&!strstr($emod_r[$mid]['editorf'],','.$f.','))
 		{
-			if(strstr($emod_r[$mid]['tobrf'],','.$f.','))//åŠ br
+			if(strstr($emod_r[$mid]['tobrf'],','.$f.','))//¼Óbr
 			{
 				$value=nl2br($value);
 			}
-			if(!strstr($emod_r[$mid]['dohtmlf'],','.$f.','))//å»é™¤html
+			if(!strstr($emod_r[$mid]['dohtmlf'],','.$f.','))//È¥³ıhtml
 			{
 				$value=RepFieldtextNbsp(ehtmlspecialchars($value));
 			}
 		}
 		$listtemp=str_replace('[!--'.$f.'--]',$value,$listtemp);
 	}
-	$titleurl=sys_ReturnBqTitleLink($r);//é“¾æ¥
+	$titleurl=sys_ReturnBqTitleLink($r);//Á´½Ó
 	$listtemp=str_replace('[!--id--]',$r[id],$listtemp);
 	$listtemp=str_replace('[!--classid--]',$r[classid],$listtemp);
 	$listtemp=str_replace('[!--class.name--]',$add,$listtemp);
@@ -3161,7 +3161,7 @@ function ReplaceListVars($no,$listtemp,$subnews,$subtitle,$formatdate,$url,$have
 	$listtemp=str_replace('[!--onclick--]',$r[onclick],$listtemp);
 	$listtemp=str_replace('[!--oldtitle--]',$r[oldtitle],$listtemp);
 	$listtemp=str_replace('[!--totaldown--]',$r[totaldown],$listtemp);
-	//æ ç›®é“¾æ¥
+	//À¸Ä¿Á´½Ó
 	if(strstr($ylisttemp,'[!--this.classlink--]'))
 	{
 		$thisclasslink=sys_ReturnBqClassname($r,9);
@@ -3172,7 +3172,7 @@ function ReplaceListVars($no,$listtemp,$subnews,$subtitle,$formatdate,$url,$have
 	return $listtemp;
 }
 
-//åŠ ä¸Šé˜²å¤åˆ¶å­—ç¬¦
+//¼ÓÉÏ·À¸´ÖÆ×Ö·û
 function AddNotCopyRndStr($text){
 	global $public_r;
 	if($public_r['opencopytext'])
@@ -3184,7 +3184,7 @@ function AddNotCopyRndStr($text){
 	return $text;
 }
 
-//æ›¿æ¢ä¿¡æ¯æ¥æº
+//Ìæ»»ĞÅÏ¢À´Ô´
 function ReplaceBefrom($befrom){
 	global $empire,$dbtbpre;
 	if(empty($befrom))
@@ -3197,7 +3197,7 @@ function ReplaceBefrom($befrom){
 	return $return_befrom;
 }
 
-//æ›¿æ¢ä½œè€…
+//Ìæ»»×÷Õß
 function ReplaceWriter($writer){
 	global $empire,$dbtbpre;
 	if(empty($writer))
@@ -3212,7 +3212,7 @@ function ReplaceWriter($writer){
 	return $return_writer;
 }
 
-//å¤‡ä»½ä¸‹è½½è®°å½•
+//±¸·İÏÂÔØ¼ÇÂ¼
 function BakDown($classid,$id,$pathid,$userid,$username,$title,$cardfen,$online=0){
 	global $empire,$dbtbpre;
 	$truetime=time();
@@ -3227,7 +3227,7 @@ function BakDown($classid,$id,$pathid,$userid,$username,$title,$cardfen,$online=
 	$sql=$empire->query("insert into {$dbtbpre}enewsdownrecord(id,pathid,userid,username,title,cardfen,truetime,classid,online) values($id,$pathid,$userid,'$username','".addslashes($title)."',$cardfen,$truetime,$classid,'$online');");
 }
 
-//å¤‡ä»½å……å€¼è®°å½•
+//±¸·İ³äÖµ¼ÇÂ¼
 function BakBuy($userid,$username,$buyname,$userfen,$money,$userdate,$type=0){
 	global $empire,$dbtbpre;
 	$buytime=date("y-m-d H:i:s");
@@ -3241,7 +3241,7 @@ function BakBuy($userid,$username,$buyname,$userfen,$money,$userdate,$type=0){
 	$empire->query("insert into {$dbtbpre}enewsbuybak(userid,username,card_no,cardfen,money,buytime,userdate,type) values('$userid','$username','$buyname','$userfen','$money','$buytime','$userdate','$type');");
 }
 
-//å‘é€çŸ­æ¶ˆæ¯
+//·¢ËÍ¶ÌÏûÏ¢
 function eSendMsg($title,$msgtext,$to_username,$from_userid,$from_username,$isadmin,$issys,$ecms=0){
 	global $empire,$dbtbpre;
 	$tbname=$ecms==1?$dbtbpre.'enewshmsg':$dbtbpre.'enewsqmsg';
@@ -3252,7 +3252,7 @@ function eSendMsg($title,$msgtext,$to_username,$from_userid,$from_username,$isad
 	$issys=(int)$issys;
 	$msgtime=date("Y-m-d H:i:s");
 	$empire->query("insert into ".$tbname."(title,msgtext,haveread,msgtime,to_username,from_userid,from_username,isadmin,issys) values('$title','$msgtext',0,'$msgtime','$to_username','$from_userid','$from_username','$isadmin','$issys');");
-	//æ¶ˆæ¯çŠ¶æ€
+	//ÏûÏ¢×´Ì¬
 	$userr=$empire->fetch1("select ".eReturnSelectMemberF('userid,havemsg')." from ".eReturnMemberTable()." where ".egetmf('username')."='$to_username' limit 1");
 	if(!$userr['havemsg'])
 	{
@@ -3261,7 +3261,7 @@ function eSendMsg($title,$msgtext,$to_username,$from_userid,$from_username,$isad
 	}
 }
 
-//å‘é€é€šçŸ¥
+//·¢ËÍÍ¨Öª
 function eSendNotice($title,$msgtext,$to_username,$from_userid,$from_username,$ecms=0){
 	global $empire,$dbtbpre;
 	$tbname=$ecms==1?$dbtbpre.'enewshnotice':$dbtbpre.'enewsnotice';
@@ -3272,7 +3272,7 @@ function eSendNotice($title,$msgtext,$to_username,$from_userid,$from_username,$e
 	$empire->query("insert into ".$tbname."(title,msgtext,haveread,msgtime,to_username,from_userid,from_username) values('".$title."','".$msgtext."',0,'$msgtime','$to_username','$from_userid','$from_username');");
 }
 
-//æˆªå–ç®€ä»‹
+//½ØÈ¡¼ò½é
 function SubSmalltextVal($value,$len){
 	if(empty($len))
 	{
@@ -3291,7 +3291,7 @@ function SubSmalltextVal($value,$len){
 	return $value;
 }
 
-//å…¨ç«™æœç´¢ç®€ä»‹
+//È«Õ¾ËÑË÷¼ò½é
 function SubSchallSmalltext($value,$len){
 	$value=str_replace(array("\r\n","&nbsp;","[!--empirenews.page--]","[/!--empirenews.page--]"),array("","","",""),$value);
 	$value=strip_tags($value);
@@ -3303,12 +3303,12 @@ function SubSchallSmalltext($value,$len){
 	return $value;
 }
 
-//åŠ çº¢æ›¿æ¢
+//¼ÓºìÌæ»»
 function DoReplaceFontRed($text,$key){
 	return str_replace($key,'<font color="red">'.$key.'</font>',$text);
 }
 
-//è¿”å›ä¸ç”Ÿæˆhtmlçš„æ ç›®
+//·µ»Ø²»Éú³ÉhtmlµÄÀ¸Ä¿
 function ReturnNreInfoWhere(){
 	global $public_r;
 	if(empty($public_r['nreinfo'])||$public_r['nreinfo']==',')
@@ -3320,7 +3320,7 @@ function ReturnNreInfoWhere(){
 	return $where;
 }
 
-//è¿”å›æ ‡ç­¾ä¸è°ƒç”¨æ ç›®
+//·µ»Ø±êÇ©²»µ÷ÓÃÀ¸Ä¿
 function ReturnNottoBqWhere(){
 	global $public_r;
 	if(empty($public_r['nottobq'])||$public_r['nottobq']==',')
@@ -3332,7 +3332,7 @@ function ReturnNottoBqWhere(){
 	return $where;
 }
 
-//è¿”å›æ–‡ä»¶ååŠæ‰©å±•å
+//·µ»ØÎÄ¼şÃû¼°À©Õ¹Ãû
 function ReturnCFiletype($file){
 	$r=explode('.',$file);
 	$count=count($r)-1;
@@ -3341,7 +3341,7 @@ function ReturnCFiletype($file){
 	return $re;
 }
 
-//è¿”å›æ ç›®ç›®å½•
+//·µ»ØÀ¸Ä¿Ä¿Â¼
 function ReturnSaveClassPath($classid,$f=0){
 	global $class_r;
 	$classpath=$class_r[$classid][classpath];
@@ -3351,7 +3351,7 @@ function ReturnSaveClassPath($classid,$f=0){
 	return $classpath;
 }
 
-//è¿”å›ä¸“é¢˜ç›®å½•
+//·µ»Ø×¨ÌâÄ¿Â¼
 function ReturnSaveZtPath($classid,$f=0){
 	global $class_zr;
 	$classpath=$class_zr[$classid][ztpath];
@@ -3361,7 +3361,7 @@ function ReturnSaveZtPath($classid,$f=0){
 	return $classpath;
 }
 
-//è¿”å›æ ‡é¢˜åˆ†ç±»ç›®å½•
+//·µ»Ø±êÌâ·ÖÀàÄ¿Â¼
 function ReturnSaveInfoTypePath($classid,$f=0){
 	global $class_tr;
 	$classpath=$class_tr[$classid]['tpath'];
@@ -3371,14 +3371,14 @@ function ReturnSaveInfoTypePath($classid,$f=0){
 	return $classpath;
 }
 
-//è¿”å›é¦–é¡µæ–‡ä»¶
+//·µ»ØÊ×Ò³ÎÄ¼ş
 function ReturnSaveIndexFile(){
 	global $public_r;
 	$file='index'.$public_r[indextype];
 	return $file;
 }
 
-//è¿”å›é¦–é¡µåœ°å€
+//·µ»ØÊ×Ò³µØÖ·
 function ReturnSiteIndexUrl(){
 	global $public_r;
 	if(empty($public_r['indexaddpage']))
@@ -3393,7 +3393,7 @@ function ReturnSiteIndexUrl(){
 	return $file;
 }
 
-//è¿”å›å†…å®¹é¡µå­˜æ”¾ç›®å½•
+//·µ»ØÄÚÈİÒ³´æ·ÅÄ¿Â¼
 function ReturnSaveInfoPath($classid,$id){
 	global $class_r;
 	if($class_r[$classid][ipath]==''){
@@ -3405,7 +3405,7 @@ function ReturnSaveInfoPath($classid,$id){
 	return $path;
 }
 
-//è¿”å›å†…å®¹é¡µæ–‡ä»¶å
+//·µ»ØÄÚÈİÒ³ÎÄ¼şÃû
 function GetInfoFilename($classid,$id){
 	global $empire,$dbtbpre,$public_r,$class_r;
 	$infor=$empire->fetch1("select isurl,groupid,classid,newspath,filename,id from {$dbtbpre}ecms_".$class_r[$classid][tbname]." where id='$id' limit 1");
@@ -3425,7 +3425,7 @@ function GetInfoFilename($classid,$id){
 	return $file;
 }
 
-//æ ¼å¼åŒ–ä¿¡æ¯ç›®å½•
+//¸ñÊ½»¯ĞÅÏ¢Ä¿Â¼
 function FormatPath($classid,$mynewspath,$enews=0){
 	global $class_r;
 	if($enews)
@@ -3467,18 +3467,18 @@ function FormatPath($classid,$mynewspath,$enews=0){
 	return $returnpath;
 }
 
-//è¿”å›å†…å®¹é¡µç›®å½•
+//·µ»ØÄÚÈİÒ³Ä¿Â¼
 function ReturnInfoSPath($filename){
 	return str_replace('/index','',$filename);
 }
 
-//è¿”å›æ ¹ç›®å½•
+//·µ»Ø¸ùÄ¿Â¼
 function ReturnAbsEcmsPath(){
 	$ecmspath=str_replace("\\","/",ECMS_PATH);
 	return $ecmspath;
 }
 
-//è¿”å›å½“å‰æ ¹ç›®å½•
+//·µ»Øµ±Ç°¸ùÄ¿Â¼
 function eReturnTrueEcmsPath(){
 	if(defined('ECMS_SELFPATH'))
 	{
@@ -3490,7 +3490,7 @@ function eReturnTrueEcmsPath(){
 	}
 }
 
-//è¿”å›ä¸»ç«¯æ ¹ç›®å½•
+//·µ»ØÖ÷¶Ë¸ùÄ¿Â¼
 function eReturnEcmsMainPortPath(){
 	global $ecms_config;
 	if($ecms_config['sets']['mainportpath'])
@@ -3504,9 +3504,9 @@ function eReturnEcmsMainPortPath(){
 }
 
 
-//------------- é™„ä»¶ -------------
+//------------- ¸½¼ş -------------
 
-//è¿”å›é™„ä»¶åˆ†è¡¨
+//·µ»Ø¸½¼ş·Ö±í
 function eReturnFileStb($fstb){
 	global $public_r;
 	$fstb=(int)$fstb;
@@ -3517,37 +3517,37 @@ function eReturnFileStb($fstb){
 	return $fstb;
 }
 
-//è¿”å›é™„ä»¶è¡¨
+//·µ»Ø¸½¼ş±í
 function eReturnFileTable($modtype,$fstb){
 	global $dbtbpre;
-	if($modtype==0)//ä¿¡æ¯
+	if($modtype==0)//ĞÅÏ¢
 	{
 		$fstb=eReturnFileStb($fstb);
 		$table=$dbtbpre.'enewsfile_'.$fstb;
 	}
-	elseif($modtype==5)//å…¬å…±
+	elseif($modtype==5)//¹«¹²
 	{
 		$table=$dbtbpre.'enewsfile_public';
 	}
-	elseif($modtype==6)//ä¼šå‘˜
+	elseif($modtype==6)//»áÔ±
 	{
 		$table=$dbtbpre.'enewsfile_member';
 	}
-	else//å…¶ä»–
+	else//ÆäËû
 	{
 		$table=$dbtbpre.'enewsfile_other';
 	}
 	return $table;
 }
 
-//æŸ¥è¯¢é™„ä»¶è¡¨
+//²éÑ¯¸½¼ş±í
 function eSelectFileTable($modtype,$fstb,$selectf,$where){
 	global $dbtbpre;
 	$query="select {$selectf} from ".eReturnFileTable($modtype,$fstb)." where ".$where;
 	return $query;
 }
 
-//å†™å…¥é™„ä»¶è®°å½•
+//Ğ´Èë¸½¼ş¼ÇÂ¼
 function eInsertFileTable($filename,$filesize,$path,$adduser,$classid,$no,$type,$id,$cjid,$fpath,$pubid,$modtype=0,$fstb=1){
 	global $empire,$dbtbpre,$public_r;
 	$filetime=time();
@@ -3564,27 +3564,27 @@ function eInsertFileTable($filename,$filesize,$path,$adduser,$classid,$no,$type,
 	$path=addslashes(RepPostStr($path));
 	$pubid=RepPostVar($pubid);
 	$fstb=(int)$fstb;
-	if($modtype==0)//ä¿¡æ¯
+	if($modtype==0)//ĞÅÏ¢
 	{
 		$fstb=eReturnFileStb($fstb);
 		$sql=$empire->query("insert into {$dbtbpre}enewsfile_".$fstb."(pubid,filename,filesize,adduser,path,filetime,classid,no,type,id,cjid,onclick,fpath) values('$pubid','$filename','$filesize','$adduser','$path','$filetime','$classid','$no','$type','$id','$cjid',0,'$fpath');");
 	}
-	elseif($modtype==5)//å…¬å…±
+	elseif($modtype==5)//¹«¹²
 	{
 		$sql=$empire->query("insert into {$dbtbpre}enewsfile_public(filename,filesize,adduser,path,filetime,modtype,no,type,id,cjid,onclick,fpath) values('$filename','$filesize','$adduser','$path','$filetime',0,'$no','$type','$id','$cjid',0,'$fpath');");
 	}
-	elseif($modtype==6)//ä¼šå‘˜
+	elseif($modtype==6)//»áÔ±
 	{
 		$sql=$empire->query("insert into {$dbtbpre}enewsfile_member(filename,filesize,adduser,path,filetime,no,type,id,cjid,onclick,fpath) values('$filename','$filesize','$adduser','$path','$filetime','$no','$type','$id','$cjid',0,'$fpath');");
 	}
-	else//å…¶ä»–
+	else//ÆäËû
 	{
 		$sql=$empire->query("insert into {$dbtbpre}enewsfile_other(filename,filesize,adduser,path,filetime,modtype,no,type,id,cjid,onclick,fpath) values('$filename','$filesize','$adduser','$path','$filetime','$modtype','$no','$type','$id','$cjid',0,'$fpath');");
 	}
 	return $sql;
 }
 
-//æ›´æ–°ç›¸åº”çš„é™„ä»¶(éä¿¡æ¯)
+//¸üĞÂÏàÓ¦µÄ¸½¼ş(·ÇĞÅÏ¢)
 function UpdateTheFileOther($modtype,$id,$checkpass,$tb='other'){
 	global $empire,$dbtbpre;
 	if(empty($id)||empty($checkpass))
@@ -3601,7 +3601,7 @@ function UpdateTheFileOther($modtype,$id,$checkpass,$tb='other'){
 	$sql=$empire->query("update {$dbtbpre}enewsfile_{$tb} set id='$id',cjid=0 where cjid='$checkpass'".$where);
 }
 
-//ä¿®æ”¹æ—¶æ›´æ–°é™„ä»¶(éä¿¡æ¯)
+//ĞŞ¸ÄÊ±¸üĞÂ¸½¼ş(·ÇĞÅÏ¢)
 function UpdateTheFileEditOther($modtype,$id,$tb='other'){
 	global $empire,$dbtbpre;
 	$where='';
@@ -3612,13 +3612,13 @@ function UpdateTheFileEditOther($modtype,$id,$tb='other'){
 	$sql=$empire->query("update {$dbtbpre}enewsfile_{$tb} set cjid=0 where id='$id'".$where);
 }
 
-//è¿”å›filepass
+//·µ»Øfilepass
 function ReturnTranFilepass(){
 	$filepass=time();
 	return $filepass;
 }
 
-//è¿”å›é™„ä»¶åŸŸååœ°å€
+//·µ»Ø¸½¼şÓòÃûµØÖ·
 function eReturnFileUrl($ecms=0){
 	global $public_r;
 	if($ecms==1)
@@ -3629,17 +3629,17 @@ function eReturnFileUrl($ecms=0){
 	return $fileurl;
 }
 
-//è¿”å›é™„ä»¶ç›®å½•
+//·µ»Ø¸½¼şÄ¿Â¼
 function ReturnFileSavePath($classid,$fpath=''){
 	global $public_r,$class_r;
 	$fpath=$fpath||strstr(','.$fpath.',',',0,')?$fpath:$public_r['fpath'];
 	$efileurl=eReturnFileUrl();
-	if($fpath==1)//pç›®å½•
+	if($fpath==1)//pÄ¿Â¼
 	{
 		$r['filepath']='d/file/p/';
 		$r['fileurl']=$efileurl.'p/';
 	}
-	elseif($fpath==2)//fileç›®å½•
+	elseif($fpath==2)//fileÄ¿Â¼
 	{
 		$r['filepath']='d/file/';
 		$r['fileurl']=$efileurl;
@@ -3660,7 +3660,7 @@ function ReturnFileSavePath($classid,$fpath=''){
 	return $r;
 }
 
-//æ ¼å¼åŒ–é™„ä»¶ç›®å½•
+//¸ñÊ½»¯¸½¼şÄ¿Â¼
 function FormatFilePath($classid,$mynewspath,$enews=0){
 	global $public_r;
 	if($enews)
@@ -3700,35 +3700,35 @@ function FormatFilePath($classid,$mynewspath,$enews=0){
 	return $returnpath;
 }
 
-//è¿”å›ä¸Šä¼ æ–‡ä»¶å
+//·µ»ØÉÏ´«ÎÄ¼şÃû
 function ReturnDoTranFilename($file_name,$classid){
 	$filename=md5(uniqid(microtime()).EcmsRandInt());
 	return $filename;
 }
 
-//ä¸Šä¼ æ–‡ä»¶
+//ÉÏ´«ÎÄ¼ş
 function DoTranFile($file,$file_name,$file_type,$file_size,$classid,$ecms=0){
 	global $public_r,$class_r,$doetran,$efileftp_fr;
 	$classid=(int)$classid;
-	//æ–‡ä»¶ç±»å‹
+	//ÎÄ¼şÀàĞÍ
 	$r[filetype]=GetFiletype($file_name);
-	//æ–‡ä»¶å
+	//ÎÄ¼şÃû
 	$r[insertfile]=ReturnDoTranFilename($file_name,$classid);
 	$r[filename]=$r[insertfile].$r[filetype];
-	//æ—¥æœŸç›®å½•
+	//ÈÕÆÚÄ¿Â¼
 	$r[filepath]=FormatFilePath($classid,$mynewspath,0);
 	$filepath=$r[filepath]?$r[filepath].'/':$r[filepath];
-	//å­˜æ”¾ç›®å½•
+	//´æ·ÅÄ¿Â¼
 	$fspath=ReturnFileSavePath($classid);
 	$r[savepath]=eReturnEcmsMainPortPath().$fspath['filepath'].$filepath;//moreport
-	//é™„ä»¶åœ°å€
+	//¸½¼şµØÖ·
 	$r[url]=$fspath['fileurl'].$filepath.$r[filename];
-	//ç¼©å›¾æ–‡ä»¶
+	//ËõÍ¼ÎÄ¼ş
 	$r[name]=$r[savepath]."small".$r[insertfile];
-	//é™„ä»¶æ–‡ä»¶
+	//¸½¼şÎÄ¼ş
 	$r[yname]=$r[savepath].$r[filename];
 	$r[tran]=1;
-	//éªŒè¯ç±»å‹
+	//ÑéÖ¤ÀàĞÍ
 	if(CheckSaveTranFiletype($r[filetype]))
 	{
 		if($doetran)
@@ -3741,7 +3741,7 @@ function DoTranFile($file,$file_name,$file_type,$file_size,$classid,$ecms=0){
 			printerror('TranFail','',$ecms);
 		}
 	}
-	//ä¸Šä¼ æ–‡ä»¶
+	//ÉÏ´«ÎÄ¼ş
 	$cp=@move_uploaded_file($file,$r[yname]);
 	if(empty($cp))
 	{
@@ -3765,7 +3765,7 @@ function DoTranFile($file,$file_name,$file_type,$file_size,$classid,$ecms=0){
 	return $r;
 }
 
-//è¿œç¨‹ä¿å­˜å¿½ç•¥åœ°å€
+//Ô¶³Ì±£´æºöÂÔµØÖ·
 function CheckNotSaveUrl($url){
 	global $public_r;
 	if(empty($public_r['notsaveurl']))
@@ -3788,31 +3788,31 @@ function CheckNotSaveUrl($url){
 	return $re;
 }
 
-//è¿œç¨‹ä¿å­˜
+//Ô¶³Ì±£´æ
 function DoTranUrl($url,$classid){
 	global $public_r,$class_r,$ecms_config,$efileftp_fr;
 	$classid=(int)$classid;
-	//å¤„ç†åœ°å€
+	//´¦ÀíµØÖ·
 	$url=trim($url);
 	$url=str_replace(" ","%20",$url);
     $r[tran]=1;
-	//é™„ä»¶åœ°å€
+	//¸½¼şµØÖ·
 	$r[url]=$url;
-	//æ–‡ä»¶ç±»å‹
+	//ÎÄ¼şÀàĞÍ
 	$r[filetype]=GetFiletype($url);
 	if(CheckSaveTranFiletype($r[filetype]))
 	{
 		$r[tran]=0;
 		return $r;
 	}
-	//æ˜¯å¦å·²ä¸Šä¼ çš„æ–‡ä»¶
+	//ÊÇ·ñÒÑÉÏ´«µÄÎÄ¼ş
 	$havetr=CheckNotSaveUrl($url);
 	if($havetr)
 	{
 		$r[tran]=0;
 		return $r;
 	}
-	//æ˜¯å¦åœ°å€
+	//ÊÇ·ñµØÖ·
 	if(!strstr($url,'://'))
 	{
 		$r[tran]=0;
@@ -3824,29 +3824,29 @@ function DoTranUrl($url,$classid){
 		return $r;
 	}
 	$string=ReadFiletext($url);
-	if(empty($string))//è¯»å–ä¸äº†
+	if(empty($string))//¶ÁÈ¡²»ÁË
 	{
 		$r[tran]=0;
 		return $r;
 	}
-	//æ–‡ä»¶å
+	//ÎÄ¼şÃû
 	$r[insertfile]=ReturnDoTranFilename($file_name,$classid);
 	$r[filename]=$r[insertfile].$r[filetype];
-	//æ—¥æœŸç›®å½•
+	//ÈÕÆÚÄ¿Â¼
 	$r[filepath]=FormatFilePath($classid,$mynewspath,0);
 	$filepath=$r[filepath]?$r[filepath].'/':$r[filepath];
-	//å­˜æ”¾ç›®å½•
+	//´æ·ÅÄ¿Â¼
 	$fspath=ReturnFileSavePath($classid);
 	$r[savepath]=eReturnEcmsMainPortPath().$fspath['filepath'].$filepath;//moreport
-	//é™„ä»¶åœ°å€
+	//¸½¼şµØÖ·
 	$r[url]=$fspath['fileurl'].$filepath.$r[filename];
-	//ç¼©å›¾æ–‡ä»¶
+	//ËõÍ¼ÎÄ¼ş
 	$r[name]=$r[savepath]."small".$r[insertfile];
-	//é™„ä»¶æ–‡ä»¶
+	//¸½¼şÎÄ¼ş
 	$r[yname]=$r[savepath].$r[filename];
 	WriteFiletext_n($r[yname],$string);
 	$r[filesize]=@filesize($r[yname]);
-	//è¿”å›ç±»å‹
+	//·µ»ØÀàĞÍ
 	if(strstr($ecms_config['sets']['tranflashtype'],','.$r[filetype].','))
 	{
 		$r[type]=2;
@@ -3855,7 +3855,7 @@ function DoTranUrl($url,$classid){
 	{
 		$r[type]=1;
 	}
-	elseif(strstr($ecms_config['sets']['mediaplayertype'],','.$r[filetype].',')||strstr($ecms_config['sets']['realplayertype'],','.$r[filetype].','))//å¤šåª’ä½“
+	elseif(strstr($ecms_config['sets']['mediaplayertype'],','.$r[filetype].',')||strstr($ecms_config['sets']['realplayertype'],','.$r[filetype].','))//¶àÃ½Ìå
 	{
 		$r[type]=3;
 	}
@@ -3871,7 +3871,7 @@ function DoTranUrl($url,$classid){
 	return $r;
 }
 
-//åˆ é™¤é™„ä»¶
+//É¾³ı¸½¼ş
 function DoDelFile($r){
 	global $class_r,$public_r,$efileftp_dr;
 	$path=$r['path']?$r['path'].'/':$r['path'];
@@ -3885,28 +3885,28 @@ function DoDelFile($r){
 	}
 }
 
-//æ›¿æ¢è¡¨å‰ç¼€
+//Ìæ»»±íÇ°×º
 function RepSqlTbpre($sql){
 	global $dbtbpre;
 	$sql=str_replace('[!db.pre!]',$dbtbpre,$sql);
 	return $sql;
 }
 
-//åæ›¿æ¢è¡¨å‰ç¼€
+//·´Ìæ»»±íÇ°×º
 function ReRepSqlTbpre($sql){
 	global $dbtbpre;
 	$sql=str_replace($dbtbpre,'***_',$sql);
 	return $sql;
 }
 
-//éªŒè¯è¡¨æ˜¯å¦å­˜åœ¨
+//ÑéÖ¤±íÊÇ·ñ´æÔÚ
 function eCheckTbname($tbname){
 	global $empire,$dbtbpre;
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewstable where tbname='$tbname' limit 1");
 	return $num;
 }
 
-//æ—¶é—´è½¬æ¢
+//Ê±¼ä×ª»»
 function ToChangeUseTime($time){
 	global $fun_r;
 	$usetime=time()-$time;
@@ -3922,7 +3922,7 @@ function ToChangeUseTime($time){
 	return $tstr;
 }
 
-//è¿”å›æ ç›®é›†åˆ
+//·µ»ØÀ¸Ä¿¼¯ºÏ
 function ReturnClass($sonclass){
 	if($sonclass==''||$sonclass=='|'){
 		return 'classid=0';
@@ -3931,7 +3931,7 @@ function ReturnClass($sonclass){
 	return $where;
 }
 
-//æ›¿æ¢å­æ ç›®å­
+//Ìæ»»×ÓÀ¸Ä¿×Ó
 function RepSonclassSql($sonclass){
 	if($sonclass==''||$sonclass=='|'){
 		return 0;
@@ -3941,7 +3941,7 @@ function RepSonclassSql($sonclass){
 	return $sonclass;
 }
 
-//è¿”å›å¤šæ ç›®
+//·µ»Ø¶àÀ¸Ä¿
 function sys_ReturnMoreClass($sonclass,$son=0){
 	global $class_r;
 	$r=explode(',',$sonclass);
@@ -3973,7 +3973,7 @@ function sys_ReturnMoreClass($sonclass,$son=0){
 	return $return_r;
 }
 
-//è¿”å›å¤šä¸“é¢˜
+//·µ»Ø¶à×¨Ìâ
 function sys_ReturnMoreZt($zt,$ecms=0){
 	$f=$ecms==1?'ztid':'cid';
 	$r=explode(',',$zt);
@@ -3991,7 +3991,7 @@ function sys_ReturnMoreZt($zt,$ecms=0){
 	return $return_r;
 }
 
-//è¿”å›å¤šæ ‡é¢˜åˆ†ç±»
+//·µ»Ø¶à±êÌâ·ÖÀà
 function sys_ReturnMoreTT($tt){
 	$r=explode(',',$tt);
 	$count=count($r);
@@ -4008,7 +4008,7 @@ function sys_ReturnMoreTT($tt){
 	return $return_r;
 }
 
-//éªŒè¯æ˜¯å¦åŒ…å«æ ç›®
+//ÑéÖ¤ÊÇ·ñ°üº¬À¸Ä¿
 function CheckHaveInClassid($cr,$checkclass){
 	global $class_r;
 	if($cr['islast'])
@@ -4033,7 +4033,7 @@ function CheckHaveInClassid($cr,$checkclass){
 	return $return;
 }
 
-//è¿”å›åŠ å‰ç¼€çš„ä¸‹è½½åœ°å€
+//·µ»Ø¼ÓÇ°×ºµÄÏÂÔØµØÖ·
 function ReturnDownQzPath($path,$urlid){
 	global $empire,$dbtbpre;
 	$urlid=(int)$urlid;
@@ -4058,11 +4058,11 @@ function ReturnDownQzPath($path,$urlid){
 	return $re;
 }
 
-//è¿”å›å¸¦é˜²ç›—é“¾çš„ç»å¯¹åœ°å€
+//·µ»Ø´ø·ÀµÁÁ´µÄ¾ø¶ÔµØÖ·
 function ReturnDSofturl($downurl,$qz,$path='../../',$isdown=0){
 	$urlr=ReturnDownQzPath(stripSlashes($downurl),$qz);
 	$url=$urlr['repath'];
-	@include_once(ECMS_PATH."e/DownSys/class/enpath.php");//é˜²ç›—é“¾
+	@include_once(ECMS_PATH."e/DownSys/class/enpath.php");//·ÀµÁÁ´
 	if($isdown)
 	{
 		$url=DoEnDownpath($url);
@@ -4074,7 +4074,7 @@ function ReturnDSofturl($downurl,$qz,$path='../../',$isdown=0){
 	return $url;
 }
 
-//éªŒè¯æäº¤æ¥æº
+//ÑéÖ¤Ìá½»À´Ô´
 function CheckCanPostUrl(){
 	global $public_r;
 	if($public_r['canposturl'])
@@ -4115,7 +4115,7 @@ function eGetSelfAdminPath(){
 	return $adminpath;
 }
 
-//ç‰¹æ®Šæ¥æºéªŒè¯
+//ÌØÊâÀ´Ô´ÑéÖ¤
 function hCheckSpFromUrl(){
 	if(defined('EmpireCMSSpFromUrl'))
 	{
@@ -4138,15 +4138,15 @@ function hCheckSpFromUrl(){
 	}
 }
 
-//è®¾å®šç‰¹æ®Šæ¥æº
+//Éè¶¨ÌØÊâÀ´Ô´
 function hSetSpFromUrl(){
 	define('EmpireCMSSpFromUrl',TRUE);
 }
 
-//éªŒè¯æ¥æº
+//ÑéÖ¤À´Ô´
 function DoSafeCheckFromurl(){
 	global $ecms_config;
-	if($ecms_config['esafe']['ckfromurl']==0||defined('EmpireCMSNFPage'))//ä¸å¯ç”¨
+	if($ecms_config['esafe']['ckfromurl']==0||defined('EmpireCMSNFPage'))//²»ÆôÓÃ
 	{
 		return '';
 	}
@@ -4156,7 +4156,7 @@ function DoSafeCheckFromurl(){
 		return '';
 	}
 	$domain=eReturnDomain();
-	if($ecms_config['esafe']['ckfromurl']==1)//å…¨éƒ¨å¯ç”¨
+	if($ecms_config['esafe']['ckfromurl']==1)//È«²¿ÆôÓÃ
 	{
 		if(!stristr($fromurl,$domain))
 		{
@@ -4164,7 +4164,7 @@ function DoSafeCheckFromurl(){
 			exit();
 		}
 	}
-	elseif($ecms_config['esafe']['ckfromurl']==2)//åå°å¯ç”¨
+	elseif($ecms_config['esafe']['ckfromurl']==2)//ºóÌ¨ÆôÓÃ
 	{
 		if(defined('EmpireCMSAdmin')&&!stristr($fromurl,$domain.'/'))
 		{
@@ -4172,7 +4172,7 @@ function DoSafeCheckFromurl(){
 			exit();
 		}
 	}
-	elseif($ecms_config['esafe']['ckfromurl']==3)//å‰å°å¯ç”¨
+	elseif($ecms_config['esafe']['ckfromurl']==3)//Ç°Ì¨ÆôÓÃ
 	{
 		if(!defined('EmpireCMSAdmin')&&!stristr($fromurl,$domain))
 		{
@@ -4180,7 +4180,7 @@ function DoSafeCheckFromurl(){
 			exit();
 		}
 	}
-	elseif($ecms_config['esafe']['ckfromurl']==4)//å…¨éƒ¨å¯ç”¨(ä¸¥æ ¼)
+	elseif($ecms_config['esafe']['ckfromurl']==4)//È«²¿ÆôÓÃ(ÑÏ¸ñ)
 	{
 		if(!stristr($fromurl,$domain))
 		{
@@ -4197,7 +4197,7 @@ function DoSafeCheckFromurl(){
 			}
 		}
 	}
-	elseif($ecms_config['esafe']['ckfromurl']==5)//åå°å¯ç”¨(ä¸¥æ ¼)
+	elseif($ecms_config['esafe']['ckfromurl']==5)//ºóÌ¨ÆôÓÃ(ÑÏ¸ñ)
 	{
 		if(defined('EmpireCMSAdmin'))
 		{
@@ -4214,7 +4214,7 @@ function DoSafeCheckFromurl(){
 			}
 		}
 	}
-	elseif($ecms_config['esafe']['ckfromurl']==6)//å‰å°å¯ç”¨(ä¸¥æ ¼)
+	elseif($ecms_config['esafe']['ckfromurl']==6)//Ç°Ì¨ÆôÓÃ(ÑÏ¸ñ)
 	{
 		if(!defined('EmpireCMSAdmin')&&!stristr($fromurl,$domain))
 		{
@@ -4224,7 +4224,7 @@ function DoSafeCheckFromurl(){
 	}
 }
 
-//éªŒè¯agentä¿¡æ¯
+//ÑéÖ¤agentĞÅÏ¢
 function EcmsCheckUserAgent($ckstr){
 	if(empty($ckstr))
 	{
@@ -4247,13 +4247,13 @@ function EcmsCheckUserAgent($ckstr){
 	}
 }
 
-//éªŒè¯IP
+//ÑéÖ¤IP
 function eCheckAccessIp($ecms=0){
 	global $public_r;
 	$userip=egetip();
-	if($ecms)//åå°
+	if($ecms)//ºóÌ¨
 	{
-		//å…è®¸IP
+		//ÔÊĞíIP
 		if($public_r['hopenip'])
 		{
 			$close=1;
@@ -4274,7 +4274,7 @@ function eCheckAccessIp($ecms=0){
 	}
 	else
 	{
-		//å…è®¸IP
+		//ÔÊĞíIP
 		if($public_r['openip'])
 		{
 			$close=1;
@@ -4292,7 +4292,7 @@ function eCheckAccessIp($ecms=0){
 				exit();
 			}
 		}
-		//ç¦æ­¢IP
+		//½ûÖ¹IP
 		if($public_r['closeip'])
 		{
 			foreach(explode("\n",$public_r['closeip']) as $ctrlip)
@@ -4307,7 +4307,7 @@ function eCheckAccessIp($ecms=0){
 	}
 }
 
-//éªŒè¯æäº¤IP
+//ÑéÖ¤Ìá½»IP
 function eCheckAccessDoIp($doing){
 	global $public_r,$empire,$dbtbpre;
 	$pr=$empire->fetch1("select opendoip,closedoip,doiptype from {$dbtbpre}enewspublic limit 1");
@@ -4316,7 +4316,7 @@ function eCheckAccessDoIp($doing){
 		return '';
 	}
 	$userip=egetip();
-	//å…è®¸IP
+	//ÔÊĞíIP
 	if($pr['opendoip'])
 	{
 		$close=1;
@@ -4333,7 +4333,7 @@ function eCheckAccessDoIp($doing){
 			printerror('NotCanPostIp','history.go(-1)',1);
 		}
 	}
-	//ç¦æ­¢IP
+	//½ûÖ¹IP
 	if($pr['closedoip'])
 	{
 		foreach(explode("\n",$pr['closedoip']) as $ctrlip)
@@ -4346,7 +4346,7 @@ function eCheckAccessDoIp($doing){
 	}
 }
 
-//éªŒè¯æ˜¯å¦å…³é—­ç›¸å…³æ¨¡å—
+//ÑéÖ¤ÊÇ·ñ¹Ø±ÕÏà¹ØÄ£¿é
 function eCheckCloseMods($mod){
 	global $public_r;
 	if(strstr($public_r['closemods'],','.$mod.','))
@@ -4356,7 +4356,7 @@ function eCheckCloseMods($mod){
 	}
 }
 
-//éªŒè¯æ“ä½œæ—¶é—´
+//ÑéÖ¤²Ù×÷Ê±¼ä
 function eCheckTimeCloseDo($ecms){
 	global $public_r;
 	if(stristr($public_r['timeclosedo'],','.$ecms.','))
@@ -4369,7 +4369,7 @@ function eCheckTimeCloseDo($ecms){
 	}
 }
 
-//éªŒè¯å¤–éƒ¨ç™»å½•æ˜¯å¦å¼€å¯
+//ÑéÖ¤Íâ²¿µÇÂ¼ÊÇ·ñ¿ªÆô
 function eCheckCloseMemberConnect(){
 	global $public_r;
 	if(!$public_r['memberconnectnum'])
@@ -4378,13 +4378,13 @@ function eCheckCloseMemberConnect(){
 	}
 }
 
-//è¿‡æ»¤
+//¹ıÂË
 function ClearNewsBadCode($text){
 	$text=preg_replace(array('!<script!i','!</script>!i','!<link!i','!<iframe!i','!</iframe>!i','!<meta!i','!<body!i','!<style!i','!</style>!i','! onerror!i','!<marquee!i','!</marquee>!i','/<!--/','! onload!i','! onmouse!i','!<frame!i','!<frameset!i'),array('&lt;script','&lt;/script&gt;','&lt;link','&lt;iframe','&lt;/iframe&gt;','&lt;meta','&lt;body','&lt;style','&lt;/style&gt;',' one rror','&lt;marquee','&lt;/marquee&gt;','<!---ecms ',' onl oad',' onm ouse','&lt;frame','&lt;frameset'),$text);
 	return $text;
 }
 
-//éªŒè¯åŒ…å«å­—ç¬¦
+//ÑéÖ¤°üº¬×Ö·û
 function toCheckCloseWord($word,$closestr,$mess){
 	if($closestr&&$closestr!='|')
 	{
@@ -4394,7 +4394,7 @@ function toCheckCloseWord($word,$closestr,$mess){
 		{
 			if($checkr[$i])
 			{
-				if(stristr($checkr[$i],'##'))//å¤šå­—
+				if(stristr($checkr[$i],'##'))//¶à×Ö
 				{
 					$morer=explode('##',$checkr[$i]);
 					if(stristr($word,$morer[0])&&stristr($word,$morer[1]))
@@ -4414,7 +4414,7 @@ function toCheckCloseWord($word,$closestr,$mess){
 	}
 }
 
-//æ›¿æ¢è¯„è®ºè¡¨æƒ…
+//Ìæ»»ÆÀÂÛ±íÇé
 function RepPltextFace($text){
 	global $public_r;
 	if(empty($public_r['plface'])||$public_r['plface']=='||')
@@ -4431,12 +4431,12 @@ function RepPltextFace($text){
 	return $text;
 }
 
-//æ›¿æ¢ç©ºæ ¼
+//Ìæ»»¿Õ¸ñ
 function RepFieldtextNbsp($text){
 	return str_replace(array("\t",'   ','  '),array('&nbsp; &nbsp; &nbsp; &nbsp; ','&nbsp; &nbsp;','&nbsp;&nbsp;'),$text);
 }
 
-//ä¿ç•™æ‰©å±•åéªŒè¯
+//±£ÁôÀ©Õ¹ÃûÑéÖ¤
 function CheckSaveTranFiletype($filetype){
 	$savetranfiletype=',.php,.php3,.php4,.php5,.php6,.asp,.aspx,.jsp,.cgi,.phtml,.asa,.asax,.fcgi,.pl,.ascx,.ashx,.cer,.cdx,.pht,.shtml,.shtm,.stm,';
 	if(stristr($savetranfiletype,','.$filetype.','))
@@ -4446,7 +4446,7 @@ function CheckSaveTranFiletype($filetype){
 	return false;
 }
 
-//è®¾ç½®éªŒè¯ç 
+//ÉèÖÃÑéÖ¤Âë
 function ecmsSetShowKey($varname,$val,$ecms=0,$isadmin=0){
 	global $public_r;
 	$pubkeyrnd=$isadmin==1?$public_r['hkeyrnd']:$public_r['keyrnd'];
@@ -4456,7 +4456,7 @@ function ecmsSetShowKey($varname,$val,$ecms=0,$isadmin=0){
 	esetcookie($varname,$key,0,$ecms);
 }
 
-//æ£€æŸ¥éªŒè¯ç 
+//¼ì²éÑéÖ¤Âë
 function ecmsCheckShowKey($varname,$postval,$dopr,$ecms=0,$isadmin=0){
 	global $public_r;
 	$postval=trim($postval);
@@ -4490,12 +4490,12 @@ function ecmsCheckShowKey($varname,$postval,$dopr,$ecms=0,$isadmin=0){
 	}
 }
 
-//æ¸…ç©ºéªŒè¯ç 
+//Çå¿ÕÑéÖ¤Âë
 function ecmsEmptyShowKey($varname,$ecms=0,$isadmin=0){
 	esetcookie($varname,'',0,$ecms);
 }
 
-//è®¾ç½®æäº¤ç 
+//ÉèÖÃÌá½»Âë
 function DoSetActionPass($userid,$username,$rnd,$other,$ecms=0){
 	global $ecms_config;
 	$varname='actionepass';
@@ -4504,13 +4504,13 @@ function DoSetActionPass($userid,$username,$rnd,$other,$ecms=0){
 	esetcookie($varname,$pass,0,$ecms);
 }
 
-//æ¸…é™¤æäº¤ç 
+//Çå³ıÌá½»Âë
 function DoEmptyActionPass($ecms=0){
 	$varname='actionepass';
 	esetcookie($varname,'',0,$ecms);
 }
 
-//æ£€æµ‹æäº¤ç 
+//¼ì²âÌá½»Âë
 function DoCheckActionPass($userid,$username,$rnd,$other,$ecms=0){
 	global $ecms_config;
 	$varname='actionepass';
@@ -4523,18 +4523,18 @@ function DoCheckActionPass($userid,$username,$rnd,$other,$ecms=0){
 	}
 }
 
-//è¿”å›å­—æ®µæ ‡è¯†
+//·µ»Ø×Ö¶Î±êÊ¶
 function toReturnFname($tbname,$f){
 	global $empire,$dbtbpre;
 	$r=$empire->fetch1("select fname from {$dbtbpre}enewsf where f='$f' and tbname='$tbname' limit 1");
 	return $r[fname];
 }
 
-//è¿”å›æ‹¼éŸ³
+//·µ»ØÆ´Òô
 function ReturnPinyinFun($hz){
 	global $ecms_config;
 	include_once(ECMS_PATH.'e/class/epinyin.php');
-	//ç¼–ç 
+	//±àÂë
 	if($ecms_config['sets']['pagechar']!='gb2312')
 	{
 		include_once(ECMS_PATH.'e/class/doiconv.php');
@@ -4546,7 +4546,7 @@ function ReturnPinyinFun($hz){
 	return c($hz);
 }
 
-//å–å¾—å­—æ¯
+//È¡µÃ×ÖÄ¸
 function GetInfoZm($hz){
 	if(!trim($hz))
 	{
@@ -4557,7 +4557,7 @@ function GetInfoZm($hz){
 	return strtoupper($zm);
 }
 
-//è¿”å›åŠ å¯†åçš„IP
+//·µ»Ø¼ÓÃÜºóµÄIP
 function ToReturnXhIp($ip,$n=1){
 	$newip='';
 	$ipr=explode(".",$ip);
@@ -4582,7 +4582,7 @@ function ToReturnXhIp($ip,$n=1){
 	return $newip;
 }
 
-//éªŒè¯æ˜¯å¦ä½¿ç”¨https
+//ÑéÖ¤ÊÇ·ñÊ¹ÓÃhttps
 function eCheckUseHttps(){
 	if($_SERVER['HTTPS']&&strtolower($_SERVER['HTTPS'])!='off')
 	{
@@ -4594,7 +4594,7 @@ function eCheckUseHttps(){
 	}
 }
 
-//è¿”å›httpç±»å‹
+//·µ»ØhttpÀàĞÍ
 function eReturnHttpType(){
 	global $public_r;
 	if($public_r['httptype'])
@@ -4633,7 +4633,7 @@ function eReturnHttpType(){
 	return eCheckUseHttps()==1?'https://':'http://';
 }
 
-//è¿”å›å½“å‰åŸŸå2
+//·µ»Øµ±Ç°ÓòÃû2
 function eReturnTrueDomain(){
 	$domain=RepPostStr($_SERVER['HTTP_HOST'],1);
 	if(empty($domain))
@@ -4643,7 +4643,7 @@ function eReturnTrueDomain(){
 	return $domain;
 }
 
-//è¿”å›å½“å‰åŸŸå
+//·µ»Øµ±Ç°ÓòÃû
 function eReturnDomain(){
 	$domain=RepPostStr($_SERVER['HTTP_HOST'],1);
 	if(empty($domain))
@@ -4653,7 +4653,7 @@ function eReturnDomain(){
 	return eReturnHttpType().$domain;
 }
 
-//è¿”å›åŸŸåç½‘ç«™åœ°å€
+//·µ»ØÓòÃûÍøÕ¾µØÖ·
 function eReturnDomainSiteUrl(){
 	global $public_r;
 	$PayReturnUrlQz=$public_r['newsurl'];
@@ -4664,7 +4664,7 @@ function eReturnDomainSiteUrl(){
 	return $PayReturnUrlQz;
 }
 
-//è¿”å›å½“å‰åœ°å€
+//·µ»Øµ±Ç°µØÖ·
 function eReturnSelfPage($ecms=0){
 	if(empty($ecms))
 	{
@@ -4678,7 +4678,7 @@ function eReturnSelfPage($ecms=0){
 	return $page;
 }
 
-//éªŒè¯å½“å‰ä¼šå‘˜æƒé™
+//ÑéÖ¤µ±Ç°»áÔ±È¨ÏŞ
 function sys_CheckMemberGroup($groupid){
 	if(!defined('InEmpireCMSUser'))
 	{
@@ -4696,7 +4696,7 @@ function sys_CheckMemberGroup($groupid){
 	return 1;
 }
 
-//EMAILåœ°å€æ£€æŸ¥
+//EMAILµØÖ·¼ì²é
 function chemail($email){
 	$chars = "/^([a-z0-9+_]|\\-|\\.)+@(([a-z0-9_]|\\-)+\\.)+[a-z]{2,6}\$/i";
     if (strpos($email, '@') !== false && strpos($email, '.') !== false)
@@ -4716,7 +4716,7 @@ function chemail($email){
     }
 }
 
-//å»é™¤adds
+//È¥³ıadds
 function ClearAddsData($data){
 	if(MAGIC_QUOTES_GPC)
 	{
@@ -4725,7 +4725,7 @@ function ClearAddsData($data){
 	return $data;
 }
 
-//å¢åŠ adds
+//Ôö¼Óadds
 function AddAddsData($data){
 	if(!MAGIC_QUOTES_GPC)
 	{
@@ -4734,13 +4734,13 @@ function AddAddsData($data){
 	return $data;
 }
 
-//åŸå­—ç¬¦adds
+//Ô­×Ö·ûadds
 function StripAddsData($data){
 	$data=addslashes(stripSlashes($data));
 	return $data;
 }
 
-//åå¢åŠ adds
+//·´Ôö¼Óadds
 function fAddAddsData($data){
 	if(MAGIC_QUOTES_GPC)
 	{
@@ -4749,9 +4749,9 @@ function fAddAddsData($data){
 	return $data;
 }
 
-//------- å­˜æ–‡æœ¬ -------
+//------- ´æÎÄ±¾ -------
 
-//è¯»å–æ–‡æœ¬å­—æ®µå†…å®¹
+//¶ÁÈ¡ÎÄ±¾×Ö¶ÎÄÚÈİ
 function GetTxtFieldText($pagetexturl){
 	global $ecms_config;
 	if(empty($pagetexturl))
@@ -4760,18 +4760,18 @@ function GetTxtFieldText($pagetexturl){
 	}
 	$file=$ecms_config['sets']['txtpath'].$pagetexturl.".php";
 	$text=ReadFiletext($file);
-	$text=substr($text,12);//å»é™¤exit
+	$text=substr($text,12);//È¥³ıexit
 	return $text;
 }
 
-//å–å¾—æ–‡æœ¬åœ°å€
+//È¡µÃÎÄ±¾µØÖ·
 function GetTxtFieldTextUrl($pagetexturl){
 	global $ecms_config;
 	$file=$ecms_config['sets']['txtpath'].$pagetexturl.".php";
 	return $file;
 }
 
-//ä¿®æ”¹æ–‡æœ¬å­—æ®µå†…å®¹
+//ĞŞ¸ÄÎÄ±¾×Ö¶ÎÄÚÈİ
 function EditTxtFieldText($pagetexturl,$pagetext){
 	global $ecms_config;
 	$pagetext="<? exit();?>".$pagetext;
@@ -4779,7 +4779,7 @@ function EditTxtFieldText($pagetexturl,$pagetext){
 	WriteFiletext_n($file,$pagetext);
 }
 
-//åˆ é™¤æ–‡æœ¬å­—æ®µå†…å®¹
+//É¾³ıÎÄ±¾×Ö¶ÎÄÚÈİ
 function DelTxtFieldText($pagetexturl){
 	global $ecms_config;
 	if(empty($pagetexturl))
@@ -4790,13 +4790,13 @@ function DelTxtFieldText($pagetexturl){
 	DelFiletext($file);
 }
 
-//å–å¾—éšæœºæ•°
+//È¡µÃËæ»úÊı
 function GetFileMd5(){
 	$p=md5(uniqid(microtime()).EcmsRandInt());
 	return $p;
 }
 
-//å»ºç«‹å­˜æ”¾ç›®å½•
+//½¨Á¢´æ·ÅÄ¿Â¼
 function MkDirTxtFile($date,$file){
 	global $ecms_config;
 	$r=explode("/",$date);
@@ -4808,15 +4808,15 @@ function MkDirTxtFile($date,$file){
 	return $returnpath;
 }
 
-//æ›¿æ¢å…¬å…±æ ‡è®°
+//Ìæ»»¹«¹²±ê¼Ç
 function ReplaceSvars($temp,$url,$classid,$title,$key,$des,$add,$repvar=1){
 	global $public_r,$class_r,$class_zr;
-	if($repvar==1)//å…¨å±€æ¨¡æ¿å˜é‡
+	if($repvar==1)//È«¾ÖÄ£°å±äÁ¿
 	{
 		$temp=ReplaceTempvar($temp);
 	}
-	$temp=str_replace('[!--class.menu--]',$public_r['classnavs'],$temp);//æ ç›®å¯¼èˆª
-	$temp=str_replace('[!--newsnav--]',$url,$temp);//ä½ç½®å¯¼èˆª
+	$temp=str_replace('[!--class.menu--]',$public_r['classnavs'],$temp);//À¸Ä¿µ¼º½
+	$temp=str_replace('[!--newsnav--]',$url,$temp);//Î»ÖÃµ¼º½
 	$temp=str_replace('[!--pagetitle--]',$title,$temp);
 	$temp=str_replace('[!--pagekey--]',$key,$temp);
 	$temp=str_replace('[!--pagedes--]',$des,$temp);
@@ -4825,7 +4825,7 @@ function ReplaceSvars($temp,$url,$classid,$title,$key,$des,$add,$repvar=1){
 	return $temp;
 }
 
-//è¿”å›æ•°ç»„ç»„åˆå­—ç¬¦
+//·µ»ØÊı×é×éºÏ×Ö·û
 function eReturnRDataStr($r){
 	$count=count($r);
 	if(!$count)
@@ -4842,13 +4842,13 @@ function eReturnRDataStr($r){
 
 //------- firewall -------
 
-//æç¤º
+//ÌáÊ¾
 function FWShowMsg($msg){
 	//echo $msg;
 	exit();
 }
 
-//é˜²ç«å¢™
+//·À»ğÇ½
 function DoEmpireCMSFireWall(){
 	global $ecms_config;
 	if(!empty($ecms_config['fw']['adminloginurl']))
@@ -4881,7 +4881,7 @@ function DoEmpireCMSFireWall(){
 	}
 }
 
-//è¿”å›å½“å‰åŸŸå
+//·µ»Øµ±Ç°ÓòÃû
 function FWeReturnDomain(){
 	$domain=RepPostStr($_SERVER['HTTP_HOST'],1);
 	if(empty($domain))
@@ -4891,7 +4891,7 @@ function FWeReturnDomain(){
 	return eReturnHttpType().$domain;
 }
 
-//æ£€æŸ¥æ•æ„Ÿå­—ç¬¦
+//¼ì²éÃô¸Ğ×Ö·û
 function FWClearGetText($str){
 	global $ecms_config;
 	if(empty($ecms_config['fw']['eopen']))
@@ -4906,7 +4906,7 @@ function FWClearGetText($str){
 	$count=count($r);
 	for($i=0;$i<$count;$i++)
 	{
-		if(stristr($r[$i],'##'))//å¤šå­—
+		if(stristr($r[$i],'##'))//¶à×Ö
 		{
 			$morer=explode('##',$r[$i]);
 			if(stristr($str,$morer[0])&&stristr($str,$morer[1]))
@@ -4924,7 +4924,7 @@ function FWClearGetText($str){
 	}
 }
 
-//åå°é˜²ç«å¢™å¯†ç 
+//ºóÌ¨·À»ğÇ½ÃÜÂë
 function FWSetPassword(){
 	global $ecms_config;
 	if(!$ecms_config['fw']['eopen']||!$ecms_config['fw']['adminckpassvar']||!$ecms_config['fw']['adminckpassval'])
@@ -4956,9 +4956,9 @@ function FWEmptyPassword(){
 }
 
 
-//--------------- ç¼“å­˜ ---------------
+//--------------- »º´æ ---------------
 
-//å–æœ€åä¸€ä¸¤çº§ç›®å½•
+//È¡×îºóÒ»Á½¼¶Ä¿Â¼
 function Ecms_eReturnShowMkdir($path){
 	global $ecms_config;
 	if(!$ecms_config['sets']['webdebug'])
@@ -4982,7 +4982,7 @@ function Ecms_eReturnShowMkdir($path){
 	}
 }
 
-//å»ºç«‹ç›®å½•(æ™®é€š)
+//½¨Á¢Ä¿Â¼(ÆÕÍ¨)
 function Ecms_eMkdir($path){
 	if(!file_exists($path))
 	{
@@ -4997,7 +4997,7 @@ function Ecms_eMkdir($path){
 	return true;
 }
 
-//é€’çº§å»ºç«‹ç›®å½•
+//µİ¼¶½¨Á¢Ä¿Â¼
 function Ecms_eMoreMkdir($basepath,$path){
 	if(empty($path))
 	{
@@ -5030,7 +5030,7 @@ function Ecms_eMoreMkdir($basepath,$path){
 	return $returnpath;
 }
 
-//å–å¾—æ–‡ä»¶å†…å®¹(å¯é”å®š)
+//È¡µÃÎÄ¼şÄÚÈİ(¿ÉËø¶¨)
 function Ecms_ReadFiletext($filepath,$dolock=0){
 	$filepath=trim($filepath);
 	$htmlfp=@fopen($filepath,"r");
@@ -5047,7 +5047,7 @@ function Ecms_ReadFiletext($filepath,$dolock=0){
 	return $string;
 }
 
-//å†™æ–‡ä»¶(å¯é”å®š)
+//Ğ´ÎÄ¼ş(¿ÉËø¶¨)
 function Ecms_WriteFiletext($filepath,$string,$dolock=0,$strip=0){
 	global $public_r;
 	if($strip==1)
@@ -5071,35 +5071,35 @@ function Ecms_WriteFiletext($filepath,$string,$dolock=0,$strip=0){
 	}
 }
 
-//è¿”å›æ–‡ä»¶ä¿®æ”¹æ—¶é—´
+//·µ»ØÎÄ¼şĞŞ¸ÄÊ±¼ä
 function Ecms_GetFileEditTime($filepath){
 	return file_exists($filepath)?intval(filemtime($filepath)):0;
 }
 
-//IDè¿”å›åŠ¨æ€ç¼“å­˜ç›®å½•
+//ID·µ»Ø¶¯Ì¬»º´æÄ¿Â¼
 function ePagenoGetPageCache($cpage){
 	$r=array();
-	if($cpage==1)//é¦–é¡µ
+	if($cpage==1)//Ê×Ò³
 	{
 		$r['esyspath']='empirecms';
 		$r['cpath']='cindex';
 	}
-	elseif($cpage==2)//å°é¢
+	elseif($cpage==2)//·âÃæ
 	{
 		$r['esyspath']='empirecms';
 		$r['cpath']='cpage';
 	}
-	elseif($cpage==3)//åˆ—è¡¨
+	elseif($cpage==3)//ÁĞ±í
 	{
 		$r['esyspath']='empirecms';
 		$r['cpath']='clist';
 	}
-	elseif($cpage==4)//å†…å®¹
+	elseif($cpage==4)//ÄÚÈİ
 	{
 		$r['esyspath']='empirecms';
 		$r['cpath']='ctext';
 	}
-	elseif($cpage==5)//æ ‡é¢˜åˆ†ç±»
+	elseif($cpage==5)//±êÌâ·ÖÀà
 	{
 		$r['esyspath']='empirecms';
 		$r['cpath']='cinfotype';
@@ -5122,7 +5122,7 @@ function ePagenoGetPageCache($cpage){
 	return $r;
 }
 
-//è¿”å›ç¼“å­˜æ–‡ä»¶å
+//·µ»Ø»º´æÎÄ¼şÃû
 function Ecms_eCacheReturnFile($cachetype,$ids,$datepath,$path='empirecms'){
 	global $ecms_config,$public_r;
 	$filer['basepath']=$ecms_config['sets']['ecmscachepath'].$path.'/';
@@ -5132,7 +5132,7 @@ function Ecms_eCacheReturnFile($cachetype,$ids,$datepath,$path='empirecms'){
 	return $filer;
 }
 
-//è¾“å‡ºç¼“å­˜
+//Êä³ö»º´æ
 function Ecms_eCacheOut($cr,$usedo=0){
 	$cachetime=abs($cr['cachetime'])*60;
 	$filer=Ecms_eCacheReturnFile($cr['cachetype'],$cr['cacheids'],$cr['cachedatepath'],$cr['cachepath']);
@@ -5172,7 +5172,7 @@ function Ecms_eCacheOut($cr,$usedo=0){
 	return 1;
 }
 
-//å†™å…¥ç¼“å­˜
+//Ğ´Èë»º´æ
 function Ecms_eCacheIn($cr,$cachetext){
 	$filer=Ecms_eCacheReturnFile($cr['cachetype'],$cr['cacheids'],$cr['cachedatepath'],$cr['cachepath']);
 	$cachefile=$filer['ctruefile'];
@@ -5181,7 +5181,7 @@ function Ecms_eCacheIn($cr,$cachetext){
 	echo $cachetext;
 }
 
-//éªŒè¯æ˜¯å¦å¯ç”¨ç¼“å­˜
+//ÑéÖ¤ÊÇ·ñÆôÓÃ»º´æ
 function Ecms_eCacheCheckOpen($cachetime){
 	global $ecms_config,$public_r,$ecms_tofunr;
 	if(empty($public_r['ctimeopen']))
@@ -5224,7 +5224,7 @@ function Ecms_eCacheCheckOpen($cachetime){
 	return $open;
 }
 
-//è®¾ç½®æ›´æ–°ç¼“å­˜
+//ÉèÖÃ¸üĞÂ»º´æ
 function eDoUpCache($id,$tname,$ecms=0,$ck=0){
 	global $empire,$dbtbpre,$public_r;
 	if(empty($public_r['ctimeopen']))
@@ -5240,7 +5240,7 @@ function eDoUpCache($id,$tname,$ecms=0,$ck=0){
 		$addwhere=' and fclast<'.$uptime;
 		$addwhere_index=' where fclastindex<'.$uptime;
 	}
-	if($ecms==1)//æ ç›®
+	if($ecms==1)//À¸Ä¿
 	{
 		if(!$id)
 		{
@@ -5248,7 +5248,7 @@ function eDoUpCache($id,$tname,$ecms=0,$ck=0){
 		}
 		$empire->query("update {$dbtbpre}enewsclass set fclast='$time' where classid in (".$id.")".$addwhere);
 	}
-	elseif($ecms==2)//æ ‡é¢˜åˆ†ç±»
+	elseif($ecms==2)//±êÌâ·ÖÀà
 	{
 		if(!$id)
 		{
@@ -5256,7 +5256,7 @@ function eDoUpCache($id,$tname,$ecms=0,$ck=0){
 		}
 		$empire->query("update {$dbtbpre}enewsinfotype set fclast='$time' where typeid in (".$id.")".$addwhere);
 	}
-	elseif($ecms==3)//å†…å®¹é¡µ
+	elseif($ecms==3)//ÄÚÈİÒ³
 	{
 		if(!$id||!$tname)
 		{
@@ -5297,13 +5297,13 @@ function eDoUpCache($id,$tname,$ecms=0,$ck=0){
 		}
 		$empire->query("update {$dbtbpre}enewstags set fclast='$time' where ".$where.$addwhere);
 	}
-	else//é¦–é¡µ
+	else//Ê×Ò³
 	{
 		$empire->query("update {$dbtbpre}enewspublic_fc set fclastindex='$time'".$addwhere_index." limit 1");
 	}
 }
 
-//è®¾ç½®æ›´æ–°ç¼“å­˜
+//ÉèÖÃ¸üĞÂ»º´æ
 function eUpCacheInfo($ecms,$classid,$id,$pid,$ttid,$tagid,$tagname,$oldclassid=0,$oldttid=0,$ck=0){
 	global $empire,$dbtbpre,$public_r,$class_r;
 	if(empty($public_r['ctimeopen']))
@@ -5321,18 +5321,18 @@ function eUpCacheInfo($ecms,$classid,$id,$pid,$ttid,$tagid,$tagname,$oldclassid=
 	$ttid=(int)$ttid;
 	$oldclassid=(int)$oldclassid;
 	$oldttid=(int)$oldttid;
-	//é¦–é¡µ
+	//Ê×Ò³
 	if($ctimeaddre==2||$ctimeaddre==4||$ctimeaddre==6||$ctimeaddre==7||$ctimeaddre==8)
 	{
 		eDoUpCache(0,'',0,$ck);
 	}
-	//æ ç›®
+	//À¸Ä¿
 	if($ctimeaddre!=2)
 	{
 		if(!empty($classid))
 		{
 			$cids='';
-			if($ctimeaddre==1)//å½“å‰
+			if($ctimeaddre==1)//µ±Ç°
 			{
 				$cids=$classid;
 				if($oldclassid&&$oldclassid!=$classid)
@@ -5364,7 +5364,7 @@ function eUpCacheInfo($ecms,$classid,$id,$pid,$ttid,$tagid,$tagname,$oldclassid=
 			eDoUpCache($cids,'',1,$ck);
 		}
 	}
-	//æ ‡é¢˜åˆ†ç±»
+	//±êÌâ·ÖÀà
 	if($ctimeaddre>=7)
 	{
 		if(!empty($ttid))
@@ -5381,7 +5381,7 @@ function eUpCacheInfo($ecms,$classid,$id,$pid,$ttid,$tagid,$tagname,$oldclassid=
 	{
 		eDoUpCache('',$tagname,4,$ck);
 	}
-	//ä¿¡æ¯
+	//ĞÅÏ¢
 	if($id||$pid)
 	{
 		$tbname=$class_r[$classid]['tbname'];

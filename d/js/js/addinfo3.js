@@ -1,1 +1,1 @@
-document.write("<option value=7>|-鍥剧墖棰戦亾</option><option value=52 style=\'background:99C4E3\'>&nbsp;&nbsp;|-鏄庢槦椋庨噰</option><option value=53 style=\'background:99C4E3\'>&nbsp;&nbsp;|-鑷劧椋庢櫙</option><option value=54 style=\'background:99C4E3\'>&nbsp;&nbsp;|-鍔ㄦ极鍥剧墖</option>");
+document.write("<option value=7>|-图片频道</option><option value=52 style=\'background:99C4E3\'>&nbsp;&nbsp;|-明星风采</option><option value=53 style=\'background:99C4E3\'>&nbsp;&nbsp;|-自然风景</option><option value=54 style=\'background:99C4E3\'>&nbsp;&nbsp;|-动漫图片</option>");

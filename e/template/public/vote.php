@@ -6,22 +6,22 @@ if(!defined('InEmpireCMS'))
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?=$infor[title]?> 投票</title>
-<meta name="keywords" content="<?=$infor[title]?> 投票" />
-<meta name="description" content="<?=$infor[title]?> 投票" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title><?=$infor[title]?> ͶƱ</title>
+<meta name="keywords" content="<?=$infor[title]?> ͶƱ" />
+<meta name="description" content="<?=$infor[title]?> ͶƱ" />
 <link href="../../data/images/qcss.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header">
-    <td height="25">标题:<?=$r[title]?>&nbsp;(<?=$voteclass?>)</td>
+    <td height="25">����:<?=$r[title]?>&nbsp;(<?=$voteclass?>)</td>
   </tr>
   <tr>
     <td bgcolor="#FFFFFF">
 	<table width="100%" border="0" cellspacing="1" cellpadding="3">
 <?php
-//取得行
+//ȡ����
 $r_r=explode($r_exp,$r[votetext]);
 $count=count($r_r);
 for($i=0;$i<$count;$i++)
@@ -42,7 +42,7 @@ for($i=0;$i<$count;$i++)
             <?=$f_r[0]?>
           </td>
           <td width="10%">
-				<div align="center"><?=$f_r[1]?>票</div>
+				<div align="center"><?=$f_r[1]?>Ʊ</div>
 		  </td>
           <td width="42%">
 				<img src="../../data/images/showvote.gif" width="<?=$width?>" height="6" border=0>
@@ -57,7 +57,7 @@ for($i=0;$i<$count;$i++)
   <tr>
     <td><table width="100%" border="0" align="right" cellpadding="3" cellspacing="1">
         <tr>
-          <td>&nbsp;共&nbsp;<b><?=$r['votenum']?></b>&nbsp;票</td>
+          <td>&nbsp;��&nbsp;<b><?=$r['votenum']?></b>&nbsp;Ʊ</td>
         </tr>
       </table></td>
   </tr>
@@ -65,6 +65,6 @@ for($i=0;$i<$count;$i++)
 <br>
 <br>
 <br>
-<center><input type=button name=button value=关闭 onclick="self.window.close();"></center>
+<center><input type=button name=button value=�ر� onclick="self.window.close();"></center>
 </body>
 </html>

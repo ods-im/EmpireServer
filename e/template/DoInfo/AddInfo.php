@@ -6,7 +6,7 @@ if(!defined('InEmpireCMS'))
 ?>
 <?php
 $public_diyr['pagetitle']=$word;
-$url="<a href='../../'>é¦–é¡µ</a>&nbsp;>&nbsp;<a href='../member/cp/'>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;<a href='ListInfo.php?mid=".$mid."'>ç®¡ç†ä¿¡æ¯</a>&nbsp;>&nbsp;".$word."&nbsp;(".$mr[qmname].")";
+$url="<a href='../../'>Ê×Ò³</a>&nbsp;>&nbsp;<a href='../member/cp/'>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;<a href='ListInfo.php?mid=".$mid."'>¹ÜÀíĞÅÏ¢</a>&nbsp;>&nbsp;".$word."&nbsp;(".$mr[qmname].")";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <script type="text/javascript" src="../data/js/jstime/WdatePicker.js"></script>
@@ -14,8 +14,8 @@ require(ECMS_PATH.'e/template/incfile/header.php');
 <script>
 function bs(){
 	var f=document.add
-	if(f.title.value.length==0){alert("æ ‡é¢˜è¿˜æ²¡å†™");f.title.focus();return false;}
-	if(f.classid.value==0){alert("è¯·é€‰æ‹©æ ç›®");f.classid.focus();return false;}
+	if(f.title.value.length==0){alert("±êÌâ»¹Ã»Ğ´");f.title.focus();return false;}
+	if(f.classid.value==0){alert("ÇëÑ¡ÔñÀ¸Ä¿");f.classid.focus();return false;}
 }
 function foreColor(){
   if(!Error())	return;
@@ -42,13 +42,13 @@ function FieldChangeColor(obj){
               <input name=mid type=hidden id="mid" value="<?=$mid?>"></td>
           </tr>
           <tr bgcolor="#FFFFFF">
-            <td>æäº¤è€…</td>
+            <td>Ìá½»Õß</td>
             <td><b>
               <?=$musername?>
               </b></td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
-            <td width="16%">æ ç›®</td>
+            <td width="16%">À¸Ä¿</td>
             <td>
               <?=$postclass?>            </td>
           </tr>
@@ -60,7 +60,7 @@ function FieldChangeColor(obj){
   	<?=$showkey?>
     <tr class="header"> 
       <td width="16%">&nbsp;</td>
-      <td><input type="submit" name="addnews" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td><input type="submit" name="addnews" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

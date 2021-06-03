@@ -1,5 +1,5 @@
 <?php
-//é”™è¯¯ç™»é™†è®°å½•
+//´íÎóµÇÂ½¼ÇÂ¼
 function InsertErrorLoginNum($username,$password,$loginauth,$ip,$time){
 	global $empire,$public_r,$dbtbpre;
 	//COOKIE
@@ -13,7 +13,7 @@ function InsertErrorLoginNum($username,$password,$loginauth,$ip,$time){
 	$loginnum++;
 	esetcookie("loginnum",$loginnum,$logintime+3600*24);
 	esetcookie("lastlogintime",$logintime,$logintime+3600*24);
-	//æ•°æ®åº“
+	//Êı¾İ¿â
 	$chtime=$time-$public_r['logintime']*60;
 	$empire->query("delete from {$dbtbpre}enewsloginfail where lasttime<$chtime");
 	$r=$empire->fetch1("select ip from {$dbtbpre}enewsloginfail where ip='$ip' limit 1");
@@ -25,14 +25,14 @@ function InsertErrorLoginNum($username,$password,$loginauth,$ip,$time){
 	{
 		$empire->query("insert into {$dbtbpre}enewsloginfail(ip,num,lasttime) values('$ip',1,'$time');");
 	}
-	//æ—¥å¿—
+	//ÈÕÖ¾
 	insert_log($username,$password,0,$ip,$loginauth);
 }
 
-//éªŒè¯ç™»å½•æ¬¡æ•°
+//ÑéÖ¤µÇÂ¼´ÎÊı
 function CheckLoginNum($ip,$time){
 	global $empire,$public_r,$dbtbpre;
-	//COOKIEéªŒè¯
+	//COOKIEÑéÖ¤
 	$loginnum=intval(getcvar('loginnum'));
 	$lastlogintime=intval(getcvar('lastlogintime'));
 	if($lastlogintime)
@@ -45,7 +45,7 @@ function CheckLoginNum($ip,$time){
 			}
 		}
 	}
-	//æ•°æ®åº“éªŒè¯
+	//Êı¾İ¿âÑéÖ¤
 	$chtime=$time-$public_r['logintime']*60;
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsloginfail where ip='$ip' and num>=$public_r[loginnum] and lasttime>$chtime limit 1");
 	if($num)
@@ -54,7 +54,7 @@ function CheckLoginNum($ip,$time){
 	}
 }
 
-//ç™»é™†
+//µÇÂ½
 function login($username,$password,$key,$post){
 	global $empire,$public_r,$dbtbpre,$ecms_config;
 	$username=RepPostVar($username);
@@ -63,7 +63,7 @@ function login($username,$password,$key,$post){
 	{
 		printerror("EmptyKey",eAdminLoginReturnUrl(0));
 	}
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$keyvname='checkkey';
 	if(!$public_r['adminloginkey'])
 	{
@@ -76,7 +76,7 @@ function login($username,$password,$key,$post){
 	$loginip=egetip();
 	$logintime=time();
 	CheckLoginNum($loginip,$logintime);
-	//è®¤è¯ç 
+	//ÈÏÖ¤Âë
 	if($ecms_config['esafe']['loginauth'])
 	{
 		if('dg'.$ecms_config['esafe']['loginauth']!='dg'.$post['loginauth'])
@@ -97,7 +97,7 @@ function login($username,$password,$key,$post){
 		InsertErrorLoginNum($username,$password,0,$loginip,$logintime);
 		printerror("LoginFail",eAdminLoginReturnUrl(0));
 	}
-	//å®‰å…¨é—®ç­”
+	//°²È«ÎÊ´ğ
 	$user_addr=$empire->fetch1("select userid,equestion,eanswer,openip,certkey from {$dbtbpre}enewsuseradd where userid='$user_r[userid]'");
 	if(!$user_addr['userid'])
 	{
@@ -120,17 +120,17 @@ function login($username,$password,$key,$post){
 			printerror("LoginFail",eAdminLoginReturnUrl(0));
 		}
 	}
-	//IPé™åˆ¶
+	//IPÏŞÖÆ
 	if($user_addr['openip'])
 	{
 		eCheckAccessAdminLoginIp($user_addr['openip']);
 	}
-	//å–å¾—éšæœºå¯†ç 
+	//È¡µÃËæ»úÃÜÂë
 	$rnd=make_password(20);
 	$loginipport=egetipport();
 	$sql=$empire->query("update {$dbtbpre}enewsuser set rnd='$rnd',loginnum=loginnum+1,lastip='$loginip',lasttime='$logintime',pretime='$user_r[lasttime]',preip='".RepPostVar($user_r[lastip])."',lastipport='$loginipport',preipport='".RepPostVar($user_r[lastipport])."' where username='$username' limit 1");
 	$r=$empire->fetch1("select groupid,userid,styleid,userprikey from {$dbtbpre}enewsuser where username='$username' limit 1");
-	//æ ·å¼
+	//ÑùÊ½
 	if(empty($r[styleid]))
 	{
 		$stylepath=$public_r['defadminstyle']?$public_r['defadminstyle']:1;
@@ -147,7 +147,7 @@ function login($username,$password,$key,$post){
 			$stylepath=$styler['path'];
 		}
 	}
-	//è®¾ç½®å¤‡ä»½
+	//ÉèÖÃ±¸·İ
 	$cdbdata=0;
 	$bnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsgroup where groupid='$r[groupid]' and dodbdata=1");
 	if($bnum)
@@ -160,21 +160,21 @@ function login($username,$password,$key,$post){
 		$set5=esetcookie("ecmsdodbdata","",0,1);
 	}
 	
-	ecmsEmptyShowKey($keyvname,0,1);//æ¸…ç©ºéªŒè¯ç 
+	ecmsEmptyShowKey($keyvname,0,1);//Çå¿ÕÑéÖ¤Âë
 	$set4=esetcookie("loginuserid",$r[userid],0,1);
 	$set1=esetcookie("loginusername",$username,0,1);
 	$set2=esetcookie("loginrnd",$rnd,0,1);
 	$set3=esetcookie("loginlevel",$r[groupid],0,1);
 	$set5=esetcookie("eloginlic","empirecmslic",0,1);
 	$set6=esetcookie("loginadminstyleid",$stylepath,0,1);
-	//COOKIEåŠ å¯†éªŒè¯
+	//COOKIE¼ÓÃÜÑéÖ¤
 	DoEDelFileRnd($r[userid]);
 	DoECookieRnd($r[userid],$username,$rnd,$r['userprikey'],$cdbdata,$r[groupid],intval($stylepath),$logintime);
-	//æœ€åç™»é™†æ—¶é—´
+	//×îºóµÇÂ½Ê±¼ä
 	$set4=esetcookie("logintime",$logintime,0,1);
 	$set5=esetcookie("truelogintime",$logintime,0,1);
 	esetcookie('ecertkeyrnds','',0);
-	//å†™å…¥æ—¥å¿—
+	//Ğ´ÈëÈÕÖ¾
 	insert_log($username,'',1,$loginip,0);
 	//FireWall
 	FWSetPassword();
@@ -184,7 +184,7 @@ function login($username,$password,$key,$post){
 		$cache_ecmstourl='admin.php'.urlencode(hReturnEcmsHashStrDef(1,'ehref'));
 		$cache_mess='LoginSuccess';
 		$cache_url="CreateCache.php?enews=$cache_enews&ecmstourl=$cache_ecmstourl&mess=$cache_mess".hReturnEcmsHashStrDef(0,'ehref');
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("");
 		if($post['adminwindow'])
 		{
@@ -213,7 +213,7 @@ function login($username,$password,$key,$post){
 	}
 }
 
-//å†™å…¥ç™»å½•æ—¥å¿—
+//Ğ´ÈëµÇÂ¼ÈÕÖ¾
 function insert_log($username,$password,$status,$loginip,$loginauth){
 	global $empire,$ecms_config,$dbtbpre;
 	if($ecms_config['esafe']['theloginlog'])
@@ -236,7 +236,7 @@ function insert_log($username,$password,$status,$loginip,$loginauth){
 	$sql=$empire->query("insert into {$dbtbpre}enewslog(username,loginip,logintime,status,password,loginauth,ipport) values('$username','$loginip','$logintime','$status','$password','$loginauth','$ipport');");
 }
 
-//é€€å‡ºç™»é™†
+//ÍË³öµÇÂ½
 function loginout($userid,$username,$rnd){
 	global $empire,$dbtbpre,$ecms_config;
 	$userid=(int)$userid;
@@ -254,24 +254,24 @@ function loginout($userid,$username,$rnd){
 	DelECookieAdminLoginFileInfo();
 	//FireWall
 	FWEmptyPassword();
-	//å–å¾—éšæœºå¯†ç 
+	//È¡µÃËæ»úÃÜÂë
 	$rnd=make_password(20);
 	$sql=$empire->query("update {$dbtbpre}enewsuser set rnd='$rnd' where userid='$userid'");
 	DoEDelFileRnd($userid);
 	DoEDelAndAuthRnd($userid);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("ExitSuccess","index.php");
 }
 
-//éªŒè¯ç™»å½•IP
+//ÑéÖ¤µÇÂ¼IP
 function eCheckAccessAdminLoginIp($openips){
 	if(empty($openips))
 	{
 		return '';
 	}
 	$userip=egetip();
-	//å…è®¸IP
+	//ÔÊĞíIP
 	if($openips)
 	{
 		$close=1;
@@ -291,7 +291,7 @@ function eCheckAccessAdminLoginIp($openips){
 	}
 }
 
-//è¿”å›åœ°å€
+//·µ»ØµØÖ·
 function eAdminLoginReturnUrl($ecms=0){
 	$eurl=EcmsGetReturnUrl();
 	return $eurl;

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"f");
 $tid=(int)$_GET['tid'];
 $tbname=RepPostVar($_GET['tbname']);
@@ -34,27 +34,27 @@ $savetxthidden='';
 $fmvnum=1;
 $fmvline=3;
 $fmvmust=1;
-$url="æ•°æ®è¡¨:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListF.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">å­—æ®µç®¡ç†</a>&nbsp;>&nbsp;å¢žåŠ å­—æ®µ";
-$postword='å¢žåŠ ';
-//ä¿®æ”¹å­—æ®µ
+$url="Êý¾Ý±í:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListF.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">×Ö¶Î¹ÜÀí</a>&nbsp;>&nbsp;Ôö¼Ó×Ö¶Î";
+$postword='Ôö¼Ó';
+//ÐÞ¸Ä×Ö¶Î
 if($enews=="EditF")
 {
 	$fid=(int)$_GET['fid'];
-	$url="æ•°æ®è¡¨:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListF.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">å­—æ®µç®¡ç†</a>&nbsp;>&nbsp;ä¿®æ”¹å­—æ®µ";
-	$postword='ä¿®æ”¹';
+	$url="Êý¾Ý±í:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListF.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">×Ö¶Î¹ÜÀí</a>&nbsp;>&nbsp;ÐÞ¸Ä×Ö¶Î";
+	$postword='ÐÞ¸Ä';
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsf where fid='$fid' and tid='$tid'");
 	if(!$r[fid])
 	{
 		printerror("ErrorUrl","history.go(-1)");
 	}
-	//å…ƒç´ é•¿åº¦
+	//ÔªËØ³¤¶È
 	if($r[fform]=='textarea'||$r[fform]=='editor')
 	{
 		$fsr=explode(',',$r['fformsize']);
 		$fformwidth=$fsr[0];
 		$fformheight=$fsr[1];
 	}
-	//å¤šå€¼å…ƒç´ 
+	//¶àÖµÔªËØ
 	if($r[fform]=='morevaluefield')
 	{
 		$fmvr=explode(',',$r['fmvnum']);
@@ -76,8 +76,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title><?=$postword?>å­—æ®µ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title><?=$postword?>×Ö¶Î</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function ShowFieldFormSet(obj,val){
@@ -160,7 +160,7 @@ function ShowFieldFormSet(obj,val){
 <body onload="ShowFieldFormSet(document.addfform,'<?=$r[fform]?$r[fform]:'text'?>')">
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="addfform" method="post" action="../ecmsmod.php">
@@ -168,11 +168,11 @@ function ShowFieldFormSet(obj,val){
     <tr> 
       <td height="25" colspan="2" class="header"> 
         <?=$postword?>
-        æ•°æ®è¡¨( 
+        Êý¾Ý±í( 
         <?=$dbtbpre?>
         ecms_ 
         <?=$tbname?>
-        )å­—æ®µ 
+        )×Ö¶Î 
         <input name="fid" type="hidden" id="fid" value="<?=$fid?>"> <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
         <input name="oldfform" type="hidden" id="oldfform" value="<?=$r[fform]?>"> 
         <input name="oldf" type="hidden" id="oldf" value="<?=$r[f]?>"> <input name="tbname" type="hidden" id="tbname" value="<?=$tbname?>"> 
@@ -184,225 +184,225 @@ function ShowFieldFormSet(obj,val){
       </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">åŸºæœ¬è®¾ç½®</td>
+      <td height="25" colspan="2">»ù±¾ÉèÖÃ</td>
     </tr>
     <tr> 
-      <td width="25%" height="25" bgcolor="#FFFFFF">å­—æ®µå</td>
+      <td width="25%" height="25" bgcolor="#FFFFFF">×Ö¶ÎÃû</td>
       <td width="75%" height="25" bgcolor="#FFFFFF"> <input name="f" type="text" id="f" value="<?=$r[f]?>">
-        <font color="#666666">(ç”±è‹±æ–‡ä¸Žæ•°å­—ç»„æˆï¼Œä¸”ä¸èƒ½ä»¥æ•°å­—å¼€å¤´ã€‚æ¯”å¦‚ï¼š&quot;title&quot;)</font></td>
+        <font color="#666666">(ÓÉÓ¢ÎÄÓëÊý×Ö×é³É£¬ÇÒ²»ÄÜÒÔÊý×Ö¿ªÍ·¡£±ÈÈç£º&quot;title&quot;)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å­—æ®µæ ‡è¯†</td>
+      <td height="25" bgcolor="#FFFFFF">×Ö¶Î±êÊ¶</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="fname" type="text" id="fname" value="<?=$r[fname]?>"> 
-        <font color="#666666">(æ¯”å¦‚ï¼š&quot;æ ‡é¢˜&quot;)</font></td>
+        <font color="#666666">(±ÈÈç£º&quot;±êÌâ&quot;)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å­—æ®µç±»åž‹</td>
+      <td height="25" bgcolor="#FFFFFF">×Ö¶ÎÀàÐÍ</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="ftype" id="select">
-          <option value="VARCHAR"<?=$typeVARCHAR?>>å­—ç¬¦åž‹0-255å­—èŠ‚(VARCHAR)</option>
-		  <option value="CHAR"<?=$typeCHAR?>>å®šé•¿å­—ç¬¦åž‹0-255å­—èŠ‚(CHAR)</option>
-          <option value="TEXT"<?=$typeTEXT?>>å°åž‹å­—ç¬¦åž‹(TEXT)</option>
-          <option value="MEDIUMTEXT"<?=$typeMEDIUMTEXT?>>ä¸­åž‹å­—ç¬¦åž‹(MEDIUMTEXT)</option>
-          <option value="LONGTEXT"<?=$typeLONGTEXT?>>å¤§åž‹å­—ç¬¦åž‹(LONGTEXT)</option>
-          <option value="TINYINT"<?=$typeTINYINT?>>å°æ•°å€¼åž‹(TINYINT)</option>
-          <option value="SMALLINT"<?=$typeSMALLINT?>>ä¸­æ•°å€¼åž‹(SMALLINT)</option>
-          <option value="INT"<?=$typeINT?>>å¤§æ•°å€¼åž‹(INT)</option>
-          <option value="BIGINT"<?=$typeBIGINT?>>è¶…å¤§æ•°å€¼åž‹(BIGINT)</option>
-          <option value="FLOAT"<?=$typeFLOAT?>>æ•°å€¼æµ®ç‚¹åž‹(FLOAT)</option>
-          <option value="DOUBLE"<?=$typeDOUBLE?>>æ•°å€¼åŒç²¾åº¦åž‹(DOUBLE)</option>
-          <option value="DATE"<?=$typeDATE?>>æ—¥æœŸåž‹(DATE)</option>
-          <option value="DATETIME"<?=$typeDATETIME?>>æ—¥æœŸæ—¶é—´åž‹(DATETIME)</option>
+          <option value="VARCHAR"<?=$typeVARCHAR?>>×Ö·ûÐÍ0-255×Ö½Ú(VARCHAR)</option>
+		  <option value="CHAR"<?=$typeCHAR?>>¶¨³¤×Ö·ûÐÍ0-255×Ö½Ú(CHAR)</option>
+          <option value="TEXT"<?=$typeTEXT?>>Ð¡ÐÍ×Ö·ûÐÍ(TEXT)</option>
+          <option value="MEDIUMTEXT"<?=$typeMEDIUMTEXT?>>ÖÐÐÍ×Ö·ûÐÍ(MEDIUMTEXT)</option>
+          <option value="LONGTEXT"<?=$typeLONGTEXT?>>´óÐÍ×Ö·ûÐÍ(LONGTEXT)</option>
+          <option value="TINYINT"<?=$typeTINYINT?>>Ð¡ÊýÖµÐÍ(TINYINT)</option>
+          <option value="SMALLINT"<?=$typeSMALLINT?>>ÖÐÊýÖµÐÍ(SMALLINT)</option>
+          <option value="INT"<?=$typeINT?>>´óÊýÖµÐÍ(INT)</option>
+          <option value="BIGINT"<?=$typeBIGINT?>>³¬´óÊýÖµÐÍ(BIGINT)</option>
+          <option value="FLOAT"<?=$typeFLOAT?>>ÊýÖµ¸¡µãÐÍ(FLOAT)</option>
+          <option value="DOUBLE"<?=$typeDOUBLE?>>ÊýÖµË«¾«¶ÈÐÍ(DOUBLE)</option>
+          <option value="DATE"<?=$typeDATE?>>ÈÕÆÚÐÍ(DATE)</option>
+          <option value="DATETIME"<?=$typeDATETIME?>>ÈÕÆÚÊ±¼äÐÍ(DATETIME)</option>
         </select>
-        é•¿åº¦ 
+        ³¤¶È 
         <input name="flen" type="text" id="flen" value="<?=$r[flen]?>" size="6"> 
       </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å­˜æ”¾è¡¨</td>
+      <td height="25" bgcolor="#FFFFFF">´æ·Å±í</td>
       <td height="25" bgcolor="#FFFFFF"> <input type="radio" name="tbdataf" value="0"<?=$r[tbdataf]==0?' checked':''?><?=$disabled?>>
-        ä¸»è¡¨ 
+        Ö÷±í 
         <input type="radio" name="tbdataf" value="1"<?=$r[tbdataf]==1?' checked':''?><?=$disabled?>>
-        å‰¯è¡¨<?=$tbdatafhidden?><font color="#666666"> (è®¾ç½®åŽä¸èƒ½ä¿®æ”¹)</font></td>
+        ¸±±í<?=$tbdatafhidden?><font color="#666666"> (ÉèÖÃºó²»ÄÜÐÞ¸Ä)</font></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">ç‰¹æ®Šå±žæ€§</td>
+      <td height="25" colspan="2">ÌØÊâÊôÐÔ</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åŠ ç´¢å¼•</td>
+      <td height="25" bgcolor="#FFFFFF">¼ÓË÷Òý</td>
       <td height="25" bgcolor="#FFFFFF"> <input type="radio" name="iskey" value="1"<?=$r[iskey]==1?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="iskey" value="0"<?=$r[iskey]==0?' checked':''?>>
-        å¦ 
+        ·ñ 
         <input name="oldiskey" type="hidden" id="oldiskey" value="<?=$r[iskey]?>"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å€¼å”¯ä¸€</td>
+      <td height="25" bgcolor="#FFFFFF">ÖµÎ¨Ò»</td>
       <td height="25" bgcolor="#FFFFFF"> <input type="radio" name="isonly" value="1"<?=$r[isonly]==1?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="isonly" value="0"<?=$r[isonly]==0?' checked':''?>>
-        å¦ 
+        ·ñ 
         <input name="oldisonly" type="hidden" id="oldisonly" value="<?=$r[isonly]?>"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">é‡‡é›†é¡¹</td>
+      <td height="25" bgcolor="#FFFFFF">²É¼¯Ïî</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="iscj" type="radio" value="1"<?=$r[iscj]==1?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input name="iscj" type="radio" value="0"<?=$r[iscj]==0?' checked':''?>>
-        å¦ 
+        ·ñ 
         <input name="oldiscj" type="hidden" id="oldiscj" value="<?=$r[iscj]?>"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åˆ†é¡µå­—æ®µ</td>
+      <td height="25" bgcolor="#FFFFFF">·ÖÒ³×Ö¶Î</td>
       <td height="25" bgcolor="#FFFFFF"><input type="radio" name="ispage" value="1"<?=$r[ispage]==1?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="ispage" value="0"<?=$r[ispage]==0?' checked':''?>>
-        å¦<font color="#666666">(è¡¨åªå¯è®¾ç½®ä¸€ä¸ªå­—æ®µ)</font></td>
+        ·ñ<font color="#666666">(±íÖ»¿ÉÉèÖÃÒ»¸ö×Ö¶Î)</font></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">ç®€ä»‹å­—æ®µ</td>
+      <td height="25" bgcolor="#FFFFFF">¼ò½é×Ö¶Î</td>
       <td height="25" bgcolor="#FFFFFF"><input type="radio" name="issmalltext" value="1"<?=$r[issmalltext]==1?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="issmalltext" value="0"<?=$r[issmalltext]==0?' checked':''?>>
-        å¦<font color="#666666">(æ¨¡æ¿é‡Œè®¾ç½®æˆªå–ç®€ä»‹å­—æ•°çš„å­—æ®µ)</font></td>
+        ·ñ<font color="#666666">(Ä£°åÀïÉèÖÃ½ØÈ¡¼ò½é×ÖÊýµÄ×Ö¶Î)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å†…å®¹å­˜æ–‡æœ¬</td>
+      <td height="25" bgcolor="#FFFFFF">ÄÚÈÝ´æÎÄ±¾</td>
       <td height="25" bgcolor="#FFFFFF"> <input type="radio" name="savetxt" value="1"<?=$r[savetxt]==1?' checked':''?><?=$disabled?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="savetxt" value="0"<?=$r[savetxt]==0?' checked':''?><?=$disabled?>>
-        å¦<?=$savetxthidden?><font color="#666666">(è®¾ç½®åŽä¸èƒ½ä¿®æ”¹,è¡¨åªå¯è®¾ç½®ä¸€ä¸ªå­—æ®µ)</font></td>
+        ·ñ<?=$savetxthidden?><font color="#666666">(ÉèÖÃºó²»ÄÜÐÞ¸Ä,±íÖ»¿ÉÉèÖÃÒ»¸ö×Ö¶Î)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å‰å°å†…å®¹æ˜¾ç¤º</td>
+      <td height="25" bgcolor="#FFFFFF">Ç°Ì¨ÄÚÈÝÏÔÊ¾</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="tobr" type="checkbox" id="tobr" value="1"<?=$r[tobr]==1?' checked':''?>>
-        å°†å›žè½¦æ›¿æ¢æˆæ¢è¡Œç¬¦, 
+        ½«»Ø³µÌæ»»³É»»ÐÐ·û, 
         <input name="dohtml" type="checkbox" id="dohtml" value="1"<?=$r[dohtml]==1?' checked':''?>>
-        æ”¯æŒhtmlä»£ç </td>
+        Ö§³Öhtml´úÂë</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åŽå°å¢žåŠ ä¿¡æ¯å¤„ç†å‡½æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">ºóÌ¨Ôö¼ÓÐÅÏ¢´¦Àíº¯Êý</td>
       <td height="25" bgcolor="#FFFFFF"><input name="adddofun" type="text" id="adddofun" value="<?=$r[adddofun]?>">
-        <font color="#666666">(ä¸€èˆ¬ä¸è®¾ç½®ï¼Œæ ¼å¼â€œå‡½æ•°å##å‚æ•°â€å‚æ•°å¯ä¸è®¾ç½®)</font></td>
+        <font color="#666666">(Ò»°ã²»ÉèÖÃ£¬¸ñÊ½¡°º¯ÊýÃû##²ÎÊý¡±²ÎÊý¿É²»ÉèÖÃ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åŽå°ä¿®æ”¹ä¿¡æ¯å¤„ç†å‡½æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">ºóÌ¨ÐÞ¸ÄÐÅÏ¢´¦Àíº¯Êý</td>
       <td height="25" bgcolor="#FFFFFF"><input name="editdofun" type="text" id="editdofun" value="<?=$r[editdofun]?>">
-        <font color="#666666">(ä¸€èˆ¬ä¸è®¾ç½®ï¼Œæ ¼å¼â€œå‡½æ•°å##å‚æ•°â€å‚æ•°å¯ä¸è®¾ç½®)</font></td>
+        <font color="#666666">(Ò»°ã²»ÉèÖÃ£¬¸ñÊ½¡°º¯ÊýÃû##²ÎÊý¡±²ÎÊý¿É²»ÉèÖÃ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å‰å°å¢žåŠ ä¿¡æ¯å¤„ç†å‡½æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">Ç°Ì¨Ôö¼ÓÐÅÏ¢´¦Àíº¯Êý</td>
       <td height="25" bgcolor="#FFFFFF"><input name="qadddofun" type="text" id="qadddofun" value="<?=$r[qadddofun]?>">
-        <font color="#666666">(ä¸€èˆ¬ä¸è®¾ç½®ï¼Œæ ¼å¼â€œå‡½æ•°å##å‚æ•°â€å‚æ•°å¯ä¸è®¾ç½®)</font></td>
+        <font color="#666666">(Ò»°ã²»ÉèÖÃ£¬¸ñÊ½¡°º¯ÊýÃû##²ÎÊý¡±²ÎÊý¿É²»ÉèÖÃ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å‰å°ä¿®æ”¹ä¿¡æ¯å¤„ç†å‡½æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">Ç°Ì¨ÐÞ¸ÄÐÅÏ¢´¦Àíº¯Êý</td>
       <td height="25" bgcolor="#FFFFFF"><input name="qeditdofun" type="text" id="qeditdofun" value="<?=$r[qeditdofun]?>">
-        <font color="#666666">(ä¸€èˆ¬ä¸è®¾ç½®ï¼Œæ ¼å¼â€œå‡½æ•°å##å‚æ•°â€å‚æ•°å¯ä¸è®¾ç½®)</font></td>
+        <font color="#666666">(Ò»°ã²»ÉèÖÃ£¬¸ñÊ½¡°º¯ÊýÃû##²ÎÊý¡±²ÎÊý¿É²»ÉèÖÃ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ˜¾ç¤ºé¡ºåº</td>
+      <td height="25" bgcolor="#FFFFFF">ÏÔÊ¾Ë³Ðò</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="myorder" type="text" id="myorder" value="<?=$r[myorder]?>"> 
-        <font color="#666666">(æ•°å­—è¶Šå°è¶Šå‰é¢)</font></td>
+        <font color="#666666">(Êý×ÖÔ½Ð¡Ô½Ç°Ãæ)</font></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">è¡¨å•æ˜¾ç¤ºè®¾ç½®</td>
+      <td height="25" colspan="2">±íµ¥ÏÔÊ¾ÉèÖÃ</td>
     </tr>
     <tr> 
-      <td bgcolor="#FFFFFF">è¾“å…¥è¡¨å•æ˜¾ç¤ºå…ƒç´ </td>
+      <td bgcolor="#FFFFFF">ÊäÈë±íµ¥ÏÔÊ¾ÔªËØ</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="fform" id="fform" onchange="ShowFieldFormSet(document.addfform,this.options[this.selectedIndex].value)">
-          <option value="text"<?=$formtext?>>å•è¡Œæ–‡æœ¬æ¡†(text)</option>
-          <option value="password"<?=$formpassword?>>å¯†ç æ¡†(password)</option>
-          <option value="select"<?=$formselect?>>ä¸‹æ‹‰æ¡†(select)</option>
-          <option value="radio"<?=$formradio?>>å•é€‰æ¡†(radio)</option>
-          <option value="checkbox"<?=$formcheckbox?>>å¤é€‰æ¡†(checkbox)</option>
-          <option value="textarea"<?=$formtextarea?>>å¤šè¡Œæ–‡æœ¬æ¡†(textarea)</option>
-          <option value="editor"<?=$formeditor?>>ç¼–è¾‘å™¨(editor)</option>
-          <option value="img"<?=$formimg?>>å›¾ç‰‡(img)</option>
-          <option value="flash"<?=$formflash?>>FLASHæ–‡ä»¶(flash)</option>
-          <option value="file"<?=$formfile?>>æ–‡ä»¶(file)</option>
-          <option value="date"<?=$formdate?>>æ—¥æœŸ(date)</option>
-		  <option value="datetime"<?=$formdatetime?>>æ—¥æœŸæ—¶é—´(datetime)</option>
-          <option value="color"<?=$formcolor?>>é¢œè‰²(color)</option>
-		  <option value="morevaluefield"<?=$formmorevaluefield?>>å¤šå€¼å­—æ®µ(morevaluefield)</option>
-          <option value="linkfield"<?=$formlinkfield?>>é€‰æ‹©å¤–è¡¨å…³è”å­—æ®µ(linkfield)</option>
-          <option value="linkfieldselect"<?=$formlinkfieldselect?>>ä¸‹æ‹‰å¤–è¡¨å…³è”å­—æ®µ(linkfieldselect)</option>
+          <option value="text"<?=$formtext?>>µ¥ÐÐÎÄ±¾¿ò(text)</option>
+          <option value="password"<?=$formpassword?>>ÃÜÂë¿ò(password)</option>
+          <option value="select"<?=$formselect?>>ÏÂÀ­¿ò(select)</option>
+          <option value="radio"<?=$formradio?>>µ¥Ñ¡¿ò(radio)</option>
+          <option value="checkbox"<?=$formcheckbox?>>¸´Ñ¡¿ò(checkbox)</option>
+          <option value="textarea"<?=$formtextarea?>>¶àÐÐÎÄ±¾¿ò(textarea)</option>
+          <option value="editor"<?=$formeditor?>>±à¼­Æ÷(editor)</option>
+          <option value="img"<?=$formimg?>>Í¼Æ¬(img)</option>
+          <option value="flash"<?=$formflash?>>FLASHÎÄ¼þ(flash)</option>
+          <option value="file"<?=$formfile?>>ÎÄ¼þ(file)</option>
+          <option value="date"<?=$formdate?>>ÈÕÆÚ(date)</option>
+		  <option value="datetime"<?=$formdatetime?>>ÈÕÆÚÊ±¼ä(datetime)</option>
+          <option value="color"<?=$formcolor?>>ÑÕÉ«(color)</option>
+		  <option value="morevaluefield"<?=$formmorevaluefield?>>¶àÖµ×Ö¶Î(morevaluefield)</option>
+          <option value="linkfield"<?=$formlinkfield?>>Ñ¡ÔñÍâ±í¹ØÁª×Ö¶Î(linkfield)</option>
+          <option value="linkfieldselect"<?=$formlinkfieldselect?>>ÏÂÀ­Íâ±í¹ØÁª×Ö¶Î(linkfieldselect)</option>
         </select> </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">é€‰é¡¹</td>
+      <td height="25" bgcolor="#FFFFFF">Ñ¡Ïî</td>
       <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="1" cellpadding="2">
           <tr id="fsizediv"> 
-            <td height="23"><strong>å…ƒç´ é•¿åº¦</strong><br> <input name="fformsize" type="text" id="fformsize" value="<?=$r[fformsize]?>"> 
-              <font color="#666666">(ç©ºä¸ºæŒ‰é»˜è®¤)</font></td>
+            <td height="23"><strong>ÔªËØ³¤¶È</strong><br> <input name="fformsize" type="text" id="fformsize" value="<?=$r[fformsize]?>"> 
+              <font color="#666666">(¿ÕÎª°´Ä¬ÈÏ)</font></td>
           </tr>
           <tr id="fwidthdiv"> 
-            <td height="23"><strong>å…ƒç´ å¤§å°</strong><br>
-              å®½åº¦ 
+            <td height="23"><strong>ÔªËØ´óÐ¡</strong><br>
+              ¿í¶È 
               <input name="fformwidth" type="text" id="fformwidth" value="<?=$fformwidth?>" size="6">
-              Ã—é«˜åº¦ 
+              ¡Á¸ß¶È 
               <input name="fformheight" type="text" id="fformheight" value="<?=$fformheight?>" size="6"> 
-              <font color="#666666">(ç©ºä¸ºæŒ‰é»˜è®¤)</font></td>
+              <font color="#666666">(¿ÕÎª°´Ä¬ÈÏ)</font></td>
           </tr>
           <tr id="flinkfielddiv"> 
-            <td height="23"><strong>é€‰æ‹©æ¨¡åž‹å­—æ®µè®¾ç½®</strong><br>
-              æ•°æ®è¡¨å 
+            <td height="23"><strong>Ñ¡ÔñÄ£ÐÍ×Ö¶ÎÉèÖÃ</strong><br>
+              Êý¾Ý±íÃû 
               <input name="linkfieldtb" type="text" id="linkfieldtb" value="<?=$r[linkfieldtb]?>"> 
               <br>
-              å€¼å­—æ®µå 
+              Öµ×Ö¶ÎÃû 
               <input name="linkfieldval" type="text" id="linkfieldval" value="<?=$r[linkfieldval]?>"> 
               <input name="samedata" type="checkbox" id="samedata" value="1"<?=$r[samedata]==1?' checked':''?>>
-              æ•°æ®åŒæ­¥<br>
-              æ˜¾ç¤ºå­—æ®µ 
+              Êý¾ÝÍ¬²½<br>
+              ÏÔÊ¾×Ö¶Î 
               <input name="linkfieldshow" type="text" id="linkfieldshow" value="<?=$r[linkfieldshow]?>"> 
             </td>
           </tr>
           <tr id="feditordiv"> 
-            <td height="23"><strong>ç¼–è¾‘å™¨æ ·å¼</strong><br> <input type="radio" name="editorys" value="0"<?=$r[editorys]==0?' checked':''?>>
-              æ ‡å‡†åž‹ 
+            <td height="23"><strong>±à¼­Æ÷ÑùÊ½</strong><br> <input type="radio" name="editorys" value="0"<?=$r[editorys]==0?' checked':''?>>
+              ±ê×¼ÐÍ 
               <input type="radio" name="editorys" value="1"<?=$r[editorys]==1?' checked':''?>>
-              ç®€æ´åž‹</td>
+              ¼ò½àÐÍ</td>
           </tr>
 		  <tr id="fmorevaluediv"> 
-            <td height="23"><strong>å¤šå€¼å­—æ®µå…ƒç´ æ ¼å¼</strong><br>
-              è®¾ç½®åˆ—æ•° 
+            <td height="23"><strong>¶àÖµ×Ö¶ÎÔªËØ¸ñÊ½</strong><br>
+              ÉèÖÃÁÐÊý 
               <input name="fmvnum" type="text" id="fmvnum" value="<?=$fmvnum?>" size="6">
-              ï¼Œé»˜è®¤è¡Œæ•° 
+              £¬Ä¬ÈÏÐÐÊý 
               <input name="fmvline" type="text" id="fmvline" value="<?=$fmvline?>" size="6">
-              ï¼Œç¬¬
+              £¬µÚ
               <input name="fmvmust" type="text" id="fmvmust" value="<?=$fmvmust?>" size="6">
-              åˆ—å¿…å¡«</td>
+              ÁÐ±ØÌî</td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td valign="top" bgcolor="#FFFFFF"><p>åˆå§‹å€¼<br>
-          <font color="#666666"><span id="defvaldiv">(å¤šä¸ªå€¼ç”¨&quot;å›žè½¦&quot;æ ¼å¼€ï¼›<br>
-          â€œä¸‹æ‹‰/å•é€‰/å¤é€‰â€æ ¼å¼ç”¨ï¼šå€¼==åç§°ï¼›<br>
-          å½“å€¼ç­‰äºŽåç§°æ—¶ï¼Œåç§°å¯çœç•¥ï¼›<br>
-          é»˜è®¤é€‰é¡¹åŽé¢åŠ ï¼š:default)</span></font></p></td>
+      <td valign="top" bgcolor="#FFFFFF"><p>³õÊ¼Öµ<br>
+          <font color="#666666"><span id="defvaldiv">(¶à¸öÖµÓÃ&quot;»Ø³µ&quot;¸ñ¿ª£»<br>
+          ¡°ÏÂÀ­/µ¥Ñ¡/¸´Ñ¡¡±¸ñÊ½ÓÃ£ºÖµ==Ãû³Æ£»<br>
+          µ±ÖµµÈÓÚÃû³ÆÊ±£¬Ãû³Æ¿ÉÊ¡ÂÔ£»<br>
+          Ä¬ÈÏÑ¡ÏîºóÃæ¼Ó£º:default)</span></font></p></td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="fvalue" cols="65" rows="8" id="fvalue" style="WIDTH: 100%"><?=ehtmlspecialchars(stripSlashes(str_replace("|","\r\n",$r[fvalue])))?></textarea></td>
     </tr>
     <tr> 
-      <td height="25" valign="top" bgcolor="#FFFFFF">è¾“å…¥è¡¨å•æ›¿æ¢htmlä»£ç <br> <font color="#666666">(å¢žåŠ å­—æ®µæ—¶è¯·ç•™ç©º)</font></td>
+      <td height="25" valign="top" bgcolor="#FFFFFF">ÊäÈë±íµ¥Ìæ»»html´úÂë<br> <font color="#666666">(Ôö¼Ó×Ö¶ÎÊ±ÇëÁô¿Õ)</font></td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="fhtml" cols="65" rows="10" id="fhtml" style="WIDTH: 100%"><?=ehtmlspecialchars(stripSlashes($r[fhtml]))?></textarea></td>
     </tr>
     <tr> 
-      <td height="25" valign="top" bgcolor="#FFFFFF">æŠ•ç¨¿è¡¨å•æ›¿æ¢htmlä»£ç <br> <font color="#666666">(å¢žåŠ å­—æ®µæ—¶è¯·ç•™ç©º)</font></td>
+      <td height="25" valign="top" bgcolor="#FFFFFF">Í¶¸å±íµ¥Ìæ»»html´úÂë<br> <font color="#666666">(Ôö¼Ó×Ö¶ÎÊ±ÇëÁô¿Õ)</font></td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="qfhtml" cols="65" rows="10" id="qfhtml" style="WIDTH: 100%"><?=ehtmlspecialchars(stripSlashes($r[qfhtml]))?></textarea></td>
     </tr>
     <tr> 
-      <td height="25" valign="top" bgcolor="#FFFFFF">æ³¨é‡Š</td>
+      <td height="25" valign="top" bgcolor="#FFFFFF">×¢ÊÍ</td>
       <td height="25" bgcolor="#FFFFFF"> <textarea name="fzs" cols="65" rows="6" id="fzs" style="WIDTH: 100%"><?=stripSlashes($r[fzs])?></textarea></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
-      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="æäº¤"> 
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25" bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="Ìá½»"> 
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
   <table width="100%" border="0" cellspacing="1" cellpadding="3">
     <tr>
-      <td height="25"><font color="#666666">è¯´æ˜Žï¼šä¸»è¡¨å­—æ®µè¶Šå°‘æ•ˆçŽ‡è¶Šé«˜ï¼Œä¸åœ¨åˆ—è¡¨è°ƒç”¨å­—æ®µå»ºè®®å°†å­—æ®µå­˜åœ¨å‰¯è¡¨ã€‚</font></td>
+      <td height="25"><font color="#666666">ËµÃ÷£ºÖ÷±í×Ö¶ÎÔ½ÉÙÐ§ÂÊÔ½¸ß£¬²»ÔÚÁÐ±íµ÷ÓÃ×Ö¶Î½¨Òé½«×Ö¶Î´æÔÚ¸±±í¡£</font></td>
     </tr>
   </table>
 </form>

@@ -1,7 +1,7 @@
 <?php
 define('InEmpireCMSGd',TRUE);
 
-//åŽŸæ–‡ä»¶,æ–°æ–‡ä»¶,å®½åº¦,é«˜åº¦,ç»´æŒæ¯”ä¾‹
+//Ô­ÎÄ¼þ,ÐÂÎÄ¼þ,¿í¶È,¸ß¶È,Î¬³Ö±ÈÀý
 function ResizeImage($big_image_name, $new_name, $max_width = 400, $max_height = 400, $resize = 1){
 	$returnr['file']='';
 	$returnr['filetype']='';
@@ -20,7 +20,7 @@ function ResizeImage($big_image_name, $new_name, $max_width = 400, $max_height =
 	{
 		return $returnr;
 	}
-	//è¾“å‡º
+	//Êä³ö
     $func_output = $all_type[$img_type]['output'];
     $func_exname = $all_type[$img_type]['exn'];
 	if(($func_exname=='.gif'||$func_exname=='.png'||$func_exname=='.wbmp')&&!function_exists($func_output))
@@ -95,22 +95,22 @@ function ResizeImage($big_image_name, $new_name, $max_width = 400, $max_height =
 }
 
 /* 
-* åŠŸèƒ½ï¼šå›¾ç‰‡åŠ æ°´å° (æ°´å°æ”¯æŒå›¾ç‰‡æˆ–æ–‡å­—) 
-* å‚æ•°ï¼š 
-*      $groundImage    èƒŒæ™¯å›¾ç‰‡ï¼Œå³éœ€è¦åŠ æ°´å°çš„å›¾ç‰‡ï¼Œæš‚åªæ”¯æŒGIF,JPG,PNGæ ¼å¼ï¼› 
-*      $waterPos        æ°´å°ä½ç½®ï¼Œæœ‰10ç§çŠ¶æ€ï¼Œ0ä¸ºéšæœºä½ç½®ï¼› 
-*                        1ä¸ºé¡¶ç«¯å±…å·¦ï¼Œ2ä¸ºé¡¶ç«¯å±…ä¸­ï¼Œ3ä¸ºé¡¶ç«¯å±…å³ï¼› 
-*                        4ä¸ºä¸­éƒ¨å±…å·¦ï¼Œ5ä¸ºä¸­éƒ¨å±…ä¸­ï¼Œ6ä¸ºä¸­éƒ¨å±…å³ï¼› 
-*                        7ä¸ºåº•ç«¯å±…å·¦ï¼Œ8ä¸ºåº•ç«¯å±…ä¸­ï¼Œ9ä¸ºåº•ç«¯å±…å³ï¼› 
-*      $waterImage        å›¾ç‰‡æ°´å°ï¼Œå³ä½œä¸ºæ°´å°çš„å›¾ç‰‡ï¼Œæš‚åªæ”¯æŒGIF,JPG,PNGæ ¼å¼ï¼› 
-*      $waterText        æ–‡å­—æ°´å°ï¼Œå³æŠŠæ–‡å­—ä½œä¸ºä¸ºæ°´å°ï¼Œæ”¯æŒASCIIç ï¼Œä¸æ”¯æŒä¸­æ–‡ï¼› 
-*      $textFont        æ–‡å­—å¤§å°ï¼Œå€¼ä¸º1ã€2ã€3ã€4æˆ–5ï¼Œé»˜è®¤ä¸º5ï¼› 
-*      $textColor        æ–‡å­—é¢œè‰²ï¼Œå€¼ä¸ºåå…­è¿›åˆ¶é¢œè‰²å€¼ï¼Œé»˜è®¤ä¸º#FF0000(çº¢è‰²)ï¼› 
+* ¹¦ÄÜ£ºÍ¼Æ¬¼ÓË®Ó¡ (Ë®Ó¡Ö§³ÖÍ¼Æ¬»òÎÄ×Ö) 
+* ²ÎÊý£º 
+*      $groundImage    ±³¾°Í¼Æ¬£¬¼´ÐèÒª¼ÓË®Ó¡µÄÍ¼Æ¬£¬ÔÝÖ»Ö§³ÖGIF,JPG,PNG¸ñÊ½£» 
+*      $waterPos        Ë®Ó¡Î»ÖÃ£¬ÓÐ10ÖÖ×´Ì¬£¬0ÎªËæ»úÎ»ÖÃ£» 
+*                        1Îª¶¥¶Ë¾Ó×ó£¬2Îª¶¥¶Ë¾ÓÖÐ£¬3Îª¶¥¶Ë¾ÓÓÒ£» 
+*                        4ÎªÖÐ²¿¾Ó×ó£¬5ÎªÖÐ²¿¾ÓÖÐ£¬6ÎªÖÐ²¿¾ÓÓÒ£» 
+*                        7Îªµ×¶Ë¾Ó×ó£¬8Îªµ×¶Ë¾ÓÖÐ£¬9Îªµ×¶Ë¾ÓÓÒ£» 
+*      $waterImage        Í¼Æ¬Ë®Ó¡£¬¼´×÷ÎªË®Ó¡µÄÍ¼Æ¬£¬ÔÝÖ»Ö§³ÖGIF,JPG,PNG¸ñÊ½£» 
+*      $waterText        ÎÄ×ÖË®Ó¡£¬¼´°ÑÎÄ×Ö×÷ÎªÎªË®Ó¡£¬Ö§³ÖASCIIÂë£¬²»Ö§³ÖÖÐÎÄ£» 
+*      $textFont        ÎÄ×Ö´óÐ¡£¬ÖµÎª1¡¢2¡¢3¡¢4»ò5£¬Ä¬ÈÏÎª5£» 
+*      $textColor        ÎÄ×ÖÑÕÉ«£¬ÖµÎªÊ®Áù½øÖÆÑÕÉ«Öµ£¬Ä¬ÈÏÎª#FF0000(ºìÉ«)£» 
 * 
-* æ³¨æ„ï¼šSupport GD 2.0ï¼ŒSupport FreeTypeã€GIF Readã€GIF Createã€JPG ã€PNG 
-*      $waterImage å’Œ $waterText æœ€å¥½ä¸è¦åŒæ—¶ä½¿ç”¨ï¼Œé€‰å…¶ä¸­ä¹‹ä¸€å³å¯ï¼Œä¼˜å…ˆä½¿ç”¨ $waterImageã€‚ 
-*      å½“$waterImageæœ‰æ•ˆæ—¶ï¼Œå‚æ•°$waterStringã€$stringFontã€$stringColorå‡ä¸ç”Ÿæ•ˆã€‚ 
-*      åŠ æ°´å°åŽçš„å›¾ç‰‡çš„æ–‡ä»¶åå’Œ $groundImage ä¸€æ ·ã€‚ 
+* ×¢Òâ£ºSupport GD 2.0£¬Support FreeType¡¢GIF Read¡¢GIF Create¡¢JPG ¡¢PNG 
+*      $waterImage ºÍ $waterText ×îºÃ²»ÒªÍ¬Ê±Ê¹ÓÃ£¬Ñ¡ÆäÖÐÖ®Ò»¼´¿É£¬ÓÅÏÈÊ¹ÓÃ $waterImage¡£ 
+*      µ±$waterImageÓÐÐ§Ê±£¬²ÎÊý$waterString¡¢$stringFont¡¢$stringColor¾ù²»ÉúÐ§¡£ 
+*      ¼ÓË®Ó¡ºóµÄÍ¼Æ¬µÄÎÄ¼þÃûºÍ $groundImage Ò»Ñù¡£ 
 */ 
 function imageWaterMark($groundImage,$waterPos=0,$waterImage="",$waterText="",$textFont=5,$textColor="#FF0000",$myfontpath="../data/mask/cour.ttf",$w_pct,$w_quality){
 	global $fun_r,$editor;
@@ -123,15 +123,15 @@ function imageWaterMark($groundImage,$waterPos=0,$waterImage="",$waterText="",$t
     $isWaterImage = FALSE; 
     $formatMsg = $fun_r['synotdotype']; 
 
-    //è¯»å–æ°´å°æ–‡ä»¶ 
+    //¶ÁÈ¡Ë®Ó¡ÎÄ¼þ 
     if(!empty($waterImage) && file_exists($waterImage)) 
     { 
         $isWaterImage = TRUE; 
         $water_info = getimagesize($waterImage); 
-        $water_w    = $water_info[0];//å–å¾—æ°´å°å›¾ç‰‡çš„å®½ 
-        $water_h    = $water_info[1];//å–å¾—æ°´å°å›¾ç‰‡çš„é«˜ 
+        $water_w    = $water_info[0];//È¡µÃË®Ó¡Í¼Æ¬µÄ¿í 
+        $water_h    = $water_info[1];//È¡µÃË®Ó¡Í¼Æ¬µÄ¸ß 
 
-        switch($water_info[2])//å–å¾—æ°´å°å›¾ç‰‡çš„æ ¼å¼ 
+        switch($water_info[2])//È¡µÃË®Ó¡Í¼Æ¬µÄ¸ñÊ½ 
         { 
             case 1:$water_im = imagecreatefromgif($waterImage);break; 
             case 2:$water_im = imagecreatefromjpeg($waterImage);break; 
@@ -140,14 +140,14 @@ function imageWaterMark($groundImage,$waterPos=0,$waterImage="",$waterText="",$t
         } 
     } 
 
-    //è¯»å–èƒŒæ™¯å›¾ç‰‡ 
+    //¶ÁÈ¡±³¾°Í¼Æ¬ 
     if(!empty($groundImage) && file_exists($groundImage)) 
     { 
         $ground_info = getimagesize($groundImage); 
-        $ground_w    = $ground_info[0];//å–å¾—èƒŒæ™¯å›¾ç‰‡çš„å®½ 
-        $ground_h    = $ground_info[1];//å–å¾—èƒŒæ™¯å›¾ç‰‡çš„é«˜ 
+        $ground_w    = $ground_info[0];//È¡µÃ±³¾°Í¼Æ¬µÄ¿í 
+        $ground_h    = $ground_info[1];//È¡µÃ±³¾°Í¼Æ¬µÄ¸ß 
 
-        switch($ground_info[2])//å–å¾—èƒŒæ™¯å›¾ç‰‡çš„æ ¼å¼ 
+        switch($ground_info[2])//È¡µÃ±³¾°Í¼Æ¬µÄ¸ñÊ½ 
         { 
             case 1:$ground_im = imagecreatefromgif($groundImage);break; 
             case 2:$ground_im = imagecreatefromjpeg($groundImage);break; 
@@ -161,20 +161,20 @@ function imageWaterMark($groundImage,$waterPos=0,$waterImage="",$waterText="",$t
 		return "";
     } 
 
-    //æ°´å°ä½ç½® 
-    if($isWaterImage)//å›¾ç‰‡æ°´å° 
+    //Ë®Ó¡Î»ÖÃ 
+    if($isWaterImage)//Í¼Æ¬Ë®Ó¡ 
     { 
         $w = $water_w; 
         $h = $water_h; 
-        $label = "å›¾ç‰‡çš„"; 
+        $label = "Í¼Æ¬µÄ"; 
     } 
-    else//æ–‡å­—æ°´å° 
+    else//ÎÄ×ÖË®Ó¡ 
     { 
-        $temp = imagettfbbox(ceil($textFont*2.5),0,$myfontpath,$waterText);//å–å¾—ä½¿ç”¨ TrueType å­—ä½“çš„æ–‡æœ¬çš„èŒƒå›´ 
+        $temp = imagettfbbox(ceil($textFont*2.5),0,$myfontpath,$waterText);//È¡µÃÊ¹ÓÃ TrueType ×ÖÌåµÄÎÄ±¾µÄ·¶Î§ 
         $w = $temp[2] - $temp[6]; 
         $h = $temp[3] - $temp[7]; 
         unset($temp); 
-        $label = "æ–‡å­—åŒºåŸŸ"; 
+        $label = "ÎÄ×ÖÇøÓò"; 
     } 
     if( ($ground_w<$w) || ($ground_h<$h) ) 
     { 
@@ -183,67 +183,67 @@ function imageWaterMark($groundImage,$waterPos=0,$waterImage="",$waterText="",$t
     } 
     switch($waterPos) 
     { 
-        case 0://éšæœº 
+        case 0://Ëæ»ú 
             $posX = rand(0,($ground_w - $w)); 
             $posY = rand(0,($ground_h - $h)); 
             break; 
-        case 1://1ä¸ºé¡¶ç«¯å±…å·¦ 
+        case 1://1Îª¶¥¶Ë¾Ó×ó 
             $posX = 0; 
             $posY = 0; 
             break; 
-        case 2://2ä¸ºé¡¶ç«¯å±…ä¸­ 
+        case 2://2Îª¶¥¶Ë¾ÓÖÐ 
             $posX = ($ground_w - $w) / 2; 
             $posY = 0; 
             break; 
-        case 3://3ä¸ºé¡¶ç«¯å±…å³ 
+        case 3://3Îª¶¥¶Ë¾ÓÓÒ 
             $posX = $ground_w - $w; 
             $posY = 0; 
             break; 
-        case 4://4ä¸ºä¸­éƒ¨å±…å·¦ 
+        case 4://4ÎªÖÐ²¿¾Ó×ó 
             $posX = 0; 
             $posY = ($ground_h - $h) / 2; 
             break; 
-        case 5://5ä¸ºä¸­éƒ¨å±…ä¸­ 
+        case 5://5ÎªÖÐ²¿¾ÓÖÐ 
             $posX = ($ground_w - $w) / 2; 
             $posY = ($ground_h - $h) / 2; 
             break; 
-        case 6://6ä¸ºä¸­éƒ¨å±…å³ 
+        case 6://6ÎªÖÐ²¿¾ÓÓÒ 
             $posX = $ground_w - $w; 
             $posY = ($ground_h - $h) / 2; 
             break; 
-        case 7://7ä¸ºåº•ç«¯å±…å·¦ 
+        case 7://7Îªµ×¶Ë¾Ó×ó 
             $posX = 0; 
             $posY = $ground_h - $h; 
             break; 
-        case 8://8ä¸ºåº•ç«¯å±…ä¸­ 
+        case 8://8Îªµ×¶Ë¾ÓÖÐ 
             $posX = ($ground_w - $w) / 2; 
             $posY = $ground_h - $h; 
             break; 
-        case 9://9ä¸ºåº•ç«¯å±…å³ 
+        case 9://9Îªµ×¶Ë¾ÓÓÒ 
             $posX = $ground_w - $w; 
             $posY = $ground_h - $h; 
             break; 
-        default://éšæœº 
+        default://Ëæ»ú 
             $posX = rand(0,($ground_w - $w)); 
             $posY = rand(0,($ground_h - $h)); 
             break;     
     } 
 
-    //è®¾å®šå›¾åƒçš„æ··è‰²æ¨¡å¼ 
+    //Éè¶¨Í¼ÏñµÄ»ìÉ«Ä£Ê½ 
     imagealphablending($ground_im, true); 
 
-    if($isWaterImage)//å›¾ç‰‡æ°´å° 
+    if($isWaterImage)//Í¼Æ¬Ë®Ó¡ 
     {
 		if($water_info[2]==3)
 		{
-			imagecopy($ground_im, $water_im, $posX, $posY, 0, 0, $water_w,$water_h);//æ‹·è´æ°´å°åˆ°ç›®æ ‡æ–‡ä»¶
+			imagecopy($ground_im, $water_im, $posX, $posY, 0, 0, $water_w,$water_h);//¿½±´Ë®Ó¡µ½Ä¿±êÎÄ¼þ
 		}
 		else
 		{
-			imagecopymerge($ground_im, $water_im, $posX, $posY, 0, 0, $water_w,$water_h,$w_pct);//æ‹·è´æ°´å°åˆ°ç›®æ ‡æ–‡ä»¶
+			imagecopymerge($ground_im, $water_im, $posX, $posY, 0, 0, $water_w,$water_h,$w_pct);//¿½±´Ë®Ó¡µ½Ä¿±êÎÄ¼þ
 		}
     } 
-    else//æ–‡å­—æ°´å° 
+    else//ÎÄ×ÖË®Ó¡ 
     { 
         if( !empty($textColor) && (strlen($textColor)==7) ) 
         { 
@@ -259,9 +259,9 @@ function imageWaterMark($groundImage,$waterPos=0,$waterImage="",$waterText="",$t
         imagestring ( $ground_im, $textFont, $posX, $posY, $waterText, imagecolorallocate($ground_im, $R, $G, $B));         
     } 
 
-    //ç”Ÿæˆæ°´å°åŽçš„å›¾ç‰‡ 
+    //Éú³ÉË®Ó¡ºóµÄÍ¼Æ¬ 
     @unlink($groundImage); 
-    switch($ground_info[2])//å–å¾—èƒŒæ™¯å›¾ç‰‡çš„æ ¼å¼ 
+    switch($ground_info[2])//È¡µÃ±³¾°Í¼Æ¬µÄ¸ñÊ½ 
     { 
         case 1:imagegif($ground_im,$groundImage);break; 
         case 2:imagejpeg($ground_im,$groundImage,$w_quality);break; 
@@ -269,7 +269,7 @@ function imageWaterMark($groundImage,$waterPos=0,$waterImage="",$waterText="",$t
         default:echo $formatMsg;return ""; 
     } 
 
-    //é‡Šæ”¾å†…å­˜ 
+    //ÊÍ·ÅÄÚ´æ 
     if(isset($water_info)) unset($water_info); 
     if(isset($water_im)) imagedestroy($water_im); 
     unset($ground_info); 

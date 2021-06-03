@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -22,15 +22,15 @@ $msql=$empire->query("select mid,mname,searchvar from {$dbtbpre}enewsmod order b
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>æœç´¢å­—æ®µåˆ—è¡¨</title>
+<title>ËÑË÷×Ö¶ÎÁĞ±í</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼šæœç´¢å­—æ®µåˆ—è¡¨</td>
+    <td>Î»ÖÃ£ºËÑË÷×Ö¶ÎÁĞ±í</td>
   </tr>
 </table>
 <br>

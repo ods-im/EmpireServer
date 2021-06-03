@@ -15,7 +15,7 @@ if($id&&$classid)
 	{
 		$doajax==1?ajax_printerror('','','ErrorUrl',1):printerror('ErrorUrl','',1);
     }
-	//æ˜¯å¦å¯ç”¨
+	//ÊÇ·ñÆôÓÃ
 	if($public_r['diggcmids'])
 	{
 		if(strstr($public_r['diggcmids'],','.$mid.','))
@@ -25,7 +25,7 @@ if($id&&$classid)
 	}
 	$checkid=$classid.'n'.$id;
 	$checktime=time()+30*24*3600;
-	//è¿ç»­æäº¤
+	//Á¬ĞøÌá½»
 	if($public_r['digglevel']!=0)//cookie
 	{
 		if(getcvar('lastdiggid')==$checkid)
@@ -33,25 +33,25 @@ if($id&&$classid)
 			$doajax==1?ajax_printerror('','','ReDigg',1):printerror('ReDigg','',1);
 		}
 	}
-	//å­—æ®µ
+	//×Ö¶Î
 	$fnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsf where tbname='".$class_r[$classid][tbname]."' and (f='diggtop' or f='diggdown')");
 	if(empty($fnum))
 	{
 		$doajax==1?ajax_printerror('','','ErrorUrl',1):printerror('ErrorUrl','',1);
 	}
-	//éªŒè¯ä¿¡æ¯
+	//ÑéÖ¤ĞÅÏ¢
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$class_r[$classid][tbname]." where id='$id' and classid='$classid' limit 1");
 	if(empty($num))
 	{
 		$doajax==1?ajax_printerror('','','ErrorUrl',1):printerror('ErrorUrl','',1);
 	}
-	//éªŒè¯IP
+	//ÑéÖ¤IP
 	$ip='';
 	if($public_r['digglevel']==2)
 	{
 		$ip=egetip();
 	}
-	//éªŒè¯ä¼šå‘˜
+	//ÑéÖ¤»áÔ±
 	if($public_r['digglevel']==3)
 	{
 		include("../../member/class/user.php");
@@ -64,7 +64,7 @@ if($id&&$classid)
 	}
 	$ip=str_replace(',','',$ip);
 	$ip=RepPostVar($ip);
-	//é‡å¤éªŒè¯
+	//ÖØ¸´ÑéÖ¤
 	if($public_r['digglevel']>1)
 	{
 		$ipr=$empire->fetch1("select classid,ips from {$dbtbpre}enewsdiggips where id='$id' and classid='$classid' limit 1");
@@ -110,7 +110,7 @@ if($id&&$classid)
 	{
 		if($public_r['digglevel']!=0)
 		{
-			esetcookie('lastdiggid',$checkid,$checktime);	//æœ€åå‘å¸ƒ
+			esetcookie('lastdiggid',$checkid,$checktime);	//×îºó·¢²¼
 		}
 		if($doajax==1)
 		{

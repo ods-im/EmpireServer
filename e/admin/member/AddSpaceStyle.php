@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,18 +15,18 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"spacestyle");
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href='ListSpaceStyle.php".$ecms_hashur['whehref']."'>ç®¡ç†ä¼šå‘˜ç©ºé—´æ¨¡æ¿</a>&nbsp;->&nbsp;å¢åŠ ä¼šå‘˜ç©ºé—´æ¨¡æ¿";
+$url="<a href='ListSpaceStyle.php".$ecms_hashur['whehref']."'>¹ÜÀí»áÔ±¿Õ¼äÄ£°å</a>&nbsp;->&nbsp;Ôö¼Ó»áÔ±¿Õ¼äÄ£°å";
 if($enews=="EditSpaceStyle")
 {
 	$styleid=(int)$_GET['styleid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsspacestyle where styleid='$styleid'");
-	$url="<a href='ListSpaceStyle.php".$ecms_hashur['whehref']."'>ç®¡ç†ä¼šå‘˜ç©ºé—´æ¨¡æ¿</a>&nbsp;->&nbsp;ä¿®æ”¹ä¼šå‘˜ç©ºé—´æ¨¡æ¿ï¼š<b>".$r[stylename]."</b>";
+	$url="<a href='ListSpaceStyle.php".$ecms_hashur['whehref']."'>¹ÜÀí»áÔ±¿Õ¼äÄ£°å</a>&nbsp;->&nbsp;ĞŞ¸Ä»áÔ±¿Õ¼äÄ£°å£º<b>".$r[stylename]."</b>";
 }
-//ä¼šå‘˜ç»„
-$line=5;//ä¸€è¡Œæ˜¾ç¤ºäº”ä¸ª
+//»áÔ±×é
+$line=5;//Ò»ĞĞÏÔÊ¾Îå¸ö
 $i=0;
 $mgsql=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($level_r=$empire->fetch($mgsql))
@@ -49,55 +49,55 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¼šå‘˜ç©ºé—´æ¨¡æ¿</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>»áÔ±¿Õ¼äÄ£°å</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListSpaceStyle.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="21%" height="25">å¢åŠ ä¼šå‘˜ç©ºé—´æ¨¡æ¿</td>
+      <td width="21%" height="25">Ôö¼Ó»áÔ±¿Õ¼äÄ£°å</td>
       <td width="79%" height="25"><input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
         <input name="styleid" type="hidden" id="styleid" value="<?=$styleid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¨¡æ¿åç§°</td>
+      <td height="25">Ä£°åÃû³Æ</td>
       <td height="25"> <input name="stylename" type="text" id="stylename" value="<?=$r[stylename]?>" size="30"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¨¡æ¿ç¼©ç•¥å›¾</td>
+      <td height="25">Ä£°åËõÂÔÍ¼</td>
       <td height="25"> <input name="stylepic" type="text" id="stylepic" value="<?=$r[stylepic]?>" size="30"> 
-        <a onclick="window.open('../ecmseditor/FileMain.php?modtype=5&type=1&classid=&doing=2&field=stylepic<?=$ecms_hashur['ehref']?>','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../../data/images/changeimg.gif" width="22" height="22" border="0" align="absbottom"></a> 
+        <a onclick="window.open('../ecmseditor/FileMain.php?modtype=5&type=1&classid=&doing=2&field=stylepic<?=$ecms_hashur['ehref']?>','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../../data/images/changeimg.gif" width="22" height="22" border="0" align="absbottom"></a> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">å¯é€‰æ‹©æ­¤æ¨¡æ¿çš„ä¼šå‘˜ç»„<br>
-        <font color="#666666">(ä¸é€‰ä¸ºä¸é™åˆ¶ä¼šå‘˜ç»„)</font> </td>
+      <td height="25">¿ÉÑ¡Ôñ´ËÄ£°åµÄ»áÔ±×é<br>
+        <font color="#666666">(²»Ñ¡Îª²»ÏŞÖÆ»áÔ±×é)</font> </td>
       <td height="25"><?=$membergroup?></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¨¡æ¿ç›®å½•</td>
+      <td height="25">Ä£°åÄ¿Â¼</td>
       <td height="25"> e/space/template/ 
         <input name="stylepath" type="text" id="stylepath" value="<?=$r[stylepath]?>" size="9"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top"> <p>æ¨¡æ¿è¯´æ˜</p></td>
+      <td height="25" valign="top"> <p>Ä£°åËµÃ÷</p></td>
       <td height="25"><textarea name="stylesay" cols="60" rows="5"><?=$r[stylesay]?></textarea> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"> <input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"> <input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

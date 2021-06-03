@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,15 +16,15 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"card");
 
-//å¢åŠ ç‚¹å¡
+//Ôö¼Óµã¿¨
 function AddCard($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[card_no]||!$add[password]||!$add[money])
 	{printerror("EmptyCard","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"card");
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewscard where card_no='$add[card_no]' limit 1");
 	if($num)
@@ -42,7 +42,7 @@ function AddCard($add,$userid,$username){
 	$cardid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("cardid=$cardid&card_no=$add[card_no]&cardfen=$add[cardfen]&carddate=$add[carddate]");
 		printerror("AddCardSuccess","AddCard.php?enews=AddCard".hReturnEcmsHashStrHref2(0));
 	}
@@ -50,7 +50,7 @@ function AddCard($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ‰¹é‡å¢åŠ ç‚¹å¡
+//ÅúÁ¿Ôö¼Óµã¿¨
 function AddMoreCard($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$donum=(int)$add['donum'];
@@ -64,10 +64,10 @@ function AddMoreCard($add,$userid,$username){
 	$add['endtime']=hRepPostStr($add['endtime'],1);
 	if(!$donum||!$cardnum||!$passnum||!$add[money])
 	{printerror("EmptyMoreCard","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"card");
 	$cardtime=date("Y-m-d H:i:s");
-	//å†™å…¥å¡å·
+	//Ğ´Èë¿¨ºÅ
 	$no=1;
     while($no<=$donum)
 	{
@@ -82,7 +82,7 @@ function AddMoreCard($add,$userid,$username){
     }
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("cardnum=$donum&cardfen=$add[cardfen]&carddate=$add[carddate]");
 		printerror("AddMoreCardSuccess","AddMoreCard.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -90,13 +90,13 @@ function AddMoreCard($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ç‚¹å¡
+//ĞŞ¸Äµã¿¨
 function EditCard($add,$userid,$username){
 	global $empire,$time,$dbtbpre;
 	$add[cardid]=(int)$add[cardid];
 	if(!$add[card_no]||!$add[password]||!$add[money]||!$add[cardid])
 	{printerror("EmptyCard","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"card");
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewscard where card_no='$add[card_no]' and cardid<>".$add[cardid]." limit 1");
 	if($num)
@@ -112,7 +112,7 @@ function EditCard($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewscard set card_no='$add[card_no]',password='$add[password]',cardfen=$add[cardfen],money=$add[money],endtime='$add[endtime]',carddate=$add[carddate],cdgroupid=$add[cdgroupid],cdzgroupid=$add[cdzgroupid] where cardid='$add[cardid]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("cardid=$add[cardid]&card_no=$add[card_no]&cardfen=$add[cardfen]&carddate=$add[carddate]");
 		printerror("EditCardSuccess","ListCard.php?time=$time".hReturnEcmsHashStrHref2(0));
 	}
@@ -120,19 +120,19 @@ function EditCard($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ç‚¹å¡
+//É¾³ıµã¿¨
 function DelCard($cardid,$userid,$username){
 	global $empire,$time,$dbtbpre;
 	$cardid=(int)$cardid;
 	if(!$cardid)
 	{printerror("NotChangeCardid","history.go(-1)");}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"card");
 	$r=$empire->fetch1("select card_no,cardfen,carddate from {$dbtbpre}enewscard where cardid='$cardid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewscard where cardid='$cardid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("cardid=$cardid&card_no=$r[card_no]&cardfen=$r[cardfen]&carddate=$r[carddate]");
 		printerror("DelCardSuccess","ListCard.php?time=$time".hReturnEcmsHashStrHref2(0));
 	}
@@ -140,7 +140,7 @@ function DelCard($cardid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ‰¹é‡åˆ é™¤ç‚¹å¡
+//ÅúÁ¿É¾³ıµã¿¨
 function DelCard_all($add,$userid,$username){
 	global $empire,$time,$dbtbpre;
 	$cardid=$add[cardid];
@@ -149,7 +149,7 @@ function DelCard_all($add,$userid,$username){
 	{
 		printerror("NotChangeCardid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"card");
 	$ids='';
 	$dh='';
@@ -161,7 +161,7 @@ function DelCard_all($add,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewscard where cardid in (".$ids.")");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("DelCardSuccess","ListCard.php?time=$add[time]".hReturnEcmsHashStrHref2(0));
 	}
@@ -176,32 +176,32 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ ç‚¹å¡
+//Ôö¼Óµã¿¨
 if($enews=="AddCard")
 {
 	$add=$_POST['add'];
 	AddCard($add,$logininid,$loginin);
 }
-//ä¿®æ”¹ç‚¹å¡
+//ĞŞ¸Äµã¿¨
 elseif($enews=="EditCard")
 {
 	$time=(int)$_POST['time'];
 	$add=$_POST['add'];
 	EditCard($add,$logininid,$loginin);
 }
-//åˆ é™¤ç‚¹å¡
+//É¾³ıµã¿¨
 elseif($enews=="DelCard")
 {
 	$time=(int)$_GET['time'];
 	$cardid=$_GET['cardid'];
 	DelCard($cardid,$logininid,$loginin);
 }
-elseif($enews=="AddMoreCard")//æ‰¹é‡å¢åŠ ç‚¹å¡
+elseif($enews=="AddMoreCard")//ÅúÁ¿Ôö¼Óµã¿¨
 {
 	$add=$_POST;
 	AddMoreCard($add,$logininid,$loginin);
 }
-elseif($enews=="DelCard_all")//æ‰¹é‡åˆ é™¤ç‚¹å¡
+elseif($enews=="DelCard_all")//ÅúÁ¿É¾³ıµã¿¨
 {
 	DelCard_all($_POST,$logininid,$loginin);
 }
@@ -217,7 +217,7 @@ $start=0;
 $line=25;
 $page_line=25;
 $add="";
-//æœç´¢
+//ËÑË÷
 $sear=$_POST['sear'];
 if(empty($sear))
 {$sear=$_GET['sear'];}
@@ -242,7 +242,7 @@ if($sear)
 	{$add=" where carddate='$keyboard'";}
 	$search.="&sear=1&show=$show&keyboard=$keyboard";
 }
-//è¿‡æœŸ
+//¹ıÆÚ
 if($time)
 {
 	$today=date("Y-m-d");
@@ -263,8 +263,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ç‚¹å¡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíµã¿¨</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -282,13 +282,13 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š<a href="ListCard.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ç‚¹å¡</a></td>
+    <td width="50%">Î»ÖÃ£º<a href="ListCard.php<?=$ecms_hashur['whehref']?>">¹ÜÀíµã¿¨</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ç‚¹å¡" onclick="self.location.href='AddCard.php?enews=AddCard<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Óµã¿¨" onclick="self.location.href='AddCard.php?enews=AddCard<?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit52" value="æ‰¹é‡å¢åŠ ç‚¹å¡" onclick="self.location.href='AddMoreCard.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit52" value="ÅúÁ¿Ôö¼Óµã¿¨" onclick="self.location.href='AddMoreCard.php<?=$ecms_hashur['whehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit53" value="ç®¡ç†è¿‡æœŸç‚¹å¡" onclick="self.location.href='ListCard.php?time=1<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit53" value="¹ÜÀí¹ıÆÚµã¿¨" onclick="self.location.href='ListCard.php?time=1<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -297,31 +297,31 @@ function CheckAll(form)
   <form name=search method=get action=ListCard.php>
   <?=$ecms_hashur['eform']?>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="6"> æœç´¢ï¼š 
+      <td height="25" colspan="6"> ËÑË÷£º 
         <input name="keyboard" type="text" id="keyboard"> <select name="show" id="show">
-          <option value="1">å¡å·</option>
-          <option value="2">é‡‘é¢</option>
-          <option value="3">ç‚¹æ•°</option>
-          <option value="4">å¤©æ•°</option>
-        </select> <input type="submit" name="Submit" value="æœç´¢"> <input name="sear" type="hidden" id="sear" value="1"> 
+          <option value="1">¿¨ºÅ</option>
+          <option value="2">½ğ¶î</option>
+          <option value="3">µãÊı</option>
+          <option value="4">ÌìÊı</option>
+        </select> <input type="submit" name="Submit" value="ËÑË÷"> <input name="sear" type="hidden" id="sear" value="1"> 
         <input name="time" type="hidden" id="time" value="<?=$time?>"> </td>
     </tr>
 	</form>
 </table>
   
 <table width="100%" border="0" cellpadding="0" cellspacing="1" class="tableborder">
-  <form name="listcardform" method="post" action="ListCard.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+  <form name="listcardform" method="post" action="ListCard.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
   <?=$ecms_hashur['form']?>
     <input type="hidden" name="enews" value="DelCard_all">
 	<input name="time" type="hidden" id="time" value="<?=$time?>">
     <tr class="header"> 
       <td width="4%"><div align="center"></div></td>
       <td width="7%" height="25"> <div align="center">ID</div></td>
-      <td width="36%" height="25"> <div align="center">å¡å·</div></td>
-      <td width="14%" height="25"> <div align="center">é‡‘é¢(å…ƒ)</div></td>
-      <td width="12%"><div align="center">æœ‰æ•ˆæœŸ</div></td>
-      <td width="12%" height="25"> <div align="center">ç‚¹æ•°</div></td>
-      <td width="15%" height="25"> <div align="center">æ“ä½œ</div></td>
+      <td width="36%" height="25"> <div align="center">¿¨ºÅ</div></td>
+      <td width="14%" height="25"> <div align="center">½ğ¶î(Ôª)</div></td>
+      <td width="12%"><div align="center">ÓĞĞ§ÆÚ</div></td>
+      <td width="12%" height="25"> <div align="center">µãÊı</div></td>
+      <td width="15%" height="25"> <div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -344,7 +344,7 @@ function CheckAll(form)
       <td height="25"> <div align="center"> 
           <?=$r[cardfen]?>
         </div></td>
-      <td height="25"> <div align="center">[<a href="AddCard.php?enews=EditCard&cardid=<?=$r[cardid]?>&time=<?=$time?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="ListCard.php?enews=DelCard&cardid=<?=$r[cardid]?>&time=<?=$time?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+      <td height="25"> <div align="center">[<a href="AddCard.php?enews=EditCard&cardid=<?=$r[cardid]?>&time=<?=$time?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="ListCard.php?enews=DelCard&cardid=<?=$r[cardid]?>&time=<?=$time?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
     </tr>
     <?
   }
@@ -355,7 +355,7 @@ function CheckAll(form)
         </div></td>
       <td height="25" colspan="6">&nbsp; 
         <?=$returnpage?>
-        &nbsp;&nbsp; <input type="submit" name="Submit2" value="åˆ é™¤é€‰ä¸­"> </td>
+        &nbsp;&nbsp; <input type="submit" name="Submit2" value="É¾³ıÑ¡ÖĞ"> </td>
     </tr>
   </form>
 </table>

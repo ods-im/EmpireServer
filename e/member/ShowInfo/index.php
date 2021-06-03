@@ -7,7 +7,7 @@ require("../../data/dbcache/MemberLevel.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 if($public_r['showinfolevel'])
 {
 	$user=islogin();
@@ -44,10 +44,10 @@ if(empty($username))
 $registertime=eReturnMemberRegtime($r['registertime'],'Y-m-d H:i:s');
 $email=$r['email'];
 $addr=$empire->fetch1("select * from {$dbtbpre}enewsmemberadd where userid='".$r['userid']."' limit 1");
-//鍙栧緱琛ㄥ崟
+//取得表单
 $formid=GetMemberFormId($r['groupid']);
 $formr=$empire->fetch1("select filef,imgf,tobrf,viewenter from {$dbtbpre}enewsmemberform where fid='$formid'");
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/ShowInfo.php');
 db_close();
 $empire=null;

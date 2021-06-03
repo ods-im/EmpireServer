@@ -16,12 +16,12 @@ select					{ font: 9pt Tahoma, Verdana; font-weight: normal; }
 .outertxt a				{ color: #000000 }
 .bold					{ font-weight: bold }
 
-/*鑿滃崟鎸夋壄鏍峰紡*/
+/*菜单按扭样式*/
 .emenubutton input {
      FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: Verdana,Tahoma; BACKGROUND-COLOR: #86C31F; height:27px; vertical-align:middle;
 }
 
-/*鍒嗛〉鏍峰紡*/
+/*分页样式*/
 .epages{margin:3px 0;font:11px/12px Tahoma}
 .epages *{vertical-align:middle;}
 .epages a{padding:1px 4px 1px;border:1px solid #A6CBE7;margin:0 1px 0 0;text-align:center;text-decoration:none;font:normal 12px/14px verdana;}

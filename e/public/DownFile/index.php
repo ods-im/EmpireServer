@@ -5,7 +5,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//ä¸‹è½½é™„ä»¶
+//ÏÂÔØ¸½¼ş
 function DoDownFile($fileid){
 	global $empire,$public_r,$class_r,$dbtbpre;
 	if(empty($fileid))
@@ -17,10 +17,10 @@ function DoDownFile($fileid){
 	{
 		printerror("ErrorUrl","history.go(-1)",1);
 	}
-	//ä¸‹è½½æ•°åŠ ï¼‘
+	//ÏÂÔØÊı¼Ó£±
 	$sql=$empire->query("update {$dbtbpre}enewsfile_1 set onclick=onclick+1 where fileid='$fileid'");
 	$ok=1;
-	//æŒ‰æ ç›®
+	//°´À¸Ä¿
 	$fspath=ReturnFileSavePath($r[classid],$r[fpath]);
 	$filepath=$r[path]?$r[path].'/':$r[path];
 	$downurl=$fspath['fileurl'].$filepath.$r[filename];
@@ -29,7 +29,7 @@ function DoDownFile($fileid){
 		Header("Location:$downurl");
 	}
 }
-//ä¸‹è½½é™„ä»¶
+//ÏÂÔØ¸½¼ş
 $fileid=(int)$_GET['fileid'];
 DoDownFile($fileid);
 db_close();

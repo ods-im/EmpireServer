@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"precode");
 $enews=ehtmlspecialchars($_GET['enews']);
 $time=(int)$_GET['time'];
@@ -23,18 +23,18 @@ $endtime='';
 $r[precode]=strtoupper(make_password(20));
 $classid='';
 $r[musttotal]=0;
-$url="<a href=ListPrecode.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼˜æƒ ç </a> &gt; å¢åŠ ä¼˜æƒ ç ";
+$url="<a href=ListPrecode.php".$ecms_hashur['whehref'].">¹ÜÀíÓÅ»İÂë</a> &gt; Ôö¼ÓÓÅ»İÂë";
 if($enews=="EditPrecode")
 {
 	$id=(int)$_GET['id'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsshop_precode where id='$id' limit 1");
-	$url="<a href=ListPrecode.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼˜æƒ ç </a> &gt; ä¿®æ”¹ä¼˜æƒ ç ";
+	$url="<a href=ListPrecode.php".$ecms_hashur['whehref'].">¹ÜÀíÓÅ»İÂë</a> &gt; ĞŞ¸ÄÓÅ»İÂë";
 	$endtime=$r['endtime']?date('Y-m-d',$r['endtime']):'';
 	$classid=substr($r['classid'],1,strlen($r['classid'])-2);
 }
-//ä¼šå‘˜ç»„
+//»áÔ±×é
 $membergroup='';
-$line=5;//ä¸€è¡Œæ˜¾ç¤ºäº”ä¸ª
+$line=5;//Ò»ĞĞÏÔÊ¾Îå¸ö
 $i=0;
 $mgsql=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($level_r=$empire->fetch($mgsql))
@@ -56,8 +56,8 @@ $href="AddPrecode.php?enews=$enews&time=$time&id=$id".$ecms_hashur['ehref'];
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ ä¼˜æƒ ç </title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼ÓÓÅ»İÂë</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 </head>
@@ -65,80 +65,80 @@ $href="AddPrecode.php?enews=$enews&time=$time&id=$id".$ecms_hashur['ehref'];
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListPrecode.php" autocomplete="off">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2"><div align="center">å¢åŠ ä¼˜æƒ ç  
+      <td height="25" colspan="2"><div align="center">Ôö¼ÓÓÅ»İÂë 
           <input name="enews" type="hidden" id="enews" value="<?=$enews?>">
 		  <input name="time" type="hidden" id="time" value="<?=$time?>">
           <input name="id" type="hidden" id="id" value="<?=$id?>">
       </div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="17%" height="25">ä¼˜æƒ ç åç§°(*)ï¼š</td>
+      <td width="17%" height="25">ÓÅ»İÂëÃû³Æ(*)£º</td>
       <td width="83%" height="25"><input name="prename" type="text" id="prename" value="<?=$r[prename]?>" size="42"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ä¼˜æƒ ç (*)ï¼š</td>
+      <td height="25">ÓÅ»İÂë(*)£º</td>
       <td height="25"><input name="precode" type="text" id="precode" value="<?=$r[precode]?>" size="42">
-        <input type="button" name="Submit3" value="éšæœºä¼˜æƒ ç " onclick="javascript:self.location.href='<?=$href?>'">
-        <font color="#666666">(&lt;36ä½)</font></td>
+        <input type="button" name="Submit3" value="Ëæ»úÓÅ»İÂë" onclick="javascript:self.location.href='<?=$href?>'">
+        <font color="#666666">(&lt;36Î»)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">ä¼˜æƒ ç±»å‹ï¼š</td>
+      <td height="25">ÓÅ»İÀàĞÍ£º</td>
       <td height="25"><select name="pretype" id="pretype">
-        <option value="0"<?=$r['pretype']==0?' selected':''?>>å‡é‡‘é¢</option>
-        <option value="1"<?=$r['pretype']==1?' selected':''?>>å•†å“ç™¾åˆ†æ¯”</option>
+        <option value="0"<?=$r['pretype']==0?' selected':''?>>¼õ½ğ¶î</option>
+        <option value="1"<?=$r['pretype']==1?' selected':''?>>ÉÌÆ·°Ù·Ö±È</option>
       </select>
-      <font color="#666666">ï¼ˆâ€œå‡é‡‘é¢â€å³è®¢å•é‡‘é¢-ä¼˜æƒ é‡‘é¢ï¼Œâ€œå•†å“ç™¾åˆ†æ¯”â€å³ç»™å•†å“æ‰“å¤šå°‘æŠ˜ï¼‰</font>      </td>
+      <font color="#666666">£¨¡°¼õ½ğ¶î¡±¼´¶©µ¥½ğ¶î-ÓÅ»İ½ğ¶î£¬¡°ÉÌÆ·°Ù·Ö±È¡±¼´¸øÉÌÆ·´ò¶àÉÙÕÛ£©</font>      </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ä¼˜æƒ é‡‘é¢(*)ï¼š</td>
+      <td height="25">ÓÅ»İ½ğ¶î(*)£º</td>
       <td height="25"><input name="premoney" type="text" id="premoney" value="<?=$r[premoney]?>" size="42">
-        <font color="#666666">(å½“å‡é‡‘é¢æ—¶å¡«é‡‘é¢ï¼Œå•ä½ï¼šå…ƒï¼Œå½“å•†å“ç™¾åˆ†æ¯”æ—¶å¡«ç™¾åˆ†æ¯”ï¼Œå•ä½ï¼š%)</font></td>
+        <font color="#666666">(µ±¼õ½ğ¶îÊ±Ìî½ğ¶î£¬µ¥Î»£ºÔª£¬µ±ÉÌÆ·°Ù·Ö±ÈÊ±Ìî°Ù·Ö±È£¬µ¥Î»£º%)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">è¿‡æœŸæ—¶é—´ï¼š</td>
+      <td height="25">¹ıÆÚÊ±¼ä£º</td>
       <td height="25"><input name="endtime" type="text" id="endtime" value="<?=$endtime?>" size="42" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        <font color="#666666">(ç©ºä¸ºä¸é™åˆ¶)</font></td>
+        <font color="#666666">(¿ÕÎª²»ÏŞÖÆ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">ä¼˜æƒ ç é‡å¤ä½¿ç”¨ï¼š</td>
+      <td height="25">ÓÅ»İÂëÖØ¸´Ê¹ÓÃ£º</td>
       <td height="25"><input type="radio" name="reuse" value="0"<?=$r['reuse']==0?' checked':''?>>
-      ä¸€æ¬¡æ€§ä½¿ç”¨
+      Ò»´ÎĞÔÊ¹ÓÃ
       <input type="radio" name="reuse" value="1"<?=$r['reuse']==1?' checked':''?>>
-      å¯ä»¥é‡å¤ä½¿ç”¨</td>
+      ¿ÉÒÔÖØ¸´Ê¹ÓÃ</td>
     </tr>
     <tr bgcolor="#FFFFFF">
       <td height="25">&nbsp;</td>
-      <td height="25">é™åˆ¶é‡å¤ä½¿ç”¨æ¬¡æ•°ï¼š
-      <input name="usenum" type="text" id="usenum" value="<?=$r[usenum]?>"><?=$r[haveusenum]?'[å·²ä½¿ç”¨ï¼š'.$r[haveusenum].']':''?>
-	  <font color="#666666">(0ä¸ºä¸é™)</font></td>
+      <td height="25">ÏŞÖÆÖØ¸´Ê¹ÓÃ´ÎÊı£º
+      <input name="usenum" type="text" id="usenum" value="<?=$r[usenum]?>"><?=$r[haveusenum]?'[ÒÑÊ¹ÓÃ£º'.$r[haveusenum].']':''?>
+	  <font color="#666666">(0Îª²»ÏŞ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ»¡å¤šå°‘é‡‘é¢å¯ä½¿ç”¨ï¼š</td>
+      <td height="25">Âú¶àÉÙ½ğ¶î¿ÉÊ¹ÓÃ£º</td>
       <td height="25"><input name="musttotal" type="text" id="musttotal" value="<?=$r[musttotal]?>" size="42">
-        å…ƒ <font color="#666666">(0ä¸ºä¸é™)</font></td>
+        Ôª <font color="#666666">(0Îª²»ÏŞ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">å¯ä½¿ç”¨çš„ä¼šå‘˜ç»„ï¼š<br>
-        <font color="#666666">(ä¸é€‰ä¸ºä¸é™)</font></td>
+      <td height="25">¿ÉÊ¹ÓÃµÄ»áÔ±×é£º<br>
+        <font color="#666666">(²»Ñ¡Îª²»ÏŞ)</font></td>
       <td height="25"><?=$membergroup?></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">å¯ä½¿ç”¨çš„æ ç›®å•†å“ï¼š</td>
+      <td height="25">¿ÉÊ¹ÓÃµÄÀ¸Ä¿ÉÌÆ·£º</td>
       <td height="25"><input name="classid" type="text" id="classid" value="<?=$classid?>" size="42">
-        <font color="#666666">(ç©ºä¸ºä¸é™ï¼Œè¦å¡«å†™ç»ˆææ ç›®IDï¼Œå¤šä¸ªIDå¯ç”¨åŠè§’é€—å·éš”å¼€â€œ,â€)</font></td>
+        <font color="#666666">(¿ÕÎª²»ÏŞ£¬ÒªÌîĞ´ÖÕ¼«À¸Ä¿ID£¬¶à¸öID¿ÉÓÃ°ë½Ç¶ººÅ¸ô¿ª¡°,¡±)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="2"><div align="center"> 
-          <input type="submit" name="Submit" value="æäº¤">
+          <input type="submit" name="Submit" value="Ìá½»">
           &nbsp; 
-          <input type="reset" name="Submit2" value="é‡ç½®">
+          <input type="reset" name="Submit2" value="ÖØÖÃ">
           &nbsp;</div></td>
     </tr>
   </table>

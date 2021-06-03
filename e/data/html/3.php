@@ -5,67 +5,67 @@ if(!defined('InEmpireCMS'))
 }
 ?><table width=100% align=center cellpadding=3 cellspacing=1 class=tableborder>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å›¾ç‰‡åç§°(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>Í¼Æ¬Ãû³Æ(*)</td>
     <td bgcolor=ffffff><table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#DBEAF5">
 <tr> 
   <td height="25" bgcolor="#FFFFFF">
-	<?=$tts?"<select name='ttid'><option value='0'>æ ‡é¢˜åˆ†ç±»</option>$tts</select>":""?>
+	<?=$tts?"<select name='ttid'><option value='0'>±êÌâ·ÖÀà</option>$tts</select>":""?>
 	<input type=text name=title value="<?=ehtmlspecialchars(stripSlashes($r[title]))?>" size="60"> 
-	<input type="button" name="button" value="å›¾æ–‡" onclick="document.add.title.value=document.add.title.value+'(å›¾æ–‡)';"> 
+	<input type="button" name="button" value="Í¼ÎÄ" onclick="document.add.title.value=document.add.title.value+'(Í¼ÎÄ)';"> 
   </td>
 </tr>
 <tr> 
-  <td height="25" bgcolor="#FFFFFF">å±æ€§: 
-	<input name="titlefont[b]" type="checkbox" value="b"<?=$titlefontb?>>ç²—ä½“
-	<input name="titlefont[i]" type="checkbox" value="i"<?=$titlefonti?>>æ–œä½“
-	<input name="titlefont[s]" type="checkbox" value="s"<?=$titlefonts?>>åˆ é™¤çº¿
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;é¢œè‰²: <input name="titlecolor" type="text" value="<?=stripSlashes($r[titlecolor])?>" size="10" class="color">
+  <td height="25" bgcolor="#FFFFFF">ÊôĞÔ: 
+	<input name="titlefont[b]" type="checkbox" value="b"<?=$titlefontb?>>´ÖÌå
+	<input name="titlefont[i]" type="checkbox" value="i"<?=$titlefonti?>>Ğ±Ìå
+	<input name="titlefont[s]" type="checkbox" value="s"<?=$titlefonts?>>É¾³ıÏß
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÑÕÉ«: <input name="titlecolor" type="text" value="<?=stripSlashes($r[titlecolor])?>" size="10" class="color">
   </td>
 </tr>
 </table>
 </td>
   </tr>
   <tr>
-    <td width='16%' height=25 bgcolor='ffffff'>ç‰¹æ®Šå±æ€§</td>
+    <td width='16%' height=25 bgcolor='ffffff'>ÌØÊâÊôĞÔ</td>
     <td bgcolor='ffffff'>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#DBEAF5">
   <tr>
-    <td height="25" bgcolor="#FFFFFF">ä¿¡æ¯å±æ€§: 
+    <td height="25" bgcolor="#FFFFFF">ĞÅÏ¢ÊôĞÔ: 
       <input name="checked" type="checkbox" value="1"<?=$r[checked]?' checked':''?>>
-      å®¡æ ¸ &nbsp;&nbsp; æ¨è 
+      ÉóºË &nbsp;&nbsp; ÍÆ¼ö 
       <select name="isgood" id="isgood">
-        <option value="0">ä¸æ¨è</option>
+        <option value="0">²»ÍÆ¼ö</option>
 	<?=$ftnr['igname']?>
       </select>
-      &nbsp;&nbsp; å¤´æ¡ 
+      &nbsp;&nbsp; Í·Ìõ 
       <select name="firsttitle" id="firsttitle">
-        <option value="0">éå¤´æ¡</option>
+        <option value="0">·ÇÍ·Ìõ</option>
 	<?=$ftnr['ftname']?>
       </select></td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF">å…³é”®å­—&nbsp;&nbsp;&nbsp;: 
+    <td height="25" bgcolor="#FFFFFF">¹Ø¼ü×Ö&nbsp;&nbsp;&nbsp;: 
       <input name="keyboard" type="text" size="52" value="<?=stripSlashes($r[keyboard])?>">
-      <font color="#666666">(å¤šä¸ªè¯·ç”¨&quot;,&quot;éš”å¼€)</font></td>
+      <font color="#666666">(¶à¸öÇëÓÃ&quot;,&quot;¸ô¿ª)</font></td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF">å¤–éƒ¨é“¾æ¥: 
+    <td height="25" bgcolor="#FFFFFF">Íâ²¿Á´½Ó: 
       <input name="titleurl" type="text" value="<?=stripSlashes($r[titleurl])?>" size="52">
-      <font color="#666666">(å¡«å†™åä¿¡æ¯è¿æ¥åœ°å€å°†ä¸ºæ­¤é“¾æ¥)</font></td>
+      <font color="#666666">(ÌîĞ´ºóĞÅÏ¢Á¬½ÓµØÖ·½«Îª´ËÁ´½Ó)</font></td>
   </tr>
 </table>
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å‘å¸ƒæ—¶é—´</td>
-    <td bgcolor=ffffff><input name="newstime" type="text" value="<?=$r[newstime]?>" size="28" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd HH:mm:ss'})"><input type=button name=button value="è®¾ä¸ºå½“å‰æ—¶é—´" onclick="document.add.newstime.value='<?=$todaytime?>'">
+    <td width=16% height=25 bgcolor=ffffff>·¢²¼Ê±¼ä</td>
+    <td bgcolor=ffffff><input name="newstime" type="text" value="<?=$r[newstime]?>" size="28" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd HH:mm:ss'})"><input type=button name=button value="ÉèÎªµ±Ç°Ê±¼ä" onclick="document.add.newstime.value='<?=$todaytime?>'">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>æ–‡ä»¶å¤§å°</td>
+    <td width=16% height=25 bgcolor=ffffff>ÎÄ¼ş´óĞ¡</td>
     <td bgcolor=ffffff><input name="filesize" type="text" id="filesize" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[filesize]))?>" size="60">
 <select name="select" onchange="document.add.filesize.value+=this.value">
-        <option value="">å•ä½</option>
+        <option value="">µ¥Î»</option>
         <option value=" MB">MB</option>
         <option value=" KB">KB</option>
         <option value=" GB">GB</option>
@@ -73,30 +73,30 @@ if(!defined('InEmpireCMS'))
       </select></td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å•å›¾å±æ€§</td>
-    <td bgcolor=ffffff>å›¾ç‰‡å°ºå¯¸ï¼š<input name="picsize" type="text" id="picsize" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[picsize]))?>" size="">
-ï¼Œå›¾ç‰‡åˆ†è¾¨ç‡ï¼š<input name="picfbl" type="text" id="picfbl" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[picfbl]))?>" size="">
+    <td width=16% height=25 bgcolor=ffffff>µ¥Í¼ÊôĞÔ</td>
+    <td bgcolor=ffffff>Í¼Æ¬³ß´ç£º<input name="picsize" type="text" id="picsize" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[picsize]))?>" size="">
+£¬Í¼Æ¬·Ö±æÂÊ£º<input name="picfbl" type="text" id="picfbl" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[picfbl]))?>" size="">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>æ¥æº</td>
+    <td width=16% height=25 bgcolor=ffffff>À´Ô´</td>
     <td bgcolor=ffffff><input name="picfrom" type="text" id="picfrom" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[picfrom]))?>" size="60">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å›¾ç‰‡å°å›¾</td>
+    <td width=16% height=25 bgcolor=ffffff>Í¼Æ¬Ğ¡Í¼</td>
     <td bgcolor=ffffff><input name="titlepic" type="text" id="titlepic" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[titlepic]))?>" size="45">
-<a onclick="window.open('ecmseditor/FileMain.php?type=1&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=titlepic<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../data/images/changeimg.gif" border="0" align="absbottom"></a> 
+<a onclick="window.open('ecmseditor/FileMain.php?type=1&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=titlepic<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../data/images/changeimg.gif" border="0" align="absbottom"></a> 
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å›¾ç‰‡å¤§å›¾</td>
+    <td width=16% height=25 bgcolor=ffffff>Í¼Æ¬´óÍ¼</td>
     <td bgcolor=ffffff><input name="picurl" type="text" id="picurl" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[picurl]))?>" size="45">
-<a onclick="window.open('ecmseditor/FileMain.php?type=1&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=picurl<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../data/images/changeimg.gif" border="0" align="absbottom"></a> 
+<a onclick="window.open('ecmseditor/FileMain.php?type=1&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=picurl<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../data/images/changeimg.gif" border="0" align="absbottom"></a> 
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å›¾ç‰‡é›†</td>
+    <td width=16% height=25 bgcolor=ffffff>Í¼Æ¬¼¯</td>
     <td bgcolor=ffffff><script>
 function dopicadd()
 {var i;
@@ -115,15 +115,15 @@ document.getElementById("addpicdown").innerHTML="<table width='100%' border=0 ce
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td height="25">
-	å›¾ç‰‡åœ°å€å‰ç¼€:
+	Í¼Æ¬µØÖ·Ç°×º:
       <input name="mpicurl_qz" type="text" id="mpicurl_qz">&nbsp;&nbsp;
-	  <input type="checkbox" name="msavepic" value="1">è¿œç¨‹ä¿å­˜&nbsp;<input type="checkbox" name="mcreatespic" value="1" onclick="if(this.checked){setmcreatespic.style.display='';}else{setmcreatespic.style.display='none';}">ç”Ÿæˆç¼©å›¾
-	  <span id="setmcreatespic" style="display:none">ï¼š<input type=text name="mcreatespicwidth" size=4 value="<?=$public_r[spicwidth]?>">*<input type=text name="mcreatespicheight" size=4 value="<?=$public_r[spicheight]?>">(å®½*é«˜)</span>
+	  <input type="checkbox" name="msavepic" value="1">Ô¶³Ì±£´æ&nbsp;<input type="checkbox" name="mcreatespic" value="1" onclick="if(this.checked){setmcreatespic.style.display='';}else{setmcreatespic.style.display='none';}">Éú³ÉËõÍ¼
+	  <span id="setmcreatespic" style="display:none">£º<input type=text name="mcreatespicwidth" size=4 value="<?=$public_r[spicwidth]?>">*<input type=text name="mcreatespicheight" size=4 value="<?=$public_r[spicheight]?>">(¿í*¸ß)</span>
 <?php
 if(TranmoreIsOpen())
 {
 ?>
-<input type="button" name="Submit" value="å¤šé€‰ä¸Šä¼ " onclick="window.open('ecmseditor/tranmore/tranmore.php?type=1&classid=<?=$classid?>&filepass=<?=$filepass?>&infoid=<?=$id?>&modtype=0&sinfo=1&ecmsdo=ecmstmmorepic&tranfrom=2<?=$ecms_hashur['ehref']?>&oldmorepicnum='+document.add.morepicnum.value,'ecmstmpage','width=700,height=550,scrollbars=yes');">
+<input type="button" name="Submit" value="¶àÑ¡ÉÏ´«" onclick="window.open('ecmseditor/tranmore/tranmore.php?type=1&classid=<?=$classid?>&filepass=<?=$filepass?>&infoid=<?=$id?>&modtype=0&sinfo=1&ecmsdo=ecmstmmorepic&tranfrom=2<?=$ecms_hashur['ehref']?>&oldmorepicnum='+document.add.morepicnum.value,'ecmstmpage','width=700,height=550,scrollbars=yes');">
 <?php
 }
 ?>
@@ -132,10 +132,10 @@ if(TranmoreIsOpen())
   <tr> 
     <td><table width="100%" border=0 align=center cellpadding=3 cellspacing=1>
   <tr bgcolor="#DBEAF5"> 
-    <td width="7%"><div align=center>ç¼–å·</div></td>
-    <td width="33%"><div align=center>ç¼©å›¾ <font color="#666666">(åŒå‡»é€‰æ‹©)</font></div></td>
-    <td width="30%"><div align=center>å¤§å›¾ <font color="#666666">(åŒå‡»é€‰æ‹©)</font></div></td>
-    <td width="30%"><div align=center>å›¾ç‰‡è¯´æ˜</div></td>
+    <td width="7%"><div align=center>±àºÅ</div></td>
+    <td width="33%"><div align=center>ËõÍ¼ <font color="#666666">(Ë«»÷Ñ¡Ôñ)</font></div></td>
+    <td width="30%"><div align=center>´óÍ¼ <font color="#666666">(Ë«»÷Ñ¡Ôñ)</font></div></td>
+    <td width="30%"><div align=center>Í¼Æ¬ËµÃ÷</div></td>
   </tr>
 </table></td>
   </tr>
@@ -178,7 +178,7 @@ if(TranmoreIsOpen())
 	if($r[morepic])
     	{
     		$r[morepic]=stripSlashes($r[morepic]);
-    		//åœ°å€
+    		//µØÖ·
     		$j=0;
     		$pd_record=explode("\r\n",$r[morepic]);
     		for($i=0;$i<count($pd_record);$i++)
@@ -196,7 +196,7 @@ if(TranmoreIsOpen())
 		<br><input type=file name=mbigpfile[] size=15>
       </div></td>
     <td width='30%'><div align=center>
-        <input name=mpicname[] type=text value='".$pd_field[2]."'><input type=hidden name=mpicid[] value=".$j."><input type=checkbox name=mdelpicid[] value=".$j.">åˆ 
+        <input name=mpicname[] type=text value='".$pd_field[2]."'><input type=hidden name=mpicid[] value=".$j."><input type=checkbox name=mdelpicid[] value=".$j.">É¾
       </div></td>
   </tr>";
     		}
@@ -209,8 +209,8 @@ if(TranmoreIsOpen())
     </td>
   </tr>
   <tr> 
-    <td height="25">åœ°å€æ‰©å±•æ•°é‡: <input name="morepicnum" type="hidden" id="morepicnum" value="<?=$morepicnum?>">
-      <input name="downmorepicnum" type="text" value="1" size="6"> <input type="button" name="Submit5" value="è¾“å‡ºåœ°å€" onclick="javascript:dopicadd();"></td>
+    <td height="25">µØÖ·À©Õ¹ÊıÁ¿: <input name="morepicnum" type="hidden" id="morepicnum" value="<?=$morepicnum?>">
+      <input name="downmorepicnum" type="text" value="1" size="6"> <input type="button" name="Submit5" value="Êä³öµØÖ·" onclick="javascript:dopicadd();"></td>
   </tr>
   <tr> 
     <td id=addpicdown></td>
@@ -219,14 +219,14 @@ if(TranmoreIsOpen())
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å›¾é›†å±æ€§</td>
-    <td bgcolor=ffffff>æ¯è¡Œæ˜¾ç¤ºæ¡æ•°ï¼š<input name="num" type="text" id="num" value="<?=$ecmsfirstpost==1?"3":ehtmlspecialchars(stripSlashes($r[num]))?>" size="">
-ï¼Œç¼©å›¾å¤§å°ï¼š<input name="width" type="text" id="width" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[width]))?>" size="6">
+    <td width=16% height=25 bgcolor=ffffff>Í¼¼¯ÊôĞÔ</td>
+    <td bgcolor=ffffff>Ã¿ĞĞÏÔÊ¾ÌõÊı£º<input name="num" type="text" id="num" value="<?=$ecmsfirstpost==1?"3":ehtmlspecialchars(stripSlashes($r[num]))?>" size="">
+£¬ËõÍ¼´óĞ¡£º<input name="width" type="text" id="width" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[width]))?>" size="6">
 *<input name="height" type="text" id="height" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[height]))?>" size="6">
-<font color="#666666">(å®½*é«˜)</font></td>
+<font color="#666666">(¿í*¸ß)</font></td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å›¾ç‰‡ç®€ä»‹(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>Í¼Æ¬¼ò½é(*)</td>
     <td bgcolor=ffffff><textarea name="picsay" cols="80" rows="10" id="picsay"><?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[picsay]))?></textarea>
 </td>
   </tr>

@@ -8,7 +8,7 @@ require('../../data/dbcache/MemberLevel.php');
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -28,14 +28,14 @@ if(!$class_r[$classid][tbname]||!$class_r[$classid][classid])
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-//éç»ˆææ ç›®
+//·ÇÖÕ¼«À¸Ä¿
 if(!$class_r[$classid]['islast'])
 {
 	printerror("AddInfoErrorClassid","history.go(-1)");
 }
 $bclassid=$class_r[$classid][bclassid];
-$fun_r['AdminInfo']='ç®¡ç†ä¿¡æ¯';
-//æ¨¡å‹
+$fun_r['AdminInfo']='¹ÜÀíĞÅÏ¢';
+//Ä£ĞÍ
 $fieldexp="<!--field--->";
 $recordexp="<!--record-->";
 $tbname=$class_r[$classid][tbname];
@@ -47,9 +47,9 @@ if(empty($mr['tbname']))
 }
 $enter=$mr['enter'];
 $savetxtf=$emod_r[$mid]['savetxtf'];
-//å¯¼èˆª
-$url=AdminReturnClassLink($classid).'&nbsp;>&nbsp;æŸ¥çœ‹ä¿¡æ¯';
-//çŠ¶æ€
+//µ¼º½
+$url=AdminReturnClassLink($classid).'&nbsp;>&nbsp;²é¿´ĞÅÏ¢';
+//×´Ì¬
 $addecmscheck='';
 $ecmscheck=(int)$_GET['ecmscheck'];
 $indexchecked=1;
@@ -59,13 +59,13 @@ if($ecmscheck)
 	$indexchecked=0;
 }
 
-//ç´¢å¼•è¡¨
+//Ë÷Òı±í
 $index_r=$empire->fetch1("select id,classid,checked from {$dbtbpre}ecms_".$tbname."_index where id='$id' limit 1");
 if(!$index_r['id']||$index_r['classid']!=$classid)
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-//è¿”å›è¡¨
+//·µ»Ø±í
 $infotb=ReturnInfoMainTbname($tbname,$index_r['checked']);
 $r=$empire->fetch1("select * from ".$infotb." where id='$id' limit 1");
 
@@ -74,9 +74,9 @@ if(!$wfinfor['id'])
 {
 	printerror('ErrorUrl','history.go(-1)');
 }
-//å·¥ä½œæµ
+//¹¤×÷Á÷
 $cwfitemr=$empire->fetch1("select wfid,groupid,userclass,username from {$dbtbpre}enewsworkflowitem where tid='$wfinfor[tid]'");
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 if(strstr(','.$cwfitemr[groupid].',',','.$lur[groupid].',')||strstr(','.$cwfitemr[userclass].',',','.$lur[classid].',')||strstr(','.$cwfitemr[username].',',','.$lur[username].','))
 {
 }
@@ -86,98 +86,98 @@ else
 }
 
 $r[newstime]=date("Y-m-d H:i:s",$r[newstime]);
-//è¿”å›è¡¨ä¿¡æ¯
+//·µ»Ø±íĞÅÏ¢
 $infodatatb=ReturnInfoDataTbname($tbname,$index_r['checked'],$r['stb']);
-//å‰¯è¡¨
+//¸±±í
 $finfor=$empire->fetch1("select ".ReturnSqlFtextF($mid)." from ".$infodatatb." where id='$id' limit 1");
 $r=array_merge($r,$finfor);
-//å†…å®¹å­˜æ–‡æœ¬
+//ÄÚÈİ´æÎÄ±¾
 if($savetxtf)
 {
 	$r[$savetxtf]=GetTxtFieldText($r[$savetxtf]);
 }
-//å‘å¸ƒè€…
+//·¢²¼Õß
 if($r[ismember])
 {
-	$username=empty($r[userid])?'æ¸¸å®¢':"ä¼šå‘˜ï¼š<a href='../member/AddMember.php?enews=EditMember&userid=".$r[userid].$ecms_hashur['ehref']."' target='_blank'>".$r[username]."</a>";
+	$username=empty($r[userid])?'ÓÎ¿Í':"»áÔ±£º<a href='../member/AddMember.php?enews=EditMember&userid=".$r[userid].$ecms_hashur['ehref']."' target='_blank'>".$r[username]."</a>";
 }
 else
 {
 	$username="<a href='../user/AddUser.php?enews=EditUser&userid=".$r[userid].$ecms_hashur['ehref']."' target='_blank'>".$r[username]."</a>";
 }
-//çŠ¶æ€
+//×´Ì¬
 $st='';
-if($index_r[checked])//å®¡æ ¸
+if($index_r[checked])//ÉóºË
 {
-	$st.="[å·²å®¡æ ¸]&nbsp;&nbsp;";
+	$st.="[ÒÑÉóºË]&nbsp;&nbsp;";
 }
 else
 {
-	$st.="[æœªå®¡æ ¸]&nbsp;&nbsp;";
+	$st.="[Î´ÉóºË]&nbsp;&nbsp;";
 }
-if($r[istop])//ç½®é¡¶
+if($r[istop])//ÖÃ¶¥
 {
-	$st.="[é¡¶".$r[istop]."]&nbsp;&nbsp;";
+	$st.="[¶¥".$r[istop]."]&nbsp;&nbsp;";
 }
-if($r[isgood])//æ¨è
+if($r[isgood])//ÍÆ¼ö
 {
-	$st.="[æ¨".$r[isgood]."]&nbsp;&nbsp;";
+	$st.="[ÍÆ".$r[isgood]."]&nbsp;&nbsp;";
 }
-if($r[firsttitle])//å¤´æ¡
+if($r[firsttitle])//Í·Ìõ
 {
-	$st.="[å¤´".$r[firsttitle]."]";
+	$st.="[Í·".$r[firsttitle]."]";
 }
-//æ ‡é¢˜
+//±êÌâ
 $titleurl=sys_ReturnBqTitleLink($r);
 //$r[title]="<a href='$titleurl' target='_blank'>".DoTitleFont($r[titlefont],$r[title])."</a>";
-//æƒé™
+//È¨ÏŞ
 $group='';
 if($r[groupid])
 {
 	$group=$level_r[$r[groupid]][groupname];
 	if($r[userfen])
 	{
-		$group.=" ï¼Œæ‰£é™¤ç‚¹æ•°ï¼š".$r[userfen];
+		$group.=" £¬¿Û³ıµãÊı£º".$r[userfen];
 	}
 }
-//æ ç›®é“¾æ¥
+//À¸Ä¿Á´½Ó
 $classurl=sys_ReturnBqClassname($r,9);
 $getclassurlr['classid']=$bclassid;
 $bclassurl=sys_ReturnBqClassname($getclassurlr,9);
 $classes="<a href='$bclassurl' target='_blank'>".$class_r[$bclassid][classname]."</a>&nbsp;>&nbsp;<a href='$classurl' target='_blank'>".$class_r[$classid][classname]."</a>";
-//æ ‡é¢˜åˆ†ç±»
+//±êÌâ·ÖÀà
 $titletype=$class_tr[$r[ttid]]['tname'];
 
-//ä¿¡æ¯çŠ¶æ€
+//ĞÅÏ¢×´Ì¬
 $einfochecked=$index_r['checked'];
 $einfoismember=$r['ismember'];
 
-//------ ç¼–è¾‘å™¨å†…å®¹æ˜¾ç¤º ------
+//------ ±à¼­Æ÷ÄÚÈİÏÔÊ¾ ------
 
 $seteshoweditorhtml=3;
 
 $eshoweditorhtml=0;
 if($seteshoweditorhtml)
 {
-	if($seteshoweditorhtml==1)//æ‰€æœ‰
+	if($seteshoweditorhtml==1)//ËùÓĞ
 	{
 		$eshoweditorhtml=1;
 	}
-	elseif($seteshoweditorhtml==2)//æ‰€æœ‰æœªå®¡æ ¸
+	elseif($seteshoweditorhtml==2)//ËùÓĞÎ´ÉóºË
 	{
 		if(!$einfochecked)
 		{
 			$eshoweditorhtml=1;
 		}
 	}
-	elseif($seteshoweditorhtml==3)//æ‰€æœ‰æŠ•ç¨¿
+	elseif($seteshoweditorhtml==3)//ËùÓĞÍ¶¸å
 	{
 		if($einfoismember)
 		{
 			$eshoweditorhtml=1;
 		}
 	}
-	elseif($seteshoweditorhtml==4)//æ‰€æœ‰æœªå®¡æ ¸æŠ•ç¨¿
+	elseif($seteshoweditorhtml==4)//ËùÓĞÎ´ÉóºËÍ¶¸å
 	{
 		if($einfoismember&&!$einfochecked)
 		{
@@ -196,9 +196,9 @@ if($eshoweditorhtml)
 	$toshowhtmlbutton=1;
 }
 
-//------ ç¼–è¾‘å™¨å†…å®¹æ˜¾ç¤º ------
+//------ ±à¼­Æ÷ÄÚÈİÏÔÊ¾ ------
 
-//æ˜¾ç¤ºç¼–è¾‘å™¨å†…å®¹
+//ÏÔÊ¾±à¼­Æ÷ÄÚÈİ
 $eckshowhtml=(int)$_GET['ckshowhtml'];
 $ethisshowhtml='1'.date("md").$logininid;
 $ethisshowhtml=(int)$ethisshowhtml;
@@ -207,15 +207,15 @@ if($ethisshowhtml==$eckshowhtml)
 	$eshoweditorhtml=0;
 }
 
-//åˆ‡æ¢åœ°å€
+//ÇĞ»»µØÖ·
 if(!$eckshowhtml)
 {
-	$showhtmlbutton='ç‚¹å‡»å¯è§†åŒ–æ¨¡å¼æ˜¾ç¤º';
+	$showhtmlbutton='µã»÷¿ÉÊÓ»¯Ä£Ê½ÏÔÊ¾';
 	$showhtmlurl='ShowWfInfo.php?classid='.$r['classid'].'&id='.$r['id'].$addecmscheck.$ecms_hashur['ehref'].'&ckshowhtml='.$ethisshowhtml;
 }
 else
 {
-	$showhtmlbutton='ç‚¹å‡»æºç æ¨¡å¼æ˜¾ç¤º';
+	$showhtmlbutton='µã»÷Ô´ÂëÄ£Ê½ÏÔÊ¾';
 	$showhtmlurl='ShowWfInfo.php?classid='.$r['classid'].'&id='.$r['id'].$addecmscheck.$ecms_hashur['ehref'];
 }
 
@@ -223,15 +223,15 @@ else
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æŸ¥çœ‹ä¿¡æ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²é¿´ĞÅÏ¢</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ecmsinfo.php">
@@ -241,7 +241,7 @@ else
       <td height="25" colspan="2"><div align="center">
         <table width="100%" border="0" cellspacing="1" cellpadding="3">
           <tr>
-            <td width="50%"><strong><font color="#FFFFFF">æŸ¥çœ‹ä¿¡æ¯</font></strong></td>
+            <td width="50%"><strong><font color="#FFFFFF">²é¿´ĞÅÏ¢</font></strong></td>
             <td width="50%"><div align="right">
 			<?php
 			if($toshowhtmlbutton)
@@ -258,58 +258,58 @@ else
     </tr>
     <tr> 
       <td width="13%" height="25" bgcolor="#FFFFFF">
-<div align="right"><strong>å‘å¸ƒè€…</strong></div></td>
+<div align="right"><strong>·¢²¼Õß</strong></div></td>
       <td bgcolor="#FFFFFF"> 
         <?=$username?>      </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>å‘å¸ƒæ—¶é—´</strong></div></td>
-      <td bgcolor="#FFFFFF">å¢åŠ æ—¶é—´ï¼š 
+      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>·¢²¼Ê±¼ä</strong></div></td>
+      <td bgcolor="#FFFFFF">Ôö¼ÓÊ±¼ä£º 
         <?=date("Y-m-d H:i:s",$r[truetime])?>
-        ï¼Œæœ€åä¿®æ”¹ï¼š 
+        £¬×îºóĞŞ¸Ä£º 
         <?=date("Y-m-d H:i:s",$r[lastdotime])?>      </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>äººæ°”</strong></div></td>
-      <td bgcolor="#FFFFFF">ç‚¹å‡»æ•°ï¼š 
+      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>ÈËÆø</strong></div></td>
+      <td bgcolor="#FFFFFF">µã»÷Êı£º 
         <?=$r[onclick]?>
-        ï¼Œè¯„è®ºæ•°ï¼š 
+        £¬ÆÀÂÛÊı£º 
         <?=$r[plnum]?>
-        ï¼Œä¸‹è½½æ•°ï¼š 
+        £¬ÏÂÔØÊı£º 
         <?=$r[totaldown]?>      </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>ä¿¡æ¯çŠ¶æ€</strong></div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>ĞÅÏ¢×´Ì¬</strong></div></td>
       <td bgcolor="#FFFFFF"> 
         <?=$st?>      </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>æ ç›®</strong></div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>À¸Ä¿</strong></div></td>
       <td bgcolor="#FFFFFF"> 
         <?=$classes?>      </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>æ ‡é¢˜åˆ†ç±»</strong></div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>±êÌâ·ÖÀà</strong></div></td>
       <td bgcolor="#FFFFFF">
         <?=$titletype?>      </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>å…³é”®å­—</strong></div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>¹Ø¼ü×Ö</strong></div></td>
       <td bgcolor="#FFFFFF"> 
         <?=$r[keyboard]?>      </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>ç›¸å…³ä¿¡æ¯ID</strong></div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>Ïà¹ØĞÅÏ¢ID</strong></div></td>
       <td bgcolor="#FFFFFF"> 
         <?=$r[keyid]?>      </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>æŸ¥çœ‹æƒé™</strong></div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>²é¿´È¨ÏŞ</strong></div></td>
       <td bgcolor="#FFFFFF"> 
         <?=$group?>      </td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>é¡µé¢é“¾æ¥</strong></div></td>
+      <td height="25" bgcolor="#FFFFFF"><div align="right"><strong>Ò³ÃæÁ´½Ó</strong></div></td>
       <td bgcolor="#FFFFFF"><a href="<?=$titleurl?>" target="_blank"><?=$titleurl?></a></td>
     </tr>
     <?php

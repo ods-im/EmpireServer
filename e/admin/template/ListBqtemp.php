@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,15 +16,15 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"template");
 
-//å¢åŠ æ ‡ç­¾æ¨¡æ¿
+//Ôö¼Ó±êÇ©Ä£°å
 function AddBqtemp($tempname,$modid,$subnews,$rownum,$showdate,$temptext,$listvar,$add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$tempname||!$temptext||!$modid||!$listvar)
 	{printerror("EmptyTempname","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
     $classid=(int)$add['classid'];
 	$tempname=hRepPostStr($tempname,1);
@@ -34,7 +34,7 @@ function AddBqtemp($tempname,$modid,$subnews,$rownum,$showdate,$temptext,$listva
 	{
 		$rownum=substr_count($temptext,'<!--list.var');
 	}
-	//å˜é‡å¤„ç†
+	//±äÁ¿´¦Àí
 	$modid=(int)$modid;
 	$subnews=(int)$subnews;
 	$rownum=(int)$rownum;
@@ -42,11 +42,11 @@ function AddBqtemp($tempname,$modid,$subnews,$rownum,$showdate,$temptext,$listva
 	$gid=(int)$add['gid'];
 	$sql=$empire->query("insert into ".GetDoTemptb("enewsbqtemp",$gid)."(tempname,temptext,modid,showdate,listvar,subnews,rownum,classid,docode) values('$tempname','".eaddslashes2($temptext)."',$modid,'".eaddslashes($showdate)."','".eaddslashes2($listvar)."',$subnews,$rownum,$classid,'$docode')");
 	$lastid=$empire->lastid();
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('bqtemp',$gid,$lastid,$tempname,$temptext,$subnews,0,$listvar,$rownum,$modid,$showdate,0,$classid,$docode,$userid,$username);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=".$lastid."<br>tempname=".$tempname."&gid=$gid");
 		printerror("AddBqTempSuccess","AddBqtemp.php?enews=AddBqtemp&gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -54,13 +54,13 @@ function AddBqtemp($tempname,$modid,$subnews,$rownum,$showdate,$temptext,$listva
 	{printerror("DbError","history.go(-1)");}
 }
 
-//------------------------ä¿®æ”¹æ ‡ç­¾æ¨¡æ¿
+//------------------------ĞŞ¸Ä±êÇ©Ä£°å
 function EditBqtemp($tempid,$tempname,$modid,$subnews,$rownum,$showdate,$temptext,$listvar,$add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tempid=(int)$tempid;
 	if(!$tempname||!$temptext||!$modid||!$listvar||!$tempid)
 	{printerror("EmptyTempname","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
     $classid=(int)$add['classid'];
 	$tempname=hRepPostStr($tempname,1);
@@ -70,18 +70,18 @@ function EditBqtemp($tempid,$tempname,$modid,$subnews,$rownum,$showdate,$temptex
 	{
 		$rownum=substr_count($temptext,'<!--list.var');
 	}
-	//å˜é‡å¤„ç†
+	//±äÁ¿´¦Àí
 	$modid=(int)$modid;
 	$subnews=(int)$subnews;
 	$rownum=(int)$rownum;
 	$docode=(int)$add[docode];
 	$gid=(int)$add['gid'];
 	$sql=$empire->query("update ".GetDoTemptb("enewsbqtemp",$gid)." set tempname='$tempname',temptext='".eaddslashes2($temptext)."',modid=$modid,showdate='".eaddslashes($showdate)."',listvar='".eaddslashes2($listvar)."',subnews=$subnews,rownum=$rownum,classid=$classid,docode='$docode' where tempid='$tempid'");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('bqtemp',$gid,$tempid,$tempname,$temptext,$subnews,0,$listvar,$rownum,$modid,$showdate,0,$classid,$docode,$userid,$username);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=".$tempid."<br>tempname=".$tempname."&gid=$gid");
 		printerror("EditBqtempSuccess","ListBqtemp.php?classid=$add[cid]&modid=$add[mid]&gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -89,23 +89,23 @@ function EditBqtemp($tempid,$tempname,$modid,$subnews,$rownum,$showdate,$temptex
 	{printerror("DbError","history.go(-1)");}
 }
 
-//-------------------------åˆ é™¤æ ‡ç­¾æ¨¡æ¿
+//-------------------------É¾³ı±êÇ©Ä£°å
 function DelBqtemp($tempid,$add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tempid=(int)$tempid;
 	if(!$tempid)
 	{printerror("NotDelTemplateid","history.go(-1)");}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$gid=(int)$add['gid'];
 	$r=$empire->fetch1("select tempname from ".GetDoTemptb("enewsbqtemp",$gid)." where tempid='$tempid'");
-	//åˆ é™¤æ¨¡æ¿
+	//É¾³ıÄ£°å
 	$sql=$empire->query("delete from ".GetDoTemptb("enewsbqtemp",$gid)." where tempid='$tempid'");
-	//åˆ é™¤æ¨¡æ¿å¤‡ä»½
+	//É¾³ıÄ£°å±¸·İ
 	DelEbakTempAll('bqtemp',$gid,$tempid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=".$tempid."<br>tempname=".$r[tempname]."&gid=$gid");
 		printerror("DelBqtempSuccess","ListBqtemp.php?classid=$add[cid]&modid=$add[mid]&gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -121,7 +121,7 @@ if($enews)
 	hCheckEcmsRHash();
 	include("../../class/tempfun.php");
 }
-//å¢åŠ æ ‡ç­¾æ¨¡æ¿
+//Ôö¼Ó±êÇ©Ä£°å
 if($enews=="AddBqtemp")
 {
 	$tempname=$_POST['tempname'];
@@ -133,7 +133,7 @@ if($enews=="AddBqtemp")
 	$rownum=$_POST['rownum'];
 	AddBqtemp($tempname,$modid,$subnews,$rownum,$showdate,$temptext,$listvar,$_POST,$logininid,$loginin);
 }
-//ä¿®æ”¹æ ‡ç­¾æ¨¡æ¿
+//ĞŞ¸Ä±êÇ©Ä£°å
 elseif($enews=="EditBqtemp")
 {
 	$tempid=$_POST['tempid'];
@@ -146,7 +146,7 @@ elseif($enews=="EditBqtemp")
 	$rownum=$_POST['rownum'];
 	EditBqtemp($tempid,$tempname,$modid,$subnews,$rownum,$showdate,$temptext,$listvar,$_POST,$logininid,$loginin);
 }
-//åˆ é™¤æ ‡ç­¾æ¨¡æ¿
+//É¾³ı±êÇ©Ä£°å
 elseif($enews=="DelBqtemp")
 {
 	$tempid=$_GET['tempid'];
@@ -156,17 +156,17 @@ elseif($enews=="DelBqtemp")
 $gid=(int)$_GET['gid'];
 $gname=CheckTempGroup($gid);
 $urlgname=$gname."&nbsp;>&nbsp;";
-$url=$urlgname."<a href=ListBqtemp.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†æ ‡ç­¾æ¨¡æ¿</a>";
+$url=$urlgname."<a href=ListBqtemp.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀí±êÇ©Ä£°å</a>";
 $search="&gid=$gid".$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select tempid,tempname,modid from ".GetDoTemptb("enewsbqtemp",$gid);
 $totalquery="select count(*) as total from ".GetDoTemptb("enewsbqtemp",$gid);
-//ç±»åˆ«
+//Àà±ğ
 $add="";
 $classid=(int)$_GET['classid'];
 if($classid)
@@ -174,7 +174,7 @@ if($classid)
 	$add=" where classid=$classid";
 	$search.="&classid=$classid";
 }
-//æ¨¡å‹
+//Ä£ĞÍ
 $modid=(int)$_GET['modid'];
 if($modid)
 {
@@ -190,11 +190,11 @@ if($modid)
 }
 $query.=$add;
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by tempid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewsbqtempclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -206,7 +206,7 @@ while($cr=$empire->fetch($csql))
 	}
 	$cstr.="<option value='".$cr[classid]."'".$select.">".$cr[classname]."</option>";
 }
-//æ¨¡å‹
+//Ä£ĞÍ
 $mstr="";
 $msql=$empire->query("select mid,mname from {$dbtbpre}enewsmod where usemod=0 order by myorder,mid");
 while($mr=$empire->fetch($msql))
@@ -222,21 +222,21 @@ while($mr=$empire->fetch($msql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†æ ‡ç­¾æ¨¡æ¿</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí±êÇ©Ä£°å</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ æ ‡ç­¾æ¨¡æ¿" onclick="self.location.href='AddBqtemp.php?enews=AddBqtemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó±êÇ©Ä£°å" onclick="self.location.href='AddBqtemp.php?enews=AddBqtemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
         &nbsp;&nbsp; 
-        <input type="button" name="Submit5" value="ç®¡ç†æ ‡ç­¾æ¨¡æ¿åˆ†ç±»" onclick="self.location.href='BqtempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀí±êÇ©Ä£°å·ÖÀà" onclick="self.location.href='BqtempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -245,13 +245,13 @@ while($mr=$empire->fetch($msql))
   <?=$ecms_hashur['eform']?>
   <input type=hidden name=gid value="<?=$gid?>">
     <tr> 
-      <td height="25">é™åˆ¶æ˜¾ç¤ºï¼š 
+      <td height="25">ÏŞÖÆÏÔÊ¾£º 
         <select name="classid" id="classid" onchange="document.form1.submit()">
-          <option value="0">æ˜¾ç¤ºæ‰€æœ‰åˆ†ç±»</option>
+          <option value="0">ÏÔÊ¾ËùÓĞ·ÖÀà</option>
 		  <?=$cstr?>
         </select>
         <select name="modid" id="modid" onchange="document.form1.submit()">
-          <option value="0">æ˜¾ç¤ºæ‰€æœ‰ç³»ç»Ÿæ¨¡å‹</option>
+          <option value="0">ÏÔÊ¾ËùÓĞÏµÍ³Ä£ĞÍ</option>
 		  <?=$mstr?>
         </select>
       </td>
@@ -262,9 +262,9 @@ while($mr=$empire->fetch($msql))
 <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="8%" height="25"><div align="center">ID</div></td>
-    <td width="43%" height="25"><div align="center">æ¨¡æ¿å</div></td>
-    <td width="30%"><div align="center">æ‰€å±ç³»ç»Ÿæ¨¡å‹</div></td>
-    <td width="19%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="43%" height="25"><div align="center">Ä£°åÃû</div></td>
+    <td width="30%"><div align="center">ËùÊôÏµÍ³Ä£ĞÍ</div></td>
+    <td width="19%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -273,15 +273,15 @@ while($mr=$empire->fetch($msql))
   ?>
   <tr bgcolor="ffffff" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
     <td height="25"><div align="center"> 
-        <a href="EditTempid.php?tempno=1&tempid=<?=$r['tempid']?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="_blank" title="ä¿®æ”¹æ¨¡æ¿ID"><?=$r[tempid]?></a>
+        <a href="EditTempid.php?tempno=1&tempid=<?=$r['tempid']?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="_blank" title="ĞŞ¸ÄÄ£°åID"><?=$r[tempid]?></a>
       </div></td>
     <td height="25"><div align="center"> 
         <?=$r[tempname]?>
       </div></td>
     <td><div align="center">[<a href="ListBqtemp.php?classid=<?=$classid?>&modid=<?=$modr[mid]?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>"><?=$modr[mname]?></a>]</div></td>
-    <td height="25"><div align="center"> [<a href="AddBqtemp.php?enews=EditBqtemp&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&mid=<?=$modid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="AddBqtemp.php?enews=AddBqtemp&docopy=1&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&mid=<?=$modid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>] 
-        [<a href="ListBqtemp.php?enews=DelBqtemp&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&mid=<?=$modid?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td height="25"><div align="center"> [<a href="AddBqtemp.php?enews=EditBqtemp&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&mid=<?=$modid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="AddBqtemp.php?enews=AddBqtemp&docopy=1&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&mid=<?=$modid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>] 
+        [<a href="ListBqtemp.php?enews=DelBqtemp&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&mid=<?=$modid?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

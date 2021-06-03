@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,9 +15,9 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"bq");
-$mess="<script>alert('è¯·é€‰æ‹©è¦å¯¼å‡ºçš„æ ‡ç­¾');window.close();</script>";
+$mess="<script>alert('ÇëÑ¡ÔñÒªµ¼³öµÄ±êÇ©');window.close();</script>";
 $bqid=(int)$_GET['bqid'];
 if(empty($bqid))
 {
@@ -30,30 +30,30 @@ if(empty($r['bqid']))
 	echo $mess;
 	exit();
 }
-$url="&nbsp;å¯¼å‡ºæ ‡ç­¾ï¼š".$r['bqname'];
+$url="&nbsp;µ¼³ö±êÇ©£º".$r['bqname'];
 db_close();
 $empire=null;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¯¼å‡ºæ ‡ç­¾</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>µ¼³ö±êÇ©</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="98%%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 
-<form name="form1" method="post" action="../ecmstemp.php" onsubmit="return confirm('ç¡®è®¤è¦å¯¼å‡ºï¼Ÿ');">
+<form name="form1" method="post" action="../ecmstemp.php" onsubmit="return confirm('È·ÈÏÒªµ¼³ö£¿');">
   <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25"><div align="center">å¯¼å‡ºæ ‡ç­¾ 
+      <td height="25"><div align="center">µ¼³ö±êÇ© 
           <input name="enews" type="hidden" id="enews" value="LoadOutBq">
           <input name="bqid" type="hidden" id="bqid" value="<?=$bqid?>">
         </div></td>
@@ -61,12 +61,12 @@ $empire=null;
     <tr bgcolor="#FFFFFF"> 
       <td height="25"><table width="100%" border="0" cellspacing="1" cellpadding="3">
           <tr> 
-            <td width="37%"><div align="right">æ ‡ç­¾åç§°ï¼š</div></td>
+            <td width="37%"><div align="right">±êÇ©Ãû³Æ£º</div></td>
             <td width="63%" height="27"><b><? echo $r[bqname]."&nbsp;(".$r[bq].")";?></b></td>
           </tr>
           <tr> 
             <td height="27" colspan="2"> 
-              <div align="center">æ ‡ç­¾å‡½æ•°å†…å®¹(e/class/userfun.php)ï¼š</div></td>
+              <div align="center">±êÇ©º¯ÊıÄÚÈİ(e/class/userfun.php)£º</div></td>
           </tr>
           <tr> 
             <td colspan="2"><div align="center">
@@ -77,8 +77,8 @@ $empire=null;
     </tr>
     <tr bgcolor="#FFFFFF">
       <td height="25"><div align="center">
-          <input type="submit" name="Submit" value="é©¬ä¸Šå¯¼å‡º">&nbsp;&nbsp;
-          <input type="reset" name="Submit2" value="é‡ç½®">
+          <input type="submit" name="Submit" value="ÂíÉÏµ¼³ö">&nbsp;&nbsp;
+          <input type="reset" name="Submit2" value="ÖØÖÃ">
         </div></td>
     </tr>
   </table>

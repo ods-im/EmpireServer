@@ -8,7 +8,7 @@ require("class/hShopSysFun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,10 +17,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"precode");
 
-//è¿”å›ä¼šå‘˜ç»„åˆ—è¡¨
+//·µ»Ø»áÔ±×éÁĞ±í
 function ReturnPreGroupids($groupid){
 	$count=count($groupid);
 	if(!$count)
@@ -46,14 +46,14 @@ function ReturnPreGroupids($groupid){
 	return $gids;
 }
 
-//å¢åŠ ä¼˜æƒ ç 
+//Ôö¼ÓÓÅ»İÂë
 function AddPrecode($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add['prename']||!$add['precode']||!$add['premoney'])
 	{
 		printerror("EmptyPrecode","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"precode");
 	$add['precode']=RepPostVar($add['precode']);
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsshop_precode where precode='$add[precode]' limit 1");
@@ -76,7 +76,7 @@ function AddPrecode($add,$userid,$username){
 	$id=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("id=$id&precode=$add[precode]<br>premoney=$add[premoney]&pretype=$add[pretype]");
 		printerror("AddPrecodeSuccess","AddPrecode.php?enews=AddPrecode".hReturnEcmsHashStrHref2(0));
 	}
@@ -84,7 +84,7 @@ function AddPrecode($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ‰¹é‡å¢åŠ ä¼˜æƒ ç 
+//ÅúÁ¿Ôö¼ÓÓÅ»İÂë
 function AddMorePrecode($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$donum=(int)$add['donum'];
@@ -103,10 +103,10 @@ function AddMorePrecode($add,$userid,$username){
 	{
 		printerror("EmptyMorePrecode","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"precode");
 	$addtime=time();
-	//å†™å…¥ä¼˜æƒ ç 
+	//Ğ´ÈëÓÅ»İÂë
 	$no=1;
     while($no<=$donum)
 	{
@@ -120,7 +120,7 @@ function AddMorePrecode($add,$userid,$username){
     }
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("prenum=$donum&premoney=$add[premoney]&pretype=$add[pretype]");
 		printerror("AddMorePrecodeSuccess","AddMorePrecode.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -128,7 +128,7 @@ function AddMorePrecode($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹ä¼˜æƒ ç 
+//ĞŞ¸ÄÓÅ»İÂë
 function EditPrecode($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add['id']=(int)$add['id'];
@@ -136,7 +136,7 @@ function EditPrecode($add,$userid,$username){
 	{
 		printerror("EmptyPrecode","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"precode");
 	$add['precode']=RepPostVar($add['precode']);
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsshop_precode where precode='$add[precode]' and id<>".$add[id]." limit 1");
@@ -159,7 +159,7 @@ function EditPrecode($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsshop_precode set prename='$add[prename]',precode='$add[precode]',premoney='$add[premoney]',pretype='$add[pretype]',reuse='$add[reuse]',endtime='$add[endtime]',groupid='$groupids',classid='$classids',musttotal='$add[musttotal]',usenum='$add[usenum]' where id='$add[id]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$add[id]&precode=$add[precode]<br>premoney=$add[premoney]&pretype=$add[pretype]");
 		printerror("EditPrecodeSuccess","ListPrecode.php?time=$time".hReturnEcmsHashStrHref2(0));
 	}
@@ -167,7 +167,7 @@ function EditPrecode($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤ä¼˜æƒ ç 
+//É¾³ıÓÅ»İÂë
 function DelPrecode($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$id=(int)$add['id'];
@@ -175,14 +175,14 @@ function DelPrecode($add,$userid,$username){
 	{
 		printerror("NotChangePrecodeid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"precode");
 	$time=(int)$add['time'];
 	$r=$empire->fetch1("select precode,premoney,pretype from {$dbtbpre}enewsshop_precode where id='$id'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsshop_precode where id='$id'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=$id&precode=$r[precode]<br>premoney=$r[premoney]&pretype=$r[pretype]");
 		printerror("DelPrecodeSuccess","ListPrecode.php?time=$time".hReturnEcmsHashStrHref2(0));
 	}
@@ -190,7 +190,7 @@ function DelPrecode($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//æ‰¹é‡åˆ é™¤ä¼˜æƒ ç 
+//ÅúÁ¿É¾³ıÓÅ»İÂë
 function DelPrecode_all($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$id=$add['id'];
@@ -199,7 +199,7 @@ function DelPrecode_all($add,$userid,$username){
 	{
 		printerror("NotChangePrecodeid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"precode");
 	$ids='';
 	$dh='';
@@ -212,7 +212,7 @@ function DelPrecode_all($add,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsshop_precode where id in (".$ids.")");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("DelPrecodeSuccess","ListPrecode.php?time=$add[time]".hReturnEcmsHashStrHref2(0));
 	}
@@ -227,23 +227,23 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="AddPrecode")//å¢åŠ ä¼˜æƒ ç 
+if($enews=="AddPrecode")//Ôö¼ÓÓÅ»İÂë
 {
 	AddPrecode($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditPrecode")//ä¿®æ”¹ä¼˜æƒ ç 
+elseif($enews=="EditPrecode")//ĞŞ¸ÄÓÅ»İÂë
 {
 	EditPrecode($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelPrecode")//åˆ é™¤ä¼˜æƒ ç 
+elseif($enews=="DelPrecode")//É¾³ıÓÅ»İÂë
 {
 	DelPrecode($_GET,$logininid,$loginin);
 }
-elseif($enews=="AddMorePrecode")//æ‰¹é‡å¢åŠ ä¼˜æƒ ç 
+elseif($enews=="AddMorePrecode")//ÅúÁ¿Ôö¼ÓÓÅ»İÂë
 {
 	AddMorePrecode($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelPrecode_all")//æ‰¹é‡åˆ é™¤ä¼˜æƒ ç 
+elseif($enews=="DelPrecode_all")//ÅúÁ¿É¾³ıÓÅ»İÂë
 {
 	DelPrecode_all($_POST,$logininid,$loginin);
 }
@@ -258,7 +258,7 @@ $and=' where ';
 $search="";
 $search.=$ecms_hashur['ehref'];
 $time=(int)$_GET['time'];
-//æœç´¢
+//ËÑË÷
 $sear=(int)$_GET['sear'];
 if($sear)
 {
@@ -267,43 +267,43 @@ if($sear)
 	$keyboard=RepPostVar2($keyboard);
 	if($keyboard)
 	{
-		if($show==1)//ä¼˜æƒ ç åç§°
+		if($show==1)//ÓÅ»İÂëÃû³Æ
 		{
 			$add.=$and."prename like '%$keyboard%'";
 		}
-		elseif($show==2)//ä¼˜æƒ ç 
+		elseif($show==2)//ÓÅ»İÂë
 		{
 			$add.=$and."precode='$keyboard'";
 		}
-		else//é‡‘é¢
+		else//½ğ¶î
 		{
 			$add.=$and."premoney='$keyboard'";
 		}
 		$and=' and ';
 	}
-	//ç±»å‹
+	//ÀàĞÍ
 	$pretype=(int)$_GET['pretype'];
 	if($pretype)
 	{
-		if($pretype==1)//é‡‘é¢
+		if($pretype==1)//½ğ¶î
 		{
 			$add.=$and."pretype=0";
 		}
-		else//ç™¾åˆ†æ¯”
+		else//°Ù·Ö±È
 		{
 			$add.=$and."pretype=1";
 		}
 		$and=' and ';
 	}
-	//é‡å¤ä½¿ç”¨
+	//ÖØ¸´Ê¹ÓÃ
 	$reuse=(int)$_GET['reuse'];
 	if($reuse)
 	{
-		if($reuse==1)//ä¸€æ¬¡æ€§ä½¿ç”¨
+		if($reuse==1)//Ò»´ÎĞÔÊ¹ÓÃ
 		{
 			$add.=$and."reuse=0";
 		}
-		else//å¯é‡å¤ä½¿ç”¨
+		else//¿ÉÖØ¸´Ê¹ÓÃ
 		{
 			$add.=$and."reuse=1";
 		}
@@ -311,7 +311,7 @@ if($sear)
 	}
 	$search.="&sear=1&pretype=$pretype&reuse=$reuse&show=$show&keyboard=$keyboard";
 }
-//è¿‡æœŸ
+//¹ıÆÚ
 if($time)
 {
 	$todaytime=time();
@@ -329,8 +329,8 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†ä¼˜æƒ ç </title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÓÅ»İÂë</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -348,13 +348,13 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š<a href="ListPrecode.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¼˜æƒ ç </a><?=$time?' &gt; è¿‡æœŸä¼˜æƒ ç ':''?></td>
+    <td width="50%">Î»ÖÃ£º<a href="ListPrecode.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÓÅ»İÂë</a><?=$time?' &gt; ¹ıÆÚÓÅ»İÂë':''?></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ ä¼˜æƒ ç " onclick="self.location.href='AddPrecode.php?enews=AddPrecode<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓÓÅ»İÂë" onclick="self.location.href='AddPrecode.php?enews=AddPrecode<?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit52" value="æ‰¹é‡å¢åŠ ä¼˜æƒ ç " onclick="self.location.href='AddMorePrecode.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit52" value="ÅúÁ¿Ôö¼ÓÓÅ»İÂë" onclick="self.location.href='AddMorePrecode.php<?=$ecms_hashur['whehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit53" value="ç®¡ç†è¿‡æœŸä¼˜æƒ ç " onclick="self.location.href='ListPrecode.php?time=1<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit53" value="¹ÜÀí¹ıÆÚÓÅ»İÂë" onclick="self.location.href='ListPrecode.php?time=1<?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -363,42 +363,42 @@ function CheckAll(form)
   <form name=search method=GET action=ListPrecode.php>
   <?=$ecms_hashur['eform']?>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="6"> æœç´¢ï¼š 
+      <td height="25" colspan="6"> ËÑË÷£º 
         <select name="show" id="show">
-          <option value="1"<?=$show==1?' selected':''?>>ä¼˜æƒ ç åç§°</option>
-          <option value="2"<?=$show==2?' selected':''?>>ä¼˜æƒ ç </option>
-          <option value="3"<?=$show==3?' selected':''?>>é‡‘é¢</option>
+          <option value="1"<?=$show==1?' selected':''?>>ÓÅ»İÂëÃû³Æ</option>
+          <option value="2"<?=$show==2?' selected':''?>>ÓÅ»İÂë</option>
+          <option value="3"<?=$show==3?' selected':''?>>½ğ¶î</option>
         </select>
 		<input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>"> 
         <select name="pretype" id="pretype">
-          <option value="0"<?=$pretype==0?' selected':''?>>ä¸é™ç±»å‹</option>
-          <option value="1"<?=$pretype==1?' selected':''?>>å‡é‡‘é¢çš„ä¼˜æƒ ç </option>
-          <option value="2"<?=$pretype==2?' selected':''?>>ç™¾åˆ†æ¯”çš„ä¼˜æƒ ç </option>
+          <option value="0"<?=$pretype==0?' selected':''?>>²»ÏŞÀàĞÍ</option>
+          <option value="1"<?=$pretype==1?' selected':''?>>¼õ½ğ¶îµÄÓÅ»İÂë</option>
+          <option value="2"<?=$pretype==2?' selected':''?>>°Ù·Ö±ÈµÄÓÅ»İÂë</option>
         </select>
         <select name="reuse" id="reuse">
-          <option value="0"<?=$reuse==0?' selected':''?>>ä¸é™ä½¿ç”¨</option>
-          <option value="1"<?=$reuse==1?' selected':''?>>ä¸€æ¬¡æ€§ä½¿ç”¨</option>
-          <option value="2"<?=$reuse==2?' selected':''?>>å¯é‡å¤ä½¿ç”¨</option>
+          <option value="0"<?=$reuse==0?' selected':''?>>²»ÏŞÊ¹ÓÃ</option>
+          <option value="1"<?=$reuse==1?' selected':''?>>Ò»´ÎĞÔÊ¹ÓÃ</option>
+          <option value="2"<?=$reuse==2?' selected':''?>>¿ÉÖØ¸´Ê¹ÓÃ</option>
         </select> 
-        <input type="submit" name="Submit" value="æœç´¢"> <input name="sear" type="hidden" id="sear" value="1"> 
+        <input type="submit" name="Submit" value="ËÑË÷"> <input name="sear" type="hidden" id="sear" value="1"> 
         <input name="time" type="hidden" id="time" value="<?=$time?>"> </td>
     </tr>
   </form>
 </table>
   
 <table width="100%" border="0" cellpadding="0" cellspacing="1" class="tableborder">
-  <form name="listcardform" method="post" action="ListPrecode.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+  <form name="listcardform" method="post" action="ListPrecode.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
   <?=$ecms_hashur['form']?>
     <input type="hidden" name="enews" value="DelPrecode_all">
 	<input name="time" type="hidden" id="time" value="<?=$time?>">
     <tr class="header"> 
       <td width="2%"><div align="center"></div></td>
       <td width="5%" height="25"> <div align="center">ID</div></td>
-      <td width="28%"><div align="center">ä¼˜æƒ ç åç§°</div></td>
-      <td width="31%" height="25"> <div align="center">ä¼˜æƒ ç </div></td>
-      <td width="12%" height="25"> <div align="center">é‡‘é¢(å…ƒ)</div></td>
-      <td width="7%"><div align="center">é‡å¤ä½¿ç”¨</div></td>
-      <td width="15%" height="25"> <div align="center">æ“ä½œ</div></td>
+      <td width="28%"><div align="center">ÓÅ»İÂëÃû³Æ</div></td>
+      <td width="31%" height="25"> <div align="center">ÓÅ»İÂë</div></td>
+      <td width="12%" height="25"> <div align="center">½ğ¶î(Ôª)</div></td>
+      <td width="7%"><div align="center">ÖØ¸´Ê¹ÓÃ</div></td>
+      <td width="15%" height="25"> <div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -409,7 +409,7 @@ function CheckAll(form)
 	}
 	else
 	{
-  		$premoney=$r['premoney'].'å…ƒ';
+  		$premoney=$r['premoney'].'Ôª';
 	}
   ?>
     <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
@@ -419,15 +419,15 @@ function CheckAll(form)
       <td height="25"> <div align="center"> 
           <?=$r[id]?>
         </div></td>
-      <td><div align="center"><a title="<?="å¢åŠ æ—¶é—´ï¼š".date('Y-m-d H:i:s',$r[addtime])."\r\nè¿‡æœŸæ—¶é—´ï¼š".date('Y-m-d',$r[endtime])?>"><?=$r[prename]?></a></div></td>
+      <td><div align="center"><a title="<?="Ôö¼ÓÊ±¼ä£º".date('Y-m-d H:i:s',$r[addtime])."\r\n¹ıÆÚÊ±¼ä£º".date('Y-m-d',$r[endtime])?>"><?=$r[prename]?></a></div></td>
       <td height="25"> <div align="center">  
           <?=$r[precode]?>
           </div></td>
       <td height="25"> <div align="center"> 
           <?=$premoney?>
         </div></td>
-      <td><div align="center"><?=$r['reuse']==1?'å¯é‡å¤':'ä¸€æ¬¡'?></div></td>
-      <td height="25"> <div align="center">[<a href="AddPrecode.php?enews=EditPrecode&id=<?=$r[id]?>&time=<?=$time?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="ListPrecode.php?enews=DelPrecode&id=<?=$r[id]?>&time=<?=$time?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+      <td><div align="center"><?=$r['reuse']==1?'¿ÉÖØ¸´':'Ò»´Î'?></div></td>
+      <td height="25"> <div align="center">[<a href="AddPrecode.php?enews=EditPrecode&id=<?=$r[id]?>&time=<?=$time?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="ListPrecode.php?enews=DelPrecode&id=<?=$r[id]?>&time=<?=$time?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
     </tr>
     <?
   }
@@ -438,7 +438,7 @@ function CheckAll(form)
         </div></td>
       <td height="25" colspan="6">&nbsp; 
         <?=$returnpage?>
-        &nbsp;&nbsp; <input type="submit" name="Submit2" value="åˆ é™¤é€‰ä¸­"> </td>
+        &nbsp;&nbsp; <input type="submit" name="Submit2" value="É¾³ıÑ¡ÖĞ"> </td>
     </tr>
   </form>
 </table>

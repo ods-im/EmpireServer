@@ -4,27 +4,27 @@ if(!defined('InEmpireCMS'))
 	exit();
 }
 
-//--------------- ç•Œé¢å‚æ•° ---------------
+//--------------- ½çÃæ²ÎÊı ---------------
 
-//ä¼šå‘˜ç•Œé¢é™„ä»¶åœ°å€å‰ç¼€
+//»áÔ±½çÃæ¸½¼şµØÖ·Ç°×º
 $memberskinurl=$public_r['newsurl'].'skin/member/images/';
 
-//LOGOå›¾ç‰‡åœ°å€
+//LOGOÍ¼Æ¬µØÖ·
 $logoimgurl=$memberskinurl.'logo.jpg';
 
-//åŠ å‡å·å›¾ç‰‡åœ°å€
+//¼Ó¼õºÅÍ¼Æ¬µØÖ·
 $addimgurl=$memberskinurl.'add.gif';
 $noaddimgurl=$memberskinurl.'noadd.gif';
 
-//ä¸Šä¸‹æ¨ªçº¿èƒŒæ™¯è‰²
+//ÉÏÏÂºáÏß±³¾°É«
 $bgcolor_line='#4FB4DE';
 
-//å…¶å®ƒè‰²è°ƒå¯ä¿®æ”¹CSSéƒ¨åˆ†
+//ÆäËüÉ«µ÷¿ÉĞŞ¸ÄCSS²¿·Ö
 
-//--------------- ç•Œé¢å‚æ•° ---------------
+//--------------- ½çÃæ²ÎÊı ---------------
 
 
-//è¯†åˆ«å¹¶æ˜¾ç¤ºå½“å‰èœå•
+//Ê¶±ğ²¢ÏÔÊ¾µ±Ç°²Ëµ¥
 function EcmsShowThisMemberMenu(){
 	global $memberskinurl,$noaddimgurl;
 	$selffile=eReturnSelfPage(0);
@@ -61,14 +61,14 @@ function EcmsShowThisMemberMenu(){
 	<?php
 }
 
-//ç½‘é¡µæ ‡é¢˜
-$thispagetitle=$public_diyr['pagetitle']?$public_diyr['pagetitle']:'ä¼šå‘˜ä¸­å¿ƒ';
-//ä¼šå‘˜ä¿¡æ¯
-$tmgetuserid=(int)getcvar('mluserid');	//ç”¨æˆ·ID
-$tmgetusername=RepPostVar(getcvar('mlusername'));	//ç”¨æˆ·å
-$tmgetgroupid=(int)getcvar('mlgroupid');	//ç”¨æˆ·ç»„ID
-$tmgetgroupname='æ¸¸å®¢';
-//ä¼šå‘˜ç»„åç§°
+//ÍøÒ³±êÌâ
+$thispagetitle=$public_diyr['pagetitle']?$public_diyr['pagetitle']:'»áÔ±ÖĞĞÄ';
+//»áÔ±ĞÅÏ¢
+$tmgetuserid=(int)getcvar('mluserid');	//ÓÃ»§ID
+$tmgetusername=RepPostVar(getcvar('mlusername'));	//ÓÃ»§Ãû
+$tmgetgroupid=(int)getcvar('mlgroupid');	//ÓÃ»§×éID
+$tmgetgroupname='ÓÎ¿Í';
+//»áÔ±×éÃû³Æ
 if($tmgetgroupid)
 {
 	$tmgetgroupname=$level_r[$tmgetgroupid]['groupname'];
@@ -79,13 +79,13 @@ if($tmgetgroupid)
 	}
 }
 
-//æ¨¡å‹
+//Ä£ĞÍ
 $tgetmid=(int)$_GET['mid'];
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <title><?=$thispagetitle?></title>
 <style>
@@ -99,12 +99,12 @@ select					{ font: 9pt Tahoma, Verdana; font-weight: normal; }
 .singleborder			{ font-size: 0px; line-height: 1px; padding: 0px; background-color: #F8F8F8 }
 .bold					{ font-weight: bold }
 
-/*ä¿®æ”¹ä¸»è¦è‰²è°ƒ*/
+/*ĞŞ¸ÄÖ÷ÒªÉ«µ÷*/
 .header					{ font: 9pt Tahoma, Verdana; color: #FFFFFF; font-weight: bold; background-color: #4FB4DE }
 .header a				{ color: #FFFFFF }
 .tableborder			{ background: #C9F1FF; border: 1px solid #4FB4DE } 
 
-/*åˆ†é¡µæ ·å¼*/
+/*·ÖÒ³ÑùÊ½*/
 .epages{margin:3px 0;font:11px/12px Tahoma}
 .epages *{vertical-align:middle;}
 .epages a{padding:1px 4px 1px;border:1px solid #A6CBE7;margin:0 1px 0 0;text-align:center;text-decoration:none;font:normal 12px/14px verdana;}
@@ -212,30 +212,30 @@ function DisplayAllMenu(imgname)
     <td width="42%"><img src="<?=$logoimgurl?>" width="397" height="65" border="0"></td>
     <td width="58%">
 	<?php
-	if($tmgetuserid)	//å·²ç™»å½•
+	if($tmgetuserid)	//ÒÑµÇÂ¼
 	{
 	?>
 	<table width="100%" border="0" align="right" cellpadding="3" cellspacing="1">
       <tr>
-        <td colspan="2">æ‚¨å¥½ï¼Œ<strong><?=$tmgetusername?></strong> &lt;<?=$tmgetgroupname?>&gt; </td>
+        <td colspan="2">ÄúºÃ£¬<strong><?=$tmgetusername?></strong> &lt;<?=$tmgetgroupname?>&gt; </td>
       </tr>
       <tr>
-        <td width="65%">[ <a href="<?=$public_r['newsurl']?>e/space/?userid=<?=$tmgetuserid?>">æˆ‘çš„ç©ºé—´</a> | <a href="<?=$public_r['newsurl']?>e/member/msg/">ç«™å†…æ¶ˆæ¯</a> | <a href="<?=$public_r['newsurl']?>e/member/fava/">æ”¶è—å¤¹</a> | <a href="<?=$public_r['newsurl']?>e/member/doaction.php?enews=exit" onclick="return confirm('ç¡®è®¤è¦é€€å‡º?');">é€€å‡º</a> ]</td>
-        <td width="35%"><div align="right"><a href="<?=$public_r['newsurl']?>"><u>ç½‘ç«™é¦–é¡µ</u></a> | <a href="<?=$public_r['newsurl']?>e/member/cp/"><u>ä¼šå‘˜ä¸­å¿ƒ</u></a> | <a href="<?=$public_r['newsurl']?>e/member/list/"><u>ä¼šå‘˜åˆ—è¡¨</u></a></div></td>
+        <td width="65%">[ <a href="<?=$public_r['newsurl']?>e/space/?userid=<?=$tmgetuserid?>">ÎÒµÄ¿Õ¼ä</a> | <a href="<?=$public_r['newsurl']?>e/member/msg/">Õ¾ÄÚÏûÏ¢</a> | <a href="<?=$public_r['newsurl']?>e/member/fava/">ÊÕ²Ø¼Ğ</a> | <a href="<?=$public_r['newsurl']?>e/member/doaction.php?enews=exit" onclick="return confirm('È·ÈÏÒªÍË³ö?');">ÍË³ö</a> ]</td>
+        <td width="35%"><div align="right"><a href="<?=$public_r['newsurl']?>"><u>ÍøÕ¾Ê×Ò³</u></a> | <a href="<?=$public_r['newsurl']?>e/member/cp/"><u>»áÔ±ÖĞĞÄ</u></a> | <a href="<?=$public_r['newsurl']?>e/member/list/"><u>»áÔ±ÁĞ±í</u></a></div></td>
       </tr>
     </table>
 	<?php
 	}
-	else	//æ¸¸å®¢
+	else	//ÓÎ¿Í
 	{
 	?>
 	<table width="100%" border="0" align="right" cellpadding="3" cellspacing="1">
       <tr>
-        <td colspan="2">æ‚¨å¥½ï¼Œ<strong>æ¸¸å®¢</strong> &lt;æ¸¸å®¢&gt;</td>
+        <td colspan="2">ÄúºÃ£¬<strong>ÓÎ¿Í</strong> &lt;ÓÎ¿Í&gt;</td>
       </tr>
       <tr>
-        <td width="65%">[ <a href="<?=$public_r['newsurl']?>e/member/login/">é©¬ä¸Šç™»å½•</a> | <a href="<?=$public_r['newsurl']?>e/member/register/">æ³¨å†Œå¸å·</a> ]</td>
-        <td width="35%"><div align="right"><a href="<?=$public_r['newsurl']?>"><u>ç½‘ç«™é¦–é¡µ</u></a> | <a href="<?=$public_r['newsurl']?>e/member/cp/"><u>ä¼šå‘˜ä¸­å¿ƒ</u></a> | <a href="<?=$public_r['newsurl']?>e/member/list/"><u>ä¼šå‘˜åˆ—è¡¨</u></a></div></td>
+        <td width="65%">[ <a href="<?=$public_r['newsurl']?>e/member/login/">ÂíÉÏµÇÂ¼</a> | <a href="<?=$public_r['newsurl']?>e/member/register/">×¢²áÕÊºÅ</a> ]</td>
+        <td width="35%"><div align="right"><a href="<?=$public_r['newsurl']?>"><u>ÍøÕ¾Ê×Ò³</u></a> | <a href="<?=$public_r['newsurl']?>e/member/cp/"><u>»áÔ±ÖĞĞÄ</u></a> | <a href="<?=$public_r['newsurl']?>e/member/list/"><u>»áÔ±ÁĞ±í</u></a></div></td>
       </tr>
     </table>
 	<?php
@@ -251,68 +251,68 @@ function DisplayAllMenu(imgname)
 </table>
 <table width="960" border="0" align="center" cellpadding="3" cellspacing="3">
   <tr>
-    <td>å½“å‰ä½ç½®ï¼š<?=$url?></td>
+    <td>µ±Ç°Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <table width="960" border="0" align="center" cellpadding="12" cellspacing="1" bgcolor="#C9F1FF">
   <tr>
     <td width="20%" valign="top" bgcolor="#FFFFFF">
 	<?php
-	if($tmgetuserid)	//å·²ç™»å½•
+	if($tmgetuserid)	//ÒÑµÇÂ¼
 	{
 	?>
 	<table width="180" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-      <tr class="header" id="domenumemberid" onMouseUp="turnit(domenumember,'menumemberimg');" style="CURSOR: hand" title="å±•å¼€/æ”¶ç¼©">
-        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menumemberimg" width="20" height="9" border="0">å¸å·</td>
+      <tr class="header" id="domenumemberid" onMouseUp="turnit(domenumember,'menumemberimg');" style="CURSOR: hand" title="Õ¹¿ª/ÊÕËõ">
+        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menumemberimg" width="20" height="9" border="0">ÕÊºÅ</td>
       </tr>
       <tbody id="domenumember" style="display:none">
         <tr>
           <td bgcolor="#FFFFFF"><table width="90%" border="0" align="right" cellpadding="3" cellspacing="1">
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/EditInfo/">ä¿®æ”¹èµ„æ–™</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/EditInfo/">ĞŞ¸Ä×ÊÁÏ</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/EditInfo/EditSafeInfo.php">ä¿®æ”¹å®‰å…¨ä¿¡æ¯</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/EditInfo/EditSafeInfo.php">ĞŞ¸Ä°²È«ĞÅÏ¢</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/my/">å¸å·çŠ¶æ€</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/my/">ÕÊºÅ×´Ì¬</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/fava/">æ”¶è—å¤¹</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/fava/">ÊÕ²Ø¼Ğ</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/friend/">å¥½å‹åˆ—è¡¨</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/friend/">ºÃÓÑÁĞ±í</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/memberconnect/ListBind.php">ç»‘å®šå¤–éƒ¨ç™»å½•</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/memberconnect/ListBind.php">°ó¶¨Íâ²¿µÇÂ¼</a></td>
               </tr>
           </table></td>
         </tr>
       </tbody>
-      <tr class="header" id="domenumsgid" onMouseUp="turnit(domenumsg,'menumsgimg');" style="CURSOR: hand" title="å±•å¼€/æ”¶ç¼©">
-        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menumsgimg" width="20" height="9" border="0">ç«™å†…æ¶ˆæ¯</td>
+      <tr class="header" id="domenumsgid" onMouseUp="turnit(domenumsg,'menumsgimg');" style="CURSOR: hand" title="Õ¹¿ª/ÊÕËõ">
+        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menumsgimg" width="20" height="9" border="0">Õ¾ÄÚÏûÏ¢</td>
       </tr>
       <tbody id="domenumsg" style="display:none">
         <tr>
           <td bgcolor="#FFFFFF"><table width="90%" border="0" align="right" cellpadding="3" cellspacing="1">
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/msg/AddMsg/?enews=AddMsg">å‘é€æ¶ˆæ¯</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/msg/AddMsg/?enews=AddMsg">·¢ËÍÏûÏ¢</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/msg/">æ¶ˆæ¯åˆ—è¡¨</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/msg/">ÏûÏ¢ÁĞ±í</a></td>
               </tr>
           </table></td>
         </tr>
       </tbody>
-      <tr class="header" id="domenuinfoid" onMouseUp="turnit(domenuinfo,'menuinfoimg');" style="CURSOR: hand" title="å±•å¼€/æ”¶ç¼©">
-        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menuinfoimg" width="20" height="9" border="0">æŠ•ç¨¿</td>
+      <tr class="header" id="domenuinfoid" onMouseUp="turnit(domenuinfo,'menuinfoimg');" style="CURSOR: hand" title="Õ¹¿ª/ÊÕËõ">
+        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menuinfoimg" width="20" height="9" border="0">Í¶¸å</td>
       </tr>
       <tbody id="domenuinfo" style="display:none">
         <tr>
           <td bgcolor="#FFFFFF">
           <table width="90%" border="0" align="right" cellpadding="3" cellspacing="1">
 			<?php
-			//è¾“å‡ºå¯ç®¡ç†çš„æ¨¡å‹
+			//Êä³ö¿É¹ÜÀíµÄÄ£ĞÍ
 			$tmodsql=$empire->query("select mid,qmname from {$dbtbpre}enewsmod where usemod=0 and showmod=0 and qenter<>'' order by myorder,mid");
 			while($tmodr=$empire->fetch($tmodsql))
 			{
@@ -325,8 +325,8 @@ function DisplayAllMenu(imgname)
 				}
 			?>
               <tr>
-                <td width="74%" height="23"><a href="<?=$public_r['newsurl']?>e/DoInfo/ListInfo.php?mid=<?=$tmodr['mid']?>"><?=$fontb?>ç®¡ç†<?=$tmodr[qmname]?><?=$fontb1?></a></td>
-                <td width="26%"><div align="right"><a href="<?=$public_r['newsurl']?>e/DoInfo/ChangeClass.php?mid=<?=$tmodr['mid']?>"><?=$fontb?>å‘å¸ƒ<?=$fontb1?></a></div></td>
+                <td width="74%" height="23"><a href="<?=$public_r['newsurl']?>e/DoInfo/ListInfo.php?mid=<?=$tmodr['mid']?>"><?=$fontb?>¹ÜÀí<?=$tmodr[qmname]?><?=$fontb1?></a></td>
+                <td width="26%"><div align="right"><a href="<?=$public_r['newsurl']?>e/DoInfo/ChangeClass.php?mid=<?=$tmodr['mid']?>"><?=$fontb?>·¢²¼<?=$fontb1?></a></div></td>
               </tr>
 			<?php
 			}
@@ -335,94 +335,94 @@ function DisplayAllMenu(imgname)
           </td>
         </tr>
       </tbody>
-      <tr class="header" id="domenuspaceid" onMouseUp="turnit(domenuspace,'menuspaceimg');" style="CURSOR: hand" title="å±•å¼€/æ”¶ç¼©">
-        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menuspaceimg" width="20" height="9" border="0">ä¼šå‘˜ç©ºé—´</td>
+      <tr class="header" id="domenuspaceid" onMouseUp="turnit(domenuspace,'menuspaceimg');" style="CURSOR: hand" title="Õ¹¿ª/ÊÕËõ">
+        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menuspaceimg" width="20" height="9" border="0">»áÔ±¿Õ¼ä</td>
       </tr>
       <tbody id="domenuspace" style="display:none">
         <tr>
           <td bgcolor="#FFFFFF"><table width="90%" border="0" align="right" cellpadding="3" cellspacing="1">
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/space/?userid=<?=$tmgetuserid?>">é¢„è§ˆç©ºé—´</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/space/?userid=<?=$tmgetuserid?>">Ô¤ÀÀ¿Õ¼ä</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/mspace/SetSpace.php">è®¾ç½®ç©ºé—´</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/mspace/SetSpace.php">ÉèÖÃ¿Õ¼ä</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/mspace/ChangeStyle.php">é€‰æ‹©æ¨¡æ¿</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/mspace/ChangeStyle.php">Ñ¡ÔñÄ£°å</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/mspace/gbook.php">ç®¡ç†ç•™è¨€</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/mspace/gbook.php">¹ÜÀíÁôÑÔ</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/mspace/feedback.php">ç®¡ç†åé¦ˆ</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/mspace/feedback.php">¹ÜÀí·´À¡</a></td>
               </tr>
           </table></td>
         </tr>
       </tbody>
-      <tr class="header" id="domenupayid" onMouseUp="turnit(domenupay,'menupayimg');" style="CURSOR: hand" title="å±•å¼€/æ”¶ç¼©">
-        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menupayimg" width="20" height="9" border="0">è´¢åŠ¡</td>
+      <tr class="header" id="domenupayid" onMouseUp="turnit(domenupay,'menupayimg');" style="CURSOR: hand" title="Õ¹¿ª/ÊÕËõ">
+        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menupayimg" width="20" height="9" border="0">²ÆÎñ</td>
       </tr>
       <tbody id="domenupay" style="display:none">
         <tr>
           <td bgcolor="#FFFFFF"><table width="90%" border="0" align="right" cellpadding="3" cellspacing="1">
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/payapi/">åœ¨çº¿æ”¯ä»˜</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/payapi/">ÔÚÏßÖ§¸¶</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/buygroup/">åœ¨çº¿å……å€¼</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/buygroup/">ÔÚÏß³äÖµ</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/card/">ç‚¹å¡å……å€¼</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/card/">µã¿¨³äÖµ</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/buybak/">ç‚¹å¡å……å€¼è®°å½•</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/buybak/">µã¿¨³äÖµ¼ÇÂ¼</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/downbak/">ä¸‹è½½æ¶ˆè´¹è®°å½•</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/member/downbak/">ÏÂÔØÏû·Ñ¼ÇÂ¼</a></td>
               </tr>
           </table></td>
         </tr>
       </tbody>
-      <tr class="header" id="domenushopid" onMouseUp="turnit(domenushop,'menushopimg');" style="CURSOR: hand" title="å±•å¼€/æ”¶ç¼©">
-        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menushopimg" width="20" height="9" border="0">å•†åŸ</td>
+      <tr class="header" id="domenushopid" onMouseUp="turnit(domenushop,'menushopimg');" style="CURSOR: hand" title="Õ¹¿ª/ÊÕËõ">
+        <td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menushopimg" width="20" height="9" border="0">ÉÌ³Ç</td>
       </tr>
       <tbody id="domenushop" style="display:none">
         <tr>
           <td bgcolor="#FFFFFF"><table width="90%" border="0" align="right" cellpadding="3" cellspacing="1">
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/ShopSys/ListDd/">æˆ‘çš„è®¢å•</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/ShopSys/ListDd/">ÎÒµÄ¶©µ¥</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="#ecms" onclick="window.open('<?=$public_r['newsurl']?>e/ShopSys/buycar/','','width=680,height=500,scrollbars=yes,resizable=yes');">æˆ‘çš„è´­ç‰©è½¦</a></td>
+                <td height="23"><a href="#ecms" onclick="window.open('<?=$public_r['newsurl']?>e/ShopSys/buycar/','','width=680,height=500,scrollbars=yes,resizable=yes');">ÎÒµÄ¹ºÎï³µ</a></td>
               </tr>
               <tr>
-                <td height="23"><a href="<?=$public_r['newsurl']?>e/ShopSys/address/ListAddress.php">ç®¡ç†é…é€åœ°å€</a></td>
+                <td height="23"><a href="<?=$public_r['newsurl']?>e/ShopSys/address/ListAddress.php">¹ÜÀíÅäËÍµØÖ·</a></td>
               </tr>
           </table></td>
         </tr>
       </tbody>
       <tr class="header">
-        <td height="25">&nbsp;&nbsp;<img src="<?=$noaddimgurl?>" width="20" height="9" border="0"><a href="<?=$public_r['newsurl']?>e/member/doaction.php?enews=exit" onclick="return confirm('ç¡®è®¤è¦é€€å‡º?');">é€€å‡º</a></td>
+        <td height="25">&nbsp;&nbsp;<img src="<?=$noaddimgurl?>" width="20" height="9" border="0"><a href="<?=$public_r['newsurl']?>e/member/doaction.php?enews=exit" onclick="return confirm('È·ÈÏÒªÍË³ö?');">ÍË³ö</a></td>
       </tr>
     </table>
 	<?php
 	}
-	else	//æ¸¸å®¢
+	else	//ÓÎ¿Í
 	{
 	?>
 	<table width="180" border="0" align="center" cellspacing="1" cellpadding="3" class="tableborder">
-	<tr class="header" id="domenumemberid" onMouseUp="turnit(domenumember,'menumemberimg');" style="CURSOR: hand" title="å±•å¼€/æ”¶ç¼©">
-		<td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menumemberimg" width="20" height="9" border="0">å¸å·</td>
+	<tr class="header" id="domenumemberid" onMouseUp="turnit(domenumember,'menumemberimg');" style="CURSOR: hand" title="Õ¹¿ª/ÊÕËõ">
+		<td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menumemberimg" width="20" height="9" border="0">ÕÊºÅ</td>
 	</tr>
 	<tbody id="domenumember" style="display:none">
 	<tr>
 		<td bgcolor="#FFFFFF">
 		<table width="90%" border="0" align="right" cellpadding="3" cellspacing="1">
 			<tr>
-				<td height="23"><a href="<?=$public_r['newsurl']?>e/member/login/">ä¼šå‘˜ç™»å½•</a></td>
+				<td height="23"><a href="<?=$public_r['newsurl']?>e/member/login/">»áÔ±µÇÂ¼</a></td>
 			</tr>
 			<tr>
-				<td height="23"><a href="<?=$public_r['newsurl']?>e/member/register/">æ³¨å†Œå¸å·</a></td>
+				<td height="23"><a href="<?=$public_r['newsurl']?>e/member/register/">×¢²áÕÊºÅ</a></td>
 			</tr>
 		</table>
 		</td>
@@ -430,15 +430,15 @@ function DisplayAllMenu(imgname)
 	</tbody>
 	<tbody id="domenumsg" style="display:none">
 	</tbody>
-	<tr class="header" id="domenuinfoid" onMouseUp="turnit(domenuinfo,'menuinfoimg');" style="CURSOR: hand" title="å±•å¼€/æ”¶ç¼©">
-		<td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menuinfoimg" width="20" height="9" border="0">æŠ•ç¨¿</td>
+	<tr class="header" id="domenuinfoid" onMouseUp="turnit(domenuinfo,'menuinfoimg');" style="CURSOR: hand" title="Õ¹¿ª/ÊÕËõ">
+		<td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menuinfoimg" width="20" height="9" border="0">Í¶¸å</td>
 	</tr>
 	<tbody id="domenuinfo" style="display:none">
 	<tr>
 		<td bgcolor="#FFFFFF">
 		<table width="90%" border="0" align="right" cellpadding="3" cellspacing="1">
 		<?php
-		//è¾“å‡ºå¯ç®¡ç†çš„æ¨¡å‹
+		//Êä³ö¿É¹ÜÀíµÄÄ£ĞÍ
 		$tmodsql=$empire->query("select mid,qmname from {$dbtbpre}enewsmod where usemod=0 and showmod=0 and qenter<>'' order by myorder,mid");
 		while($tmodr=$empire->fetch($tmodsql))
 		{
@@ -451,7 +451,7 @@ function DisplayAllMenu(imgname)
 			}
 		?>
 		<tr>
-			<td width="74%" height="23"><a href="<?=$public_r['newsurl']?>e/DoInfo/ChangeClass.php?mid=<?=$tmodr['mid']?>"><?=$fontb?>å‘å¸ƒ<?=$tmodr[qmname]?><?=$fontb1?></a></td>
+			<td width="74%" height="23"><a href="<?=$public_r['newsurl']?>e/DoInfo/ChangeClass.php?mid=<?=$tmodr['mid']?>"><?=$fontb?>·¢²¼<?=$tmodr[qmname]?><?=$fontb1?></a></td>
 			<td width="26%"><div align="right"></div></td>
 		</tr>
 		<?php
@@ -465,15 +465,15 @@ function DisplayAllMenu(imgname)
 	</tbody>
 	<tbody id="domenupay" style="display:none">
 	</tbody>
-	<tr class="header" id="domenushopid" onMouseUp="turnit(domenushop,'menushopimg');" style="CURSOR: hand" title="å±•å¼€/æ”¶ç¼©">
-		<td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menushopimg" width="20" height="9" border="0">å•†åŸ</td>
+	<tr class="header" id="domenushopid" onMouseUp="turnit(domenushop,'menushopimg');" style="CURSOR: hand" title="Õ¹¿ª/ÊÕËõ">
+		<td height="25">&nbsp;&nbsp;<img src="<?=$addimgurl?>" name="menushopimg" width="20" height="9" border="0">ÉÌ³Ç</td>
 	</tr>
 	<tbody id="domenushop" style="display:none">
 	<tr>
 		<td bgcolor="#FFFFFF">
 		<table width="90%" border="0" align="right" cellpadding="3" cellspacing="1">
 		<tr>
-			<td height="23"><a href="#ecms" onclick="window.open('<?=$public_r['newsurl']?>e/ShopSys/buycar/','','width=680,height=500,scrollbars=yes,resizable=yes');">æˆ‘çš„è´­ç‰©è½¦</a></td>
+			<td height="23"><a href="#ecms" onclick="window.open('<?=$public_r['newsurl']?>e/ShopSys/buycar/','','width=680,height=500,scrollbars=yes,resizable=yes');">ÎÒµÄ¹ºÎï³µ</a></td>
 		</tr>
 		</table>
 		</td>

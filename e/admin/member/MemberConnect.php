@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"memberconnect");
 
-//è®¾ç½®æ¥å£
+//ÉèÖÃ½Ó¿Ú
 function EditMemberConnect($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[id]=(int)$add[id];
@@ -38,7 +38,7 @@ function EditMemberConnect($add,$userid,$username){
 	if($sql)
 	{
 		GetConfig();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("id=".$add[id]."&apptype=".$appr[apptype]."<br>appname=".$add[appname]);
 		printerror("EditMemberConnectSuccess","MemberConnect.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -55,7 +55,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ ç”¨æˆ·
+//Ôö¼ÓÓÃ»§
 if($enews=="EditMemberConnect")
 {
 	EditMemberConnect($_POST,$logininid,$loginin);
@@ -66,15 +66,15 @@ $sql=$empire->query("select * from {$dbtbpre}enewsmember_connect_app order by my
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¤–éƒ¨ç™»å½•æ¥å£</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Íâ²¿µÇÂ¼½Ó¿Ú</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼šå¤–éƒ¨æ¥å£ &gt; <a href="MemberConnect.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å¤–éƒ¨ç™»å½•æ¥å£</a> </td>
+    <td width="50%">Î»ÖÃ£ºÍâ²¿½Ó¿Ú &gt; <a href="MemberConnect.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÍâ²¿µÇÂ¼½Ó¿Ú</a> </td>
     <td><div align="right" class="emenubutton"></div></td>
   </tr>
 </table>
@@ -82,12 +82,12 @@ $sql=$empire->query("select * from {$dbtbpre}enewsmember_connect_app order by my
 <table width="800" border="0" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header">
     <td width="7%"><div align="center">ID</div></td> 
-    <td width="32%"><div align="center">æ¥å£åç§°</div></td>
-    <td width="10%"><div align="center">çŠ¶æ€</div></td>
-    <td width="17%" height="25"><div align="center">æ¥å£ç±»å‹</div></td>
-    <td width="10%"><div align="center">ç»‘å®šäººæ•°</div></td>
-    <td width="10%"><div align="center">ç™»å½•æ¬¡æ•°</div></td>
-    <td width="14%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="32%"><div align="center">½Ó¿ÚÃû³Æ</div></td>
+    <td width="10%"><div align="center">×´Ì¬</div></td>
+    <td width="17%" height="25"><div align="center">½Ó¿ÚÀàĞÍ</div></td>
+    <td width="10%"><div align="center">°ó¶¨ÈËÊı</div></td>
+    <td width="10%"><div align="center">µÇÂ¼´ÎÊı</div></td>
+    <td width="14%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
@@ -100,14 +100,14 @@ $sql=$empire->query("select * from {$dbtbpre}enewsmember_connect_app order by my
     <td height="38" align="center"> 
       <?=$r['appname']?>    </td>
     <td><div align="center">
-        <?=$r['isclose']==0?'å¼€å¯':'å…³é—­'?>
+        <?=$r['isclose']==0?'¿ªÆô':'¹Ø±Õ'?>
       </div></td>
     <td height="38"> <div align="center">
         <?=$r['apptype']?>
       </div></td>
     <td><div align="center"><?=$membernum?></div></td>
     <td><div align="center"><?=intval($loginnum)?></div></td>
-    <td height="38"> <div align="center"><a href="SetMemberConnect.php?enews=EditMemberConnect&id=<?=$r['id']?><?=$ecms_hashur['ehref']?>">é…ç½®æ¥å£</a></div></td>
+    <td height="38"> <div align="center"><a href="SetMemberConnect.php?enews=EditMemberConnect&id=<?=$r['id']?><?=$ecms_hashur['ehref']?>">ÅäÖÃ½Ó¿Ú</a></div></td>
   </tr>
   <?php
   }

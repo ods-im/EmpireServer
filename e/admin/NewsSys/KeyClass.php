@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,24 +15,24 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"key");
 
-//å¢åŠ å†…å®¹å…³é”®å­—åˆ†ç±»
+//Ôö¼ÓÄÚÈİ¹Ø¼ü×Ö·ÖÀà
 function AddKeyClass($classname,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$classname)
 	{
 		printerror("EmptyKeyClass","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"key");
 	$classname=hRepPostStr($classname,1);
 	$sql=$empire->query("insert into {$dbtbpre}enewskeyclass(classname) values('$classname');");
 	$classid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$classname);
 		printerror("AddKeyClassSuccess","KeyClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -40,7 +40,7 @@ function AddKeyClass($classname,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹å†…å®¹å…³é”®å­—åˆ†ç±»
+//ĞŞ¸ÄÄÚÈİ¹Ø¼ü×Ö·ÖÀà
 function EditKeyClass($classid,$classname,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
@@ -48,13 +48,13 @@ function EditKeyClass($classid,$classname,$userid,$username){
 	{
 		printerror("EmptyKeyClass","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"key");
 	$classname=hRepPostStr($classname,1);
 	$sql=$empire->query("update {$dbtbpre}enewskeyclass set classname='$classname' where classid='$classid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$classname);
 		printerror("EditKeyClassSuccess","KeyClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -62,7 +62,7 @@ function EditKeyClass($classid,$classname,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤å†…å®¹å…³é”®å­—åˆ†ç±»
+//É¾³ıÄÚÈİ¹Ø¼ü×Ö·ÖÀà
 function DelKeyClass($classid,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
@@ -70,14 +70,14 @@ function DelKeyClass($classid,$userid,$username){
 	{
 		printerror("NotKeyClassid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"key");
 	$r=$empire->fetch1("select classname from {$dbtbpre}enewskeyclass where classid='$classid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewskeyclass where classid='$classid'");
 	$sql1=$empire->query("update {$dbtbpre}enewskey set cid=0 where cid='$classid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$r[classname]);
 		printerror("DelKeyClassSuccess","KeyClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -92,20 +92,20 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ å†…å®¹å…³é”®å­—åˆ†ç±»
+//Ôö¼ÓÄÚÈİ¹Ø¼ü×Ö·ÖÀà
 if($enews=="AddKeyClass")
 {
 	$classname=$_POST['classname'];
 	AddKeyClass($classname,$logininid,$loginin);
 }
-//ä¿®æ”¹å†…å®¹å…³é”®å­—åˆ†ç±»
+//ĞŞ¸ÄÄÚÈİ¹Ø¼ü×Ö·ÖÀà
 elseif($enews=="EditKeyClass")
 {
 	$classname=$_POST['classname'];
 	$classid=$_POST['classid'];
 	EditKeyClass($classid,$classname,$logininid,$loginin);
 }
-//åˆ é™¤å†…å®¹å…³é”®å­—åˆ†ç±»
+//É¾³ıÄÚÈİ¹Ø¼ü×Ö·ÖÀà
 elseif($enews=="DelKeyClass")
 {
 	$classid=$_GET['classid'];
@@ -117,15 +117,15 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewskeyclass order
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†å†…å®¹å…³é”®å­—åˆ†ç±»</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÄÚÈİ¹Ø¼ü×Ö·ÖÀà</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href=key.php<?=$ecms_hashur['whehref']?>>ç®¡ç†å†…å®¹å…³é”®å­—</a>&nbsp;&gt;&nbsp;<a href="KeyClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å†…å®¹å…³é”®å­—åˆ†ç±»</a></td>
+    <td>Î»ÖÃ£º<a href=key.php<?=$ecms_hashur['whehref']?>>¹ÜÀíÄÚÈİ¹Ø¼ü×Ö</a>&nbsp;&gt;&nbsp;<a href="KeyClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÄÚÈİ¹Ø¼ü×Ö·ÖÀà</a></td>
   </tr>
 </table>
 <form name="form1" method="post" action="KeyClass.php">
@@ -133,21 +133,21 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewskeyclass order
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td height="25">å¢åŠ å†…å®¹å…³é”®å­—åˆ†ç±»:</td>
+      <td height="25">Ôö¼ÓÄÚÈİ¹Ø¼ü×Ö·ÖÀà:</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> åˆ†ç±»åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> ·ÖÀàÃû³Æ: 
         <input name="classname" type="text" id="classname">
-        <input type="submit" name="Submit" value="å¢åŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header">
     <td width="10%"><div align="center">ID</div></td>
-    <td width="59%" height="25"><div align="center">åˆ†ç±»åç§°</div></td>
-    <td width="31%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="59%" height="25"><div align="center">·ÖÀàÃû³Æ</div></td>
+    <td width="31%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -163,9 +163,9 @@ $sql=$empire->query("select classid,classname from {$dbtbpre}enewskeyclass order
           <input name="classname" type="text" id="classname" value="<?=$r[classname]?>">
         </div></td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="if(confirm('ç¡®è®¤è¦åˆ é™¤?')){self.location.href='KeyClass.php?enews=DelKeyClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>';}">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="if(confirm('È·ÈÏÒªÉ¾³ı?')){self.location.href='KeyClass.php?enews=DelKeyClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>';}">
         </div></td>
     </tr>
   </form>

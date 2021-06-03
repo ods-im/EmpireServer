@@ -5,21 +5,21 @@ document.writeln('<span id=tmpSelectMonthLayer style="z-index: 9999;position: ab
 document.writeln('<table border=0 cellspacing=1 cellpadding=0 width=142 height=160 bgcolor=#000000 onselectstart="return false">');
 document.writeln('  <tr><td width=142 height=23 bgcolor=#FFFFFF><table border=0 cellspacing=1 cellpadding=0 width=140 height=23>');
 document.writeln('      <tr align=center><td width=20 align=center bgcolor=#808080 style="font-size:12px;cursor: hand;color: #FFD700" ');
-document.writeln('        onclick="meizzPrevM()" title="å‰ä¸€æœˆ" Author=meizz><b Author=meizz>&lt;</b>');
+document.writeln('        onclick="meizzPrevM()" title="Ç°Ò»ÔÂ" Author=meizz><b Author=meizz>&lt;</b>');
 document.writeln('        </td><td width=100 align=center style="font-size:12px;cursor:default" Author=meizz>');
 
-document.writeln('        <span Author=meizz id=meizzYearHead onmouseover="style.backgroundColor=\'yellow\'" onmouseout="style.backgroundColor=\'white\'" title="ç‚¹å‡»è¿™é‡Œé€‰æ‹©å¹´ä»½" onclick="tmpSelectYearInnerHTML(this.innerText)" style="cursor: hand;"></span>&nbsp;å¹´&nbsp;<span');
-document.writeln('         id=meizzMonthHead Author=meizz onmouseover="style.backgroundColor=\'yellow\'" onmouseout="style.backgroundColor=\'white\'" title="ç‚¹å‡»è¿™é‡Œé€‰æ‹©æœˆä»½" onclick="tmpSelectMonthInnerHTML(this.innerText)" style="cursor: hand;"></span>&nbsp;æœˆ</td>');
+document.writeln('        <span Author=meizz id=meizzYearHead onmouseover="style.backgroundColor=\'yellow\'" onmouseout="style.backgroundColor=\'white\'" title="µã»÷ÕâÀïÑ¡ÔñÄê·İ" onclick="tmpSelectYearInnerHTML(this.innerText)" style="cursor: hand;"></span>&nbsp;Äê&nbsp;<span');
+document.writeln('         id=meizzMonthHead Author=meizz onmouseover="style.backgroundColor=\'yellow\'" onmouseout="style.backgroundColor=\'white\'" title="µã»÷ÕâÀïÑ¡ÔñÔÂ·İ" onclick="tmpSelectMonthInnerHTML(this.innerText)" style="cursor: hand;"></span>&nbsp;ÔÂ</td>');
 
 document.writeln('        <td width=20 bgcolor=#808080 align=center style="font-size:12px;cursor: hand;color: #FFD700" ');
-document.writeln('         onclick="meizzNextM()" title="åä¸€æœˆ" Author=meizz><b Author=meizz>&gt;</b></td></tr>');
+document.writeln('         onclick="meizzNextM()" title="ºóÒ»ÔÂ" Author=meizz><b Author=meizz>&gt;</b></td></tr>');
 document.writeln('    </table></td></tr>');
 document.writeln('  <tr><td width=142 height=18 bgcolor=#808080>');
 document.writeln('<table border=0 cellspacing=0 cellpadding=0 width=140 height=1 style="cursor:default">');
-document.writeln('<tr align=center><td style="font-size:12px;color:#FFFFFF" Author=meizz>æ—¥</td>');
-document.writeln('<td style="font-size:12px;color:#FFFFFF" Author=meizz class="td1">ä¸€</td><td style="font-size:12px;color:#FFFFFF" Author=meizz>äºŒ</td>');
-document.writeln('<td style="font-size:12px;color:#FFFFFF" Author=meizz>ä¸‰</td><td style="font-size:12px;color:#FFFFFF" Author=meizz>å››</td>');
-document.writeln('<td style="font-size:12px;color:#FFFFFF" Author=meizz>äº”</td><td style="font-size:12px;color:#FFFFFF" Author=meizz>å…­</td></tr>');
+document.writeln('<tr align=center><td style="font-size:12px;color:#FFFFFF" Author=meizz>ÈÕ</td>');
+document.writeln('<td style="font-size:12px;color:#FFFFFF" Author=meizz class="td1">Ò»</td><td style="font-size:12px;color:#FFFFFF" Author=meizz>¶ş</td>');
+document.writeln('<td style="font-size:12px;color:#FFFFFF" Author=meizz>Èı</td><td style="font-size:12px;color:#FFFFFF" Author=meizz>ËÄ</td>');
+document.writeln('<td style="font-size:12px;color:#FFFFFF" Author=meizz>Îå</td><td style="font-size:12px;color:#FFFFFF" Author=meizz>Áù</td></tr>');
 document.writeln('</table></td></tr><!-- Author:F.R.Huang(meizz) http://www.meizz.com/ mail: meizz@hzcnc.com 2002-10-8 -->');
 document.writeln('  <tr><td width=142 height=120>');
 document.writeln('    <table border=0 cellspacing=1 cellpadding=0 width=140 height=120 bgcolor=#FFFFFF>');
@@ -30,31 +30,31 @@ document.writeln('      <tr align=center><td width=20 height=20 style="font-size
 document.writeln('         onclick=meizzDayClick(this.innerText)></td>');
 document.writeln('        <td width=20 height=20 style="font-size:12px" id=meizzDay36 Author=meizz onclick=meizzDayClick(this.innerText)></td>');
 document.writeln('        <td colspan=5 align=right Author=meizz><span onclick=closeLayer() style="font-size:12px;cursor: hand"');
-document.writeln('         Author=meizz title="è¿”å›ï¼ˆä¸é€‰æ‹©æ—¥æœŸï¼‰"><u>å…³é—­</u></span>&nbsp;</td></tr>');
+document.writeln('         Author=meizz title="·µ»Ø£¨²»Ñ¡ÔñÈÕÆÚ£©"><u>¹Ø±Õ</u></span>&nbsp;</td></tr>');
 document.writeln('    </table></td></tr><tr><td>');
 document.writeln('        <table border=0 cellspacing=1 cellpadding=0 width=100% bgcolor=#FFFFFF>');
-document.writeln('          <tr><td Author=meizz align=left><input Author=meizz type=button value="<<" title="å‰ä¸€å¹´" onclick="meizzPrevY()" ');
-document.writeln('             onfocus="this.blur()" style="	cursor: hand;BACKGROUND-COLOR: #808080;BORDER-BOTTOM: #808080 1px outset; BORDER-LEFT: #808080 1px outset; BORDER-RIGHT: #808080 1px outset; BORDER-TOP: #808080 1px outset; FONT-SIZE: 12px; height: 20px;color: #FFD700; font-weight: bold"><input Author=meizz title="å‰ä¸€æœˆ" type=button ');
+document.writeln('          <tr><td Author=meizz align=left><input Author=meizz type=button value="<<" title="Ç°Ò»Äê" onclick="meizzPrevY()" ');
+document.writeln('             onfocus="this.blur()" style="	cursor: hand;BACKGROUND-COLOR: #808080;BORDER-BOTTOM: #808080 1px outset; BORDER-LEFT: #808080 1px outset; BORDER-RIGHT: #808080 1px outset; BORDER-TOP: #808080 1px outset; FONT-SIZE: 12px; height: 20px;color: #FFD700; font-weight: bold"><input Author=meizz title="Ç°Ò»ÔÂ" type=button ');
 document.writeln('             value="<" onclick="meizzPrevM()" onfocus="this.blur()" style="cursor: hand;BACKGROUND-COLOR: #808080;BORDER-BOTTOM: #808080 1px outset; BORDER-LEFT: #808080 1px outset; BORDER-RIGHT: #808080 1px outset; BORDER-TOP: #808080 1px outset;font-size: 12px; height: 20px;color: #FFD700; font-weight: bold"></td><td ');
-document.writeln('             Author=meizz align=center><input Author=meizz type=button value="é‡ç½®" onclick="meizzToday()" ');
-document.writeln('             onfocus="this.blur()" title="æ˜¾ç¤ºå½“å‰æ—¶é—´" style="cursor: hand;BACKGROUND-COLOR: #808080;BORDER-BOTTOM: #808080 1px outset; BORDER-LEFT: #808080 1px outset; BORDER-RIGHT: #808080 1px outset; BORDER-TOP: #808080 1px outset;font-size: 12px; height: 20px;color: #FFFFFF; font-weight: bold"></td><td ');
+document.writeln('             Author=meizz align=center><input Author=meizz type=button value="ÖØÖÃ" onclick="meizzToday()" ');
+document.writeln('             onfocus="this.blur()" title="ÏÔÊ¾µ±Ç°Ê±¼ä" style="cursor: hand;BACKGROUND-COLOR: #808080;BORDER-BOTTOM: #808080 1px outset; BORDER-LEFT: #808080 1px outset; BORDER-RIGHT: #808080 1px outset; BORDER-TOP: #808080 1px outset;font-size: 12px; height: 20px;color: #FFFFFF; font-weight: bold"></td><td ');
 document.writeln('             Author=meizz align=right><input Author=meizz type=button value=">" onclick="meizzNextM()" ');
-document.writeln('             onfocus="this.blur()" title="åä¸€æœˆ" style="cursor: hand;BACKGROUND-COLOR: #808080;BORDER-BOTTOM: #808080 1px outset; BORDER-LEFT: #808080 1px outset; BORDER-RIGHT: #808080 1px outset; BORDER-TOP: #808080 1px outset;font-size: 12px; height: 20px;color: #FFD700; font-weight: bold"><input ');
-document.writeln('             Author=meizz type=button value=" >>" title="åä¸€å¹´" onclick="meizzNextY()"');
+document.writeln('             onfocus="this.blur()" title="ºóÒ»ÔÂ" style="cursor: hand;BACKGROUND-COLOR: #808080;BORDER-BOTTOM: #808080 1px outset; BORDER-LEFT: #808080 1px outset; BORDER-RIGHT: #808080 1px outset; BORDER-TOP: #808080 1px outset;font-size: 12px; height: 20px;color: #FFD700; font-weight: bold"><input ');
+document.writeln('             Author=meizz type=button value=" >>" title="ºóÒ»Äê" onclick="meizzNextY()"');
 document.writeln('             onfocus="this.blur()" style="cursor: hand;BACKGROUND-COLOR: #808080;BORDER-BOTTOM: #808080 1px outset; BORDER-LEFT: #808080 1px outset; BORDER-RIGHT: #808080 1px outset; BORDER-TOP: #808080 1px outset;font-size: 12px; height: 20px;color: #FFD700; font-weight: bold"></td>');
 document.writeln('</tr></table></td></tr></table></div>');
 
 
 var outObject;
-function setday(tt,obj) //ä¸»è°ƒå‡½æ•°
+function setday(tt,obj) //Ö÷µ÷º¯Êı
 {
-  if (arguments.length >  2){alert("å¯¹ä¸èµ·ï¼ä¼ å…¥æœ¬æ§ä»¶çš„å‚æ•°å¤ªå¤šï¼");return;}
-  if (arguments.length == 0){alert("å¯¹ä¸èµ·ï¼æ‚¨æ²¡æœ‰ä¼ å›æœ¬æ§ä»¶ä»»ä½•å‚æ•°ï¼");return;}
+  if (arguments.length >  2){alert("¶Ô²»Æğ£¡´«Èë±¾¿Ø¼şµÄ²ÎÊıÌ«¶à£¡");return;}
+  if (arguments.length == 0){alert("¶Ô²»Æğ£¡ÄúÃ»ÓĞ´«»Ø±¾¿Ø¼şÈÎºÎ²ÎÊı£¡");return;}
   var dads  = document.all.meizzDateLayer.style;var th = tt;
-  var ttop  = tt.offsetTop;     //TTæ§ä»¶çš„å®šä½ç‚¹é«˜
-  var thei  = tt.clientHeight;  //TTæ§ä»¶æœ¬èº«çš„é«˜
-  var tleft = tt.offsetLeft;    //TTæ§ä»¶çš„å®šä½ç‚¹å®½
-  var ttyp  = tt.type;          //TTæ§ä»¶çš„ç±»å‹
+  var ttop  = tt.offsetTop;     //TT¿Ø¼şµÄ¶¨Î»µã¸ß
+  var thei  = tt.clientHeight;  //TT¿Ø¼ş±¾ÉíµÄ¸ß
+  var tleft = tt.offsetLeft;    //TT¿Ø¼şµÄ¶¨Î»µã¿í
+  var ttyp  = tt.type;          //TT¿Ø¼şµÄÀàĞÍ
   while (tt = tt.offsetParent){ttop+=tt.offsetTop; tleft+=tt.offsetLeft;}
   dads.top  = (ttyp=="image")? ttop+thei : ttop+thei+6;
   dads.left = tleft;
@@ -63,15 +63,15 @@ function setday(tt,obj) //ä¸»è°ƒå‡½æ•°
   event.returnValue=false;
 }
 
-var MonHead = new Array(12);    		   //å®šä¹‰é˜³å†ä¸­æ¯ä¸ªæœˆçš„æœ€å¤§å¤©æ•°
+var MonHead = new Array(12);    		   //¶¨ÒåÑôÀúÖĞÃ¿¸öÔÂµÄ×î´óÌìÊı
     MonHead[0] = 31; MonHead[1] = 28; MonHead[2] = 31; MonHead[3] = 30; MonHead[4]  = 31; MonHead[5]  = 30;
     MonHead[6] = 31; MonHead[7] = 31; MonHead[8] = 30; MonHead[9] = 31; MonHead[10] = 30; MonHead[11] = 31;
 
-var meizzTheYear=new Date().getFullYear(); //å®šä¹‰å¹´çš„å˜é‡çš„åˆå§‹å€¼
-var meizzTheMonth=new Date().getMonth()+1; //å®šä¹‰æœˆçš„å˜é‡çš„åˆå§‹å€¼
-var meizzWDay=new Array(37);               //å®šä¹‰å†™æ—¥æœŸçš„æ•°ç»„
+var meizzTheYear=new Date().getFullYear(); //¶¨ÒåÄêµÄ±äÁ¿µÄ³õÊ¼Öµ
+var meizzTheMonth=new Date().getMonth()+1; //¶¨ÒåÔÂµÄ±äÁ¿µÄ³õÊ¼Öµ
+var meizzWDay=new Array(37);               //¶¨ÒåĞ´ÈÕÆÚµÄÊı×é
 
-function document.onclick() //ä»»æ„ç‚¹å‡»æ—¶å…³é—­è¯¥æ§ä»¶
+function document.onclick() //ÈÎÒâµã»÷Ê±¹Ø±Õ¸Ã¿Ø¼ş
 { 
   with(window.event.srcElement)
   { if (tagName != "INPUT" && getAttribute("Author")==null)
@@ -79,16 +79,16 @@ function document.onclick() //ä»»æ„ç‚¹å‡»æ—¶å…³é—­è¯¥æ§ä»¶
   }
 }
 
-function meizzWriteHead(yy,mm)  //å¾€ head ä¸­å†™å…¥å½“å‰çš„å¹´ä¸æœˆ
+function meizzWriteHead(yy,mm)  //Íù head ÖĞĞ´Èëµ±Ç°µÄÄêÓëÔÂ
   { document.all.meizzYearHead.innerText  = yy;
     document.all.meizzMonthHead.innerText = mm;
   }
 
-function tmpSelectYearInnerHTML(strYear) //å¹´ä»½çš„ä¸‹æ‹‰æ¡†
+function tmpSelectYearInnerHTML(strYear) //Äê·İµÄÏÂÀ­¿ò
 {
-  if (strYear.match(/\D/)!=null){alert("å¹´ä»½è¾“å…¥å‚æ•°ä¸æ˜¯æ•°å­—ï¼");return;}
+  if (strYear.match(/\D/)!=null){alert("Äê·İÊäÈë²ÎÊı²»ÊÇÊı×Ö£¡");return;}
   var m = (strYear) ? strYear : new Date().getFullYear();
-  if (m < 1000 || m > 9999) {alert("å¹´ä»½å€¼ä¸åœ¨ 1000 åˆ° 9999 ä¹‹é—´ï¼");return;}
+  if (m < 1000 || m > 9999) {alert("Äê·İÖµ²»ÔÚ 1000 µ½ 9999 Ö®¼ä£¡");return;}
   var n = m - 10;
   if (n < 1000) n = 1000;
   if (n + 26 > 9999) n = 9974;
@@ -100,8 +100,8 @@ function tmpSelectYearInnerHTML(strYear) //å¹´ä»½çš„ä¸‹æ‹‰æ¡†
   for (var i = n; i < n + 26; i++)
   {
     if (i == m)
-       {selectInnerHTML += "<option value='" + i + "' selected>" + i + "å¹´" + "</option>\r\n";}
-    else {selectInnerHTML += "<option value='" + i + "'>" + i + "å¹´" + "</option>\r\n";}
+       {selectInnerHTML += "<option value='" + i + "' selected>" + i + "Äê" + "</option>\r\n";}
+    else {selectInnerHTML += "<option value='" + i + "'>" + i + "Äê" + "</option>\r\n";}
   }
   selectInnerHTML += "</select>";
   document.all.tmpSelectYearLayer.style.display="";
@@ -109,9 +109,9 @@ function tmpSelectYearInnerHTML(strYear) //å¹´ä»½çš„ä¸‹æ‹‰æ¡†
   document.all.tmpSelectYear.focus();
 }
 
-function tmpSelectMonthInnerHTML(strMonth) //æœˆä»½çš„ä¸‹æ‹‰æ¡†
+function tmpSelectMonthInnerHTML(strMonth) //ÔÂ·İµÄÏÂÀ­¿ò
 {
-  if (strMonth.match(/\D/)!=null){alert("æœˆä»½è¾“å…¥å‚æ•°ä¸æ˜¯æ•°å­—ï¼");return;}
+  if (strMonth.match(/\D/)!=null){alert("ÔÂ·İÊäÈë²ÎÊı²»ÊÇÊı×Ö£¡");return;}
   var m = (strMonth) ? strMonth : new Date().getMonth() + 1;
   var s = "<select Author=meizz name=tmpSelectMonth style='font-size: 12px' "
      s += "onblur='document.all.tmpSelectMonthLayer.style.display=\"none\"' "
@@ -121,8 +121,8 @@ function tmpSelectMonthInnerHTML(strMonth) //æœˆä»½çš„ä¸‹æ‹‰æ¡†
   for (var i = 1; i < 13; i++)
   {
     if (i == m)
-       {selectInnerHTML += "<option value='"+i+"' selected>"+i+"æœˆ"+"</option>\r\n";}
-    else {selectInnerHTML += "<option value='"+i+"'>"+i+"æœˆ"+"</option>\r\n";}
+       {selectInnerHTML += "<option value='"+i+"' selected>"+i+"ÔÂ"+"</option>\r\n";}
+    else {selectInnerHTML += "<option value='"+i+"'>"+i+"ÔÂ"+"</option>\r\n";}
   }
   selectInnerHTML += "</select>";
   document.all.tmpSelectMonthLayer.style.display="";
@@ -130,7 +130,7 @@ function tmpSelectMonthInnerHTML(strMonth) //æœˆä»½çš„ä¸‹æ‹‰æ¡†
   document.all.tmpSelectMonth.focus();
 }
 
-function closeLayer()               //è¿™ä¸ªå±‚çš„å…³é—­
+function closeLayer()               //Õâ¸ö²ãµÄ¹Ø±Õ
   {
     document.all.meizzDateLayer.style.display="none";
   }
@@ -140,31 +140,31 @@ function document.onkeydown()
     if (window.event.keyCode==27)document.all.meizzDateLayer.style.display="none";
   }
 
-function IsPinYear(year)            //åˆ¤æ–­æ˜¯å¦é—°å¹³å¹´
+function IsPinYear(year)            //ÅĞ¶ÏÊÇ·ñÈòÆ½Äê
   {
     if (0==year%4&&((year%100!=0)||(year%400==0))) return true;else return false;
   }
 
-function GetMonthCount(year,month)  //é—°å¹´äºŒæœˆä¸º29å¤©
+function GetMonthCount(year,month)  //ÈòÄê¶şÔÂÎª29Ìì
   {
     var c=MonHead[month-1];if((month==2)&&IsPinYear(year)) c++;return c;
   }
 
-function GetDOW(day,month,year)     //æ±‚æŸå¤©çš„æ˜ŸæœŸå‡ 
+function GetDOW(day,month,year)     //ÇóÄ³ÌìµÄĞÇÆÚ¼¸
   {
     var dt=new Date(year,month-1,day).getDay()/7; return dt;
   }
 
-function meizzPrevY()  //å¾€å‰ç¿» Year
+function meizzPrevY()  //ÍùÇ°·­ Year
   {
     if(meizzTheYear > 999 && meizzTheYear <10000){meizzTheYear--;}
-    else{alert("å¹´ä»½è¶…å‡ºèŒƒå›´ï¼ˆ1000-9999ï¼‰ï¼");}
+    else{alert("Äê·İ³¬³ö·¶Î§£¨1000-9999£©£¡");}
     meizzSetDay(meizzTheYear,meizzTheMonth);
   }
-function meizzNextY()  //å¾€åç¿» Year
+function meizzNextY()  //Íùºó·­ Year
   {
     if(meizzTheYear > 999 && meizzTheYear <10000){meizzTheYear++;}
-    else{alert("å¹´ä»½è¶…å‡ºèŒƒå›´ï¼ˆ1000-9999ï¼‰ï¼");}
+    else{alert("Äê·İ³¬³ö·¶Î§£¨1000-9999£©£¡");}
     meizzSetDay(meizzTheYear,meizzTheMonth);
   }
 function meizzToday()  //Today Button
@@ -173,25 +173,25 @@ function meizzToday()  //Today Button
     meizzTheMonth = new Date().getMonth()+1;
     meizzSetDay(meizzTheYear,meizzTheMonth);
   }
-function meizzPrevM()  //å¾€å‰ç¿»æœˆä»½
+function meizzPrevM()  //ÍùÇ°·­ÔÂ·İ
   {
     if(meizzTheMonth>1){meizzTheMonth--}else{meizzTheYear--;meizzTheMonth=12;}
     meizzSetDay(meizzTheYear,meizzTheMonth);
   }
-function meizzNextM()  //å¾€åç¿»æœˆä»½
+function meizzNextM()  //Íùºó·­ÔÂ·İ
   {
     if(meizzTheMonth==12){meizzTheYear++;meizzTheMonth=1}else{meizzTheMonth++}
     meizzSetDay(meizzTheYear,meizzTheMonth);
   }
 
-function meizzSetDay(yy,mm)   //ä¸»è¦çš„å†™ç¨‹åº**********
+function meizzSetDay(yy,mm)   //Ö÷ÒªµÄĞ´³ÌĞò**********
 {
   meizzWriteHead(yy,mm);
-  for (var i = 0; i < 37; i++){meizzWDay[i]=""};  //å°†æ˜¾ç¤ºæ¡†çš„å†…å®¹å…¨éƒ¨æ¸…ç©º
-  var day1 = 1,firstday = new Date(yy,mm-1,1).getDay();  //æŸæœˆç¬¬ä¸€å¤©çš„æ˜ŸæœŸå‡ 
+  for (var i = 0; i < 37; i++){meizzWDay[i]=""};  //½«ÏÔÊ¾¿òµÄÄÚÈİÈ«²¿Çå¿Õ
+  var day1 = 1,firstday = new Date(yy,mm-1,1).getDay();  //Ä³ÔÂµÚÒ»ÌìµÄĞÇÆÚ¼¸
   for (var i = firstday; day1 < GetMonthCount(yy,mm)+1; i++){meizzWDay[i]=day1;day1++;}
   for (var i = 0; i < 37; i++)
-  { var da = eval("document.all.meizzDay"+i)     //ä¹¦å†™æ–°çš„ä¸€ä¸ªæœˆçš„æ—¥æœŸæ˜ŸæœŸæ’åˆ—
+  { var da = eval("document.all.meizzDay"+i)     //ÊéĞ´ĞÂµÄÒ»¸öÔÂµÄÈÕÆÚĞÇÆÚÅÅÁĞ
     if (meizzWDay[i]!="")
       { da.innerHTML = "<b>" + meizzWDay[i] + "</b>";
         da.style.backgroundColor = (yy == new Date().getFullYear() &&
@@ -201,7 +201,7 @@ function meizzSetDay(yy,mm)   //ä¸»è¦çš„å†™ç¨‹åº**********
     else{da.innerHTML="";da.style.backgroundColor="";da.style.cursor="default"}
   }
 }
-function meizzDayClick(n)  //ç‚¹å‡»æ˜¾ç¤ºæ¡†é€‰å–æ—¥æœŸï¼Œä¸»è¾“å…¥å‡½æ•°*************
+function meizzDayClick(n)  //µã»÷ÏÔÊ¾¿òÑ¡È¡ÈÕÆÚ£¬Ö÷ÊäÈëº¯Êı*************
 {
   var yy = meizzTheYear;
   var mm = meizzTheMonth;
@@ -210,10 +210,10 @@ function meizzDayClick(n)  //ç‚¹å‡»æ˜¾ç¤ºæ¡†é€‰å–æ—¥æœŸï¼Œä¸»è¾“å…¥å‡½æ•°******
   {
     if (!n) {outObject.value=""; return;}
     if ( n < 10){n = "0" + n;}
-    outObject.value= yy + "-" + mm + "-" + n ; //æ³¨ï¼šåœ¨è¿™é‡Œä½ å¯ä»¥è¾“å‡ºæ”¹æˆä½ æƒ³è¦çš„æ ¼å¼
+    outObject.value= yy + "-" + mm + "-" + n ; //×¢£ºÔÚÕâÀïÄã¿ÉÒÔÊä³ö¸Ä³ÉÄãÏëÒªµÄ¸ñÊ½
     closeLayer(); 
   }
-  else {closeLayer(); alert("æ‚¨æ‰€è¦è¾“å‡ºçš„æ§ä»¶å¯¹è±¡å¹¶ä¸å­˜åœ¨ï¼");}
+  else {closeLayer(); alert("ÄúËùÒªÊä³öµÄ¿Ø¼ş¶ÔÏó²¢²»´æÔÚ£¡");}
 }
 meizzSetDay(meizzTheYear,meizzTheMonth);
 

@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"buygroup");
 
-//å……å€¼ç±»å‹
+//³äÖµÀàĞÍ
 function ReturnBuyGroupVar($add){
 	$add[gmoney]=(int)$add[gmoney];
 	$add[gfen]=(int)$add[gfen];
@@ -33,10 +33,10 @@ function ReturnBuyGroupVar($add){
 	return $add;
 }
 
-//å¢åŠ å……å€¼ç±»å‹
+//Ôö¼Ó³äÖµÀàĞÍ
 function AddBuyGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"buygroup");
 	$add=ReturnBuyGroupVar($add);
 	if(!$add[gname]||!$add[gmoney])
@@ -47,7 +47,7 @@ function AddBuyGroup($add,$userid,$username){
 	$id=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("id=$id&gname=$add[gname]&gfen=$add[gfen]&gdate=$add[gdate]");
 		printerror('AddBuyGroupSuccess','AddBuyGroup.php?enews=AddBuyGroup'.hReturnEcmsHashStrHref2(0));
 	}
@@ -57,10 +57,10 @@ function AddBuyGroup($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹å……å€¼ç±»å‹
+//ĞŞ¸Ä³äÖµÀàĞÍ
 function EditBuyGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"buygroup");
 	$id=(int)$add['id'];
 	$add=ReturnBuyGroupVar($add);
@@ -71,7 +71,7 @@ function EditBuyGroup($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewsbuygroup set gname='$add[gname]',gmoney='$add[gmoney]',gfen='$add[gfen]',gdate='$add[gdate]',ggroupid='$add[ggroupid]',gzgroupid='$add[gzgroupid]',buygroupid='$add[buygroupid]',gsay='$add[gsay]',myorder='$add[myorder]' where id='$id'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("id=$id&gname=$add[gname]&gfen=$add[gfen]&gdate=$add[gdate]");
 		printerror('EditBuyGroupSuccess','ListBuyGroup.php'.hReturnEcmsHashStrHref2(1));
 	}
@@ -81,10 +81,10 @@ function EditBuyGroup($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤å……å€¼ç±»å‹
+//É¾³ı³äÖµÀàĞÍ
 function DelBuyGroup($id,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"buygroup");
 	$id=(int)$id;
 	if(!$id)
@@ -99,7 +99,7 @@ function DelBuyGroup($id,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsbuygroup where id='$id'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("id=$id&gname=$r[gname]&gfen=$r[gfen]&gdate=$r[gdate]");
 		printerror('DelBuyGroupSuccess','ListBuyGroup.php'.hReturnEcmsHashStrHref2(1));
 	}
@@ -116,15 +116,15 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=='AddBuyGroup')//å¢åŠ å……å€¼ç±»å‹
+if($enews=='AddBuyGroup')//Ôö¼Ó³äÖµÀàĞÍ
 {
 	AddBuyGroup($_POST,$logininid,$loginin);
 }
-elseif($enews=='EditBuyGroup')//ä¿®æ”¹å……å€¼ç±»å‹
+elseif($enews=='EditBuyGroup')//ĞŞ¸Ä³äÖµÀàĞÍ
 {
 	EditBuyGroup($_POST,$logininid,$loginin);
 }
-elseif($enews=='DelBuyGroup')//åˆ é™¤å……å€¼ç±»å‹
+elseif($enews=='DelBuyGroup')//É¾³ı³äÖµÀàĞÍ
 {
 	DelBuyGroup($_GET['id'],$logininid,$loginin);
 }
@@ -146,17 +146,17 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†å……å€¼ç±»å‹</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí³äÖµÀàĞÍ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š<a href="ListBuyGroup.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å……å€¼ç±»å‹</a></td>
+    <td width="50%">Î»ÖÃ£º<a href="ListBuyGroup.php<?=$ecms_hashur['whehref']?>">¹ÜÀí³äÖµÀàĞÍ</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ å……å€¼ç±»å‹" onclick="self.location.href='AddBuyGroup.php?enews=AddBuyGroup<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó³äÖµÀàĞÍ" onclick="self.location.href='AddBuyGroup.php?enews=AddBuyGroup<?=$ecms_hashur['ehref']?>';">
         </div></td>
   </tr>
 </table>
@@ -164,11 +164,11 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <table width="100%" border="0" cellpadding="0" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="6%" height="25"> <div align="center">ID</div></td>
-    <td width="41%" height="25"> <div align="center">ç±»å‹åç§°</div></td>
-    <td width="15%" height="25"> <div align="center">é‡‘é¢(å…ƒ)</div></td>
-    <td width="11%" height="25"> <div align="center">ç‚¹æ•°</div></td>
-    <td width="11%"><div align="center">æœ‰æ•ˆæœŸ(å¤©)</div></td>
-    <td width="16%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="41%" height="25"> <div align="center">ÀàĞÍÃû³Æ</div></td>
+    <td width="15%" height="25"> <div align="center">½ğ¶î(Ôª)</div></td>
+    <td width="11%" height="25"> <div align="center">µãÊı</div></td>
+    <td width="11%"><div align="center">ÓĞĞ§ÆÚ(Ìì)</div></td>
+    <td width="16%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -190,7 +190,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
     <td><div align="center">
         <?=$r[gdate]?>
       </div></td>
-    <td height="25"> <div align="center">[<a href="AddBuyGroup.php?enews=EditBuyGroup&id=<?=$r[id]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]ã€€[<a href="ListBuyGroup.php?enews=DelBuyGroup&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>]</div></td>
+    <td height="25"> <div align="center">[<a href="AddBuyGroup.php?enews=EditBuyGroup&id=<?=$r[id]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]¡¡[<a href="ListBuyGroup.php?enews=DelBuyGroup&id=<?=$r[id]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }
@@ -201,7 +201,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
       <div align="left"></div></td>
   </tr>
   <tr bgcolor="#FFFFFF">
-    <td height="25" colspan="6">å‰å°å……å€¼åœ°å€ï¼š<a href="<?=$public_r[newsurl].'e/member/buygroup/'?>" target="_blank"><?=$public_r[newsurl].'e/member/buygroup/'?></a></td>
+    <td height="25" colspan="6">Ç°Ì¨³äÖµµØÖ·£º<a href="<?=$public_r[newsurl].'e/member/buygroup/'?>" target="_blank"><?=$public_r[newsurl].'e/member/buygroup/'?></a></td>
   </tr>
 </table>
 </body>

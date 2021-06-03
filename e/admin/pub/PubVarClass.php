@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,17 +15,17 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"pubvar");
 
-//å¢åŠ åˆ†ç±»
+//Ôö¼Ó·ÖÀà
 function AddPubVarClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[classname])
 	{
 		printerror("EmptyPubVarClass","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"pubvar");
 	$add['classname']=hRepPostStr($add['classname'],1);
 	$add['classsay']=hRepPostStr($add['classsay'],1);
@@ -33,7 +33,7 @@ function AddPubVarClass($add,$userid,$username){
 	$lastid=$empire->lastid();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$lastid."<br>classname=".$add[classname]);
 		printerror("AddPubVarClassSuccess","PubVarClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -41,7 +41,7 @@ function AddPubVarClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹åˆ†ç±»
+//ĞŞ¸Ä·ÖÀà
 function EditPubVarClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$add[classid];
@@ -49,14 +49,14 @@ function EditPubVarClass($add,$userid,$username){
 	{
 		printerror("EmptyPubVarClass","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"pubvar");
 	$add['classname']=hRepPostStr($add['classname'],1);
 	$add['classsay']=hRepPostStr($add['classsay'],1);
 	$sql=$empire->query("update {$dbtbpre}enewspubvarclass set classname='".$add[classname]."',classsay='".$add[classsay]."' where classid='$classid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$add[classname]);
 		printerror("EditPubVarClassSuccess","PubVarClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -64,7 +64,7 @@ function EditPubVarClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤åˆ†ç±»
+//É¾³ı·ÖÀà
 function DelPubVarClass($classid,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$classid;
@@ -72,16 +72,16 @@ function DelPubVarClass($classid,$userid,$username){
 	{
 		printerror("NotDelPubVarClassid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"pubvar");
 	$r=$empire->fetch1("select classname from {$dbtbpre}enewspubvarclass where classid='$classid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewspubvarclass where classid='$classid'");
-	//åˆ é™¤å˜é‡
+	//É¾³ı±äÁ¿
 	$delsql=$empire->query("delete from {$dbtbpre}enewspubvar where classid='$classid'");
 	if($sql)
 	{
 		GetConfig();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$r[classname]);
 		printerror("DelPubVarClassSuccess","PubVarClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -96,15 +96,15 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="AddPubVarClass")//å¢åŠ åˆ†ç±»
+if($enews=="AddPubVarClass")//Ôö¼Ó·ÖÀà
 {
 	AddPubVarClass($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditPubVarClass")//ä¿®æ”¹åˆ†ç±»
+elseif($enews=="EditPubVarClass")//ĞŞ¸Ä·ÖÀà
 {
 	EditPubVarClass($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelPubVarClass")//åˆ é™¤åˆ†ç±»
+elseif($enews=="DelPubVarClass")//É¾³ı·ÖÀà
 {
 	$classid=$_GET['classid'];
 	DelPubVarClass($classid,$logininid,$loginin);
@@ -117,7 +117,7 @@ $sql=$empire->query("select classid,classname,classsay from {$dbtbpre}enewspubva
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -125,9 +125,9 @@ $sql=$empire->query("select classid,classname,classsay from {$dbtbpre}enewspubva
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š<a href="ListPubVar.php<?=$ecms_hashur['whehref']?>">ç®¡ç†æ‰©å±•å˜é‡</a> &gt; <a href="PubVarClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å˜é‡åˆ†ç±»</a></td>
+    <td width="50%">Î»ÖÃ£º<a href="ListPubVar.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÀ©Õ¹±äÁ¿</a> &gt; <a href="PubVarClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀí±äÁ¿·ÖÀà</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="ç®¡ç†æ‰©å±•å˜é‡" onclick="self.location.href='ListPubVar.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀíÀ©Õ¹±äÁ¿" onclick="self.location.href='ListPubVar.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -135,22 +135,22 @@ $sql=$empire->query("select classid,classname,classsay from {$dbtbpre}enewspubva
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25">å¢åŠ å˜é‡åˆ†ç±»: 
+      <td height="25">Ôö¼Ó±äÁ¿·ÖÀà: 
         <input name=enews type=hidden id="enews" value=AddPubVarClass> </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> åˆ†ç±»åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> ·ÖÀàÃû³Æ: 
         <input name="classname" type="text" id="classname">
-        åˆ†ç±»è¯´æ˜: <input name="classsay" type="text" id="classsay" size="42"> <input type="submit" name="Submit" value="å¢åŠ "></td>
+        ·ÖÀàËµÃ÷: <input name="classsay" type="text" id="classsay" size="42"> <input type="submit" name="Submit" value="Ôö¼Ó"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="6%"><div align="center">ID</div></td>
-    <td width="29%" height="25">åˆ†ç±»åç§°</td>
-    <td width="49%">åˆ†ç±»è¯´æ˜</td>
-    <td width="16%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="29%" height="25">·ÖÀàÃû³Æ</td>
+    <td width="49%">·ÖÀàËµÃ÷</td>
+    <td width="16%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
@@ -165,12 +165,12 @@ $sql=$empire->query("select classid,classname,classsay from {$dbtbpre}enewspubva
           <?=$r[classid]?>
         </div></td>
       <td height="25"> <input name="classname" type="text" id="classname" value="<?=$r[classname]?>">
-        [<a href="ListPubVar.php?classid=<?=$r[classid]?><?=$ecms_hashur['ehref']?>" target="_blank">å˜é‡åˆ—è¡¨</a>]</td>
+        [<a href="ListPubVar.php?classid=<?=$r[classid]?><?=$ecms_hashur['ehref']?>" target="_blank">±äÁ¿ÁĞ±í</a>]</td>
       <td><input name="classsay" type="text" id="classsay" value="<?=$r[classsay]?>" size="42"></td>
       <td height="25"><div align="center"> 
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="if(confirm('åˆ é™¤ä¼šåˆ é™¤åˆ†ç±»ä¸‹çš„æ‰€æœ‰å˜é‡ï¼Œç¡®è®¤è¦åˆ é™¤?')){self.location.href='PubVarClass.php?enews=DelPubVarClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>';}">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="if(confirm('É¾³ı»áÉ¾³ı·ÖÀàÏÂµÄËùÓĞ±äÁ¿£¬È·ÈÏÒªÉ¾³ı?')){self.location.href='PubVarClass.php?enews=DelPubVarClass&classid=<?=$r[classid]?><?=$ecms_hashur['href']?>';}">
         </div></td>
     </tr>
   </form>

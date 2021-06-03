@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"task");
 
-//è¿”å›é€‰é¡¹
+//·µ»ØÑ¡Ïî
 function ReturnDaySelect($zero,$num,$thisno){
 	global $enews;
 	$start=1;
@@ -39,8 +39,8 @@ function ReturnDaySelect($zero,$num,$thisno){
 }
 
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href='ListTask.php".$ecms_hashur['whehref']."'>ç®¡ç†è®¡åˆ’ä»»åŠ¡</a>  &gt; å¢åŠ è®¡åˆ’ä»»åŠ¡";
-$postword='å¢åŠ è®¡åˆ’ä»»åŠ¡';
+$url="<a href='ListTask.php".$ecms_hashur['whehref']."'>¹ÜÀí¼Æ»®ÈÎÎñ</a>  &gt; Ôö¼Ó¼Æ»®ÈÎÎñ";
+$postword='Ôö¼Ó¼Æ»®ÈÎÎñ';
 $r['isopen']=1;
 $r['doday']='*';
 $r['doweek']='*';
@@ -50,10 +50,10 @@ if($enews=="EditTask")
 {
 	$id=(int)$_GET['id'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewstask where id='$id'");
-	$url="<a href='ListTask.php".$ecms_hashur['whehref']."'>ç®¡ç†è®¡åˆ’ä»»åŠ¡</a>  &gt; ä¿®æ”¹è®¡åˆ’ä»»åŠ¡ï¼š<b>".$r[taskname]."</b>";
-	$postword='ä¿®æ”¹è®¡åˆ’ä»»åŠ¡';
+	$url="<a href='ListTask.php".$ecms_hashur['whehref']."'>¹ÜÀí¼Æ»®ÈÎÎñ</a>  &gt; ĞŞ¸Ä¼Æ»®ÈÎÎñ£º<b>".$r[taskname]."</b>";
+	$postword='ĞŞ¸Ä¼Æ»®ÈÎÎñ';
 }
-//ç”¨æˆ·
+//ÓÃ»§
 $userselect='';
 $usersql=$empire->query("select userid,username from {$dbtbpre}enewsuser order by userid");
 while($ur=$empire->fetch($usersql))
@@ -71,9 +71,9 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>è®¡åˆ’ä»»åŠ¡</title>
+<title>¼Æ»®ÈÎÎñ</title>
 <script>
 function selectalls(doselect,formvar)
 {  
@@ -90,7 +90,7 @@ function selectalls(doselect,formvar)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListTask.php">
@@ -102,26 +102,26 @@ function selectalls(doselect,formvar)
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="30%" height="25">ä»»åŠ¡åç§°</td>
+      <td width="30%" height="25">ÈÎÎñÃû³Æ</td>
       <td width="70%" height="25"> <input name="taskname" type="text" id="taskname" value="<?=$r[taskname]?>" size="42"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ˜¯å¦å¼€å¯è¯¥è®¡åˆ’ä»»åŠ¡</td>
+      <td height="25">ÊÇ·ñ¿ªÆô¸Ã¼Æ»®ÈÎÎñ</td>
       <td height="25"><input type="radio" name="isopen" value="1"<?=$r[isopen]==1?' checked':''?>>
-        æ˜¯ <input type="radio" name="isopen" value="0"<?=$r[isopen]==0?' checked':''?>>
-        å¦</td>
+        ÊÇ <input type="radio" name="isopen" value="0"<?=$r[isopen]==0?' checked':''?>>
+        ·ñ</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">æ‰§è¡Œè€…</td>
+      <td height="25">Ö´ĞĞÕß</td>
       <td height="25"><select name="userid" id="userid">
           <option value="0">*</option>
 		  <?=$userselect?>
         </select>
-        <font color="#666666"> (é€‰æ‹©ç”¨æˆ·åï¼Œåªæœ‰æ­¤ç™»é™†å¸å·æ‰ä¼šæ‰§è¡Œè¿™ä¸ªè®¡åˆ’ä»»åŠ¡) </font></td>
+        <font color="#666666"> (Ñ¡ÔñÓÃ»§ºó£¬Ö»ÓĞ´ËµÇÂ½ÕÊºÅ²Å»áÖ´ĞĞÕâ¸ö¼Æ»®ÈÎÎñ) </font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¯æœˆå‡ å·æ‰§è¡Œ</td>
+      <td height="25">Ã¿ÔÂ¼¸ºÅÖ´ĞĞ</td>
       <td height="25"><select name="doday" id="doday">
           <option value="*">*</option>
           <?php
@@ -130,20 +130,20 @@ function selectalls(doselect,formvar)
         </select> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¯å‘¨æ˜ŸæœŸå‡ æ‰§è¡Œ</td>
+      <td height="25">Ã¿ÖÜĞÇÆÚ¼¸Ö´ĞĞ</td>
       <td height="25"><select name="doweek" id="doweek">
           <option value="*"<?=$r['doweek']=='*'?' selected':''?>>*</option>
-          <option value="1"<?=$r['doweek']=='1'?' selected':''?>>æ˜ŸæœŸä¸€</option>
-          <option value="2"<?=$r['doweek']=='2'?' selected':''?>>æ˜ŸæœŸäºŒ</option>
-          <option value="3"<?=$r['doweek']=='3'?' selected':''?>>æ˜ŸæœŸä¸‰</option>
-          <option value="4"<?=$r['doweek']=='4'?' selected':''?>>æ˜ŸæœŸå››</option>
-          <option value="5"<?=$r['doweek']=='5'?' selected':''?>>æ˜ŸæœŸäº”</option>
-          <option value="6"<?=$r['doweek']=='6'?' selected':''?>>æ˜ŸæœŸå…­</option>
-          <option value="0"<?=$r['doweek']=='0'?' selected':''?>>æ˜ŸæœŸæ—¥</option>
+          <option value="1"<?=$r['doweek']=='1'?' selected':''?>>ĞÇÆÚÒ»</option>
+          <option value="2"<?=$r['doweek']=='2'?' selected':''?>>ĞÇÆÚ¶ş</option>
+          <option value="3"<?=$r['doweek']=='3'?' selected':''?>>ĞÇÆÚÈı</option>
+          <option value="4"<?=$r['doweek']=='4'?' selected':''?>>ĞÇÆÚËÄ</option>
+          <option value="5"<?=$r['doweek']=='5'?' selected':''?>>ĞÇÆÚÎå</option>
+          <option value="6"<?=$r['doweek']=='6'?' selected':''?>>ĞÇÆÚÁù</option>
+          <option value="0"<?=$r['doweek']=='0'?' selected':''?>>ĞÇÆÚÈÕ</option>
         </select> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¯æ—¥å‡ ç‚¹æ‰§è¡Œ</td>
+      <td height="25">Ã¿ÈÕ¼¸µãÖ´ĞĞ</td>
       <td height="25"><select name="dohour">
           <option value="*">*</option>
           <?php
@@ -152,28 +152,28 @@ function selectalls(doselect,formvar)
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">æ¯å°æ—¶å‡ åˆ†é’Ÿæ‰§è¡Œ<br>
-        <font color="#666666">è®¾ç½®å“ªäº›åˆ†é’Ÿæ‰§è¡Œæœ¬ä»»åŠ¡<br>
-        ä¸é€‰ä¸ºä¸é™ï¼Œé€‰æ‹©å¤šä¸ªå¯ä»¥ç”¨CTRL/SHIFT</font></td>
+      <td height="25" valign="top">Ã¿Ğ¡Ê±¼¸·ÖÖÓÖ´ĞĞ<br>
+        <font color="#666666">ÉèÖÃÄÄĞ©·ÖÖÓÖ´ĞĞ±¾ÈÎÎñ<br>
+        ²»Ñ¡Îª²»ÏŞ£¬Ñ¡Ôñ¶à¸ö¿ÉÒÔÓÃCTRL/SHIFT</font></td>
       <td height="25">
 		<select name="min[]" size="12" multiple id="minselect" style="width:180">
           <?php
 		ReturnDaySelect(1,59,$r['dominute']);
 		?>
         </select>
-        [<a href="#empirecms" onclick="selectalls(0,'minselect')">å…¨éƒ¨å–æ¶ˆ</a>]</td>
+        [<a href="#empirecms" onclick="selectalls(0,'minselect')">È«²¿È¡Ïû</a>]</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ‰§è¡Œæ–‡ä»¶å<br>
-        (åœ¨e/tasks/ç›®å½•ä¸‹)</td>
+      <td height="25">Ö´ĞĞÎÄ¼şÃû<br>
+        (ÔÚe/tasks/Ä¿Â¼ÏÂ)</td>
       <td height="25"><input name="filename" type="text" id="filename" value="<?=$r[filename]?>" size="42"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"> <input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"> <input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="2"><font color="#666666">è¯´æ˜ï¼šâ€œ*â€è¡¨ç¤ºä¸é™</font></td>
+      <td height="25" colspan="2"><font color="#666666">ËµÃ÷£º¡°*¡±±íÊ¾²»ÏŞ</font></td>
     </tr>
   </table>
 </form>

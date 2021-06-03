@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//验证用户
+//��֤�û�
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,22 +15,22 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//验证权限
+//��֤Ȩ��
 CheckLevel($logininid,$loginin,$classid,"repdownpath");
-$url="<a href=RepDownLevel.php".$ecms_hashur['whehref'].">批量更改地址权限</a>";
-//栏目
+$url="<a href=RepDownLevel.php".$ecms_hashur['whehref'].">�������ĵ�ַȨ��</a>";
+//��Ŀ
 $fcfile="../../data/fc/ListEnews.php";
 $class="<script src=../../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
 {$class=ShowClass_AddClass("",0,0,"|-",0,0);}
-//数据表
+//���ݱ�
 $tsql=$empire->query("select tid,tbname,tname from {$dbtbpre}enewstable order by tid");
 while($tr=$empire->fetch($tsql))
 {
 	$table.="<option value='".$tr[tbname]."'>".$tr[tname]."</option>";
 }
-$table="<select name='tbname'><option value='0'>--- 选择数据表 ---</option>".$table."</select>";
-//访问组
+$table="<select name='tbname'><option value='0'>--- ѡ�����ݱ� ---</option>".$table."</select>";
+//������
 $ygroup='';
 $vgsql=$empire->query("select vgid,gname from {$dbtbpre}enewsvg order by vgid");
 while($vgr=$empire->fetch($vgsql))
@@ -39,15 +39,15 @@ while($vgr=$empire->fetch($vgsql))
 }
 if($ygroup)
 {
-	$ygroup="<option value=''>--- 访问组 ---</option>".$ygroup."<option value=''>--- 会员组 ---</option>";
+	$ygroup="<option value=''>--- ������ ---</option>".$ygroup."<option value=''>--- ��Ա�� ---</option>";
 }
-//----------会员组
+//----------��Ա��
 $sql1=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($l_r=$empire->fetch($sql1))
 {
 	$ygroup.="<option value=".$l_r[groupid].">".$l_r[groupname]."</option>";
 }
-//----------地址前缀
+//----------��ַǰ׺
 $qz="";
 $downsql=$empire->query("select urlname,urlid from {$dbtbpre}enewsdownurlqz order by urlid");
 while($downr=$empire->fetch($downsql))
@@ -61,71 +61,71 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>批量更改地址权限</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>�������ĵ�ַȨ��</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">位置：<?=$url?></td>
+    <td height="25">λ�ã�<?=$url?></td>
   </tr>
 </table>
 
-<form name="form1" method="post" action="../ecmscom.php" target="_blank" onsubmit="return confirm('确认要操作？');">
+<form name="form1" method="post" action="../ecmscom.php" target="_blank" onsubmit="return confirm('ȷ��Ҫ������');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2"> <div align="center">批量更改下载/在线地址权限 
+      <td height="25" colspan="2"> <div align="center">������������/���ߵ�ַȨ�� 
           <input name="enews" type="hidden" id="enews" value="RepDownLevel">
         </div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="21%" height="25">操作数据表(*)：</td>
+      <td width="21%" height="25">�������ݱ�(*)��</td>
       <td width="79%" height="25"> 
         <?=$table?>
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">操作栏目：</td>
+      <td height="25">������Ŀ��</td>
       <td height="25"><select name="classid" id="classid">
-          <option value=0>所有栏目</option>
+          <option value=0>������Ŀ</option>
           <?=$class?>
         </select>
-        <font color="#666666"> (如选择大栏目，将应用于所有子栏目)</font></td>
+        <font color="#666666"> (��ѡ�����Ŀ����Ӧ������������Ŀ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">操作字段(*)：</td>
+      <td height="25">�����ֶ�(*)��</td>
       <td height="25"><table width="100%" border="0" cellspacing="1" cellpadding="3">
           <tr> 
             <td width="32%"><input name="downpath" type="checkbox" id="downpath" value="1">
-              下载地址(downpath)</td>
+              ���ص�ַ(downpath)</td>
             <td width="68%"><input name="onlinepath" type="checkbox" id="onlinepath" value="1">
-              在线地址(onlinepath)</td>
+              ���ߵ�ַ(onlinepath)</td>
           </tr>
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">权限转换： 
+      <td height="25">Ȩ��ת���� 
         <input name="dogroup" type="checkbox" id="dogroup" value="1"></td>
       <td height="25"><div align="left"> 
           <table width="70%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
             <tr> 
-              <td width="49%"><div align="center">原会员组</div></td>
-              <td width="51%"><div align="center">新会员组</div></td>
+              <td width="49%"><div align="center">ԭ��Ա��</div></td>
+              <td width="51%"><div align="center">�»�Ա��</div></td>
             </tr>
             <tr bgcolor="#FFFFFF"> 
               <td><div align="center"> 
                   <select name="oldgroupid" id="oldgroupid">
-                    <option value="no">不设置</option>
-                    <option value="0">游客</option>
+                    <option value="no">������</option>
+                    <option value="0">�ο�</option>
 					<?=$ygroup?>
                   </select>
                 </div></td>
               <td><div align="center"> 
                   <select name="newgroupid" id="newgroupid">
-                    <option value="0">游客</option>
+                    <option value="0">�ο�</option>
 					<?=$ygroup?>
                   </select>
                 </div></td>
@@ -134,12 +134,12 @@ $empire=null;
         </div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">点数转换： 
+      <td height="25">����ת���� 
         <input name="dofen" type="checkbox" id="dofen" value="1"></td>
       <td height="25"><table width="70%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
           <tr> 
-            <td width="49%"><div align="center">原点数</div></td>
-            <td width="51%"><div align="center">新点数</div></td>
+            <td width="49%"><div align="center">ԭ����</div></td>
+            <td width="51%"><div align="center">�µ���</div></td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td><div align="center"> 
@@ -152,24 +152,24 @@ $empire=null;
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">前缀转换： 
+      <td height="25">ǰ׺ת���� 
         <input name="doqz" type="checkbox" id="doqz" value="1"></td>
       <td height="25"><table width="70%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
           <tr> 
-            <td width="49%"><div align="center">原前缀</div></td>
-            <td width="51%"><div align="center">新前缀</div></td>
+            <td width="49%"><div align="center">ԭǰ׺</div></td>
+            <td width="51%"><div align="center">��ǰ׺</div></td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td><div align="center"> 
                 <select name="oldqz" id="oldqz">
-                  <option value="no">不设置</option>
-				  <option value="0">空前缀</option>
+                  <option value="no">������</option>
+				  <option value="0">��ǰ׺</option>
                   <?=$qz?>
                 </select>
               </div></td>
             <td><div align="center"> 
                 <select name="newqz">
-				<option value="0">空前缀</option>
+				<option value="0">��ǰ׺</option>
                   <?=$qz?>
                 </select>
               </div></td>
@@ -177,12 +177,12 @@ $empire=null;
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">地址替换：
+      <td height="25">��ַ�滻��
         <input name="dopath" type="checkbox" id="dopath" value="1"></td>
       <td height="25"><table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
           <tr> 
-            <td width="49%"><div align="center">原下载地址字符</div></td>
-            <td width="51%"><div align="center">新下载地址字符</div></td>
+            <td width="49%"><div align="center">ԭ���ص�ַ�ַ�</div></td>
+            <td width="51%"><div align="center">�����ص�ַ�ַ�</div></td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td><div align="center"> 
@@ -195,12 +195,12 @@ $empire=null;
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">名称替换：
+      <td height="25">�����滻��
         <input name="doname" type="checkbox" id="doname" value="1"></td>
       <td height="25"><table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
           <tr> 
-            <td width="49%"><div align="center">原下载名称字符</div></td>
-            <td width="51%"><div align="center">新下载名称字符</div></td>
+            <td width="49%"><div align="center">ԭ���������ַ�</div></td>
+            <td width="51%"><div align="center">�����������ַ�</div></td>
           </tr>
           <tr bgcolor="#FFFFFF"> 
             <td><div align="center"> 
@@ -213,21 +213,21 @@ $empire=null;
         </table></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">附加SQL条件：</td>
+      <td height="25">����SQL������</td>
       <td height="25"><input name="query" type="text" id="query" size="75"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><font color="#666666">如：title='标题' and writer='作者'</font></td>
+      <td height="25"><font color="#666666">�磺title='����' and writer='����'</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="提交"> <input type="reset" name="Submit2" value="重置"></td>
+      <td height="25"><input type="submit" name="Submit" value="�ύ"> <input type="reset" name="Submit2" value="����"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25">说明：如原点数为no，则所有信息的点数都为新点数，如果选项为不设置，则所有信息都为新的值。<br>
-        注意：<font color="#FF0000">使用此功能，最好备份一下数据，以防万一</font></td>
+      <td height="25">˵������ԭ����Ϊno����������Ϣ�ĵ�����Ϊ�µ��������ѡ��Ϊ�����ã���������Ϣ��Ϊ�µ�ֵ��<br>
+        ע�⣺<font color="#FF0000">ʹ�ô˹��ܣ���ñ���һ�����ݣ��Է���һ</font></td>
     </tr>
   </table>
 </form>

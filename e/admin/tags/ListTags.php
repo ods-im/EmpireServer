@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"tags");
 
-//åˆ é™¤TAGS
+//É¾³ıTAGS
 function DelTags($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tagid=(int)$add['tagid'];
@@ -27,14 +27,14 @@ function DelTags($add,$userid,$username){
 	{
 		printerror("EmptyTagid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tags");
 	$r=$empire->fetch1("select tagname from {$dbtbpre}enewstags where tagid='$tagid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewstags where tagid='$tagid'");
 	$sql2=$empire->query("delete from {$dbtbpre}enewstagsdata where tagid='$tagid'");
 	if($sql&&$sql2)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tagid=$tagid&tagname=$r[tagname]");
 		printerror("DelTagsSuccess",EcmsGetReturnUrl());
 	}
@@ -44,7 +44,7 @@ function DelTags($add,$userid,$username){
 	}
 }
 
-//æ‰¹é‡åˆ é™¤TAGS
+//ÅúÁ¿É¾³ıTAGS
 function DelTags_all($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tagid=$add['tagid'];
@@ -53,7 +53,7 @@ function DelTags_all($add,$userid,$username){
 	{
 		printerror("EmptyTagid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tags");
 	$ids='';
 	$dh='';
@@ -67,7 +67,7 @@ function DelTags_all($add,$userid,$username){
 	$sql2=$empire->query("delete from {$dbtbpre}enewstagsdata where tagid in ($ids)");
 	if($sql&&$sql2)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("DelTagsSuccess",EcmsGetReturnUrl());
 	}
@@ -77,10 +77,10 @@ function DelTags_all($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤ä½¿ç”¨ç‡ä½çš„TAGS
+//É¾³ıÊ¹ÓÃÂÊµÍµÄTAGS
 function DelLessTags($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tags");
 	$num=(int)$add['num'];
 	$ids='';
@@ -99,7 +99,7 @@ function DelLessTags($add,$userid,$username){
 	$del2=$empire->query("delete from {$dbtbpre}enewstagsdata where tagid in ($ids)");
 	if($del&&$del2)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("num=$num");
 		printerror("DelLessTagsSuccess",EcmsGetReturnUrl());
 	}
@@ -109,10 +109,10 @@ function DelLessTags($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤è¿‡æœŸçš„TAGä¿¡æ¯
+//É¾³ı¹ıÆÚµÄTAGĞÅÏ¢
 function DelOldTagsInfo($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tags");
 	if(empty($add['newstime']))
 	{
@@ -127,7 +127,7 @@ function DelOldTagsInfo($add,$userid,$username){
 	$del=$empire->query("delete from {$dbtbpre}enewstagsdata where newstime<=$newstime");
 	if($del)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("newstime=$add[newstime]");
 		printerror("DelOldTagsInfoSuccess",EcmsGetReturnUrl());
 	}
@@ -137,7 +137,7 @@ function DelOldTagsInfo($add,$userid,$username){
 	}
 }
 
-//åˆå¹¶TAGS
+//ºÏ²¢TAGS
 function MergeTags($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tagid=$add['tagid'];
@@ -151,7 +151,7 @@ function MergeTags($add,$userid,$username){
 	{
 		printerror("NotMergeTagname","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tags");
 	$r=$empire->fetch1("select tagid from {$dbtbpre}enewstags where tagname='$newtagname' limit 1");
 	if(!$r[tagid])
@@ -187,7 +187,7 @@ function MergeTags($add,$userid,$username){
 	$sql3=$empire->query("delete from {$dbtbpre}enewstags where tagid in ($ids)");
 	if($sql&&$sql2&&$sql3)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("newtagname=$newtagname");
 		printerror("MergeTagsSuccess",EcmsGetReturnUrl());
 	}
@@ -197,7 +197,7 @@ function MergeTags($add,$userid,$username){
 	}
 }
 
-//å¢åŠ TAGS
+//Ôö¼ÓTAGS
 function AddTags($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tagname=RepPostVar($add['tagname']);
@@ -206,7 +206,7 @@ function AddTags($add,$userid,$username){
 	{
 		printerror("EmptyTagname","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tags");
 	$ecms_fclast=time();
 	$add['tagtitle']=hRepPostStr(RepPhpAspJspcode($add['tagtitle']));
@@ -221,7 +221,7 @@ function AddTags($add,$userid,$username){
 	if($sql)
 	{
 		$tagid=$empire->lastid();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tagid=$tagid&tagname=$tagname");
 		printerror("AddTagsSuccess","AddTags.php?enews=AddTags".hReturnEcmsHashStrHref2(0));
 	}
@@ -231,7 +231,7 @@ function AddTags($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹TAGS
+//ĞŞ¸ÄTAGS
 function EditTags($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tagid=(int)$add['tagid'];
@@ -241,7 +241,7 @@ function EditTags($add,$userid,$username){
 	{
 		printerror("EmptyTagname","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tags");
 	$ecms_fclast=time();
 	$add['tagtitle']=hRepPostStr(RepPhpAspJspcode($add['tagtitle']));
@@ -255,7 +255,7 @@ function EditTags($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewstags set tagname='$tagname',cid='$cid',tagtitle='$add[tagtitle]',tagkey='$add[tagkey]',tagdes='$add[tagdes]',fclast='$ecms_fclast' where tagid='$tagid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tagid=$tagid&tagname=$tagname");
 		printerror("EditTagsSuccess","ListTags.php?cid=$add[fcid]".hReturnEcmsHashStrHref2(0));
 	}
@@ -265,7 +265,7 @@ function EditTags($add,$userid,$username){
 	}
 }
 
-//æ‰¹é‡æ¨èTAGS
+//ÅúÁ¿ÍÆ¼öTAGS
 function GoodTags($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tagid=$add['tagid'];
@@ -275,7 +275,7 @@ function GoodTags($add,$userid,$username){
 	{
 		printerror("EmptyTagid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tags");
 	$ids='';
 	$dh='';
@@ -288,7 +288,7 @@ function GoodTags($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewstags set isgood=$isgood where tagid in ($ids)");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("GoodTagsSuccess",EcmsGetReturnUrl());
 	}
@@ -298,10 +298,10 @@ function GoodTags($add,$userid,$username){
 	}
 }
 
-//è®¾ç½®TAGS
+//ÉèÖÃTAGS
 function SetTags($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"tags");
 	$opentags=(int)$add['opentags'];
 	$tagstempid=(int)$add['tagstempid'];
@@ -314,7 +314,7 @@ function SetTags($add,$userid,$username){
 	if($sql)
 	{
 		GetConfig();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("SetTagsSuccess","SetTags.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -331,39 +331,39 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="AddTags")//å¢åŠ TAGS
+if($enews=="AddTags")//Ôö¼ÓTAGS
 {
 	AddTags($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditTags")//ä¿®æ”¹TAGS
+elseif($enews=="EditTags")//ĞŞ¸ÄTAGS
 {
 	EditTags($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelTags")//åˆ é™¤TAGS
+elseif($enews=="DelTags")//É¾³ıTAGS
 {
 	DelTags($_GET,$logininid,$loginin);
 }
-elseif($enews=="DelTags_all")//æ‰¹é‡åˆ é™¤TAGS
+elseif($enews=="DelTags_all")//ÅúÁ¿É¾³ıTAGS
 {
 	DelTags_all($_POST,$logininid,$loginin);
 }
-elseif($enews=="MergeTags")//åˆå¹¶TAGS
+elseif($enews=="MergeTags")//ºÏ²¢TAGS
 {
 	MergeTags($_POST,$logininid,$loginin);
 }
-elseif($enews=="GoodTags")//æ¨èTAGS
+elseif($enews=="GoodTags")//ÍÆ¼öTAGS
 {
 	GoodTags($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelLessTags")//åˆ é™¤ä½¿ç”¨ç‡ä½çš„TAGS
+elseif($enews=="DelLessTags")//É¾³ıÊ¹ÓÃÂÊµÍµÄTAGS
 {
 	DelLessTags($_POST,$logininid,$loginin);
 }
-elseif($enews=="DelOldTagsInfo")//åˆ é™¤è¿‡æœŸTAGSä¿¡æ¯
+elseif($enews=="DelOldTagsInfo")//É¾³ı¹ıÆÚTAGSĞÅÏ¢
 {
 	DelOldTagsInfo($_POST,$logininid,$loginin);
 }
-elseif($enews=="SetTags")//è®¾ç½®TAGS
+elseif($enews=="SetTags")//ÉèÖÃTAGS
 {
 	SetTags($_POST,$logininid,$loginin);
 }
@@ -373,28 +373,28 @@ else
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=30;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=20;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
-//æœç´¢
+$line=30;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=20;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
+//ËÑË÷
 $add='';
 $search='';
 $search.=$ecms_hashur['ehref'];
-//æ¨è
+//ÍÆ¼ö
 $isgood=(int)$_GET[isgood];
 if($isgood)
 {
 	$add.=' and isgood=1';
 	$search.="&isgood=$isgood";
 }
-//åˆ†ç±»
+//·ÖÀà
 $cid=(int)$_GET[cid];
 if($cid)
 {
 	$add.=" and cid='$cid'";
 	$search.="&cid=$cid";
 }
-//å…³é”®å­—
+//¹Ø¼ü×Ö
 if($_GET['keyboard'])
 {
 	$keyboard=RepPostVar($_GET['keyboard']);
@@ -409,24 +409,24 @@ if($_GET['keyboard'])
 	}
 	$search.="&show=$show&keyboard=$keyboard";
 }
-//æ’åº
+//ÅÅĞò
 $orderby=RepPostStr($_GET['orderby'],1);
-if($orderby==1)//æŒ‰TAGIDå‡åºæ’åº
+if($orderby==1)//°´TAGIDÉıĞòÅÅĞò
 {$doorder='tagid asc';}
-elseif($orderby==2)//æŒ‰ä¿¡æ¯æ•°é™åºæ’åº
+elseif($orderby==2)//°´ĞÅÏ¢Êı½µĞòÅÅĞò
 {$doorder='num desc';}
-elseif($orderby==3)//æŒ‰ä¿¡æ¯æ•°å‡åºæ’åº
+elseif($orderby==3)//°´ĞÅÏ¢ÊıÉıĞòÅÅĞò
 {$doorder='num asc';}
-else//æŒ‰TAGIDé™åºæ’åº
+else//°´TAGID½µĞòÅÅĞò
 {$doorder='tagid desc';}
 $search.="&orderby=$orderby";
 $add=$add?' where '.substr($add,5):'';
 $query="select tagid,tagname,num,isgood,cid from {$dbtbpre}enewstags".$add;
 $totalquery="select count(*) as total from {$dbtbpre}enewstags".$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by ".$doorder." limit $offset,$line";
 $sql=$empire->query($query);
-//åˆ†ç±»
+//·ÖÀà
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewstagsclass order by classid");
 while($cr=$empire->fetch($csql))
 {
@@ -442,9 +442,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†TAGS</title>
+<title>¹ÜÀíTAGS</title>
 <script>
 function CheckAll(form)
   {
@@ -461,14 +461,14 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="22%" height="25">ä½ç½®ï¼š<a href="ListTags.php<?=$ecms_hashur['whehref']?>">ç®¡ç†TAGS</a></td>
+    <td width="22%" height="25">Î»ÖÃ£º<a href="ListTags.php<?=$ecms_hashur['whehref']?>">¹ÜÀíTAGS</a></td>
     <td width="78%"><div align="right" class="emenubutton">
-        <input type="button" name="Submit" value="å¢åŠ TAGS" onclick="self.location.href='AddTags.php?enews=AddTags<?=$ecms_hashur['ehref']?>';">&nbsp;
-        <input type="button" name="Submit4" value="TAGSåˆ†ç±»ç®¡ç†" onclick="self.location.href='TagsClass.php<?=$ecms_hashur['whehref']?>';">&nbsp;
-        <input type="button" name="Submit42" value="è®¾ç½®TAGS" onclick="self.location.href='SetTags.php<?=$ecms_hashur['whehref']?>';">&nbsp;
-        <input type="button" name="Submit422" value="æ¸…ç†å¤šä½™TAGSä¿¡æ¯" onclick="self.location.href='ClearTags.php<?=$ecms_hashur['whehref']?>';">&nbsp;
-        <input type="button" name="Submit5" value="åˆ é™¤ä½¿ç”¨ç‡ä½çš„TAGS" onclick="self.location.href='DelLessTags.php<?=$ecms_hashur['whehref']?>';">&nbsp;
-        <input type="button" name="Submit6" value="åˆ é™¤è¿‡æœŸçš„TAGSä¿¡æ¯" onclick="self.location.href='DelOldTagsInfo.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit" value="Ôö¼ÓTAGS" onclick="self.location.href='AddTags.php?enews=AddTags<?=$ecms_hashur['ehref']?>';">&nbsp;
+        <input type="button" name="Submit4" value="TAGS·ÖÀà¹ÜÀí" onclick="self.location.href='TagsClass.php<?=$ecms_hashur['whehref']?>';">&nbsp;
+        <input type="button" name="Submit42" value="ÉèÖÃTAGS" onclick="self.location.href='SetTags.php<?=$ecms_hashur['whehref']?>';">&nbsp;
+        <input type="button" name="Submit422" value="ÇåÀí¶àÓàTAGSĞÅÏ¢" onclick="self.location.href='ClearTags.php<?=$ecms_hashur['whehref']?>';">&nbsp;
+        <input type="button" name="Submit5" value="É¾³ıÊ¹ÓÃÂÊµÍµÄTAGS" onclick="self.location.href='DelLessTags.php<?=$ecms_hashur['whehref']?>';">&nbsp;
+        <input type="button" name="Submit6" value="É¾³ı¹ıÆÚµÄTAGSĞÅÏ¢" onclick="self.location.href='DelOldTagsInfo.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -476,39 +476,39 @@ function CheckAll(form)
   <form name="searchform" method="GET" action="ListTags.php">
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td height="25">æœç´¢ï¼š
+      <td height="25">ËÑË÷£º
         <select name="show" id="show">
-          <option value="0"<?=$show==0?' selected':''?>>TAGåç§°</option>
+          <option value="0"<?=$show==0?' selected':''?>>TAGÃû³Æ</option>
 		  <option value="1"<?=$show==1?' selected':''?>>TAGID</option>
         </select> 
         <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
         <select name="cid" id="cid">
-          <option value="0">ä¸é™åˆ†ç±»</option>
+          <option value="0">²»ÏŞ·ÖÀà</option>
 		  <?=$cs?>
         </select>
         <input name="isgood" type="checkbox" id="isgood" value="1"<?=$isgood==1?' checked':''?>>
-        æ¨èTAGS
+        ÍÆ¼öTAGS
         <select name="orderby" id="orderby">
-          <option value="0"<?=$orderby==0?' selected':''?>>æŒ‰TAGIDé™åºæ’åº</option>
-		  <option value="1"<?=$orderby==1?' selected':''?>>æŒ‰TAGIDå‡åºæ’åº</option>
-          <option value="2"<?=$orderby==2?' selected':''?>>æŒ‰ä¿¡æ¯æ•°é™åºæ’åº</option>
-		  <option value="3"<?=$orderby==3?' selected':''?>>æŒ‰ä¿¡æ¯æ•°å‡åºæ’åº</option>
+          <option value="0"<?=$orderby==0?' selected':''?>>°´TAGID½µĞòÅÅĞò</option>
+		  <option value="1"<?=$orderby==1?' selected':''?>>°´TAGIDÉıĞòÅÅĞò</option>
+          <option value="2"<?=$orderby==2?' selected':''?>>°´ĞÅÏ¢Êı½µĞòÅÅĞò</option>
+		  <option value="3"<?=$orderby==3?' selected':''?>>°´ĞÅÏ¢ÊıÉıĞòÅÅĞò</option>
         </select> 
-        <input type="submit" name="Submit2" value="æ˜¾ç¤º"></td>
+        <input type="submit" name="Submit2" value="ÏÔÊ¾"></td>
     </tr>
   </form>
   </table>
 <br>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name="listform" method="post" action="ListTags.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+  <form name="listform" method="post" action="ListTags.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="4%"><div align="center">é€‰æ‹©</div></td>
+      <td width="4%"><div align="center">Ñ¡Ôñ</div></td>
       <td width="7%" height="25"> <div align="center">ID</div></td>
-      <td width="25%" height="25"> <div align="center">TAGåç§°</div></td>
-      <td width="25%" height="25"> <div align="center">ä¿¡æ¯æ•°</div></td>
-      <td width="21%"><div align="center">åˆ†ç±»</div></td>
-      <td width="18%" height="25"> <div align="center">æ“ä½œ</div></td>
+      <td width="25%" height="25"> <div align="center">TAGÃû³Æ</div></td>
+      <td width="25%" height="25"> <div align="center">ĞÅÏ¢Êı</div></td>
+      <td width="21%"><div align="center">·ÖÀà</div></td>
+      <td width="18%" height="25"> <div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -516,7 +516,7 @@ function CheckAll(form)
   	$st='';
   	if($r[isgood]==1)
 	{
-		$st='<font color="red">[æ¨]</font>';
+		$st='<font color="red">[ÍÆ]</font>';
 	}
 	if($r[cid])
 	{
@@ -525,7 +525,7 @@ function CheckAll(form)
 	}
 	else
 	{
-		$classname='æœªåˆ†ç±»';
+		$classname='Î´·ÖÀà';
 	}
 	if(!empty($public_r['rewritetags']))
 	{
@@ -557,7 +557,7 @@ function CheckAll(form)
       <td><div align="center">
           <?=$classname?>
         </div></td>
-      <td height="25"> <div align="center">[<a href="AddTags.php?enews=EditTags&tagid=<?=$r[tagid]?>&fcid=<?=$cid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;&nbsp;[<a href="ListTags.php?enews=DelTags&tagid=<?=$r[tagid]?>&fcid=<?=$cid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+      <td height="25"> <div align="center">[<a href="AddTags.php?enews=EditTags&tagid=<?=$r[tagid]?>&fcid=<?=$cid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;&nbsp;[<a href="ListTags.php?enews=DelTags&tagid=<?=$r[tagid]?>&fcid=<?=$cid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
     </tr>
     <?
   }
@@ -567,12 +567,12 @@ function CheckAll(form)
           <input type=checkbox name=chkall value=on onClick=CheckAll(this.form)>
         </div></td>
       <td height="25" colspan="5"> <div align="right">
-          <input type="submit" name="Submit8" value="æ¨è" onClick="document.listform.enews.value='GoodTags';document.listform.isgood.value='1';">
-          <input type="submit" name="Submit82" value="å–æ¶ˆæ¨è" onClick="document.listform.enews.value='GoodTags';document.listform.isgood.value='0';">
-          <input type="submit" name="Submit822" value="åˆ é™¤" onClick="document.listform.enews.value='DelTags_all';">
-          ç›®æ ‡TAGS 
+          <input type="submit" name="Submit8" value="ÍÆ¼ö" onClick="document.listform.enews.value='GoodTags';document.listform.isgood.value='1';">
+          <input type="submit" name="Submit82" value="È¡ÏûÍÆ¼ö" onClick="document.listform.enews.value='GoodTags';document.listform.isgood.value='0';">
+          <input type="submit" name="Submit822" value="É¾³ı" onClick="document.listform.enews.value='DelTags_all';">
+          Ä¿±êTAGS 
           <input name="newtagname" type="text" size="20">
-          <input type="submit" name="Submit3" value="åˆå¹¶" onClick="document.listform.enews.value='MergeTags';">
+          <input type="submit" name="Submit3" value="ºÏ²¢" onClick="document.listform.enews.value='MergeTags';">
           <input name="enews" type="hidden" id="enews" value="DelTags_all">
           <input name="isgood" type="hidden" id="isgood" value="1">
         </div></td>

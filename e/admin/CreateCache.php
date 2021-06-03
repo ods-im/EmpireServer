@@ -6,7 +6,7 @@ require("../class/functions.php");
 require LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=(int)$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 
-//æ˜¾ç¤ºæ— é™çº§æ ç›®ç¼“å­˜
+//ÏÔÊ¾ÎŞÏŞ¼¶À¸Ä¿»º´æ
 function CreateClassCache($bclassid,$exp,$expjs,$expmodjs,$adminclass,$doall,$mid,$addminfocid,$oldmid,$oldaddminfocid,$userid){
 	global $empire,$fun_r,$dbtbpre,$public_r;
 	if(empty($bclassid))
@@ -52,21 +52,21 @@ function CreateClassCache($bclassid,$exp,$expjs,$expmodjs,$adminclass,$doall,$mi
 	while($r=$empire->fetch($sql))
 	{
 		$classurl=sys_ReturnBqClassUrl($r);
-		//------ ç®¡ç†æ ç›®é¡µé¢ ------
+		//------ ¹ÜÀíÀ¸Ä¿Ò³Ãæ ------
 		$divonclick="";
 		$start_tbody="";
 		$end_tbody="";
 		$start_tbody1="";
 		$docinfo="";
 		$classinfotype='';
-		//ç»ˆçº§æ ç›®
+		//ÖÕ¼¶À¸Ä¿
 		if($r[islast])
 		{
 			$img="<a href='#e' onclick=addi(".$r[classid].")><img src='../data/images/txt.gif' border=0></a>";
 			$bgcolor="#ffffff";
 			$renewshtml=" <a href='#e' onclick=renews(".$r[classid].",'".$r[tbname]."')>".$fun_r['news']."</a> ";
-			$docinfo=" <a href='#e' onclick=docinfo(".$r[classid].")>å½’æ¡£</a>";
-			$classinfotype=" <a href='#e' onclick=ttc(".$r[classid].")>åˆ†ç±»</a>";
+			$docinfo=" <a href='#e' onclick=docinfo(".$r[classid].")>¹éµµ</a>";
+			$classinfotype=" <a href='#e' onclick=ttc(".$r[classid].")>·ÖÀà</a>";
 		}
 		else
 		{
@@ -77,31 +77,31 @@ function CreateClassCache($bclassid,$exp,$expjs,$expmodjs,$adminclass,$doall,$mi
 				$divonclick=" onMouseUp='turnit(classdiv".$r[classid].");' style='CURSOR:hand'";
 				$start_tbody="<tbody id='classdiv".$r[classid]."'>";
 				$end_tbody="</tbody>";
-				//ç¼©
+				//Ëõ
 				$start_tbody1="<tbody id='classdiv".$r[classid]."' style='display:none'>";
 		    }
 			else
 			{$bgcolor="#ffffff";}
 			$renewshtml=" <a href='#e' onclick=renews(".$r[classid].",'".$r[tbname]."')>".$fun_r['news']."</a> ";
 		}
-		//å¤–éƒ¨æ ç›®
+		//Íâ²¿À¸Ä¿
 		$classname=$r[classname];
 		if($r['wburl'])
 		{
-			$classname="<font color='#666666'>".$classname."&nbsp;(å¤–éƒ¨)</font>";
+			$classname="<font color='#666666'>".$classname."&nbsp;(Íâ²¿)</font>";
 		}
-		$onelistclass="<tr bgcolor='".$bgcolor."' height=25><td><input type=text name=myorder[] value=".$r[myorder]." size=2><input type=hidden name=classid[] value=".$r[classid]."></td><td".$divonclick.">".$exp.$img."</td><td align=center>".$r[classid]."</td><td><input type=checkbox name=reclassid[] value=".$r[classid]."> <a href='".$classurl."' target=_blank>".$classname."</a></td><td align=center>".$r[onclick]."</td><td><a href='#e' onclick=editc(".$r[classid].")>".$fun_r['edit']."</a> <a href='#e' onclick=copyc(".$r[classid].")>".$fun_r['copyclass']."</a> <a href='#e' onclick=delc(".$r[classid].")>".$fun_r['del']."</a></td><td><a href='#e' onclick=relist(".$r[classid].")>".$fun_r['re']."</a>".$renewshtml."<a href='#e' onclick=rejs(".$r[classid].")>JS</a> <a href='#e' onclick=tvurl(".$r[classid].")>è°ƒç”¨</a>".$classinfotype.$docinfo."</td></tr>";
+		$onelistclass="<tr bgcolor='".$bgcolor."' height=25><td><input type=text name=myorder[] value=".$r[myorder]." size=2><input type=hidden name=classid[] value=".$r[classid]."></td><td".$divonclick.">".$exp.$img."</td><td align=center>".$r[classid]."</td><td><input type=checkbox name=reclassid[] value=".$r[classid]."> <a href='".$classurl."' target=_blank>".$classname."</a></td><td align=center>".$r[onclick]."</td><td><a href='#e' onclick=editc(".$r[classid].")>".$fun_r['edit']."</a> <a href='#e' onclick=copyc(".$r[classid].")>".$fun_r['copyclass']."</a> <a href='#e' onclick=delc(".$r[classid].")>".$fun_r['del']."</a></td><td><a href='#e' onclick=relist(".$r[classid].")>".$fun_r['re']."</a>".$renewshtml."<a href='#e' onclick=rejs(".$r[classid].")>JS</a> <a href='#e' onclick=tvurl(".$r[classid].")>µ÷ÓÃ</a>".$classinfotype.$docinfo."</td></tr>";
 		$returnr['listclass'].=$onelistclass;
 		$returnr['listclasshidden'].=$onelistclass;
 		if(empty($r['wburl']))
 		{
-		//------ ç®¡ç†ä¿¡æ¯é¡µé¢ ------
-		//é“¾æ¥åœ°å€
+		//------ ¹ÜÀíĞÅÏ¢Ò³Ãæ ------
+		//Á´½ÓµØÖ·
 		$infoclassurl='';
-		//ç»ˆçº§æ ç›®
+		//ÖÕ¼¶À¸Ä¿
 		if($r[islast])
 		{
-			//æœ€åä¸€ä¸ªå­æ ç›®
+			//×îºóÒ»¸ö×ÓÀ¸Ä¿
 			if($i==$num)
 			{$menutype="file1";}
 			else
@@ -111,7 +111,7 @@ function CreateClassCache($bclassid,$exp,$expjs,$expmodjs,$adminclass,$doall,$mi
 		}
 		else
 		{
-			//æœ€åä¸€ä¸ªå¤§æ ç›®
+			//×îºóÒ»¸ö´óÀ¸Ä¿
 			if($i==$num)
 			{
 				$menutype="menu3";
@@ -127,7 +127,7 @@ function CreateClassCache($bclassid,$exp,$expjs,$expmodjs,$adminclass,$doall,$mi
 			$infoclassname="<a onmouseout=chft(this,0,$r[classid]) onmouseover=chft(this,1,$r[classid]) oncontextmenu=ShRM(this,".$r[bclassid].",".$r[classid].",'".$infoclassurl."',0)>".$r[classname]."</a>";
 		}
 		$returnr['listenews'].='<tr><td id="pr'.$r[classid].'" class="'.$menutype.'" onclick="'.$onmouseup.'">'.$infoclassname.'</td></tr>';
-		//JSé¢œè‰²
+		//JSÑÕÉ«
 		if($r[islast])
 		{
 			$jscolor=" style='background:#".$public_r['chclasscolor']."'";
@@ -136,7 +136,7 @@ function CreateClassCache($bclassid,$exp,$expjs,$expmodjs,$adminclass,$doall,$mi
 		{
 			$jscolor="";
 		}
-		//------ æƒé™æ ç›®æ˜¾ç¤º ------
+		//------ È¨ÏŞÀ¸Ä¿ÏÔÊ¾ ------
 		$havelevel=0;
 		if($userid&&empty($doall))
 		{
@@ -147,9 +147,9 @@ function CreateClassCache($bclassid,$exp,$expjs,$expmodjs,$adminclass,$doall,$mi
 				$havelevel=1;
 			}
 		}
-		//------ JSæ˜¾ç¤º ------
+		//------ JSÏÔÊ¾ ------
 		$returnr['jsstr'].="<option value='".$r[classid]."'".$jscolor.">".$expjs.$r[classname]."</option>";
-		//------ æŠ•ç¨¿ ------
+		//------ Í¶¸å ------
 		$haveadd=0;
 		if($mid)
 		{
@@ -169,7 +169,7 @@ function CreateClassCache($bclassid,$exp,$expjs,$expmodjs,$adminclass,$doall,$mi
 			}
 		}
 		}
-		//å–å¾—å­æ ç›®
+		//È¡µÃ×ÓÀ¸Ä¿
 		if(empty($r[islast]))
 		{
 			$retr=CreateClassCache($r['classid'],$exp,$expjs,$expmodjs,$adminclass,$doall,$mid,$addminfocid,$oldmid,$oldaddminfocid,$userid);
@@ -201,7 +201,7 @@ function CreateClassCache($bclassid,$exp,$expjs,$expmodjs,$adminclass,$doall,$mi
 	return $returnr;
 }
 
-//éªŒè¯ç¼“å­˜
+//ÑéÖ¤»º´æ
 function HaveNavClassCache($where){
 	global $empire,$dbtbpre;
 	if(empty($where))
@@ -212,7 +212,7 @@ function HaveNavClassCache($where){
 	return $navcachenum;
 }
 
-//å†™å…¥ç¼“å­˜
+//Ğ´Èë»º´æ
 function InsertNavClassCache($navtype,$userid,$modid){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;
@@ -249,15 +249,15 @@ if(!$user_r['groupid'])
 	$empire=null;
 	exit();
 }
-//ç”¨æˆ·ç»„æƒé™
+//ÓÃ»§×éÈ¨ÏŞ
 $gr=$empire->fetch1("select doall from {$dbtbpre}enewsgroup where groupid='$user_r[groupid]'");
-//ç”¨æˆ·
+//ÓÃ»§
 $userid=$thisuid;
 if($gr['doall'])
 {
 	$userid=0;
 }
-//æ¨¡å‹
+//Ä£ĞÍ
 $mid=(int)$_GET['mid'];
 if($mid&&$emod_r[$mid]['mid'])
 {
@@ -269,7 +269,7 @@ else
 	$mid=0;
 	$addminfocid='';
 }
-//æ¨¡å‹2
+//Ä£ĞÍ2
 $oldmid=(int)$_GET['oldmid'];
 if($oldmid&&$emod_r[$oldmid]['mid'])
 {
@@ -283,7 +283,7 @@ else
 }
 $cacher=CreateClassCache(0,'','','',$user_r['adminclass'],$gr['doall'],$mid,$addminfocid,$oldmid,$oldaddminfocid,$userid);
 $enews=','.$enews.',';
-//------ ç®¡ç†æ ç›®ç¼“å­˜ ------
+//------ ¹ÜÀíÀ¸Ä¿»º´æ ------
 if(stristr($enews,',doclass,'))
 {
 	if(!HaveNavClassCache("navtype='listclass'"))
@@ -295,8 +295,8 @@ if(stristr($enews,',doclass,'))
 		InsertNavClassCache('listclass',0,0);
 	}
 }
-//------ ç®¡ç†ä¿¡æ¯ç¼“å­˜ ------
-$notrecordword="æ‚¨è¿˜æœªæ·»åŠ æ ç›®,<br><a href='#ecms' onclick=goaddclass()><u><b>ç‚¹å‡»è¿™é‡Œ</b></u></a>è¿›è¡Œæ·»åŠ æ“ä½œ";
+//------ ¹ÜÀíĞÅÏ¢»º´æ ------
+$notrecordword="Äú»¹Î´Ìí¼ÓÀ¸Ä¿,<br><a href='#ecms' onclick=goaddclass()><u><b>µã»÷ÕâÀï</b></u></a>½øĞĞÌí¼Ó²Ù×÷";
 if(stristr($enews,',doinfo,'))
 {
 	if(!HaveNavClassCache("navtype='listenews'"))
@@ -310,7 +310,7 @@ if(stristr($enews,',doinfo,'))
 		InsertNavClassCache('listenews',0,0);
 	}
 }
-//ç”¨æˆ·ä¿¡æ¯ç¼“å­˜
+//ÓÃ»§ĞÅÏ¢»º´æ
 if(stristr($enews,',douserinfo,'))
 {
 	if($userid)
@@ -338,7 +338,7 @@ if(stristr($enews,',doinfo,'))
 		InsertNavClassCache('jsclass',0,0);
 	}
 }
-//------ æŠ•ç¨¿JS ------
+//------ Í¶¸åJS ------
 if(stristr($enews,',domod,'))
 {
 	if($mid)
@@ -362,12 +362,12 @@ if(stristr($enews,',domod,'))
 		}
 	}
 }
-//------ æ›´æ–°æ¨¡æ¿ ------
+//------ ¸üĞÂÄ£°å ------
 if(stristr($enews,',dostemp,'))
 {
 	GetSearch();
 }
 
 printerror($mess,$ecmstourl);
-//echo"<meta http-equiv=\"refresh\" content=\"0;url=$ecmstourl\">ç¼“å­˜æ›´æ–°å®Œæ¯•ï¼Œæ­£åœ¨è¿”å›......";
+//echo"<meta http-equiv=\"refresh\" content=\"0;url=$ecmstourl\">»º´æ¸üĞÂÍê±Ï£¬ÕıÔÚ·µ»Ø......";
 ?>

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,15 +15,15 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"plf");
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href=ListAllPl.php".$ecms_hashur['whehref'].">ç®¡ç†è¯„è®º</a>&nbsp;>&nbsp;<a href=ListPlF.php".$ecms_hashur['whehref'].">ç®¡ç†è¯„è®ºè‡ªå®šä¹‰å­—æ®µ</a>&nbsp;>&nbsp;å¢åŠ å­—æ®µ";
-//ä¿®æ”¹å­—æ®µ
+$url="<a href=ListAllPl.php".$ecms_hashur['whehref'].">¹ÜÀíÆÀÂÛ</a>&nbsp;>&nbsp;<a href=ListPlF.php".$ecms_hashur['whehref'].">¹ÜÀíÆÀÂÛ×Ô¶¨Òå×Ö¶Î</a>&nbsp;>&nbsp;Ôö¼Ó×Ö¶Î";
+//ĞŞ¸Ä×Ö¶Î
 if($enews=="EditPlF")
 {
 	$fid=(int)$_GET['fid'];
-	$url="<a href=ListAllPl.php".$ecms_hashur['whehref'].">ç®¡ç†è¯„è®º</a>&nbsp;>&nbsp;<a href=ListPlF.php".$ecms_hashur['whehref'].">ç®¡ç†è¯„è®ºè‡ªå®šä¹‰å­—æ®µ</a>&nbsp;>&nbsp;ä¿®æ”¹å­—æ®µ";
+	$url="<a href=ListAllPl.php".$ecms_hashur['whehref'].">¹ÜÀíÆÀÂÛ</a>&nbsp;>&nbsp;<a href=ListPlF.php".$ecms_hashur['whehref'].">¹ÜÀíÆÀÂÛ×Ô¶¨Òå×Ö¶Î</a>&nbsp;>&nbsp;ĞŞ¸Ä×Ö¶Î";
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsplf where fid='$fid'");
 	if(!$r[fid])
 	{
@@ -38,67 +38,67 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ å­—æ®µ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼Ó×Ö¶Î</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="../ecmspl.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr> 
-      <td height="25" colspan="2" class="header">å¢åŠ /ä¿®æ”¹å­—æ®µ 
+      <td height="25" colspan="2" class="header">Ôö¼Ó/ĞŞ¸Ä×Ö¶Î 
         <input name="fid" type="hidden" id="fid" value="<?=$fid?>"> <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
         <input name="oldf" type="hidden" id="oldf" value="<?=$r[f]?>"> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="25%" height="25">å­—æ®µå</td>
+      <td width="25%" height="25">×Ö¶ÎÃû</td>
       <td width="75%" height="25"><input name="f" type="text" id="f" value="<?=$r[f]?>"> 
-        <font color="#666666">(æ¯”å¦‚ï¼š&quot;title&quot;)</font></td>
+        <font color="#666666">(±ÈÈç£º&quot;title&quot;)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å­—æ®µæ ‡è¯†</td>
+      <td height="25">×Ö¶Î±êÊ¶</td>
       <td height="25"><input name="fname" type="text" id="fname" value="<?=$r[fname]?>"> 
-        <font color="#666666">(æ¯”å¦‚ï¼š&quot;æ ‡é¢˜&quot;)</font></td>
+        <font color="#666666">(±ÈÈç£º&quot;±êÌâ&quot;)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å­—æ®µç±»å‹</td>
+      <td height="25">×Ö¶ÎÀàĞÍ</td>
       <td height="25"><select name="ftype" id="select">
-          <option value="VARCHAR"<?=$typeVARCHAR?>>å­—ç¬¦å‹0-255å­—èŠ‚(VARCHAR)</option>
-          <option value="TEXT"<?=$typeTEXT?>>å°å‹å­—ç¬¦å‹(TEXT)</option>
-          <option value="MEDIUMTEXT"<?=$typeMEDIUMTEXT?>>ä¸­å‹å­—ç¬¦å‹(MEDIUMTEXT)</option>
-          <option value="LONGTEXT"<?=$typeLONGTEXT?>>å¤§å‹å­—ç¬¦å‹(LONGTEXT)</option>
-          <option value="TINYINT"<?=$typeTINYINT?>>å°æ•°å€¼å‹(TINYINT)</option>
-          <option value="SMALLINT"<?=$typeSMALLINT?>>ä¸­æ•°å€¼å‹(SMALLINT)</option>
-          <option value="INT"<?=$typeINT?>>å¤§æ•°å€¼å‹(INT)</option>
-          <option value="BIGINT"<?=$typeBIGINT?>>è¶…å¤§æ•°å€¼å‹(BIGINT)</option>
-          <option value="FLOAT"<?=$typeFLOAT?>>æ•°å€¼æµ®ç‚¹å‹(FLOAT)</option>
-          <option value="DOUBLE"<?=$typeDOUBLE?>>æ•°å€¼åŒç²¾åº¦å‹(DOUBLE)</option>
+          <option value="VARCHAR"<?=$typeVARCHAR?>>×Ö·ûĞÍ0-255×Ö½Ú(VARCHAR)</option>
+          <option value="TEXT"<?=$typeTEXT?>>Ğ¡ĞÍ×Ö·ûĞÍ(TEXT)</option>
+          <option value="MEDIUMTEXT"<?=$typeMEDIUMTEXT?>>ÖĞĞÍ×Ö·ûĞÍ(MEDIUMTEXT)</option>
+          <option value="LONGTEXT"<?=$typeLONGTEXT?>>´óĞÍ×Ö·ûĞÍ(LONGTEXT)</option>
+          <option value="TINYINT"<?=$typeTINYINT?>>Ğ¡ÊıÖµĞÍ(TINYINT)</option>
+          <option value="SMALLINT"<?=$typeSMALLINT?>>ÖĞÊıÖµĞÍ(SMALLINT)</option>
+          <option value="INT"<?=$typeINT?>>´óÊıÖµĞÍ(INT)</option>
+          <option value="BIGINT"<?=$typeBIGINT?>>³¬´óÊıÖµĞÍ(BIGINT)</option>
+          <option value="FLOAT"<?=$typeFLOAT?>>ÊıÖµ¸¡µãĞÍ(FLOAT)</option>
+          <option value="DOUBLE"<?=$typeDOUBLE?>>ÊıÖµË«¾«¶ÈĞÍ(DOUBLE)</option>
         </select>
-        å­—æ®µé•¿åº¦ 
+        ×Ö¶Î³¤¶È 
         <input name="flen" type="text" id="flen" value="<?=$r[flen]?>" size="6"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">å¿…å¡«é¡¹</td>
+      <td height="25">±ØÌîÏî</td>
       <td height="25"><input type="radio" name="ismust" value="1"<?=$r[ismust]==1?' checked':''?>>
-        æ˜¯ 
+        ÊÇ 
         <input type="radio" name="ismust" value="0"<?=$r[ismust]==0?' checked':''?>>
-        å¦</td>
+        ·ñ</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">æ³¨é‡Šï¼š</td>
+      <td height="25" valign="top">×¢ÊÍ£º</td>
       <td height="25"><textarea name="fzs" cols="65" rows="10" id="fzs"><?=stripSlashes($r[fzs])?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

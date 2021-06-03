@@ -6,19 +6,19 @@ require("../../member/class/user.php");
 require("../../data/dbcache/class.php");
 require("../../data/dbcache/MemberLevel.php");
 require("../class/DownSysFun.php");
-eCheckCloseMods('down');//å…³é—­æ¨¡å—
+eCheckCloseMods('down');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
 $ecmsreurl=2;
-//éªŒè¯IP
+//ÑéÖ¤IP
 eCheckAccessDoIp('downinfo');
 $id=(int)$_GET['id'];
 $pathid=(int)$_GET['pathid'];
 $classid=(int)$_GET['classid'];
 if(!$classid||empty($class_r[$classid][tbname])||!$id)
 {
-	echo"<script>alert('æ­¤ä¿¡æ¯ä¸å­˜åœ¨');window.close();</script>";
+	echo"<script>alert('´ËĞÅÏ¢²»´æÔÚ');window.close();</script>";
 	exit();
 }
 $mid=$class_r[$classid][modid];
@@ -27,101 +27,101 @@ $query="select * from {$dbtbpre}ecms_".$tbname." where id='$id' limit 1";
 $r=$empire->fetch1($query);
 if(!$r['id']||$r['classid']!=$classid)
 {
-	echo"<script>alert('æ­¤ä¿¡æ¯ä¸å­˜åœ¨');window.close();</script>";
+	echo"<script>alert('´ËĞÅÏ¢²»´æÔÚ');window.close();</script>";
 	exit();
 }
-//å‰¯è¡¨
+//¸±±í
 $finfor=$empire->fetch1("select ".ReturnSqlFtextF($mid)." from {$dbtbpre}ecms_".$tbname."_data_".$r[stb]." where id='$r[id]' limit 1");
 $r=array_merge($r,$finfor);
-//åŒºåˆ†ä¸‹è½½åœ°å€
+//Çø·ÖÏÂÔØµØÖ·
 $path_r=explode("\r\n",$r[downpath]);
 if(!$path_r[$pathid])
 {
-	echo"<script>alert('æ­¤ä¿¡æ¯ä¸å­˜åœ¨');window.close();</script>";
+	echo"<script>alert('´ËĞÅÏ¢²»´æÔÚ');window.close();</script>";
 	exit();
 }
 $showdown_r=explode("::::::",$path_r[$pathid]);
-//ä¸‹è½½æƒé™
+//ÏÂÔØÈ¨ÏŞ
 $nockpass='';
 $user=array();
 $downgroup=$showdown_r[2];
 if($downgroup)
 {
 	$user=islogin();
-	//å–å¾—ä¼šå‘˜èµ„æ–™
+	//È¡µÃ»áÔ±×ÊÁÏ
 	$u=$empire->fetch1("select ".eReturnSelectMemberF('*')." from ".eReturnMemberTable()." where ".egetmf('userid')."='$user[userid]' and ".egetmf('rnd')."='$user[rnd]' limit 1");
 	if(empty($u['userid']))
 	{
-		echo"<script>alert('åŒä¸€å¸å·ï¼Œåªèƒ½ä¸€äººåœ¨çº¿');window.close();</script>";
+		echo"<script>alert('Í¬Ò»ÕÊºÅ£¬Ö»ÄÜÒ»ÈËÔÚÏß');window.close();</script>";
         exit();
     }
 	$nockpass=qReturnLoginPassNoCK($user['userid'],$user['username'],$user['rnd'],0);
-	//ä¸‹è½½æ¬¡æ•°é™åˆ¶
+	//ÏÂÔØ´ÎÊıÏŞÖÆ
 	if($level_r[$u['groupid']]['daydown'])
 	{
 		$setuserday=DoCheckMDownNum($user['userid'],$u['groupid'],2);
 		if($setuserday=='error')
 		{
-			echo"<script>alert('æ‚¨çš„ä¸‹è½½ä¸è§‚çœ‹æ¬¡æ•°å·²è¶…è¿‡ç³»ç»Ÿé™åˆ¶(".$level_r[$u['groupid']]['daydown']." æ¬¡)!');window.close();</script>";
+			echo"<script>alert('ÄúµÄÏÂÔØÓë¹Û¿´´ÎÊıÒÑ³¬¹ıÏµÍ³ÏŞÖÆ(".$level_r[$u['groupid']]['daydown']." ´Î)!');window.close();</script>";
 			exit();
 		}
 	}
-	if($downgroup>0)//ä¼šå‘˜ç»„
+	if($downgroup>0)//»áÔ±×é
 	{
 		if($level_r[$downgroup][level]>$level_r[$u['groupid']][level])
 		{
-			echo"<script>alert('æ‚¨çš„ä¼šå‘˜çº§åˆ«ä¸è¶³(".$level_r[$downgroup][groupname].")ï¼Œæ²¡æœ‰ä¸‹è½½æƒé™!');window.close();</script>";
+			echo"<script>alert('ÄúµÄ»áÔ±¼¶±ğ²»×ã(".$level_r[$downgroup][groupname].")£¬Ã»ÓĞÏÂÔØÈ¨ÏŞ!');window.close();</script>";
 			exit();
 		}
 	}
-	else//è®¿é—®ç»„
+	else//·ÃÎÊ×é
 	{
 		$vgroupid=0-$downgroup;
 		$ckvgresult=eMember_ReturnCheckViewGroup($u,$vgroupid);
 		if($ckvgresult<>'empire.cms')
 		{
-			echo"<script>alert('æ‚¨çš„ä¼šå‘˜çº§åˆ«ä¸è¶³ï¼Œæ²¡æœ‰ä¸‹è½½æƒé™!');window.close();</script>";
+			echo"<script>alert('ÄúµÄ»áÔ±¼¶±ğ²»×ã£¬Ã»ÓĞÏÂÔØÈ¨ÏŞ!');window.close();</script>";
 			exit();
 		}
 	}
-	//ç‚¹æ•°æ˜¯å¦è¶³å¤Ÿ
+	//µãÊıÊÇ·ñ×ã¹»
 	if($showdown_r[3])
 	{
-		//---------æ˜¯å¦æœ‰å†å²è®°å½•
+		//---------ÊÇ·ñÓĞÀúÊ·¼ÇÂ¼
 		$bakr=$empire->fetch1("select id,truetime from {$dbtbpre}enewsdownrecord where id='$id' and classid='$classid' and userid='$user[userid]' and pathid='$pathid' and online=0 order by truetime desc limit 1");
 		if($bakr[id]&&(time()-$bakr[truetime]<=$public_r[redodown]*3600))
 		{}
 		else
 		{
-			//åŒ…æœˆå¡
+			//°üÔÂ¿¨
 			if($u['userdate']-time()>0)
 			{}
-			//ç‚¹æ•°
+			//µãÊı
 			else
 			{
 				if($showdown_r[3]>$u['userfen'])
 			    {
-					echo"<script>alert('æ‚¨çš„ç‚¹æ•°ä¸è¶³ $showdown_r[3] ç‚¹ï¼Œæ— æ³•ä¸‹è½½');window.close();</script>";
+					echo"<script>alert('ÄúµÄµãÊı²»×ã $showdown_r[3] µã£¬ÎŞ·¨ÏÂÔØ');window.close();</script>";
 					exit();
 			    }
 			}
 		}
 	}
 }
-//å˜é‡
-$thisdownname=$showdown_r[0];	//å½“å‰ä¸‹è½½åœ°å€åç§°
-$classname=$class_r[$r[classid]]['classname'];	//æ ç›®å
-$bclassid=$class_r[$r[classid]]['bclassid'];	//çˆ¶æ ç›®ID
-$bclassname=$class_r[$bclassid]['classname'];	//çˆ¶æ ç›®å
-$titleurl=sys_ReturnBqTitleLink($r);	//ä¿¡æ¯é“¾æ¥
+//±äÁ¿
+$thisdownname=$showdown_r[0];	//µ±Ç°ÏÂÔØµØÖ·Ãû³Æ
+$classname=$class_r[$r[classid]]['classname'];	//À¸Ä¿Ãû
+$bclassid=$class_r[$r[classid]]['bclassid'];	//¸¸À¸Ä¿ID
+$bclassname=$class_r[$bclassid]['classname'];	//¸¸À¸Ä¿Ãû
+$titleurl=sys_ReturnBqTitleLink($r);	//ĞÅÏ¢Á´½Ó
 $newstime=date('Y-m-d H:i:s',$r['newstime']);
 $titlepic=$r['titlepic']?$r['titlepic']:$public_r[newsurl]."e/data/images/notimg.gif";
 $ip=egetip();
-$pass=md5(md5($classid."-!ecms!".$id."-!ecms!".$pathid).ReturnDownSysCheckIp()."wm_chief".$public_r[downpass].$user[userid]);	//éªŒè¯ç 
-$url="../doaction.php?enews=DownSoft&classid=$classid&id=$id&pathid=$pathid&pass=".$pass."&p=".$user[userid].":::".$user[rnd].":::".$nockpass;	//ä¸‹è½½åœ°å€
-$trueurl=ReturnDSofturl($showdown_r[1],$showdown_r[4],'../../',1);	//çœŸå®æ–‡ä»¶åœ°å€
-$fen=$showdown_r[3];	//ä¸‹è½½ç‚¹æ•°
-$downuser=$downgroup?$level_r[$downgroup][groupname]:'æ¸¸å®¢';	//ä¸‹è½½ç­‰çº§
+$pass=md5(md5($classid."-!ecms!".$id."-!ecms!".$pathid).ReturnDownSysCheckIp()."wm_chief".$public_r[downpass].$user[userid]);	//ÑéÖ¤Âë
+$url="../doaction.php?enews=DownSoft&classid=$classid&id=$id&pathid=$pathid&pass=".$pass."&p=".$user[userid].":::".$user[rnd].":::".$nockpass;	//ÏÂÔØµØÖ·
+$trueurl=ReturnDSofturl($showdown_r[1],$showdown_r[4],'../../',1);	//ÕæÊµÎÄ¼şµØÖ·
+$fen=$showdown_r[3];	//ÏÂÔØµãÊı
+$downuser=$downgroup?$level_r[$downgroup][groupname]:'ÓÎ¿Í';	//ÏÂÔØµÈ¼¶
 @include('../../data/template/downpagetemp.php');
 db_close();
 $empire=null;

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 require("class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,9 +15,9 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"dbdata");
-//æ•°æ®åº“
+//Êı¾İ¿â
 $mydbname=RepPostVar($_GET['mydbname']);
 $mytbname=RepPostVar($_GET['mytbname']);
 if(empty($mydbname)||empty($mytbname))
@@ -35,8 +35,8 @@ $sql=$empire->query("SHOW FIELDS FROM `".$mytbname."`");
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>è¡¨å­—æ®µåˆ—è¡¨</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>±í×Ö¶ÎÁĞ±í</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function ChangeAutoField(f)
@@ -63,22 +63,22 @@ function ChangeAutoField(f)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td>ä½ç½®ï¼š<b><?=$mydbname?>.<?=$mytbname?></b> å­—æ®µåˆ—è¡¨</td>
+    <td>Î»ÖÃ£º<b><?=$mydbname?>.<?=$mytbname?></b> ×Ö¶ÎÁĞ±í</td>
   </tr>
 </table>
 <br>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td height="27"> <div align="center">å­—æ®µå</div></td>
-    <td><div align="center">å­—æ®µç±»å‹</div></td>
-    <td><div align="center">å­—æ®µå±æ€§</div></td>
-    <td><div align="center">é»˜è®¤å€¼</div></td>
-    <td><div align="center">é™„åŠ å±æ€§</div></td>
+    <td height="27"> <div align="center">×Ö¶ÎÃû</div></td>
+    <td><div align="center">×Ö¶ÎÀàĞÍ</div></td>
+    <td><div align="center">×Ö¶ÎÊôĞÔ</div></td>
+    <td><div align="center">Ä¬ÈÏÖµ</div></td>
+    <td><div align="center">¸½¼ÓÊôĞÔ</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
   {
-	  $r[Field]="<a href='#ebak' onclick=\"ChangeAutoField('".$r[Field]."');\" title='åŠ å…¥å»é™¤è‡ªå¢å€¼å­—æ®µåˆ—è¡¨'>$r[Field]</a>";
+	  $r[Field]="<a href='#ebak' onclick=\"ChangeAutoField('".$r[Field]."');\" title='¼ÓÈëÈ¥³ı×ÔÔöÖµ×Ö¶ÎÁĞ±í'>$r[Field]</a>";
   ?>
   <tr bgcolor="#FFFFFF"> 
     <td height="27"> <div align="center">

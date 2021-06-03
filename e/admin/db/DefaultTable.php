@@ -4,9 +4,9 @@ if(!defined('InEmpireCMS'))
 	exit();
 }
 
-//------- å»ºç«‹æ•°æ®è¡¨ -------
+//------- ½¨Á¢Êý¾Ý±í -------
 
-//å…¬å…±è¡¨
+//¹«¹²±í
 $tablename=$dbtbpre."ecms_".$tbname."_index";
 $sqlindex=$empire->query(SetCreateTable("CREATE TABLE `".$tablename."` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -24,7 +24,7 @@ $sqlindex=$empire->query(SetCreateTable("CREATE TABLE `".$tablename."` (
   KEY `havehtml` (`classid`,`truetime`,`havehtml`,`checked`,`id`)
   ) TYPE=MyISAM;",$ecms_config['db']['dbchar']));
 
-//ä¸»è¡¨
+//Ö÷±í
 $tablename=$dbtbpre."ecms_".$tbname;
 $sql=$empire->query(SetCreateTable("CREATE TABLE `".$tablename."` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -69,7 +69,7 @@ $sql=$empire->query(SetCreateTable("CREATE TABLE `".$tablename."` (
   KEY `useridis` (`userid`,`ismember`)
   ) TYPE=MyISAM;",$ecms_config['db']['dbchar']));
 
-//å‰¯è¡¨
+//¸±±í
 $tablename=$dbtbpre."ecms_".$tbname."_data_1";
 $sqldata=$empire->query(SetCreateTable("CREATE TABLE `".$tablename."` (
   `id` int(10) unsigned NOT NULL default '0',
@@ -84,7 +84,7 @@ $sqldata=$empire->query(SetCreateTable("CREATE TABLE `".$tablename."` (
   KEY `classid` (`classid`)
   ) TYPE=MyISAM;",$ecms_config['db']['dbchar']));
 
-//é‡‡é›†èŠ‚ç‚¹é™„åŠ è¡¨
+//²É¼¯½Úµã¸½¼Ó±í
 $tablename=$dbtbpre."ecms_infoclass_".$tbname;
 $infoclass=$empire->query(SetCreateTable("CREATE TABLE `".$tablename."` (
   `classid` int(10) unsigned not null default '0',
@@ -103,7 +103,7 @@ $infoclass=$empire->query(SetCreateTable("CREATE TABLE `".$tablename."` (
   PRIMARY KEY (`classid`)
   ) TYPE=MyISAM;",$ecms_config['db']['dbchar']));
 
-//é‡‡é›†æ•°æ®ä¸´æ—¶è¡¨
+//²É¼¯Êý¾ÝÁÙÊ±±í
 $tablename=$dbtbpre."ecms_infotmp_".$tbname;
 $infotmp=$empire->query(SetCreateTable("CREATE TABLE `".$tablename."` (
   `id` bigint(20) unsigned NOT NULL auto_increment,
@@ -123,24 +123,24 @@ $infotmp=$empire->query(SetCreateTable("CREATE TABLE `".$tablename."` (
   KEY `checked` (`checked`)
   ) TYPE=MyISAM;",$ecms_config['db']['dbchar']));
 
-//å­—æ®µè¡¨æ•°æ®
+//×Ö¶Î±íÊý¾Ý
 $sysfdata=ReadFiletext('../data/html/sysfhtml.txt');
 $sys_selectf='fid,f,fname,fform,fhtml,fzs,isadd,isshow,iscj,cjhtml,myorder,ftype,flen,dotemp,tid,tbname,savetxt,fvalue,iskey,tobr,dohtml,qfhtml,isonly,linkfieldval,samedata,fformsize,tbdataf,ispage,adddofun,editdofun,qadddofun,qeditdofun,linkfieldtb,linkfieldshow,editorys,issmalltext';
 
 $sysf_titler=explode('[!--sys.title--]',$sysfdata);
 $sysf_titletr=explode('[!--sys.qf.exp--]',$sysf_titler[1]);
-$empire->query("insert into `{$dbtbpre}enewsf`($sys_selectf) values(NULL,'title','æ ‡é¢˜','text','".addslashes($sysf_titletr[0])."','æ ‡é¢˜','0','1','1','".addslashes($sysf_titletr[2])."','0','CHAR','100','1','$tid','$tbname','0','','0','0','0','".addslashes($sysf_titletr[1])."','0','','0','60','0','0','','','','','','','0','0');");
+$empire->query("insert into `{$dbtbpre}enewsf`($sys_selectf) values(NULL,'title','±êÌâ','text','".addslashes($sysf_titletr[0])."','±êÌâ','0','1','1','".addslashes($sysf_titletr[2])."','0','CHAR','100','1','$tid','$tbname','0','','0','0','0','".addslashes($sysf_titletr[1])."','0','','0','60','0','0','','','','','','','0','0');");
 
 $sysf_specialr=explode('[!--sys.special.field--]',$sysfdata);
 $sysf_specialtr=explode('[!--sys.qf.exp--]',$sysf_specialr[1]);
-$empire->query("insert into `{$dbtbpre}enewsf`($sys_selectf) values(NULL,'special.field','ç‰¹æ®Šå±žæ€§','','".addslashes($sysf_specialtr[0])."','ç‰¹æ®Šå±žæ€§','0','1','0','".addslashes($sysf_specialtr[2])."','0','','0','0','$tid','$tbname','0','','0','0','0','".addslashes($sysf_specialtr[1])."','0','','0','','0','0','','','','','','','0','0');");
+$empire->query("insert into `{$dbtbpre}enewsf`($sys_selectf) values(NULL,'special.field','ÌØÊâÊôÐÔ','','".addslashes($sysf_specialtr[0])."','ÌØÊâÊôÐÔ','0','1','0','".addslashes($sysf_specialtr[2])."','0','','0','0','$tid','$tbname','0','','0','0','0','".addslashes($sysf_specialtr[1])."','0','','0','','0','0','','','','','','','0','0');");
 
 $sysf_titlepicr=explode('[!--sys.titlepic--]',$sysfdata);
 $sysf_titlepictr=explode('[!--sys.qf.exp--]',$sysf_titlepicr[1]);
-$empire->query("insert into `{$dbtbpre}enewsf`($sys_selectf) values(NULL,'titlepic','æ ‡é¢˜å›¾ç‰‡','img','".addslashes($sysf_titlepictr[0])."','æ ‡é¢˜å›¾ç‰‡','0','1','1','".addslashes($sysf_titlepictr[2])."','0','CHAR','120','1','$tid','$tbname','0','','0','0','0','".addslashes($sysf_titlepictr[1])."','0','','0','60','0','0','','','','','','','0','0');");
+$empire->query("insert into `{$dbtbpre}enewsf`($sys_selectf) values(NULL,'titlepic','±êÌâÍ¼Æ¬','img','".addslashes($sysf_titlepictr[0])."','±êÌâÍ¼Æ¬','0','1','1','".addslashes($sysf_titlepictr[2])."','0','CHAR','120','1','$tid','$tbname','0','','0','0','0','".addslashes($sysf_titlepictr[1])."','0','','0','60','0','0','','','','','','','0','0');");
 
 $sysf_newstimer=explode('[!--sys.newstime--]',$sysfdata);
 $sysf_newstimetr=explode('[!--sys.qf.exp--]',$sysf_newstimer[1]);
-$empire->query("insert into `{$dbtbpre}enewsf`($sys_selectf) values(NULL,'newstime','å‘å¸ƒæ—¶é—´','text','".addslashes($sysf_newstimetr[0])."','å‘å¸ƒæ—¶é—´','0','1','1','".addslashes($sysf_newstimetr[2])."','0','INT','11','1','$tid','$tbname','0','','1','0','0','".addslashes($sysf_newstimetr[1])."','0','','0','','0','0','','','','','','','0','0');");
+$empire->query("insert into `{$dbtbpre}enewsf`($sys_selectf) values(NULL,'newstime','·¢²¼Ê±¼ä','text','".addslashes($sysf_newstimetr[0])."','·¢²¼Ê±¼ä','0','1','1','".addslashes($sysf_newstimetr[2])."','0','INT','11','1','$tid','$tbname','0','','1','0','0','".addslashes($sysf_newstimetr[1])."','0','','0','','0','0','','','','','','','0','0');");
 
 ?>

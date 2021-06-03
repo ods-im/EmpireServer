@@ -8,13 +8,13 @@ require("../data/dbcache/class.php");
 require("../data/dbcache/MemberLevel.php");
 $link=db_connect();
 $empire=new mysqlquery();
-if($public_r['addnews_ok'])//å…³é—­æŠ•ç¨¿
+if($public_r['addnews_ok'])//¹Ø±ÕÍ¶¸å
 {
 	printerror("NotOpenCQInfo","",1);
 }
-//éªŒè¯æœ¬æ—¶é—´å…è®¸æ“ä½œ
+//ÑéÖ¤±¾Ê±¼äÔÊĞí²Ù×÷
 eCheckTimeCloseDo('info');
-//éªŒè¯IP
+//ÑéÖ¤IP
 eCheckAccessDoIp('postinfo');
 $classid=(int)$_GET['classid'];
 $mid=$class_r[$classid]['modid'];
@@ -39,14 +39,14 @@ $todaytime=$r[newstime];
 $showkey="";
 $r['newstext']="";
 $rechangeclass='';
-//éªŒè¯ä¼šå‘˜ä¿¡æ¯
+//ÑéÖ¤»áÔ±ĞÅÏ¢
 $mloginauthr=qCheckLoginAuthstr();
-//å–å¾—ç™»é™†ä¼šå‘˜èµ„æ–™
+//È¡µÃµÇÂ½»áÔ±×ÊÁÏ
 if($muserid&&$mloginauthr['islogin'])
 {
 	$memberinfor=$empire->fetch1("select ".eReturnSelectMemberF('*','u.').",ui.* from ".eReturnMemberTable()." u LEFT JOIN {$dbtbpre}enewsmemberadd ui ON u.".egetmf('userid')."=ui.userid where u.".egetmf('userid')."='$muserid' limit 1");
 }
-//å¢åŠ 
+//Ôö¼Ó
 if($enews=="MAddInfo")
 {
 	$cr=DoQCheckAddLevel($classid,$muserid,$musername,$mrnd,0,1);
@@ -55,40 +55,40 @@ if($enews=="MAddInfo")
 	{
 		printerror("NotOpenCQInfo","history.go(-1)",1);
 	}
-	//IPå‘å¸ƒæ•°é™åˆ¶
+	//IP·¢²¼ÊıÏŞÖÆ
 	$check_ip=egetip();
 	$check_checked=$cr['wfid']?0:$cr['checkqadd'];
 	eCheckIpAddInfoNum($check_ip,$cr['tbname'],$cr['modid'],$check_checked);
-	//éªŒè¯å•ä¿¡æ¯
+	//ÑéÖ¤µ¥ĞÅÏ¢
 	//qCheckMemberOneInfo($cr['tbname'],$cr['modid'],$classid,$muserid);
-	//åˆå§‹å˜é‡
-	$word="å¢åŠ ä¿¡æ¯";
+	//³õÊ¼±äÁ¿
+	$word="Ôö¼ÓĞÅÏ¢";
 	$ecmsfirstpost=1;
-	$rechangeclass="&nbsp;[<a href='ChangeClass.php?mid=".$mid."'>é‡æ–°é€‰æ‹©</a>]";
-	//éªŒè¯ç 
+	$rechangeclass="&nbsp;[<a href='ChangeClass.php?mid=".$mid."'>ÖØĞÂÑ¡Ôñ</a>]";
+	//ÑéÖ¤Âë
 	if($cr['qaddshowkey'])
 	{
 		$showkey="<tr bgcolor=\"#FFFFFF\">
-      <td width=\"11%\" height=\"25\">éªŒè¯ç </td>
+      <td width=\"11%\" height=\"25\">ÑéÖ¤Âë</td>
       <td height=\"25\">
         <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">
                 <tr> 
                   <td width=\"52\"><input name=\"key\" type=\"text\" id=\"key\" size=\"6\"> 
                   </td>
-                  <td id=\"infoshowkey\"><a href=\"#EmpireCMS\" onclick=\"edoshowkey('infoshowkey','info','".$public_r['newsurl']."');\" title=\"ç‚¹å‡»æ˜¾ç¤ºéªŒè¯ç \">ç‚¹å‡»æ˜¾ç¤ºéªŒè¯ç </a></td>
+                  <td id=\"infoshowkey\"><a href=\"#EmpireCMS\" onclick=\"edoshowkey('infoshowkey','info','".$public_r['newsurl']."');\" title=\"µã»÷ÏÔÊ¾ÑéÖ¤Âë\">µã»÷ÏÔÊ¾ÑéÖ¤Âë</a></td>
                 </tr>
         </table>
       </td></tr>";
 	}
-	//å›¾ç‰‡
+	//Í¼Æ¬
 	$imgwidth=0;
 	$imgheight=0;
-	//æ–‡ä»¶éªŒè¯ç 
+	//ÎÄ¼şÑéÖ¤Âë
 	$filepass=time();
 }
 else
 {
-	$word="ä¿®æ”¹ä¿¡æ¯";
+	$word="ĞŞ¸ÄĞÅÏ¢";
 	$ecmsfirstpost=0;
 	$id=(int)$_GET['id'];
 	if(empty($id))
@@ -102,7 +102,7 @@ else
 		printerror("NotOpenCQInfo","history.go(-1)",1);
 	}
 	$r=CheckQdoinfo($classid,$id,$muserid,$cr['tbname'],$cr['adminqinfo'],1);
-	//æ£€æµ‹æ—¶é—´
+	//¼ì²âÊ±¼ä
 	if($public_r['qeditinfotime'])
 	{
 		if(time()-$r['truetime']>$public_r['qeditinfotime']*60)
@@ -112,15 +112,15 @@ else
 	}
 	$newstime=$r['newstime'];
 	$r['newstime']=date("Y-m-d H:i:s",$r['newstime']);
-	//å›¾ç‰‡
+	//Í¼Æ¬
 	$imgwidth=170;
 	$imgheight=120;
-	//æ–‡ä»¶éªŒè¯ç 
+	//ÎÄ¼şÑéÖ¤Âë
 	$filepass=$id;
 }
 $tbname=$cr['tbname'];
 esetcookie("qeditinfo","dgcms");
-//æ ‡é¢˜åˆ†ç±»
+//±êÌâ·ÖÀà
 $cttidswhere='';
 $tts='';
 $caddr=$empire->fetch1("select ttids from {$dbtbpre}enewsclassadd where classid='$classid'");
@@ -141,7 +141,7 @@ if($caddr['ttids']!='-')
 		$tts.="<option value='$ttr[typeid]'".$select.">$ttr[tname]</option>";
 	}
 }
-//æ ç›®
+//À¸Ä¿
 $classurl=sys_ReturnBqClassname($cr,9);
 $postclass="<a href='".$classurl."' target='_blank'>".$class_r[$classid]['classname']."</a>".$rechangeclass;
 if($cr['bclassid'])
@@ -150,7 +150,7 @@ if($cr['bclassid'])
 	$bclassurl=sys_ReturnBqClassname($bcr,9);
 	$postclass="<a href='".$bclassurl."' target=_blank>".$class_r[$cr['bclassid']]['classname']."</a>&nbsp;>&nbsp;".$postclass;
 }
-//htmlç¼–è¾‘å™¨
+//html±à¼­Æ÷
 $loadeditorjs='';
 if($emod_r[$mid]['editorf']&&$emod_r[$mid]['editorf']!=',')
 {
@@ -159,10 +159,10 @@ if($emod_r[$mid]['editorf']&&$emod_r[$mid]['editorf']!=',')
 }
 if(empty($musername))
 {
-	$musername="æ¸¸å®¢";
+	$musername="ÓÎ¿Í";
 }
 $modfile="../data/html/q".$cr['modid'].".php";
-//å¯¼å…¥æ¨¡æ¿
+//µ¼ÈëÄ£°å
 require(ECMS_PATH.'e/template/DoInfo/AddInfo.php');
 db_close();
 $empire=null;

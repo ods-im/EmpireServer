@@ -1,5 +1,5 @@
 <?php
-//å¸å›½ç½‘ç«™ç®¡ç†ç³»ç»ŸFTP
+//µÛ¹úÍøÕ¾¹ÜÀíÏµÍ³FTP
 
 define('InEmpireCMSFtp',TRUE);
 
@@ -11,7 +11,7 @@ class EmpireCMSFTP{
 		return str_replace(array("\n","\r"),array('',''),$str);   
 	}
 
-	//é“¾æŽ¥
+	//Á´½Ó
 	function fconnect($ftphost,$ftpport,$ftpusername,$ftppassword,$ftppath,$ftpssl=0,$pasv=0,$tranmode=0,$timeout=0,$checkftp=0){
 		$ftphost=$this->wipespecial($ftphost);
 		$func=$ftpssl&&function_exists('ftp_ssl_connect')?'ftp_ssl_connect':'ftp_connect';
@@ -61,42 +61,42 @@ class EmpireCMSFTP{
 		$this->ftptranmode=$tranmode?FTP_ASCII:FTP_BINARY;
 	}
 
-	//ç™»å½•
+	//µÇÂ¼
 	function fLogin($username,$password) {
 		$username=$this->wipespecial($username);
 		$password=$this->wipespecial($password);
 		return @ftp_login($this->ftpconnectid,$username,$password);
 	}
 
-	//å…³é—­ftp
+	//¹Ø±Õftp
 	function fExit(){
 		return @ftp_quit($this->ftpconnectid);
     }
 
-	//é“¾æŽ¥æ¨¡å¼
+	//Á´½ÓÄ£Ê½
 	function fPasv($pasv){
 		return @ftp_pasv($this->ftpconnectid,$pasv);
 	}
 
-	//æ”¹å˜è·¯å¾„
+	//¸Ä±äÂ·¾¶
 	function fChdir($path){
 		$path=$this->wipespecial($path);
 		return @ftp_chdir($this->ftpconnectid,$path);
 	}
 	
-	//å»ºç«‹ç›®å½•
+	//½¨Á¢Ä¿Â¼
 	function fMkdir($path){
 		$path=$this->wipespecial($path);
 		return @ftp_mkdir($this->ftpconnectid,$path);
     }
 
-	//å‘æœåŠ¡å™¨å‘é€ SITE å‘½ä»¤
+	//Ïò·þÎñÆ÷·¢ËÍ SITE ÃüÁî
 	function fSiteCmd($cmd){
 		$cmd=$this->wipespecial($cmd);
 		return @ftp_site($this->ftpconnectid,$cmd);
 	}
 
-	//è®¾ç½®ç›®å½•æƒé™
+	//ÉèÖÃÄ¿Â¼È¨ÏÞ
 	function fChmoddir($mode,$filename){
 		$mode=intval($mode);
 		$filename=$this->wipespecial($filename);
@@ -110,13 +110,13 @@ class EmpireCMSFTP{
 		}
 	}
 
-	//åˆ é™¤ç›®å½•
+	//É¾³ýÄ¿Â¼
 	function fRmdir($path){
 		$path=$this->wipespecial($path);
 		return @ftp_rmdir($this->ftpconnectid,$path);
 	}
 
-	//ä¸Šä¼ æ–‡ä»¶
+	//ÉÏ´«ÎÄ¼þ
 	function fTranFile($hfile,$lfile,$startpos=0,$del=0){
 		$hfile=$this->wipespecial($hfile);
 		$lfile=$this->wipespecial($lfile);
@@ -129,15 +129,15 @@ class EmpireCMSFTP{
 		return $tran;
     }
 
-	//ä¸Šä¼ å•æ–‡ä»¶(å«å»ºç›®å½•)
+	//ÉÏ´«µ¥ÎÄ¼þ(º¬½¨Ä¿Â¼)
 	function fTranPathFile($basepath,$path,$hfile,$lfile,$del=0){
-		//å»ºç›®å½•
+		//½¨Ä¿Â¼
 		$this->ftp_mkdirs($basepath,$path);
-		//ä¸Šä¼ æ–‡ä»¶
+		//ÉÏ´«ÎÄ¼þ
 		$this->fTranFile($hfile,$lfile,0,$del);
 	}
 
-	//ä¸Šä¼ å¤šæ–‡ä»¶
+	//ÉÏ´«¶àÎÄ¼þ
 	function fMoreTranFile($hfile,$lfile,$del=0){
 		$count=count($hfile);
 		for($i=0;$i<$count;$i++)
@@ -146,15 +146,15 @@ class EmpireCMSFTP{
 		}
     }
 
-	//ä¸Šä¼ å¤šæ–‡ä»¶(å«å»ºç›®å½•)
+	//ÉÏ´«¶àÎÄ¼þ(º¬½¨Ä¿Â¼)
 	function fMoreTranPathFile($basepath,$path,$hfile,$lfile,$del=0){
-		//å»ºç›®å½•
+		//½¨Ä¿Â¼
 		$this->ftp_mkdirs($basepath,$path);
-		//ä¸Šä¼ æ–‡ä»¶
+		//ÉÏ´«ÎÄ¼þ
 		$this->fMoreTranFile($hfile,$lfile,$del);
 	}
 
-	//ä¸‹è½½æ–‡ä»¶
+	//ÏÂÔØÎÄ¼þ
 	function fGetFile($lfile,$hfile,$resumepos=0){
 		$hfile=$this->wipespecial($hfile);
 		$lfile=$this->wipespecial($lfile);
@@ -162,19 +162,19 @@ class EmpireCMSFTP{
 		return @ftp_get($this->ftpconnectid,$lfile,$hfile,$this->ftptranmode,$resumepos);
 	}
 
-	//æ–‡ä»¶å¤§å°
+	//ÎÄ¼þ´óÐ¡
 	function fSize($hfile){
 		$hfile=$this->wipespecial($hfile);
 		return @ftp_size($this->ftpconnectid,$hfile);
 	}
 
-	//åˆ é™¤æ–‡ä»¶
+	//É¾³ýÎÄ¼þ
 	function fDelFile($hfile){
 		$hfile=$this->wipespecial($hfile);
 		return @ftp_delete($this->ftpconnectid,$hfile);
     }
 
-	//åˆ é™¤å¤šæ–‡ä»¶
+	//É¾³ý¶àÎÄ¼þ
 	function fMoreDelFile($hfile){
 		$count=count($hfile);
 		for($i=0;$i<$count;$i++)
@@ -183,19 +183,19 @@ class EmpireCMSFTP{
 		}
     }
 
-	//é‡å‘½åæ–‡ä»¶
+	//ÖØÃüÃûÎÄ¼þ
 	function fRename($oldfile,$newfile){
 		$oldfile=$this->wipespecial($oldfile);
 		$newfile=$this->wipespecial($newfile);
 		return @ftp_rename($this->ftpconnectid,$oldfile,$newfile);
 	}
 
-	//èŽ·å¾—å½“å‰è·¯å¾„
+	//»ñµÃµ±Ç°Â·¾¶
 	function fPwd(){
 		return @ftp_pwd($this->ftpconnectid);
 	}
 
-	//ä¸Šä¼ ç›®å½•
+	//ÉÏ´«Ä¿Â¼
 	function ftp_copy($src_dir,$dst_dir){
 		$src_dir=$this->wipespecial($src_dir);
 		$dst_dir=$this->wipespecial($dst_dir);
@@ -221,13 +221,13 @@ class EmpireCMSFTP{
 		@closedir($d);
 	}
 
-	//è¿”å›žç›®å½•çš„æ–‡ä»¶åˆ—è¡¨
+	//·µ»ØÄ¿Â¼µÄÎÄ¼þÁÐ±í
 	function fNlist($path) {
 		$path=$this->wipespecial($path);
 		return @ftp_nlist($this->ftpconnectid,$path);
 	}
 
-	//åˆ é™¤ç›®å½•
+	//É¾³ýÄ¿Â¼
 	function ftp_rmAll($path,$flag=true){
 		$path=$this->wipespecial($path);
 		if($flag)
@@ -269,7 +269,7 @@ class EmpireCMSFTP{
 		}
 	}
 
-	//å»ºå¤šç›®å½•
+	//½¨¶àÄ¿Â¼
 	function ftp_mkdirs($basepath,$path){
 		$basepath=$this->wipespecial($basepath);
 		$path=$this->wipespecial($path);

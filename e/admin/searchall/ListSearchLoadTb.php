@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"searchall");
 
-//å¢åŠ æœç´¢æ•°æ®æº
+//Ôö¼ÓËÑË÷Êı¾İÔ´
 function AddSearchLoadTb($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tbname=RepPostVar($add['tbname']);
@@ -30,9 +30,9 @@ function AddSearchLoadTb($add,$userid,$username){
 	{
 		printerror("EmptySearchLoadTb","history.go(-1)");
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"searchall");
-	//è¡¨æ˜¯å¦å­˜åœ¨
+	//±íÊÇ·ñ´æÔÚ
 	$tbnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewssearchall_load where tbname='$tbname'");
 	if($tbnum)
 	{
@@ -44,7 +44,7 @@ function AddSearchLoadTb($add,$userid,$username){
 	GetSearchAllTb();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("lid=".$lid."&tbname=".$tbname);
 		printerror("AddSearchLoadTbSuccess","AddSearchLoadTb.php?enews=AddSearchLoadTb".hReturnEcmsHashStrHref2(0));
 	}
@@ -52,7 +52,7 @@ function AddSearchLoadTb($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹æœç´¢æ•°æ®æº
+//ĞŞ¸ÄËÑË÷Êı¾İÔ´
 function EditSearchLoadTb($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$lid=(int)$add['lid'];
@@ -65,11 +65,11 @@ function EditSearchLoadTb($add,$userid,$username){
 	{
 		printerror("EmptySearchLoadTb","history.go(-1)");
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"searchall");
 	if($tbname<>$add['oldtbname'])
 	{
-		//è¡¨æ˜¯å¦å­˜åœ¨
+		//±íÊÇ·ñ´æÔÚ
 		$tbnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewssearchall_load where tbname='$tbname' and lid<>$lid limit 1");
 		if($tbnum)
 		{
@@ -80,7 +80,7 @@ function EditSearchLoadTb($add,$userid,$username){
 	GetSearchAllTb();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("lid=".$lid."&tbname=".$tbname);
 		printerror("EditSearchLoadTbSuccess","ListSearchLoadTb.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -88,7 +88,7 @@ function EditSearchLoadTb($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤æœç´¢æ•°æ®æº
+//É¾³ıËÑË÷Êı¾İÔ´
 function DelSearchLoadTb($lid,$userid,$username){
 	global $empire,$dbtbpre;
 	$lid=(int)$lid;
@@ -96,7 +96,7 @@ function DelSearchLoadTb($lid,$userid,$username){
 	{
 		printerror("NotDelSearchLoadTbid","history.go(-1)");
 	}
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"searchall");
 	$r=$empire->fetch1("select tbname from {$dbtbpre}enewssearchall_load where lid='$lid'");
 	if(!$r['tbname'])
@@ -112,7 +112,7 @@ function DelSearchLoadTb($lid,$userid,$username){
 	GetSearchAllTb();
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("lid=".$lid."&tbname=".$r['tbname']);
 		printerror("DelSearchLoadTbSuccess","ListSearchLoadTb.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -120,10 +120,10 @@ function DelSearchLoadTb($lid,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//åˆ é™¤æ•°æ®æºæ•°æ®
+//É¾³ıÊı¾İÔ´Êı¾İ
 function SearchallDelData($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"searchall");
 	$lid=$add['lid'];
 	$count=count($lid);
@@ -146,15 +146,15 @@ function SearchallDelData($add,$userid,$username){
 			$empire->query("update {$dbtbpre}enewssearchall_load set lastid=0 where lid='$id'");
 		}
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("SearchallDelDataSuccess","ListSearchLoadTb.php".hReturnEcmsHashStrHref2(1));
 }
 
-//å…¨ç«™æœç´¢è®¾ç½®
+//È«Õ¾ËÑË÷ÉèÖÃ
 function SetSearchAll($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"searchall");
 	$openschall=(int)$add['openschall'];
 	$schallfield=(int)$add['schallfield'];
@@ -167,12 +167,12 @@ function SetSearchAll($add,$userid,$username){
 	$schallnotcid=hRepPostStr($schallnotcid,1);
 	$sql=$empire->query("update {$dbtbpre}enewspublic set openschall=$openschall,schallfield=$schallfield,schallminlen=$schallminlen,schallmaxlen=$schallmaxlen,schallnotcid='$schallnotcid',schallnum='$schallnum',schallpagenum='$schallpagenum',schalltime='$schalltime' limit 1");
 	GetConfig();
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("SetSearchAllSuccess","SetSearchAll.php".hReturnEcmsHashStrHref2(1));
 }
 
-//è¿”å›æ•°æ®è¡¨é‡Œçš„æ ç›®åˆ—è¡¨
+//·µ»ØÊı¾İ±íÀïµÄÀ¸Ä¿ÁĞ±í
 function ReturnTbGetClassids($tbname){
 	global $empire,$dbtbpre;
 	$ids='';
@@ -196,28 +196,28 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ æœç´¢æ•°æ®æº
+//Ôö¼ÓËÑË÷Êı¾İÔ´
 if($enews=="AddSearchLoadTb")
 {
 	AddSearchLoadTb($_POST,$logininid,$loginin);
 }
-//ä¿®æ”¹æœç´¢æ•°æ®æº
+//ĞŞ¸ÄËÑË÷Êı¾İÔ´
 elseif($enews=="EditSearchLoadTb")
 {
 	EditSearchLoadTb($_POST,$logininid,$loginin);
 }
-//åˆ é™¤æœç´¢æ•°æ®æº
+//É¾³ıËÑË÷Êı¾İÔ´
 elseif($enews=="DelSearchLoadTb")
 {
 	$lid=$_GET['lid'];
 	DelSearchLoadTb($lid,$logininid,$loginin);
 }
-//åˆ é™¤æ•°æ®æºæ•°æ®
+//É¾³ıÊı¾İÔ´Êı¾İ
 elseif($enews=="SearchallDelData")
 {
 	SearchallDelData($_GET,$logininid,$loginin);
 }
-//å…¨ç«™æœç´¢è®¾ç½®
+//È«Õ¾ËÑË÷ÉèÖÃ
 elseif($enews=="SetSearchAll")
 {
 	SetSearchAll($_POST,$logininid,$loginin);
@@ -229,8 +229,8 @@ $sql=$empire->query($query);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†æœç´¢æ•°æ®æº</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíËÑË÷Êı¾İÔ´</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -243,7 +243,7 @@ function CheckAll(form)
     }
   }
 function CheckSearchAll(obj){
-	if(!confirm('ç¡®è®¤è¦æ“ä½œ?'))
+	if(!confirm('È·ÈÏÒª²Ù×÷?'))
 	{
 		return false;
 	}
@@ -262,13 +262,13 @@ function CheckSearchAll(obj){
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š<a href="ListSearchLoadTb.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å…¨ç«™æœç´¢æ•°æ®æº</a></td>
+    <td width="50%">Î»ÖÃ£º<a href="ListSearchLoadTb.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÈ«Õ¾ËÑË÷Êı¾İÔ´</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ æœç´¢æ•°æ®æº" onclick="self.location.href='AddSearchLoadTb.php?enews=AddSearchLoadTb<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓËÑË÷Êı¾İÔ´" onclick="self.location.href='AddSearchLoadTb.php?enews=AddSearchLoadTb<?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit52" value="å…¨ç«™æœç´¢è®¾ç½®" onclick="self.location.href='SetSearchAll.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit52" value="È«Õ¾ËÑË÷ÉèÖÃ" onclick="self.location.href='SetSearchAll.php<?=$ecms_hashur['whehref']?>';">
         &nbsp;&nbsp; 
-        <input type="button" name="Submit3" value="æ¸…ç†å¤šä½™æ•°æ®" onclick="self.location.href='ClearSearchAll.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit3" value="ÇåÀí¶àÓàÊı¾İ" onclick="self.location.href='ClearSearchAll.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -277,10 +277,10 @@ function CheckSearchAll(obj){
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
       <td width="5%"><div align="center"> </div></td>
-      <td width="33%" height="25"><div align="center">å¯¼å…¥æ•°æ®è¡¨</div></td>
-      <td width="18%"><div align="center">æœ€åå¯¼å…¥ID</div></td>
-      <td width="24%"><div align="center">æœ€åå¯¼å…¥æ—¶é—´</div></td>
-      <td width="20%" height="25"><div align="center">æ“ä½œ</div></td>
+      <td width="33%" height="25"><div align="center">µ¼ÈëÊı¾İ±í</div></td>
+      <td width="18%"><div align="center">×îºóµ¼ÈëID</div></td>
+      <td width="24%"><div align="center">×îºóµ¼ÈëÊ±¼ä</div></td>
+      <td width="20%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
     <?
 	while($r=$empire->fetch($sql))
@@ -299,8 +299,8 @@ function CheckSearchAll(obj){
       <td><div align="center"> 
           <?=date("Y-m-d H:i:s",$r[lasttime])?>
         </div></td>
-      <td height="25"><div align="center">[<a href="AddSearchLoadTb.php?enews=EditSearchLoadTb&lid=<?=$r[lid]?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-          [<a href="SearchLoadData.php?lid[]=<?=$r[lid]?><?=$ecms_hashur['href']?>">å¯¼å…¥</a>] [<a href="ListSearchLoadTb.php?enews=DelSearchLoadTb&lid=<?=$r[lid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ä¼šåŒæ—¶åˆ é™¤æ­¤æ•°æ®è¡¨çš„æœç´¢è®°å½•ï¼Œç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>] 
+      <td height="25"><div align="center">[<a href="AddSearchLoadTb.php?enews=EditSearchLoadTb&lid=<?=$r[lid]?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+          [<a href="SearchLoadData.php?lid[]=<?=$r[lid]?><?=$ecms_hashur['href']?>">µ¼Èë</a>] [<a href="ListSearchLoadTb.php?enews=DelSearchLoadTb&lid=<?=$r[lid]?><?=$ecms_hashur['href']?>" onclick="return confirm('»áÍ¬Ê±É¾³ı´ËÊı¾İ±íµÄËÑË÷¼ÇÂ¼£¬È·ÈÏÒªÉ¾³ı?');">É¾³ı</a>] 
         </div></td>
     </tr>
     <?
@@ -310,8 +310,8 @@ function CheckSearchAll(obj){
       <td><div align="center">
           <input type=checkbox name=chkall value=on onclick="CheckAll(this.form)">
         </div></td>
-      <td height="25" colspan="4"><input type="submit" name="Submit" value="æ‰¹é‡å¯¼å…¥æœç´¢è¡¨" onclick="document.searchform.enews.value='SearchallLoadData';">
-        &nbsp;&nbsp;<input type="submit" name="Submit2" value="åˆ é™¤è¡¨æ•°æ®" onclick="document.searchform.enews.value='SearchallDelData';">
+      <td height="25" colspan="4"><input type="submit" name="Submit" value="ÅúÁ¿µ¼ÈëËÑË÷±í" onclick="document.searchform.enews.value='SearchallLoadData';">
+        &nbsp;&nbsp;<input type="submit" name="Submit2" value="É¾³ı±íÊı¾İ" onclick="document.searchform.enews.value='SearchallDelData';">
         <input name="enews" type="hidden" id="enews" value="SearchallLoadData"> 
       </td>
     </tr>

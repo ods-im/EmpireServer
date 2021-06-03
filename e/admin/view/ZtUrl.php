@@ -7,7 +7,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//楠岃瘉鐢ㄦ埛
+//验证用户
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -26,16 +26,16 @@ $jspath=$public_r['newsurl'].'d/js/class/zt'.$ztid.'_';
 ?>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 
-<title>璋冪敤鍦板潃</title>
+<title>调用地址</title>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class=header> 
     <td height="25">&nbsp;</td>
-    <td height="25">璋冪敤鍦板潃</td>
-    <td height="25"> <div align="center">棰勮</div></td>
+    <td height="25">调用地址</td>
+    <td height="25"> <div align="center">预览</div></td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td width="22%" height="25">涓撻鍦板潃:</td>
+    <td width="22%" height="25">专题地址:</td>
     <td width="71%" height="25"> <input name="textfield" type="text" value="<?=$url?>" size="35"></td>
-    <td width="7%" height="25"> <div align="center"><a href="<?=$url?>" target="_blank">棰勮</a></div></td>
+    <td width="7%" height="25"> <div align="center"><a href="<?=$url?>" target="_blank">预览</a></div></td>
   </tr>
 </table>

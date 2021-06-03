@@ -10,7 +10,7 @@ if(!defined('InEmpireCMS'))
 
 <HTML>
 <HEAD>
-<TITLE><?=$r[title]?> --- åª’ä½“æ’­æ”¾å™¨</TITLE>
+<TITLE><?=$r[title]?> --- Ã½Ìå²¥·ÅÆ÷</TITLE>
 <META HTTP-EQUIV="Expires" CONTENT="0">
 <link rel="stylesheet" href="js/player.css">
 <script language="javascript">
@@ -21,7 +21,7 @@ window.focus()
 <SCRIPT language=javascript>
 function click() {
 if (event.button==2) {
-alert('å¯¹ä¸èµ·ï¼Œæ‚¨æƒ³åšä»€ä¹ˆï¼Ÿ')
+alert('¶Ô²»Æğ£¬ÄúÏë×öÊ²Ã´£¿')
 }
 }
 document.onmousedown=click
@@ -31,7 +31,7 @@ document.onmousedown=click
 <script language="javascript">Init();</script>
 <BODY id=thisbody  bgcolor="#000000" topMargin=0 leftMargin=0 rightMargin=0 bottomMargin=0 style="scroll:no; overflow: hidden;" ondragstart="self.event.returnValue=false" onselectstart="self.event.returnValue=false" onmousedown="WindowMove_Start()" onmouseup="WindowMove_End()" onmousemove="WindowMove()">
 <object id="min" type="application/x-oleobject" classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" style="{visibility:hidden}"><param name="Command" value="Minimize"></object>
-<!--æ’­æ”¾å™¨ä¸»ç•Œé¢-->
+<!--²¥·ÅÆ÷Ö÷½çÃæ-->
 <DIV id="myplayPanel">
   <TABLE border=0 cellPadding=0 cellSpacing=0 width="362">
     <TR><TD width="11"><img border="0" src="images/top_l.gif" width="11" height="37"></td><td background="images/top_bg.gif" width="340"></TD><td background="images/top_bg.gif" NOWRAP valign="center">
@@ -42,14 +42,14 @@ document.onmousedown=click
       <TD bgcolor="#000000" colspan="2" width="340" height="250">
         <DIV id="bufimg" style="HEIGHT: 100%; POSITION: absolute; TOP: 37px; VISIBILITY: visible; WIDTH: 100%; Z-INDEX: 4;left:11px"><img border="0" src="images/bufimg.gif" width="340" height="250"></DIV>
         <DIV id="MP" style="VISIBILITY: hidden; Z-INDEX: -1">
-        <OBJECT classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id=Player codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" standby="åŠ è½½ Microsoft Windows Media Player ç»„ä»¶..." type="application/x-oleobject" width="340" height="250">
+        <OBJECT classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id=Player codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" standby="¼ÓÔØ Microsoft Windows Media Player ×é¼ş..." type="application/x-oleobject" width="340" height="250">
          <PARAM NAME="AutoStart" VALUE="1">
          <PARAM NAME="AutoSize" VALUE="0">
           <PARAM NAME="AutoRewind" VALUE="-1">
           <PARAM NAME="AnimationAtStart" VALUE="0">
           <PARAM NAME="ClickToPlay" VALUE="0">
           <PARAM NAME="EnableContextMenu" VALUE="0">
-          <!--åª’ä½“æ–‡ä»¶-->
+          <!--Ã½ÌåÎÄ¼ş-->
           <PARAM NAME="FileName" VALUE="">
           <!------------->
           <PARAM NAME="ShowControls" VALUE="0">
@@ -65,18 +65,18 @@ document.onmousedown=click
     </table>
 <!--Control Pancel Start-->
 <DIV id="mycontrolPanel">
-<!--------ä½ç½®æ§åˆ¶------------->
+<!--------Î»ÖÃ¿ØÖÆ------------->
 <DIV id="myadvControl"><div id="info"></div></DIV>
-<DIV id="myPosBar" onmousedown="SetPos_Start()" onmousemove="SetPos()" onmouseup="SetPos_End()"><IMG alt="æ’­æ”¾ä½ç½®" border=0  src="images/control_bar.gif" width="29" style="cursor:hand" height="12">
+<DIV id="myPosBar" onmousedown="SetPos_Start()" onmousemove="SetPos()" onmouseup="SetPos_End()"><IMG alt="²¥·ÅÎ»ÖÃ" border=0  src="images/control_bar.gif" width="29" style="cursor:hand" height="12">
 </DIV>
 <table border="0" width="362" cellspacing="0" cellpadding="0" height="17">
     <tr>
       <td background="images/control1.gif">
-      ã€€
+      ¡¡
       </td>
     </tr>
 </table>
-<!--------æ—¶é—´æ˜¾ç¤º------------->
+<!--------Ê±¼äÏÔÊ¾------------->
 <table border="0" width="362" cellspacing="0" cellpadding="0" height="50" background="images/control20.gif">
     <tr>
       <td width="100%" height="24">
@@ -88,29 +88,29 @@ document.onmousedown=click
        </td>
     </tr>
 </table>
-<!--------å£°éŸ³æ§åˆ¶------------->
-  <DIV id="myBalBar" onmousedown="SetBal_Start()" onmousemove="SetBal()" onmouseup="SetBal_End()"><IMG alt="éŸ³é‡å‡è¡¡" border=0 src="images/bar.gif" width="11" height="8" style="cursor:hand"></DIV>
-  <DIV id="myVolBar" onmousedown="SetVol_Start()" onmousemove="SetVol()" onmouseup="SetVol_End()"><IMG alt="éŸ³é‡è°ƒèŠ‚" border=0 src="images/bar.gif" width="11" height="8" style="cursor:hand"></DIV>
+<!--------ÉùÒô¿ØÖÆ------------->
+  <DIV id="myBalBar" onmousedown="SetBal_Start()" onmousemove="SetBal()" onmouseup="SetBal_End()"><IMG alt="ÒôÁ¿¾ùºâ" border=0 src="images/bar.gif" width="11" height="8" style="cursor:hand"></DIV>
+  <DIV id="myVolBar" onmousedown="SetVol_Start()" onmousemove="SetVol()" onmouseup="SetVol_End()"><IMG alt="ÒôÁ¿µ÷½Ú" border=0 src="images/bar.gif" width="11" height="8" style="cursor:hand"></DIV>
   <table border="0" width="362" cellspacing="0" cellpadding="0">
     <tr>
       <td><img border="0" src="images/control3_01.gif" width="42" height="35"></td>
-      <td><img border="0" src="images/control3_02.gif" width="23" height="35" title="æ’­æ”¾" onclick="Play()" name="playpause" style="cursor:hand"></td>
-      <td><img border="0" src="images/control3_03.gif" width="23" height="35" title="æš‚åœ" onclick="Pause()" name="playpause" style="cursor:hand"></td>
-      <td><img border="0" src="images/control3_04.gif" width="24" height="35" name="stop" title="åœæ­¢" onclick="Stop()" style="cursor:hand"></td>
+      <td><img border="0" src="images/control3_02.gif" width="23" height="35" title="²¥·Å" onclick="Play()" name="playpause" style="cursor:hand"></td>
+      <td><img border="0" src="images/control3_03.gif" width="23" height="35" title="ÔİÍ£" onclick="Pause()" name="playpause" style="cursor:hand"></td>
+      <td><img border="0" src="images/control3_04.gif" width="24" height="35" name="stop" title="Í£Ö¹" onclick="Stop()" style="cursor:hand"></td>
       <td><img border="0" src="images/control3_05.gif" width="5" height="35"></td>
-      <td><img border="0" src="images/control3_06.gif" width="23" height="35" alt="å¼€å§‹ä½ç½®" title="å¼€å§‹ä½ç½®" onclick="SetPosition(0)" style="cursor:hand"></td>
-      <td><img border="0" src="images/control3_07.gif" width="24" height="35" alt="ç»“æŸä½ç½®" title="ç»“æŸä½ç½®" onclick="SetPosition(-1)" style="cursor:hand"></td>
+      <td><img border="0" src="images/control3_06.gif" width="23" height="35" alt="¿ªÊ¼Î»ÖÃ" title="¿ªÊ¼Î»ÖÃ" onclick="SetPosition(0)" style="cursor:hand"></td>
+      <td><img border="0" src="images/control3_07.gif" width="24" height="35" alt="½áÊøÎ»ÖÃ" title="½áÊøÎ»ÖÃ" onclick="SetPosition(-1)" style="cursor:hand"></td>
       <td><img border="0" src="images/control3_08.gif" width="5" height="35"></td>
-      <td><img border="0" src="images/control3_09.gif" width="24" height="35" name="fullscreen" alt="å…¨å±å¹•" title="å…¨å±å¹•" onClick="FullScreen()" style="cursor:hand"></td>
+      <td><img border="0" src="images/control3_09.gif" width="24" height="35" name="fullscreen" alt="È«ÆÁÄ»" title="È«ÆÁÄ»" onClick="FullScreen()" style="cursor:hand"></td>
       <td><img border="0" src="images/control3_10.gif" width="169" height="35"></td>
     </tr>
   </table>
 <!--Control Panel End-->
-<!--------é«˜çº§æ§åˆ¶------------->
+<!--------¸ß¼¶¿ØÖÆ------------->
 <DIV id="myadvPanel">
 </DIV>
 <!--panel table end-->
-<!--äº‹ä»¶å¤„ç†-->
+<!--ÊÂ¼ş´¦Àí-->
 <SCRIPT FOR="Player" EVENT="Buffering(bStart)" LANGUAGE="JavaScript">
         ShowBuffering(bStart);
         if(bStart){
@@ -123,20 +123,20 @@ document.onmousedown=click
 </SCRIPT>
 <SCRIPT FOR="Player" EVENT="Error( )" LANGUAGE="JScript">
         window.clearInterval(m_timer);
-        info.innerHTML="æœåŠ¡å™¨æ­£å¿™ï¼Œè¯·ç¨å€™å†è¯•â€¦â€¦"
+        info.innerHTML="·şÎñÆ÷ÕıÃ¦£¬ÇëÉÔºòÔÙÊÔ¡­¡­"
 </SCRIPT>
 
 <SCRIPT FOR="Player" EVENT="OpenStateChange(lOldState, lNewState)" LANGUAGE="JScript">
         switch(lNewState){
         case 0:
-                info.innerHTML="æœåŠ¡å™¨æ­£å¿™ï¼Œè¿æ¥å…³é—­â€¦â€¦";
+                info.innerHTML="·şÎñÆ÷ÕıÃ¦£¬Á¬½Ó¹Ø±Õ¡­¡­";
                 window.clearInterval(m_timer);break;
         case 4:
-                info.innerHTML="æ­£åœ¨è¿æ¥æœåŠ¡å™¨â€¦â€¦";break;
+                info.innerHTML="ÕıÔÚÁ¬½Ó·şÎñÆ÷¡­¡­";break;
         case 5:
-                info.innerHTML="æ­£åœ¨æ‰“å¼€æ–‡ä»¶â€¦â€¦";break;
+                info.innerHTML="ÕıÔÚ´ò¿ªÎÄ¼ş¡­¡­";break;
         case 6:
-                info.innerHTML="å‡†å¤‡æ’­æ”¾â€¦â€¦";StreamMedia();break;
+                info.innerHTML="×¼±¸²¥·Å¡­¡­";StreamMedia();break;
         }
 </SCRIPT>
 

@@ -10,7 +10,7 @@ require LoadLang("pub/fun.php");
 require("../class/schallfun.php");
 $link=db_connect();
 $empire=new mysqlquery();
-eCheckCloseMods('sch');//å…³é—­æ¨¡å—
+eCheckCloseMods('sch');//¹Ø±ÕÄ£¿é
 $searchtime=time();
 $totalnum=(int)$_GET['totalnum'];
 $sear=(int)$_GET['sear'];
@@ -22,7 +22,7 @@ $firstsearch=0;
 if($sear<1)
 {
 	$firstsearch=1;
-	//æœç´¢é—´éš”
+	//ËÑË÷¼ä¸ô
 	$lastsearchtime=(int)getcvar('lastschalltime');
 	if($lastsearchtime)
 	{
@@ -31,16 +31,16 @@ if($sear<1)
 			printerror('SchallOutTime','',1);
 		}
 	}
-	//è®¾ç½®æœ€åæœç´¢æ—¶é—´
+	//ÉèÖÃ×îºóËÑË÷Ê±¼ä
 	esetcookie('lastschalltime',$searchtime,$searchtime+3600*24);
 }
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$page_line=$public_r['schallpagenum'];//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$line=$public_r['schallnum'];//æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
-$offset=$start+$page*$line;//æ€»åç§»é‡
-//ç¼–ç 
+$page_line=$public_r['schallpagenum'];//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$line=$public_r['schallnum'];//Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
+$offset=$start+$page*$line;//×ÜÆ«ÒÆÁ¿
+//±àÂë
 $iconv='';
 $char='';
 $targetchar='';

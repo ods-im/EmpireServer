@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,14 +15,14 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 //CheckLevel($logininid,$loginin,$classid,"pl");
 
 $plr=$empire->fetch1("select pldatatbs,pldeftb from {$dbtbpre}enewspl_set limit 1");
 $tr=explode(',',$plr['pldatatbs']);
-//ä»Šæ—¥è¯„è®º
+//½ñÈÕÆÀÂÛ
 $pur=$empire->fetch1("select lasttimepl,lastnumpl,lastnumpltb,todaytimeinfo,todaytimepl,todaynumpl,yesterdaynumpl from {$dbtbpre}enewspublic_up limit 1");
-//æ›´æ–°æ˜¨æ—¥ä¿¡æ¯
+//¸üĞÂ×òÈÕĞÅÏ¢
 $todaydate=date('Y-m-d');
 if(date('Y-m-d',$pur['todaytimeinfo'])<>$todaydate||date('Y-m-d',$pur['todaytimepl'])<>$todaydate)
 {
@@ -33,23 +33,23 @@ if(date('Y-m-d',$pur['todaytimeinfo'])<>$todaydate||date('Y-m-d',$pur['todaytime
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>è¯„è®º</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÆÀÂÛ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="PlMain.php<?=$ecms_hashur['whehref']?>">è¯„è®ºç»Ÿè®¡</a></td>
+    <td>Î»ÖÃ£º<a href="PlMain.php<?=$ecms_hashur['whehref']?>">ÆÀÂÛÍ³¼Æ</a></td>
   </tr>
 </table>
 <br>
 <table width="100%" border="0" cellspacing="1" cellpadding="0">
   <tr>
-    <td width="10%" height="25" bgcolor="#C9F1FF"><div align="center"><a href="../info/InfoMain.php<?=$ecms_hashur['whehref']?>">ä¿¡æ¯ç»Ÿè®¡</a></div></td>
-    <td width="10%" class="header"><div align="center"><a href="../pl/PlMain.php<?=$ecms_hashur['whehref']?>">è¯„è®ºç»Ÿè®¡</a></div></td>
-    <td width="10%" bgcolor="#C9F1FF"><div align="center"><a href="../other/OtherMain.php<?=$ecms_hashur['whehref']?>">å…¶ä»–ç»Ÿè®¡</a></div></td>
+    <td width="10%" height="25" bgcolor="#C9F1FF"><div align="center"><a href="../info/InfoMain.php<?=$ecms_hashur['whehref']?>">ĞÅÏ¢Í³¼Æ</a></div></td>
+    <td width="10%" class="header"><div align="center"><a href="../pl/PlMain.php<?=$ecms_hashur['whehref']?>">ÆÀÂÛÍ³¼Æ</a></div></td>
+    <td width="10%" bgcolor="#C9F1FF"><div align="center"><a href="../other/OtherMain.php<?=$ecms_hashur['whehref']?>">ÆäËûÍ³¼Æ</a></div></td>
     <td width="58%">&nbsp;</td>
     <td width="6%">&nbsp;</td>
     <td width="6%">&nbsp;</td>
@@ -57,16 +57,16 @@ if(date('Y-m-d',$pur['todaytimeinfo'])<>$todaydate||date('Y-m-d',$pur['todaytime
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td height="25" colspan="5">è¯„è®ºå‘å¸ƒç»Ÿè®¡ (ä»Šæ—¥è¯„è®ºæ•°ï¼š<?=$pur['todaynumpl']?>ï¼Œæ˜¨å¤©è¯„è®ºæ•°ï¼š<?=$pur['yesterdaynumpl']?>) </td>
+    <td height="25" colspan="5">ÆÀÂÛ·¢²¼Í³¼Æ (½ñÈÕÆÀÂÛÊı£º<?=$pur['todaynumpl']?>£¬×òÌìÆÀÂÛÊı£º<?=$pur['yesterdaynumpl']?>) </td>
   </tr>
   <tr class="header">
-    <td width="12%" height="25"><div align="center">åˆ†è¡¨</div></td>
-    <td width="8%"><div align="center">å·²å®¡æ ¸</div></td>
-    <td width="8%"><div align="center">å¾…å®¡æ ¸</div></td>
-    <td width="8%"><div align="center">æ€»æ•°</div></td>
-    <td width="64%">ä» 
+    <td width="12%" height="25"><div align="center">·Ö±í</div></td>
+    <td width="8%"><div align="center">ÒÑÉóºË</div></td>
+    <td width="8%"><div align="center">´ıÉóºË</div></td>
+    <td width="8%"><div align="center">×ÜÊı</div></td>
+    <td width="64%">´Ó 
       <?=date('Y-m-d H:i:s',$pur['lasttimepl'])?> 
-    æˆªæ­¢è‡³ç°åœ¨çš„æ–°å¢æ•°é‡</td>
+    ½ØÖ¹ÖÁÏÖÔÚµÄĞÂÔöÊıÁ¿</td>
   </tr>
 	  <?php
 	  $j=0;
@@ -81,7 +81,7 @@ if(date('Y-m-d',$pur['todaytimeinfo'])<>$todaydate||date('Y-m-d',$pur['todaytime
 			$bgcolor='';
 		}
 		$thistb=$tr[$i];
-		$restbname="è¯„è®ºè¡¨".$thistb;
+		$restbname="ÆÀÂÛ±í".$thistb;
 		$pltbname='enewspl_'.$thistb;
 		$alltbpls=eGetTableRowNum($dbtbpre.$pltbname);
 		$checktbpls=$empire->gettotal("select count(*) as total from ".$dbtbpre.$pltbname." where checked=1");
@@ -117,7 +117,7 @@ if(date('Y-m-d',$pur['todaytimeinfo'])<>$todaydate||date('Y-m-d',$pur['todaytime
 	  }
 	  ?>
   <tr class="header">
-    <td height="25"><div align="right">æ€»è®¡ï¼š</div></td>
+    <td height="25"><div align="right">×Ü¼Æ£º</div></td>
     <td align="right"><div align="right"><?=$totaltbpls?></div></td>
     <td align="right"><div align="right"><?=$totalchecktbpls?></div></td>
     <td align="right"><?=$totalalltbpls?></td>
@@ -125,7 +125,7 @@ if(date('Y-m-d',$pur['todaytimeinfo'])<>$todaydate||date('Y-m-d',$pur['todaytime
         <tr>
           <td width="40%" align="right"><font color="#FFFFFF"><b><?=$pur['lastnumpl']?></b></font></td>
           <td width="60%"><div align="center">
-            <input type="button" name="Submit" value="é‡ç½®æˆªæ­¢ç»Ÿè®¡" onclick="if(confirm('ç¡®è®¤è¦é‡ç½®è¯„è®ºæ•°ç»Ÿè®¡?')){self.location.href='../ecmscom.php?enews=ResetAddDataNum&type=pl&from=pl/PlMain.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>';}">
+            <input type="button" name="Submit" value="ÖØÖÃ½ØÖ¹Í³¼Æ" onclick="if(confirm('È·ÈÏÒªÖØÖÃÆÀÂÛÊıÍ³¼Æ?')){self.location.href='../ecmscom.php?enews=ResetAddDataNum&type=pl&from=pl/PlMain.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>';}">
           </div></td>
         </tr>
     </table></td>
@@ -133,7 +133,7 @@ if(date('Y-m-d',$pur['todaytimeinfo'])<>$todaydate||date('Y-m-d',$pur['todaytime
 </table>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr>
-    <td height="23"><font color="#666666">è¯´æ˜ï¼šç‚¹å‡»â€œå·²å®¡æ ¸â€ã€â€œæœªå®¡æ ¸â€æ•°æˆ–â€œæ€»æ•°â€å¯è¿›å…¥ç›¸åº”çš„ç®¡ç†ã€‚</font></td>
+    <td height="23"><font color="#666666">ËµÃ÷£ºµã»÷¡°ÒÑÉóºË¡±¡¢¡°Î´ÉóºË¡±Êı»ò¡°×ÜÊı¡±¿É½øÈëÏàÓ¦µÄ¹ÜÀí¡£</font></td>
   </tr>
 </table>
 </body>

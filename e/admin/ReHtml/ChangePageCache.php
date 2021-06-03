@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,13 +15,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"changedata");
 
-//æ‰¹é‡æ›´æ–°åŠ¨æ€é¡µç¼“å­˜
+//ÅúÁ¿¸üĞÂ¶¯Ì¬Ò³»º´æ
 function ChangePageCache($add,$userid,$username){
 	global $empire,$public_r,$class_r,$fun_r,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	//CheckLevel($userid,$username,$classid,"changedata");
 	if(empty($public_r['ctimeopen']))
 	{
@@ -38,7 +38,7 @@ function ChangePageCache($add,$userid,$username){
 	$ttid=$add['ttid'];
 	$from=$add['from'];
 	$time=time();
-	if($dopage==2)//æ ç›®
+	if($dopage==2)//À¸Ä¿
 	{
 		if($chall)
 		{
@@ -53,7 +53,7 @@ function ChangePageCache($add,$userid,$username){
 			$empire->query("update {$dbtbpre}enewsclass set fclast='$time'");
 		}
 	}
-	elseif($dopage==3)//å†…å®¹
+	elseif($dopage==3)//ÄÚÈİ
 	{
 		if(!$tid)
 		{
@@ -66,7 +66,7 @@ function ChangePageCache($add,$userid,$username){
 		}
 		$empire->query("update {$dbtbpre}ecms_".$tbr['tbname']." set lastdotime='$time'");
 	}
-	elseif($dopage==4)//æ ‡é¢˜åˆ†ç±»
+	elseif($dopage==4)//±êÌâ·ÖÀà
 	{
 		if($chall)
 		{
@@ -85,11 +85,11 @@ function ChangePageCache($add,$userid,$username){
 	{
 		$empire->query("update {$dbtbpre}enewstags set fclast='$time'");
 	}
-	else//é¦–é¡µ
+	else//Ê×Ò³
 	{
 		$empire->query("update {$dbtbpre}enewspublic_fc set fclastindex='$time' limit 1");
 	}
-	insert_dolog("");//æ“ä½œæ—¥å¿—
+	insert_dolog("");//²Ù×÷ÈÕÖ¾
 	printerror("ChangePageCacheSuccess",$from);
 }
 
@@ -102,19 +102,19 @@ if($enews)
 	@set_time_limit(0);
 	include('../../data/dbcache/class.php');
 }
-if($enews=="ChangePageCache")//æ‰¹é‡æ›´æ–°ç¼“å­˜
+if($enews=="ChangePageCache")//ÅúÁ¿¸üĞÂ»º´æ
 {
 	ChangePageCache($_POST,$logininid,$loginin);
 }
 
 $dopage=(int)$_GET['dopage'];
 
-//æ ç›®
+//À¸Ä¿
 $fcfile="../../data/fc/ListEnews.php";
 $class="<script src=../../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
 {$class=ShowClass_AddClass("",0,0,"|-",0,0);}
-//åˆ·æ–°è¡¨
+//Ë¢ĞÂ±í
 $retable="";
 $selecttable="";
 $i=0;
@@ -133,7 +133,7 @@ while($tr=$empire->fetch($tsql))
 	$retable.="<input type=checkbox name=tbname[] value='$tr[tbname]' checked>$tr[tname]&nbsp;&nbsp;".$br;
 	$selecttable.="<option value='".$tr[tid]."'>".$tr[tname]."</option>";
 }
-//æ ‡é¢˜åˆ†ç±»
+//±êÌâ·ÖÀà
 $tts='';
 $infotypesql=$empire->query("select typeid,tname from {$dbtbpre}enewsinfotype order by typeid");
 while($infotyper=$empire->fetch($infotypesql))
@@ -144,8 +144,8 @@ while($infotyper=$empire->fetch($infotypesql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ›´æ–°åŠ¨æ€é¡µé¢ç¼“å­˜</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¸üĞÂ¶¯Ì¬Ò³Ãæ»º´æ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 <script>
@@ -164,34 +164,34 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="39%" height="25">ä½ç½®ï¼š<a href="ChangePageCache.php<?=$ecms_hashur['whehref']?>">æ‰¹é‡æ›´æ–°åŠ¨æ€é¡µé¢ç¼“å­˜</a></td>
+    <td width="39%" height="25">Î»ÖÃ£º<a href="ChangePageCache.php<?=$ecms_hashur['whehref']?>">ÅúÁ¿¸üĞÂ¶¯Ì¬Ò³Ãæ»º´æ</a></td>
     <td width="61%"><div align="right" class="emenubutton">
-      <input type="button" name="Submit52" value="æ•°æ®æ›´æ–°ä¸­å¿ƒ" onclick="self.location.href='ChangeData.php<?=$ecms_hashur['whehref']?>';">
+      <input type="button" name="Submit52" value="Êı¾İ¸üĞÂÖĞĞÄ" onclick="self.location.href='ChangeData.php<?=$ecms_hashur['whehref']?>';">
 	  &nbsp;&nbsp;
-      <input type="button" name="Submit522" value="æ›´æ–°ä¿¡æ¯é¡µåœ°å€" onclick="self.location.href='ReInfoUrl.php<?=$ecms_hashur['whehref']?>';">
+      <input type="button" name="Submit522" value="¸üĞÂĞÅÏ¢Ò³µØÖ·" onclick="self.location.href='ReInfoUrl.php<?=$ecms_hashur['whehref']?>';">
 	  &nbsp;&nbsp;
-      <input type="button" name="Submit52" value="æ•°æ®æ•´ç†" onclick="self.location.href='DoUpdateData.php<?=$ecms_hashur['whehref']?>';">
+      <input type="button" name="Submit52" value="Êı¾İÕûÀí" onclick="self.location.href='DoUpdateData.php<?=$ecms_hashur['whehref']?>';">
     </div></td>
   </tr>
 </table>
-<form action="ChangePageCache.php" method="post" name="form1" target="_blank" onsubmit="return confirm('ç¡®è®¤è¦æ›´æ–°?');">
+<form action="ChangePageCache.php" method="post" name="form1" target="_blank" onsubmit="return confirm('È·ÈÏÒª¸üĞÂ?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder" id="ChangePageCache">
   <?=$ecms_hashur['form']?>
     <input name="from" type="hidden" id="from" value="ChangePageCache.php<?=$ecms_hashur['whehref']?>">
     <tr class="header"> 
-      <td height="25"> <div align="center">æ‰¹é‡æ›´æ–°åŠ¨æ€é¡µé¢ç¼“å­˜</div></td>
+      <td height="25"> <div align="center">ÅúÁ¿¸üĞÂ¶¯Ì¬Ò³Ãæ»º´æ</div></td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <div align="center"> 
           <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
             <tr>
-              <td width="23%" height="25">æ›´æ–°ç¼“å­˜çš„é¡µé¢ï¼š</td>
+              <td width="23%" height="25">¸üĞÂ»º´æµÄÒ³Ãæ£º</td>
               <td width="77%" height="25"><select name="dopage" id="dopage" onchange="self.location.href='ChangePageCache.php?<?=$ecms_hashur['ehref']?>&dopage='+this.options[this.selectedIndex].value;">
-                <option value="1"<?=$dopage==1?' selected':''?>>é¦–é¡µ</option>
-                <option value="2"<?=$dopage==2?' selected':''?>>æ ç›®é¡µ</option>
-                <option value="3"<?=$dopage==3?' selected':''?>>å†…å®¹é¡µ</option>
-                <option value="4"<?=$dopage==4?' selected':''?>>æ ‡é¢˜åˆ†ç±»é¡µ</option>
-                <option value="5"<?=$dopage==5?' selected':''?>>TAGSé¡µ</option>
+                <option value="1"<?=$dopage==1?' selected':''?>>Ê×Ò³</option>
+                <option value="2"<?=$dopage==2?' selected':''?>>À¸Ä¿Ò³</option>
+                <option value="3"<?=$dopage==3?' selected':''?>>ÄÚÈİÒ³</option>
+                <option value="4"<?=$dopage==4?' selected':''?>>±êÌâ·ÖÀàÒ³</option>
+                <option value="5"<?=$dopage==5?' selected':''?>>TAGSÒ³</option>
               </select>              </td>
             </tr>
 			<?php
@@ -199,9 +199,9 @@ function CheckAll(form)
 			{
 			?>
             <tr>
-              <td height="25">é€‰æ‹©æ›´æ–°ç¼“å­˜èŒƒå›´ï¼š</td>
-              <td height="25"><input name="chall" type="radio" value="0" checked>æ›´æ–°æ‰€æœ‰ç¼“å­˜
-                <input type="radio" name="chall" value="1">æŒ‰ä¸‹é¢é€‰å®šæ›´æ–°ç¼“å­˜</td>
+              <td height="25">Ñ¡Ôñ¸üĞÂ»º´æ·¶Î§£º</td>
+              <td height="25"><input name="chall" type="radio" value="0" checked>¸üĞÂËùÓĞ»º´æ
+                <input type="radio" name="chall" value="1">°´ÏÂÃæÑ¡¶¨¸üĞÂ»º´æ</td>
             </tr>
 			<?php
 			}
@@ -211,9 +211,9 @@ function CheckAll(form)
 			{
 			?>
             <tr> 
-              <td height="25">æ•°æ®è¡¨ï¼š</td>
+              <td height="25">Êı¾İ±í£º</td>
               <td height="25"> <select name="tid" id="tid">
-                  <option value=''>------ é€‰æ‹©æ•°æ®è¡¨ ------</option>
+                  <option value=''>------ Ñ¡ÔñÊı¾İ±í ------</option>
                   <?=$selecttable?>
                 </select></td>
             </tr>
@@ -223,12 +223,12 @@ function CheckAll(form)
 			{
 			?>
             <tr> 
-              <td height="25" valign="top">æ ç›®ï¼š<br>
+              <td height="25" valign="top">À¸Ä¿£º<br>
 			  <br>
 			  <br>
 			  <br>
 			  <br>
-			  <font color="#999999">(å¤šä¸ªç”¨CTRL/SHIFT)</font></td>
+			  <font color="#999999">(¶à¸öÓÃCTRL/SHIFT)</font></td>
               <td height="25"><select name="classid[]" size="18" multiple id="classid[]" style="width:180">
                   <?=$class?>
                 </select></td>
@@ -239,13 +239,13 @@ function CheckAll(form)
 			{
 			?>
             <tr>
-              <td height="25" valign="top">æ ‡é¢˜åˆ†ç±»ï¼š<br>
+              <td height="25" valign="top">±êÌâ·ÖÀà£º<br>
                 <br>
                 <br>
                 <br>
 				<br>
 				<br>
-                <font color="#999999">(å¤šä¸ªç”¨CTRL/SHIFT)</font></td>
+                <font color="#999999">(¶à¸öÓÃCTRL/SHIFT)</font></td>
               <td height="25"><select name="ttid[]" size="18" multiple id="ttid[]" style="width:180">
 			  <?=$tts?>
               </select>              </td>
@@ -260,15 +260,15 @@ function CheckAll(form)
 			  if(empty($public_r['ctimeopen']))
 			  {
 			  ?>
-					åŠ¨æ€é¡µé¢ç¼“å­˜æœªå¯ç”¨ï¼Œæ— éœ€ä½¿ç”¨æ­¤æ›´æ–°ï¼
+					¶¯Ì¬Ò³Ãæ»º´æÎ´ÆôÓÃ£¬ÎŞĞèÊ¹ÓÃ´Ë¸üĞÂ£¡
 			  <?php
 			  }
 			  else
 			  {
 			  ?>
-			  <input type="submit" name="Submit62" value="å¼€å§‹æ›´æ–°ç¼“å­˜"> 
+			  <input type="submit" name="Submit62" value="¿ªÊ¼¸üĞÂ»º´æ"> 
 			  &nbsp;
-                <input type="reset" name="Submit72" value="é‡ç½®"> 
+                <input type="reset" name="Submit72" value="ÖØÖÃ"> 
                 <input name="enews" type="hidden" value="ChangePageCache">
 			  <?php
 			  }

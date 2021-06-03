@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,9 +15,9 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"file");
-//åŸºç›®å½•
+//»ùÄ¿Â¼
 $basepath=eReturnEcmsMainPortPath()."d/file";//moreport
 $filepath=ehtmlspecialchars($_GET['filepath']);
 if(strstr($filepath,".."))
@@ -37,8 +37,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†é™„ä»¶</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí¸½¼ş</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -56,7 +56,7 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="34%">ä½ç½®ï¼š<a href="FilePath.php<?=$ecms_hashur['whehref']?>">ç®¡ç†é™„ä»¶ (ç›®å½•å¼)</a></td>
+    <td width="34%">Î»ÖÃ£º<a href="FilePath.php<?=$ecms_hashur['whehref']?>">¹ÜÀí¸½¼ş (Ä¿Â¼Ê½)</a></td>
     <td width="66%"><div align="right" class="emenubutton">
       </div></td>
   </tr>
@@ -65,20 +65,20 @@ function CheckAll(form)
 <br>
 <table width="100%" border="0" cellspacing="1" cellpadding="2">
   <tr>
-    <td height="32">å½“å‰ç›®å½•ï¼š<strong>/ 
+    <td height="32">µ±Ç°Ä¿Â¼£º<strong>/ 
       <?=$filepath?>
-      </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="javascript:history.go(-1);">è¿”å›ä¸Šä¸€é¡µ</a>]</td>
+      </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#ecms" onclick="javascript:history.go(-1);">·µ»ØÉÏÒ»Ò³</a>]</td>
   </tr>
 </table>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name="form1" method="post" action="../ecmsfile.php" onsubmit="return confirm('ç¡®è®¤åˆ é™¤?');">
+  <form name="form1" method="post" action="../ecmsfile.php" onsubmit="return confirm('È·ÈÏÉ¾³ı?');">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25"> <div align="center">é€‰æ‹©</div></td>
-      <td height="25"><div align="center">æ–‡ä»¶å</div></td>
-      <td><div align="center">å¤§å°</div></td>
-      <td><div align="center">ç±»å‹</div></td>
-      <td><div align="center">ä¿®æ”¹æ—¶é—´</div></td>
+      <td height="25"> <div align="center">Ñ¡Ôñ</div></td>
+      <td height="25"><div align="center">ÎÄ¼şÃû</div></td>
+      <td><div align="center">´óĞ¡</div></td>
+      <td><div align="center">ÀàĞÍ</div></td>
+      <td><div align="center">ĞŞ¸ÄÊ±¼ä</div></td>
     </tr>
     <?php
 	$efileurl=eReturnFileUrl(1);
@@ -96,7 +96,7 @@ function CheckAll(form)
 		{
 			continue;
 		}
-		//ç›®å½•
+		//Ä¿Â¼
 		$pathfile=$openpath."/".$file;
 		if(is_dir($pathfile))
 		{
@@ -105,13 +105,13 @@ function CheckAll(form)
 			$img="../../data/images/dir/folder.gif";
 			$checkbox="";
 			$target="";
-			//å‘å¸ƒæ—¶é—´
+			//·¢²¼Ê±¼ä
 			$ftime=@filemtime($pathfile);
 			$filetime=date("Y-m-d H:i:s",$ftime);
-			$filesize='<ç›®å½•>';
-			$filetype='æ–‡ä»¶å¤¹';
+			$filesize='<Ä¿Â¼>';
+			$filetype='ÎÄ¼ş¼Ğ';
 		}
-		//æ–‡ä»¶
+		//ÎÄ¼ş
 		else
 		{
 			$filelink="'".eReturnFileUrl().$truefile."'";
@@ -124,16 +124,16 @@ function CheckAll(form)
 			}
 			$checkbox="<input name='filename[]' type='checkbox' value='".$truefile."'>";
 			$target=" target='_blank'";
-			//å‘å¸ƒæ—¶é—´
+			//·¢²¼Ê±¼ä
 			$ftime=@filemtime($pathfile);
 			$filetime=date("Y-m-d H:i:s",$ftime);
-			//æ–‡ä»¶å¤§å°
+			//ÎÄ¼ş´óĞ¡
 			$fsize=@filesize($pathfile);
 			$filesize=ChTheFilesize($fsize);
-			//æ–‡ä»¶ç±»å‹
+			//ÎÄ¼şÀàĞÍ
 			if(strstr($ecms_config['sets']['tranpicturetype'],','.$ftype.','))
 			{
-				$filetype='å›¾ç‰‡';
+				$filetype='Í¼Æ¬';
 			}
 			elseif(strstr($ecms_config['sets']['tranflashtype'],','.$ftype.','))
 			{
@@ -141,11 +141,11 @@ function CheckAll(form)
 			}
 			elseif(strstr($ecms_config['sets']['mediaplayertype'],','.$ftype.',')||strstr($ecms_config['sets']['realplayertype'],','.$ftype.','))
 			{
-				$filetype='è§†é¢‘';
+				$filetype='ÊÓÆµ';
 			}
 			else
 			{
-				$filetype='é™„ä»¶';
+				$filetype='¸½¼ş';
 			}
 			$furl=$efileurl.$truefile;
 		}
@@ -181,7 +181,7 @@ function CheckAll(form)
           <input type="checkbox" name="chkall" value="on" onclick="CheckAll(this.form)">
         </div></td>
       <td height="25" colspan="4"> 
-        <input type="submit" name="Submit" value="åˆ é™¤æ–‡ä»¶"> 
+        <input type="submit" name="Submit" value="É¾³ıÎÄ¼ş"> 
         <input name="enews" type="hidden" id="enews" value="DelPathFile"> <div align="center"></div>
         <div align="center"></div>
         <div align="center"></div></td>

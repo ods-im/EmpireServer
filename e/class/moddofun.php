@@ -1,18 +1,18 @@
 <?php
-//************************************ æ•°æ®è¡¨ ************************************
+//************************************ Êı¾İ±í ************************************
 
-//å»ºç«‹åˆå§‹è¡¨
+//½¨Á¢³õÊ¼±í
 function AddTableDefault($tbname,$tid){
 	global $empire,$dbtbpre,$ecms_config;
 	include("db/DefaultTable.php");
-	//æœªå®¡æ ¸è¡¨
+	//Î´ÉóºË±í
 	$otb=$dbtbpre."ecms_".$tbname;
 	$tb=$otb."_check";
 	CopyEcmsTb($otb,$tb);
 	$odtb=$dbtbpre."ecms_".$tbname."_data_1";
 	$dtb=$tb."_data";
 	CopyEcmsTb($odtb,$dtb);
-	//å¤åˆ¶å­˜æ¡£è¡¨
+	//¸´ÖÆ´æµµ±í
 	$otb=$dbtbpre."ecms_".$tbname;
 	$tb=$otb."_doc";
 	CopyEcmsTb($otb,$tb);
@@ -24,7 +24,7 @@ function AddTableDefault($tbname,$tid){
 	CopyEcmsTb($optb,$ptb);
 }
 
-//å¤åˆ¶æ•°æ®è¡¨
+//¸´ÖÆÊı¾İ±í
 function CopyNewTable($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$add['tid'];
@@ -33,7 +33,7 @@ function CopyNewTable($add,$userid,$username){
 	{
 		printerror("EmptyTbname","");
 	}
-	CheckLevel($userid,$username,$classid,"table");//æ“ä½œæƒé™
+	CheckLevel($userid,$username,$classid,"table");//²Ù×÷È¨ÏŞ
 	$add[yhid]=(int)$add[yhid];
 	$add['tname']=hRepPostStr($add['tname'],1);
 	$add['tsay']=hRepPostStr($add['tsay'],1);
@@ -49,28 +49,28 @@ function CopyNewTable($add,$userid,$username){
 	}
 	$sql=$empire->query("insert into {$dbtbpre}enewstable(tbname,tname,tsay,isdefault,datatbs,deftb,yhid,mid,intb) values('$newtbname','$add[tname]','$add[tsay]',0,',1,','1','$add[yhid]',0,'$tr[intb]');");
 	$newtid=$empire->lastid();
-	//å¤åˆ¶è¡¨
-	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname'],$dbtbpre."ecms_".$newtbname);	//å†…å®¹è¡¨
-	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_data_1",$dbtbpre."ecms_".$newtbname."_data_1");	//å†…å®¹å‰¯è¡¨
-	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_index",$dbtbpre."ecms_".$newtbname."_index");	//å†…å®¹ç´¢å¼•è¡¨
-	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_doc",$dbtbpre."ecms_".$newtbname."_doc");	//å½’æ¡£è¡¨
-	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_doc_data",$dbtbpre."ecms_".$newtbname."_doc_data");	//å½’æ¡£å‰¯è¡¨
-	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_doc_index",$dbtbpre."ecms_".$newtbname."_doc_index");	//å½’æ¡£ç´¢å¼•è¡¨
-	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_check",$dbtbpre."ecms_".$newtbname."_check");	//å®¡æ ¸è¡¨
-	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_check_data",$dbtbpre."ecms_".$newtbname."_check_data");	//å®¡æ ¸å‰¯è¡¨
-	CopyEcmsTb($dbtbpre."ecms_infoclass_".$tr['tbname'],$dbtbpre."ecms_infoclass_".$newtbname);	//é‡‡é›†èŠ‚ç‚¹é™„åŠ è¡¨
-	CopyEcmsTb($dbtbpre."ecms_infotmp_".$tr['tbname'],$dbtbpre."ecms_infotmp_".$newtbname);	//é‡‡é›†æ•°æ®ä¸´æ—¶è¡¨
-	//å­—æ®µæ•°æ®
+	//¸´ÖÆ±í
+	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname'],$dbtbpre."ecms_".$newtbname);	//ÄÚÈİ±í
+	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_data_1",$dbtbpre."ecms_".$newtbname."_data_1");	//ÄÚÈİ¸±±í
+	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_index",$dbtbpre."ecms_".$newtbname."_index");	//ÄÚÈİË÷Òı±í
+	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_doc",$dbtbpre."ecms_".$newtbname."_doc");	//¹éµµ±í
+	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_doc_data",$dbtbpre."ecms_".$newtbname."_doc_data");	//¹éµµ¸±±í
+	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_doc_index",$dbtbpre."ecms_".$newtbname."_doc_index");	//¹éµµË÷Òı±í
+	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_check",$dbtbpre."ecms_".$newtbname."_check");	//ÉóºË±í
+	CopyEcmsTb($dbtbpre."ecms_".$tr['tbname']."_check_data",$dbtbpre."ecms_".$newtbname."_check_data");	//ÉóºË¸±±í
+	CopyEcmsTb($dbtbpre."ecms_infoclass_".$tr['tbname'],$dbtbpre."ecms_infoclass_".$newtbname);	//²É¼¯½Úµã¸½¼Ó±í
+	CopyEcmsTb($dbtbpre."ecms_infotmp_".$tr['tbname'],$dbtbpre."ecms_infotmp_".$newtbname);	//²É¼¯Êı¾İÁÙÊ±±í
+	//×Ö¶ÎÊı¾İ
 	$fsql=$empire->query("select * from {$dbtbpre}enewsf where tid=$tid order by fid");
 	while($fr=$empire->fetch($fsql))
 	{
 		$usql=$empire->query("insert into {$dbtbpre}enewsf(f,fname,fform,fhtml,fzs,isadd,isshow,iscj,cjhtml,myorder,ftype,flen,dotemp,tid,tbname,savetxt,fvalue,iskey,tobr,dohtml,qfhtml,isonly,linkfieldval,samedata,fformsize,tbdataf,ispage,adddofun,editdofun,qadddofun,qeditdofun,linkfieldtb,linkfieldshow,editorys,issmalltext,fmvnum) values('$fr[f]','$fr[fname]','$fr[fform]','".addslashes(addslashes(stripSlashes($fr['fhtml'])))."','".addslashes(stripSlashes($fr[fzs]))."',$fr[isadd],$fr[isshow],$fr[iscj],'".addslashes(addslashes(stripSlashes($fr[cjhtml])))."',$fr[myorder],'$fr[ftype]','$fr[flen]',$fr[dotemp],$newtid,'$newtbname',$fr[savetxt],'".addslashes(addslashes(stripSlashes($fr[fvalue])))."',$fr[iskey],$fr[tobr],$fr[dohtml],'".addslashes(addslashes(stripSlashes($fr[qfhtml])))."','$fr[isonly]','".addslashes(stripSlashes($fr[linkfieldval]))."','$fr[samedata]','".addslashes(stripSlashes($fr[fformsize]))."','$fr[tbdataf]','$fr[ispage]','".addslashes(stripSlashes($fr[adddofun]))."','".addslashes(stripSlashes($fr[editdofun]))."','".addslashes(stripSlashes($fr[qadddofun]))."','".addslashes(stripSlashes($fr[qeditdofun]))."','".addslashes(stripSlashes($fr[linkfieldtb]))."','".addslashes(stripSlashes($fr[linkfieldshow]))."','$fr[editorys]','$fr[issmalltext]','".addslashes(stripSlashes($fr[fmvnum]))."');");
 	}
-	TogSaveTxtF(1);//å…¬å…±å˜é‡
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	TogSaveTxtF(1);//¹«¹²±äÁ¿
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tid=".$tid."<br>tb=".$tr[tbname]."<br>newtid=".$newtid."<br>newtb=".$newtbname);
 		printerror("CopyTbSuccess","db/ListTable.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -80,7 +80,7 @@ function CopyNewTable($add,$userid,$username){
 	}
 }
 
-//å»ºç«‹æ•°æ®è¡¨
+//½¨Á¢Êı¾İ±í
 function AddTable($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[tbname]=RepPostVar(strtolower(trim($add[tbname])));
@@ -88,7 +88,7 @@ function AddTable($add,$userid,$username){
 	{
 		printerror("EmptyTbname","history.go(-1)");
     }
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"table");
 	$add[yhid]=(int)$add[yhid];
 	$add['intb']=(int)$add['intb'];
@@ -101,12 +101,12 @@ function AddTable($add,$userid,$username){
 	}
 	$sql=$empire->query("insert into {$dbtbpre}enewstable(tbname,tname,tsay,isdefault,datatbs,deftb,yhid,intb) values('$add[tbname]','$add[tname]','$add[tsay]',0,',1,','1','$add[yhid]','$add[intb]');");
 	$tid=$empire->lastid();
-	//åˆä½¿åŒ–è¡¨
+	//³õÊ¹»¯±í
 	AddTableDefault($add[tbname],$tid);
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tid=".$tid."<br>tbname=".$add[tbname]);
 		printerror("AddTbSuccess","db/AddTable.php?enews=AddTable".hReturnEcmsHashStrHref2(0));
 	}
@@ -116,7 +116,7 @@ function AddTable($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹æ•°æ®è¡¨
+//ĞŞ¸ÄÊı¾İ±í
 function EditTable($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[tbname]=RepPostVar(strtolower(trim($add[tbname])));
@@ -125,13 +125,13 @@ function EditTable($add,$userid,$username){
 	{
 		printerror("EmptyTbname","history.go(-1)");
     }
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"table");
 	$add[yhid]=(int)$add[yhid];
 	$add['intb']=(int)$add['intb'];
 	$add['tname']=hRepPostStr($add['tname'],1);
 	$add['tsay']=hRepPostStr($add['tsay'],1);
-	//æ”¹å˜æ•°æ®è¡¨å
+	//¸Ä±äÊı¾İ±íÃû
 	if($add[tbname]!=$add[oldtbname])
 	{
 		$add[oldtbname]=RepPostVar($add[oldtbname]);
@@ -145,11 +145,11 @@ function EditTable($add,$userid,$username){
 		{
 			printerror("EmptyTbname","history.go(-1)");
 		}
-		//ä¸»è¡¨
+		//Ö÷±í
 		$empire->query("ALTER TABLE `{$dbtbpre}ecms_".$add[oldtbname]."` RENAME `{$dbtbpre}ecms_".$add[tbname]."`;");
-		//ç´¢å¼•è¡¨
+		//Ë÷Òı±í
 		$empire->query("ALTER TABLE `{$dbtbpre}ecms_".$add[oldtbname]."_index` RENAME `{$dbtbpre}ecms_".$add[tbname]."_index`;");
-		//å‰¯è¡¨
+		//¸±±í
 		if($tbr['datatbs'])
 		{
 			$dtbr=explode(',',$tbr['datatbs']);
@@ -159,40 +159,40 @@ function EditTable($add,$userid,$username){
 				$empire->query("ALTER TABLE `{$dbtbpre}ecms_".$add[oldtbname]."_data_".$dtbr[$i]."` RENAME `{$dbtbpre}ecms_".$add[tbname]."_data_".$dtbr[$i]."`;");
 			}
 		}
-		//å½’æ¡£è¡¨
+		//¹éµµ±í
 		$empire->query("ALTER TABLE `{$dbtbpre}ecms_".$add[oldtbname]."_doc` RENAME `{$dbtbpre}ecms_".$add[tbname]."_doc`;");
 		$empire->query("ALTER TABLE `{$dbtbpre}ecms_".$add[oldtbname]."_doc_data` RENAME `{$dbtbpre}ecms_".$add[tbname]."_doc_data`;");
 		$empire->query("ALTER TABLE `{$dbtbpre}ecms_".$add[oldtbname]."_doc_index` RENAME `{$dbtbpre}ecms_".$add[tbname]."_doc_index`;");
-		//å®¡æ ¸è¡¨
+		//ÉóºË±í
 		$empire->query("ALTER TABLE `{$dbtbpre}ecms_".$add[oldtbname]."_check` RENAME `{$dbtbpre}ecms_".$add[tbname]."_check`;");
 		$empire->query("ALTER TABLE `{$dbtbpre}ecms_".$add[oldtbname]."_check_data` RENAME `{$dbtbpre}ecms_".$add[tbname]."_check_data`;");
-		//é‡‡é›†
+		//²É¼¯
 	    $empire->query("ALTER TABLE `{$dbtbpre}ecms_infoclass_".$add[oldtbname]."` RENAME `{$dbtbpre}ecms_infoclass_".$add[tbname]."`;");
 		$empire->query("ALTER TABLE `{$dbtbpre}ecms_infotmp_".$add[oldtbname]."` RENAME `{$dbtbpre}ecms_infotmp_".$add[tbname]."`;");
-		//å­—æ®µ
+		//×Ö¶Î
 		$empire->query("update {$dbtbpre}enewsf set tbname='$add[tbname]' where tid='$tid'");
-		//æ ç›®
+		//À¸Ä¿
 		$empire->query("update {$dbtbpre}enewsclass set tbname='$add[tbname]' where tid='$tid'");
 		//$empire->query("update {$dbtbpre}enewszt set tbname='$add[tbname]' where tid='$tid'");
 		$empire->query("update {$dbtbpre}enewsinfoclass set tbname='$add[tbname]' where tid='$tid'");
 		$empire->query("update {$dbtbpre}enewsmod set tbname='$add[tbname]' where tid='$tid'");
 		$empire->query("update {$dbtbpre}enewsinfotype set tbname='$add[tbname]' where tid='$tid'");
-		//æœç´¢
+		//ËÑË÷
 		$empire->query("update {$dbtbpre}enewssearch set tbname='$add[tbname]' where tbname='$add[oldtbname]'");
 		$empire->query("update {$dbtbpre}enewssearchall_load set tbname='$add[tbname]' where tbname='$add[oldtbname]'");
-		//é»˜è®¤è¡¨
+		//Ä¬ÈÏ±í
 		if($tbr['isdefault'])
 		{
 			$empire->query("update {$dbtbpre}enewspublic set tbname='$add[tbname]',tid='$tid'");
 		}
-		//æ–‡æœ¬å‹
+		//ÎÄ±¾ĞÍ
 		TogSaveTxtF(1);
 	}
 	$sql=$empire->query("update {$dbtbpre}enewstable set tbname='$add[tbname]',tname='$add[tname]',tsay='$add[tsay]',yhid='$add[yhid]',intb='$add[intb]' where tid='$tid'");
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tid=".$tid."<br>tbname=".$add[tbname]);
 		printerror("EditTbSuccess","db/ListTable.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -202,7 +202,7 @@ function EditTable($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤æ•°æ®è¡¨
+//É¾³ıÊı¾İ±í
 function DelTable($tid,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$tid;
@@ -210,20 +210,20 @@ function DelTable($tid,$userid,$username){
 	{
 		printerror("NotChangeTb","");
     }
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"table");
 	$r=$empire->fetch1("select tid,tbname,isdefault,datatbs,deftb from {$dbtbpre}enewstable where tid='$tid'");
 	if(empty($r[tid]))
 	{
 		printerror("NotChangeTb","");
 	}
-	//é»˜è®¤è¡¨
+	//Ä¬ÈÏ±í
 	if($r['isdefault'])
 	{
 		printerror("NotDelDefaultTb","");
 	}
 	$sql=$empire->query("delete from {$dbtbpre}enewstable where tid='$tid'");
-	//åˆ é™¤æ•°æ®è¡¨
+	//É¾³ıÊı¾İ±í
 	$empire->query("DROP TABLE IF EXISTS {$dbtbpre}ecms_".$r[tbname].";");
 	$empire->query("DROP TABLE IF EXISTS {$dbtbpre}ecms_".$r[tbname]."_index;");
 	if($r['datatbs'])
@@ -235,26 +235,26 @@ function DelTable($tid,$userid,$username){
 			$empire->query("DROP TABLE IF EXISTS {$dbtbpre}ecms_".$r[tbname]."_data_".$dtbr[$i].";");
 		}
 	}
-	//åˆ é™¤é‡‡é›†è¡¨
+	//É¾³ı²É¼¯±í
 	$empire->query("DROP TABLE IF EXISTS {$dbtbpre}ecms_infoclass_".$r[tbname].";");
 	$empire->query("DROP TABLE IF EXISTS {$dbtbpre}ecms_infotmp_".$r[tbname].";");
-	//åˆ é™¤å½’æ¡£è¡¨
+	//É¾³ı¹éµµ±í
 	$empire->query("DROP TABLE IF EXISTS {$dbtbpre}ecms_".$r[tbname]."_doc;");
 	$empire->query("DROP TABLE IF EXISTS {$dbtbpre}ecms_".$r[tbname]."_doc_data;");
 	$empire->query("DROP TABLE IF EXISTS {$dbtbpre}ecms_".$r[tbname]."_doc_index;");
-	//åˆ é™¤å®¡æ ¸è¡¨
+	//É¾³ıÉóºË±í
 	$empire->query("DROP TABLE IF EXISTS {$dbtbpre}ecms_".$r[tbname]."_check;");
 	$empire->query("DROP TABLE IF EXISTS {$dbtbpre}ecms_".$r[tbname]."_check_data;");
-	//åˆ é™¤æ•°æ®
+	//É¾³ıÊı¾İ
 	$empire->query("delete from {$dbtbpre}enewsf where tid='$tid'");
 	$empire->query("delete from {$dbtbpre}enewsmod where tid='$tid'");
 	$empire->query("delete from {$dbtbpre}enewsinfoclass where tid='$tid'");
-	//æ–‡æœ¬å‹
+	//ÎÄ±¾ĞÍ
 	TogSaveTxtF(1);
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tid=".$tid."<br>tbname=".$r[tbname]);
 		printerror("DelTbSuccess","db/ListTable.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -264,7 +264,7 @@ function DelTable($tid,$userid,$username){
 	}
 }
 
-//é»˜è®¤æ•°æ®è¡¨
+//Ä¬ÈÏÊı¾İ±í
 function DefaultTable($tid,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$tid;
@@ -272,7 +272,7 @@ function DefaultTable($tid,$userid,$username){
 	{
 		printerror("NotChangeDefaultTb","history.go(-1)");
     }
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"table");
 	$r=$empire->fetch1("select tid,tbname from {$dbtbpre}enewstable where tid='$tid'");
 	if(empty($r[tid]))
@@ -282,10 +282,10 @@ function DefaultTable($tid,$userid,$username){
 	$usql=$empire->query("update {$dbtbpre}enewstable set isdefault=0");
 	$sql=$empire->query("update {$dbtbpre}enewstable set isdefault=1 where tid='$tid'");
 	$upsql=$empire->query("update {$dbtbpre}enewspublic set tbname='$r[tbname]',tid='$tid'");
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql&&$usql&&$upsql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tid=".$tid."<br>tbname=".$r[tbname]);
 		printerror("DefaultTableSuccess","db/ListTable.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -295,10 +295,10 @@ function DefaultTable($tid,$userid,$username){
 	}
 }
 
-//å¢åŠ å‰¯è¡¨åˆ†è¡¨
+//Ôö¼Ó¸±±í·Ö±í
 function AddDataTable($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"table");
 	$tid=(int)$add['tid'];
 	$tbname=RepPostVar($add['tbname']);
@@ -321,15 +321,15 @@ function AddDataTable($add,$userid,$username){
 		$tr['datatbs']=',';
 	}
 	$newdatatbs=$tr['datatbs'].$datatb.',';
-	//å»ºè¡¨
+	//½¨±í
 	$odtb=$dbtbpre."ecms_".$tbname."_data_1";
 	$dtb=$dbtbpre."ecms_".$tbname."_data_".$datatb;
 	CopyEcmsTb($odtb,$dtb);
 	$sql=$empire->query("update {$dbtbpre}enewstable set datatbs='$newdatatbs' where tid='$tid'");
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tid=".$tid."<br>tbname=".$tbname."&datatb=$datatb");
 		printerror("AddDataTableSuccess","db/ListDataTable.php?tid=$tid&tbname=$tbname".hReturnEcmsHashStrHref2(0));
 	}
@@ -339,10 +339,10 @@ function AddDataTable($add,$userid,$username){
 	}
 }
 
-//é»˜è®¤å‰¯è¡¨å­˜æ”¾è¡¨
+//Ä¬ÈÏ¸±±í´æ·Å±í
 function DefDataTable($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"table");
 	$tid=(int)$add['tid'];
 	$tbname=RepPostVar($add['tbname']);
@@ -361,10 +361,10 @@ function DefDataTable($add,$userid,$username){
 		printerror("NotChangeDataTable","history.go(-1)");
 	}
 	$sql=$empire->query("update {$dbtbpre}enewstable set deftb='$datatb' where tid='$tid'");
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tid=".$tid."<br>tbname=".$tbname."&datatb=$datatb");
 		printerror("DefDataTableSuccess","db/ListDataTable.php?tid=$tid&tbname=$tbname".hReturnEcmsHashStrHref2(0));
 	}
@@ -374,10 +374,10 @@ function DefDataTable($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤å‰¯è¡¨åˆ†è¡¨
+//É¾³ı¸±±í·Ö±í
 function DelDataTable($add,$userid,$username){
 	global $empire,$dbtbpre,$emod_r,$class_r;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"table");
 	$tid=(int)$add['tid'];
 	$tbname=RepPostVar($add['tbname']);
@@ -401,14 +401,14 @@ function DelDataTable($add,$userid,$username){
 	}
 	$newdatatbs=str_replace(','.$datatb.',',',',$tr['datatbs']);
 	$sql=$empire->query("update {$dbtbpre}enewstable set datatbs='$newdatatbs' where tid='$tid'");
-	//åˆ é™¤ä¿¡æ¯
+	//É¾³ıĞÅÏ¢
 	$infosql=$empire->query("select * from {$dbtbpre}ecms_".$tr[tbname]." where stb='$datatb'");
 	while($infor=$empire->fetch($infosql))
 	{
 		$mid=$class_r[$infor[classid]]['modid'];
 		$pf=$emod_r[$mid]['pagef'];
 		$stf=$emod_r[$mid]['savetxtf'];
-		//åˆ†é¡µå­—æ®µ
+		//·ÖÒ³×Ö¶Î
 		if($pf)
 		{
 			if(strstr($emod_r[$mid]['tbdataf'],','.$pf.','))
@@ -417,29 +417,29 @@ function DelDataTable($add,$userid,$username){
 				$infor[$pf]=$finfor[$pf];
 			}
 		}
-		//å­˜æ–‡æœ¬
+		//´æÎÄ±¾
 		if($stf)
 		{
 			$newstextfile=$infor[$stf];
 			$infor[$stf]=GetTxtFieldText($infor[$stf]);
-			DelTxtFieldText($newstextfile);//åˆ é™¤æ–‡ä»¶
+			DelTxtFieldText($newstextfile);//É¾³ıÎÄ¼ş
 		}
-		//åˆ é™¤ä¿¡æ¯æ–‡ä»¶
+		//É¾³ıĞÅÏ¢ÎÄ¼ş
 		DelNewsFile($infor[filename],$infor[newspath],$infor[classid],$infor[$pf],$infor[groupid]);
-		//åˆ é™¤ä¸»è¡¨ä¿¡æ¯
+		//É¾³ıÖ÷±íĞÅÏ¢
 		$empire->query("delete from {$dbtbpre}ecms_".$tr[tbname]."_index where id='$infor[id]'");
-		//åˆ é™¤å…¶å®ƒè¡¨è®°å½•å’Œé™„ä»¶
+		//É¾³ıÆäËü±í¼ÇÂ¼ºÍ¸½¼ş
 		DelSingleInfoOtherData($infor[classid],$infor[id],$infor,0,0);
 	}
 	$deltb=$empire->query("delete from {$dbtbpre}ecms_".$tr[tbname]." where stb='$datatb'");
-	//åˆ é™¤å½’æ¡£ä¿¡æ¯
+	//É¾³ı¹éµµĞÅÏ¢
 	$docinfosql=$empire->query("select * from {$dbtbpre}ecms_".$tr[tbname]."_doc where stb='$datatb'");
 	while($infor=$empire->fetch($docinfosql))
 	{
 		$mid=$class_r[$infor[classid]]['modid'];
 		$pf=$emod_r[$mid]['pagef'];
 		$stf=$emod_r[$mid]['savetxtf'];
-		//åˆ†é¡µå­—æ®µ
+		//·ÖÒ³×Ö¶Î
 		if($pf)
 		{
 			if(strstr($emod_r[$mid]['tbdataf'],','.$pf.','))
@@ -448,31 +448,31 @@ function DelDataTable($add,$userid,$username){
 				$infor[$pf]=$finfor[$pf];
 			}
 		}
-		//å­˜æ–‡æœ¬
+		//´æÎÄ±¾
 		if($stf)
 		{
 			$newstextfile=$infor[$stf];
 			$infor[$stf]=GetTxtFieldText($infor[$stf]);
-			DelTxtFieldText($newstextfile);//åˆ é™¤æ–‡ä»¶
+			DelTxtFieldText($newstextfile);//É¾³ıÎÄ¼ş
 		}
-		//åˆ é™¤ä¿¡æ¯æ–‡ä»¶
+		//É¾³ıĞÅÏ¢ÎÄ¼ş
 		DelNewsFile($infor[filename],$infor[newspath],$infor[classid],$infor[$pf],$infor[groupid]);
-		//åˆ é™¤ä¸»è¡¨ä¿¡æ¯
+		//É¾³ıÖ÷±íĞÅÏ¢
 		$empire->query("delete from {$dbtbpre}ecms_".$tr[tbname]."_doc_index where id='$infor[id]'");
-		//åˆ é™¤å‰¯è¡¨ä¿¡æ¯
+		//É¾³ı¸±±íĞÅÏ¢
 		$empire->query("delete from {$dbtbpre}ecms_".$tr[tbname]."_doc_data where id='$infor[id]'");
-		//åˆ é™¤å…¶å®ƒè¡¨è®°å½•ä¸é™„ä»¶
+		//É¾³ıÆäËü±í¼ÇÂ¼Óë¸½¼ş
 		DelSingleInfoOtherData($infor['classid'],$infor['id'],$infor,0,0);
 	}
 	$deltb=$empire->query("delete from {$dbtbpre}ecms_".$tr[tbname]."_doc where stb='$datatb'");
-	//åˆ é™¤å®¡æ ¸ä¿¡æ¯
+	//É¾³ıÉóºËĞÅÏ¢
 	$bakinfosql=$empire->query("select * from {$dbtbpre}ecms_".$tr[tbname]."_check where stb='$datatb'");
 	while($infor=$empire->fetch($bakinfosql))
 	{
 		$mid=$class_r[$infor[classid]]['modid'];
 		$pf=$emod_r[$mid]['pagef'];
 		$stf=$emod_r[$mid]['savetxtf'];
-		//åˆ†é¡µå­—æ®µ
+		//·ÖÒ³×Ö¶Î
 		if($pf)
 		{
 			if(strstr($emod_r[$mid]['tbdataf'],','.$pf.','))
@@ -481,29 +481,29 @@ function DelDataTable($add,$userid,$username){
 				$infor[$pf]=$finfor[$pf];
 			}
 		}
-		//å­˜æ–‡æœ¬
+		//´æÎÄ±¾
 		if($stf)
 		{
 			$newstextfile=$infor[$stf];
 			$infor[$stf]=GetTxtFieldText($infor[$stf]);
-			DelTxtFieldText($newstextfile);//åˆ é™¤æ–‡ä»¶
+			DelTxtFieldText($newstextfile);//É¾³ıÎÄ¼ş
 		}
-		//åˆ é™¤ä¿¡æ¯æ–‡ä»¶
+		//É¾³ıĞÅÏ¢ÎÄ¼ş
 		DelNewsFile($infor[filename],$infor[newspath],$infor[classid],$infor[$pf],$infor[groupid]);
-		//åˆ é™¤ä¸»è¡¨ä¿¡æ¯
+		//É¾³ıÖ÷±íĞÅÏ¢
 		$empire->query("delete from {$dbtbpre}ecms_".$tr[tbname]."_index where id='$infor[id]'");
-		//åˆ é™¤å‰¯è¡¨ä¿¡æ¯
+		//É¾³ı¸±±íĞÅÏ¢
 		$empire->query("delete from {$dbtbpre}ecms_".$tr[tbname]."_check_data where id='$infor[id]'");
-		//åˆ é™¤å…¶å®ƒè¡¨è®°å½•å’Œé™„ä»¶
+		//É¾³ıÆäËü±í¼ÇÂ¼ºÍ¸½¼ş
 		DelSingleInfoOtherData($infor['classid'],$infor['id'],$infor,0,0);
 	}
 	$deltb=$empire->query("delete from {$dbtbpre}ecms_".$tr[tbname]."_check where stb='$datatb'");
-	//åˆ é™¤è¡¨
+	//É¾³ı±í
 	$deltb=$empire->query("DROP TABLE IF EXISTS {$dbtbpre}ecms_".$tr[tbname]."_data_".$datatb.";");
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tid=".$tid."<br>tbname=".$tr[tbname]."&datatb=$datatb");
 		printerror("DelDataTableSuccess","db/ListDataTable.php?tid=$tid&tbname=$tr[tbname]".hReturnEcmsHashStrHref2(0));
 	}
@@ -514,15 +514,15 @@ function DelDataTable($add,$userid,$username){
 }
 
 
-//************************************ å­—æ®µ ************************************
+//************************************ ×Ö¶Î ************************************
 
-//è¿”å›å­—æ®µå€¼
+//·µ»Ø×Ö¶ÎÖµ
 function ReturnFvalue($value){
 	$value=str_replace("\r\n","|",$value);
 	return $value;
 }
 
-//å–å¾—è¡¨å•å…ƒç´ htmlä»£ç 
+//È¡µÃ±íµ¥ÔªËØhtml´úÂë
 function GetFform($type,$f,$fvalue,$linkfieldval,$fformsize='',$add){
 	if($type=="select"||$type=="radio"||$type=="checkbox")
 	{
@@ -530,7 +530,7 @@ function GetFform($type,$f,$fvalue,$linkfieldval,$fformsize='',$add){
 	}
 	$file="../data/html/fhtml.txt";
 	$data=ReadFiletext($file);
-	//ç‰¹æ®Šå­—æ®µ
+	//ÌØÊâ×Ö¶Î
 	if($f=="newstext"||$f=="writer"||$f=="befrom"||$f=="downpath"||$f=="onlinepath"||$f=="morepic"||$f=="playerid")
 	{
 		$type=$f;
@@ -539,13 +539,13 @@ function GetFform($type,$f,$fvalue,$linkfieldval,$fformsize='',$add){
 	$r=explode($exp,$data);
 	$string=str_replace("[!--enews.var--]",$f,$r[1]);
 	$string=str_replace("[!--enews.def.val--]",$fvalue,$string);
-	if($type=='linkfield')//é€‰æ‹©å¤–è¡¨å…³è”å­—æ®µ
+	if($type=='linkfield')//Ñ¡ÔñÍâ±í¹ØÁª×Ö¶Î
 	{
 		$string=str_replace("[!--enews.cfield.var--]",$add[linkfieldval],$string);
 		$string=str_replace("[!--enews.vfield.var--]",$add[linkfieldshow],$string);
 		$string=str_replace("[!--enews.ctbname--]",$add[linkfieldtb],$string);
 	}
-	elseif($type=='linkfieldselect')//ä¸‹æ‹‰å¤–è¡¨å…³è”å­—æ®µ
+	elseif($type=='linkfieldselect')//ÏÂÀ­Íâ±í¹ØÁª×Ö¶Î
 	{
 		$selectf=$add[linkfieldval]==$add[linkfieldshow]?$add[linkfieldval]:$add[linkfieldval].','.$add[linkfieldshow];
 		$string=str_replace("[!--enews.cfield.var--]",$add[linkfieldval],$string);
@@ -553,13 +553,13 @@ function GetFform($type,$f,$fvalue,$linkfieldval,$fformsize='',$add){
 		$string=str_replace("[!--enews.ctbname--]",$add[linkfieldtb],$string);
 		$string=str_replace("[!--enews.selectf--]",$selectf,$string);
 	}
-	elseif($type=='editor'||$type=='newstext')//ç¼–è¾‘å™¨
+	elseif($type=='editor'||$type=='newstext')//±à¼­Æ÷
 	{
 		$editortype=$add[editorys]==0?'Default':'Basic';
 		$string=str_replace("[!--editor.type--]",$editortype,$string);
 		$string=str_replace("[!--editor.basepath--]",'',$string);
 	}
-	elseif($type=='morevaluefield')//å¤šå€¼å­—æ®µ
+	elseif($type=='morevaluefield')//¶àÖµ×Ö¶Î
 	{
 		$mvr=explode(',',$add['fmvnum']);
 		$mv_var=ReturnMoreValueFieldHtmlVar($f,$mvr[0],$mvr[1],$mvr[2]);
@@ -575,11 +575,11 @@ function GetFform($type,$f,$fvalue,$linkfieldval,$fformsize='',$add){
 	return fAddAddsData($string);
 }
 
-//å–å¾—é‡‡é›†è¡¨å•å…ƒç´ htmlä»£ç 
+//È¡µÃ²É¼¯±íµ¥ÔªËØhtml´úÂë
 function GetCjform($type,$f){
 	$file="../data/html/cjhtml.txt";
 	$data=ReadFiletext($file);
-	//ç‰¹æ®Šå­—æ®µ
+	//ÌØÊâ×Ö¶Î
 	if($f=="downpath"||$f=="onlinepath"||$f=="morepic"||$f=="playerid")
 	{
 		$type=$f;
@@ -594,7 +594,7 @@ function GetCjform($type,$f){
 	return fAddAddsData($string);
 }
 
-//å–å¾—æŠ•ç¨¿è¡¨å•å…ƒç´ htmlä»£ç 
+//È¡µÃÍ¶¸å±íµ¥ÔªËØhtml´úÂë
 function GetQFform($type,$f,$fvalue,$fformsize='',$add){
 	if($type=="select"||$type=="radio"||$type=="checkbox")
 	{
@@ -602,7 +602,7 @@ function GetQFform($type,$f,$fvalue,$fformsize='',$add){
 	}
 	$file="../data/html/qfhtml.txt";
 	$data=ReadFiletext($file);
-	//ç‰¹æ®Šå­—æ®µ
+	//ÌØÊâ×Ö¶Î
 	if($f=="newstext"||$f=="downpath"||$f=="onlinepath"||$f=="morepic"||$f=="playerid")
 	{
 		$type=$f;
@@ -611,13 +611,13 @@ function GetQFform($type,$f,$fvalue,$fformsize='',$add){
 	$r=explode($exp,$data);
 	$string=str_replace("[!--enews.var--]",$f,$r[1]);
 	$string=str_replace("[!--enews.def.val--]",$fvalue,$string);
-	if($type=='linkfield')//é€‰æ‹©å¤–è¡¨å…³è”å­—æ®µ
+	if($type=='linkfield')//Ñ¡ÔñÍâ±í¹ØÁª×Ö¶Î
 	{
 		$string=str_replace("[!--enews.cfield.var--]",$add[linkfieldval],$string);
 		$string=str_replace("[!--enews.vfield.var--]",$add[linkfieldshow],$string);
 		$string=str_replace("[!--enews.ctbname--]",$add[linkfieldtb],$string);
 	}
-	elseif($type=='linkfieldselect')//ä¸‹æ‹‰å¤–è¡¨å…³è”å­—æ®µ
+	elseif($type=='linkfieldselect')//ÏÂÀ­Íâ±í¹ØÁª×Ö¶Î
 	{
 		$selectf=$add[linkfieldval]==$add[linkfieldshow]?$add[linkfieldval]:$add[linkfieldval].','.$add[linkfieldshow];
 		$string=str_replace("[!--enews.cfield.var--]",$add[linkfieldval],$string);
@@ -625,13 +625,13 @@ function GetQFform($type,$f,$fvalue,$fformsize='',$add){
 		$string=str_replace("[!--enews.ctbname--]",$add[linkfieldtb],$string);
 		$string=str_replace("[!--enews.selectf--]",$selectf,$string);
 	}
-	elseif($type=='editor'||$type=='newstext')//ç¼–è¾‘å™¨
+	elseif($type=='editor'||$type=='newstext')//±à¼­Æ÷
 	{
 		$editortype=$add[editorys]==0?'Default':'Basic';
 		$string=str_replace("[!--editor.type--]",$editortype,$string);
 		$string=str_replace("[!--editor.basepath--]",'',$string);
 	}
-	elseif($type=='morevaluefield')//å¤šå€¼å­—æ®µ
+	elseif($type=='morevaluefield')//¶àÖµ×Ö¶Î
 	{
 		$mvr=explode(',',$add['fmvnum']);
 		$mv_var=ReturnMoreValueFieldHtmlVar($f,$mvr[0],$mvr[1],$mvr[2]);
@@ -647,7 +647,7 @@ function GetQFform($type,$f,$fvalue,$fformsize='',$add){
 	return fAddAddsData($string);
 }
 
-//å–å¾—select/radioå…ƒç´ ä»£ç 
+//È¡µÃselect/radioÔªËØ´úÂë
 function GetFformSelect($type,$f,$fvalue,$fformsize=''){
 	$vr=explode('|',$fvalue);
 	$count=count($vr);
@@ -689,7 +689,7 @@ function GetFformSelect($type,$f,$fvalue,$fformsize=''){
 	return $change;
 }
 
-//æ›¿æ¢è¡¨å•å…ƒç´ é•¿åº¦
+//Ìæ»»±íµ¥ÔªËØ³¤¶È
 function RepFformSize($f,$string,$type,$fformsize=''){
 	$fformsize=ReturnDefFformSize($f,$type,$fformsize);
 	if($type=='textarea'||$type=='editor'||$type=='ubbeditor'||$type=='newstext')
@@ -705,7 +705,7 @@ function RepFformSize($f,$string,$type,$fformsize=''){
 	return $string;
 }
 
-//è¿”å›é»˜è®¤é•¿åº¦
+//·µ»ØÄ¬ÈÏ³¤¶È
 function ReturnDefFformSize($f,$type,$fformsize){
 	if(empty($fformsize))
 	{
@@ -761,7 +761,7 @@ function ReturnDefFformSize($f,$type,$fformsize){
 	return $fformsize;
 }
 
-//è¿”å›å¤šå€¼å­—æ®µå½•å…¥é¡¹htmlä»£ç å˜é‡
+//·µ»Ø¶àÖµ×Ö¶ÎÂ¼ÈëÏîhtml´úÂë±äÁ¿
 function ReturnMoreValueFieldHtmlVar($f,$mvnum,$mvline,$mvmust){
 	global $fun_r;
 	$del=' <input type="hidden" name="'.$f.'_mvid[]" id="'.$f.'_mvid_<?=$j?>" value="<?=$j?>"><input type="checkbox" name="'.$f.'_mvdelid[]" id="'.$f.'_mvdelid_<?=$j?>" value="<?=$j?>">'.$fun_r['FSingleDel'];
@@ -772,13 +772,13 @@ function ReturnMoreValueFieldHtmlVar($f,$mvnum,$mvline,$mvmust){
 	for($i=0;$i<$mvnum;$i++)
 	{
 		$j=$i+1;
-		//æè¿°
+		//ÃèÊö
 		$saytr.='<td align="center">'.$fun_r['FSetting'].$j.'</td>';
 		//JS
 		$jstr.='<td align="center"><input type="text" name="'.$f.'_'.$j.'[]" id="'.$f.'_'.$j.'_\'+j+\'" value=""></td>';
-		//é»˜è®¤
+		//Ä¬ÈÏ
 		$deftr.='<td align="center"><input type="text" name="'.$f.'_'.$j.'[]" id="'.$f.'_'.$j.'_<?=$i?>" value=""></td>';
-		//ä¿®æ”¹
+		//ĞŞ¸Ä
 		$edittr.='<td align="center"><input type="text" name="'.$f.'_'.$j.'[]" id="'.$f.'_'.$j.'_<?=$j?>" value="<?=$mvf_field['.$i.']?>">'.($i==0?$del:'').'</td>';
 	}
 	$saytr.='</tr>';
@@ -792,12 +792,12 @@ function ReturnMoreValueFieldHtmlVar($f,$mvnum,$mvline,$mvmust){
 	return $r;
 }
 
-//è¿”å›å­—æ®µå˜é‡
+//·µ»Ø×Ö¶Î±äÁ¿
 function DoPostFVar($add){
 	$add['tid']=(int)$add['tid'];
 	$add['tbname']=RepPostVar($add['tbname']);
 	$add['f']=RepPostVar($add['f']);
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[iscj]=(int)$add[iscj];
 	$add[myorder]=(int)$add[myorder];
 	$add[savetxt]=(int)$add[savetxt];
@@ -842,7 +842,7 @@ function DoPostFVar($add){
 	return $add;
 }
 
-//éªŒè¯å­—æ®µæ˜¯å¦é‡å¤
+//ÑéÖ¤×Ö¶ÎÊÇ·ñÖØ¸´
 function CheckReTbF($add,$ecms=0){
 	global $empire,$dbtbpre;
 	$specialf=',oldurl,tmptime,smallurl,newsurl,titlepicl,';
@@ -850,12 +850,12 @@ function CheckReTbF($add,$ecms=0){
 	{
 		printerror("ReF","history.go(-1)");
 	}
-	//ä¿®æ”¹
+	//ĞŞ¸Ä
 	if($ecms==1&&$add[f]==$add[oldf])
 	{
 		return '';
 	}
-	//ä¸»è¡¨
+	//Ö÷±í
 	$s=$empire->query("SHOW FIELDS FROM {$dbtbpre}ecms_".$add[tbname]);
 	$b=0;
 	while($r=$empire->fetch($s))
@@ -870,7 +870,7 @@ function CheckReTbF($add,$ecms=0){
 	{
 		printerror("ReF","history.go(-1)");
 	}
-	//å‰¯è¡¨
+	//¸±±í
 	$s=$empire->query("SHOW FIELDS FROM {$dbtbpre}ecms_".$add[tbname]."_data_1");
 	$b=0;
 	while($r=$empire->fetch($s))
@@ -885,7 +885,7 @@ function CheckReTbF($add,$ecms=0){
 	{
 		printerror("ReF","history.go(-1)");
 	}
-	//ç´¢å¼•è¡¨
+	//Ë÷Òı±í
 	$s=$empire->query("SHOW FIELDS FROM {$dbtbpre}ecms_".$add[tbname]."_index");
 	$b=0;
 	while($r=$empire->fetch($s))
@@ -902,7 +902,7 @@ function CheckReTbF($add,$ecms=0){
 	}
 }
 
-//è¿”å›å­—æ®µç±»å‹
+//·µ»Ø×Ö¶ÎÀàĞÍ
 function ReturnTbFtype($add){
 	if($add[ftype]=="TINYINT"||$add[ftype]=="SMALLINT"||$add[ftype]=="INT"||$add[ftype]=="BIGINT"||$add[ftype]=="FLOAT"||$add[ftype]=="DOUBLE")
 	{
@@ -930,7 +930,7 @@ function ReturnTbFtype($add){
 	{
 		$add[flen]='255';
 	}
-	//å­—æ®µé•¿åº¦
+	//×Ö¶Î³¤¶È
 	if($add[flen])
 	{
 		if($add[ftype]!="TEXT"&&$add[ftype]!="MEDIUMTEXT"&&$add[ftype]!="LONGTEXT"&&$add[ftype]!="DATE"&&$add[ftype]!="DATETIME")
@@ -942,7 +942,7 @@ function ReturnTbFtype($add){
 	return $field;
 }
 
-//å¢åŠ å­—æ®µ
+//Ôö¼Ó×Ö¶Î
 function AddF($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add=DoPostFVar($add);
@@ -952,9 +952,9 @@ function AddF($add,$userid,$username){
 	{
 		printerror("EmptyF","history.go(-1)");
 	}
-	CheckLevel($userid,$username,$classid,"f");//éªŒè¯æƒé™
-	CheckReTbF($add,0);//å­—æ®µæ˜¯å¦é‡å¤
-	//å­˜æ–‡æœ¬
+	CheckLevel($userid,$username,$classid,"f");//ÑéÖ¤È¨ÏŞ
+	CheckReTbF($add,0);//×Ö¶ÎÊÇ·ñÖØ¸´
+	//´æÎÄ±¾
 	if($add[savetxt]==1)
 	{
 		$txtnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsf where savetxt=1 and tid='$tid'");
@@ -963,7 +963,7 @@ function AddF($add,$userid,$username){
 			printerror('ReTxtF','');
 		}
 	}
-	//åˆ†é¡µ
+	//·ÖÒ³
 	if($add['ispage']==1)
 	{
 		$pagenum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsf where ispage=1 and tid='$tid'");
@@ -972,10 +972,10 @@ function AddF($add,$userid,$username){
 			printerror('RePageF','');
 		}
 	}
-	$add[fvalue]=ReturnFvalue($add[fvalue]);//åˆå§‹åŒ–å€¼
-	$field=ReturnTbFtype($add);//è¿”å›å­—æ®µ
-	//ä¿¡æ¯è¡¨æ–°å¢å­—æ®µ
-	if($add[tbdataf]==1)//é™„åŠ è¡¨
+	$add[fvalue]=ReturnFvalue($add[fvalue]);//³õÊ¼»¯Öµ
+	$field=ReturnTbFtype($add);//·µ»Ø×Ö¶Î
+	//ĞÅÏ¢±íĞÂÔö×Ö¶Î
+	if($add[tbdataf]==1)//¸½¼Ó±í
 	{
 		$tbr=$empire->fetch1("select datatbs from {$dbtbpre}enewstable where tid='$tid'");
 		if($tbr['datatbs'])
@@ -985,66 +985,66 @@ function AddF($add,$userid,$username){
 			for($i=1;$i<$count-1;$i++)
 			{
 				$empire->query("alter table {$dbtbpre}ecms_".$tbname."_data_".$dtbr[$i]." add ".$field);
-				if($add[iskey]==1)//ç´¢å¼•
+				if($add[iskey]==1)//Ë÷Òı
 				{
 					$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_data_".$dtbr[$i]." ADD INDEX(".$add[f].")");
 				}
 			}
 		}
-		//å½’æ¡£å‰¯è¡¨
+		//¹éµµ¸±±í
 		$asql=$empire->query("alter table {$dbtbpre}ecms_".$tbname."_doc_data add ".$field);
-		if($add[iskey]==1)//ç´¢å¼•
+		if($add[iskey]==1)//Ë÷Òı
 		{
 			$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_doc_data ADD INDEX(".$add[f].")");
 		}
-		//å®¡æ ¸å‰¯è¡¨
+		//ÉóºË¸±±í
 		$asql=$empire->query("alter table {$dbtbpre}ecms_".$tbname."_check_data add ".$field);
-		if($add[iskey]==1)//ç´¢å¼•
+		if($add[iskey]==1)//Ë÷Òı
 		{
 			$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_check_data ADD INDEX(".$add[f].")");
 		}
 	}
-	else//ä¸»è¡¨
+	else//Ö÷±í
 	{
 		$asql=$empire->query("alter table {$dbtbpre}ecms_".$tbname." add ".$field);
-		if($add[iskey]==1)//ç´¢å¼•
+		if($add[iskey]==1)//Ë÷Òı
 		{
 			$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname." ADD INDEX(".$add[f].")");
 		}
-		//å½’æ¡£ä¸»è¡¨
+		//¹éµµÖ÷±í
 		$asql=$empire->query("alter table {$dbtbpre}ecms_".$tbname."_doc add ".$field);
-		if($add[iskey]==1)//ç´¢å¼•
+		if($add[iskey]==1)//Ë÷Òı
 		{
 			$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_doc ADD INDEX(".$add[f].")");
 		}
-		//å®¡æ ¸ä¸»è¡¨
+		//ÉóºËÖ÷±í
 		$asql=$empire->query("alter table {$dbtbpre}ecms_".$tbname."_check add ".$field);
-		if($add[iskey]==1)//ç´¢å¼•
+		if($add[iskey]==1)//Ë÷Òı
 		{
 			$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_check ADD INDEX(".$add[f].")");
 		}
 	}
-	//é‡‡é›†è¡¨æ–°å¢å­—æ®µ
+	//²É¼¯±íĞÂÔö×Ö¶Î
 	if($add[iscj]==1)
 	{
 		$asql=$empire->query("alter table {$dbtbpre}ecms_infoclass_".$tbname." add zz_".$add[f]." text not null,add z_".$add[f]." varchar(255) not null,add qz_".$add[f]." varchar(255) not null,add save_".$add[f]." varchar(10) not null;");
 		$asql=$empire->query("alter table {$dbtbpre}ecms_infotmp_".$tbname." add ".$field);
 	}
-	//æ›¿æ¢ä»£ç 
+	//Ìæ»»´úÂë
 	$fhtml=GetFform($add[fform],$add[f],$add[fvalue],$add[linkfieldval],$add[fformsize],$add);
 	$cjhtml=GetCjform($add[fform],$add[f]);
 	$qfhtml=GetQFform($add[fform],$add[f],$add[fvalue],$add[fformsize],$add);
 	$sql=$empire->query("insert into {$dbtbpre}enewsf(f,fname,fform,fhtml,fzs,isadd,isshow,iscj,cjhtml,myorder,ftype,flen,dotemp,tid,tbname,savetxt,fvalue,iskey,tobr,dohtml,qfhtml,isonly,linkfieldval,samedata,fformsize,tbdataf,ispage,adddofun,editdofun,qadddofun,qeditdofun,linkfieldtb,linkfieldshow,editorys,issmalltext,fmvnum) values('$add[f]','$add[fname]','$add[fform]','".eaddslashes2($fhtml)."','".eaddslashes($add[fzs])."',1,1,$add[iscj],'".eaddslashes2($cjhtml)."',$add[myorder],'$add[ftype]','$add[flen]',1,$tid,'$tbname',$add[savetxt],'".eaddslashes2($add[fvalue])."',$add[iskey],$add[tobr],$add[dohtml],'".eaddslashes2($qfhtml)."','$add[isonly]','".eaddslashes($add[linkfieldval])."','$add[samedata]','$add[fformsize]','$add[tbdataf]','$add[ispage]','$add[adddofun]','$add[editdofun]','$add[qadddofun]','$add[qeditdofun]','$add[linkfieldtb]','$add[linkfieldshow]','$add[editorys]','$add[issmalltext]','$add[fmvnum]');");
 	$lastid=$empire->lastid();
-	TogSaveTxtF(1);//å…¬å…±å˜é‡
-	if($add[savetxt]==1&&$add[iscj]==1)//å­˜æ”¾æ–‡æœ¬
+	TogSaveTxtF(1);//¹«¹²±äÁ¿
+	if($add[savetxt]==1&&$add[iscj]==1)//´æ·ÅÎÄ±¾
 	{
 		$tmpsql=$empire->query("alter table {$dbtbpre}ecms_infotmp_".$tbname." change ".$add[f]." ".$add[f]." mediumtext not null;");
 	}
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql)
 	{
-		insert_dolog("fid=".$lastid."<br>f=".$add[f]);//æ“ä½œæ—¥å¿—
+		insert_dolog("fid=".$lastid."<br>f=".$add[f]);//²Ù×÷ÈÕÖ¾
 		printerror("AddFSuccess","db/AddF.php?enews=AddF&tid=$tid&tbname=$tbname".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -1053,7 +1053,7 @@ function AddF($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹æ•°æ®åº“å­—æ®µ
+//ĞŞ¸ÄÊı¾İ¿â×Ö¶Î
 function EditF($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add=DoPostFVar($add);
@@ -1064,15 +1064,15 @@ function EditF($add,$userid,$username){
 	{
 		printerror("EmptyF","history.go(-1)");
 	}
-	CheckLevel($userid,$username,$classid,"f");//éªŒè¯æƒé™
-	//æ˜¯å¦ç³»ç»Ÿå†…éƒ¨å­—æ®µ
+	CheckLevel($userid,$username,$classid,"f");//ÑéÖ¤È¨ÏŞ
+	//ÊÇ·ñÏµÍ³ÄÚ²¿×Ö¶Î
 	$cr=$empire->fetch1("select * from {$dbtbpre}enewsf where fid='$add[fid]'");
 	if(empty($cr[isadd]))
 	{
 		printerror("NotIsAdd","history.go(-1)");
 	}
-	CheckReTbF($add,1);//å­—æ®µæ˜¯å¦é‡å¤
-	//å­˜æ–‡æœ¬
+	CheckReTbF($add,1);//×Ö¶ÎÊÇ·ñÖØ¸´
+	//´æÎÄ±¾
 	if($add[savetxt]==1&&!$cr[savetxt])
 	{
 		$txtnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsf where savetxt=1 and fid<>".$add[fid]." and tid='$tid'");
@@ -1081,7 +1081,7 @@ function EditF($add,$userid,$username){
 			printerror('ReTxtF','');
 		}
 	}
-	//åˆ†é¡µ
+	//·ÖÒ³
 	if($add['ispage']==1&&!$cr[ispage])
 	{
 		$pagenum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsf where ispage=1 and fid<>".$add[fid]." and tid='$tid'");
@@ -1090,13 +1090,13 @@ function EditF($add,$userid,$username){
 			printerror('RePageF','');
 		}
 	}
-	$add[fvalue]=ReturnFvalue($add[fvalue]);//åˆå§‹åŒ–å€¼
-	//æ”¹å˜å­—æ®µ
+	$add[fvalue]=ReturnFvalue($add[fvalue]);//³õÊ¼»¯Öµ
+	//¸Ä±ä×Ö¶Î
 	if($cr[f]<>$add[f]||$add[iskey]<>$cr[iskey]||$cr[iscj]<>$add[iscj]||$cr[ftype]<>$add[ftype]||$cr[flen]<>$add[flen])
 	{
-		$field=ReturnTbFtype($add);//è¿”å›å­—æ®µ
-		//ä¿¡æ¯è¡¨
-		if($cr[tbdataf]==1)//é™„åŠ è¡¨
+		$field=ReturnTbFtype($add);//·µ»Ø×Ö¶Î
+		//ĞÅÏ¢±í
+		if($cr[tbdataf]==1)//¸½¼Ó±í
 		{
 			$tbr=$empire->fetch1("select datatbs from {$dbtbpre}enewstable where tid='$tid'");
 			if($tbr['datatbs'])
@@ -1106,88 +1106,88 @@ function EditF($add,$userid,$username){
 				for($i=1;$i<$count-1;$i++)
 				{
 					$empire->query("alter table {$dbtbpre}ecms_".$tbname."_data_".$dtbr[$i]." change ".$add[oldf]." ".$field);
-					if($add[iskey]==1)//ç´¢å¼•
+					if($add[iskey]==1)//Ë÷Òı
 					{
 						if($cr[iskey]==0)
 						{
 							$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_data_".$dtbr[$i]." ADD INDEX(".$add[f].")");
 						}
 					}
-					elseif($cr[iskey]==1&&$add[iskey]==0)//åˆ é™¤ç´¢å¼•
+					elseif($cr[iskey]==1&&$add[iskey]==0)//É¾³ıË÷Òı
 					{
 						$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_data_".$dtbr[$i]." DROP INDEX ".$add[oldf]);
 					}
 				}
 			}
-			//å½’æ¡£å‰¯è¡¨
+			//¹éµµ¸±±í
 			$usql=$empire->query("alter table {$dbtbpre}ecms_".$tbname."_doc_data change ".$add[oldf]." ".$field);
-			if($add[iskey]==1)//ç´¢å¼•
+			if($add[iskey]==1)//Ë÷Òı
 			{
 				if($cr[iskey]==0)
 				{
 					$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_doc_data ADD INDEX(".$add[f].")");
 				}
 			}
-			elseif($cr[iskey]==1&&$add[iskey]==0)//åˆ é™¤ç´¢å¼•
+			elseif($cr[iskey]==1&&$add[iskey]==0)//É¾³ıË÷Òı
 			{
 				$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_doc_data DROP INDEX ".$add[oldf]);
 			}
-			//å®¡æ ¸å‰¯è¡¨
+			//ÉóºË¸±±í
 			$usql=$empire->query("alter table {$dbtbpre}ecms_".$tbname."_check_data change ".$add[oldf]." ".$field);
-			if($add[iskey]==1)//ç´¢å¼•
+			if($add[iskey]==1)//Ë÷Òı
 			{
 				if($cr[iskey]==0)
 				{
 					$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_check_data ADD INDEX(".$add[f].")");
 				}
 			}
-			elseif($cr[iskey]==1&&$add[iskey]==0)//åˆ é™¤ç´¢å¼•
+			elseif($cr[iskey]==1&&$add[iskey]==0)//É¾³ıË÷Òı
 			{
 				$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_check_data DROP INDEX ".$add[oldf]);
 			}
 		}
-		else//ä¸»è¡¨
+		else//Ö÷±í
 		{
 			$usql=$empire->query("alter table {$dbtbpre}ecms_".$tbname." change ".$add[oldf]." ".$field);
-			if($add[iskey]==1)//ç´¢å¼•
+			if($add[iskey]==1)//Ë÷Òı
 			{
 				if($cr[iskey]==0)
 				{
 					$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname." ADD INDEX(".$add[f].")");
 				}
 			}
-			elseif($cr[iskey]==1&&$add[iskey]==0)//åˆ é™¤ç´¢å¼•
+			elseif($cr[iskey]==1&&$add[iskey]==0)//É¾³ıË÷Òı
 			{
 				$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname." DROP INDEX ".$add[oldf]);
 			}
-			//å½’æ¡£ä¸»è¡¨
+			//¹éµµÖ÷±í
 			$usql=$empire->query("alter table {$dbtbpre}ecms_".$tbname."_doc change ".$add[oldf]." ".$field);
-			if($add[iskey]==1)//ç´¢å¼•
+			if($add[iskey]==1)//Ë÷Òı
 			{
 				if($cr[iskey]==0)
 				{
 					$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_doc ADD INDEX(".$add[f].")");
 				}
 			}
-			elseif($cr[iskey]==1&&$add[iskey]==0)//åˆ é™¤ç´¢å¼•
+			elseif($cr[iskey]==1&&$add[iskey]==0)//É¾³ıË÷Òı
 			{
 				$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_doc DROP INDEX ".$add[oldf]);
 			}
-			//å®¡æ ¸ä¸»è¡¨
+			//ÉóºËÖ÷±í
 			$usql=$empire->query("alter table {$dbtbpre}ecms_".$tbname."_check change ".$add[oldf]." ".$field);
-			if($add[iskey]==1)//ç´¢å¼•
+			if($add[iskey]==1)//Ë÷Òı
 			{
 				if($cr[iskey]==0)
 				{
 					$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_check ADD INDEX(".$add[f].")");
 				}
 			}
-			elseif($cr[iskey]==1&&$add[iskey]==0)//åˆ é™¤ç´¢å¼•
+			elseif($cr[iskey]==1&&$add[iskey]==0)//É¾³ıË÷Òı
 			{
 				$keysql=$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_check DROP INDEX ".$add[oldf]);
 			}
 		}
-		//é‡‡é›†è¡¨
+		//²É¼¯±í
 		if($add[iscj]==1)
 		{
 			if($cr[iscj]==1)
@@ -1207,7 +1207,7 @@ function EditF($add,$userid,$username){
 			$empire->query("alter table {$dbtbpre}ecms_infoclass_".$tbname." drop COLUMN zz_".$cr[f].",drop COLUMN z_".$cr[f].",drop COLUMN qz_".$cr[f].",drop COLUMN save_".$cr[f]);
 		}
 	}
-	//æ›¿æ¢ä»£ç 
+	//Ìæ»»´úÂë
 	if($add[f]<>$cr[f]||$add[fform]<>$cr[fform]||$add[fvalue]<>$add[oldfvalue]||$cr[linkfieldtb]<>$add[linkfieldtb]||$cr[linkfieldshow]<>$add[linkfieldshow]||$cr[editorys]<>$add[editorys]||$add[linkfieldval]<>$cr[linkfieldval]||$add[fformsize]<>$cr[fformsize]||$add[fmvnum]<>$cr[fmvnum])
 	{
 		$fhtml=GetFform($add[fform],$add[f],$add[fvalue],$add[linkfieldval],$add[fformsize],$add);
@@ -1226,12 +1226,12 @@ function EditF($add,$userid,$username){
 		$qfhtml=$add[qfhtml];
 	}
 	$sql=$empire->query("update {$dbtbpre}enewsf set f='$add[f]',fname='$add[fname]',fform='$add[fform]',fhtml='".eaddslashes2($fhtml)."',fzs='".eaddslashes($add[fzs])."',iscj=$add[iscj],cjhtml='".eaddslashes2($cjhtml)."',myorder=$add[myorder],ftype='$add[ftype]',flen='$add[flen]',fvalue='".eaddslashes2($add[fvalue])."',iskey=$add[iskey],tobr=$add[tobr],dohtml=$add[dohtml],qfhtml='".eaddslashes2($qfhtml)."',isonly='$add[isonly]',linkfieldval='$add[linkfieldval]',samedata='$add[samedata]',fformsize='$add[fformsize]',ispage='$add[ispage]',adddofun='$add[adddofun]',editdofun='$add[editdofun]',qadddofun='$add[qadddofun]',qeditdofun='$add[qeditdofun]',linkfieldtb='$add[linkfieldtb]',linkfieldshow='$add[linkfieldshow]',editorys='$add[editorys]',issmalltext='$add[issmalltext]',fmvnum='$add[fmvnum]' where fid='$add[fid]'");
-	TogSaveTxtF(1);//å…¬å…±å˜é‡
+	TogSaveTxtF(1);//¹«¹²±äÁ¿
 	if($add[savetxt]==1&&$add[iscj]==1)
 	{
 		$tmpsql=$empire->query("alter table {$dbtbpre}ecms_infotmp_".$tbname." change ".$add[f]." ".$add[f]." mediumtext not null;");
 	}
-	//æ›´æ–°è¡¨å•
+	//¸üĞÂ±íµ¥
 	$record="<!--record-->";
     $field="<!--field--->";
 	$like=$field.$add[oldf].$record;
@@ -1245,80 +1245,80 @@ function EditF($add,$userid,$username){
 		$enter=$fr['enter'];
 		if($add[f]<>$add[oldf])
 		{
-			//é‡‡é›†é¡¹
+			//²É¼¯Ïî
 			if(strstr($fr[cj],$like))
 			{
 				$cj=str_replace($like,$newlike,$fr[cj]);
 				$and=",cj='$cj'";
 				ChangeMCj($fr[mid],$fr[tid],$cj);
 			}
-			//å½•å…¥é¡¹
+			//Â¼ÈëÏî
 			if(strstr($fr[enter],$like))
 			{
 				$enter=str_replace($like,$newlike,$fr[enter]);
 				$and.=",enter='$enter'";
 			}
-			//æŠ•ç¨¿é¡¹
+			//Í¶¸åÏî
 			if(strstr($fr[qenter],$like))
 			{
 				$qenter=str_replace($like,$newlike,$fr[qenter]);
 				$and.=",qenter='$qenter'";
 			}
-			//å†…å®¹æ¨¡æ¿é¡¹
+			//ÄÚÈİÄ£°åÏî
 			if(strstr($fr[tempvar],$like))
 			{
 				$tempvar=str_replace($like,$newlike,$fr[tempvar]);
 				$and.=",tempvar='$tempvar'";
 			}
-			//åˆ—è¡¨æ¨¡æ¿é¡¹
+			//ÁĞ±íÄ£°åÏî
 			if(strstr($fr[listtempvar],$like))
 			{
 				$listtempvar=str_replace($like,$newlike,$fr[listtempvar]);
 				$and.=",listtempvar='$listtempvar'";
 			}
-			//æœç´¢é¡¹
+			//ËÑË÷Ïî
 			if(strstr($fr[searchvar],$slike))
 			{
 				$searchvar=str_replace($slike,$newslike,$fr[searchvar]);
 				$and.=",searchvar='$searchvar'";
 			}
-			//å¿…å¡«é¡¹
+			//±ØÌîÏî
 			if(strstr($fr[mustqenterf],$slike))
 			{
 				$mustqenterf=str_replace($slike,$newslike,$fr[mustqenterf]);
 				$and.=",mustqenterf='$mustqenterf'";
 			}
-			//ç»“åˆé¡¹
+			//½áºÏÏî
 			if(strstr($fr[listandf],$slike))
 			{
 				$listandf=str_replace($slike,$newslike,$fr[listandf]);
 				$and.=",listandf='$listandf'";
 			}
-			//æ’åºé¡¹
+			//ÅÅĞòÏî
 			if(strstr($fr[orderf],$slike))
 			{
 				$orderf=str_replace($slike,$newslike,$fr[orderf]);
 				$and.=",orderf='$orderf'";
 			}
-			//å¯ä¿®æ”¹
+			//¿ÉĞŞ¸Ä
 			if(strstr($fr[caneditf],$slike))
 			{
 				$caneditf=str_replace($slike,$newslike,$fr[caneditf]);
 				$and.=",caneditf='$caneditf'";
 			}
-			//å¯å¢åŠ 
+			//¿ÉÔö¼Ó
 			if(strstr($fr[canaddf],$slike))
 			{
 				$canaddf=str_replace($slike,$newslike,$fr[canaddf]);
 				$and.=",canaddf='$canaddf'";
 			}
-			//è¡¨å•æ¨¡æ¿
+			//±íµ¥Ä£°å
 			if(strstr($fr[mtemp],'[!--'.$add[oldf].'--]'))
 			{
 				$fr[mtemp]=str_replace('[!--'.$add[oldf].'--]','[!--'.$add[f].'--]',$fr[mtemp]);
 				$and.=",mtemp='".addslashes(stripSlashes($fr[mtemp]))."'";
 			}
-			//æŠ•ç¨¿è¡¨å•æ¨¡æ¿
+			//Í¶¸å±íµ¥Ä£°å
 			if(strstr($fr[qmtemp],'[!--'.$add[oldf].'--]'))
 			{
 				$fr[qmtemp]=str_replace('[!--'.$add[oldf].'--]','[!--'.$add[f].'--]',$fr[qmtemp]);
@@ -1332,17 +1332,17 @@ function EditF($add,$userid,$username){
 		ChangeMForm($fr[mid],$fr[tid],$fr[mtemp]);
 		ChangeQmForm($fr[mid],$fr[tid],$fr[qmtemp]);
 	}
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql)
 	{
-		insert_dolog("fid=".$add[fid]."<br>f=".$add[f]);//æ“ä½œæ—¥å¿—
+		insert_dolog("fid=".$add[fid]."<br>f=".$add[f]);//²Ù×÷ÈÕÖ¾
 		printerror("EditFSuccess","db/ListF.php?tid=$tid&tbname=$tbname".hReturnEcmsHashStrHref2(0));
 	}
 	else
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹æ•°æ®è¡¨ç³»ç»Ÿå­—æ®µ
+//ĞŞ¸ÄÊı¾İ±íÏµÍ³×Ö¶Î
 function EditSysF($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$add['tid'];
@@ -1353,7 +1353,7 @@ function EditSysF($add,$userid,$username){
 	{
 		printerror("EmptyF","history.go(-1)");
 	}
-	CheckLevel($userid,$username,$classid,"f");//éªŒè¯æƒé™
+	CheckLevel($userid,$username,$classid,"f");//ÑéÖ¤È¨ÏŞ
 	$add['fname']=hRepPostStr($add['fname'],1);
 	$add['fform']=hRepPostStr($add['fform'],1);
 	$add['fzs']=hRepPostStr($add['fzs'],1);
@@ -1369,29 +1369,29 @@ function EditSysF($add,$userid,$username){
 	$add['linkfieldshow']=hRepPostStr($add['linkfieldshow'],1);
 	$add['fmvnum']=hRepPostStr($add['fmvnum'],1);
 	$add[samedata]=(int)$add[samedata];
-	//å­—æ®µ
+	//×Ö¶Î
 	$addupdate='';
 	if($f=='title'||$f=='titlepic')
 	{
 		if(!empty($add['flen']))
 		{
 			$field=$f." ".$add['ftype']."(".$add['flen'].") NOT NULL default ''";
-			//ä¿¡æ¯è¡¨
+			//ĞÅÏ¢±í
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname." change ".$f." ".$field);
-			//å½’æ¡£è¡¨
+			//¹éµµ±í
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname."_doc change ".$f." ".$field);
-			//å®¡æ ¸è¡¨
+			//ÉóºË±í
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname."_check change ".$f." ".$field);
-			//é‡‡é›†ä¸´æ—¶è¡¨
+			//²É¼¯ÁÙÊ±±í
 			$empire->query("alter table {$dbtbpre}ecms_infotmp_".$tbname." change ".$f." ".$field);
 		}
 		$addupdate=",ftype='$add[ftype]'";
 	}
-	//ç´¢å¼•
+	//Ë÷Òı
 	$iskey=(int)$add['iskey'];
 	if($f=='title'||$f=='titlepic')
 	{
-		if($iskey==1)//ç´¢å¼•
+		if($iskey==1)//Ë÷Òı
 		{
 			if($add['oldiskey']==0)
 			{
@@ -1400,17 +1400,17 @@ function EditSysF($add,$userid,$username){
 				$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_check ADD INDEX(".$f.")");
 			}
 		}
-		elseif($add['oldiskey']==1&&$iskey==0)//åˆ é™¤ç´¢å¼•
+		elseif($add['oldiskey']==1&&$iskey==0)//É¾³ıË÷Òı
 		{
 			$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname." DROP INDEX ".$f);
 			$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_doc DROP INDEX ".$f);
 			$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_check DROP INDEX ".$f);
 		}
 	}
-	//å¤„ç†å˜é‡
+	//´¦Àí±äÁ¿
 	$add[isonly]=(int)$add[isonly];
 	$add[myorder]=(int)$add[myorder];
-	//æ›¿æ¢ä»£ç 
+	//Ìæ»»´úÂë
 	if($add[fform]<>$add[oldfform]||$add[fvalue]<>$add[oldfvalue]||$add[oldlinkfieldtb]<>$add[linkfieldtb]||$add[oldlinkfieldshow]<>$add[linkfieldshow]||$add[linkfieldval]<>$add[oldlinkfieldval]||$add[fformsize]<>$add[oldfformsize])
 	{
 		$fhtml=GetFform($add[fform],$add[f],$add[fvalue],$add[linkfieldval],$add[fformsize],$add);
@@ -1428,18 +1428,18 @@ function EditSysF($add,$userid,$username){
 		$qfhtml=$add[qfhtml];
 	}
 	$sql=$empire->query("update {$dbtbpre}enewsf set fname='$add[fname]',fform='$add[fform]',fhtml='".eaddslashes2($fhtml)."',fzs='".eaddslashes($add[fzs])."',myorder=$add[myorder],flen='$add[flen]',fvalue='".eaddslashes2($add[fvalue])."',iskey=$iskey,qfhtml='".eaddslashes2($qfhtml)."',isonly='$add[isonly]',linkfieldval='$add[linkfieldval]',samedata='$add[samedata]',fformsize='$add[fformsize]',adddofun='$add[adddofun]',editdofun='$add[editdofun]',qadddofun='$add[qadddofun]',qeditdofun='$add[qeditdofun]',linkfieldtb='$add[linkfieldtb]',linkfieldshow='$add[linkfieldshow]'".$addupdate." where fid='$fid'");
-	TogSaveTxtF(1);//å…¬å…±å˜é‡
-	//æ›´æ–°è¡¨å•
+	TogSaveTxtF(1);//¹«¹²±äÁ¿
+	//¸üĞÂ±íµ¥
 	$fsql=$empire->query("select mid,mtemp,tid,qmtemp from {$dbtbpre}enewsmod where tid='$tid'");
 	while($fr=$empire->fetch($fsql))
 	{
 		ChangeMForm($fr[mid],$fr[tid],$fr[mtemp]);
 		ChangeQmForm($fr[mid],$fr[tid],$fr[qmtemp]);
 	}
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql)
 	{
-		insert_dolog("fid=".$fid."<br>f=".$f);//æ“ä½œæ—¥å¿—
+		insert_dolog("fid=".$fid."<br>f=".$f);//²Ù×÷ÈÕÖ¾
 		printerror("EditFSuccess","db/EditSysF.php?tid=$tid&tbname=$tbname&fid=$fid".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -1448,7 +1448,7 @@ function EditSysF($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤æ•°æ®åº“å­—æ®µ
+//É¾³ıÊı¾İ¿â×Ö¶Î
 function DelF($fid,$tid,$tbname,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$tid;
@@ -1458,14 +1458,14 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 	{
 		printerror("EmptyFid","history.go(-1)");
 	}
-	CheckLevel($userid,$username,$classid,"f");//éªŒè¯æƒé™
-	//æ˜¯å¦ç³»ç»Ÿå†…éƒ¨å­—æ®µ
+	CheckLevel($userid,$username,$classid,"f");//ÑéÖ¤È¨ÏŞ
+	//ÊÇ·ñÏµÍ³ÄÚ²¿×Ö¶Î
 	$cr=$empire->fetch1("select isadd,f,tbdataf,iscj from {$dbtbpre}enewsf where fid='$fid'");
 	if(empty($cr[isadd]))
 	{
 		printerror("NotIsAdd","history.go(-1)");
 	}
-	//åˆ é™¤è¡¨å­—æ®µ
+	//É¾³ı±í×Ö¶Î
 	if($cr['tbdataf']==1)
 	{
 		$tbr=$empire->fetch1("select datatbs from {$dbtbpre}enewstable where tid='$tid'");
@@ -1478,9 +1478,9 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 				$empire->query("alter table {$dbtbpre}ecms_".$tbname."_data_".$dtbr[$i]." drop COLUMN ".$cr[f]);
 			}
 		}
-		//å½’æ¡£å‰¯è¡¨
+		//¹éµµ¸±±í
 		$empire->query("alter table {$dbtbpre}ecms_".$tbname."_doc_data drop COLUMN ".$cr[f]);
-		//å®¡æ ¸å‰¯è¡¨
+		//ÉóºË¸±±í
 		$empire->query("alter table {$dbtbpre}ecms_".$tbname."_check_data drop COLUMN ".$cr[f]);
 	}
 	else
@@ -1489,15 +1489,15 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 		$usql=$empire->query("alter table {$dbtbpre}ecms_".$tbname."_doc drop COLUMN ".$cr[f]);
 		$usql=$empire->query("alter table {$dbtbpre}ecms_".$tbname."_check drop COLUMN ".$cr[f]);
 	}
-	//é‡‡é›†è¡¨å­—æ®µ
+	//²É¼¯±í×Ö¶Î
 	if($cr[iscj]==1)
 	{
 		$usql=$empire->query("alter table {$dbtbpre}ecms_infotmp_".$tbname." drop COLUMN ".$cr[f]);
 		$usql=$empire->query("alter table {$dbtbpre}ecms_infoclass_".$tbname." drop COLUMN zz_".$cr[f].",drop COLUMN z_".$cr[f].",drop COLUMN qz_".$cr[f].",drop COLUMN save_".$cr[f]);
 	}
 	$sql=$empire->query("delete from {$dbtbpre}enewsf where fid='$fid'");
-	TogSaveTxtF(1);//å…¬å…±å˜é‡
-	//åˆ é™¤æ¨¡å‹ä¸­å­—æ®µé¡¹
+	TogSaveTxtF(1);//¹«¹²±äÁ¿
+	//É¾³ıÄ£ĞÍÖĞ×Ö¶ÎÏî
 	$record="<!--record-->";
 	$field="<!--field--->";
 	$like=$field.$cr[f].$record;
@@ -1520,7 +1520,7 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 		$re1="";
 		$and="";
 		$dh="";
-		//é‡‡é›†
+		//²É¼¯
 		if(strstr($r[cj],$like))
 		{
 			$re=explode($record,$r[cj]);
@@ -1530,12 +1530,12 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 				{continue;}
 				$cj.=$re[$i].$record;
 			}
-			//æ›´æ–°é‡‡é›†è¡¨å•
+			//¸üĞÂ²É¼¯±íµ¥
 			ChangeMCj($r[mid],$r[tid],$cj);
 			$and="cj='$cj'";
 		}
 		$dh="";
-		//å½•å…¥è¡¨å•
+		//Â¼Èë±íµ¥
 		if(strstr($r[enter],$like))
 		{
 			$re1=explode($record,$r[enter]);
@@ -1550,7 +1550,7 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 			$and.=$dh."enter='$enter'";
 	    }
 		$dh="";
-		//æŠ•ç¨¿è¡¨å•
+		//Í¶¸å±íµ¥
 		if(strstr($r[qenter],$like))
 		{
 			$re1=explode($record,$r[qenter]);
@@ -1565,7 +1565,7 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 			$and.=$dh."qenter='$qenter'";
 	    }
 		$dh="";
-		//å†…å®¹æ¨¡æ¿å˜é‡
+		//ÄÚÈİÄ£°å±äÁ¿
 		if(strstr($r[tempvar],$like))
 		{
 			$re1=explode($record,$r[tempvar]);
@@ -1580,7 +1580,7 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 			$and.=$dh."tempvar='$tempvar'";
 	    }
 		$dh="";
-		//åˆ—è¡¨æ¨¡æ¿å˜é‡
+		//ÁĞ±íÄ£°å±äÁ¿
 		if(strstr($r[listtempvar],$like))
 		{
 			$re1=explode($record,$r[listtempvar]);
@@ -1595,7 +1595,7 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 			$and.=$dh."listtempvar='$listtempvar'";
 	    }
 		$dh="";
-		//æœç´¢å˜é‡
+		//ËÑË÷±äÁ¿
 		if(strstr($r[searchvar],$slike))
 		{
 			if(!empty($and))
@@ -1603,7 +1603,7 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 			$searchvar=str_replace($slike,",",$r[searchvar]);
 		    $and.=$dh."searchvar='$searchvar'";
 		}
-		//å¿…å¡«é¡¹
+		//±ØÌîÏî
 		$dh="";
 		if(strstr($r[mustqenterf],$slike))
 		{
@@ -1612,7 +1612,7 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 			$mustqenterf=str_replace($slike,",",$r[mustqenterf]);
 		    $and.=$dh."mustqenterf='$mustqenterf'";
 		}
-		//å¯å¢å¯ä¿®æ”¹é¡¹
+		//¿ÉÔö¿ÉĞŞ¸ÄÏî
 		$dh="";
 		if(strstr($r[canaddf],$slike))
 		{
@@ -1629,7 +1629,7 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 			$caneditf=str_replace($slike,",",$r[caneditf]);
 		    $and.=$dh."caneditf='$caneditf'";
 		}
-		//ç»“åˆé¡¹
+		//½áºÏÏî
 		$dh="";
 		if(strstr($r[listandf],$slike))
 		{
@@ -1638,7 +1638,7 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 			$listandf=str_replace($slike,",",$r[listandf]);
 		    $and.=$dh."listandf='$listandf'";
 		}
-		//æ’åºé¡¹
+		//ÅÅĞòÏî
 		$dh="";
 		if(strstr($r[orderf],$slike))
 		{
@@ -1652,10 +1652,10 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 			$empire->query("update {$dbtbpre}enewsmod set ".$and." where mid='$r[mid]'");
 		}
     }
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
     if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("fid=".$fid."<br>f=".$cr[f]);
 		printerror("DelFSuccess","db/ListF.php?tid=$tid&tbname=$tbname".hReturnEcmsHashStrHref2(0));
 	}
@@ -1663,12 +1663,12 @@ function DelF($fid,$tid,$tbname,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹å­—æ®µé¡ºåº
+//ĞŞ¸Ä×Ö¶ÎË³Ğò
 function EditFOrder($fid,$myorder,$tid,$tbname,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$tid;
 	$tbname=RepPostVar($tbname);
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"f");
 	for($i=0;$i<count($myorder);$i++)
 	{
@@ -1679,10 +1679,10 @@ function EditFOrder($fid,$myorder,$tid,$tbname,$userid,$username){
 	printerror("EditFOrderSuccess","db/ListF.php?tid=$tid&tbname=$tbname".hReturnEcmsHashStrHref2(0));
 }
 
-//è½¬ç§»å­—æ®µ
+//×ªÒÆ×Ö¶Î
 function ChangeDataTableF($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$fun_r;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"f");
 	$fid=(int)$add[fid];
 	$tid=(int)$add[tid];
@@ -1709,31 +1709,31 @@ function ChangeDataTableF($add,$userid,$username){
 	$tid=$fr[tid];
 	$tbname=$fr[tbname];
 	$f=$fr[f];
-	//å»ºå­—æ®µ
+	//½¨×Ö¶Î
 	if(empty($start))
 	{
-		$field=ReturnTbFtype($fr);//è¿”å›å­—æ®µ
-		if($fr[tbdataf])//è½¬ç§»åˆ°ä¸»è¡¨
+		$field=ReturnTbFtype($fr);//·µ»Ø×Ö¶Î
+		if($fr[tbdataf])//×ªÒÆµ½Ö÷±í
 		{
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname." add ".$field);
-			if($fr[iskey]==1)//ç´¢å¼•
+			if($fr[iskey]==1)//Ë÷Òı
 			{
 				$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname." ADD INDEX(".$fr[f].")");
 			}
-			//å½’æ¡£ä¸»è¡¨
+			//¹éµµÖ÷±í
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname."_doc add ".$field);
-			if($fr[iskey]==1)//ç´¢å¼•
+			if($fr[iskey]==1)//Ë÷Òı
 			{
 				$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_doc ADD INDEX(".$fr[f].")");
 			}
-			//å®¡æ ¸ä¸»è¡¨
+			//ÉóºËÖ÷±í
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname."_check add ".$field);
-			if($fr[iskey]==1)//ç´¢å¼•
+			if($fr[iskey]==1)//Ë÷Òı
 			{
 				$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_check ADD INDEX(".$fr[f].")");
 			}
 		}
-		else//è½¬ç§»åˆ°å‰¯è¡¨
+		else//×ªÒÆµ½¸±±í
 		{
 			$tbr=$empire->fetch1("select datatbs from {$dbtbpre}enewstable where tid='$tid'");
 			if($tbr['datatbs'])
@@ -1743,21 +1743,21 @@ function ChangeDataTableF($add,$userid,$username){
 				for($i=1;$i<$count-1;$i++)
 				{
 					$empire->query("alter table {$dbtbpre}ecms_".$tbname."_data_".$dtbr[$i]." add ".$field);
-					if($fr[iskey]==1)//ç´¢å¼•
+					if($fr[iskey]==1)//Ë÷Òı
 					{
 						$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_data_".$dtbr[$i]." ADD INDEX(".$fr[f].")");
 					}
 				}
 			}
-			//å½’æ¡£å‰¯è¡¨
+			//¹éµµ¸±±í
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname."_doc_data add ".$field);
-			if($fr[iskey]==1)//ç´¢å¼•
+			if($fr[iskey]==1)//Ë÷Òı
 			{
 				$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_doc_data ADD INDEX(".$fr[f].")");
 			}
-			//å®¡æ ¸å‰¯è¡¨
+			//ÉóºË¸±±í
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname."_check_data add ".$field);
-			if($fr[iskey]==1)//ç´¢å¼•
+			if($fr[iskey]==1)//Ë÷Òı
 			{
 				$empire->query("ALTER TABLE {$dbtbpre}ecms_".$tbname."_check_data ADD INDEX(".$fr[f].")");
 			}
@@ -1774,17 +1774,17 @@ function ChangeDataTableF($add,$userid,$username){
 	{
 		$b=1;
 		$newstart=$r['id'];
-		//è¡¨å
+		//±íÃû
 		$infotb=ReturnInfoMainTbname($tbname,$r['checked']);
 		$infor=$empire->fetch1("select stb".$selectf." from ".$infotb." where id='$r[id]'");
 		$infodatatb=ReturnInfoDataTbname($tbname,$r['checked'],$infor['stb']);
-		if($fr[tbdataf])//å‰¯è¡¨
+		if($fr[tbdataf])//¸±±í
 		{
 			$finfor=$empire->fetch1("select ".$f." from ".$infodatatb." where id='$r[id]'");
 			$value=$finfor[$f];
 			$empire->query("update ".$infotb." set ".$f."='".StripAddsData($value)."' where id='$r[id]'");
 		}
-		else//ä¸»è¡¨
+		else//Ö÷±í
 		{
 			$value=$infor[$f];
 			$empire->query("update ".$infodatatb." set ".$f."='".StripAddsData($value)."' where id='$r[id]'");
@@ -1799,10 +1799,10 @@ function ChangeDataTableF($add,$userid,$username){
 	exit();
 }
 
-//è½¬ç§»å­—æ®µ(å½’æ¡£)
+//×ªÒÆ×Ö¶Î(¹éµµ)
 function ChangeDocDataTableF($add,$userid,$username){
 	global $empire,$dbtbpre,$public_r,$fun_r;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"f");
 	$fid=(int)$add[fid];
 	$tid=(int)$add[tid];
@@ -1840,13 +1840,13 @@ function ChangeDocDataTableF($add,$userid,$username){
 	{
 		$b=1;
 		$newstart=$r['id'];
-		if($fr[tbdataf])//å‰¯è¡¨
+		if($fr[tbdataf])//¸±±í
 		{
 			$finfor=$empire->fetch1("select ".$f." from {$dbtbpre}ecms_".$tbname."_doc_data where id='$r[id]'");
 			$value=$finfor[$f];
 			$empire->query("update {$dbtbpre}ecms_".$tbname."_doc set ".$f."='".StripAddsData($value)."' where id='$r[id]'");
 		}
-		else//ä¸»è¡¨
+		else//Ö÷±í
 		{
 			$value=$r[$f];
 			$empire->query("update {$dbtbpre}ecms_".$tbname."_doc_data set ".$f."='".StripAddsData($value)."' where id='$r[id]'");
@@ -1854,8 +1854,8 @@ function ChangeDocDataTableF($add,$userid,$username){
 	}
 	if(empty($b))
 	{
-		//åˆ é™¤å­—æ®µ
-		if($fr[tbdataf])//è½¬ç§»åˆ°ä¸»è¡¨
+		//É¾³ı×Ö¶Î
+		if($fr[tbdataf])//×ªÒÆµ½Ö÷±í
 		{
 			$tbr=$empire->fetch1("select datatbs from {$dbtbpre}enewstable where tid='$tid'");
 			if($tbr['datatbs'])
@@ -1867,12 +1867,12 @@ function ChangeDocDataTableF($add,$userid,$username){
 					$empire->query("alter table {$dbtbpre}ecms_".$tbname."_data_".$dtbr[$i]." drop COLUMN ".$fr[f]);
 				}
 			}
-			//å½’æ¡£å‰¯è¡¨
+			//¹éµµ¸±±í
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname."_doc_data drop COLUMN ".$fr[f]);
-			//å®¡æ ¸å‰¯è¡¨
+			//ÉóºË¸±±í
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname."_check_data drop COLUMN ".$fr[f]);
 		}
-		else//è½¬ç§»åˆ°å‰¯è¡¨
+		else//×ªÒÆµ½¸±±í
 		{
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname." drop COLUMN ".$fr[f]);
 			$empire->query("alter table {$dbtbpre}ecms_".$tbname."_doc drop COLUMN ".$fr[f]);
@@ -1880,7 +1880,7 @@ function ChangeDocDataTableF($add,$userid,$username){
 		}
 		$newtbdataf=$fr[tbdataf]?0:1;
 		$empire->query("update {$dbtbpre}enewsf set tbdataf='$newtbdataf' where fid='$fid'");
-		//åˆ é™¤æ¨¡å‹ä¸­å­—æ®µé¡¹
+		//É¾³ıÄ£ĞÍÖĞ×Ö¶ÎÏî
 		if(empty($tbr['datatbs']))
 		{
 			$record="<!--record-->";
@@ -1898,7 +1898,7 @@ function ChangeDocDataTableF($add,$userid,$username){
 				$re1="";
 				$and="";
 				$dh="";
-				//åˆ—è¡¨æ¨¡æ¿å˜é‡
+				//ÁĞ±íÄ£°å±äÁ¿
 				if(strstr($r[listtempvar],$like))
 				{
 					$re1=explode($record,$r[listtempvar]);
@@ -1911,7 +1911,7 @@ function ChangeDocDataTableF($add,$userid,$username){
 					$and.=$dh."listtempvar='$listtempvar'";
 				}
 				$dh="";
-				//æœç´¢å˜é‡
+				//ËÑË÷±äÁ¿
 				if(strstr($r[searchvar],$slike))
 				{
 					if(!empty($and))
@@ -1919,7 +1919,7 @@ function ChangeDocDataTableF($add,$userid,$username){
 					$searchvar=str_replace($slike,",",$r[searchvar]);
 					$and.=$dh."searchvar='$searchvar'";
 				}
-				//ç»“åˆé¡¹
+				//½áºÏÏî
 				$dh="";
 				if(strstr($r[listandf],$slike))
 				{
@@ -1928,7 +1928,7 @@ function ChangeDocDataTableF($add,$userid,$username){
 					$listandf=str_replace($slike,",",$r[listandf]);
 					$and.=$dh."listandf='$listandf'";
 				}
-				//æ’åºé¡¹
+				//ÅÅĞòÏî
 				$dh="";
 				if(strstr($r[orderf],$slike))
 				{
@@ -1943,8 +1943,8 @@ function ChangeDocDataTableF($add,$userid,$username){
 				}
 			}
 		}
-		GetConfig(1);//æ›´æ–°ç¼“å­˜
-		insert_dolog("tid=$tid&tbname=$tbname<br>fid=$fid&field=$f&tbdataf=".$newtbdataf);//æ“ä½œæ—¥å¿—
+		GetConfig(1);//¸üĞÂ»º´æ
+		insert_dolog("tid=$tid&tbname=$tbname<br>fid=$fid&field=$f&tbdataf=".$newtbdataf);//²Ù×÷ÈÕÖ¾
 		printerror("ChangeDataTableFSuccess","db/ListF.php?tid=$tid&tbname=$tbname".hReturnEcmsHashStrHref2(0));
 	}
 	echo"<link rel=\"stylesheet\" href=\"../data/images/css.css\" type=\"text/css\"><meta http-equiv=\"refresh\" content=\"".$public_r['realltime'].";url=ecmsmod.php?enews=ChangeDocDataTableF&tid=$tid&tbname=$tbname&fid=$fid&line=$line&start=$newstart".hReturnEcmsHashStrHref(0)."\">".$fun_r[OneChangeDocDataTableFSuccess]."(ID:<font color=red><b>".$newstart."</b></font>)";
@@ -1952,9 +1952,9 @@ function ChangeDocDataTableF($add,$userid,$username){
 }
 
 
-//************************** æ¨¡å‹ **************************
+//************************** Ä£ĞÍ **************************
 
-//æ›´æ–°é»˜è®¤ç³»ç»Ÿæ¨¡å‹
+//¸üĞÂÄ¬ÈÏÏµÍ³Ä£ĞÍ
 function UpdateTbDefMod($tid,$tbname,$mid){
 	global $empire,$dbtbpre;
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsmod where tid='$tid'");
@@ -1965,7 +1965,7 @@ function UpdateTbDefMod($tid,$tbname,$mid){
 	}
 }
 
-//æ›´æ–°æ¨¡å‹è¡¨å•
+//¸üĞÂÄ£ĞÍ±íµ¥
 function ChangeMForm($mid,$tid,$mtemp){
 	global $empire,$dbtbpre;
 	$file=eReturnTrueEcmsPath()."e/data/html/".$mid.".php";
@@ -1978,7 +1978,7 @@ function ChangeMForm($mid,$tid,$mtemp){
 	WriteFiletext($file,$mtemp);
 }
 
-//æ›´æ–°æŠ•ç¨¿è¡¨å•
+//¸üĞÂÍ¶¸å±íµ¥
 function ChangeQmForm($mid,$tid,$mtemp){
 	global $empire,$dbtbpre;
 	$file=eReturnTrueEcmsPath()."e/data/html/q".$mid.".php";
@@ -1991,12 +1991,12 @@ function ChangeQmForm($mid,$tid,$mtemp){
 	WriteFiletext($file,$mtemp);
 }
 
-//æ›´æ–°é‡‡é›†
+//¸üĞÂ²É¼¯
 function ChangeMCj($mid,$tid,$cj){
 	global $empire,$dbtbpre;
 	$record="<!--record-->";
 	$field="<!--field--->";
-	//è¯»å–ä¿®æ”¹é‡‡é›†è¡¨å•
+	//¶ÁÈ¡ĞŞ¸Ä²É¼¯±íµ¥
 	$data="<tr><td bgcolor=ffffff>[!--enews.name--]</td><td bgcolor=ffffff>[!--enews.var--]</td></tr>";
 	$file1=eReturnTrueEcmsPath()."e/data/html/editcj".$mid.".php";
 	$file=eReturnTrueEcmsPath()."e/data/html/cj".$mid.".php";
@@ -2015,7 +2015,7 @@ function ChangeMCj($mid,$tid,$cj){
 	WriteFiletext($file1,AddCheckViewTempCode().$editcj);
 }
 
-//ç»„åˆé‡‡é›†é¡¹
+//×éºÏ²É¼¯Ïî
 function TogMCj($cname,$cchange){
 	$record="<!--record-->";
 	$field="<!--field--->";
@@ -2030,7 +2030,7 @@ function TogMCj($cname,$cchange){
 	return $c;
 }
 
-//ç»„åˆæŠ•ç¨¿é¡¹
+//×éºÏÍ¶¸åÏî
 function TogMqenter($cname,$cqenter){
 	$record="<!--record-->";
 	$field="<!--field--->";
@@ -2045,7 +2045,7 @@ function TogMqenter($cname,$cqenter){
 	return $c;
 }
 
-//ç»„åˆæœç´¢é¡¹
+//×éºÏËÑË÷Ïî
 function TogMSearch($cname,$schange){
 	$c="";
 	for($i=0;$i<count($schange);$i++)
@@ -2060,7 +2060,7 @@ function TogMSearch($cname,$schange){
 	return $c;
 }
 
-//ç»„åˆå¿…å¡«é¡¹
+//×éºÏ±ØÌîÏî
 function TogMustf($cname,$menter){
 	$c="";
 	for($i=0;$i<count($menter);$i++)
@@ -2075,7 +2075,7 @@ function TogMustf($cname,$menter){
 	return $c;
 }
 
-//ç»„åˆå½•å…¥é¡¹
+//×éºÏÂ¼ÈëÏî
 function TogMEnter($cname,$center,$ltempf,$ptempf,$tid){
 	global $empire;
 	$f=1;
@@ -2111,7 +2111,7 @@ function TogMEnter($cname,$center,$ltempf,$ptempf,$tid){
 	return $r;
 }
 
-//è¿”å›è‡ªåŠ¨ç”Ÿæˆå½•å…¥è¡¨å•æ¨¡æ¿
+//·µ»Ø×Ô¶¯Éú³ÉÂ¼Èë±íµ¥Ä£°å
 function ReturnMtemp($cname,$center){
 	$temp="<tr><td width='16%' height=25 bgcolor='ffffff'>enews.name</td><td bgcolor='ffffff'>[!--enews.var--]</td></tr>";
 	$ntemp="<tr><td height=25 colspan=2 bgcolor='ffffff'><div align=left>enews.name</div></td></tr></table><div style='background-color:#D0D0D0'>[!--enews.var--]</div><table width='100%' align=center cellpadding=3 cellspacing=1 bgcolor='#DBEAF5'>";
@@ -2128,7 +2128,7 @@ function ReturnMtemp($cname,$center){
 	return "<table width='100%' align=center cellpadding=3 cellspacing=1 bgcolor='#DBEAF5'>".$data."</table>";
 }
 
-//è¿”å›è‡ªåŠ¨ç”ŸæˆæŠ•ç¨¿è¡¨å•æ¨¡æ¿
+//·µ»Ø×Ô¶¯Éú³ÉÍ¶¸å±íµ¥Ä£°å
 function ReturnQmtemp($cname,$cqenter){
 	$temp="<tr><td width='16%' height=25 bgcolor='ffffff'>enews.name</td><td bgcolor='ffffff'>[!--enews.var--]</td></tr>";
 	$ntemp="<tr><td height=25 colspan=2 bgcolor='ffffff'><div align=left>enews.name</div></td></tr></table><div style='background-color:#D0D0D0'>[!--enews.var--]</div><table width='100%' align=center cellpadding=3 cellspacing=1 bgcolor='#DBEAF5'>";
@@ -2145,7 +2145,7 @@ function ReturnQmtemp($cname,$cqenter){
 	return "<table width=100% align=center cellpadding=3 cellspacing=1 bgcolor=#DBEAF5>".$data."</table>";
 }
 
-//è¿”å›bré¡¹
+//·µ»ØbrÏî
 function ReturnMTobrF($enter,$tid,$dof="tobr"){
 	global $empire,$dbtbpre;
 	$record="<!--record-->";
@@ -2162,7 +2162,7 @@ function ReturnMTobrF($enter,$tid,$dof="tobr"){
 	return $f;
 }
 
-//å¢åŠ æ¨¡å‹
+//Ôö¼ÓÄ£ĞÍ
 function AddM($add,$cname,$cchange,$schange,$center,$cqenter,$menter,$listand,$ltempf,$ptempf,$canadd,$canedit,$listorder,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$add['tid'];
@@ -2172,29 +2172,29 @@ function AddM($add,$cname,$cchange,$schange,$center,$cqenter,$menter,$listand,$l
 		printerror("EmptyM","history.go(-1)");
 	}
 	$listfile=eReturnCPath(str_replace('.','',$add[listfile]),'');
-	CheckLevel($userid,$username,$classid,"m");//éªŒè¯æƒé™
-	//ç»„åˆé‡‡é›†é¡¹
+	CheckLevel($userid,$username,$classid,"m");//ÑéÖ¤È¨ÏŞ
+	//×éºÏ²É¼¯Ïî
 	$cj=TogMCj($cname,$cchange);
-	//ç»„åˆæœç´¢é¡¹
+	//×éºÏËÑË÷Ïî
     $searchvar=TogMSearch($cname,$schange);
-	//ç»„åˆå¿…å¡«é¡¹
+	//×éºÏ±ØÌîÏî
 	$mustqenterf=TogMustf($cname,$menter);
-	//ç»„åˆç»“åˆé¡¹
+	//×éºÏ½áºÏÏî
 	$listandf=TogMustf($cname,$listand);
-	//ç»„åˆæ’åºé¡¹
+	//×éºÏÅÅĞòÏî
 	$orderf=TogMustf($cname,$listorder);
-	//ç»„åˆæŠ•ç¨¿é¡¹
+	//×éºÏÍ¶¸åÏî
 	$qenter=TogMqenter($cname,$cqenter);
-	//ç»„åˆå¯å¢åŠ é¡¹
+	//×éºÏ¿ÉÔö¼ÓÏî
 	$canaddf=TogMustf($cname,$canadd);
-	//ç»„åˆå¯ä¿®æ”¹é¡¹
+	//×éºÏ¿ÉĞŞ¸ÄÏî
 	$caneditf=TogMustf($cname,$canedit);
-	//ç»„åˆå½•å…¥é¡¹
+	//×éºÏÂ¼ÈëÏî
     $er=TogMEnter($cname,$center,$ltempf,$ptempf,$tid);
-    $enter=$er[0];	//å½•å…¥é¡¹
-	$listtempvar=$er[1];	//åˆ—è¡¨æ¨¡æ¿é¡¹
-	$tempvar=$er[2];	//å†…å®¹æ¨¡æ¿é¡¹
-	//è‡ªåŠ¨ç”Ÿæˆè¡¨å•
+    $enter=$er[0];	//Â¼ÈëÏî
+	$listtempvar=$er[1];	//ÁĞ±íÄ£°åÏî
+	$tempvar=$er[2];	//ÄÚÈİÄ£°åÏî
+	//×Ô¶¯Éú³É±íµ¥
 	if($add[mtype])
 	{
 		$add[mtemp]=ReturnMtemp($cname,$center);
@@ -2230,15 +2230,15 @@ function AddM($add,$cname,$cchange,$schange,$center,$cqenter,$menter,$listand,$l
 	$sql=$empire->query("insert into {$dbtbpre}enewsmod(mname,mtemp,mzs,cj,enter,tempvar,sonclass,searchvar,tid,tbname,qenter,mustqenterf,qmtemp,listandf,setandf,listtempvar,qmname,canaddf,caneditf,definfovoteid,showmod,usemod,myorder,orderf,isdefault,listfile,printtempid,maddfun,meditfun,qmaddfun,qmeditfun) values('$add[mname]','".eaddslashes2($add[mtemp])."','$add[mzs]','$cj','$enter','$tempvar','','$searchvar',$tid,'$tbname','$qenter','$mustqenterf','".eaddslashes2($add[qmtemp])."','".addslashes($listandf)."','$setandf','$listtempvar','$add[qmname]','$canaddf','$caneditf',$add[definfovoteid],'$showmod','$usemod','$myorder','$orderf',0,'$listfile','$add[printtempid]','$add[maddfun]','$add[meditfun]','$add[qmaddfun]','$add[qmeditfun]');");
 	$mid=$empire->lastid();
 	UpdateTbDefMod($tid,$tbname,$mid);
-	//æ›´æ–°è¡¨å•
+	//¸üĞÂ±íµ¥
 	ChangeMForm($mid,$tid,$add[mtemp]);
 	ChangeQmForm($mid,$tid,$add[qmtemp]);
-	//é‡‡é›†æ–‡ä»¶
+	//²É¼¯ÎÄ¼ş
 	ChangeMCj($mid,$tid,$cj);
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
     if($sql)
 	{
-	    insert_dolog("mid=".$mid."<br>m=".$add[mname]);//æ“ä½œæ—¥å¿—
+	    insert_dolog("mid=".$mid."<br>m=".$add[mname]);//²Ù×÷ÈÕÖ¾
 		printerror("AddMSuccess","db/ListM.php?tid=$tid&tbname=$tbname".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -2247,7 +2247,7 @@ function AddM($add,$cname,$cchange,$schange,$center,$cqenter,$menter,$listand,$l
 	}
 }
 
-//ä¿®æ”¹æ¨¡å‹
+//ĞŞ¸ÄÄ£ĞÍ
 function EditM($add,$cname,$cchange,$schange,$center,$cqenter,$menter,$listand,$ltempf,$ptempf,$canadd,$canedit,$listorder,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$add['tid'];
@@ -2258,30 +2258,30 @@ function EditM($add,$cname,$cchange,$schange,$center,$cqenter,$menter,$listand,$
 		printerror("EmptyM","history.go(-1)");
 	}
 	$listfile=eReturnCPath(str_replace('.','',$add[listfile]),'');
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"m");
-	//ç»„åˆé‡‡é›†é¡¹
+	//×éºÏ²É¼¯Ïî
 	$cj=TogMCj($cname,$cchange);
-	//ç»„åˆæœç´¢é¡¹
+	//×éºÏËÑË÷Ïî
     $searchvar=TogMSearch($cname,$schange);
-	//ç»„åˆå¿…å¡«é¡¹
+	//×éºÏ±ØÌîÏî
 	$mustqenterf=TogMustf($cname,$menter);
-	//ç»„åˆç»“åˆé¡¹
+	//×éºÏ½áºÏÏî
 	$listandf=TogMustf($cname,$listand);
-	//ç»„åˆæ’åºé¡¹
+	//×éºÏÅÅĞòÏî
 	$orderf=TogMustf($cname,$listorder);
-	//ç»„åˆæŠ•ç¨¿é¡¹
+	//×éºÏÍ¶¸åÏî
 	$qenter=TogMqenter($cname,$cqenter);
-	//ç»„åˆå¯å¢åŠ é¡¹
+	//×éºÏ¿ÉÔö¼ÓÏî
 	$canaddf=TogMustf($cname,$canadd);
-	//ç»„åˆå¯ä¿®æ”¹é¡¹
+	//×éºÏ¿ÉĞŞ¸ÄÏî
 	$caneditf=TogMustf($cname,$canedit);
-	//ç»„åˆå½•å…¥é¡¹
+	//×éºÏÂ¼ÈëÏî
 	$er=TogMEnter($cname,$center,$ltempf,$ptempf,$tid);
-    $enter=$er[0];	//å½•å…¥é¡¹
-	$listtempvar=$er[1];	//åˆ—è¡¨æ¨¡æ¿é¡¹
-	$tempvar=$er[2];	//å†…å®¹æ¨¡æ¿é¡¹
-	//è‡ªåŠ¨ç”Ÿæˆè¡¨å•
+    $enter=$er[0];	//Â¼ÈëÏî
+	$listtempvar=$er[1];	//ÁĞ±íÄ£°åÏî
+	$tempvar=$er[2];	//ÄÚÈİÄ£°åÏî
+	//×Ô¶¯Éú³É±íµ¥
 	if($add[mtype])
 	{
 		$add[mtemp]=ReturnMtemp($cname,$center);
@@ -2315,15 +2315,15 @@ function EditM($add,$cname,$cchange,$schange,$center,$cqenter,$menter,$listand,$
 	$add['qmaddfun']=hRepPostStr($add['qmaddfun'],0);
 	$add['qmeditfun']=hRepPostStr($add['qmeditfun'],0);
 	$sql=$empire->query("update {$dbtbpre}enewsmod set mname='$add[mname]',mtemp='".eaddslashes2($add[mtemp])."',mzs='$add[mzs]',cj='$cj',enter='$enter',tempvar='$tempvar',searchvar='$searchvar',qenter='$qenter',mustqenterf='$mustqenterf',qmtemp='".eaddslashes2($add[qmtemp])."',listandf='".addslashes($listandf)."',setandf=$setandf,listtempvar='$listtempvar',qmname='$add[qmname]',canaddf='$canaddf',caneditf='$caneditf',definfovoteid=$add[definfovoteid],showmod='$showmod',usemod='$usemod',myorder='$myorder',orderf='$orderf',listfile='$listfile',printtempid='$add[printtempid]',maddfun='$add[maddfun]',meditfun='$add[meditfun]',qmaddfun='$add[qmaddfun]',qmeditfun='$add[qmeditfun]' where mid='$add[mid]'");
-	//æ›´æ–°è¡¨å•
+	//¸üĞÂ±íµ¥
 	ChangeMForm($add[mid],$tid,$add[mtemp]);
 	ChangeQmForm($add[mid],$tid,$add[qmtemp]);
-	//é‡‡é›†æ–‡ä»¶
+	//²É¼¯ÎÄ¼ş
 	ChangeMCj($add[mid],$tid,$cj);
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
     if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("mid=".$add[mid]."<br>m=".$add[mname]);
 		printerror("EditMSuccess","db/ListM.php?tid=$tid&tbname=$tbname".hReturnEcmsHashStrHref2(0));
 	}
@@ -2333,7 +2333,7 @@ function EditM($add,$cname,$cchange,$schange,$center,$cqenter,$menter,$listand,$
 	}
 }
 
-//åˆ é™¤æ¨¡å‹
+//É¾³ıÄ£ĞÍ
 function DelM($mid,$tid,$tbname,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$tid;
@@ -2343,16 +2343,16 @@ function DelM($mid,$tid,$tbname,$userid,$username){
 	{
 		printerror("EmptyMid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"m");
 	$r=$empire->fetch1("select mname,isdefault from {$dbtbpre}enewsmod where mid='$mid'");
 	$sql=$empire->query("delete from {$dbtbpre}enewsmod where mid='$mid'");
-	$empire->query("delete from {$dbtbpre}enewsinfotype where mid='$mid'");//åˆ é™¤ä¸»é¢˜åˆ†ç±»
+	$empire->query("delete from {$dbtbpre}enewsinfotype where mid='$mid'");//É¾³ıÖ÷Ìâ·ÖÀà
 	DelFiletext("../data/html/".$mid.".php");
 	DelFiletext("../data/html/q".$mid.".php");
 	DelFiletext("../data/html/cj".$mid.".php");
 	DelFiletext("../data/html/editcj".$mid.".php");
-	//è¡¨é»˜è®¤æ¨¡å‹
+	//±íÄ¬ÈÏÄ£ĞÍ
 	if($r[isdefault])
 	{
 		$modr=$empire->fetch1("select mid from {$dbtbpre}enewsmod where tid='$tid' order by mid");
@@ -2362,10 +2362,10 @@ function DelM($mid,$tid,$tbname,$userid,$username){
 			$empire->query("update {$dbtbpre}enewsmod set isdefault=1 where mid='$modr[mid]'");
 		}
 	}
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
     if($sql)
 	{
-	    insert_dolog("mid=".$mid."<br>m=".$r[mname]);//æ“ä½œæ—¥å¿—
+	    insert_dolog("mid=".$mid."<br>m=".$r[mname]);//²Ù×÷ÈÕÖ¾
 		printerror("DelMSuccess","db/ListM.php?tid=$tid&tbname=$tbname".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -2374,7 +2374,7 @@ function DelM($mid,$tid,$tbname,$userid,$username){
 	}
 }
 
-//é»˜è®¤æ¨¡å‹
+//Ä¬ÈÏÄ£ĞÍ
 function DefM($mid,$tid,$tbname,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$tid;
@@ -2384,16 +2384,16 @@ function DefM($mid,$tid,$tbname,$userid,$username){
 	{
 		printerror("EmptyDefMid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"m");
 	$r=$empire->fetch1("select mname from {$dbtbpre}enewsmod where mid='$mid'");
 	$empire->query("update {$dbtbpre}enewsmod set isdefault=0 where tid='$tid'");
 	$sql=$empire->query("update {$dbtbpre}enewsmod set isdefault=1 where mid='$mid'");
 	$empire->query("update {$dbtbpre}enewstable set mid='$mid' where tid='$tid'");
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
+	GetConfig(1);//¸üĞÂ»º´æ
 	if($sql)
 	{
-	    insert_dolog("mid=".$mid."<br>m=".$r[mname]);//æ“ä½œæ—¥å¿—
+	    insert_dolog("mid=".$mid."<br>m=".$r[mname]);//²Ù×÷ÈÕÖ¾
 		printerror("DefMSuccess","db/ListM.php?tid=$tid&tbname=$tbname".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -2402,51 +2402,51 @@ function DefM($mid,$tid,$tbname,$userid,$username){
 	}
 }
 
-//æ›´æ–°æ¨¡å‹è¡¨å•æ–‡ä»¶
+//¸üĞÂÄ£ĞÍ±íµ¥ÎÄ¼ş
 function ChangeAllModForm($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"changedata");
 	$sql=$empire->query("select mid,tid,mtemp,qmtemp,cj from {$dbtbpre}enewsmod");
 	while($r=$empire->fetch($sql))
 	{
-		ChangeMForm($r[mid],$r[tid],$r[mtemp]);//æ›´æ–°è¡¨å•
-		ChangeQmForm($r[mid],$r[tid],$r[qmtemp]);//æ›´æ–°å‰å°è¡¨å•
-		ChangeMCj($r[mid],$r[tid],$r[cj]);//é‡‡é›†è¡¨å•
-		//æ›´æ–°æ ç›®å¯¼èˆª
+		ChangeMForm($r[mid],$r[tid],$r[mtemp]);//¸üĞÂ±íµ¥
+		ChangeQmForm($r[mid],$r[tid],$r[qmtemp]);//¸üĞÂÇ°Ì¨±íµ¥
+		ChangeMCj($r[mid],$r[tid],$r[cj]);//²É¼¯±íµ¥
+		//¸üĞÂÀ¸Ä¿µ¼º½
 		if($add['ChangeClass']==1)
 		{
 			GetSearch($r[mid]);
 		}
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("ChangeClass=$add[ChangeClass]");
 	printerror("ChangeAllModFormSuccess","history.go(-1)");
 }
 
-//å¯¼å…¥ç³»ç»Ÿæ¨¡å‹
+//µ¼ÈëÏµÍ³Ä£ĞÍ
 function LoadInMod($add,$file,$file_name,$file_type,$file_size,$userid,$username){
 	global $empire,$dbtbpre,$ecms_config;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"table");
 	$tbname=RepPostVar(trim($add['tbname']));
 	if(!$file_name||!$file_size||!$tbname)
 	{
 		printerror("EmptyLoadInMod","");
 	}
-	//æ‰©å±•å
+	//À©Õ¹Ãû
 	$filetype=GetFiletype($file_name);
 	if($filetype!=".mod")
 	{
 		printerror("LoadInModMustmod","");
 	}
-	//è¡¨åæ˜¯å¦å·²å­˜åœ¨
+	//±íÃûÊÇ·ñÒÑ´æÔÚ
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewstable where tbname='$tbname' limit 1");
 	if($num)
 	{
 		printerror("HaveLoadInTb","");
 	}
-	//ä¸Šä¼ æ–‡ä»¶
+	//ÉÏ´«ÎÄ¼ş
 	$path=ECMS_PATH."e/data/tmp/mod/uploadm".time().make_password(10).".php";
 	$cp=@move_uploaded_file($file,$path);
 	if(!$cp)
@@ -2456,22 +2456,22 @@ function LoadInMod($add,$file,$file_name,$file_type,$file_size,$userid,$username
 	DoChmodFile($path);
 	@include($path);
 	UpdateTbDefMod($tid,$tbname,$mid);
-	//å…¬å…±å˜é‡
+	//¹«¹²±äÁ¿
 	TogSaveTxtF(1);
-	GetConfig(1);//æ›´æ–°ç¼“å­˜
-	//ç”Ÿæˆæ¨¡å‹è¡¨å•æ–‡ä»¶
+	GetConfig(1);//¸üĞÂ»º´æ
+	//Éú³ÉÄ£ĞÍ±íµ¥ÎÄ¼ş
 	$modr=$empire->fetch1("select mtemp,qmtemp,cj from {$dbtbpre}enewsmod where mid='$mid'");
-	ChangeMForm($mid,$tid,$modr[mtemp]);//æ›´æ–°è¡¨å•
-	ChangeQmForm($mid,$tid,$modr[qmtemp]);//æ›´æ–°å‰å°è¡¨å•
-	ChangeMCj($mid,$tid,$modr[cj]);//é‡‡é›†è¡¨å•
-	//åˆ é™¤æ–‡ä»¶
+	ChangeMForm($mid,$tid,$modr[mtemp]);//¸üĞÂ±íµ¥
+	ChangeQmForm($mid,$tid,$modr[qmtemp]);//¸üĞÂÇ°Ì¨±íµ¥
+	ChangeMCj($mid,$tid,$modr[cj]);//²É¼¯±íµ¥
+	//É¾³ıÎÄ¼ş
 	DelFiletext($path);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("tid=$tid&tb=$tbname<br>mid=$mid");
 	printerror("LoadInModSuccess","db/ListTable.php".hReturnEcmsHashStrHref2(1));
 }
 
-//å¯¼å‡ºç³»ç»Ÿæ¨¡å‹
+//µ¼³öÏµÍ³Ä£ĞÍ
 function LoadOutMod($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tid=(int)$add['tid'];
@@ -2491,7 +2491,7 @@ function LoadOutMod($add,$userid,$username){
 	{
 		printerror("EmptyLoadMod","");
 	}
-	//æ•°æ®è¡¨ç»“æ„
+	//Êı¾İ±í½á¹¹
 	$loadmod="<?php
 ".LoadModReturnstru($dbtbpre."ecms_".$mr['tbname'],$mr['tbname'],0)."\r\n";
 	$loadmod.=LoadModReturnstru($dbtbpre."ecms_".$mr['tbname']."_data_1",$mr['tbname'],5)."\r\n";
@@ -2503,18 +2503,18 @@ function LoadOutMod($add,$userid,$username){
 	$loadmod.=LoadModReturnstru($dbtbpre."ecms_".$mr['tbname']."_check_data",$mr['tbname'],9)."\r\n";
 	$loadmod.=LoadModReturnstru($dbtbpre."ecms_infoclass_".$mr['tbname'],$mr['tbname'],2)."\r\n";
 	$loadmod.=LoadModReturnstru($dbtbpre."ecms_infotmp_".$mr['tbname'],$mr['tbname'],3)."\r\n";
-	//æ•°æ®è¡¨
+	//Êı¾İ±í
 	$loadmod.="\$empire->query(\"insert into \".\$dbtbpre.\"enewstable(tbname,tname,tsay,isdefault,datatbs,deftb,yhid,mid,intb) values('\$tbname','".$tr[tname]."','".LMEscape_str($tr[tsay])."',0,',1,','1',0,0,'".$tr[intb]."');\");
 \$tid=\$empire->lastid();
 ";
-	//å­—æ®µ
+	//×Ö¶Î
 	$fsql=$empire->query("select * from {$dbtbpre}enewsf where tid=$tid order by fid");
 	while($fr=$empire->fetch($fsql))
 	{
 		$loadmod.="\$empire->query(\"insert into \".\$dbtbpre.\"enewsf(f,fname,fform,fhtml,fzs,isadd,isshow,iscj,cjhtml,myorder,ftype,flen,dotemp,tid,tbname,savetxt,fvalue,iskey,tobr,dohtml,qfhtml,isonly,linkfieldval,samedata,fformsize,tbdataf,ispage,adddofun,editdofun,qadddofun,qeditdofun,linkfieldtb,linkfieldshow,editorys,issmalltext,fmvnum) values('$fr[f]','$fr[fname]','$fr[fform]','".LMEscape_str($fr['fhtml'])."','".LMEscape_str($fr[fzs])."',$fr[isadd],$fr[isshow],$fr[iscj],'".LMEscape_str($fr[cjhtml])."',$fr[myorder],'$fr[ftype]','$fr[flen]',$fr[dotemp],\$tid,'\$tbname',$fr[savetxt],'".LMEscape_str($fr[fvalue])."',$fr[iskey],$fr[tobr],$fr[dohtml],'".LMEscape_str($fr[qfhtml])."',$fr[isonly],'".LMEscape_str($fr[linkfieldval])."',$fr[samedata],'$fr[fformsize]','$fr[tbdataf]','$fr[ispage]','".LMEscape_str($fr[adddofun])."','".LMEscape_str($fr[editdofun])."','".LMEscape_str($fr[qadddofun])."','".LMEscape_str($fr[qeditdofun])."','".LMEscape_str($fr[linkfieldtb])."','".LMEscape_str($fr[linkfieldshow])."','$fr[editorys]','$fr[issmalltext]','".LMEscape_str($fr[fmvnum])."');\");
 ";
 	}
-	//æ¨¡å‹
+	//Ä£ĞÍ
 	$loadmod.="\$empire->query(\"insert into \".\$dbtbpre.\"enewsmod(mname,mtemp,mzs,cj,enter,tempvar,sonclass,searchvar,tid,tbname,qenter,mustqenterf,qmtemp,listandf,setandf,listtempvar,qmname,canaddf,caneditf,definfovoteid,showmod,usemod,myorder,orderf,isdefault,listfile,printtempid,maddfun,meditfun,qmaddfun,qmeditfun) values('$mr[mname]','".LMEscape_str($mr[mtemp])."','".LMEscape_str($mr[mzs])."','".LMEscape_str($mr[cj])."','".LMEscape_str($mr[enter])."','".LMEscape_str($mr[tempvar])."','','".LMEscape_str($mr[searchvar])."',\$tid,'\$tbname','".LMEscape_str($mr[qenter])."','".LMEscape_str($mr[mustqenterf])."','".LMEscape_str($mr[qmtemp])."','".LMEscape_str($mr[listandf])."',$mr[setandf],'".LMEscape_str($mr[listtempvar])."','".LMEscape_str($mr[qmname])."','".LMEscape_str($mr[canaddf])."','".LMEscape_str($mr[caneditf])."',0,0,0,0,'".LMEscape_str($mr[orderf])."',0,'',0,'".LMEscape_str($mr[maddfun])."','".LMEscape_str($mr[meditfun])."','".LMEscape_str($mr[qmaddfun])."','".LMEscape_str($mr[qmeditfun])."');\");
 \$mid=\$empire->lastid();
 ?>";
@@ -2522,19 +2522,19 @@ function LoadOutMod($add,$userid,$username){
 	$filepath=ECMS_PATH."e/data/tmp/mod/".$file;
 	WriteFiletext_n($filepath,AddCheckViewTempCode().$loadmod);
 	DownLoadFile($file,$filepath,1);
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("tid=$tid&tb=$tr[tbname]<br>mid=$mid&m=$mr[mname]");
 	exit();
 }
 
-//è¿”å›æ•°æ®è¡¨ç»“æ„
+//·µ»ØÊı¾İ±í½á¹¹
 function LoadModReturnstru($table,$tb,$ecms=0){
 	global $empire;
-	$usql=$empire->query("SET SQL_QUOTE_SHOW_CREATE=1;");//è®¾ç½®å¼•å·
-	$r=$empire->fetch1("SHOW CREATE TABLE `$table`;");//æ•°æ®è¡¨ç»“æ„
+	$usql=$empire->query("SET SQL_QUOTE_SHOW_CREATE=1;");//ÉèÖÃÒıºÅ
+	$r=$empire->fetch1("SHOW CREATE TABLE `$table`;");//Êı¾İ±í½á¹¹
 	$create=str_replace("\"","\\\"",$r[1]);
 	$create=LoadModToMysqlFour($create);
-	//æ›¿æ¢è¡¨
+	//Ìæ»»±í
 	if($ecms==1)
 	{
 		$reptb="\$dbtbpre.\"ecms_\".\$tbname.\"_doc\"";
@@ -2579,7 +2579,7 @@ function LoadModReturnstru($table,$tb,$ecms=0){
 	return $dumpsql;
 }
 
-//è½¬ä¸ºMysql4.0æ ¼å¼
+//×ªÎªMysql4.0¸ñÊ½
 function LoadModToMysqlFour($query){
 	$exp="ENGINE=";
 	if(!strstr($query,$exp))
@@ -2588,13 +2588,13 @@ function LoadModToMysqlFour($query){
 	}
 	$exp1=" ";
 	$r=explode($exp,$query);
-	//å–å¾—è¡¨ç±»å‹
+	//È¡µÃ±íÀàĞÍ
 	$r1=explode($exp1,$r[1]);
 	$returnquery=$r[0]."TYPE=".$r1[0];
 	return $returnquery;
 }
 
-//å­—ç¬¦è¿‡è™‘
+//×Ö·û¹ıÂÇ
 function LMEscape_str($str){
 	global $empire,$dbtbpre,$public_r;
 	if($public_r['bakescapetype']==2)//real_escape_string

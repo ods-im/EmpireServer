@@ -12,7 +12,7 @@ if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -22,19 +22,19 @@ $loginadminstyleid=$lur['adminstyleid'];
 hCheckEcmsRHash();
 require("class/hShopSysFun.php");
 
-if($enews=="SetShopSys")//å•†åŸå‚æ•°è®¾ç½®
+if($enews=="SetShopSys")//ÉÌ³Ç²ÎÊıÉèÖÃ
 {
 	ShopSys_set($_POST,$logininid,$loginin);
 }
-elseif($enews=="DdRetext")//åå°è®¢å•å¤‡æ³¨
+elseif($enews=="DdRetext")//ºóÌ¨¶©µ¥±¸×¢
 {
 	ShopSys_DdRetext($_POST,$logininid,$loginin);
 }
-elseif($enews=='EditPretotal')//ä¿®æ”¹è®¢å•ä¼˜æƒ ä»·æ ¼
+elseif($enews=='EditPretotal')//ĞŞ¸Ä¶©µ¥ÓÅ»İ¼Û¸ñ
 {
 	ShopSys_EditPretotal($_POST,$logininid,$loginin);
 }
-elseif($enews=='DoCutMaxnum')//å‡å°‘æˆ–è¿˜åŸåº“å­˜
+elseif($enews=='DoCutMaxnum')//¼õÉÙ»ò»¹Ô­¿â´æ
 {
 	Shopsys_DoCutMaxnum($_POST,$logininid,$loginin);
 }

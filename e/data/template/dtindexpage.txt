@@ -3,7 +3,7 @@ require('e/class/connect.php');
 require('e/class/db_sql.php');
 $link=db_connect();
 $empire=new mysqlquery();
-//ç¼“å­˜
+//»º´æ
 $ecachelastedit=0;
 if($public_r['ctimeopen'])
 {
@@ -24,23 +24,23 @@ if($ecms_tofunr['cacheopen']==1)
 {
 	$ecms_tofunr['cacheuse']=Ecms_eCacheOut($ecms_tofunr,0);
 }
-//ç¼“å­˜
+//»º´æ
 include('e/class/functions.php');
 include('e/class/t_functions.php');
 include('e/data/dbcache/class.php');
 include ECMS_PATH.'e/data/'.LoadLang('pub/fun.php');
-//é¡µé¢
+//Ò³Ãæ
 $pr=$empire->fetch1("select sitekey,siteintro from {$dbtbpre}enewspublic limit 1");
 $pagetitle=ehtmlspecialchars($public_r['sitename']);
 $pagekey=ehtmlspecialchars($pr['sitekey']);
 $pagedes=ehtmlspecialchars($pr['siteintro']);
-$url="<a href=\"".ReturnSiteIndexUrl()."\">".$fun_r['index']."</a>";//æ ç›®å¯¼èˆª
-$indextemp=GetIndextemp();//å–å¾—æ¨¡æ¿
+$url="<a href=\"".ReturnSiteIndexUrl()."\">".$fun_r['index']."</a>";//À¸Ä¿µ¼º½
+$indextemp=GetIndextemp();//È¡µÃÄ£°å
 $string=DtNewsBq('indexpage',$indextemp,0);
-$string=str_replace('[!--newsnav--]',$url,$string);//ä½ç½®å¯¼èˆª
+$string=str_replace('[!--newsnav--]',$url,$string);//Î»ÖÃµ¼º½
 $string=ReplaceSvars($string,$url,0,$pagetitle,$pagekey,$pagedes,$addr,0);
 $string=str_replace('[!--page.stats--]','',$string);
-//ç¼“å­˜
+//»º´æ
 if($ecms_tofunr['cacheopen']==1)
 {
 	Ecms_eCacheIn($ecms_tofunr,stripSlashes($string));
@@ -49,7 +49,7 @@ else
 {
 	echo stripSlashes($string);
 }
-//ç¼“å­˜
+//»º´æ
 db_close();
 $empire=null;
 ?>

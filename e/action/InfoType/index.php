@@ -31,7 +31,7 @@ if(Moreport_ReturnMustDt())
 	$ttr['listdt']=1;
 	$ttr['repagenum']=0;
 }
-//æ˜¯å¦æ”¯æŒåŠ¨æ€é¡µ
+//ÊÇ·ñÖ§³Ö¶¯Ì¬Ò³
 if(empty($ttr['listdt'])&&!$ttr['repagenum'])
 {
 	$tturl=sys_ReturnBqInfoTypeUrl($ttid);
@@ -47,7 +47,7 @@ $classimg=$ttr['timg']?$ttr['timg']:$public_r[newsurl].'e/data/images/notimg.gif
 
 $add="ttid='$ttid'";
 $have_class=1;
-//æ’åº
+//ÅÅĞò
 if(empty($ttr['reorder']))
 {
 	$addorder="newstime desc";
@@ -56,7 +56,7 @@ else
 {
 	$addorder=$ttr['reorder'];
 }
-//åˆ—è¡¨æ¨¡æ¿
+//ÁĞ±íÄ£°å
 $tempid=$ttr['listtempid'];
 if(empty($tempid))
 {
@@ -70,10 +70,10 @@ if(empty($tempr[tempid]))
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=$ttr['tnum'];//æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
-$page_line=10;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
-//ç¼“å­˜
+$line=$ttr['tnum'];//Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
+$page_line=10;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
+//»º´æ
 if($public_r['ctimeopen'])
 {
 	$public_r['usetotalnum']=0;
@@ -92,10 +92,10 @@ if($ecms_tofunr['cacheopen']==1)
 {
 	$ecms_tofunr['cacheuse']=Ecms_eCacheOut($ecms_tofunr,0);
 }
-//ç¼“å­˜
-//ç³»ç»Ÿæ¨¡å‹
+//»º´æ
+//ÏµÍ³Ä£ĞÍ
 $ret_r=ReturnReplaceListF($mid);
-//ä¼˜åŒ–
+//ÓÅ»¯
 $yhadd='';
 $yhid=$ttr['yhid'];
 $yhvar='qlist';
@@ -103,7 +103,7 @@ if($yhid)
 {
 	$yhadd=ReturnYhSql($yhid,$yhvar,1);
 }
-//æ€»æ•°
+//×ÜÊı
 $totalnum=(int)$_GET['totalnum'];
 if(!$public_r['usetotalnum'])
 {
@@ -127,13 +127,13 @@ eCheckListPageNo($page,$line,$num);
 $query="select ".ReturnSqlListF($mid)." from {$dbtbpre}ecms_".$tbname." where ".$yhadd.$add;
 $query.=" order by ".ReturnSetTopSql('list').$addorder." limit $offset,$line";
 $sql=$empire->query($query);
-//ä¼ªé™æ€
+//Î±¾²Ì¬
 $pagefunr=eReturnRewriteTitleTypeUrl($ttid,0);
 $pagefunr['repagenum']=$ttr['repagenum'];
 $pagefunr['dolink']=$public_r['newsurl'].$class_tr[$ttid]['tpath'].'/';
 $pagefunr['dofile']='index';
 $pagefunr['dotype']=$class_tr[$ttid]['ttype'];
-//åˆ†é¡µ
+//·ÖÒ³
 if($pagefunr['rewrite']==1||$pagefunr['repagenum'])
 {
 	$listpage=InfoUsePage($num,$line,$page_line,$start,$page,$search,$pagefunr);
@@ -142,7 +142,7 @@ else
 {
 	$listpage=page1($num,$line,$page_line,$start,$page,$search);
 }
-//é¡µé¢æ”¯æŒæ ‡ç­¾
+//Ò³ÃæÖ§³Ö±êÇ©
 if($public_r['dtcanbq'])
 {
 	$tempr[temptext]=DtNewsBq('list'.$tempid,$tempr[temptext],0);
@@ -164,14 +164,14 @@ $subtitle=$tempr[subtitle];
 $docode=$tempr[docode];
 $modid=$tempr[modid];
 $listvar=str_replace('[!--news.url--]',$public_r[newsurl],$tempr[listvar]);
-//å…¬å…±
-$listtemp=str_replace('[!--newsnav--]',$url,$listtemp);//ä½ç½®å¯¼èˆª
+//¹«¹²
+$listtemp=str_replace('[!--newsnav--]',$url,$listtemp);//Î»ÖÃµ¼º½
 $listtemp=Class_ReplaceSvars($listtemp,$url,$ttid,$pagetitle,$pagekey,$pagedes,$classimg,$addr,0);
 $listtemp=str_replace('[!--page.stats--]','',$listtemp);
 $listtemp=str_replace('[!--show.page--]',$listpage,$listtemp);
 $listtemp=str_replace('[!--show.listpage--]',$listpage,$listtemp);
 $listtemp=str_replace('[!--list.pageno--]',$page+1,$listtemp);
-//å–å¾—åˆ—è¡¨æ¨¡æ¿
+//È¡µÃÁĞ±íÄ£°å
 $list_exp="[!--empirenews.listtemp--]";
 $list_r=explode($list_exp,$listtemp);
 $listtext=$list_r[1];
@@ -179,11 +179,11 @@ $no=$offset+1;
 $changerow=1;
 while($r=$empire->fetch($sql))
 {
-	//æ›¿æ¢åˆ—è¡¨å˜é‡
+	//Ìæ»»ÁĞ±í±äÁ¿
 	$repvar=ReplaceListVars($no,$listvar,$subnews,$subtitle,$formatdate,$url,$have_class,$r,$ret_r,$docode);
 	$listtext=str_replace("<!--list.var".$changerow."-->",$repvar,$listtext);
 	$changerow+=1;
-	//è¶…è¿‡è¡Œæ•°
+	//³¬¹ıĞĞÊı
 	if($changerow>$rownum)
 	{
 		$changerow=1;
@@ -192,13 +192,13 @@ while($r=$empire->fetch($sql))
 	}
 	$no++;
 }
-//å¤šä½™æ•°æ®
+//¶àÓàÊı¾İ
 if($changerow<=$rownum&&$listtext<>$list_r[1])
 {
 	$string.=$listtext;
 }
 $string=$list_r[0].$string.$list_r[2];
-//ç¼“å­˜
+//»º´æ
 if($ecms_tofunr['cacheopen']==1)
 {
 	Ecms_eCacheIn($ecms_tofunr,stripSlashes($string));
@@ -207,7 +207,7 @@ else
 {
 	echo stripSlashes($string);
 }
-//ç¼“å­˜
+//»º´æ
 db_close();
 $empire=null;
 ?>

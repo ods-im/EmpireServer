@@ -1,10 +1,10 @@
 <?php
-//--------------- æ”¶è—å¤¹å‡½æ•° ---------------
+//--------------- ÊÕ²Ø¼Ğº¯Êı ---------------
 
-//å¢åŠ æ”¶è—
+//Ôö¼ÓÊÕ²Ø
 function AddFava($id,$classid,$cid,$from){
 	global $empire,$level_r,$class_r,$dbtbpre;
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$id=(int)$id;
 	$cid=(int)$cid;
@@ -13,7 +13,7 @@ function AddFava($id,$classid,$cid,$from){
 	{
 		printerror("ErrorUrl","history.go(-1)",1);
     }
-	//è¡¨ä¸å­˜åœ¨
+	//±í²»´æÔÚ
 	if(empty($class_r[$classid][tbname]))
 	{
 		printerror("ErrorUrl","history.go(-1)",1);
@@ -21,7 +21,7 @@ function AddFava($id,$classid,$cid,$from){
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$class_r[$classid][tbname]." where id='$id' and classid='$classid'");
 	if(empty($num))
 	{printerror("ErrorUrl","history.go(-1)",1);}
-	//æ˜¯å¦å·²æ”¶è—
+	//ÊÇ·ñÒÑÊÕ²Ø
 	$newsnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsfava where id='$id' and classid='$classid' and userid='$user_r[userid]'");
 	if($newsnum)
 	{
@@ -45,10 +45,10 @@ function AddFava($id,$classid,$cid,$from){
 	}
 }
 
-//æ‰¹é‡åˆ é™¤æ”¶è—
+//ÅúÁ¿É¾³ıÊÕ²Ø
 function DelFava_All($favaid){
 	global $empire,$dbtbpre;
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$count=count($favaid);
 	if(empty($count))
@@ -65,10 +65,10 @@ function DelFava_All($favaid){
 	{printerror("DbError","history.go(-1)",1);}
 }
 
-//åˆ é™¤å•ä¸ªæ”¶è—å¤¹
+//É¾³ıµ¥¸öÊÕ²Ø¼Ğ
 function DelFava($favaid){
 	global $empire,$dbtbpre;
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$favaid=(int)$favaid;
 	if(empty($favaid))
@@ -81,14 +81,14 @@ function DelFava($favaid){
 }
 
 
-//å¢åŠ æ”¶è—å¤¹åˆ†ç±»
+//Ôö¼ÓÊÕ²Ø¼Ğ·ÖÀà
 function AddFavaClass($add){
 	global $empire,$dbtbpre;
 	if(!trim($add[cname]))
 	{
 		printerror('EmptyFavaClassname','history.go(-1)',1);
     }
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$add[cname]=dgdb_tosave($add[cname]);
 	$sql=$empire->query("insert into {$dbtbpre}enewsfavaclass(cname,userid) values('$add[cname]','$user_r[userid]');");
@@ -102,7 +102,7 @@ function AddFavaClass($add){
 	}
 }
 
-//ä¿®æ”¹æ”¶è—å¤¹åˆ†ç±»
+//ĞŞ¸ÄÊÕ²Ø¼Ğ·ÖÀà
 function EditFavaClass($add){
 	global $empire,$dbtbpre;
 	$add[cid]=(int)$add[cid];
@@ -110,7 +110,7 @@ function EditFavaClass($add){
 	{
 		printerror('EmptyFavaClassname','history.go(-1)',1);
     }
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$add[cname]=dgdb_tosave($add[cname]);
 	$sql=$empire->query("update {$dbtbpre}enewsfavaclass set cname='$add[cname]' where cid='$add[cid]' and userid='$user_r[userid]'");
@@ -124,7 +124,7 @@ function EditFavaClass($add){
 	}
 }
 
-//åˆ é™¤æ”¶è—å¤¹åˆ†ç±»
+//É¾³ıÊÕ²Ø¼Ğ·ÖÀà
 function DelFavaClass($cid){
 	global $empire,$dbtbpre;
 	$cid=(int)$cid;
@@ -132,7 +132,7 @@ function DelFavaClass($cid){
 	{
 		printerror('EmptyFavaClassid','history.go(-1)',1);
     }
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$sql=$empire->query("delete from {$dbtbpre}enewsfavaclass where cid='$cid' and userid='$user_r[userid]'");
 	if($sql)
@@ -145,7 +145,7 @@ function DelFavaClass($cid){
 	}
 }
 
-//è¿”å›æ”¶è—å¤¹åˆ†ç±»
+//·µ»ØÊÕ²Ø¼Ğ·ÖÀà
 function ReturnFavaclass($userid,$cid){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;
@@ -162,10 +162,10 @@ function ReturnFavaclass($userid,$cid){
 	return $select;
 }
 
-//æ‰¹é‡è½¬ç§»æ”¶è—
+//ÅúÁ¿×ªÒÆÊÕ²Ø
 function MoveFava_All($favaid,$cid){
 	global $empire,$dbtbpre;
-	//æ˜¯å¦ç™»é™†
+	//ÊÇ·ñµÇÂ½
 	$user_r=islogin();
 	$cid=(int)$cid;
 	if(!$cid)

@@ -1,6 +1,6 @@
 <?php
 
-//ä¿¡æ¯æŸ¥çœ‹æƒé™æç¤ºå‡½æ•°
+//ĞÅÏ¢²é¿´È¨ÏŞÌáÊ¾º¯Êı
 function eCheckLevelInfo_ViewInfoMsg($ckuser,$r,$ecms){
 	global $empire,$dbtbpre,$public_r,$check_path,$level_r,$class_r,$public_diyr;
 	$ViewLevel=eCheckLevelInfo_ReturnViewLevelSay($r);
@@ -8,12 +8,12 @@ function eCheckLevelInfo_ViewInfoMsg($ckuser,$r,$ecms){
 	$r['title']=stripSlashes($r['title']);
 	$showsmalltext=eCheckLevelInfo_ReturnIntroField($r);
 	$public_diyr['pagetitle']=$r['title'];
-	$url="<a href='".$public_r['newsurl']."'>é¦–é¡µ</a>&nbsp;>&nbsp;<a href='".$public_r['newsurl']."e/member/cp/'>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;æŸ¥çœ‹ä¿¡æ¯ï¼š".$r['title'];
+	$url="<a href='".$public_r['newsurl']."'>Ê×Ò³</a>&nbsp;>&nbsp;<a href='".$public_r['newsurl']."e/member/cp/'>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;²é¿´ĞÅÏ¢£º".$r['title'];
 	@include(ECMS_PATH."e/data/template/cp_1.php");
 	?>
 	<table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td height="25">æç¤ºä¿¡æ¯</td>
+    <td height="25">ÌáÊ¾ĞÅÏ¢</td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
     <td height="25"><?=$msg?></td>
@@ -22,24 +22,24 @@ function eCheckLevelInfo_ViewInfoMsg($ckuser,$r,$ecms){
 <br>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td height="25" colspan="2">æ ‡é¢˜ï¼š
+    <td height="25" colspan="2">±êÌâ£º
       <?=$r['title']?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">æŸ¥çœ‹æƒé™ï¼š</td>
+    <td height="25">²é¿´È¨ÏŞ£º</td>
     <td height="25">
       <?=$ViewLevel?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td width="17%" height="25">å‘å¸ƒæ—¶é—´ï¼š</td>
+    <td width="17%" height="25">·¢²¼Ê±¼ä£º</td>
     <td width="83%" height="25"> 
       <?=date("Y-m-d H:i:s",$r['newstime'])?>
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">ä¿¡æ¯ç®€ä»‹ï¼š</td>
+    <td height="25">ĞÅÏ¢¼ò½é£º</td>
     <td height="25"> 
       <?=$showsmalltext?>
     </td>
@@ -50,93 +50,93 @@ function eCheckLevelInfo_ViewInfoMsg($ckuser,$r,$ecms){
 	exit();
 }
 
-//è¿”å›æç¤ºä¿¡æ¯å†…å®¹
+//·µ»ØÌáÊ¾ĞÅÏ¢ÄÚÈİ
 function eCheckLevelInfo_ReturnMsgStr($ckuser,$ecms){
 	global $check_path,$level_r,$empire,$gotourl,$toreturnurl,$public_r,$dbtbpre,$class_r,$checkinfor;
 	$msgstr='';
-	if($ecms=='NotLogin')//æœªç™»å½•
+	if($ecms=='NotLogin')//Î´µÇÂ¼
 	{
-		$msgstr="æ‚¨è¿˜æœªç™»é™†ï¼Œ<a href='$gotourl'><u>ç‚¹å‡»è¿™é‡Œ</u></a>è¿›è¡Œç™»é™†æ“ä½œï¼›æ³¨å†Œè¯·<a href='".$public_r['newsurl']."e/member/register/'><u>ç‚¹å‡»è¿™é‡Œ</u></a>ã€‚";
+		$msgstr="Äú»¹Î´µÇÂ½£¬<a href='$gotourl'><u>µã»÷ÕâÀï</u></a>½øĞĞµÇÂ½²Ù×÷£»×¢²áÇë<a href='".$public_r['newsurl']."e/member/register/'><u>µã»÷ÕâÀï</u></a>¡£";
 	}
-	elseif($ecms=='SingleLogin')//åªèƒ½ä¸€äººåœ¨çº¿
+	elseif($ecms=='SingleLogin')//Ö»ÄÜÒ»ÈËÔÚÏß
 	{
-		$msgstr="åŒä¸€å¸å·åªèƒ½ä¸€äººåœ¨çº¿ï¼Œ<a href='$gotourl'><u>ç‚¹å‡»è¿™é‡Œ</u></a>é‡æ–°ç™»é™†ï¼›æ³¨å†Œè¯·<a href='".$public_r['newsurl']."e/member/register/'><u>ç‚¹å‡»è¿™é‡Œ</u></a>ã€‚";
+		$msgstr="Í¬Ò»ÕÊºÅÖ»ÄÜÒ»ÈËÔÚÏß£¬<a href='$gotourl'><u>µã»÷ÕâÀï</u></a>ÖØĞÂµÇÂ½£»×¢²áÇë<a href='".$public_r['newsurl']."e/member/register/'><u>µã»÷ÕâÀï</u></a>¡£";
 	}
-	elseif($ecms=='NotCheckUser')//æœªå®¡æ ¸
+	elseif($ecms=='NotCheckUser')//Î´ÉóºË
 	{
-		$msgstr="æ‚¨çš„å¸å·è¿˜æœªå®¡æ ¸é€šè¿‡ï¼Œ<a href='$gotourl'><u>ç‚¹å‡»è¿™é‡Œ</u></a>é‡æ–°ç™»é™†ï¼›æ³¨å†Œè¯·<a href='".$public_r['newsurl']."e/member/register/'><u>ç‚¹å‡»è¿™é‡Œ</u></a>ã€‚";
+		$msgstr="ÄúµÄÕÊºÅ»¹Î´ÉóºËÍ¨¹ı£¬<a href='$gotourl'><u>µã»÷ÕâÀï</u></a>ÖØĞÂµÇÂ½£»×¢²áÇë<a href='".$public_r['newsurl']."e/member/register/'><u>µã»÷ÕâÀï</u></a>¡£";
 	}
-	elseif($ecms=='NotLevelClass')//æƒé™ä¸è¶³(æ ç›®è®¾ç½®)
+	elseif($ecms=='NotLevelClass')//È¨ÏŞ²»×ã(À¸Ä¿ÉèÖÃ)
 	{
-		$msgstr="æ‚¨æ²¡æœ‰è¶³å¤Ÿæƒé™æŸ¥çœ‹æ­¤ä¿¡æ¯! <a href='$gotourl'><u>ç‚¹å‡»è¿™é‡Œ</u></a>é‡æ–°ç™»é™†ï¼›æ³¨å†Œè¯·<a href='".$public_r['newsurl']."e/member/register/'><u>ç‚¹å‡»è¿™é‡Œ</u></a>ã€‚";
+		$msgstr="ÄúÃ»ÓĞ×ã¹»È¨ÏŞ²é¿´´ËĞÅÏ¢! <a href='$gotourl'><u>µã»÷ÕâÀï</u></a>ÖØĞÂµÇÂ½£»×¢²áÇë<a href='".$public_r['newsurl']."e/member/register/'><u>µã»÷ÕâÀï</u></a>¡£";
 	}
-	elseif($ecms=='NotLevelGroup')//æƒé™ä¸è¶³(ä¼šå‘˜ç»„)
+	elseif($ecms=='NotLevelGroup')//È¨ÏŞ²»×ã(»áÔ±×é)
 	{
-		$msgstr="æ‚¨çš„ä¼šå‘˜çº§åˆ«ä¸è¶³(æ‚¨çš„å½“å‰çº§åˆ«ï¼š".$level_r[$ckuser['groupid']]['groupname'].")ï¼Œæ²¡æœ‰æŸ¥çœ‹æ­¤ä¿¡æ¯çš„æƒé™! <a href='$gotourl'><u>ç‚¹å‡»è¿™é‡Œ</u></a>é‡æ–°ç™»é™†ï¼›æ³¨å†Œè¯·<a href='".$public_r['newsurl']."e/member/register/'><u>ç‚¹å‡»è¿™é‡Œ</u></a>ã€‚";
+		$msgstr="ÄúµÄ»áÔ±¼¶±ğ²»×ã(ÄúµÄµ±Ç°¼¶±ğ£º".$level_r[$ckuser['groupid']]['groupname'].")£¬Ã»ÓĞ²é¿´´ËĞÅÏ¢µÄÈ¨ÏŞ! <a href='$gotourl'><u>µã»÷ÕâÀï</u></a>ÖØĞÂµÇÂ½£»×¢²áÇë<a href='".$public_r['newsurl']."e/member/register/'><u>µã»÷ÕâÀï</u></a>¡£";
 	}
-	elseif($ecms=='NotLevelViewGroup')//æƒé™ä¸è¶³(è®¿é—®ç»„)
+	elseif($ecms=='NotLevelViewGroup')//È¨ÏŞ²»×ã(·ÃÎÊ×é)
 	{
-		$msgstr="æ‚¨çš„ä¼šå‘˜çº§åˆ«ä¸è¶³ï¼Œæ²¡æœ‰æŸ¥çœ‹æ­¤ä¿¡æ¯çš„æƒé™! <a href='$gotourl'><u>ç‚¹å‡»è¿™é‡Œ</u></a>é‡æ–°ç™»é™†ï¼›æ³¨å†Œè¯·<a href='".$public_r['newsurl']."e/member/register/'><u>ç‚¹å‡»è¿™é‡Œ</u></a>ã€‚";
+		$msgstr="ÄúµÄ»áÔ±¼¶±ğ²»×ã£¬Ã»ÓĞ²é¿´´ËĞÅÏ¢µÄÈ¨ÏŞ! <a href='$gotourl'><u>µã»÷ÕâÀï</u></a>ÖØĞÂµÇÂ½£»×¢²áÇë<a href='".$public_r['newsurl']."e/member/register/'><u>µã»÷ÕâÀï</u></a>¡£";
 	}
-	elseif($ecms=='NotUserfen')//ç‚¹æ•°ä¸å¤Ÿ
+	elseif($ecms=='NotUserfen')//µãÊı²»¹»
 	{
-		$msgstr="æ‚¨çš„ç‚¹æ•°ä¸è¶³(æ‚¨å½“å‰æ‹¥æœ‰çš„ç‚¹æ•° ".$ckuser['userfen']." ç‚¹)ï¼Œæ²¡æœ‰æŸ¥çœ‹æ­¤ä¿¡æ¯çš„æƒé™! <a href='$gotourl'><u>ç‚¹å‡»è¿™é‡Œ</u></a>é‡æ–°ç™»é™†ï¼›æ³¨å†Œè¯·<a href='".$public_r['newsurl']."e/member/register/'><u>ç‚¹å‡»è¿™é‡Œ</u></a>ã€‚";
+		$msgstr="ÄúµÄµãÊı²»×ã(Äúµ±Ç°ÓµÓĞµÄµãÊı ".$ckuser['userfen']." µã)£¬Ã»ÓĞ²é¿´´ËĞÅÏ¢µÄÈ¨ÏŞ! <a href='$gotourl'><u>µã»÷ÕâÀï</u></a>ÖØĞÂµÇÂ½£»×¢²áÇë<a href='".$public_r['newsurl']."e/member/register/'><u>µã»÷ÕâÀï</u></a>¡£";
 	}
 	else
 	{
-		$msgstr="æ‚¨è¿˜æœªç™»é™†ï¼Œ<a href='$gotourl'><u>ç‚¹å‡»è¿™é‡Œ</u></a>è¿›è¡Œç™»é™†æ“ä½œï¼›æ³¨å†Œè¯·<a href='".$public_r['newsurl']."e/member/register/'><u>ç‚¹å‡»è¿™é‡Œ</u></a>ã€‚";
+		$msgstr="Äú»¹Î´µÇÂ½£¬<a href='$gotourl'><u>µã»÷ÕâÀï</u></a>½øĞĞµÇÂ½²Ù×÷£»×¢²áÇë<a href='".$public_r['newsurl']."e/member/register/'><u>µã»÷ÕâÀï</u></a>¡£";
 	}
 	return $msgstr;
 }
 
-//è¿”å›éœ€è¦çš„æŸ¥çœ‹æƒé™æç¤º
+//·µ»ØĞèÒªµÄ²é¿´È¨ÏŞÌáÊ¾
 function eCheckLevelInfo_ReturnViewLevelSay($infor){
 	global $check_path,$level_r,$empire,$gotourl,$toreturnurl,$public_r,$dbtbpre,$class_r,$checkinfor;
-	if(empty($infor['userfen']))//ä¸éœ€è¦æ‰£ç‚¹
+	if(empty($infor['userfen']))//²»ĞèÒª¿Ûµã
 	{
-		if($class_r[$infor['classid']]['cgtoinfo'])//æ ç›®è®¾ç½®
+		if($class_r[$infor['classid']]['cgtoinfo'])//À¸Ä¿ÉèÖÃ
 		{
-			$ViewLevel="éœ€è¦ [".eCheckLevelInfo_ViewInfoLevels($infor['eclass_cgroupid'])."] çº§åˆ«æ‰èƒ½æŸ¥çœ‹ã€‚";
+			$ViewLevel="ĞèÒª [".eCheckLevelInfo_ViewInfoLevels($infor['eclass_cgroupid'])."] ¼¶±ğ²ÅÄÜ²é¿´¡£";
 		}
 		else
 		{
 			if($infor['groupid']>0)
 			{
-				$ViewLevel="éœ€è¦ [".$level_r[$infor['groupid']]['groupname']."] çº§åˆ«ä»¥ä¸Šæ‰èƒ½æŸ¥çœ‹ã€‚";
+				$ViewLevel="ĞèÒª [".$level_r[$infor['groupid']]['groupname']."] ¼¶±ğÒÔÉÏ²ÅÄÜ²é¿´¡£";
 			}
 			else
 			{
-				$ViewLevel="éœ€è¦ [ç‰¹å®šè®¿é—®ç»„] çº§åˆ«æ‰èƒ½æŸ¥çœ‹ã€‚";
+				$ViewLevel="ĞèÒª [ÌØ¶¨·ÃÎÊ×é] ¼¶±ğ²ÅÄÜ²é¿´¡£";
 			}
 		}
 	}
-	else//éœ€è¦æ‰£ç‚¹
+	else//ĞèÒª¿Ûµã
 	{
-		if($class_r[$infor['classid']]['cgtoinfo'])//æ ç›®è®¾ç½®
+		if($class_r[$infor['classid']]['cgtoinfo'])//À¸Ä¿ÉèÖÃ
 		{
-			$ViewLevel="éœ€è¦ [".eCheckLevelInfo_ViewInfoLevels($infor['eclass_cgroupid'])."] çº§åˆ«ä¸æ‰£é™¤ ".$infor['userfen']." ç‚¹æ‰èƒ½æŸ¥çœ‹ã€‚";
+			$ViewLevel="ĞèÒª [".eCheckLevelInfo_ViewInfoLevels($infor['eclass_cgroupid'])."] ¼¶±ğÓë¿Û³ı ".$infor['userfen']." µã²ÅÄÜ²é¿´¡£";
 		}
 		else
 		{
 			if($infor['groupid']>0)
 			{
-				$ViewLevel="éœ€è¦ [".$level_r[$infor['groupid']]['groupname']."] çº§åˆ«ä»¥ä¸Šä¸æ‰£é™¤ ".$infor['userfen']." ç‚¹æ‰èƒ½æŸ¥çœ‹ã€‚";
+				$ViewLevel="ĞèÒª [".$level_r[$infor['groupid']]['groupname']."] ¼¶±ğÒÔÉÏÓë¿Û³ı ".$infor['userfen']." µã²ÅÄÜ²é¿´¡£";
 			}
 			else
 			{
-				$ViewLevel="éœ€è¦ [ç‰¹å®šè®¿é—®ç»„] çº§åˆ«ä¸æ‰£é™¤ ".$infor['userfen']." ç‚¹æ‰èƒ½æŸ¥çœ‹ã€‚";
+				$ViewLevel="ĞèÒª [ÌØ¶¨·ÃÎÊ×é] ¼¶±ğÓë¿Û³ı ".$infor['userfen']." µã²ÅÄÜ²é¿´¡£";
 			}
 		}
 	}
 	return $ViewLevel;
 }
 
-//è¿”å›æƒé™åˆ—è¡¨
+//·µ»ØÈ¨ÏŞÁĞ±í
 function eCheckLevelInfo_ViewInfoLevels($groupid){
 	global $level_r;
 	if(empty($groupid))
 	{
-		return 'è‡³å°‘ä¼šå‘˜';
+		return 'ÖÁÉÙ»áÔ±';
 	}
 	$r=explode(',',$groupid);
 	$count=count($r)-1;
@@ -150,14 +150,14 @@ function eCheckLevelInfo_ViewInfoLevels($groupid){
 	return $groups;
 }
 
-//è¿”å›ç®€ä»‹å­—æ®µ
+//·µ»Ø¼ò½é×Ö¶Î
 function eCheckLevelInfo_ReturnIntroField($r){
 	global $public_r,$class_r,$emod_r,$check_tbname;
-	$sublen=120;//æˆªå–120ä¸ªå­—
+	$sublen=120;//½ØÈ¡120¸ö×Ö
 	$mid=$class_r[$r[classid]]['modid'];
 	$smalltextf=$emod_r[$mid]['smalltextf'];
 	$stf=$emod_r[$mid]['savetxtf'];
-	//ç®€ä»‹
+	//¼ò½é
 	$value='';
 	$showf='';
 	if($smalltextf&&$smalltextf<>',')
@@ -181,7 +181,7 @@ function eCheckLevelInfo_ReturnIntroField($r){
 		$value=esub($value,$sublen);
 		$showf='newstext';
 	}
-	//å­˜æ–‡æœ¬
+	//´æÎÄ±¾
 	if($stf==$showf)
 	{
 		$value='';

@@ -7,18 +7,18 @@ require('../data/dbcache/MemberLevel.php');
 require LoadLang('pub/fun.php');
 $link=db_connect();
 $empire=new mysqlquery();
-eCheckCloseMods('pl');//鍏抽棴妯″潡
+eCheckCloseMods('pl');//关闭模块
 $enews=$_POST['enews'];
 if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
-//瀵煎叆鏂囦欢
+//导入文件
 if($enews=='AddPl'||$enews=='DoForPl')
 {
 	include('plfun.php');
 }
-if($enews=="AddPl")//澧炲姞璇勮
+if($enews=="AddPl")//增加评论
 {
 	$username=$_POST['username'];
 	$password=$_POST['password'];
@@ -30,7 +30,7 @@ if($enews=="AddPl")//澧炲姞璇勮
 	$key=$_POST['key'];
 	AddPl($username,$password,$nomember,$key,$saytext,$id,$classid,$repid,$_POST);
 }
-elseif($enews=='DoForPl')//璇勮鎰忚
+elseif($enews=='DoForPl')//评论意见
 {
 	DoForPl($_GET);
 }

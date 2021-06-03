@@ -1,18 +1,18 @@
 <?php
 
-//éªŒè¯ç™»å½•æ–¹å¼
+//ÑéÖ¤µÇÂ¼·½Ê½
 function MemberConnect_CheckApptype($apptype){
 	global $empire,$dbtbpre;
 	$apptype=RepPostVar($apptype);
 	$appr=$empire->fetch1("select * from {$dbtbpre}enewsmember_connect_app where apptype='$apptype' and isclose=0 limit 1");
 	if(!$appr['id'])
 	{
-		printerror2('è¯·é€‰æ‹©ç™»å½•æ–¹å¼','../../../');
+		printerror2('ÇëÑ¡ÔñµÇÂ¼·½Ê½','../../../');
 	}
 	return $appr;
 }
 
-//éªŒè¯openid
+//ÑéÖ¤openid
 function MemberConnect_CheckOpenid($apptype,$openid){
 	global $empire,$dbtbpre;
 	$mcr['id']=0;
@@ -27,7 +27,7 @@ function MemberConnect_CheckOpenid($apptype,$openid){
 	return $mcr;
 }
 
-//å¤„ç†ç™»å½•
+//´¦ÀíµÇÂ¼
 function MemberConnect_DoLogin($apptype,$openid){
 	global $empire,$dbtbpre;
 	$apptype=RepPostVar($apptype);
@@ -48,7 +48,7 @@ function MemberConnect_DoLogin($apptype,$openid){
 	}
 }
 
-//æ›´æ–°ç™»å½•ç»‘å®š
+//¸üĞÂµÇÂ¼°ó¶¨
 function MemberConnect_UpdateBindLogin($id){
 	global $empire,$dbtbpre;
 	$id=(int)$id;
@@ -56,19 +56,19 @@ function MemberConnect_UpdateBindLogin($id){
 	$empire->query("update {$dbtbpre}enewsmember_connect set loginnum=loginnum+1,lasttime='$lasttime' where id='$id' limit 1");
 }
 
-//å†™å…¥ç™»é™†ç»‘å®š
+//Ğ´ÈëµÇÂ½°ó¶¨
 function MemberConnect_InsertBind($apptype,$openid,$userid){
 	global $empire,$dbtbpre;
 	$apptype=RepPostVar($apptype);
 	$openid=RepPostVar($openid);
 	$userid=(int)$userid;
 	$time=time();
-	//éªŒè¯æ˜¯å¦é‡å¤
+	//ÑéÖ¤ÊÇ·ñÖØ¸´
 	MemberConnect_CheckReBind($apptype,$userid);
 	$empire->query("insert into {$dbtbpre}enewsmember_connect(userid,apptype,bindkey,bindtime,loginnum,lasttime) values('$userid','$apptype','$openid','$time',1,'$time');");
 }
 
-//éªŒè¯æ˜¯å¦ç»‘å®šè¿‡
+//ÑéÖ¤ÊÇ·ñ°ó¶¨¹ı
 function MemberConnect_CheckReBind($apptype,$userid){
 	global $empire,$dbtbpre;
 	$userid=(int)$userid;
@@ -76,20 +76,20 @@ function MemberConnect_CheckReBind($apptype,$userid){
 	$num=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsmember_connect where userid='$userid' and apptype='$apptype' limit 1");
 	if($num)
 	{
-		printerror2("æ­¤å¸å·å·²ç»‘å®šè¿‡ï¼Œä¸èƒ½é‡å¤ç»‘å®š","history.go(-1)");
+		printerror2("´ËÕÊºÅÒÑ°ó¶¨¹ı£¬²»ÄÜÖØ¸´°ó¶¨","history.go(-1)");
 	}
 }
 
-//åˆ é™¤ç™»é™†ç»‘å®š
+//É¾³ıµÇÂ½°ó¶¨
 function MemberConnect_DelBind($id){
 	global $empire,$dbtbpre,$public_r;
-	$user_r=islogin();//æ˜¯å¦ç™»é™†
+	$user_r=islogin();//ÊÇ·ñµÇÂ½
 	$id=(int)$id;
 	$user_r[userid]=(int)$user_r[userid];
 	$sql=$empire->query("delete from {$dbtbpre}enewsmember_connect where id='$id' and userid='$user_r[userid]';");
 	if($sql)
 	{
-		printerror2("å·²è§£é™¤ç»‘å®š","../memberconnect/ListBind.php");
+		printerror2("ÒÑ½â³ı°ó¶¨","../memberconnect/ListBind.php");
 	}
 	else
 	{
@@ -97,7 +97,7 @@ function MemberConnect_DelBind($id){
 	}
 }
 
-//åŸå¸å·ç»‘å®šç™»å½•
+//Ô­ÕÊºÅ°ó¶¨µÇÂ¼
 function MemberConnect_BindUser($userid){
 	global $empire,$dbtbpre,$public_r;
 	$userid=(int)$userid;
@@ -105,33 +105,33 @@ function MemberConnect_BindUser($userid){
 	$openid=RepPostVar($_SESSION['openid']);
 	if(!trim($apptype)||!trim($openid))
 	{
-		printerror2('æ¥è‡ªçš„é“¾æ¥ä¸å­˜åœ¨','../../../');
+		printerror2('À´×ÔµÄÁ´½Ó²»´æÔÚ','../../../');
 	}
-	$appr=MemberConnect_CheckApptype($apptype);//éªŒè¯ç™»å½•æ–¹å¼
+	$appr=MemberConnect_CheckApptype($apptype);//ÑéÖ¤µÇÂ¼·½Ê½
 	MemberConnect_CheckBindKey($apptype,$openid);
 	MemberConnect_InsertBind($apptype,$openid,$userid);
 	MemberConnect_ResetVar();
 }
 
-//ç»‘å®šéªŒè¯ç¬¦
+//°ó¶¨ÑéÖ¤·û
 function MemberConnect_GetBindKey($apptype,$openid){
 	global $ecms_config;
 	$checkpass=md5(md5('check-'.$apptype.'-empirecms-'.$openid).'-#empire.cms!-'.$openid.'-|-empirecms-|-'.$ecms_config['cks']['ckrndtwo']);
 	return $checkpass;
 }
 
-//éªŒè¯ç»‘å®šéªŒè¯ç¬¦
+//ÑéÖ¤°ó¶¨ÑéÖ¤·û
 function MemberConnect_CheckBindKey($apptype,$openid){
 	global $ecms_config;
 	$pass=md5(md5('check-'.$apptype.'-empirecms-'.$openid).'-#empire.cms!-'.$openid.'-|-empirecms-|-'.$ecms_config['cks']['ckrndtwo']);
 	$checkpass=$_SESSION['openidkey'];
 	if('dg'.$pass!='dg'.$checkpass)
 	{
-		printerror2('æ¥è‡ªçš„é“¾æ¥ä¸å­˜åœ¨','../../../');
+		printerror2('À´×ÔµÄÁ´½Ó²»´æÔÚ','../../../');
 	}
 }
 
-//é‡ç½®å˜é‡
+//ÖØÖÃ±äÁ¿
 function MemberConnect_ResetVar(){
 	$_SESSION['state']='';
 	$_SESSION['openid']='';

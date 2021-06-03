@@ -5,7 +5,7 @@ $link=db_connect();
 $empire=new mysqlquery();
 $id=(int)$_GET['id'];
 $classid=(int)$_GET['classid'];
-//å˜é‡
+//±äÁ¿
 $onclick=(int)$_GET['onclick'];
 $down=(int)$_GET['down'];
 $plnum=(int)$_GET['plnum'];
@@ -27,14 +27,14 @@ $selectf='';
 $f=array();
 $divname=array();
 $dh='';
-if($onclick)//æµè§ˆæ•°
+if($onclick)//ä¯ÀÀÊý
 {
 	$selectf.=$dh.'onclick';
 	$dh=',';
 	$f[]='onclick';
 	$divname[]='onclick';
 }
-if($down)//ä¸‹è½½æ•°
+if($down)//ÏÂÔØÊý
 {
 	$selectf.=$dh.'totaldown';
 	$dh=',';
@@ -42,7 +42,7 @@ if($down)//ä¸‹è½½æ•°
 	$divname[]='down';
 }
 $pl=0;
-if($plnum)//è¯„è®ºæ•°
+if($plnum)//ÆÀÂÛÊý
 {
 	if($cr['checkpl'])
 	{
@@ -56,14 +56,14 @@ if($plnum)//è¯„è®ºæ•°
 	$f[]='plnum';
 	$divname[]='plnum';
 }
-if($pfen)//è¯„åˆ†æ•°
+if($pfen)//ÆÀ·ÖÊý
 {
 	$selectf.=$dh.'infopfen,infopfennum';
 	$dh=',';
 	$f[]='avepfen';
 	$divname[]='pfen';
 }
-if($pfennum)//è¯„åˆ†äººæ•°
+if($pfennum)//ÆÀ·ÖÈËÊý
 {
 	if(!$pfen)
 	{
@@ -73,14 +73,14 @@ if($pfennum)//è¯„åˆ†äººæ•°
 	$f[]='infopfennum';
 	$divname[]='pfennum';
 }
-if($diggtop)//diggé¡¶æ•°
+if($diggtop)//digg¶¥Êý
 {
 	$selectf.=$dh.'diggtop';
 	$dh=',';
 	$f[]='diggtop';
 	$divname[]='diggtop';
 }
-if($diggdown)//diggè¸©æ•°
+if($diggdown)//digg²ÈÊý
 {
 	$selectf.=$dh.'diggdown';
 	$dh=',';
@@ -92,7 +92,7 @@ if(empty($selectf))
 	exit();
 }
 $r=$empire->fetch1("select ".$selectf." from {$dbtbpre}ecms_".$cr['tbname']." where id='$id' limit 1");
-//ç»Ÿè®¡æµè§ˆæ¬¡æ•°
+//Í³¼Æä¯ÀÀ´ÎÊý
 if($_GET['addclick']==1)
 {
 	$empire->query("update {$dbtbpre}ecms_".$cr['tbname']." set onclick=onclick+1 where id='$id' limit 1");

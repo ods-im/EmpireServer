@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//验证用户
+//��֤�û�
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,16 +15,16 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//验证权限
+//��֤Ȩ��
 CheckLevel($logininid,$loginin,$classid,"feedbackf");
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href=feedback.php".$ecms_hashur['whehref'].">管理信息反馈</a>&nbsp;>&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whehref'].">信息反馈分类管理</a>&nbsp;>&nbsp;<a href=ListFeedbackF.php".$ecms_hashur['whehref'].">反馈字段管理</a>&nbsp;>&nbsp;新建字段";
+$url="<a href=feedback.php".$ecms_hashur['whehref'].">������Ϣ����</a>&nbsp;>&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whehref'].">��Ϣ�����������</a>&nbsp;>&nbsp;<a href=ListFeedbackF.php".$ecms_hashur['whehref'].">�����ֶι���</a>&nbsp;>&nbsp;�½��ֶ�";
 $r[myorder]=0;
-//修改字段
+//�޸��ֶ�
 if($enews=="EditFeedbackF")
 {
 	$fid=(int)$_GET['fid'];
-	$url="<a href=feedback.php".$ecms_hashur['whehref'].">管理信息反馈</a>&nbsp;>&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whehref'].">信息反馈分类管理</a>&nbsp;>&nbsp;<a href=ListFeedbackF.php".$ecms_hashur['whehref'].">反馈字段管理</a>&nbsp;>&nbsp;修改字段";
+	$url="<a href=feedback.php".$ecms_hashur['whehref'].">������Ϣ����</a>&nbsp;>&nbsp;<a href=FeedbackClass.php".$ecms_hashur['whehref'].">��Ϣ�����������</a>&nbsp;>&nbsp;<a href=ListFeedbackF.php".$ecms_hashur['whehref'].">�����ֶι���</a>&nbsp;>&nbsp;�޸��ֶ�";
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsfeedbackf where fid='$fid'");
 	if(!$r[fid])
 	{
@@ -41,90 +41,90 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>新建字段</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>�½��ֶ�</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>位置：<?=$url?></td>
+    <td>λ�ã�<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="ListFeedbackF.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr> 
-      <td height="25" colspan="2" class="header">增加/修改字段 
+      <td height="25" colspan="2" class="header">����/�޸��ֶ� 
         <input name="fid" type="hidden" id="fid" value="<?=$fid?>"> <input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
         <input name="oldfform" type="hidden" id="oldfform" value="<?=$r[fform]?>"> 
         <input name="oldf" type="hidden" id="oldf" value="<?=$r[f]?>"> <input name="oldfformsize" type="hidden" id="oldfformsize" value="<?=$r[fformsize]?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="25%" height="25">字段名</td>
+      <td width="25%" height="25">�ֶ���</td>
       <td width="75%" height="25"><input name="f" type="text" id="f" value="<?=$r[f]?>"> 
-        <font color="#666666">(比如：&quot;title&quot;)</font></td>
+        <font color="#666666">(���磺&quot;title&quot;)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">字段标识</td>
+      <td height="25">�ֶα�ʶ</td>
       <td height="25"><input name="fname" type="text" id="fname" value="<?=$r[fname]?>"> 
-        <font color="#666666">(比如：&quot;标题&quot;)</font></td>
+        <font color="#666666">(���磺&quot;����&quot;)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">字段类型</td>
+      <td height="25">�ֶ�����</td>
       <td height="25"><select name="ftype" id="select">
-          <option value="VARCHAR"<?=$typeVARCHAR?>>字符型0-255字节(VARCHAR)</option>
-          <option value="TEXT"<?=$typeTEXT?>>小型字符型(TEXT)</option>
-          <option value="MEDIUMTEXT"<?=$typeMEDIUMTEXT?>>中型字符型(MEDIUMTEXT)</option>
-          <option value="LONGTEXT"<?=$typeLONGTEXT?>>大型字符型(LONGTEXT)</option>
-          <option value="TINYINT"<?=$typeTINYINT?>>小数值型(TINYINT)</option>
-          <option value="SMALLINT"<?=$typeSMALLINT?>>中数值型(SMALLINT)</option>
-          <option value="INT"<?=$typeINT?>>大数值型(INT)</option>
-          <option value="BIGINT"<?=$typeBIGINT?>>超大数值型(BIGINT)</option>
-          <option value="FLOAT"<?=$typeFLOAT?>>数值浮点型(FLOAT)</option>
-          <option value="DOUBLE"<?=$typeDOUBLE?>>数值双精度型(DOUBLE)</option>
+          <option value="VARCHAR"<?=$typeVARCHAR?>>�ַ���0-255�ֽ�(VARCHAR)</option>
+          <option value="TEXT"<?=$typeTEXT?>>С���ַ���(TEXT)</option>
+          <option value="MEDIUMTEXT"<?=$typeMEDIUMTEXT?>>�����ַ���(MEDIUMTEXT)</option>
+          <option value="LONGTEXT"<?=$typeLONGTEXT?>>�����ַ���(LONGTEXT)</option>
+          <option value="TINYINT"<?=$typeTINYINT?>>С��ֵ��(TINYINT)</option>
+          <option value="SMALLINT"<?=$typeSMALLINT?>>����ֵ��(SMALLINT)</option>
+          <option value="INT"<?=$typeINT?>>����ֵ��(INT)</option>
+          <option value="BIGINT"<?=$typeBIGINT?>>������ֵ��(BIGINT)</option>
+          <option value="FLOAT"<?=$typeFLOAT?>>��ֵ������(FLOAT)</option>
+          <option value="DOUBLE"<?=$typeDOUBLE?>>��ֵ˫������(DOUBLE)</option>
         </select>
-        字段长度 
+        �ֶγ��� 
         <input name="flen" type="text" id="flen" value="<?=$r[flen]?>" size="6"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td rowspan="2">输入表单显示元素</td>
+      <td rowspan="2">���������ʾԪ��</td>
       <td height="25"><select name="fform" id="fform">
-          <option value="text"<?=$formtext?>>单行文本框(text)</option>
-          <option value="password"<?=$formpassword?>>密码框(password)</option>
-          <option value="select"<?=$formselect?>>下拉框(select)</option>
-          <option value="radio"<?=$formradio?>>单选框(radio)</option>
-          <option value="checkbox"<?=$formcheckbox?>>复选框(checkbox)</option>
-          <option value="textarea"<?=$formtextarea?>>多行文本框(textarea)</option>
-          <option value="file"<?=$formfile?>>附件(file)</option>
+          <option value="text"<?=$formtext?>>�����ı���(text)</option>
+          <option value="password"<?=$formpassword?>>�����(password)</option>
+          <option value="select"<?=$formselect?>>������(select)</option>
+          <option value="radio"<?=$formradio?>>��ѡ��(radio)</option>
+          <option value="checkbox"<?=$formcheckbox?>>��ѡ��(checkbox)</option>
+          <option value="textarea"<?=$formtextarea?>>�����ı���(textarea)</option>
+          <option value="file"<?=$formfile?>>����(file)</option>
         </select>
-        元素长度 
+        Ԫ�س��� 
         <input name="fformsize" type="text" id="fformsize" value="<?=$r[fformsize]?>" size="12"> 
-        <font color="#666666">(空为按默认)</font> </td>
+        <font color="#666666">(��Ϊ��Ĭ��)</font> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25"><font color="#666666">说明：长度如果是“多行文本框”，长度与行数用逗号格开，如“60,6”.</font></td>
+      <td height="25"><font color="#666666">˵������������ǡ������ı��򡱣������������ö��Ÿ񿪣��硰60,6��.</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25" valign="top">初始值<br>
-        <font color="#666666"><span id="defvaldiv">(多个值用&quot;回车&quot;格开；<br>
-        默认选项后面加：:default)</span></font></td>
+      <td height="25" valign="top">��ʼֵ<br>
+        <font color="#666666"><span id="defvaldiv">(���ֵ��&quot;�س�&quot;�񿪣�<br>
+        Ĭ��ѡ�����ӣ�:default)</span></font></td>
       <td height="25"><textarea name="fvalue" cols="65" rows="8" id="fvalue" style="WIDTH: 100%"><?=str_replace("|","\r\n",$r[fvalue])?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">显示顺序</td>
+      <td height="25">��ʾ˳��</td>
       <td height="25"><input name="myorder" type="text" id="myorder" value="<?=$r[myorder]?>" size="6"> 
-        <font color="#666666">(数字越小越前面)</font></td>
+        <font color="#666666">(����ԽСԽǰ��)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">注释：</td>
+      <td height="25" valign="top">ע�ͣ�</td>
       <td height="25"><textarea name="fzs" cols="65" rows="10" id="fzs" style="WIDTH: 100%"><?=stripSlashes($r[fzs])?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="提交"> <input type="reset" name="Submit2" value="重置"></td>
+      <td height="25"><input type="submit" name="Submit" value="�ύ"> <input type="reset" name="Submit2" value="����"></td>
     </tr>
   </table>
 </form>

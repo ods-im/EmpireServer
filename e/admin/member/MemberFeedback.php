@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"spacedata");
 
-//åˆ é™¤åé¦ˆ
+//É¾³ý·´À¡
 function hDelMemberFeedback($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$fid=intval($add['fid']);
@@ -29,7 +29,7 @@ function hDelMemberFeedback($add,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsmemberfeedback where fid='$fid'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("fid=".$fid);
 		printerror("DelMemberFeedbackSuccess",EcmsGetReturnUrl());
 	}
@@ -39,7 +39,7 @@ function hDelMemberFeedback($add,$userid,$username){
 	}
 }
 
-//æ‰¹é‡åˆ é™¤åé¦ˆ
+//ÅúÁ¿É¾³ý·´À¡
 function hDelMemberFeedback_All($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$fid=$add['fid'];
@@ -56,7 +56,7 @@ function hDelMemberFeedback_All($add,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewsmemberfeedback where (".$addsql.")");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror("DelMemberFeedbackSuccess",EcmsGetReturnUrl());
 	}
@@ -88,10 +88,10 @@ include "../".LoadLang("pub/fun.php");
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æŽ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
-//æœç´¢
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊý
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊý
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
+//ËÑË÷
 $search='';
 $search.=$ecms_hashur['ehref'];
 $and='';
@@ -101,19 +101,19 @@ if($_GET['sear'])
 	if($keyboard)
 	{
 		$show=RepPostStr($_GET['show'],1);
-		if($show==1)//åé¦ˆæ ‡é¢˜
+		if($show==1)//·´À¡±êÌâ
 		{
 			$and.=" where title like '%$keyboard%'";	
 		}
-		elseif($show==2)//åé¦ˆå†…å®¹
+		elseif($show==2)//·´À¡ÄÚÈÝ
 		{
 			$and.=" where ftext like '%$keyboard%'";
 		}
-		elseif($show==3)//ç©ºé—´ä¸»äººç”¨æˆ·ID
+		elseif($show==3)//¿Õ¼äÖ÷ÈËÓÃ»§ID
 		{
 			$and.=" where userid='$keyboard'";
 		}
-		elseif($show==4)//ç•™è¨€è€…IP
+		elseif($show==4)//ÁôÑÔÕßIP
 		{
 			$and.=" where ip like '%$keyboard%'";
 		}
@@ -122,24 +122,24 @@ if($_GET['sear'])
 }
 $query="select fid,title,uid,uname,addtime,userid from {$dbtbpre}enewsmemberfeedback".$and;
 $totalquery="select count(*) as total from {$dbtbpre}enewsmemberfeedback".$and;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊý
 $query=$query." order by fid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-$url="ä¼šå‘˜ç©ºé—´&nbsp;>&nbsp;<a href=MemberFeedback.php".$ecms_hashur['whehref'].">ç®¡ç†åé¦ˆ</a>";
+$url="»áÔ±¿Õ¼ä&nbsp;>&nbsp;<a href=MemberFeedback.php".$ecms_hashur['whehref'].">¹ÜÀí·´À¡</a>";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†åé¦ˆ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí·´À¡</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right"> 
@@ -150,29 +150,29 @@ $url="ä¼šå‘˜ç©ºé—´&nbsp;>&nbsp;<a href=MemberFeedback.php".$ecms_hashur['whehref
   <form name="searchfb" method="get" action="MemberFeedback.php">
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td><div align="center">æœç´¢ï¼š 
+      <td><div align="center">ËÑË÷£º 
           <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
           <select name="show" id="show">
-            <option value="1"<?=$show==1?' selected':''?>>åé¦ˆæ ‡é¢˜</option>
-            <option value="2"<?=$show==2?' selected':''?>>åé¦ˆå†…å®¹</option>
-            <option value="3"<?=$show==3?' selected':''?>>ç©ºé—´ä¸»äººç”¨æˆ·ID</option>
-            <option value="4"<?=$show==4?' selected':''?>>ç•™è¨€è€…IP</option>
+            <option value="1"<?=$show==1?' selected':''?>>·´À¡±êÌâ</option>
+            <option value="2"<?=$show==2?' selected':''?>>·´À¡ÄÚÈÝ</option>
+            <option value="3"<?=$show==3?' selected':''?>>¿Õ¼äÖ÷ÈËÓÃ»§ID</option>
+            <option value="4"<?=$show==4?' selected':''?>>ÁôÑÔÕßIP</option>
           </select>
-          <input type="submit" name="Submit2" value="æœç´¢">
+          <input type="submit" name="Submit2" value="ËÑË÷">
           <input name="sear" type="hidden" id="sear" value="1">
         </div></td>
     </tr>
   </form>
 </table>
-<form name="form1" method="post" action="MemberFeedback.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+<form name="form1" method="post" action="MemberFeedback.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ý?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class=tableborder>
   <?=$ecms_hashur['form']?>
     <tr class=header> 
       <td width="7%" height="23"><div align="center">ID</div></td>
-      <td width="43%" height="23"><div align="center">æ ‡é¢˜(ç‚¹å‡»æŸ¥çœ‹)</div></td>
-      <td width="20%" height="23"><div align="center">ç©ºé—´ä¸»äºº</div></td>
-      <td width="18%" height="23"><div align="center">å‘å¸ƒæ—¶é—´</div></td>
-      <td width="12%" height="23"><div align="center">æ“ä½œ</div></td>
+      <td width="43%" height="23"><div align="center">±êÌâ(µã»÷²é¿´)</div></td>
+      <td width="20%" height="23"><div align="center">¿Õ¼äÖ÷ÈË</div></td>
+      <td width="18%" height="23"><div align="center">·¢²¼Ê±¼ä</div></td>
+      <td width="12%" height="23"><div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
@@ -185,7 +185,7 @@ $url="ä¼šå‘˜ç©ºé—´&nbsp;>&nbsp;<a href=MemberFeedback.php".$ecms_hashur['whehref
 	}
 	else
 	{
-		$r['uname']='æ¸¸å®¢';
+		$r['uname']='ÓÎ¿Í';
 	}
   ?>
     <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
@@ -201,7 +201,7 @@ $url="ä¼šå‘˜ç©ºé—´&nbsp;>&nbsp;<a href=MemberFeedback.php".$ecms_hashur['whehref
       <td height="25"><div align="center"> 
           <?=$r[addtime]?>
         </div></td>
-      <td height="25"><div align="center">[<a href="MemberFeedback.php?enews=hDelMemberFeedback&fid=<?=$r[fid]?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤?');">åˆ é™¤</a>
+      <td height="25"><div align="center">[<a href="MemberFeedback.php?enews=hDelMemberFeedback&fid=<?=$r[fid]?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ý?');">É¾³ý</a>
           <input name="fid[]" type="checkbox" value="<?=$r[fid]?>">
           ]</div></td>
     </tr>
@@ -212,7 +212,7 @@ $url="ä¼šå‘˜ç©ºé—´&nbsp;>&nbsp;<a href=MemberFeedback.php".$ecms_hashur['whehref
       <td height="25" colspan="5">&nbsp; 
         <?=$returnpage?>
         &nbsp;&nbsp;&nbsp;
-        <input type="submit" name="Submit" value="æ‰¹é‡åˆ é™¤">
+        <input type="submit" name="Submit" value="ÅúÁ¿É¾³ý">
         <input name="enews" type="hidden" id="enews" value="hDelMemberFeedback_All"></td>
     </tr>
   </table>

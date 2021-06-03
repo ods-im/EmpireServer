@@ -9,7 +9,7 @@ require("class/hShopSysFun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -18,13 +18,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"shopdd");
 
-//è®¢å•è®¾å®š
+//¶©µ¥Éè¶¨
 function SetShopDd($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"shopdd");
 	$ddid=$add['ddid'];
 	$doing=$add['doing'];
@@ -49,38 +49,38 @@ function SetShopDd($add,$userid,$username){
 	$add='ddid in ('.$ids.')';
 	$mess='ErrorUrl';
 	$log='';
-	if($doing==1)	//è®¢å•çŠ¶æ€
+	if($doing==1)	//¶©µ¥×´Ì¬
 	{
 		$sql=$empire->query("update {$dbtbpre}enewsshopdd set checked='$checked' where ".$add);
 		$mess="SetCheckedSuccess";
 		$log="doing=$doing&do=SetChecked&checked=$checked<br>ddid=$ids";
-		//è®¢å•æ—¥å¿—
+		//¶©µ¥ÈÕÖ¾
 		$log_ecms='SetChecked';
 		$log_bz='';
 		if($checked==1)
 		{
-			$log_addbz='ç¡®è®¤';
+			$log_addbz='È·ÈÏ';
 		}
 		elseif($checked==2)
 		{
-			$log_addbz='å–æ¶ˆ';
+			$log_addbz='È¡Ïû';
 		}
 		elseif($checked==3)
 		{
-			$log_addbz='é€€è´§';
+			$log_addbz='ÍË»õ';
 		}
 		elseif($checked==0)
 		{
-			$log_addbz='æœªç¡®è®¤';
+			$log_addbz='Î´È·ÈÏ';
 		}
-		//å†™å…¥è®¢å•æ—¥å¿—
+		//Ğ´Èë¶©µ¥ÈÕÖ¾
 		if($ids)
 		{
 			$logsql=$empire->query("select ddid,havecutnum from {$dbtbpre}enewsshopdd where ".$add);
 			while($logr=$empire->fetch($logsql))
 			{
-				ShopSys_DdInsertLog($logr['ddid'],$log_ecms,$log_bz,$log_addbz);//è®¢å•æ—¥å¿—
-				//åº“å­˜
+				ShopSys_DdInsertLog($logr['ddid'],$log_ecms,$log_bz,$log_addbz);//¶©µ¥ÈÕÖ¾
+				//¿â´æ
 				if($shoppr['cutnumtype']==0&&$checked==2&&$logr['havecutnum'])
 				{
 					$ddaddr=$empire->fetch1("select buycar from {$dbtbpre}enewsshopdd_add where ddid='$logr[ddid]'");
@@ -89,60 +89,60 @@ function SetShopDd($add,$userid,$username){
 			}
 		}
     }
-	elseif($doing==2)	//å‘è´§çŠ¶æ€
+	elseif($doing==2)	//·¢»õ×´Ì¬
 	{
 		$sql=$empire->query("update {$dbtbpre}enewsshopdd set outproduct='$outproduct' where ".$add);
 		$mess="SetOutProductSuccess";
 		$log="doing=$doing&do=SetOutProduct&outproduct=$outproduct<br>ddid=$ids";
-		//è®¢å•æ—¥å¿—
+		//¶©µ¥ÈÕÖ¾
 		$log_ecms='SetOutProduct';
 		$log_bz='';
 		if($outproduct==1)
 		{
-			$log_addbz='å·²å‘è´§';
+			$log_addbz='ÒÑ·¢»õ';
 		}
 		elseif($outproduct==2)
 		{
-			$log_addbz='å¤‡è´§ä¸­';
+			$log_addbz='±¸»õÖĞ';
 		}
 		elseif($outproduct==0)
 		{
-			$log_addbz='æœªå‘è´§';
+			$log_addbz='Î´·¢»õ';
 		}
-		//å†™å…¥è®¢å•æ—¥å¿—
+		//Ğ´Èë¶©µ¥ÈÕÖ¾
 		if($ids)
 		{
 			$logsql=$empire->query("select ddid from {$dbtbpre}enewsshopdd where ".$add);
 			while($logr=$empire->fetch($logsql))
 			{
-				ShopSys_DdInsertLog($logr['ddid'],$log_ecms,$log_bz,$log_addbz);//è®¢å•æ—¥å¿—
+				ShopSys_DdInsertLog($logr['ddid'],$log_ecms,$log_bz,$log_addbz);//¶©µ¥ÈÕÖ¾
 			}
 		}
     }
-	elseif($doing==3)	//ä»˜æ¬¾çŠ¶æ€
+	elseif($doing==3)	//¸¶¿î×´Ì¬
 	{
 		$sql=$empire->query("update {$dbtbpre}enewsshopdd set haveprice='$haveprice' where ".$add);
 		$mess="SetHavepriceSuccess";
 		$log="doing=$doing&do=SetHaveprice&haveprice=$haveprice<br>ddid=$ids";
-		//è®¢å•æ—¥å¿—
+		//¶©µ¥ÈÕÖ¾
 		$log_ecms='SetHaveprice';
 		$log_bz='';
 		if($haveprice==1)
 		{
-			$log_addbz='å·²ä»˜æ¬¾';
+			$log_addbz='ÒÑ¸¶¿î';
 		}
 		elseif($haveprice==0)
 		{
-			$log_addbz='æœªä»˜æ¬¾';
+			$log_addbz='Î´¸¶¿î';
 		}
-		//å†™å…¥è®¢å•æ—¥å¿—
+		//Ğ´Èë¶©µ¥ÈÕÖ¾
 		if($ids)
 		{
 			$logsql=$empire->query("select ddid,havecutnum from {$dbtbpre}enewsshopdd where ".$add);
 			while($logr=$empire->fetch($logsql))
 			{
-				ShopSys_DdInsertLog($logr['ddid'],$log_ecms,$log_bz,$log_addbz);//è®¢å•æ—¥å¿—
-				//åº“å­˜
+				ShopSys_DdInsertLog($logr['ddid'],$log_ecms,$log_bz,$log_addbz);//¶©µ¥ÈÕÖ¾
+				//¿â´æ
 				if($shoppr['cutnumtype']==1&&$haveprice==1&&!$logr['havecutnum'])
 				{
 					$ddaddr=$empire->fetch1("select buycar from {$dbtbpre}enewsshopdd_add where ddid='$logr[ddid]'");
@@ -151,12 +151,12 @@ function SetShopDd($add,$userid,$username){
 			}
 		}
     }
-	elseif($doing==4)	//åˆ é™¤è®¢å•
+	elseif($doing==4)	//É¾³ı¶©µ¥
 	{
 		$log_ecms='DelDd';
 		$log_bz='';
 		$log_addbz='';
-		//åº“å­˜
+		//¿â´æ
 		if($ids)
 		{
 			$logsql=$empire->query("select ddid,havecutnum,checked,haveprice from {$dbtbpre}enewsshopdd where ".$add." and havecutnum=1");
@@ -185,7 +185,7 @@ function SetShopDd($add,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog($log);
 		printerror($mess,EcmsGetReturnUrl());
 	}
@@ -207,7 +207,7 @@ if($enews=="SetShopDd")
 else
 {}
 
-//æ›´æ–°åº“å­˜
+//¸üĞÂ¿â´æ
 $shoppr=ShopSys_hReturnSet();
 ShopSys_hTimeCutMaxnum(0,$shoppr);
 
@@ -215,14 +215,14 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=18;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=18;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $totalquery="select count(*) as total from {$dbtbpre}enewsshopdd";
 $query="select ddid,ddno,ddtime,userid,username,outproduct,haveprice,checked,truename,psid,psname,pstotal,alltotal,payfsid,payfsname,payby,alltotalfen,fp,fptotal,pretotal from {$dbtbpre}enewsshopdd";
 $add='';
 $and=' where ';
-//æœç´¢
+//ËÑË÷
 $sear=RepPostStr($_GET['sear'],1);
 if($sear)
 {
@@ -231,80 +231,80 @@ if($sear)
 	if($keyboard)
 	{
 		$show=(int)$_GET['show'];
-		if($show==1)//æœç´¢è®¢å•å·
+		if($show==1)//ËÑË÷¶©µ¥ºÅ
 		{
 			$add=$and."ddno like '%$keyboard%'";
 		}
-		elseif($show==2)//ç”¨æˆ·å
+		elseif($show==2)//ÓÃ»§Ãû
 		{
 			$add=$and."username like '%$keyboard%'";
 		}
-		elseif($show==3)//å§“å
+		elseif($show==3)//ĞÕÃû
 		{
 			$add=$and."truename like '%$keyboard%'";
 		}
-		elseif($show==4)//é‚®ç®±
+		elseif($show==4)//ÓÊÏä
 		{
 			$add=$and."email like '%$keyboard%'";
 		}
-		else//åœ°å€
+		else//µØÖ·
 		{
 			$add=$and."address like '%$keyboard%'";
 		}
 		$and=' and ';
 	}
-	//è®¢å•çŠ¶æ€
+	//¶©µ¥×´Ì¬
 	$checked=(int)$_GET['checked'];
-	if($checked==1)//å·²ç¡®è®¤
+	if($checked==1)//ÒÑÈ·ÈÏ
 	{
 		$add.=$and."checked=1";
 		$and=' and ';
 	}
-	elseif($checked==9)//æœªç¡®è®¤
+	elseif($checked==9)//Î´È·ÈÏ
 	{
 		$add.=$and."checked=0";
 		$and=' and ';
 	}
-	elseif($checked==2)//å–æ¶ˆ
+	elseif($checked==2)//È¡Ïû
 	{
 		$add.=$and."checked=2";
 		$and=' and ';
 	}
-	elseif($checked==3)//é€€è´§
+	elseif($checked==3)//ÍË»õ
 	{
 		$add.=$and."checked=3";
 		$and=' and ';
 	}
-	//æ˜¯å¦ä»˜æ¬¾
+	//ÊÇ·ñ¸¶¿î
 	$haveprice=(int)$_GET['haveprice'];
-	if($haveprice==1)//å·²ä»˜æ¬¾
+	if($haveprice==1)//ÒÑ¸¶¿î
 	{
 		$add.=$and."haveprice=1";
 		$and=' and ';
 	}
-	elseif($haveprice==9)//æœªä»˜æ¬¾
+	elseif($haveprice==9)//Î´¸¶¿î
 	{
 		$add.=$and."haveprice=0";
 		$and=' and ';
 	}
-	//æ˜¯å¦å‘è´§
+	//ÊÇ·ñ·¢»õ
 	$outproduct=(int)$_GET['outproduct'];
-	if($outproduct==1)//å·²å‘è´§
+	if($outproduct==1)//ÒÑ·¢»õ
 	{
 		$add.=$and."outproduct=1";
 		$and=' and ';
 	}
-	elseif($outproduct==9)//æœªå‘è´§
+	elseif($outproduct==9)//Î´·¢»õ
 	{
 		$add.=$and."outproduct=0";
 		$and=' and ';
 	}
-	elseif($outproduct==2)//å¤‡è´§ä¸­
+	elseif($outproduct==2)//±¸»õÖĞ
 	{
 		$add.=$and."outproduct=2";
 		$and=' and ';
 	}
-	//æ—¶é—´
+	//Ê±¼ä
 	$starttime=RepPostVar($_GET['starttime']);
 	$endtime=RepPostVar($_GET['endtime']);
 	if($endtime!="")
@@ -316,9 +316,9 @@ if($sear)
 	}
 	$search.="&sear=1&keyboard=$keyboard&show=$show&checked=$checked&outproduct=$outproduct&haveprice=$haveprice&starttime=$starttime&endtime=$endtime";
 }
-//æ’åº
+//ÅÅĞò
 $myorder=(int)$_GET['myorder'];
-if($myorder==2)//å•†å“é‡‘é¢
+if($myorder==2)//ÉÌÆ·½ğ¶î
 {
 	$orderby='alltotal desc';
 }
@@ -326,7 +326,7 @@ elseif($myorder==3)
 {
 	$orderby='alltotal asc';
 }
-elseif($myorder==4)//å•†å“ç‚¹æ•°
+elseif($myorder==4)//ÉÌÆ·µãÊı
 {
 	$orderby='alltotalfen desc';
 }
@@ -334,7 +334,7 @@ elseif($myorder==5)
 {
 	$orderby='alltotalfen asc';
 }
-elseif($myorder==6)//ä¼˜æƒ é‡‘é¢
+elseif($myorder==6)//ÓÅ»İ½ğ¶î
 {
 	$orderby='pretotal desc';
 }
@@ -342,7 +342,7 @@ elseif($myorder==7)
 {
 	$orderby='pretotal asc';
 }
-elseif($myorder==1)//è®¢å•æ—¶é—´
+elseif($myorder==1)//¶©µ¥Ê±¼ä
 {
 	$orderby='ddid asc';
 }
@@ -352,7 +352,7 @@ else
 }
 $totalquery.=$add;
 $query.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by ".$orderby." limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -360,9 +360,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†è®¢å•</title>
+<title>¹ÜÀí¶©µ¥</title>
 <script>
 function CheckAll(form)
   {
@@ -380,7 +380,7 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<a href="ListDd.php<?=$ecms_hashur['whehref']?>">ç®¡ç†è®¢å•</a></td>
+    <td height="25">Î»ÖÃ£º<a href="ListDd.php<?=$ecms_hashur['whehref']?>">¹ÜÀí¶©µ¥</a></td>
   </tr>
 </table>
 
@@ -389,71 +389,71 @@ function CheckAll(form)
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <?=$ecms_hashur['eform']?>
     <tr> 
-      <td>æœç´¢: <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>"> 
+      <td>ËÑË÷: <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>"> 
         <select name="show" id="show">
-          <option value="1"<?=$show==1?' selected':''?>>è®¢å•å·</option>
-          <option value="2"<?=$show==2?' selected':''?>>ç”¨æˆ·å</option>
-		  <option value="3"<?=$show==3?' selected':''?>>æ”¶è´§äººå§“å</option>
-		  <option value="4"<?=$show==4?' selected':''?>>æ”¶è´§äººé‚®ç®±</option>
-		  <option value="5"<?=$show==5?' selected':''?>>æ”¶è´§äººåœ°å€</option>
+          <option value="1"<?=$show==1?' selected':''?>>¶©µ¥ºÅ</option>
+          <option value="2"<?=$show==2?' selected':''?>>ÓÃ»§Ãû</option>
+		  <option value="3"<?=$show==3?' selected':''?>>ÊÕ»õÈËĞÕÃû</option>
+		  <option value="4"<?=$show==4?' selected':''?>>ÊÕ»õÈËÓÊÏä</option>
+		  <option value="5"<?=$show==5?' selected':''?>>ÊÕ»õÈËµØÖ·</option>
         </select> 
         <select name="checked" id="checked">
-          <option value="0"<?=$checked==0?' selected':''?>>ä¸é™è®¢å•çŠ¶æ€</option>
-          <option value="1"<?=$checked==1?' selected':''?>>å·²ç¡®è®¤</option>
-          <option value="9"<?=$checked==9?' selected':''?>>æœªç¡®è®¤</option>
-		  <option value="2"<?=$checked==2?' selected':''?>>å–æ¶ˆ</option>
-		  <option value="3"<?=$checked==3?' selected':''?>>é€€è´§</option>
+          <option value="0"<?=$checked==0?' selected':''?>>²»ÏŞ¶©µ¥×´Ì¬</option>
+          <option value="1"<?=$checked==1?' selected':''?>>ÒÑÈ·ÈÏ</option>
+          <option value="9"<?=$checked==9?' selected':''?>>Î´È·ÈÏ</option>
+		  <option value="2"<?=$checked==2?' selected':''?>>È¡Ïû</option>
+		  <option value="3"<?=$checked==3?' selected':''?>>ÍË»õ</option>
         </select> 
         <select name="outproduct" id="outproduct">
-          <option value="0"<?=$outproduct==0?' selected':''?>>ä¸é™å‘è´§çŠ¶æ€</option>
-          <option value="1"<?=$outproduct==1?' selected':''?>>å·²å‘è´§</option>
-          <option value="9"<?=$outproduct==9?' selected':''?>>æœªå‘è´§</option>
-		  <option value="2"<?=$outproduct==2?' selected':''?>>å¤‡è´§ä¸­</option>
+          <option value="0"<?=$outproduct==0?' selected':''?>>²»ÏŞ·¢»õ×´Ì¬</option>
+          <option value="1"<?=$outproduct==1?' selected':''?>>ÒÑ·¢»õ</option>
+          <option value="9"<?=$outproduct==9?' selected':''?>>Î´·¢»õ</option>
+		  <option value="2"<?=$outproduct==2?' selected':''?>>±¸»õÖĞ</option>
         </select>
         <select name="haveprice" id="haveprice">
-          <option value="0"<?=$haveprice==0?' selected':''?>>ä¸é™ä»˜æ¬¾çŠ¶æ€</option>
-          <option value="1"<?=$haveprice==1?' selected':''?>>å·²ä»˜æ¬¾</option>
-          <option value="9"<?=$haveprice==9?' selected':''?>>æœªä»˜æ¬¾</option>
+          <option value="0"<?=$haveprice==0?' selected':''?>>²»ÏŞ¸¶¿î×´Ì¬</option>
+          <option value="1"<?=$haveprice==1?' selected':''?>>ÒÑ¸¶¿î</option>
+          <option value="9"<?=$haveprice==9?' selected':''?>>Î´¸¶¿î</option>
         </select>
         <select name="myorder" id="myorder">
-          <option value="0"<?=$myorder==0?' selected':''?>>è®¢å•æ—¶é—´é™åº</option>
-          <option value="1"<?=$myorder==1?' selected':''?>>è®¢å•æ—¶é—´å‡åº</option>
-          <option value="2"<?=$myorder==2?' selected':''?>>å•†å“é‡‘é¢é™åº</option>
-          <option value="3"<?=$myorder==3?' selected':''?>>å•†å“é‡‘é¢å‡åº</option>
-          <option value="4"<?=$myorder==4?' selected':''?>>å•†å“ç‚¹æ•°é™åº</option>
-          <option value="5"<?=$myorder==5?' selected':''?>>å•†å“ç‚¹æ•°å‡åº</option>
-          <option value="6"<?=$myorder==6?' selected':''?>>ä¼˜æƒ é‡‘é¢å‡åº</option>
-          <option value="7"<?=$myorder==7?' selected':''?>>ä¼˜æƒ é‡‘é¢é™åº</option>
+          <option value="0"<?=$myorder==0?' selected':''?>>¶©µ¥Ê±¼ä½µĞò</option>
+          <option value="1"<?=$myorder==1?' selected':''?>>¶©µ¥Ê±¼äÉıĞò</option>
+          <option value="2"<?=$myorder==2?' selected':''?>>ÉÌÆ·½ğ¶î½µĞò</option>
+          <option value="3"<?=$myorder==3?' selected':''?>>ÉÌÆ·½ğ¶îÉıĞò</option>
+          <option value="4"<?=$myorder==4?' selected':''?>>ÉÌÆ·µãÊı½µĞò</option>
+          <option value="5"<?=$myorder==5?' selected':''?>>ÉÌÆ·µãÊıÉıĞò</option>
+          <option value="6"<?=$myorder==6?' selected':''?>>ÓÅ»İ½ğ¶îÉıĞò</option>
+          <option value="7"<?=$myorder==7?' selected':''?>>ÓÅ»İ½ğ¶î½µĞò</option>
         </select></td>
     </tr>
     <tr>
-      <td>æ—¶é—´:ä» 
+      <td>Ê±¼ä:´Ó 
         <input name="starttime" type="text" id="starttime2" value="<?=$starttime?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        åˆ° 
+        µ½ 
         <input name="endtime" type="text" id="endtime2" value="<?=$endtime?>" size="15" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        æ­¢çš„è®¢å• 
-        <input type="submit" name="Submit6" value="æœç´¢"> <input name="sear" type="hidden" id="sear2" value="1"></td>
+        Ö¹µÄ¶©µ¥ 
+        <input type="submit" name="Submit6" value="ËÑË÷"> <input name="sear" type="hidden" id="sear2" value="1"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class=tableborder>
-  <form name="listdd" method="post" action="ListDd.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+  <form name="listdd" method="post" action="ListDd.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
   <?=$ecms_hashur['form']?>
     <input type=hidden name=enews value=SetShopDd>
     <input type=hidden name=doing value=0>
     <tr class=header> 
-      <td width="5%" height="23"> <div align="center">é€‰æ‹©</div></td>
-      <td width="19%"><div align="center">ç¼–å·(ç‚¹å‡»æŸ¥çœ‹)</div></td>
-      <td width="21%"><div align="center">è®¢è´­æ—¶é—´</div></td>
-      <td width="13%"><div align="center">è®¢è´­è€…</div></td>
-      <td width="11%"><div align="center">æ€»é‡‘é¢</div></td>
-      <td width="12%"><div align="center">æ”¯ä»˜æ–¹å¼</div></td>
-      <td width="19%"><div align="center">çŠ¶æ€</div></td>
+      <td width="5%" height="23"> <div align="center">Ñ¡Ôñ</div></td>
+      <td width="19%"><div align="center">±àºÅ(µã»÷²é¿´)</div></td>
+      <td width="21%"><div align="center">¶©¹ºÊ±¼ä</div></td>
+      <td width="13%"><div align="center">¶©¹ºÕß</div></td>
+      <td width="11%"><div align="center">×Ü½ğ¶î</div></td>
+      <td width="12%"><div align="center">Ö§¸¶·½Ê½</div></td>
+      <td width="19%"><div align="center">×´Ì¬</div></td>
     </tr>
     <?
 	while($r=$empire->fetch($sql))
 	{
-		if(empty($r[userid]))//éä¼šå‘˜
+		if(empty($r[userid]))//·Ç»áÔ±
 		{
 			$username="<font color=cccccc>".$r[truename]."</font>";
 		}
@@ -461,81 +461,81 @@ function CheckAll(form)
 		{
 			$username="<a href='../member/AddMember.php?enews=EditMember&userid=".$r[userid].$ecms_hashur['ehref']."' target=_blank>".$r[username]."</a>";
 		}
-		//ç‚¹æ•°è´­ä¹°
+		//µãÊı¹ºÂò
 		$total=0;
 		if($r[payby]==1)
 		{
 			$total=$r[alltotalfen]+$r[pstotal];
-			$mytotal="<a href='#ecms' title='å•†å“é¢(".$r[alltotalfen].")+è¿è´¹(".$r[pstotal].")'>".$total." ç‚¹</a>";
+			$mytotal="<a href='#ecms' title='ÉÌÆ·¶î(".$r[alltotalfen].")+ÔË·Ñ(".$r[pstotal].")'>".$total." µã</a>";
 		}
 		else
 		{
-			//å‘ç¥¨
+			//·¢Æ±
 			$fpa='';
 			$pre='';
 			if($r[fp])
 			{
-				$fpa="+å‘ç¥¨è´¹(".$r[fptotal].")";
+				$fpa="+·¢Æ±·Ñ(".$r[fptotal].")";
 			}
-			//ä¼˜æƒ 
+			//ÓÅ»İ
 			if($r['pretotal'])
 			{
-				$pre="-ä¼˜æƒ (".$r[pretotal].")";
+				$pre="-ÓÅ»İ(".$r[pretotal].")";
 			}
 			$total=$r[alltotal]+$r[pstotal]+$r[fptotal]-$r[pretotal];
-			$mytotal="<a href='#ecms' title='å•†å“é¢(".$r[alltotal].")+è¿è´¹(".$r[pstotal].")".$fpa.$pre."'>".$total." å…ƒ</a>";
+			$mytotal="<a href='#ecms' title='ÉÌÆ·¶î(".$r[alltotal].")+ÔË·Ñ(".$r[pstotal].")".$fpa.$pre."'>".$total." Ôª</a>";
 		}
-		//æ”¯ä»˜æ–¹å¼
+		//Ö§¸¶·½Ê½
 		if($r[payby]==1)
 		{
-			$payfsname=$r[payfsname]."<br>(ç‚¹æ•°è´­ä¹°)";
+			$payfsname=$r[payfsname]."<br>(µãÊı¹ºÂò)";
 		}
 		elseif($r[payby]==2)
 		{
-			$payfsname=$r[payfsname]."<br>(ä½™é¢è´­ä¹°)";
+			$payfsname=$r[payfsname]."<br>(Óà¶î¹ºÂò)";
 		}
 		else
 		{
 			$payfsname=$r[payfsname];
 		}
-		//è®¢å•çŠ¶æ€
+		//¶©µ¥×´Ì¬
 		if($r['checked']==1)
 		{
-			$ch="å·²ç¡®è®¤";
+			$ch="ÒÑÈ·ÈÏ";
 		}
 		elseif($r['checked']==2)
 		{
-			$ch="å–æ¶ˆ";
+			$ch="È¡Ïû";
 		}
 		elseif($r['checked']==3)
 		{
-			$ch="é€€è´§";
+			$ch="ÍË»õ";
 		}
 		else
 		{
-			$ch="<font color=red>æœªç¡®è®¤</font>";
+			$ch="<font color=red>Î´È·ÈÏ</font>";
 		}
-		//å‘è´§çŠ¶æ€
+		//·¢»õ×´Ì¬
 		if($r['outproduct']==1)
 		{
-			$ou="å·²å‘è´§";
+			$ou="ÒÑ·¢»õ";
 		}
 		elseif($r['outproduct']==2)
 		{
-			$ou="å¤‡è´§ä¸­";
+			$ou="±¸»õÖĞ";
 		}
 		else
 		{
-			$ou="<font color=red>æœªå‘è´§</font>";
+			$ou="<font color=red>Î´·¢»õ</font>";
 		}
-		//ä»˜æ¬¾çŠ¶æ€
+		//¸¶¿î×´Ì¬
 		if($r['haveprice']==1)
 		{
-			$ha="å·²ä»˜æ¬¾";
+			$ha="ÒÑ¸¶¿î";
 		}
 		else
 		{
-			$ha="<font color=red>æœªä»˜æ¬¾</font>";
+			$ha="<font color=red>Î´¸¶¿î</font>";
 		}
 	?>
     <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
@@ -567,33 +567,33 @@ function CheckAll(form)
           <input type=checkbox name=chkall value=on onClick='CheckAll(this.form)'>
         </div></td>
       <td colspan="6"><select name="checked" id="checked">
-        <option value="1">ç¡®è®¤</option>
-        <option value="2">å–æ¶ˆ</option>
-        <option value="3">é€€è´§</option>
-        <option value="0">æœªç¡®è®¤</option>
+        <option value="1">È·ÈÏ</option>
+        <option value="2">È¡Ïû</option>
+        <option value="3">ÍË»õ</option>
+        <option value="0">Î´È·ÈÏ</option>
       </select>
-      <input type="submit" name="Submit" value="è®¾ç½®è®¢å•çŠ¶æ€" onClick="document.listdd.doing.value='1';document.listdd.enews.value='SetShopDd';document.listdd.action='ListDd.php';"> 
+      <input type="submit" name="Submit" value="ÉèÖÃ¶©µ¥×´Ì¬" onClick="document.listdd.doing.value='1';document.listdd.enews.value='SetShopDd';document.listdd.action='ListDd.php';"> 
         &nbsp;
         <select name="outproduct" id="outproduct">
-          <option value="1">å·²å‘è´§</option>
-          <option value="2">å¤‡è´§ä¸­</option>
-          <option value="0">æœªå‘è´§</option>
+          <option value="1">ÒÑ·¢»õ</option>
+          <option value="2">±¸»õÖĞ</option>
+          <option value="0">Î´·¢»õ</option>
         </select> 
-        <input type="submit" name="Submit2" value="è®¾ç½®å‘è´§çŠ¶æ€" onClick="document.listdd.doing.value='2';document.listdd.enews.value='SetShopDd';document.listdd.action='ListDd.php';"> 
+        <input type="submit" name="Submit2" value="ÉèÖÃ·¢»õ×´Ì¬" onClick="document.listdd.doing.value='2';document.listdd.enews.value='SetShopDd';document.listdd.action='ListDd.php';"> 
         &nbsp;
         <select name="haveprice" id="haveprice">
-          <option value="1">å·²ä»˜æ¬¾</option>
-          <option value="0">æœªä»˜æ¬¾</option>
+          <option value="1">ÒÑ¸¶¿î</option>
+          <option value="0">Î´¸¶¿î</option>
         </select> 
-        <input type="submit" name="Submit3" value="è®¾ç½®ä»˜æ¬¾çŠ¶æ€" onClick="document.listdd.doing.value='3';document.listdd.enews.value='SetShopDd';document.listdd.action='ListDd.php';">
+        <input type="submit" name="Submit3" value="ÉèÖÃ¸¶¿î×´Ì¬" onClick="document.listdd.doing.value='3';document.listdd.enews.value='SetShopDd';document.listdd.action='ListDd.php';">
 &nbsp;
 <select name="cutmaxnum" id="cutmaxnum">
-  <option value="1">è¿˜åŸåº“å­˜</option>
-  <option value="0">å‡å°‘åº“å­˜</option>
+  <option value="1">»¹Ô­¿â´æ</option>
+  <option value="0">¼õÉÙ¿â´æ</option>
 </select>
-<input type="submit" name="Submit32" value="è®¾ç½®åº“å­˜" onClick="document.listdd.doing.value='5';document.listdd.enews.value='DoCutMaxnum';document.listdd.action='ecmsshop.php';">
+<input type="submit" name="Submit32" value="ÉèÖÃ¿â´æ" onClick="document.listdd.doing.value='5';document.listdd.enews.value='DoCutMaxnum';document.listdd.action='ecmsshop.php';">
         &nbsp; 
-		<input type="submit" name="Submit5" value="åˆ é™¤è®¢å•" onClick="document.listdd.doing.value='4';document.listdd.enews.value='SetShopDd';document.listdd.action='ListDd.php';"> 
+		<input type="submit" name="Submit5" value="É¾³ı¶©µ¥" onClick="document.listdd.doing.value='4';document.listdd.enews.value='SetShopDd';document.listdd.action='ListDd.php';"> 
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
@@ -604,7 +604,7 @@ function CheckAll(form)
     </tr>
     <tr bgcolor="#FFFFFF">
       <td>&nbsp;</td>
-      <td colspan="6"><font color="#666666">è®¢è´­è€…ä¸ºç°è‰²,åˆ™ä¸ºéä¼šå‘˜è´­ä¹°ï¼›é€€è´§ä¸è‡ªåŠ¨è¿˜åŸåº“å­˜ï¼Œéœ€æ‰‹åŠ¨è¿˜åŸåº“å­˜ï¼›å·²è¿˜åŸè¿‡çš„åº“å­˜ç³»ç»Ÿä¸ä¼šé‡å¤è¿˜åŸã€‚</font></td>
+      <td colspan="6"><font color="#666666">¶©¹ºÕßÎª»ÒÉ«,ÔòÎª·Ç»áÔ±¹ºÂò£»ÍË»õ²»×Ô¶¯»¹Ô­¿â´æ£¬ĞèÊÖ¶¯»¹Ô­¿â´æ£»ÒÑ»¹Ô­¹ıµÄ¿â´æÏµÍ³²»»áÖØ¸´»¹Ô­¡£</font></td>
     </tr>
   </form>
 </table>

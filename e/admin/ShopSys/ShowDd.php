@@ -7,7 +7,7 @@ require("class/hShopSysFun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"shopdd");
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="æŸ¥çœ‹è®¢å•";
+$url="²é¿´¶©µ¥";
 $ddid=(int)$_GET['ddid'];
 if(!$ddid)
 {
@@ -31,89 +31,89 @@ if(!$r['ddid'])
 	printerror('ErrorUrl','');
 }
 $addr=$empire->fetch1("select * from {$dbtbpre}enewsshopdd_add where ddid='$ddid'");
-//æäº¤è€…
-if(empty($r[userid]))//éä¼šå‘˜
+//Ìá½»Õß
+if(empty($r[userid]))//·Ç»áÔ±
 {
-	$username="<font color=cccccc>æ¸¸å®¢</font>";
+	$username="<font color=cccccc>ÓÎ¿Í</font>";
 }
 else
 {
 	$username="<a href='../member/AddMember.php?enews=EditMember&userid=".$r[userid].$ecms_hashur['ehref']."' target=_blank>".$r[username]."</a>";
 }
-//éœ€è¦å‘ç¥¨
-$fp="å¦";
+//ĞèÒª·¢Æ±
+$fp="·ñ";
 if($r[fp])
 {
-	$fp="æ˜¯";
+	$fp="ÊÇ";
 }
-//é‡‘é¢
+//½ğ¶î
 $total=0;
 if($r[payby]==1)
 {
-	$pstotal=$r[pstotal]." ç‚¹";
-	$alltotal=$r[alltotalfen]." ç‚¹";
+	$pstotal=$r[pstotal]." µã";
+	$alltotal=$r[alltotalfen]." µã";
 	$total=$r[pstotal]+$r[alltotalfen];
-	$mytotal=$total." ç‚¹";
+	$mytotal=$total." µã";
 }
 else
 {
-	$pstotal=$r[pstotal]." å…ƒ";
-	$alltotal=$r[alltotal]." å…ƒ";
+	$pstotal=$r[pstotal]." Ôª";
+	$alltotal=$r[alltotal]." Ôª";
 	$total=$r[pstotal]+$r[alltotal]+$r[fptotal]-$r[pretotal];
-	$mytotal=$total." å…ƒ";
+	$mytotal=$total." Ôª";
 }
-//æ”¯ä»˜æ–¹å¼
+//Ö§¸¶·½Ê½
 if($r[payby]==1)
 {
-	$payfsname=$r[payfsname]."(ç§¯åˆ†è´­ä¹°)";
+	$payfsname=$r[payfsname]."(»ı·Ö¹ºÂò)";
 }
 elseif($r[payby]==2)
 {
-	$payfsname=$r[payfsname]."(ä½™é¢è´­ä¹°)";
+	$payfsname=$r[payfsname]."(Óà¶î¹ºÂò)";
 }
 else
 {
 	$payfsname=$r[payfsname];
 }
-//çŠ¶æ€
+//×´Ì¬
 if($r['checked']==1)
 {
-	$ch="å·²ç¡®è®¤";
+	$ch="ÒÑÈ·ÈÏ";
 }
 elseif($r['checked']==2)
 {
-	$ch="å–æ¶ˆ";
+	$ch="È¡Ïû";
 }
 elseif($r['checked']==3)
 {
-	$ch="é€€è´§";
+	$ch="ÍË»õ";
 }
 else
 {
-	$ch="<font color=red>æœªç¡®è®¤</font>";
+	$ch="<font color=red>Î´È·ÈÏ</font>";
 }
-//å‘è´§
+//·¢»õ
 if($r['outproduct']==1)
 {
-	$ou="å·²å‘è´§";
+	$ou="ÒÑ·¢»õ";
 }
 elseif($r['outproduct']==2)
 {
-	$ou="å¤‡è´§ä¸­";
+	$ou="±¸»õÖĞ";
 }
 else
 {
-	$ou="<font color=red>æœªå‘è´§</font>";
+	$ou="<font color=red>Î´·¢»õ</font>";
 }
 if($r['haveprice']==1)
 {
-	$ha="å·²ä»˜æ¬¾";
+	$ha="ÒÑ¸¶¿î";
 }
 else
 {
-	$ha="<font color=red>æœªä»˜æ¬¾</font>";
+	$ha="<font color=red>Î´¸¶¿î</font>";
 }
-//æ˜¾ç¤ºå•†å“ä¿¡æ¯
+//ÏÔÊ¾ÉÌÆ·ĞÅÏ¢
 function ShowBuyproduct($buycar,$payby){
 	global $empire,$dbtbpre;
 	$record="!";
@@ -125,11 +125,11 @@ function ShowBuyproduct($buycar,$payby){
 	?>
 	<table width='100%' border=0 align=center cellpadding=3 cellspacing=1>
         <tr class='header'> 
-            <td width='9%' height=23> <div align=center>åºå·</div></td>
-            <td width='42%'> <div align=center>å•†å“åç§°</div></td>
-            <td width='15%'> <div align=center>å•ä»·</div></td>
-            <td width='10%'> <div align=center>æ•°é‡</div></td>
-            <td width='19%'> <div align=center>å°è®¡</div></td>
+            <td width='9%' height=23> <div align=center>ĞòºÅ</div></td>
+            <td width='42%'> <div align=center>ÉÌÆ·Ãû³Æ</div></td>
+            <td width='15%'> <div align=center>µ¥¼Û</div></td>
+            <td width='10%'> <div align=center>ÊıÁ¿</div></td>
+            <td width='19%'> <div align=center>Ğ¡¼Æ</div></td>
         </tr>
 	<?php
 	$j=0;
@@ -142,36 +142,36 @@ function ShowBuyproduct($buycar,$payby){
 		//ID
 		$classid=(int)$fr[0];
 		$id=(int)$fr[1];
-		//å±æ€§
+		//ÊôĞÔ
 		$addatt='';
 		if($pr[2])
 		{
 			$addatt=$pr[2];
 		}
-		//æ•°é‡
+		//ÊıÁ¿
 		$pnum=(int)$pr[3];
 		if(empty($pnum))
 		{
 			$pnum=1;
 		}
-		//å•ä»·
+		//µ¥¼Û
 		$price=$pr[4];
 		$thistotal=$price*$pnum;
 		$buyfen=$pr[5];
 		$thistotalfen=$buyfen*$pnum;
 		if($payby==1)
 		{
-			$showprice=$buyfen." ç‚¹";
-			$showthistotal=$thistotalfen." ç‚¹";
+			$showprice=$buyfen." µã";
+			$showthistotal=$thistotalfen." µã";
 		}
 		else
 		{
-			$showprice=$price." å…ƒ";
-			$showthistotal=$thistotal." å…ƒ";
+			$showprice=$price." Ôª";
+			$showthistotal=$thistotal." Ôª";
 		}
-		//äº§å“åç§°
+		//²úÆ·Ãû³Æ
 		$title=stripSlashes($pr[6]);
-		//è¿”å›é“¾æ¥
+		//·µ»ØÁ´½Ó
 		$titleurl="../../public/InfoUrl/?classid=$classid&id=$id";
 		$totalmoney+=$thistotal;
 		$totalfen+=$thistotalfen;
@@ -179,18 +179,18 @@ function ShowBuyproduct($buycar,$payby){
 		<tr>
 	<td align=center><?=$j?></td>
 	<td align=center><a href="<?=$titleurl?>" target="_blank"><?=$title?></a><?=$addatt?' - '.$addatt:''?></td>
-	<td align=right><b>ï¿¥<?=$showprice?></b></td>
+	<td align=right><b>£¤<?=$showprice?></b></td>
 	<td align=right><?=$pnum?></td>
 	<td align=right><?=$showthistotal?></td>
 	</tr>
 		<?php
     }
-	//ç‚¹æ•°ä»˜è´¹
+	//µãÊı¸¶·Ñ
 	if($payby==1)
 	{
 		?>
 	<tr> 
-      <td colspan=5><div align=right>åˆè®¡ç‚¹æ•°:<strong><?=$totalfen?></strong></div></td>
+      <td colspan=5><div align=right>ºÏ¼ÆµãÊı:<strong><?=$totalfen?></strong></div></td>
       <td>&nbsp;</td>
     </tr>
 		<?php
@@ -199,7 +199,7 @@ function ShowBuyproduct($buycar,$payby){
 	{
 		?>
 	<tr> 
-      <td colspan=5><div align=right>åˆè®¡:<strong>ï¿¥<?=$totalmoney?></strong></div></td>
+      <td colspan=5><div align=right>ºÏ¼Æ:<strong>£¤<?=$totalmoney?></strong></div></td>
       <td>&nbsp;</td>
     </tr>
 		<?php
@@ -209,26 +209,26 @@ function ShowBuyproduct($buycar,$payby){
 	<?php
 }
 
-//------ æ“ä½œæ—¥å¿— ------
-//æ“ä½œäº‹ä»¶
+//------ ²Ù×÷ÈÕÖ¾ ------
+//²Ù×÷ÊÂ¼ş
 
 $shopecms_r=array
 (
-	'SetChecked'=>'è®¾ç½®è®¢å•çŠ¶æ€',
-	'SetOutProduct'=>'è®¾ç½®å‘è´§çŠ¶æ€',
-	'SetHaveprice'=>'è®¾ç½®ä»˜æ¬¾çŠ¶æ€',
-	'DelDd'=>'åˆ é™¤è®¢å•',
-	'EditPretotal'=>'ä¿®æ”¹ä¼˜æƒ é‡‘é¢',
-	'DdRetext'=>'ä¿®æ”¹åå°è®¢å•å¤‡æ³¨',
-	'DoCutMaxnum'=>'è®¾ç½®åº“å­˜',
+	'SetChecked'=>'ÉèÖÃ¶©µ¥×´Ì¬',
+	'SetOutProduct'=>'ÉèÖÃ·¢»õ×´Ì¬',
+	'SetHaveprice'=>'ÉèÖÃ¸¶¿î×´Ì¬',
+	'DelDd'=>'É¾³ı¶©µ¥',
+	'EditPretotal'=>'ĞŞ¸ÄÓÅ»İ½ğ¶î',
+	'DdRetext'=>'ĞŞ¸ÄºóÌ¨¶©µ¥±¸×¢',
+	'DoCutMaxnum'=>'ÉèÖÃ¿â´æ',
 );
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>æŸ¥çœ‹è®¢å•</title>
+<title>²é¿´¶©µ¥</title>
 <script>
 function PrintDd()
 {
@@ -240,20 +240,20 @@ function PrintDd()
 
 <body>
 <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1">
-<form name="showddform" id="showddform" method="post" action="ecmsshop.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+<form name="showddform" id="showddform" method="post" action="ecmsshop.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
 <?=$ecms_hashur['form']?>
   <input name="enews" type="hidden" id="enews" value="DdRetext">
   <input name="ddid" type="hidden" id="ddid" value="<?=$ddid?>">
   <tr> 
-    <td width="61%" height="27" bgcolor="#FFFFFF"><strong>è®¢å•ID: 
+    <td width="61%" height="27" bgcolor="#FFFFFF"><strong>¶©µ¥ID: 
       <?=$r[ddno]?>
       </strong></td>
-    <td width="39%" bgcolor="#FFFFFF"><strong>ä¸‹å•æ—¶é—´: 
+    <td width="39%" bgcolor="#FFFFFF"><strong>ÏÂµ¥Ê±¼ä: 
       <?=$r[ddtime]?>
       </strong></td>
   </tr>
   <tr> 
-    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>å•†å“ä¿¡æ¯</strong></td>
+    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>ÉÌÆ·ĞÅÏ¢</strong></td>
   </tr>
   <tr> 
     <td colspan="2"> 
@@ -262,26 +262,26 @@ function PrintDd()
 	  ?>    </td>
   </tr>
   <tr> 
-    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>è®¢å•ä¿¡æ¯</strong></td>
+    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>¶©µ¥ĞÅÏ¢</strong></td>
   </tr>
   <tr> 
     <td height="23" colspan="2"><table width="100%" border="0" cellspacing="1" cellpadding="3">
         
         <tr>
-          <td height="25"><div align="right">æäº¤è€…ï¼š</div></td>
+          <td height="25"><div align="right">Ìá½»Õß£º</div></td>
           <td><?=$username?></td>
-          <td><div align="right">æäº¤è€…IPåœ°å€ï¼š</div></td>
+          <td><div align="right">Ìá½»ÕßIPµØÖ·£º</div></td>
           <td><strong>
             <?=$r[userip]?>
           </strong></td>
         </tr>
         <tr> 
           <td width="15%" height="25"> 
-            <div align="right">è®¢å•å·ï¼š</div></td>
+            <div align="right">¶©µ¥ºÅ£º</div></td>
           <td width="35%"><strong> 
             <?=$r[ddno]?>
             </strong></td>
-          <td width="15%"><div align="right">è®¢å•çŠ¶æ€ï¼š</div></td>
+          <td width="15%"><div align="right">¶©µ¥×´Ì¬£º</div></td>
           <td width="35%"><strong> 
             <?=$ha?>
             </strong>/<strong> 
@@ -292,55 +292,55 @@ function PrintDd()
         </tr>
         <tr> 
           <td height="25"> 
-            <div align="right">ä¸‹å•æ—¶é—´ï¼š</div></td>
+            <div align="right">ÏÂµ¥Ê±¼ä£º</div></td>
           <td><strong> 
             <?=$r[ddtime]?>
             </strong></td>
-          <td><div align="right">å•†å“æ€»é‡‘é¢ï¼š</div></td>
+          <td><div align="right">ÉÌÆ·×Ü½ğ¶î£º</div></td>
           <td><strong>
             <?=$alltotal?>
             </strong></td>
         </tr>
         <tr> 
           <td height="25"> 
-            <div align="right">é…é€æ–¹å¼ï¼š</div></td>
+            <div align="right">ÅäËÍ·½Ê½£º</div></td>
           <td><strong>
             <?=$r[psname]?>
             </strong></td>
-          <td><div align="right">+ å•†å“è¿è´¹ï¼š</div></td>
+          <td><div align="right">+ ÉÌÆ·ÔË·Ñ£º</div></td>
           <td><strong>
             <?=$pstotal?>
             </strong></td>
         </tr>
         <tr> 
           <td height="25"> 
-            <div align="right">æ”¯ä»˜æ–¹å¼ï¼š</div></td>
+            <div align="right">Ö§¸¶·½Ê½£º</div></td>
           <td><strong>
             <?=$payfsname?>
             </strong></td>
-          <td><div align="right">+ å‘ç¥¨è´¹ç”¨ï¼š</div></td>
+          <td><div align="right">+ ·¢Æ±·ÑÓÃ£º</div></td>
           <td><?=$r[fptotal]?></td>
         </tr>
         <tr> 
           <td height="25"> 
-            <div align="right">éœ€è¦å‘ç¥¨ï¼š</div></td>
+            <div align="right">ĞèÒª·¢Æ±£º</div></td>
           <td><?=$fp?></td>
-          <td><div align="right">- ä¼˜æƒ ï¼š</div></td>
+          <td><div align="right">- ÓÅ»İ£º</div></td>
           <td><?=$r[pretotal]?></td>
         </tr>
         <tr> 
           <td height="25"> 
-            <div align="right">å‘ç¥¨æŠ¬å¤´ï¼š</div></td>
+            <div align="right">·¢Æ±Ì§Í·£º</div></td>
           <td><strong> 
             <?=stripSlashes($r[fptt])?>
             </strong></td>
-          <td><div align="right">è®¢å•æ€»é‡‘é¢ï¼š</div></td>
+          <td><div align="right">¶©µ¥×Ü½ğ¶î£º</div></td>
           <td><strong>
             <?=$mytotal?>
           </strong></td>
         </tr>
         <tr>
-          <td height="25"><div align="right">å‘ç¥¨åç§°ï¼š</div></td>
+          <td height="25"><div align="right">·¢Æ±Ãû³Æ£º</div></td>
           <td colspan="3"><strong>
             <?=stripSlashes($r[fpname])?>
           </strong></td>
@@ -348,12 +348,12 @@ function PrintDd()
       </table></td>
   </tr>
   <tr> 
-    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>æ”¶è´§äººä¿¡æ¯</strong></td>
+    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>ÊÕ»õÈËĞÅÏ¢</strong></td>
   </tr>
   <tr> 
     <td colspan="2"><table width="100%%" border="0" cellspacing="1" cellpadding="3">
         <tr> 
-          <td width="20%" height="25">çœŸå®å§“å:</td>
+          <td width="20%" height="25">ÕæÊµĞÕÃû:</td>
           <td width="80%"> 
             <?=stripSlashes($r[truename])?>          </td>
         </tr>
@@ -368,40 +368,40 @@ function PrintDd()
             <?=stripSlashes($r[msn])?>          </td>
         </tr>
         <tr> 
-          <td height="25">å›ºå®šç”µè¯:</td>
+          <td height="25">¹Ì¶¨µç»°:</td>
           <td> 
             <?=stripSlashes($r[mycall])?>          </td>
         </tr>
         <tr> 
-          <td height="25">æ‰‹æœº:</td>
+          <td height="25">ÊÖ»ú:</td>
           <td> 
             <?=stripSlashes($r[phone])?>          </td>
         </tr>
         <tr> 
-          <td height="25">è”ç³»é‚®ç®±:</td>
+          <td height="25">ÁªÏµÓÊÏä:</td>
           <td> 
             <?=stripSlashes($r[email])?>          </td>
         </tr>
         <tr> 
-          <td height="25">è”ç³»åœ°å€:</td>
+          <td height="25">ÁªÏµµØÖ·:</td>
           <td> 
             <?=stripSlashes($r[address])?>          </td>
         </tr>
         <tr> 
-          <td height="25">é‚®ç¼–:</td>
+          <td height="25">ÓÊ±à:</td>
           <td> 
             <?=stripSlashes($r[zip])?>          </td>
         </tr>
         <tr>
-          <td height="25">æ ‡å¿—å»ºç­‘:</td>
+          <td height="25">±êÖ¾½¨Öş:</td>
           <td><?=stripSlashes($r[signbuild])?></td>
         </tr>
         <tr>
-          <td height="25">æœ€ä½³é€è´§æ—¶é—´:</td>
+          <td height="25">×î¼ÑËÍ»õÊ±¼ä:</td>
           <td><?=stripSlashes($r[besttime])?></td>
         </tr>
         <tr> 
-          <td height="25">å¤‡æ³¨:</td>
+          <td height="25">±¸×¢:</td>
           <td> 
             <?=nl2br(stripSlashes($addr[bz]))?>          </td>
         </tr>
@@ -409,37 +409,37 @@ function PrintDd()
   </tr>
   <tbody id="pdiv">
   <tr>
-    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>ç›¸å…³æ“ä½œ</strong></td>
+    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>Ïà¹Ø²Ù×÷</strong></td>
   </tr>
   <tr>
     <td height="23" colspan="2"><table width="100%" border="0" cellspacing="1" cellpadding="3">
       <tr>
-        <td width="16%">åå°å¤‡æ³¨å†…å®¹:<br>
+        <td width="16%">ºóÌ¨±¸×¢ÄÚÈİ:<br>
           <br>
-          <font color="#666666">(å‰å°ä¼šå‘˜å¯æŸ¥çœ‹ï¼Œæ¯”å¦‚æä¾›å¿«é€’å·ç­‰ä¿¡æ¯)</font></td>
+          <font color="#666666">(Ç°Ì¨»áÔ±¿É²é¿´£¬±ÈÈçÌá¹©¿ìµİºÅµÈĞÅÏ¢)</font></td>
         <td width="77%"><textarea name="retext" cols="65" rows="6" id="retext"><?=stripSlashes($addr['retext'])?></textarea></td>
-        <td width="7%"><input type="submit" name="Submit2" value="æäº¤" onClick="document.showddform.enews.value='DdRetext';"></td>
+        <td width="7%"><input type="submit" name="Submit2" value="Ìá½»" onClick="document.showddform.enews.value='DdRetext';"></td>
       </tr>
       <tr>
-        <td height="25">ä¿®æ”¹ä¼˜æƒ é‡‘é¢ï¼š</td>
+        <td height="25">ĞŞ¸ÄÓÅ»İ½ğ¶î£º</td>
         <td><input name="pretotal" type="text" id="pretotal" value="<?=$r[pretotal]?>">
-        ä¿®æ”¹åŸå› ï¼š
+        ĞŞ¸ÄÔ­Òò£º
           <input name="bz" type="text" id="bz"></td>
-        <td><input type="submit" name="Submit3" value="æäº¤" onClick="document.showddform.enews.value='EditPretotal';"></td>
+        <td><input type="submit" name="Submit3" value="Ìá½»" onClick="document.showddform.enews.value='EditPretotal';"></td>
       </tr>
     </table></td>
   </tr>
   <tr>
-    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>è®¢å•æ“ä½œæ—¥å¿—</strong></td>
+    <td height="23" colspan="2" bgcolor="#EFEFEF"><strong>¶©µ¥²Ù×÷ÈÕÖ¾</strong></td>
   </tr>
   <tr>
     <td height="23" colspan="2"><table width="100%" border="0" cellspacing="1" cellpadding="3" class="tableborder">
       <tr class="header">
-        <td width="21%" height="23"><div align="center">æ“ä½œæ—¶é—´</div></td>
-        <td width="17%"><div align="center">æ“ä½œè€…</div></td>
-        <td width="19%"><div align="center">äº‹ä»¶</div></td>
-        <td width="19%"><div align="center">æ“ä½œå†…å®¹</div></td>
-        <td width="24%"><div align="center">æ“ä½œåŸå› </div></td>
+        <td width="21%" height="23"><div align="center">²Ù×÷Ê±¼ä</div></td>
+        <td width="17%"><div align="center">²Ù×÷Õß</div></td>
+        <td width="19%"><div align="center">ÊÂ¼ş</div></td>
+        <td width="19%"><div align="center">²Ù×÷ÄÚÈİ</div></td>
+        <td width="24%"><div align="center">²Ù×÷Ô­Òò</div></td>
       </tr>
 	  <?php
 	  $logsql=$empire->query("select logid,userid,username,ecms,bz,addbz,logtime from {$dbtbpre}enewsshop_ddlog where ddid='$ddid' order by logid desc");
@@ -448,7 +448,7 @@ function PrintDd()
 		  $empirecms=$shopecms_r[$logr['ecms']];
 		  if($logr['ecms']=='DoCutMaxnum')
 		  {
-			  $logr['addbz']=$logr['addbz']=='ecms=1'?'è¿˜åŸåº“å­˜':'å‡å°‘åº“å­˜';
+			  $logr['addbz']=$logr['addbz']=='ecms=1'?'»¹Ô­¿â´æ':'¼õÉÙ¿â´æ';
 		  }
 	  ?>
       <tr bgcolor="#ffffff">
@@ -468,7 +468,7 @@ function PrintDd()
         <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1">
           <tr> 
             <td><div align="center">
-                <input type="button" name="Submit" value=" æ‰“ å° " onclick="javascript:PrintDd();">
+                <input type="button" name="Submit" value=" ´ò Ó¡ " onclick="javascript:PrintDd();">
               </div></td>
           </tr>
         </table>

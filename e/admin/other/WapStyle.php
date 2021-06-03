@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"wap");
 
-//å¢åŠ wapæ¨¡æ¿
+//Ôö¼ÓwapÄ£°å
 function AddWapStyle($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$path=RepPathStr($add['path']);
@@ -27,7 +27,7 @@ function AddWapStyle($add,$userid,$username){
 	{
 		printerror("EmptyWapStyle","history.go(-1)");
 	}
-	//ç›®å½•æ˜¯å¦å­˜åœ¨
+	//Ä¿Â¼ÊÇ·ñ´æÔÚ
 	if(!file_exists("../../wap/template/".$path))
 	{
 		printerror("EmptyWapStylePath","history.go(-1)");
@@ -37,7 +37,7 @@ function AddWapStyle($add,$userid,$username){
 	if($sql)
 	{
 		$styleid=$empire->lastid();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("styleid=$styleid&stylename=$add[stylename]");
 		printerror("AddWapStyleSuccess","WapStyle.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -47,7 +47,7 @@ function AddWapStyle($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹wapæ¨¡æ¿
+//ĞŞ¸ÄwapÄ£°å
 function EditWapStyle($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$styleid=(int)$add['styleid'];
@@ -57,7 +57,7 @@ function EditWapStyle($add,$userid,$username){
 	{
 		printerror("EmptyWapStyle","history.go(-1)");
 	}
-	//ç›®å½•æ˜¯å¦å­˜åœ¨
+	//Ä¿Â¼ÊÇ·ñ´æÔÚ
 	if(!file_exists("../../wap/template/".$path))
 	{
 		printerror("EmptyWapStylePath","history.go(-1)");
@@ -66,7 +66,7 @@ function EditWapStyle($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewswapstyle set stylename='$add[stylename]',path=$path where styleid=$styleid");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("styleid=$styleid&stylename=$add[stylename]");
 		printerror("EditWapStyleSuccess","WapStyle.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -76,7 +76,7 @@ function EditWapStyle($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤wapæ¨¡æ¿
+//É¾³ıwapÄ£°å
 function DelWapStyle($styleid,$userid,$username){
 	global $empire,$dbtbpre,$public_r;
 	$styleid=(int)$styleid;
@@ -92,7 +92,7 @@ function DelWapStyle($styleid,$userid,$username){
 	$sql=$empire->query("delete from {$dbtbpre}enewswapstyle where styleid=$styleid");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("styleid=$styleid&stylename=$r[stylename]");
 		printerror("DelWapStyleSuccess","WapStyle.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -109,17 +109,17 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ wapæ¨¡æ¿
+//Ôö¼ÓwapÄ£°å
 if($enews=="AddWapStyle")
 {
 	AddWapStyle($_POST,$logininid,$loginin);
 }
-//ä¿®æ”¹wapæ¨¡æ¿
+//ĞŞ¸ÄwapÄ£°å
 elseif($enews=="EditWapStyle")
 {
 	EditWapStyle($_POST,$logininid,$loginin);
 }
-//åˆ é™¤wapæ¨¡æ¿
+//É¾³ıwapÄ£°å
 elseif($enews=="DelWapStyle")
 {
 	DelWapStyle($_GET['styleid'],$logininid,$loginin);
@@ -132,7 +132,7 @@ $sql=$empire->query("select styleid,stylename,path from {$dbtbpre}enewswapstyle 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -140,9 +140,9 @@ $sql=$empire->query("select styleid,stylename,path from {$dbtbpre}enewswapstyle 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td><p>ä½ç½®ï¼š<a href="WapStyle.php<?=$ecms_hashur['whehref']?>">ç®¡ç†WAPæ¨¡æ¿</a></p></td>
+    <td><p>Î»ÖÃ£º<a href="WapStyle.php<?=$ecms_hashur['whehref']?>">¹ÜÀíWAPÄ£°å</a></p></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit522" value="WAPè®¾ç½®" onclick="self.location.href='SetWap.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit522" value="WAPÉèÖÃ" onclick="self.location.href='SetWap.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -150,27 +150,27 @@ $sql=$empire->query("select styleid,stylename,path from {$dbtbpre}enewswapstyle 
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td height="25">å¢åŠ WAPæ¨¡æ¿: 
+      <td height="25">Ôö¼ÓWAPÄ£°å: 
         <input name=enews type=hidden id="enews" value=AddWapStyle>
         </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> æ¨¡æ¿åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> Ä£°åÃû³Æ: 
         <input name="stylename" type="text" id="stylename">
-        æ¨¡æ¿ç›®å½•:e/wap/template/ 
+        Ä£°åÄ¿Â¼:e/wap/template/ 
         <input name="path" type="text" id="path" size="6">
-        (è¯·å¡«å†™æ•°å­—) 
-        <input type="submit" name="Submit" value="å¢åŠ ">
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+        (ÇëÌîĞ´Êı×Ö) 
+        <input type="submit" name="Submit" value="Ôö¼Ó">
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="7%"><div align="center">ID</div></td>
-    <td width="29%" height="25"><div align="center">æ¨¡æ¿åç§°</div></td>
-    <td width="30%"><div align="center">æ¨¡æ¿ç›®å½•</div></td>
-    <td width="34%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="29%" height="25"><div align="center">Ä£°åÃû³Æ</div></td>
+    <td width="30%"><div align="center">Ä£°åÄ¿Â¼</div></td>
+    <td width="34%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -198,9 +198,9 @@ $sql=$empire->query("select styleid,stylename,path from {$dbtbpre}enewswapstyle 
 <input name="path" type="text" id="path" value="<?=$r[path]?>" size="6">
         </div></td>
       <td height="25"><div align="center">
-          <input type="submit" name="Submit3" value="ä¿®æ”¹">
+          <input type="submit" name="Submit3" value="ĞŞ¸Ä">
           &nbsp; 
-          <input type="button" name="Submit4" value="åˆ é™¤" onclick="if(confirm('ç¡®è®¤è¦åˆ é™¤?')){self.location.href='WapStyle.php?enews=DelWapStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['href']?>';}">
+          <input type="button" name="Submit4" value="É¾³ı" onclick="if(confirm('È·ÈÏÒªÉ¾³ı?')){self.location.href='WapStyle.php?enews=DelWapStyle&styleid=<?=$r[styleid]?><?=$ecms_hashur['href']?>';}">
         </div></td>
     </tr>
   </form>

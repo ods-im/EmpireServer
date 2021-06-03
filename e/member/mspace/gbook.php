@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 $user=islogin();
 $line=12;
 $page_line=10;
@@ -21,7 +21,7 @@ $query="select gid,isprivate,uid,uname,ip,addtime,gbtext,retext,eipport from {$d
 $query.=" order by gid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page1($num,$line,$page_line,$start,$page,$search);
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/mspace/gbook.php');
 db_close();
 $empire=null;

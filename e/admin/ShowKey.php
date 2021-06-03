@@ -4,22 +4,22 @@ define('EmpireCMSAPage','login');
 define('EmpireCMSNFPage','1');
 require('../class/connect.php');
 
-//å–å¾—éšæœºæ•°
+//È¡µÃËæ»úÊı
 function domake_password($pw_length){
 	global $public_r;
-	if($public_r['keytog']==1)//å­—æ¯
+	if($public_r['keytog']==1)//×ÖÄ¸
 	{
 		$low_ascii_bound=65;
 		$upper_ascii_bound=90;
 		$notuse=array(91);
 	}
-	elseif($public_r['keytog']==2)//æ•°å­—+å­—æ¯
+	elseif($public_r['keytog']==2)//Êı×Ö+×ÖÄ¸
 	{
 		$low_ascii_bound=50;
 		$upper_ascii_bound=90;
 		$notuse=array(58,59,60,61,62,63,64,73,79);
 	}
-	else//æ•°å­—
+	else//Êı×Ö
 	{
 		$low_ascii_bound=48;
 		$upper_ascii_bound=57;
@@ -42,10 +42,10 @@ function domake_password($pw_length){
 	return $password1;
 }
 
-//è¿”å›é¢œè‰²
+//·µ»ØÑÕÉ«
 function ReturnShowKeyColor($img){
 	global $public_r;
-	//èƒŒæ™¯è‰²
+	//±³¾°É«
 	if($public_r['keybgcolor'])
 	{
 		$bgcr=ToReturnRGB($public_r['keybgcolor']);
@@ -55,7 +55,7 @@ function ReturnShowKeyColor($img){
 	{
 		$r['bgcolor']=imagecolorallocate($img,102,102,102);
 	}
-	//æ–‡å­—è‰²
+	//ÎÄ×ÖÉ«
 	if($public_r['keyfontcolor'])
 	{
 		$fcr=ToReturnRGB($public_r['keyfontcolor']);
@@ -65,7 +65,7 @@ function ReturnShowKeyColor($img){
 	{
 		$r['fontcolor']=ImageColorAllocate($img,255,255,255);
 	}
-	//å¹²æ‰°è‰²
+	//¸ÉÈÅÉ«
 	if($public_r['keydistcolor'])
 	{
 		$dcr=ToReturnRGB($public_r['keydistcolor']);
@@ -78,12 +78,12 @@ function ReturnShowKeyColor($img){
 	return $r;
 }
 
-//æ˜¾ç¤ºéªŒè¯ç 
+//ÏÔÊ¾ÑéÖ¤Âë
 function ShowKey($v){
 	$vname=ecmsReturnKeyVarname($v);
 	$key=strtolower(domake_password(4));
 	ecmsSetShowKey($vname,$key,0,1);
-	//æ˜¯å¦æ”¯æŒgdåº“
+	//ÊÇ·ñÖ§³Ögd¿â
 	if(function_exists("imagejpeg")) 
 	{
 		header ("Content-type: image/jpeg");
@@ -94,7 +94,7 @@ function ShowKey($v){
 		$distcolor=$colorr['distcolor'];
 		imagefill($img,0,0,$bgcolor);
 		imagestring($img,5,6,3,$key,$fontcolor);
-		for($i=0;$i<90;$i++) //åŠ å…¥å¹²æ‰°è±¡ç´ 
+		for($i=0;$i<90;$i++) //¼ÓÈë¸ÉÈÅÏóËØ
 		{
 			imagesetpixel($img,rand()%70,rand()%30,$distcolor);
 		}
@@ -111,7 +111,7 @@ function ShowKey($v){
 		$distcolor=$colorr['distcolor'];
 		imagefill($img,0,0,$bgcolor);
 		imagestring($img,5,6,3,$key,$fontcolor);
-		for($i=0;$i<90;$i++) //åŠ å…¥å¹²æ‰°è±¡ç´ 
+		for($i=0;$i<90;$i++) //¼ÓÈë¸ÉÈÅÏóËØ
 		{
 			imagesetpixel($img,rand()%70,rand()%30,$distcolor);
 		}
@@ -128,7 +128,7 @@ function ShowKey($v){
 		$distcolor=$colorr['distcolor'];
 		imagefill($img,0,0,$bgcolor);
 		imagestring($img,5,6,3,$key,$fontcolor);
-		for($i=0;$i<90;$i++) //åŠ å…¥å¹²æ‰°è±¡ç´ 
+		for($i=0;$i<90;$i++) //¼ÓÈë¸ÉÈÅÏóËØ
 		{
 			imagesetpixel($img,rand()%70,rand()%30,$distcolor);
 		}
@@ -145,7 +145,7 @@ function ShowKey($v){
 		$distcolor=$colorr['distcolor'];
 		imagefill($img,0,0,$bgcolor);
 		imagestring($img,5,6,3,$key,$fontcolor);
-		for($i=0;$i<90;$i++) //åŠ å…¥å¹²æ‰°è±¡ç´ 
+		for($i=0;$i<90;$i++) //¼ÓÈë¸ÉÈÅÏóËØ
 		{
 			imagesetpixel($img,rand()%70,rand()%30,$distcolor);
 		}
@@ -159,7 +159,7 @@ function ShowKey($v){
 	}
 }
 
-//è¿”å›å˜é‡å
+//·µ»Ø±äÁ¿Ãû
 function ecmsReturnKeyVarname($v){
 	$name='checkkey';
 	return $name;

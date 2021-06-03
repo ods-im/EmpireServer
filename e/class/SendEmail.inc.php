@@ -1600,7 +1600,7 @@ class Boundary
     }
 }
 
-//åˆä½¿åŒ–é‚®ä»¶å‘é€
+//³õÊ¹»¯ÓÊ¼ş·¢ËÍ
 function FirstSendMail($r,$title,$msgtext){
 	global $ecms_config;
 	$r['fromemail']=RepPostVar($r['fromemail']);
@@ -1610,12 +1610,12 @@ function FirstSendMail($r,$title,$msgtext){
 	{
 		$mailer->IsSMTP();
 		$mailer->Host=$r['smtphost'];
-		//ç«¯å£
+		//¶Ë¿Ú
 		if($r['smtpport'])
 		{
 			$mailer->Port=$r['smtpport'];
 		}
-		//SMTPæœåŠ¡å™¨éœ€è¦è®¤è¯
+		//SMTP·şÎñÆ÷ĞèÒªÈÏÖ¤
 		if($r['loginemail'])
 		{
 			$mailer->SMTPAuth=true;
@@ -1623,25 +1623,25 @@ function FirstSendMail($r,$title,$msgtext){
 			$mailer->Password=$r['emailpassword'];
 		}
 	}
-	else//mailå‡½æ•°
+	else//mailº¯Êı
 	{
 		$mailer->IsMail();
 	}
 	$mailer->From=$r['fromemail'];
 	$mailer->FromName=$r['emailname'];
 	$mailer->IsHTML(true);
-	$mailer->Subject=stripSlashes($title);//æ ‡é¢˜
-	$mailer->Body=stripSlashes(nl2br(RepFieldtextNbsp($msgtext)));//å†…å®¹
+	$mailer->Subject=stripSlashes($title);//±êÌâ
+	$mailer->Body=stripSlashes(nl2br(RepFieldtextNbsp($msgtext)));//ÄÚÈİ
 	//$mailer->CharSet("gbk");
 	$mailer->CharSet=$ecms_config['sets']['pagechar']?$ecms_config['sets']['pagechar']:'gbk';
 	return $mailer;
 }
 
-//å‘é€é‚®ä»¶
+//·¢ËÍÓÊ¼ş
 function EcmsToSendMail($email,$title,$text){
 	global $empire,$dbtbpre;
 	$pr=$empire->fetch1("select sendmailtype,smtphost,fromemail,loginemail,emailusername,emailpassword,smtpport,emailname from {$dbtbpre}enewspublic limit 1");
-	//å‘é€åˆä½¿åŒ–
+	//·¢ËÍ³õÊ¹»¯
 	$mailer=FirstSendMail($pr,$title,$text);
 	if(is_array($email))
 	{

@@ -14,7 +14,7 @@ $classid=(int)$_GET['classid'];
 $id=(int)$_GET['id'];
 if(!$classid||!$class_r[$classid]['tbname']||!$id||InfoIsInTable($class_r[$classid]['tbname']))
 {
-	DoWapShowMsg('æ‚¨æ¥è‡ªçš„é“¾æ¥ä¸å­˜åœ¨','index.php?style='.$wapstyle);
+	DoWapShowMsg('ÄúÀ´×ÔµÄÁ´½Ó²»´æÔÚ','index.php?style='.$wapstyle);
 }
 $cpage=(int)$_GET['cpage'];
 $cid=(int)$_GET['cid'];
@@ -27,41 +27,41 @@ $listurl="list.php?classid=".$cid."&amp;style=".$wapstyle."&amp;bclassid=".$bcla
 $r=$empire->fetch1("select * from {$dbtbpre}ecms_".$class_r[$classid]['tbname']." where id='$id' limit 1");
 if(!$r['id']||$classid!=$r[classid])
 {
-	DoWapShowMsg('æ‚¨æ¥è‡ªçš„é“¾æ¥ä¸å­˜åœ¨',$listurl);
+	DoWapShowMsg('ÄúÀ´×ÔµÄÁ´½Ó²»´æÔÚ',$listurl);
 }
 $GLOBALS['navclassid']=$classid;
 if($r['groupid']||$class_r[$classid]['cgtoinfo'])
 {
-	DoWapShowMsg('æ­¤ä¿¡æ¯ä¸èƒ½æŸ¥çœ‹',$listurl);
+	DoWapShowMsg('´ËĞÅÏ¢²»ÄÜ²é¿´',$listurl);
 }
-//ç³»ç»Ÿæ¨¡å‹
+//ÏµÍ³Ä£ĞÍ
 $modid=$class_r[$classid][modid];
-//å‰¯è¡¨
+//¸±±í
 $finfor=$empire->fetch1("select ".ReturnSqlFtextF($modid)." from {$dbtbpre}ecms_".$class_r[$classid]['tbname']."_data_".$r[stb]." where id='$r[id]' limit 1");
 $r=array_merge($r,$finfor);
 $ret_r=ReturnAddF($modid,1);
-//æ›´æ–°ç‚¹å‡»
+//¸üĞÂµã»÷
 $empire->query("update {$dbtbpre}ecms_".$class_r[$classid]['tbname']." set onclick=onclick+1 where id='$id' limit 1");
 $r['onclick']=$r['onclick']+1;
 
 $pagetitle=$r['title'];
 $pagekey=$pagetitle;
 $pagedes=$pagetitle;
-//å­˜æ–‡æœ¬å†…å®¹
+//´æÎÄ±¾ÄÚÈİ
 $savetxtf=$emod_r[$modid]['savetxtf'];
 if($savetxtf&&$r[$savetxtf])
 {
 	$r[$savetxtf]=GetTxtFieldText($r[$savetxtf]);
 }
-//åˆ†é¡µå­—æ®µ
+//·ÖÒ³×Ö¶Î
 $pagef=$emod_r[$modid]['pagef'];
 if($pagef&&$r[$pagef])
 {
-	//æ›¿æ¢æ‰åˆ†é¡µç¬¦
+	//Ìæ»»µô·ÖÒ³·û
 	$r[$pagef]=str_replace('[!--empirenews.page--]','',$r[$pagef]);
 	$r[$pagef]=str_replace('[/!--empirenews.page--]','',$r[$pagef]);
 }
-//å‚æ•°
+//²ÎÊı
 $ecmsvar_mbr=array();
 $ecmsvar_mbr['wapstyle']=$wapstyle;
 $ecmsvar_mbr['fbclassid']=$bclassid;

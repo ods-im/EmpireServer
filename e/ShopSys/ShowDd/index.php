@@ -4,100 +4,100 @@ require("../../class/db_sql.php");
 require("../../class/q_functions.php");
 require("../../member/class/user.php");
 require("../class/ShopSysFun.php");
-eCheckCloseMods('shop');//å…³é—­æ¨¡å—
+eCheckCloseMods('shop');//¹Ø±ÕÄ£¿é
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//æ˜¯å¦ç™»é™†
+//ÊÇ·ñµÇÂ½
 $user=islogin();
 $ddid=(int)$_GET['ddid'];
 $r=$empire->fetch1("select * from {$dbtbpre}enewsshopdd where ddid='$ddid' and userid='$user[userid]' limit 1");
 if(empty($r['ddid']))
 {
-	printerror('æ­¤è®¢å•ä¸å­˜åœ¨','',1,0,1);
+	printerror('´Ë¶©µ¥²»´æÔÚ','',1,0,1);
 }
 $addr=$empire->fetch1("select * from {$dbtbpre}enewsshopdd_add where ddid='$ddid' limit 1");
-//éœ€è¦å‘ç¥¨
-$fp="å¦";
+//ĞèÒª·¢Æ±
+$fp="·ñ";
 if($r[fp])
 {
-	$fp="æ˜¯";
+	$fp="ÊÇ";
 }
-//é‡‘é¢
+//½ğ¶î
 $total=0;
 if($r[payby]==1)
 {
-	$pstotal=$r[pstotal]." ç‚¹";
-	$alltotal=$r[alltotalfen]." ç‚¹";
+	$pstotal=$r[pstotal]." µã";
+	$alltotal=$r[alltotalfen]." µã";
 	$total=$r[pstotal]+$r[alltotalfen];
-	$mytotal=$total." ç‚¹";
+	$mytotal=$total." µã";
 }
 else
 {
-	$pstotal=$r[pstotal]." å…ƒ";
-	$alltotal=$r[alltotal]." å…ƒ";
+	$pstotal=$r[pstotal]." Ôª";
+	$alltotal=$r[alltotal]." Ôª";
 	$total=$r[pstotal]+$r[alltotal]+$r[fptotal]-$r[pretotal];
-	$mytotal=$total." å…ƒ";
+	$mytotal=$total." Ôª";
 }
-//æ”¯ä»˜æ–¹å¼
+//Ö§¸¶·½Ê½
 if($r[payby]==1)
 {
-	$payfsname=$r[payfsname]."(ç‚¹æ•°è´­ä¹°)";
+	$payfsname=$r[payfsname]."(µãÊı¹ºÂò)";
 }
 elseif($r[payby]==2)
 {
-	$payfsname=$r[payfsname]."(ä½™é¢è´­ä¹°)";
+	$payfsname=$r[payfsname]."(Óà¶î¹ºÂò)";
 }
 else
 {
 	$payfsname=$r[payfsname];
 }
-//çŠ¶æ€
+//×´Ì¬
 if($r['checked']==1)
 {
-	$ch="å·²ç¡®è®¤";
+	$ch="ÒÑÈ·ÈÏ";
 }
 elseif($r['checked']==2)
 {
-	$ch="å–æ¶ˆ";
+	$ch="È¡Ïû";
 }
 elseif($r['checked']==3)
 {
-	$ch="é€€è´§";
+	$ch="ÍË»õ";
 }
 else
 {
-	$ch="<font color=red>æœªç¡®è®¤</font>";
+	$ch="<font color=red>Î´È·ÈÏ</font>";
 }
-//å‘è´§
+//·¢»õ
 if($r['outproduct']==1)
 {
-	$ou="å·²å‘è´§";
+	$ou="ÒÑ·¢»õ";
 }
 elseif($r['outproduct']==2)
 {
-	$ou="å¤‡è´§ä¸­";
+	$ou="±¸»õÖĞ";
 }
 else
 {
-	$ou="<font color=red>æœªå‘è´§</font>";
+	$ou="<font color=red>Î´·¢»õ</font>";
 }
 $topay='';
 if($r['haveprice']==1)
 {
-	$ha="å·²ä»˜æ¬¾";
+	$ha="ÒÑ¸¶¿î";
 }
 else
 {
-	//æ˜¯å¦ç½‘é“¶æ”¯ä»˜
+	//ÊÇ·ñÍøÒøÖ§¸¶
 	$payfs_r=$empire->fetch1("select payurl from {$dbtbpre}enewsshoppayfs where payid='$r[payfsid]'");
 	if($payfs_r['payurl'])
 	{
-		$topay="&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' name='button' value='ç‚¹å‡»æ”¯ä»˜' onclick=\"window.open('../doaction.php?ddid=$ddid&enews=ShopDdToPay','','width=760,height=600,scrollbars=yes,resizable=yes');\">";
+		$topay="&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' name='button' value='µã»÷Ö§¸¶' onclick=\"window.open('../doaction.php?ddid=$ddid&enews=ShopDdToPay','','width=760,height=600,scrollbars=yes,resizable=yes');\">";
 	}
-	$ha="<font color=red>æœªä»˜æ¬¾</font>";
+	$ha="<font color=red>Î´¸¶¿î</font>";
 }
-//å¯¼å…¥æ¨¡æ¿
+//µ¼ÈëÄ£°å
 require(ECMS_PATH.'e/template/ShopSys/ShowDd.php');
 db_close();
 $empire=null;

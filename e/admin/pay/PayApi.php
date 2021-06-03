@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"pay");
 
-//è®¾ç½®æ¥å£
+//ÉèÖÃ½Ó¿Ú
 function EditPayApi($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[payid]=(int)$add[payid];
@@ -38,7 +38,7 @@ function EditPayApi($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewspayapi set isclose='$add[isclose]',payname='$add[payname]',paysay='$add[paysay]',payuser='$add[payuser]',paykey='$add[paykey]',payfee='$add[payfee]',payemail='$add[payemail]',myorder='$add[myorder]',paymethod='$add[paymethod]' where payid='$add[payid]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("payid=".$add[payid]."<br>payname=".$add[payname]);
 		printerror("EditPayApiSuccess","PayApi.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -48,7 +48,7 @@ function EditPayApi($add,$userid,$username){
 	}
 }
 
-//æ”¯ä»˜å‚æ•°è®¾ç½®
+//Ö§¸¶²ÎÊıÉèÖÃ
 function SetPayFen($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$add[paymoneytofen]=(int)$add[paymoneytofen];
@@ -60,7 +60,7 @@ function SetPayFen($add,$userid,$username){
 	$sql=$empire->query("update {$dbtbpre}enewspublic set paymoneytofen='$add[paymoneytofen]',payminmoney='$add[payminmoney]'");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("moneytofen=$add[paymoneytofen]&minmoney=$add[payminmoney]");
 		printerror("SetPayFenSuccess","SetPayFen.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -77,7 +77,7 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-//å¢åŠ ç”¨æˆ·
+//Ôö¼ÓÓÃ»§
 if($enews=="EditPayApi")
 {
 	EditPayApi($_POST,$logininid,$loginin);
@@ -92,30 +92,30 @@ $sql=$empire->query("select payid,paytype,payfee,paylogo,paysay,payname,isclose 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ”¯ä»˜æ¥å£</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ö§¸¶½Ó¿Ú</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼šåœ¨çº¿æ”¯ä»˜&gt; <a href="PayApi.php<?=$ecms_hashur['whehref']?>">ç®¡ç†æ”¯ä»˜æ¥å£</a> </td>
+    <td width="50%">Î»ÖÃ£ºÔÚÏßÖ§¸¶&gt; <a href="PayApi.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÖ§¸¶½Ó¿Ú</a> </td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="ç®¡ç†æ”¯ä»˜è®°å½•" onclick="self.location.href='ListPayRecord.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀíÖ§¸¶¼ÇÂ¼" onclick="self.location.href='ListPayRecord.php<?=$ecms_hashur['whehref']?>';">
         &nbsp;&nbsp; 
-        <input type="button" name="Submit52" value="æ”¯ä»˜å‚æ•°è®¾ç½®" onclick="self.location.href='SetPayFen.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit52" value="Ö§¸¶²ÎÊıÉèÖÃ" onclick="self.location.href='SetPayFen.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
 <br>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td width="15%"><div align="center">æ¥å£åç§°</div></td>
-    <td width="47%"><div align="center">æ¥å£æè¿°</div></td>
-    <td width="7%"><div align="center">çŠ¶æ€</div></td>
-    <td width="12%" height="25"><div align="center">æ¥å£ç±»å‹</div></td>
-    <td width="11%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="15%"><div align="center">½Ó¿ÚÃû³Æ</div></td>
+    <td width="47%"><div align="center">½Ó¿ÚÃèÊö</div></td>
+    <td width="7%"><div align="center">×´Ì¬</div></td>
+    <td width="12%" height="25"><div align="center">½Ó¿ÚÀàĞÍ</div></td>
+    <td width="11%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -133,12 +133,12 @@ $sql=$empire->query("select payid,paytype,payfee,paylogo,paysay,payname,isclose 
       <?=ehtmlspecialchars($r[paysay])?>
     </td>
     <td><div align="center">
-        <?=$r[isclose]==0?'å¼€å¯':'å…³é—­'?>
+        <?=$r[isclose]==0?'¿ªÆô':'¹Ø±Õ'?>
       </div></td>
     <td height="25"> <div align="center">
         <?=$r[paytype]?>
       </div></td>
-    <td height="25"> <div align="center"><a href="SetPayApi.php?enews=EditPayApi&payid=<?=$r[payid]?><?=$ecms_hashur['ehref']?>">é…ç½®æ¥å£</a></div></td>
+    <td height="25"> <div align="center"><a href="SetPayApi.php?enews=EditPayApi&payid=<?=$r[payid]?><?=$ecms_hashur['ehref']?>">ÅäÖÃ½Ó¿Ú</a></div></td>
   </tr>
   <?
   }

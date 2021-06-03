@@ -6,7 +6,7 @@ require('../../class/functions.php');
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,12 +15,12 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"infotype");
 $enews=RepPostStr($_GET['enews'],1);
-$url="<a href='InfoType.php".$ecms_hashur['whehref']."'>ç®¡ç†æ ‡é¢˜åˆ†ç±»</a>&nbsp;>&nbsp;å¢åŠ æ ‡é¢˜åˆ†ç±»";
-$postword='å¢åŠ æ ‡é¢˜åˆ†ç±»';
-//åˆä½¿åŒ–æ•°æ®
+$url="<a href='InfoType.php".$ecms_hashur['whehref']."'>¹ÜÀí±êÌâ·ÖÀà</a>&nbsp;>&nbsp;Ôö¼Ó±êÌâ·ÖÀà";
+$postword='Ôö¼Ó±êÌâ·ÖÀà';
+//³õÊ¹»¯Êı¾İ
 $r[myorder]=0;
 $r[reorder]="newstime DESC";
 $r[maxnum]=0;
@@ -33,41 +33,41 @@ $r[goodline]=10;
 $r[hotplline]=10;
 $r[firstline]=10;
 $pripath='t/';
-//å¤åˆ¶
+//¸´ÖÆ
 $docopy=RepPostStr($_GET['docopy'],1);
 if($docopy&&$enews=="AddInfoType")
 {
 	$copyclass=1;
 }
 $ecmsfirstpost=1;
-//ä¿®æ”¹
+//ĞŞ¸Ä
 if($enews=="EditInfoType"||$copyclass)
 {
 	$ecmsfirstpost=0;
 	if($copyclass)
 	{
-		$thisdo="å¤åˆ¶";
+		$thisdo="¸´ÖÆ";
 	}
 	else
 	{
-		$thisdo="ä¿®æ”¹";
+		$thisdo="ĞŞ¸Ä";
 	}
 	$typeid=(int)$_GET['typeid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsinfotype where typeid='$typeid'");
-	$url="<a href='InfoType.php".$ecms_hashur['whehref']."'>ç®¡ç†æ ‡é¢˜åˆ†ç±»</a>&nbsp;>&nbsp;".$thisdo."æ ‡é¢˜åˆ†ç±»ï¼š".$r[tname];
-	$postword=$thisdo.'æ ‡é¢˜åˆ†ç±»';
-	//åˆ†ç±»ç›®å½•
+	$url="<a href='InfoType.php".$ecms_hashur['whehref']."'>¹ÜÀí±êÌâ·ÖÀà</a>&nbsp;>&nbsp;".$thisdo."±êÌâ·ÖÀà£º".$r[tname];
+	$postword=$thisdo.'±êÌâ·ÖÀà';
+	//·ÖÀàÄ¿Â¼
 	$mycr=GetPathname($r[tpath]);
 	$pripath=$mycr[1];
 	$tpath=$mycr[0];
-	//å¤åˆ¶åˆ†ç±»
+	//¸´ÖÆ·ÖÀà
 	if($copyclass)
 	{
 		$r[tname].='(1)';
 		$tpath.='1';
 	}
 }
-//åˆ—è¡¨æ¨¡æ¿
+//ÁĞ±íÄ£°å
 $mod_options='';
 $listtemp_options='';
 $msql=$empire->query("select mid,mname,usemod from {$dbtbpre}enewsmod order by myorder,mid");
@@ -81,7 +81,7 @@ while($mr=$empire->fetch($msql))
 		{$m_d="";}
 		$mod_options.="<option value=".$mr[mid].$m_d.">".$mr[mname]."</option>";
 	}
-	//åˆ—è¡¨æ¨¡æ¿
+	//ÁĞ±íÄ£°å
 	$listtemp_options.="<option value=0 style='background:#99C4E3'>".$mr[mname]."</option>";
 	$l_sql=$empire->query("select tempid,tempname from ".GetTemptb("enewslisttemp")." where modid='$mr[mid]'");
 	while($l_r=$empire->fetch($l_sql))
@@ -93,7 +93,7 @@ while($mr=$empire->fetch($msql))
 		$listtemp_options.="<option value=".$l_r[tempid].$l_d."> |-".$l_r[tempname]."</option>";
 	}
 }
-//jsæ¨¡æ¿
+//jsÄ£°å
 $jstemp='';
 $jstempsql=$empire->query("select tempid,tempname from ".GetTemptb("enewsjstemp")." order by tempid");
 while($jstempr=$empire->fetch($jstempsql))
@@ -105,7 +105,7 @@ while($jstempr=$empire->fetch($jstempsql))
 	}
 	$jstemp.="<option value='".$jstempr[tempid]."'".$select.">".$jstempr[tempname]."</option>";
 }
-//ä¼˜åŒ–æ–¹æ¡ˆ
+//ÓÅ»¯·½°¸
 $yh_options='';
 $yhsql=$empire->query("select id,yhname from {$dbtbpre}enewsyh order by id");
 while($yhr=$empire->fetch($yhsql))
@@ -117,33 +117,33 @@ while($yhr=$empire->fetch($yhsql))
 	}
 	$yh_options.="<option value='".$yhr[id]."'".$select.">".$yhr[yhname]."</option>";
 }
-//å½“å‰ä½¿ç”¨çš„æ¨¡æ¿ç»„
+//µ±Ç°Ê¹ÓÃµÄÄ£°å×é
 $thegid=GetDoTempGid();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¢åŠ æ ‡é¢˜åˆ†ç±»</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Ôö¼Ó±êÌâ·ÖÀà</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
-//æ£€æŸ¥
+//¼ì²é
 function CheckForm(obj){
 	if(obj.tname.value=='')
 	{
-		alert("è¯·è¾“å…¥åˆ†ç±»åç§°");
+		alert("ÇëÊäÈë·ÖÀàÃû³Æ");
 		obj.tname.focus();
 		return false;
 	}
 	if(obj.tpath.value=="")
 	{
-		alert("è¯·è¾“å…¥åˆ†ç±»ç›®å½•");
+		alert("ÇëÊäÈë·ÖÀàÄ¿Â¼");
 		obj.tpath.focus();
 		return false;
 	}
 	if(obj.listtempid.value==0)
 	{
-		alert("è¯·é€‰æ‹©åˆ—è¡¨æ¨¡æ¿");
+		alert("ÇëÑ¡ÔñÁĞ±íÄ£°å");
 		obj.listtempid.focus();
 		return false;
 	}
@@ -155,7 +155,7 @@ function CheckForm(obj){
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š 
+    <td>Î»ÖÃ£º 
       <?=$url?>
     </td>
   </tr>
@@ -171,174 +171,174 @@ function CheckForm(obj){
         <input type=hidden name=enews value=<?=$enews?>> </td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">åŸºæœ¬å±æ€§</td>
+      <td height="25" colspan="2">»ù±¾ÊôĞÔ</td>
     </tr>
     <tr> 
-      <td width="24%" height="25" bgcolor="#FFFFFF">åˆ†ç±»åç§°(*)</td>
+      <td width="24%" height="25" bgcolor="#FFFFFF">·ÖÀàÃû³Æ(*)</td>
       <td width="76%" height="25" bgcolor="#FFFFFF"> <input name="tname" type="text" id="tname" value="<?=$r[tname]?>" size="38"> 
         <?
 	  if($enews=="AddInfoType"||$docopy)
 	  {
 	  ?>
-        <input type="button" name="Submit5" value="ç”Ÿæˆæ‹¼éŸ³ç›®å½•" onclick="window.open('../GetPinyin.php?<?=$ecms_hashur['href']?>&hz='+document.form1.tname.value+'&returnform=opener.document.form1.tpath.value','','width=160,height=100');"> 
+        <input type="button" name="Submit5" value="Éú³ÉÆ´ÒôÄ¿Â¼" onclick="window.open('../GetPinyin.php?<?=$ecms_hashur['href']?>&hz='+document.form1.tname.value+'&returnform=opener.document.form1.tpath.value','','width=160,height=100');"> 
         <?
 	  }
 	  ?>
         <input name="typeid" type="hidden" id="typeid" value="<?=$typeid?>"> </td>
     </tr>
     <tr> 
-      <td height="25" valign="top" bgcolor="#FFFFFF">å­˜æ”¾æ–‡ä»¶å¤¹(*) 
+      <td height="25" valign="top" bgcolor="#FFFFFF">´æ·ÅÎÄ¼ş¼Ğ(*) 
         <input name="oldtpath" type="hidden" id="oldtpath" value="<?=$r[tpath]?>"> 
         <input name="oldpripath" type="hidden" id="oldpripath" value="<?=$pripath?>"> 
       </td>
       <td bgcolor="#FFFFFF"> <table border="0" cellspacing="1" cellpadding="3">
           <tr bgcolor="DBEAF5"> 
             <td bgcolor="DBEAF5">&nbsp;</td>
-            <td bgcolor="DBEAF5">ä¸Šå±‚ç›®å½•</td>
-            <td bgcolor="DBEAF5">æœ¬åˆ†ç±»ç›®å½•</td>
+            <td bgcolor="DBEAF5">ÉÏ²ãÄ¿Â¼</td>
+            <td bgcolor="DBEAF5">±¾·ÖÀàÄ¿Â¼</td>
             <td bgcolor="DBEAF5">&nbsp;</td>
           </tr>
           <tr> 
-            <td><div align="right">æ ¹ç›®å½•/</div></td>
+            <td><div align="right">¸ùÄ¿Â¼/</div></td>
             <td><input name="pripath" type="text" id="pripath" value="<?=$pripath?>" size="30"></td>
             <td><input name="tpath" type="text" id="tpath" value="<?=$tpath?>" size="16"></td>
-            <td><input type="button" name="Submit3" value="æ£€æµ‹ç›®å½•" onclick="javascript:window.open('../ecmscom.php?<?=$ecms_hashur['href']?>&enews=CheckPath&pripath='+document.form1.pripath.value+'&classpath='+document.form1.tpath.value,'','width=100,height=100,top=250,left=450');"></td>
+            <td><input type="button" name="Submit3" value="¼ì²âÄ¿Â¼" onclick="javascript:window.open('../ecmscom.php?<?=$ecms_hashur['href']?>&enews=CheckPath&pripath='+document.form1.pripath.value+'&classpath='+document.form1.tpath.value,'','width=100,height=100,top=250,left=450');"></td>
           </tr>
         </table></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç»‘å®šçš„ç³»ç»Ÿæ¨¡å‹</td>
+      <td height="25" bgcolor="#FFFFFF">°ó¶¨µÄÏµÍ³Ä£ĞÍ</td>
       <td bgcolor="#FFFFFF"><select name="mid" id="mid">
           <?=$mod_options?>
-        </select> <input type="button" name="Submit6" value="ç®¡ç†ç³»ç»Ÿæ¨¡å‹" onclick="window.open('../db/ListTable.php<?=$ecms_hashur['whehref']?>');">
+        </select> <input type="button" name="Submit6" value="¹ÜÀíÏµÍ³Ä£ĞÍ" onclick="window.open('../db/ListTable.php<?=$ecms_hashur['whehref']?>');">
         * 
         <input name="oldmodid" type="hidden" id="oldmodid" value="<?=$r[modid]?>"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ä½¿ç”¨ä¼˜åŒ–æ–¹æ¡ˆ</td>
+      <td height="25" bgcolor="#FFFFFF">Ê¹ÓÃÓÅ»¯·½°¸</td>
       <td bgcolor="#FFFFFF"><select name="yhid" id="yhid">
-          <option name="0">ä¸ä½¿ç”¨</option>
+          <option name="0">²»Ê¹ÓÃ</option>
           <?=$yh_options?>
-        </select> <input type="button" name="Submit63" value="ç®¡ç†ä¼˜åŒ–æ–¹æ¡ˆ" onclick="window.open('../db/ListYh.php<?=$ecms_hashur['whehref']?>');"></td>
+        </select> <input type="button" name="Submit63" value="¹ÜÀíÓÅ»¯·½°¸" onclick="window.open('../db/ListYh.php<?=$ecms_hashur['whehref']?>');"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åˆ†ç±»ç¼©ç•¥å›¾</td>
+      <td height="25" bgcolor="#FFFFFF">·ÖÀàËõÂÔÍ¼</td>
       <td bgcolor="#FFFFFF"> <input name="timg" type="text" id="timg" value="<?=$r[timg]?>" size="38"> 
-        <a onclick="window.open('../ecmseditor/FileMain.php?modtype=5&type=1&classid=&doing=2&field=timg<?=$ecms_hashur['ehref']?>','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../../data/images/changeimg.gif" width="22" height="22" border="0" align="absbottom"></a></td>
+        <a onclick="window.open('../ecmseditor/FileMain.php?modtype=5&type=1&classid=&doing=2&field=timg<?=$ecms_hashur['ehref']?>','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../../data/images/changeimg.gif" width="22" height="22" border="0" align="absbottom"></a></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">ç½‘é¡µå…³é”®å­—</td>
+      <td height="25" bgcolor="#FFFFFF">ÍøÒ³¹Ø¼ü×Ö</td>
       <td bgcolor="#FFFFFF"> <input name="pagekey" type="text" id="pagekey" value="<?=$r[pagekey]?>" size="38"></td>
     </tr>
     <tr> 
-      <td height="25" valign="top" bgcolor="#FFFFFF">åˆ†ç±»ç®€ä»‹</td>
+      <td height="25" valign="top" bgcolor="#FFFFFF">·ÖÀà¼ò½é</td>
       <td bgcolor="#FFFFFF"> <textarea name="intro" cols="70" rows="8" id="intro"><?=ehtmlspecialchars(stripSlashes($r[intro]))?></textarea></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ’åº</td>
+      <td height="25" bgcolor="#FFFFFF">ÅÅĞò</td>
       <td bgcolor="#FFFFFF"><input name="myorder" type="text" id="myorder" value="<?=$r[myorder]?>" size="38"> 
-        <font color="#666666"> (å€¼è¶Šå°è¶Šå‰é¢)</font></td>
+        <font color="#666666"> (ÖµÔ½Ğ¡Ô½Ç°Ãæ)</font></td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">é¡µé¢è®¾ç½®</td>
+      <td height="25" colspan="2">Ò³ÃæÉèÖÃ</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">é¡µé¢æ¨¡å¼</td>
+      <td height="25" bgcolor="#FFFFFF">Ò³ÃæÄ£Ê½</td>
       <td height="25" bgcolor="#FFFFFF"><input type="radio" name="listdt" value="0"<?=$r[listdt]==0?' checked':''?>>
-        é™æ€é¡µé¢ 
+        ¾²Ì¬Ò³Ãæ 
         <input type="radio" name="listdt" value="1"<?=$r[listdt]==1?' checked':''?>>
-        åŠ¨æ€é¡µé¢</td>
+        ¶¯Ì¬Ò³Ãæ</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ‰€ç”¨åˆ—è¡¨æ¨¡æ¿(*)</td>
+      <td height="25" bgcolor="#FFFFFF">ËùÓÃÁĞ±íÄ£°å(*)</td>
       <td height="25" bgcolor="#FFFFFF"> <select name="listtempid" id="listtempid">
           <?=$listtemp_options?>
-        </select> <input type="button" name="Submit622" value="ç®¡ç†åˆ—è¡¨æ¨¡æ¿" onclick="window.open('../template/ListListtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');">
+        </select> <input type="button" name="Submit622" value="¹ÜÀíÁĞ±íÄ£°å" onclick="window.open('../template/ListListtemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');">
         *</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">åˆ—è¡¨å¼é¡µé¢æ’åºæ–¹å¼</td>
+      <td height="25" bgcolor="#FFFFFF">ÁĞ±íÊ½Ò³ÃæÅÅĞò·½Ê½</td>
       <td height="25" bgcolor="#FFFFFF"><input name="reorder" type="text" id="reorder" value="<?=$r[reorder]?>" size="38"> 
         <select name="orderselect" onchange="document.form1.reorder.value=this.value">
           <option value="newstime DESC"></option>
-          <option value="newstime DESC">æŒ‰å‘å¸ƒæ—¶é—´é™åºæ’åº</option>
-          <option value="id DESC">æŒ‰IDé™åºæ’åº</option>
-          <option value="onclick DESC">æŒ‰ç‚¹å‡»ç‡é™åºæ’åº</option>
-          <option value="totaldown DESC">æŒ‰ä¸‹è½½æ•°é™åºæ’åº</option>
-          <option value="plnum DESC">æŒ‰è¯„è®ºæ•°é™åºæ’åº</option>
+          <option value="newstime DESC">°´·¢²¼Ê±¼ä½µĞòÅÅĞò</option>
+          <option value="id DESC">°´ID½µĞòÅÅĞò</option>
+          <option value="onclick DESC">°´µã»÷ÂÊ½µĞòÅÅĞò</option>
+          <option value="totaldown DESC">°´ÏÂÔØÊı½µĞòÅÅĞò</option>
+          <option value="plnum DESC">°´ÆÀÂÛÊı½µĞòÅÅĞò</option>
         </select></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ–‡ä»¶æ‰©å±•å</td>
+      <td height="25" bgcolor="#FFFFFF">ÎÄ¼şÀ©Õ¹Ãû</td>
       <td height="25" bgcolor="#FFFFFF"><input name="ttype" type="text" id="ttype" value="<?=$r[ttype]?>" size="38"> 
         <select name="select" onchange="document.form1.ttype.value=this.value">
-          <option value=".html">æ‰©å±•å</option>
+          <option value=".html">À©Õ¹Ãû</option>
           <option value=".html">.html</option>
           <option value=".htm">.htm</option>
           <option value=".php">.php</option>
           <option value=".shtml">.shtml</option>
-        </select> <font color="#666666">(å¦‚.html,.xml,.htmç­‰)</font></td>
+        </select> <font color="#666666">(Èç.html,.xml,.htmµÈ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ˜¾ç¤ºæ€»è®°å½•æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">ÏÔÊ¾×Ü¼ÇÂ¼Êı</td>
       <td height="25" bgcolor="#FFFFFF"><input name="maxnum" type="text" id="maxnum" value="<?=$r[maxnum]?>" size="38">
-        æ¡ <font color="#666666">(0ä¸ºæ˜¾ç¤ºæ‰€æœ‰è®°å½•)</font></td>
+        Ìõ <font color="#666666">(0ÎªÏÔÊ¾ËùÓĞ¼ÇÂ¼)</font></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF">ç”Ÿæˆé™æ€é¡µæ•°</td>
+      <td height="25" bgcolor="#FFFFFF">Éú³É¾²Ì¬Ò³Êı</td>
       <td height="25" bgcolor="#FFFFFF"><input name="repagenum" type="text" id="repagenum" value="<?=$r[repagenum]?>" size="38">
-        é¡µ<font color="#666666">(è¶…è¿‡åˆ†é¡µé‡‡ç”¨åŠ¨æ€é“¾æ¥ï¼Œ0ä¸ºä¸é™)</font></td>
+        Ò³<font color="#666666">(³¬¹ı·ÖÒ³²ÉÓÃ¶¯Ì¬Á´½Ó£¬0Îª²»ÏŞ)</font></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°</td>
+      <td height="25" bgcolor="#FFFFFF">Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı</td>
       <td height="25" bgcolor="#FFFFFF"><input name="tnum" type="text" id="tnum" value="<?=$r[tnum]?>" size="38">
-        æ¡è®°å½•</td>
+        Ìõ¼ÇÂ¼</td>
     </tr>
     <tr> 
-      <td height="25" colspan="2">JSç›¸å…³è®¾ç½®</td>
+      <td height="25" colspan="2">JSÏà¹ØÉèÖÃ</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ˜¯å¦ç”ŸæˆJSè°ƒç”¨</td>
+      <td height="25" bgcolor="#FFFFFF">ÊÇ·ñÉú³ÉJSµ÷ÓÃ</td>
       <td bgcolor="#FFFFFF"> <input type="radio" name="nrejs" value="0"<?=$r[nrejs]==0?' checked':''?>>
-        ç”Ÿæˆ 
+        Éú³É 
         <input type="radio" name="nrejs" value="1"<?=$r[nrejs]==1?' checked':''?>>
-        ä¸ç”Ÿæˆ</td>
+        ²»Éú³É</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ‰€ç”¨JSæ¨¡æ¿</td>
+      <td height="25" bgcolor="#FFFFFF">ËùÓÃJSÄ£°å</td>
       <td bgcolor="#FFFFFF"> <select name="jstempid" id="jstempid">
           <?=$jstemp?>
-        </select> <input type="button" name="Submit62223" value="ç®¡ç†JSæ¨¡æ¿" onclick="window.open('../template/ListJstemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
+        </select> <input type="button" name="Submit62223" value="¹ÜÀíJSÄ£°å" onclick="window.open('../template/ListJstemp.php?gid=<?=$thegid?><?=$ecms_hashur['ehref']?>');"></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æœ€æ–°ä¿¡æ¯JSæ˜¾ç¤º</td>
+      <td height="25" bgcolor="#FFFFFF">×îĞÂĞÅÏ¢JSÏÔÊ¾</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="newline" type="text" id="newline" value="<?=$r[newline]?>" size="38">
-        æ¡è®°å½•</td>
+        Ìõ¼ÇÂ¼</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">çƒ­é—¨ä¿¡æ¯JSæ˜¾ç¤º</td>
+      <td height="25" bgcolor="#FFFFFF">ÈÈÃÅĞÅÏ¢JSÏÔÊ¾</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="hotline" type="text" id="hotline" value="<?=$r[hotline]?>" size="38">
-        æ¡è®°å½•</td>
+        Ìõ¼ÇÂ¼</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">æ¨èä¿¡æ¯JSæ˜¾ç¤º</td>
+      <td height="25" bgcolor="#FFFFFF">ÍÆ¼öĞÅÏ¢JSÏÔÊ¾</td>
       <td height="25" bgcolor="#FFFFFF"> <input name="goodline" type="text" id="goodline" value="<?=$r[goodline]?>" size="38">
-        æ¡è®°å½•</td>
+        Ìõ¼ÇÂ¼</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">çƒ­é—¨è¯„è®ºä¿¡æ¯jsæ˜¾ç¤º</td>
+      <td height="25" bgcolor="#FFFFFF">ÈÈÃÅÆÀÂÛĞÅÏ¢jsÏÔÊ¾</td>
       <td bgcolor="#FFFFFF"> <input name="hotplline" type="text" id="hotplline" value="<?=$r[hotplline]?>" size="38">
-        æ¡è®°å½•</td>
+        Ìõ¼ÇÂ¼</td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF">å¤´æ¡ä¿¡æ¯jsæ˜¾ç¤º</td>
+      <td height="25" bgcolor="#FFFFFF">Í·ÌõĞÅÏ¢jsÏÔÊ¾</td>
       <td bgcolor="#FFFFFF"> <input name="firstline" type="text" id="firstline" value="<?=$r[firstline]?>" size="38">
-        æ¡è®°å½•</td>
+        Ìõ¼ÇÂ¼</td>
     </tr>
     <tr> 
       <td height="25" bgcolor="#FFFFFF"> <div align="center"></div></td>
-      <td bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="æäº¤"> &nbsp;&nbsp; 
-        <input type="reset" name="Submit2" value="é‡ç½®"> </td>
+      <td bgcolor="#FFFFFF"> <input type="submit" name="Submit" value="Ìá½»"> &nbsp;&nbsp; 
+        <input type="reset" name="Submit2" value="ÖØÖÃ"> </td>
     </tr>
   </form>
 </table>

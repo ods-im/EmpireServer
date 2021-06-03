@@ -12,7 +12,7 @@ if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -24,7 +24,7 @@ hCheckEcmsRHash();
 @set_time_limit(0);
 
 require("../class/hplfun.php");
-if($enews=="DelPl_all")//åˆ é™¤è¯„è®º
+if($enews=="DelPl_all")//É¾³ıÆÀÂÛ
 {
 	$plid=$_POST['plid'];
 	$id=$_POST['id'];
@@ -32,7 +32,7 @@ if($enews=="DelPl_all")//åˆ é™¤è¯„è®º
 	$classid=$_POST['classid'];
 	DelPl_all($plid,$id,$bclassid,$classid,$logininid,$loginin);
 }
-elseif($enews=="CheckPl_all")//å®¡æ ¸è¯„è®º
+elseif($enews=="CheckPl_all")//ÉóºËÆÀÂÛ
 {
 	$plid=$_POST['plid'];
 	$id=$_POST['id'];
@@ -40,7 +40,7 @@ elseif($enews=="CheckPl_all")//å®¡æ ¸è¯„è®º
 	$classid=$_POST['classid'];
 	CheckPl_all($plid,$id,$bclassid,$classid,$logininid,$loginin);
 }
-elseif($enews=='DoGoodPl_all')//æ¨èè¯„è®º
+elseif($enews=='DoGoodPl_all')//ÍÆ¼öÆÀÂÛ
 {
 	$plid=$_POST['plid'];
 	$id=$_POST['id'];
@@ -49,35 +49,35 @@ elseif($enews=='DoGoodPl_all')//æ¨èè¯„è®º
 	$isgood=$_POST['isgood'];
 	DoGoodPl_all($plid,$id,$bclassid,$classid,$isgood,$logininid,$loginin);
 }
-elseif($enews=='AddPlF')//å¢åŠ è¯„è®ºå­—æ®µ
+elseif($enews=='AddPlF')//Ôö¼ÓÆÀÂÛ×Ö¶Î
 {
 	AddPlF($_POST,$logininid,$loginin);
 }
-elseif($enews=='EditPlF')//ä¿®æ”¹è¯„è®ºå­—æ®µ
+elseif($enews=='EditPlF')//ĞŞ¸ÄÆÀÂÛ×Ö¶Î
 {
 	EditPlF($_POST,$logininid,$loginin);
 }
-elseif($enews=='DelPlF')//åˆ é™¤è¯„è®ºå­—æ®µ
+elseif($enews=='DelPlF')//É¾³ıÆÀÂÛ×Ö¶Î
 {
 	DelPlF($_GET,$logininid,$loginin);
 }
-elseif($enews=='AddPlDataTable')//å¢åŠ è¯„è®ºåˆ†è¡¨
+elseif($enews=='AddPlDataTable')//Ôö¼ÓÆÀÂÛ·Ö±í
 {
 	AddPlDataTable($_POST,$logininid,$loginin);
 }
-elseif($enews=='DefPlDataTable')//é»˜è®¤è¯„è®ºåˆ†è¡¨
+elseif($enews=='DefPlDataTable')//Ä¬ÈÏÆÀÂÛ·Ö±í
 {
 	DefPlDataTable($_GET,$logininid,$loginin);
 }
-elseif($enews=='DelPlDataTable')//åˆ é™¤è¯„è®ºåˆ†è¡¨
+elseif($enews=='DelPlDataTable')//É¾³ıÆÀÂÛ·Ö±í
 {
 	DelPlDataTable($_GET,$logininid,$loginin);
 }
-elseif($enews=='SetPl')//è¯„è®ºå‚æ•°è®¾ç½®
+elseif($enews=='SetPl')//ÆÀÂÛ²ÎÊıÉèÖÃ
 {
 	SetPl($_POST,$logininid,$loginin);
 }
-elseif($enews=='UpdateAllInfoPlnum')//æ‰¹é‡æ›´æ–°ä¿¡æ¯è¯„è®ºæ•°
+elseif($enews=='UpdateAllInfoPlnum')//ÅúÁ¿¸üĞÂĞÅÏ¢ÆÀÂÛÊı
 {
 	UpdateAllInfoPlnum($_GET,$logininid,$loginin);
 }

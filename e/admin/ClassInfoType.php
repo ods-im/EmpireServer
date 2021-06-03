@@ -5,7 +5,7 @@ require("../class/db_sql.php");
 require("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -14,13 +14,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"class");
 
-//è®¾ç½®æ ç›®æ ‡é¢˜åˆ†ç±»
+//ÉèÖÃÀ¸Ä¿±êÌâ·ÖÀà
 function SetClassInfoType($add,$logininid,$loginin){
 	global $empire,$dbtbpre;
-    CheckLevel($logininid,$loginin,$classid,"class");//éªŒè¯æƒé™
+    CheckLevel($logininid,$loginin,$classid,"class");//ÑéÖ¤È¨ÏŞ
 	$classid=(int)$add['classid'];
 	if(empty($classid))
 	{
@@ -63,7 +63,7 @@ function SetClassInfoType($add,$logininid,$loginin){
 	$sql=$empire->query("update {$dbtbpre}enewsclassadd set ttids='$ttids' where classid='$classid'");
 	if($sql)
 	{
-		insert_dolog("classid=$classid&classname=$cr[classname]");//æ“ä½œæ—¥å¿—
+		insert_dolog("classid=$classid&classname=$cr[classname]");//²Ù×÷ÈÕÖ¾
 		printerror("SetClassInfoTypeSuccess","ClassInfoType.php?classid=$classid".hReturnEcmsHashStrHref2(0));
 	}
 	else
@@ -93,7 +93,7 @@ if(!$cr['classid']||!$cr['islast']||!$cr['modid'])
 	printerror("ErrorUrl","history.go(-1)");
 }
 $caddr=$empire->fetch1("select ttids from {$dbtbpre}enewsclassadd where classid='$classid'");
-$url=$cr['classname'].' &gt; è®¾ç½®æ ‡é¢˜åˆ†ç±»';
+$url=$cr['classname'].' &gt; ÉèÖÃ±êÌâ·ÖÀà';
 if($cr['bclassid'])
 {
 	$bcr=$empire->fetch1("select classid,classname from {$dbtbpre}enewsclass where classid='$cr[bclassid]'");
@@ -104,8 +104,8 @@ $sql=$empire->query("select typeid,tname from {$dbtbpre}enewsinfotype where mid=
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>è®¾ç½®æ ç›®æ ‡é¢˜åˆ†ç±»</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÉèÖÃÀ¸Ä¿±êÌâ·ÖÀà</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -128,19 +128,19 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?>
+    <td>Î»ÖÃ£º<?=$url?>
       </td>
   </tr>
 </table>
 <br>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name="form1" method="post" action="ClassInfoType.php" onsubmit="return confirm('ç¡®è®¤è®¾ç½®?');">
+  <form name="form1" method="post" action="ClassInfoType.php" onsubmit="return confirm('È·ÈÏÉèÖÃ?');">
   <?=$ecms_hashur['form']?>
     <input type="hidden" name="enews" value="SetClassInfoType">
     <input type="hidden" name="classid" value="<?=$classid?>">
     <tr class="header"> 
-      <td width="10%"><div align="center">é€‰æ‹© </div></td>
-      <td width="59%" height="25"><div align="center">åˆ†ç±»åç§°</div></td>
+      <td width="10%"><div align="center">Ñ¡Ôñ </div></td>
+      <td width="59%" height="25"><div align="center">·ÖÀàÃû³Æ</div></td>
     </tr>
     <?php
   while($r=$empire->fetch($sql))
@@ -170,14 +170,14 @@ function CheckAll(form)
       <td><div align="center">
           <input name="noclassinfo" type="checkbox" id="noclassinfo" value="1"<?=$caddr['ttids']=='-'?' checked':''?>>
         </div></td>
-      <td height="25"><strong>æœ¬æ ç›®ä¸ä½¿ç”¨æ ‡é¢˜åˆ†ç±»</strong></td>
+      <td height="25"><strong>±¾À¸Ä¿²»Ê¹ÓÃ±êÌâ·ÖÀà</strong></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td><div align="center"> 
           <input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
         </div></td>
-      <td height="25"><input type="submit" name="Submit" value="æ äº¤"> &nbsp;&nbsp; 
-        <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá ½»"> &nbsp;&nbsp; 
+        <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </form>
 </table>

@@ -5,30 +5,30 @@ require("../../class/db_sql.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//å…³é—­æ¨¡å—
-//å…³é—­
+eCheckCloseMods('member');//¹Ø±ÕÄ£¿é
+//¹Ø±Õ
 if($public_r[register_ok])
 {
 	printerror("CloseRegister","history.go(-1)",1);
 }
-//éªŒè¯æ—¶é—´æ®µå…è®¸æ“ä½œ
+//ÑéÖ¤Ê±¼ä¶ÎÔÊĞí²Ù×÷
 eCheckTimeCloseDo('reg');
-//éªŒè¯IP
+//ÑéÖ¤IP
 eCheckAccessDoIp('register');
 $tobind=(int)$_GET['tobind'];
-//è½¬å‘æ³¨å†Œ
+//×ªÏò×¢²á
 if(!empty($ecms_config['member']['registerurl']))
 {
 	Header("Location:".$ecms_config['member']['registerurl']);
 	exit();
 }
-//å·²ç»ç™»é™†ä¸èƒ½æ³¨å†Œ
+//ÒÑ¾­µÇÂ½²»ÄÜ×¢²á
 if(getcvar('mluserid'))
 {
 	printerror("LoginToRegister","history.go(-1)",1);
 }
 $sql=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup where canreg=1 order by level,groupid");
-//å¯¼å…¥æ¨¡æ¿
+//µ¼ÈëÄ£°å
 require(ECMS_PATH.'e/template/member/ChangeRegister.php');
 db_close();
 $empire=null;

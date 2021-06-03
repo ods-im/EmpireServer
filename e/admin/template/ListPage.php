@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"userpage");
 $gid=(int)$_GET['gid'];
 if(!$gid)
@@ -27,12 +27,12 @@ $search="&gid=$gid".$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select id,title,path,tempid from {$dbtbpre}enewspage";
 $totalquery="select count(*) as total from {$dbtbpre}enewspage";
-//ç±»åˆ«
+//Àà±ğ
 $add="";
 $classid=(int)$_GET['classid'];
 if($classid)
@@ -42,11 +42,11 @@ if($classid)
 }
 $query.=$add;
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by id desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewspageclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -62,9 +62,9 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†è‡ªå®šä¹‰é¡µé¢</title>
+<title>¹ÜÀí×Ô¶¨ÒåÒ³Ãæ</title>
 <script>
 function CheckAll(form)
   {
@@ -81,22 +81,22 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="20%" height="25">ä½ç½®ï¼š<a href="ListPage.php<?=$ecms_hashur['whehref']?>">ç®¡ç†è‡ªå®šä¹‰é¡µé¢</a></td>
+    <td width="20%" height="25">Î»ÖÃ£º<a href="ListPage.php<?=$ecms_hashur['whehref']?>">¹ÜÀí×Ô¶¨ÒåÒ³Ãæ</a></td>
     <td width="80%"><div align="right" class="emenubutton">
-        <input type="button" name="Submit5" value="å¢åŠ è‡ªå®šä¹‰é¡µé¢" onclick="self.location.href='AddPage.php?enews=AddUserpage&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼Ó×Ô¶¨ÒåÒ³Ãæ" onclick="self.location.href='AddPage.php?enews=AddUserpage&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
         &nbsp;&nbsp; 
-        <input type="button" name="Submit5" value="ç®¡ç†è‡ªå®šä¹‰é¡µé¢åˆ†ç±»" onclick="self.location.href='PageClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀí×Ô¶¨ÒåÒ³Ãæ·ÖÀà" onclick="self.location.href='PageClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
         &nbsp;&nbsp; 
-        <input type="button" name="Submit52" value="ç®¡ç†è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿" onclick="self.location.href='ListPagetemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit52" value="¹ÜÀí×Ô¶¨ÒåÒ³ÃæÄ£°å" onclick="self.location.href='ListPagetemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
 
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td> é€‰æ‹©ç±»åˆ«ï¼š 
+    <td> Ñ¡ÔñÀà±ğ£º 
       <select name="classid" id="classid" onchange=window.location='ListPage.php?<?=$ecms_hashur['ehref']?>&gid=<?=$gid?>&classid='+this.options[this.selectedIndex].value>
-        <option value="0">æ˜¾ç¤ºæ‰€æœ‰ç±»åˆ«</option>
+        <option value="0">ÏÔÊ¾ËùÓĞÀà±ğ</option>
         <?=$cstr?>
       </select> </td>
   </tr>
@@ -111,15 +111,15 @@ function CheckAll(form)
           <input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
         </div></td>
       <td width="7%" height="25"> <div align="center">ID</div></td>
-      <td width="35%" height="25"> <div align="center">é¡µé¢åç§°</div></td>
-      <td width="17%"><div align="center">é¡µé¢æ¨¡å¼</div></td>
-      <td width="19%"><div align="center">é¡µé¢åœ°å€</div></td>
-      <td width="19%" height="25"> <div align="center">æ“ä½œ</div></td>
+      <td width="35%" height="25"> <div align="center">Ò³ÃæÃû³Æ</div></td>
+      <td width="17%"><div align="center">Ò³ÃæÄ£Ê½</div></td>
+      <td width="19%"><div align="center">Ò³ÃæµØÖ·</div></td>
+      <td width="19%" height="25"> <div align="center">²Ù×÷</div></td>
     </tr>
     <?
   while($r=$empire->fetch($sql))
   {
-  //ç»å¯¹åœ°å€
+  //¾ø¶ÔµØÖ·
   if(strstr($r['path'],".."))
   {
   $path="../".$r['path'];
@@ -135,16 +135,16 @@ function CheckAll(form)
           <input name="id[]" type="checkbox" id="id[]" value="<?=$r[id]?>">
         </div></td>
       <td height="25"> <div align="center"> 
-          <a href="AddPage.php?enews=EditUserpage&id=<?=$r[id]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="_blank" title="åœ¨æ–°çª—å£æ‰“å¼€ä¿®æ”¹é¡µé¢"><?=$r[id]?></a>
+          <a href="AddPage.php?enews=EditUserpage&id=<?=$r[id]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="_blank" title="ÔÚĞÂ´°¿Ú´ò¿ªĞŞ¸ÄÒ³Ãæ"><?=$r[id]?></a>
         </div></td>
       <td height="25"> <div align="center"><a href="<?=$path?>" target=_blank> 
           <?=$r[title]?>
           </a></div></td>
-      <td><div align="center"><?=$r['tempid']?'æ¨¡æ¿å¼':'é¡µé¢å¼'?></div></td>
+      <td><div align="center"><?=$r['tempid']?'Ä£°åÊ½':'Ò³ÃæÊ½'?></div></td>
       <td><div align="center">
         <input name="textfield" type="text" value="<?=$jspath?>">
       </div></td>
-      <td height="25"> <div align="center">[<a href="AddPage.php?enews=EditUserpage&id=<?=$r[id]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="AddPage.php?enews=AddUserpage&docopy=1&id=<?=$r[id]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>]&nbsp;[<a href="../ecmscom.php?enews=DelUserpage&id=<?=$r[id]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+      <td height="25"> <div align="center">[<a href="AddPage.php?enews=EditUserpage&id=<?=$r[id]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="AddPage.php?enews=AddUserpage&docopy=1&id=<?=$r[id]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>]&nbsp;[<a href="../ecmscom.php?enews=DelUserpage&id=<?=$r[id]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
     </tr>
     <?
   }
@@ -152,10 +152,10 @@ function CheckAll(form)
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="6"> 
         <?=$returnpage?>
-        &nbsp;&nbsp;&nbsp; <input type="submit" name="Submit3" value="åˆ·æ–°"> <input name="enews" type="hidden" id="enews" value="DoReUserpage">      </td>
+        &nbsp;&nbsp;&nbsp; <input type="submit" name="Submit3" value="Ë¢ĞÂ"> <input name="enews" type="hidden" id="enews" value="DoReUserpage">      </td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25" colspan="6"><font color="#666666">è¯´æ˜ï¼šç‚¹å‡»â€œIDâ€å¯å¼¹çª—ä¿®æ”¹é¡µé¢ã€‚</font></td>
+      <td height="25" colspan="6"><font color="#666666">ËµÃ÷£ºµã»÷¡°ID¡±¿Éµ¯´°ĞŞ¸ÄÒ³Ãæ¡£</font></td>
     </tr>
   </form>
 </table>

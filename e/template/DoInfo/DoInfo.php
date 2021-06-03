@@ -5,18 +5,18 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='ç®¡ç†ä¿¡æ¯';
-$url="<a href=../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../member/cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;ç®¡ç†ä¿¡æ¯";
+$public_diyr['pagetitle']='¹ÜÀíÐÅÏ¢';
+$url="<a href=../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../member/cp/>»áÔ±ÖÐÐÄ</a>&nbsp;>&nbsp;¹ÜÀíÐÅÏ¢";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?> 
       <p>&nbsp;</p>
       <table width="80%" border="0" align="center" class="tableborder">
         <tr class="header">
-          <td height="25"><div align="center">æ¬¢è¿Žæ¥åˆ°ä¿¡æ¯ç®¡ç†ä¸­å¿ƒ</div></td>
+          <td height="25"><div align="center">»¶Ó­À´µ½ÐÅÏ¢¹ÜÀíÖÐÐÄ</div></td>
         </tr>
         <tr>
           <td height="50" bgcolor="#FFFFFF"> 
-          <div align="center">é€‰æ‹©å·¦è¾¹æ‚¨è¦å¢žåŠ æˆ–ç®¡ç†çš„ä¿¡æ¯ã€‚</div></td>
+          <div align="center">Ñ¡Ôñ×ó±ßÄúÒªÔö¼Ó»ò¹ÜÀíµÄÐÅÏ¢¡£</div></td>
         </tr>
       </table>
 <?php

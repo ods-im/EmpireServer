@@ -3,7 +3,7 @@ if(!defined('InEmpireCMS'))
 {
 	exit();
 }
-//æ¨¡æ¿ç»„
+//Ä£°å×é
 $gid=(int)$_GET['gid'];
 if(!$gid)
 {
@@ -41,8 +41,8 @@ if(empty($tgname))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>èœå•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²Ëµ¥</title>
 <link href="../../../data/menu/menu.css" rel="stylesheet" type="text/css">
 <script src="../../../data/menu/menu.js" type="text/javascript"></script>
 <SCRIPT lanuage="JScript">
@@ -64,11 +64,11 @@ function tourl(url){
 
 <table border='0' cellspacing='0' cellpadding='0' align='center' width='100%'>
   <tr>
-    <td height="20"><img src="images/noadd.gif" width="20" height="9"><a href="#empirecms" onclick="window.open('../../template/EnewsBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹æ ‡ç­¾è¯­æ³•</a> 
+    <td height="20"><img src="images/noadd.gif" width="20" height="9"><a href="#empirecms" onclick="window.open('../../template/EnewsBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=600,scrollbars=yes,resizable=yes');">²é¿´±êÇ©Óï·¨</a> 
     </td>
   </tr>
   <tr>
-    <td height="20"><img src="images/noadd.gif" width="20" height="9"><a href="#empirecms" onclick="window.open('../../template/MakeBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=600,scrollbars=yes,resizable=yes');">è‡ªåŠ¨ç”Ÿæˆæ ‡ç­¾</a> 
+    <td height="20"><img src="images/noadd.gif" width="20" height="9"><a href="#empirecms" onclick="window.open('../../template/MakeBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=600,scrollbars=yes,resizable=yes');">×Ô¶¯Éú³É±êÇ©</a> 
     </td>
   </tr>
   </table>
@@ -78,7 +78,7 @@ if($ecms_config['esafe']['openeditdttemp']&&$r[dodttemp])
 ?>
 <table border='0' cellspacing='0' cellpadding='0' align='center' width='100%'>
   <tr>
-    <td height="20"><img src="images/noadd.gif" width="20" height="9"><a href="#empirecms" onclick="window.open('../../openpage/AdminPage.php?leftfile=<?=urlencode('../template/dttemppageleft.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('åŠ¨æ€é¡µé¢æ¨¡æ¿ç®¡ç†')?><?=$ecms_hashur['ehref']?>','dttemppage','');">åŠ¨æ€é¡µé¢æ¨¡æ¿ç®¡ç†</a> 
+    <td height="20"><img src="images/noadd.gif" width="20" height="9"><a href="#empirecms" onclick="window.open('../../openpage/AdminPage.php?leftfile=<?=urlencode('../template/dttemppageleft.php'.$ecms_hashur['whehref'])?>&title=<?=urlencode('¶¯Ì¬Ò³ÃæÄ£°å¹ÜÀí')?><?=$ecms_hashur['ehref']?>','dttemppage','');">¶¯Ì¬Ò³ÃæÄ£°å¹ÜÀí</a> 
     </td>
   </tr>
   </table>
@@ -89,7 +89,7 @@ if($ecms_config['esafe']['openeditdttemp']&&$r[dodttemp])
 <table border='0' cellspacing='0' cellpadding='0'>
 	<tr height=20>
 			<td id="home"><img src="../../../data/images/homepage.gif" border=0></td>
-			<td><b>æ¨¡æ¿ç®¡ç†</b></td>
+			<td><b>Ä£°å¹ÜÀí</b></td>
 	</tr>
 </table>
 
@@ -100,7 +100,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prindextemp" class="menu1" onclick="chengstate('indextemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">é¦–é¡µæ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Ê×Ò³Ä£°å</a>
 	</td>
   </tr>
   <tr id="itemindextemp" style="display:none"> 
@@ -108,12 +108,12 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=indextemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">é¦–é¡µæ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=indextemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Ê×Ò³Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListIndexpage.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†é¦–é¡µæ–¹æ¡ˆ</a>
+			<a href="../../template/ListIndexpage.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÊ×Ò³·½°¸</a>
           </td>
         </tr>
       </table>
@@ -129,7 +129,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prclasstemp" class="menu1" onclick="chengstate('classtemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å°é¢æ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">·âÃæÄ£°å</a>
 	</td>
   </tr>
   <tr id="itemclasstemp" style="display:none"> 
@@ -137,12 +137,12 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../template/ClassTempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†å°é¢æ¨¡æ¿åˆ†ç±»</a>
+			<a href="../../template/ClassTempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí·âÃæÄ£°å·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListClasstemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†å°é¢æ¨¡æ¿</a>
+			<a href="../../template/ListClasstemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí·âÃæÄ£°å</a>
           </td>
         </tr>
       </table>
@@ -158,7 +158,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prlisttemp" class="menu1" onclick="chengstate('listtemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">åˆ—è¡¨æ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÁÐ±íÄ£°å</a>
 	</td>
   </tr>
   <tr id="itemlisttemp" style="display:none"> 
@@ -166,12 +166,12 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../template/ListtempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†åˆ—è¡¨æ¨¡æ¿åˆ†ç±»</a>
+			<a href="../../template/ListtempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÁÐ±íÄ£°å·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListListtemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†åˆ—è¡¨æ¨¡æ¿</a>
+			<a href="../../template/ListListtemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÁÐ±íÄ£°å</a>
           </td>
         </tr>
       </table>
@@ -187,7 +187,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prnewstemp" class="menu1" onclick="chengstate('newstemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å†…å®¹æ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÄÚÈÝÄ£°å</a>
 	</td>
   </tr>
   <tr id="itemnewstemp" style="display:none"> 
@@ -195,12 +195,12 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../template/NewstempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†å†…å®¹æ¨¡æ¿åˆ†ç±»</a>
+			<a href="../../template/NewstempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÄÚÈÝÄ£°å·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListNewstemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†å†…å®¹æ¨¡æ¿</a>
+			<a href="../../template/ListNewstemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÄÚÈÝÄ£°å</a>
           </td>
         </tr>
       </table>
@@ -216,7 +216,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prsearchtemp" class="menu1" onclick="chengstate('searchtemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æœç´¢æ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ËÑË÷Ä£°å</a>
 	</td>
   </tr>
   <tr id="itemsearchtemp" style="display:none"> 
@@ -224,12 +224,12 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
 		<tr> 
           <td class="file">
-			<a href="../../template/SearchtempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æœç´¢æ¨¡æ¿åˆ†ç±»</a>
+			<a href="../../template/SearchtempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíËÑË÷Ä£°å·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListSearchtemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æœç´¢æ¨¡æ¿</a>
+			<a href="../../template/ListSearchtemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíËÑË÷Ä£°å</a>
           </td>
         </tr>
       </table>
@@ -245,7 +245,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prbqtemp" class="menu1" onclick="chengstate('bqtemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ ‡ç­¾æ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">±êÇ©Ä£°å</a>
 	</td>
   </tr>
   <tr id="itembqtemp" style="display:none"> 
@@ -253,12 +253,12 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../template/BqtempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æ ‡ç­¾æ¨¡æ¿åˆ†ç±»</a>
+			<a href="../../template/BqtempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí±êÇ©Ä£°å·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListBqtemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æ ‡ç­¾æ¨¡æ¿</a>
+			<a href="../../template/ListBqtemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí±êÇ©Ä£°å</a>
           </td>
         </tr>
       </table>
@@ -274,7 +274,7 @@ if($r[dotempvar])
 ?>
   <tr> 
     <td id="prtempvar" class="menu1" onclick="chengstate('tempvar')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å…¬å…±æ¨¡æ¿å˜é‡</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹«¹²Ä£°å±äÁ¿</a>
 	</td>
   </tr>
   <tr id="itemtempvar" style="display:none"> 
@@ -282,12 +282,12 @@ if($r[dotempvar])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../template/TempvarClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æ¨¡æ¿å˜é‡åˆ†ç±»</a>
+			<a href="../../template/TempvarClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÄ£°å±äÁ¿·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListTempvar.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æ¨¡æ¿å˜é‡</a>
+			<a href="../../template/ListTempvar.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÄ£°å±äÁ¿</a>
           </td>
         </tr>
       </table>
@@ -303,7 +303,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prpubtemp" class="menu1" onclick="chengstate('pubtemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å…¬å…±æ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹«¹²Ä£°å</a>
 	</td>
   </tr>
   <tr id="itempubtemp" style="display:none"> 
@@ -311,72 +311,72 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=cptemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æŽ§åˆ¶é¢æ¿æ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=cptemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¿ØÖÆÃæ°åÄ£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=schalltemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å…¨ç«™æœç´¢æ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=schalltemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">È«Õ¾ËÑË÷Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=searchformtemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">é«˜çº§æœç´¢è¡¨å•æ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=searchformtemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¸ß¼¶ËÑË÷±íµ¥Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=searchformjs&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ¨ªå‘æœç´¢JSæ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=searchformjs&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ºáÏòËÑË÷JSÄ£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=searchformjs1&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">çºµå‘æœç´¢JSæ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=searchformjs1&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">×ÝÏòËÑË÷JSÄ£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=otherlinktemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç›¸å…³ä¿¡æ¯æ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=otherlinktemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Ïà¹ØÐÅÏ¢Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=gbooktemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç•™è¨€æ¿æ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=gbooktemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÁôÑÔ°åÄ£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=pljstemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">è¯„è®ºJSè°ƒç”¨æ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=pljstemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÆÀÂÛJSµ÷ÓÃÄ£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=downpagetemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æœ€ç»ˆä¸‹è½½é¡µæ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=downpagetemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">×îÖÕÏÂÔØÒ³Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=downsofttemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ä¸‹è½½åœ°å€æ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=downsofttemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÏÂÔØµØÖ·Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=onlinemovietemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">åœ¨çº¿æ’­æ”¾åœ°å€æ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=onlinemovietemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÔÚÏß²¥·ÅµØÖ·Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=listpagetemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">åˆ—è¡¨åˆ†é¡µæ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=listpagetemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÁÐ±í·ÖÒ³Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditPublicTemp.php?tname=loginiframe&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç™»é™†çŠ¶æ€æ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=loginiframe&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">µÇÂ½×´Ì¬Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/EditPublicTemp.php?tname=loginjstemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">JSè°ƒç”¨ç™»é™†æ¨¡æ¿</a>
+			<a href="../../template/EditPublicTemp.php?tname=loginjstemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">JSµ÷ÓÃµÇÂ½Ä£°å</a>
           </td>
         </tr>
       </table>
@@ -392,7 +392,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prjstemp" class="menu1" onclick="chengstate('jstemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">JSæ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">JSÄ£°å</a>
 	</td>
   </tr>
   <tr id="itemjstemp" style="display:none"> 
@@ -400,12 +400,12 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
 		<tr> 
           <td class="file">
-			<a href="../../template/JsTempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†JSæ¨¡æ¿åˆ†ç±»</a>
+			<a href="../../template/JsTempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíJSÄ£°å·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListJstemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†JSæ¨¡æ¿</a>
+			<a href="../../template/ListJstemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíJSÄ£°å</a>
           </td>
         </tr>
       </table>
@@ -421,7 +421,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prpltemp" class="menu1" onclick="chengstate('pltemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">è¯„è®ºåˆ—è¡¨æ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÆÀÂÛÁÐ±íÄ£°å</a>
 	</td>
   </tr>
   <tr id="itempltemp" style="display:none"> 
@@ -429,12 +429,12 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
 		<tr> 
           <td class="file">
-			<a href="../../template/AddPltemp.php?enews=AddPlTemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å¢žåŠ è¯„è®ºæ¨¡æ¿</a>
+			<a href="../../template/AddPltemp.php?enews=AddPlTemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Ôö¼ÓÆÀÂÛÄ£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListPltemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†è¯„è®ºæ¨¡æ¿</a>
+			<a href="../../template/ListPltemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÆÀÂÛÄ£°å</a>
           </td>
         </tr>
       </table>
@@ -450,7 +450,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prprinttemp" class="menu1" onclick="chengstate('printtemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ‰“å°æ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">´òÓ¡Ä£°å</a>
 	</td>
   </tr>
   <tr id="itemprinttemp" style="display:none"> 
@@ -458,12 +458,12 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
 		<tr> 
           <td class="file">
-			<a href="../../template/AddPrinttemp.php?enews=AddPrintTemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å¢žåŠ æ‰“å°æ¨¡æ¿</a>
+			<a href="../../template/AddPrinttemp.php?enews=AddPrintTemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Ôö¼Ó´òÓ¡Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListPrinttemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æ‰“å°æ¨¡æ¿</a>
+			<a href="../../template/ListPrinttemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí´òÓ¡Ä£°å</a>
           </td>
         </tr>
       </table>
@@ -479,7 +479,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="pruserpagetemp" class="menu1" onclick="chengstate('userpagetemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">×Ô¶¨ÒåÒ³ÃæÄ£°å</a>
 	</td>
   </tr>
   <tr id="itemuserpagetemp" style="display:none"> 
@@ -487,12 +487,12 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../template/AddPagetemp.php?enews=AddPagetemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å¢žåŠ è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿</a>
+			<a href="../../template/AddPagetemp.php?enews=AddPagetemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Ôö¼Ó×Ô¶¨ÒåÒ³ÃæÄ£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListPagetemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†è‡ªå®šä¹‰é¡µé¢æ¨¡æ¿</a>
+			<a href="../../template/ListPagetemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí×Ô¶¨ÒåÒ³ÃæÄ£°å</a>
           </td>
         </tr>
       </table>
@@ -508,7 +508,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prvotetemp" class="menu1" onclick="chengstate('votetemp')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æŠ•ç¥¨æ¨¡æ¿</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Í¶Æ±Ä£°å</a>
 	</td>
   </tr>
   <tr id="itemvotetemp" style="display:none"> 
@@ -516,12 +516,12 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
 		<tr> 
           <td class="file">
-			<a href="../../template/AddVotetemp.php?enews=AddVoteTemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å¢žåŠ æŠ•ç¥¨æ¨¡æ¿</a>
+			<a href="../../template/AddVotetemp.php?enews=AddVoteTemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Ôö¼ÓÍ¶Æ±Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListVotetemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æŠ•ç¥¨æ¨¡æ¿</a>
+			<a href="../../template/ListVotetemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÍ¶Æ±Ä£°å</a>
           </td>
         </tr>
       </table>
@@ -537,7 +537,7 @@ if($r[dobq])
 ?>
   <tr> 
     <td id="prbq" class="menu1" onclick="chengstate('bq')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ ‡ç­¾</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">±êÇ©</a>
 	</td>
   </tr>
   <tr id="itembq" style="display:none"> 
@@ -545,12 +545,12 @@ if($r[dobq])
 		<table border='0' cellspacing='0' cellpadding='0'>
 		<tr> 
           <td class="file">
-			<a href="../../template/BqClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æ ‡ç­¾åˆ†ç±»</a>
+			<a href="../../template/BqClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí±êÇ©·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/ListBq.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æ ‡ç­¾</a>
+			<a href="../../template/ListBq.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí±êÇ©</a>
           </td>
         </tr>
       </table>
@@ -566,7 +566,7 @@ if($r['dotempgroup']||$r['dotemplate'])
 ?>
   <tr> 
     <td id="prtempgroup" class="menu1" onclick="chengstate('tempgroup')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ¨¡æ¿ç»„ç®¡ç†</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Ä£°å×é¹ÜÀí</a>
 	</td>
   </tr>
   <tr id="itemtempgroup" style="display:none"> 
@@ -578,7 +578,7 @@ if($r['dotempgroup']||$r['dotemplate'])
 	?>
 		<tr> 
           <td class="file">
-			<a href="../../template/EditTempid.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ä¿®æ”¹æ¨¡æ¿ID</a>
+			<a href="../../template/EditTempid.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÐÞ¸ÄÄ£°åID</a>
           </td>
         </tr>
 	<?php
@@ -590,7 +590,7 @@ if($r['dotempgroup']||$r['dotemplate'])
 	?>
 		<tr> 
           <td class="file1">
-			<a href="../../template/TempGroup.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å¯¼å…¥/å¯¼å‡ºæ¨¡æ¿ç»„</a>
+			<a href="../../template/TempGroup.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">µ¼Èë/µ¼³öÄ£°å×é</a>
           </td>
         </tr>
 	<?php
@@ -609,7 +609,7 @@ if($r[dotemplate])
 ?>
   <tr> 
     <td id="prtother" class="menu3" onclick="chengstate('tother')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å…¶ä»–ç›¸å…³</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÆäËûÏà¹Ø</a>
 	</td>
   </tr>
   <tr id="itemtother" style="display:none"> 
@@ -617,17 +617,17 @@ if($r[dotemplate])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../template/LoadTemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ‰¹é‡å¯¼å…¥æ ç›®æ¨¡æ¿</a>
+			<a href="../../template/LoadTemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÅúÁ¿µ¼ÈëÀ¸Ä¿Ä£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../template/ChangeListTemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ‰¹é‡æ›´æ¢åˆ—è¡¨æ¨¡æ¿</a>
+			<a href="../../template/ChangeListTemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÅúÁ¿¸ü»»ÁÐ±íÄ£°å</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../template/RepTemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ‰¹é‡æ›¿æ¢æ¨¡æ¿å­—ç¬¦</a>
+			<a href="../../template/RepTemp.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÅúÁ¿Ìæ»»Ä£°å×Ö·û</a>
           </td>
         </tr>
       </table>

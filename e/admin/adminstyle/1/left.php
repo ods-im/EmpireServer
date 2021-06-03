@@ -6,7 +6,7 @@ require("../../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=2;
-//楠岃瘉鐢ㄦ埛
+//验证用户
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -18,7 +18,7 @@ $ecms_hashur=hReturnEcmsHashStrAll();
 $r=ReturnLeftLevel($loginlevel);
 $movecolor=" onMouseOver=\"this.style.backgroundColor='#EFEFEF'\" onMouseOut=\"this.style.backgroundColor='#FFFFFF'\"";
 $gid=(int)$_GET['gid'];
-//鍙傛暟璁剧疆
+//参数设置
 $display="";
 if($display=="")
 {

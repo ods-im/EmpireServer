@@ -7,7 +7,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//楠岃瘉鐢ㄦ埛
+//验证用户
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -23,41 +23,41 @@ $jspath=$public_r['newsurl'].'d/js/class/tt'.$ttid.'_';
 ?>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 
-<title>璋冪敤鍦板潃</title><table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
+<title>调用地址</title><table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class=header> 
     <td height="25">&nbsp;</td>
-    <td height="25">璋冪敤鍦板潃</td>
-    <td height="25"> <div align="center">棰勮</div></td>
+    <td height="25">调用地址</td>
+    <td height="25"> <div align="center">预览</div></td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td width="22%" height="25">鏍囬鍒嗙被鍦板潃:</td>
+    <td width="22%" height="25">标题分类地址:</td>
     <td width="71%" height="25"> <input name="textfield" type="text" value="<?=$url?>" size="35"></td>
-    <td width="7%" height="25"> <div align="center"><a href="<?=$url?>" target="_blank">棰勮</a></div></td>
+    <td width="7%" height="25"> <div align="center"><a href="<?=$url?>" target="_blank">预览</a></div></td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">鏈�鏂颁俊鎭疛S:</td>
+    <td height="25">最新信息JS:</td>
     <td height="25"> <input name="textfield2" type="text" value="<?=$jspath?>newnews.js" size="35"></td>
-    <td height="25"> <div align="center"><a href="js.php?classid=<?=$ttid?>&js=<? echo urlencode($jspath."newnews.js");?><?=$ecms_hashur['ehref']?>" target="_blank">棰勮</a></div></td>
+    <td height="25"> <div align="center"><a href="js.php?classid=<?=$ttid?>&js=<? echo urlencode($jspath."newnews.js");?><?=$ecms_hashur['ehref']?>" target="_blank">预览</a></div></td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">鐑棬淇℃伅JS:</td>
+    <td height="25">热门信息JS:</td>
     <td height="25"> <input name="textfield3" type="text" value="<?=$jspath?>hotnews.js" size="35"></td>
-    <td height="25"> <div align="center"><a href="js.php?classid=<?=$ttid?>&js=<? echo urlencode($jspath."hotnews.js");?><?=$ecms_hashur['ehref']?>" target="_blank">棰勮</a></div></td>
+    <td height="25"> <div align="center"><a href="js.php?classid=<?=$ttid?>&js=<? echo urlencode($jspath."hotnews.js");?><?=$ecms_hashur['ehref']?>" target="_blank">预览</a></div></td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">鎺ㄨ崘淇℃伅JS:</td>
+    <td height="25">推荐信息JS:</td>
     <td height="25"> <input name="textfield4" type="text" value="<?=$jspath?>goodnews.js" size="35"></td>
-    <td height="25"> <div align="center"><a href="js.php?classid=<?=$ttid?>&js=<? echo urlencode($jspath."goodnews.js");?><?=$ecms_hashur['ehref']?>" target="_blank">棰勮</a></div></td>
+    <td height="25"> <div align="center"><a href="js.php?classid=<?=$ttid?>&js=<? echo urlencode($jspath."goodnews.js");?><?=$ecms_hashur['ehref']?>" target="_blank">预览</a></div></td>
   </tr>
 
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">鐑偣璇勮淇℃伅JS:</td>
+    <td height="25">热点评论信息JS:</td>
     <td height="25"> <input name="textfield4" type="text" value="<?=$jspath?>hotplnews.js" size="35"></td>
-    <td height="25"> <div align="center"><a href="js.php?classid=<?=$ttid?>&js=<? echo urlencode($jspath."hotplnews.js");?><?=$ecms_hashur['ehref']?>" target="_blank">棰勮</a></div></td>
+    <td height="25"> <div align="center"><a href="js.php?classid=<?=$ttid?>&js=<? echo urlencode($jspath."hotplnews.js");?><?=$ecms_hashur['ehref']?>" target="_blank">预览</a></div></td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25">澶存潯淇℃伅JS:</td>
+    <td height="25">头条信息JS:</td>
     <td height="25"> <input name="textfield4" type="text" value="<?=$jspath?>firstnews.js" size="35"></td>
-    <td height="25"> <div align="center"><a href="js.php?classid=<?=$ttid?>&js=<? echo urlencode($jspath."firstnews.js");?><?=$ecms_hashur['ehref']?>" target="_blank">棰勮</a></div></td>
+    <td height="25"> <div align="center"><a href="js.php?classid=<?=$ttid?>&js=<? echo urlencode($jspath."firstnews.js");?><?=$ecms_hashur['ehref']?>" target="_blank">预览</a></div></td>
   </tr>
 </table>

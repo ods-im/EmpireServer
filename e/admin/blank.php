@@ -1,3 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <br><br>
-<font size=5>æ‚¨å·²ç™»å½•ï¼Œ<a href=index.php><u>ç‚¹å‡»è¿™é‡Œ</u></a>å¯é‡æ–°ç™»é™†</font>
+<font size=5>ÄúÒÑµÇÂ¼£¬<a href=index.php><u>µã»÷ÕâÀï</u></a>¿ÉÖØÐÂµÇÂ½</font>

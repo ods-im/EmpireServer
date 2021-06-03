@@ -11,10 +11,10 @@ $userid=0;
 $username='';
 $spacestyle='';
 $search='';
-require('CheckUser.php');//éªŒè¯ç”¨æˆ·
+require('CheckUser.php');//ÑéÖ¤ÓÃ»§
 $yhid=0;
 $yhvar='qmlist';
-//æ¨¡å‹
+//Ä£ĞÍ
 $mid=intval($_GET['mid']);
 if(!$mid)
 {
@@ -27,9 +27,9 @@ if(!$mr['tbname']||InfoIsInTable($mr['tbname']))
 }
 $yhid=$etable_r[$mr[tbname]][yhid];
 $search.="&userid=$userid&mid=$mid";
-//ç”¨æˆ·
+//ÓÃ»§
 $add="userid='$userid'";
-//æ˜¾ç¤ºæ–¹å¼
+//ÏÔÊ¾·½Ê½
 if($public_r['qlistinfomod'])
 {
 	$modnum=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsmod where tbname='$mr[tbname]'");
@@ -38,7 +38,7 @@ if($public_r['qlistinfomod'])
 		$add.=' and ('.ReturnClass($mr['sonclass']).')';
 	}
 }
-//æ ç›®
+//À¸Ä¿
 $classid=intval($_GET['classid']);
 if($classid)
 {
@@ -53,7 +53,7 @@ if($classid)
 	$yhid=$class_r[$classid][yhid];
 	$search.="&classid=$classid";
 }
-//ä¼˜åŒ–
+//ÓÅ»¯
 $yhadd='';
 if($yhid)
 {
@@ -62,7 +62,7 @@ if($yhid)
 $start=0;
 $page=intval($_GET['page']);
 $page=RepPIntvar($page);
-$line=$public_r['space_num'];//æ¯è¡Œæ˜¾ç¤º
+$line=$public_r['space_num'];//Ã¿ĞĞÏÔÊ¾
 $page_line=10;
 $offset=$page*$line;
 $query="select ".ReturnSqlListF($mid)." from {$dbtbpre}ecms_".$mr['tbname']." where ".$yhadd.$add." and ismember=1";
@@ -74,7 +74,7 @@ if(!$public_r['usetotalnum'])
 }
 if($totalnum<1)
 {
-	$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+	$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 }
 else
 {

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,14 +15,14 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"pl");
 
-//æ‰¹é‡åˆ é™¤è¯„è®º(æ¡ä»¶)
+//ÅúÁ¿É¾³ýÆÀÂÛ(Ìõ¼þ)
 function DelMorePl($add,$logininid,$loginin){
 	global $empire,$dbtbpre,$public_r,$class_r;
-    CheckLevel($logininid,$loginin,$classid,"pl");//éªŒè¯æƒé™
-	//å˜é‡å¤„ç†
+    CheckLevel($logininid,$loginin,$classid,"pl");//ÑéÖ¤È¨ÏÞ
+	//±äÁ¿´¦Àí
 	$restb=(int)$add['restb'];
 	$username=RepPostVar($add['username']);
 	$sayip=RepPostVar($add['sayip']);
@@ -40,20 +40,20 @@ function DelMorePl($add,$logininid,$loginin){
 		printerror("EmptyDelMorePl","history.go(-1)");
 	}
 	$where='';
-	//æ ç›®
+	//À¸Ä¿
 	if($classid)
 	{
-		if(empty($class_r[$classid][islast]))//ä¸­çº§æ ç›®
+		if(empty($class_r[$classid][islast]))//ÖÐ¼¶À¸Ä¿
 		{
 			$cwhere=ReturnClass($class_r[$classid][sonclass]);
 		}
-		else//ç»ˆæžæ ç›®
+		else//ÖÕ¼«À¸Ä¿
 		{
 			$cwhere="classid='$classid'";
 		}
 		$where.=" and ".$cwhere;
 	}
-	//ä¿¡æ¯ID
+	//ÐÅÏ¢ID
 	if($id)
 	{
 		$idr=explode(',',$id);
@@ -67,7 +67,7 @@ function DelMorePl($add,$logininid,$loginin){
 		}
 		$where.=" and id in (".$ids.")";
 	}
-	//æ˜¯å¦ä¼šå‘˜
+	//ÊÇ·ñ»áÔ±
 	if($ismember)
 	{
 		if($ismember==1)
@@ -79,17 +79,17 @@ function DelMorePl($add,$logininid,$loginin){
 			$where.=" and userid>0";
 		}
 	}
-	//å‘å¸ƒè€…
+	//·¢²¼Õß
 	if($username)
 	{
 		$where.=" and username like '%$username%'";
 	}
-	//å‘å¸ƒIP
+	//·¢²¼IP
 	if($sayip)
 	{
 		$where.=" and sayip like '%$sayip%'";
 	}
-	//å‘å¸ƒå†…å®¹
+	//·¢²¼ÄÚÈÝ
 	if($saytext)
 	{
 		$twhere='';
@@ -103,19 +103,19 @@ function DelMorePl($add,$logininid,$loginin){
 		}
 		$where.=' and ('.$twhere.')';
 	}
-	//è¯„è®ºID
+	//ÆÀÂÛID
 	if($endplid)
 	{
 		$where.=' and plid BETWEEN '.$startplid.' and '.$endplid;
 	}
-	//å‘å¸ƒæ—¶é—´
+	//·¢²¼Ê±¼ä
 	if($startsaytime&&$endsaytime)
 	{
 		$startsaytime=to_time($startsaytime.' 00:00:00');
 		$endsaytime=to_time($endsaytime.' 23:59:59');
 		$where.=" and saytime>='$startsaytime' and saytime<='$endsaytime'";
 	}
-	//æ˜¯å¦å®¡æ ¸
+	//ÊÇ·ñÉóºË
 	if($checked)
 	{
 		$checkval=$checked==1?0:1;
@@ -136,13 +136,13 @@ function DelMorePl($add,$logininid,$loginin){
 		if($class_r[$r[classid]][tbname]&&$r['pubid']>0)
 		{
 			$index_r=$empire->fetch1("select checked from {$dbtbpre}ecms_".$class_r[$r[classid]][tbname]."_index where id='$r[id]' limit 1");
-			//è¿”å›žè¡¨
+			//·µ»Ø±í
 			$infotb=ReturnInfoMainTbname($class_r[$r[classid]][tbname],$index_r['checked']);
 			$empire->query("update ".$infotb." set plnum=plnum-1 where id='$r[id]'");
 		}
     }
 	$sql=$empire->query("delete from {$dbtbpre}enewspl_".$restb." where ".$where);
-	insert_dolog("restb=$restb");//æ“ä½œæ—¥å¿—
+	insert_dolog("restb=$restb");//²Ù×÷ÈÕÖ¾
 	printerror("DelPlSuccess","DelMorePl.php".hReturnEcmsHashStrHref2(1));
 }
 
@@ -158,7 +158,7 @@ if($enews=='DelMorePl')
 	DelMorePl($_POST,$logininid,$loginin);
 }
 
-//åˆ†è¡¨
+//·Ö±í
 $plsetr=$empire->fetch1("select pldatatbs from {$dbtbpre}enewspl_set limit 1");
 $pltbr=explode(',',$plsetr['pldatatbs']);
 $restbs='';
@@ -167,7 +167,7 @@ for($i=1;$i<$tbcount;$i++)
 {
 	$restbs.='<option value="'.$pltbr[$i].'">'.$dbtbpre.'enewspl_'.$pltbr[$i].'</option>';
 }
-//æ ç›®
+//À¸Ä¿
 $fcfile="../../data/fc/ListEnews.php";
 $class="<script src=../../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
@@ -179,8 +179,8 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ‰¹é‡åˆ é™¤è¯„è®º</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÅúÁ¿É¾³ýÆÀÂÛ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../ecmseditor/js/jstime/WdatePicker.js"></script>
 </head>
@@ -188,82 +188,82 @@ $empire=null;
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href=ListAllPl.php<?=$ecms_hashur['whehref']?>>ç®¡ç†è¯„è®º</a>&nbsp;>&nbsp;æ‰¹é‡åˆ é™¤è¯„è®º</td>
+    <td>Î»ÖÃ£º<a href=ListAllPl.php<?=$ecms_hashur['whehref']?>>¹ÜÀíÆÀÂÛ</a>&nbsp;>&nbsp;ÅúÁ¿É¾³ýÆÀÂÛ</td>
   </tr>
 </table>
-<form name="form1" method="post" action="DelMorePl.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+<form name="form1" method="post" action="DelMorePl.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ý?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">å¤šæ¡ä»¶æ‰¹é‡åˆ é™¤è¯„è®º 
+      <td height="25" colspan="2">¶àÌõ¼þÅúÁ¿É¾³ýÆÀÂÛ 
         <input name="enews" type="hidden" id="enews" value="DelMorePl"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">é€‰æ‹©åˆ†è¡¨</td>
+      <td height="25">Ñ¡Ôñ·Ö±í</td>
       <td height="25"><select name="restb" id="restb">
 	  <?=$restbs?>
       </select>      </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">å‘å¸ƒè€…åŒ…å«å­—ç¬¦ï¼š</td>
+      <td width="19%" height="25">·¢²¼Õß°üº¬×Ö·û£º</td>
       <td width="81%" height="25"><input name=username type=text id="username"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ˜¯å¦ä¼šå‘˜å‘å¸ƒï¼š</td>
+      <td height="25">ÊÇ·ñ»áÔ±·¢²¼£º</td>
       <td height="25"><input name="ismember" type="radio" value="0" checked>
-        ä¸é™ <input type="radio" name="ismember" value="1">
-        æ¸¸å®¢å‘å¸ƒ 
+        ²»ÏÞ <input type="radio" name="ismember" value="1">
+        ÓÎ¿Í·¢²¼ 
         <input type="radio" name="ismember" value="2">
-        ä¼šå‘˜å‘å¸ƒ</td>
+        »áÔ±·¢²¼</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">è¯„è®ºIPåŒ…å«ï¼š</td>
+      <td height="25">ÆÀÂÛIP°üº¬£º</td>
       <td height="25"><input name=sayip type=text id="sayip"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">è¯„è®ºå†…å®¹åŒ…å«å­—ç¬¦ï¼š<br>
+      <td height="25">ÆÀÂÛÄÚÈÝ°üº¬×Ö·û£º<br>
         <br>
-        <font color="#666666">(å¤šä¸ªå­—ç¬¦ç”¨â€œ|â€éš”å¼€)</font></td>
+        <font color="#666666">(¶à¸ö×Ö·ûÓÃ¡°|¡±¸ô¿ª)</font></td>
       <td height="25"><textarea name="saytext" cols="70" rows="6" id="saytext"></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td rowspan="2">æ‰€å±žä¿¡æ¯ï¼š</td>
-      <td height="25">æ‰€å±žæ ç›®ï¼š
+      <td rowspan="2">ËùÊôÐÅÏ¢£º</td>
+      <td height="25">ËùÊôÀ¸Ä¿£º
         <select name="classid" id="classid">
-		<option value=0>ä¸é™</option>
+		<option value=0>²»ÏÞ</option>
           <?=$class?>
-        </select> <font color="#666666">ï¼ˆå¦‚é€‰æ‹©çˆ¶æ ç›®ï¼Œå°†åº”ç”¨äºŽæ‰€æœ‰å­æ ç›®ï¼‰</font></td>
+        </select> <font color="#666666">£¨ÈçÑ¡Ôñ¸¸À¸Ä¿£¬½«Ó¦ÓÃÓÚËùÓÐ×ÓÀ¸Ä¿£©</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ä¿¡æ¯ID&nbsp;&nbsp;ï¼š 
+      <td height="25">ÐÅÏ¢ID&nbsp;&nbsp;£º 
         <input name="id" type="text" id="id">
-        <font color="#666666">(å¤šä¸ªIDç”¨â€œ,â€åŠè§’é€—å·éš”å¼€)</font></td>
+        <font color="#666666">(¶à¸öIDÓÃ¡°,¡±°ë½Ç¶ººÅ¸ô¿ª)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">è¯„è®ºID ä»‹äºŽï¼š</td>
+      <td height="25">ÆÀÂÛID ½éÓÚ£º</td>
       <td height="25"><input name="startplid" type="text" id="startplid">
         -- 
         <input name="endplid" type="text" id="endplid"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" valign="top">è¯„è®ºæ—¶é—´ ä»‹äºŽï¼š</td>
+      <td height="25" valign="top">ÆÀÂÛÊ±¼ä ½éÓÚ£º</td>
       <td height="25"><input name="startsaytime" type="text" id="startsaytime" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
         -- 
         <input name="endsaytime" type="text" id="endsaytime" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})">
-        <font color="#666666">(æ ¼å¼ï¼š2011-01-27)</font></td>
+        <font color="#666666">(¸ñÊ½£º2011-01-27)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ˜¯å¦å®¡æ ¸ï¼š</td>
+      <td height="25">ÊÇ·ñÉóºË£º</td>
       <td height="25"><input name="checked" type="radio" value="0" checked>
-        ä¸é™ 
+        ²»ÏÞ 
         <input name="checked" type="radio" value="1">
-        å·²å®¡æ ¸è¯„è®º 
+        ÒÑÉóºËÆÀÂÛ 
         <input name="checked" type="radio" value="2">
-        æœªå®¡æ ¸è¯„è®º</td>
+        Î´ÉóºËÆÀÂÛ</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="åˆ é™¤è¯„è®º"> </td>
+      <td height="25"><input type="submit" name="Submit" value="É¾³ýÆÀÂÛ"> </td>
     </tr>
   </table>
 </form>

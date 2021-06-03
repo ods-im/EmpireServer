@@ -14,7 +14,7 @@ document.ondblclick=initialize
 ie = (document.all)? true:false
 if (ie){function ctlent(eventobject){if(event.ctrlKey && window.event.keyCode==13){this.document.FORM.submit();}}}
 clckcnt = 0;
-function clckcntr() {clckcnt++;if(clckcnt > 1) {if(clckcnt > 2) { return false; }alert('è´´å­å·²ç»å‘å‡ºäº†......\n\n' + 'è¯·ç­‰å¾…ç‰‡åˆ»......\n\n' + 'ä¸è¦é‡å¤æŒ‰æäº¤é”®ï¼Œè°¢è°¢ï¼');return false;}return true;}
+function clckcntr() {clckcnt++;if(clckcnt > 1) {if(clckcnt > 2) { return false; }alert('Ìù×ÓÒÑ¾­·¢³öÁË......\n\n' + 'ÇëµÈ´ıÆ¬¿Ì......\n\n' + '²»ÒªÖØ¸´°´Ìá½»¼ü£¬Ğ»Ğ»£¡');return false;}return true;}
 var nn = !!document.layers;
 var ie = !!document.all;
 if (nn) {netscape.security.PrivilegeManager.enablePrivilege("UniversalSystemClipboardAccess");  var fr=new java.awt.Frame();  var Zwischenablage = fr.getToolkit().getSystemClipboard();}
@@ -22,16 +22,16 @@ function copy(textarea){if (nn) {textarea.select();Zwischenablage.setContents(ne
 function paste(textarea){ if (nn) {var Inhalt=Zwischenablage.getContents(null); if (Inhalt!=null) textarea.value=Inhalt.getTransferData(java.awt.datatransfer.DataFlavor.stringFlavor);} else if (ie) {textarea.select(); cbBuffer=textarea.createTextRange(); cbBuffer.execCommand('Paste');}}
 function openScript(url, width, height){var Win = window.open(url,"openScript",'width=' + width + ',height=' + height + ',resizable=1,scrollbars=yes,menubar=yes,status=yes' );}
 function runEx(){var winEx = window.open("", "winEx", "width=300,height=200,status=yes,menubar=yes,scrollbars=yes,resizable=yes"); winEx.document.open("text/html", "replace"); winEx.document.write(unescape(event.srcElement.parentElement.children[2].value)); winEx.document.close(); }
-//******************************é»˜è®¤è®¾ç½®å®šä¹‰******************************
-tPopWait=50;		//åœç•™tWaitè±ªç§’åæ˜¾ç¤ºæç¤º
-tPopShow=5000;		//æ˜¾ç¤ºtShowè±ªç§’åå…³é—­æç¤ºï¼Œ1000ä¸º1ç§’
+//******************************Ä¬ÈÏÉèÖÃ¶¨Òå******************************
+tPopWait=50;		//Í£ÁôtWaitºÀÃëºóÏÔÊ¾ÌáÊ¾
+tPopShow=5000;		//ÏÔÊ¾tShowºÀÃëºó¹Ø±ÕÌáÊ¾£¬1000Îª1Ãë
 showPopStep=20;
-popOpacity=90;		//æç¤ºæ¡†çš„é€æ˜åº¦,ç™¾åˆ†æ¯”ï¼Œæ•°å­—è¶Šå°è¶Šé€æ˜
+popOpacity=90;		//ÌáÊ¾¿òµÄÍ¸Ã÷¶È,°Ù·Ö±È£¬Êı×ÖÔ½Ğ¡Ô½Í¸Ã÷
 fontcolor="#000000";
 bgcolor="#ffffff";
 bordercolor="#cccccc";
 
-//******************************å†…éƒ¨å˜é‡å®šä¹‰******************************
+//******************************ÄÚ²¿±äÁ¿¶¨Òå******************************
 sPop=null;curShow=null;tFadeOut=null;tFadeIn=null;tFadeWaiting=null;
 
 document.write("<style type='text/css'id='defaultPopStyle'>");

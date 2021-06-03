@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -22,32 +22,32 @@ $enews=ehtmlspecialchars($_GET['enews']);
 $form=RepPostVar($_GET['form']);
 $field=RepPostVar($_GET['field']);
 $keyboard=RepPostVar($_GET['keyboard']);
-//æ•°æ®è¡¨
+//Êı¾İ±í
 $tbs='';
 $tsql=$empire->query("select tid,tbname,tname from {$dbtbpre}enewstable where intb=0 order by tid");
 while($tr=$empire->fetch($tsql))
 {
 	$tbs.="<option value='".$tr[tbname]."'>".$tr[tname]."</option>";
 }
-//äº‹ä»¶
-$word='é€‰æ‹©ä¿¡æ¯';
-$word_button='å¯¼å…¥é€‰ä¸­ä¿¡æ¯';
+//ÊÂ¼ş
+$word='Ñ¡ÔñĞÅÏ¢';
+$word_button='µ¼ÈëÑ¡ÖĞĞÅÏ¢';
 if($enews=='LoadInSpInfo')
 {
-	$word='é€‰æ‹©ä¿¡æ¯';
-	$word_button='å¯¼å…¥é€‰ä¸­ä¿¡æ¯';
+	$word='Ñ¡ÔñĞÅÏ¢';
+	$word_button='µ¼ÈëÑ¡ÖĞĞÅÏ¢';
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title><?=$word?></title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function UpdateChangeInfoid(obj){
 	var isok;
-	isok=confirm('ç¡®è®¤è¦æ“ä½œ?');
+	isok=confirm('È·ÈÏÒª²Ù×÷?');
 	if(isok==false)
 	{
 		return '';
@@ -58,7 +58,7 @@ function UpdateChangeInfoid(obj){
 function CheckSearchForm(obj){
 	if(obj.keyboard.value=='')
 	{
-		alert('æœç´¢å…³é”®å­—ä¸èƒ½ä¸ºç©º');
+		alert('ËÑË÷¹Ø¼ü×Ö²»ÄÜÎª¿Õ');
 		obj.keyboard.focus();
 		return false;
 	}
@@ -78,20 +78,20 @@ function CheckSearchForm(obj){
         <form action="ChangeInfoShow.php" method="POST" name="searchinfoform" target="searchinfopage" id="searchinfoform" onsubmit="return CheckSearchForm(document.searchinfoform);">
 		<?=$ecms_hashur['eform']?>
           <tr> 
-            <td height="25">æŸ¥è¯¢ï¼š
+            <td height="25">²éÑ¯£º
               <select name="tbname" id="tbname">
 			  <?=$tbs?>
               </select> 
               <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>"> 
               <select name="show" id="show">
-                <option value="1" selected>æ ‡é¢˜</option>
-                <option value="2">å…³é”®å­—</option>
+                <option value="1" selected>±êÌâ</option>
+                <option value="2">¹Ø¼ü×Ö</option>
                 <option value="3">ID</option>
               </select>
-              <span id="listfileclassnav"></span> <input type="submit" name="Submit" value="æœç´¢"> 
+              <span id="listfileclassnav"></span> <input type="submit" name="Submit" value="ËÑË÷"> 
               <input name="sear" type="hidden" id="sear" value="1">
               <input name="enews" type="hidden" id="enews" value="<?=$enews?>">
-              <font color="#666666">(æœç´¢å¤šä¸ªå…³é”®å­—å¯ç”¨ç©ºæ ¼éš”å¼€)</font></td>
+              <font color="#666666">(ËÑË÷¶à¸ö¹Ø¼ü×Ö¿ÉÓÃ¿Õ¸ñ¸ô¿ª)</font></td>
           </tr>
           <tr> 
             <td height="405" valign="top" bgcolor="#FFFFFF"> <IFRAME frameBorder="0" id="searchinfopage" name="searchinfopage" scrolling="yes" src="ChangeInfoShow.php<?=$ecms_hashur['whehref']?>" style="HEIGHT:100%;VISIBILITY:inherit;WIDTH:100%;Z-INDEX:1"></IFRAME></td>
@@ -104,7 +104,7 @@ function CheckSearchForm(obj){
 <form name="truechangeinfoform" id="truechangeinfoform" method="post" action="">
   <tr>
       <td height="25"><input type="button" name="Submit2" value="<?=$word_button?>" onclick="UpdateChangeInfoid(document.truechangeinfoform);">
-        (æ•°é‡ï¼š<span id="truechangeinfonum"><strong>0</strong></span>) 
+        (ÊıÁ¿£º<span id="truechangeinfonum"><strong>0</strong></span>) 
         <input name="trueinfoid" type="hidden" id="trueinfoid"> 
         <input name="truetbname" type="hidden" id="truetbname"></td>
   </tr>

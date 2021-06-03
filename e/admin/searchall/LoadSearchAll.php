@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//楠岃瘉鐢ㄦ埛
+//验证用户
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,7 +16,7 @@ $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
 hCheckEcmsRHash();
-//楠岃瘉鏉冮檺
+//验证权限
 CheckLevel($logininid,$loginin,$classid,"searchall");
 
 @set_time_limit(0);
@@ -24,7 +24,7 @@ CheckLevel($logininid,$loginin,$classid,"searchall");
 require("../../data/dbcache/class.php");
 require "../".LoadLang("pub/fun.php");
 require('../../class/schallfun.php');
-//缂栫爜
+//编码
 $iconv='';
 $char='';
 $targetchar='';

@@ -7,32 +7,32 @@ if(!defined('InEmpireCMS'))
 <?php
 $qappname=$appr['qappname'];
 
-$public_diyr['pagetitle']='Г╩▒Е╝ Г≥╩Е╫∙';
-$url="Д╫█Г╫╝:<a href='../../'>И╕√И║╣</a>&nbsp;>&nbsp;Г╩▒Е╝ Г≥╩Е╫∙";
+$public_diyr['pagetitle']='╟С╤╗╣гб╪';
+$url="н╩жц:<a href='../../'>йврЁ</a>&nbsp;>&nbsp;╟С╤╗╣гб╪";
 $regurl=$public_r['newsurl'].'e/member/register/?tobind=1';
 $loginurl=$public_r['newsurl'].'e/member/login/?tobind=1';
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
   <tr>
-    <td height="30" colspan="2"><font color="#FF0000"><strong>Ф┌╗Е╔╫О╪│Е╥╡И─ Х©┤<?=$qappname?>Ф┬░Е┼÷Г≥╩Е╫∙О╪│</strong></font></td>
+    <td height="30" colspan="2"><font color="#FF0000"><strong>дЗ╨цё║рям╗╧Щ<?=$qappname?>Ёи╧╕╣гб╪ё║</strong></font></td>
   </tr>
   <tr>
     <td width="50%" valign="top"><form name="bindform" method="post" action="doaction.php">
       <table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr>
-          <td height="25"><div align="center"><strong>1Ц─│Е╕┌Ф·°Ф┌╗Е╥╡Ф°┴Х╢╕Е▐╥О╪▄Е▐╞Д╩╔Г┌╧Е┤╩Д╦▀И²╒Г≥╩Е╫∙Г╩▒Е╝ </strong></div></td>
+          <td height="25"><div align="center"><strong>1║╒хГ╧ШдЗряспук╨её╛©ирт╣Ц╩ВобцФ╣гб╪╟С╤╗</strong></div></td>
         </tr>
         <tr>
           <td height="50"><div align="center">
-            <input type="button" name="Submit" value="И╘╛Д╦┼Г≥╩Е╫∙Г╩▒Е╝ " onclick="window.open('<?=$loginurl?>');">
+            <input type="button" name="Submit" value="бМио╣гб╪╟С╤╗" onclick="window.open('<?=$loginurl?>');">
             <input name="enews" type="hidden" id="enews" value="BindUser">
           </div></td>
           </tr>
         <tr>
-          <td height="25"><div align="center">Ф▐░Г╓╨О╪ Ф█├Г╩▒Ф┬░Е┼÷Е░▌О╪▄Д╦▀Ф╛║
+          <td height="25"><div align="center">лАй╬ё╨ю╕╟СЁи╧╕╨Сё╛об╢н
             <?=$qappname?>
-            Ф√╧Е╪▐Г≥╩Е╫∙Е█ЁЕ▐╞Г⌡╢Ф▌╔Г≥╩Е╫∙Е┬╟Ф█├Г╩▒Е░▌Г └Х╢╕Е▐╥Ц─┌</div></td>
+            ╥╫й╫╣гб╪╪╢©иж╠╫с╣гб╪╣╫ю╕╟С╨С╣дук╨е║ё</div></td>
           </tr>
       </table>
         </form>
@@ -40,18 +40,18 @@ require(ECMS_PATH.'e/template/incfile/header.php');
     <td width="50%" valign="top"><form name="bindregform" method="post" action="doaction.php">
       <table width="100%" border="0" cellspacing="1" cellpadding="3">
         <tr>
-          <td height="25"><div align="center"><strong>2Ц─│Е╕┌Ф·°Х©≤Ф╡║Ф°┴Х╢╕Е▐╥О╪▄Ф┌╗Е▐╞Д╩╔Е©╚И─÷ФЁ╗Е├▄</strong></div></td>
+          <td height="25"><div align="center"><strong>2║╒хГ╧Ш╩╧ц╩спук╨её╛дЗ©ирт©Лкыв╒╡А</strong></div></td>
           </tr>
         <tr>
           <td height="50"><div align="center">
-            <input type="button" name="Submit2" value="И╘╛Д╦┼ФЁ╗Е├▄Г╩▒Е╝ " onclick="window.open('<?=$regurl?>');">
+            <input type="button" name="Submit2" value="бМиов╒╡А╟С╤╗" onclick="window.open('<?=$regurl?>');">
             <input name="enews" type="hidden" id="enews" value="BindReg">
           </div></td>
           </tr>
         <tr>
-          <td height="25"><div align="center">Ф▐░Г╓╨О╪ Ф█├Г╩▒Ф┬░Е┼÷Е░▌О╪▄Д╦▀Ф╛║
+          <td height="25"><div align="center">лАй╬ё╨ю╕╟СЁи╧╕╨Сё╛об╢н
             <?=$qappname?>
-            Ф√╧Е╪▐Г≥╩Е╫∙Е█ЁЕ▐╞Г⌡╢Ф▌╔Г≥╩Е╫∙Е┬╟Ф█├Г╩▒Е░▌Г └Х╢╕Е▐╥Ц─┌</div></td>
+            ╥╫й╫╣гб╪╪╢©иж╠╫с╣гб╪╣╫ю╕╟С╨С╣дук╨е║ё</div></td>
         </tr>
       </table>
         </form>

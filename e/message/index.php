@@ -7,15 +7,15 @@ if(!defined('InEmpireCMS'))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¿¡æ¯æç¤º</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÐÅÏ¢ÌáÊ¾</title>
 <link href="<?=$public_r[newsurl]?>e/data/images/qcss.css" rel="stylesheet" type="text/css">
 <?php
 if(!$noautourl)
 {
 ?>
 <SCRIPT language=javascript>
-var secs=3;//3ç§’
+var secs=3;//3Ãë
 for(i=1;i<=secs;i++) 
 { window.setTimeout("update(" + i + ")", i * 1000);} 
 function update(num) 
@@ -40,7 +40,7 @@ else
 <br>
 <table width="500" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
-    <td height="25"><div align="center">ä¿¡æ¯æç¤º</div></td>
+    <td height="25"><div align="center">ÐÅÏ¢ÌáÊ¾</div></td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
     <td height="80"> 
@@ -48,7 +48,7 @@ else
 	  <br>
         <b><?=$error?></b>
         <br>
-        <br><a href="<?=$gotourl?>">å¦‚æžœæ‚¨çš„æµè§ˆå™¨æ²¡æœ‰è‡ªåŠ¨è·³è½¬ï¼Œè¯·ç‚¹å‡»è¿™é‡Œ</a>
+        <br><a href="<?=$gotourl?>">Èç¹ûÄúµÄä¯ÀÀÆ÷Ã»ÓÐ×Ô¶¯Ìø×ª£¬Çëµã»÷ÕâÀï</a>
 <br><br>
 	  </div></td>
   </tr>

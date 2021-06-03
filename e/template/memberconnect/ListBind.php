@@ -5,17 +5,17 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='ç™»å½•ç»‘å®š';
-$url="<a href=../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../member/cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;ç™»å½•ç»‘å®š";
+$public_diyr['pagetitle']='µÇÂ¼°ó¶¨';
+$url="<a href=../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../member/cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;µÇÂ¼°ó¶¨";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header">
-    <td width="36%"><div align="center">å¹³å°</div></td>
-    <td width="20%" height="25"><div align="center">ç»‘å®šæ—¶é—´</div></td>
-    <td width="20%" height="25"><div align="center">ä¸Šæ¬¡ç™»å½•</div></td>
-    <td width="9%" height="25"><div align="center">ç™»å½•æ¬¡æ•°</div></td>
-    <td width="15%"><div align="center">æ“ä½œ</div></td>
+    <td width="36%"><div align="center">Æ½Ì¨</div></td>
+    <td width="20%" height="25"><div align="center">°ó¶¨Ê±¼ä</div></td>
+    <td width="20%" height="25"><div align="center">ÉÏ´ÎµÇÂ¼</div></td>
+    <td width="9%" height="25"><div align="center">µÇÂ¼´ÎÊı</div></td>
+    <td width="15%"><div align="center">²Ù×÷</div></td>
   </tr>
   <?php
   while($r=$empire->fetch($sql))
@@ -23,11 +23,11 @@ require(ECMS_PATH.'e/template/incfile/header.php');
 	  $bindr=$empire->fetch1("select id,bindtime,loginnum,lasttime from {$dbtbpre}enewsmember_connect where userid='$user[userid]' and apptype='$r[apptype]' limit 1");
 	  if($bindr['id'])
 	  {
-		  $dourl='<a href="doaction.php?enews=DelBind&id='.$bindr['id'].'" onclick="return confirm(\'ç¡®è®¤è¦è§£é™¤ç»‘å®š?\');">è§£é™¤ç»‘å®š</a>';
+		  $dourl='<a href="doaction.php?enews=DelBind&id='.$bindr['id'].'" onclick="return confirm(\'È·ÈÏÒª½â³ı°ó¶¨?\');">½â³ı°ó¶¨</a>';
 	  }
 	  else
 	  {
-		  $dourl='<a href="index.php?apptype='.$r['apptype'].'&ecms=1">ç«‹å³ç»‘å®š</a>';
+		  $dourl='<a href="index.php?apptype='.$r['apptype'].'&ecms=1">Á¢¼´°ó¶¨</a>';
 	  }
   ?>
   <tr bgcolor="#FFFFFF">
@@ -35,7 +35,7 @@ require(ECMS_PATH.'e/template/incfile/header.php');
       <?=$r['appname']?>
     </div></td>
     <td height="25"><div align="center">
-      <?=$bindr['bindtime']?date('Y-m-d H:i:s',$bindr['bindtime']):'æœªç»‘å®š'?>
+      <?=$bindr['bindtime']?date('Y-m-d H:i:s',$bindr['bindtime']):'Î´°ó¶¨'?>
     </div></td>
     <td height="25"><div align="center">
       <?=$bindr['lasttime']?date('Y-m-d H:i:s',$bindr['lasttime']):'--'?>

@@ -6,21 +6,21 @@ if(!defined('InEmpireCMS'))
 ?>
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title><?=ehtmlspecialchars($r[title])?> 鎵撳嵃椤甸潰 - Powered by EmpireCMS</title>
-<meta name="keywords" content="<?=ehtmlspecialchars($r[title])?> 鎵撳嵃椤甸潰" />
-<meta name="description" content="<?=ehtmlspecialchars($r[title])?> 鎵撳嵃椤甸潰" />
+<meta http-equiv="content-type" content="text/html; charset=gb2312">
+<title><?=ehtmlspecialchars($r[title])?> 打印页面 - Powered by EmpireCMS</title>
+<meta name="keywords" content="<?=ehtmlspecialchars($r[title])?> 打印页面" />
+<meta name="description" content="<?=ehtmlspecialchars($r[title])?> 打印页面" />
 <style>
-body{font-family:瀹嬩綋}td,.f12{font-size:12px}.f24 {font-size:24px;}.f14 {font-size:14px;}.title14 {font-size:14px;line-height:130%}.l17 {line-height:170%;}
+body{font-family:宋体}td,.f12{font-size:12px}.f24 {font-size:24px;}.f14 {font-size:14px;}.title14 {font-size:14px;line-height:130%}.l17 {line-height:170%;}
 </style>
 </head>
 <body bgcolor="#ffffff" topmargin=5 leftmargin=5 marginheight=5 marginwidth=5 onLoad='window.print()'>
 <center>
 <table width=650 border=0 cellspacing=0 cellpadding=0>
 <tr>
-<td height=65 width=180><A href="http://www.phome.net/"><IMG src="../../skin/default/images/elogo.jpg" alt="甯濆浗杞欢" width="180" height="65" border=0></A></td> 
+<td height=65 width=180><A href="http://www.phome.net/"><IMG src="../../skin/default/images/elogo.jpg" alt="帝国软件" width="180" height="65" border=0></A></td> 
 <td valign="bottom"><?=$url?></td>
-<td width="83" align="right" valign="bottom"><a href='javascript:history.back()'>杩斿洖</a>銆�<a href='javascript:window.print()'>鎵撳嵃</a></td>
+<td width="83" align="right" valign="bottom"><a href='javascript:history.back()'>返回</a>　<a href='javascript:window.print()'>打印</a></td>
 </tr>
 </table>
 <table width=650 border=0 cellpadding=0 cellspacing=20 bgcolor="#EDF0F5">

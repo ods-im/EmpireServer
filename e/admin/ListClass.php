@@ -6,7 +6,7 @@ require("../class/functions.php");
 require LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,25 +15,25 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"class");
 
-//å±•å¼€
+//Õ¹¿ª
 if($_GET['doopen'])
 {
 	$open=(int)$_GET['open'];
 	SetDisplayClass($open);
 }
-//å›¾æ ‡
+//Í¼±ê
 if(getcvar('displayclass',1))
 {
-	$img="<a href='ListClass.php?doopen=1&open=0".$ecms_hashur['ehref']."' title='å±•å¼€'><img src='../data/images/displaynoadd.gif' width='15' height='15' border='0'></a>";
+	$img="<a href='ListClass.php?doopen=1&open=0".$ecms_hashur['ehref']."' title='Õ¹¿ª'><img src='../data/images/displaynoadd.gif' width='15' height='15' border='0'></a>";
 }
 else
 {
-	$img="<a href='ListClass.php?doopen=1&open=1".$ecms_hashur['ehref']."' title='æ”¶ç¼©'><img src='../data/images/displayadd.gif' width='15' height='15' border='0'></a>";
+	$img="<a href='ListClass.php?doopen=1&open=1".$ecms_hashur['ehref']."' title='ÊÕËõ'><img src='../data/images/displayadd.gif' width='15' height='15' border='0'></a>";
 }
-//ç¼“å­˜
+//»º´æ
 $displayclass=(int)getcvar('displayclass',1);
 $fcfile="../data/fc/ListClass".$displayclass.".php";
 $fclistclass='';
@@ -45,8 +45,8 @@ if(file_exists($fcfile))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†æ ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíÀ¸Ä¿</title>
 <link rel="stylesheet" href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" type="text/css">
 <SCRIPT lanuage="JScript">
 function turnit(ss)
@@ -58,49 +58,49 @@ function turnit(ss)
 }
 var newWindow = null
 
-//è°ƒç”¨åœ°å€
+//µ÷ÓÃµØÖ·
 function tvurl(classid){
 	window.open('view/ClassUrl.php?<?=$ecms_hashur['ehref']?>&classid='+classid,'','width=500,height=250');
 }
-//åˆ·æ–°æ ç›®
+//Ë¢ĞÂÀ¸Ä¿
 function relist(classid){
 	self.location.href='enews.php?<?=$ecms_hashur['href']?>&enews=ReListHtml&from=ListClass.php<?=urlencode($ecms_hashur['whehref'])?>&classid='+classid;
 }
-//åˆ·æ–°ä¿¡æ¯
+//Ë¢ĞÂĞÅÏ¢
 function renews(classid,tbname){
 	window.open('ReHtml/DoRehtml.php?<?=$ecms_hashur['href']?>&enews=ReNewsHtml&from=ListClass.php<?=urlencode($ecms_hashur['whehref'])?>&classid='+classid+'&tbname[]='+tbname);
 }
-//å½’æ¡£
+//¹éµµ
 function docinfo(classid){
-	if(confirm('ç¡®è®¤å½’æ¡£?'))
+	if(confirm('È·ÈÏ¹éµµ?'))
 	{
 		self.location.href='ecmsinfo.php?<?=$ecms_hashur['href']?>&enews=InfoToDoc&ecmsdoc=1&docfrom=ListClass.php<?=urlencode($ecms_hashur['whehref'])?>&classid='+classid;
 	}
 }
-//åˆ·æ–°JS
+//Ë¢ĞÂJS
 function rejs(classid){
 	self.location.href='ecmschtml.php?<?=$ecms_hashur['href']?>&enews=ReSingleJs&doing=0&classid='+classid;
 }
-//å¤åˆ¶
+//¸´ÖÆ
 function copyc(classid){
 	self.location.href='AddClass.php?<?=$ecms_hashur['ehref']?>&classid='+classid+'&enews=AddClass&docopy=1';
 }
-//ä¿®æ”¹
+//ĞŞ¸Ä
 function editc(classid){
 	self.location.href='AddClass.php?<?=$ecms_hashur['ehref']?>&classid='+classid+'&enews=EditClass';
 }
-//åˆ é™¤
+//É¾³ı
 function delc(classid){
-	if(confirm('ç¡®è®¤è¦åˆ é™¤æ­¤æ ç›®ï¼Œå°†åˆ é™¤æ‰€å±å­æ ç›®åŠä¿¡æ¯'))
+	if(confirm('È·ÈÏÒªÉ¾³ı´ËÀ¸Ä¿£¬½«É¾³ıËùÊô×ÓÀ¸Ä¿¼°ĞÅÏ¢'))
 	{
 		self.location.href='ecmsclass.php?<?=$ecms_hashur['href']?>&classid='+classid+'&enews=DelClass';
 	}
 }
-//æ ‡é¢˜åˆ†ç±»
+//±êÌâ·ÖÀà
 function ttc(classid){
 	window.open('ClassInfoType.php?<?=$ecms_hashur['ehref']?>&classid='+classid);
 }
-//å‘å¸ƒä¿¡æ¯
+//·¢²¼ĞÅÏ¢
 function addi(classid){
 	window.open('AddNews.php?<?=$ecms_hashur['ehref']?>&enews=AddNews&classid='+classid);
 }
@@ -109,44 +109,44 @@ function addi(classid){
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="18%">ä½ç½®: <a href="ListClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†æ ç›®</a></td>
+    <td width="18%">Î»ÖÃ: <a href="ListClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÀ¸Ä¿</a></td>
     <td width="82%"> <div align="right" class="emenubutton">
-        <input type="button" name="Submit6" value="å¢åŠ æ ç›®" onclick="self.location.href='AddClass.php?enews=AddClass<?=$ecms_hashur['ehref']?>'">
-        <input type="button" name="Submit" value="åˆ·æ–°é¦–é¡µ" onclick="self.location.href='ecmschtml.php?enews=ReIndex<?=$ecms_hashur['href']?>'">
-        <input type="button" name="Submit2" value="åˆ·æ–°æ‰€æœ‰æ ç›®é¡µ" onclick="window.open('ecmschtml.php?enews=ReListHtml_all&from=ListClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
-        <input type="button" name="Submit3" value="åˆ·æ–°æ‰€æœ‰ä¿¡æ¯é¡µé¢" onclick="window.open('ReHtml/DoRehtml.php?enews=ReNewsHtml&start=0&from=ListClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
-        <input type="button" name="Submit4" value="åˆ·æ–°æ‰€æœ‰JSè°ƒç”¨" onclick="window.open('ecmschtml.php?enews=ReAllNewsJs&from=ListClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
+        <input type="button" name="Submit6" value="Ôö¼ÓÀ¸Ä¿" onclick="self.location.href='AddClass.php?enews=AddClass<?=$ecms_hashur['ehref']?>'">
+        <input type="button" name="Submit" value="Ë¢ĞÂÊ×Ò³" onclick="self.location.href='ecmschtml.php?enews=ReIndex<?=$ecms_hashur['href']?>'">
+        <input type="button" name="Submit2" value="Ë¢ĞÂËùÓĞÀ¸Ä¿Ò³" onclick="window.open('ecmschtml.php?enews=ReListHtml_all&from=ListClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
+        <input type="button" name="Submit3" value="Ë¢ĞÂËùÓĞĞÅÏ¢Ò³Ãæ" onclick="window.open('ReHtml/DoRehtml.php?enews=ReNewsHtml&start=0&from=ListClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
+        <input type="button" name="Submit4" value="Ë¢ĞÂËùÓĞJSµ÷ÓÃ" onclick="window.open('ecmschtml.php?enews=ReAllNewsJs&from=ListClass.php<?=urlencode($ecms_hashur['whehref'])?><?=$ecms_hashur['href']?>','','');">
       </div></td>
   </tr>
 </table>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name=editorder method=post action=ecmsclass.php onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+  <form name=editorder method=post action=ecmsclass.php onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
   <?=$ecms_hashur['form']?>
     <tr class="header" height="25"> 
-      <td width="5%" align="center">é¡ºåº</td>
+      <td width="5%" align="center">Ë³Ğò</td>
       <td width="7%" align="center"><?=$img?></td>
       <td width="6%" align="center">ID</td>
-      <td width="36%">æ ç›®å</td>
-      <td width="6%" align="center">è®¿é—®</td>
-      <td width="14%">æ ç›®ç®¡ç†</td>
-      <td width="29%">æ“ä½œ</td>
+      <td width="36%">À¸Ä¿Ãû</td>
+      <td width="6%" align="center">·ÃÎÊ</td>
+      <td width="14%">À¸Ä¿¹ÜÀí</td>
+      <td width="29%">²Ù×÷</td>
     </tr>
     <?php
 	echo $fclistclass;
 	?>
     <tr class="header"> 
       <td height="25" colspan="7"> <div align="left"> &nbsp;&nbsp;
-          <input type="submit" name="Submit5" value="ä¿®æ”¹æ ç›®é¡ºåº" onClick="document.editorder.enews.value='EditClassOrder';document.editorder.action='ecmsclass.php';">&nbsp;&nbsp;
+          <input type="submit" name="Submit5" value="ĞŞ¸ÄÀ¸Ä¿Ë³Ğò" onClick="document.editorder.enews.value='EditClassOrder';document.editorder.action='ecmsclass.php';">&nbsp;&nbsp;
           <input name="enews" type="hidden" id="enews" value="EditClassOrder">
-          <input type="submit" name="Submit7" value="åˆ·æ–°æ ç›®é¡µé¢" onClick="document.editorder.enews.value='GoReListHtmlMoreA';document.editorder.action='ecmschtml.php';">&nbsp;&nbsp;
-          <input type="submit" name="Submit72" value="ç»ˆææ ç›®å±æ€§è½¬æ¢" onClick="document.editorder.enews.value='ChangeClassIslast';document.editorder.action='ecmsclass.php';">
+          <input type="submit" name="Submit7" value="Ë¢ĞÂÀ¸Ä¿Ò³Ãæ" onClick="document.editorder.enews.value='GoReListHtmlMoreA';document.editorder.action='ecmschtml.php';">&nbsp;&nbsp;
+          <input type="submit" name="Submit72" value="ÖÕ¼«À¸Ä¿ÊôĞÔ×ª»»" onClick="document.editorder.enews.value='ChangeClassIslast';document.editorder.action='ecmsclass.php';">
         </div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25" colspan="7"><strong>ç»ˆææ ç›®å±æ€§è½¬æ¢è¯´æ˜(åªèƒ½é€‰æ‹©å•ä¸ªæ ç›®)ï¼š</strong><br>
-        å¦‚æœä½ é€‰æ‹©çš„æ˜¯<font color="#FF0000">éç»ˆææ ç›®</font>ï¼Œåˆ™è½¬ä¸º<font color="#FF0000">ç»ˆææ ç›®</font><font color="#666666">(æ­¤æ ç›®ä¸èƒ½æœ‰å­æ ç›®)</font><br>
-        å¦‚æœä½ é€‰æ‹©çš„æ˜¯<font color="#FF0000">ç»ˆææ ç›®</font>ï¼Œåˆ™è½¬ä¸º<font color="#FF0000">éç»ˆææ ç›®</font><font color="#666666">(è¯·å…ˆæŠŠå½“å‰æ ç›®çš„æ•°æ®è½¬ç§»ï¼Œå¦åˆ™ä¼šå‡ºç°å†—ä½™æ•°æ®)<br>
-        </font><strong>ä¿®æ”¹æ ç›®é¡ºåº:é¡ºåºå€¼è¶Šå°è¶Šå‰é¢</strong></td>
+      <td height="25" colspan="7"><strong>ÖÕ¼«À¸Ä¿ÊôĞÔ×ª»»ËµÃ÷(Ö»ÄÜÑ¡Ôñµ¥¸öÀ¸Ä¿)£º</strong><br>
+        Èç¹ûÄãÑ¡ÔñµÄÊÇ<font color="#FF0000">·ÇÖÕ¼«À¸Ä¿</font>£¬Ôò×ªÎª<font color="#FF0000">ÖÕ¼«À¸Ä¿</font><font color="#666666">(´ËÀ¸Ä¿²»ÄÜÓĞ×ÓÀ¸Ä¿)</font><br>
+        Èç¹ûÄãÑ¡ÔñµÄÊÇ<font color="#FF0000">ÖÕ¼«À¸Ä¿</font>£¬Ôò×ªÎª<font color="#FF0000">·ÇÖÕ¼«À¸Ä¿</font><font color="#666666">(ÇëÏÈ°Ñµ±Ç°À¸Ä¿µÄÊı¾İ×ªÒÆ£¬·ñÔò»á³öÏÖÈßÓàÊı¾İ)<br>
+        </font><strong>ĞŞ¸ÄÀ¸Ä¿Ë³Ğò:Ë³ĞòÖµÔ½Ğ¡Ô½Ç°Ãæ</strong></td>
     </tr>
     <input name="from" type="hidden" value="ListClass.php<?=$ecms_hashur['whehref']?>">
     <input name="gore" type="hidden" value="0">
@@ -156,51 +156,51 @@ function addi(classid){
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="13%" height="25"> 
-      <div align="center">åç§°</div></td>
-    <td width="39%" height="25">è°ƒç”¨åœ°å€</td>
+      <div align="center">Ãû³Æ</div></td>
+    <td width="39%" height="25">µ÷ÓÃµØÖ·</td>
     <td width="13%">
-<div align="center">åç§°</div></td>
+<div align="center">Ãû³Æ</div></td>
     <td width="35%"> 
-      <div align="center">è°ƒç”¨åœ°å€</div></td>
+      <div align="center">µ÷ÓÃµØÖ·</div></td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF"><div align="center">çƒ­é—¨ä¿¡æ¯è°ƒç”¨</div></td>
+    <td height="25" bgcolor="#FFFFFF"><div align="center">ÈÈÃÅĞÅÏ¢µ÷ÓÃ</div></td>
     <td height="25" bgcolor="#FFFFFF"> <input name="textfield" type="text" value="<?=$public_r[newsurl]?>d/js/js/hotnews.js">
-      [<a href="ecmschtml.php?enews=ReHot_NewNews<?=$ecms_hashur['href']?>">åˆ·æ–°</a>][<a href="view/js.php?js=hotnews&p=js<?=$ecms_hashur['ehref']?>" target="_blank">é¢„è§ˆ</a>]</td>
-    <td bgcolor="#FFFFFF"><div align="center">æ¨ªå‘æœç´¢è¡¨å•</div></td>
+      [<a href="ecmschtml.php?enews=ReHot_NewNews<?=$ecms_hashur['href']?>">Ë¢ĞÂ</a>][<a href="view/js.php?js=hotnews&p=js<?=$ecms_hashur['ehref']?>" target="_blank">Ô¤ÀÀ</a>]</td>
+    <td bgcolor="#FFFFFF"><div align="center">ºáÏòËÑË÷±íµ¥</div></td>
     <td bgcolor="#FFFFFF"> <div align="left"> 
         <input name="textfield3" type="text" value="<?=$public_r[newsurl]?>d/js/js/search_news1.js">
-        [<a href="view/js.php?js=search_news1&p=js<?=$ecms_hashur['ehref']?>" target="_blank">é¢„è§ˆ</a>]</div></td>
+        [<a href="view/js.php?js=search_news1&p=js<?=$ecms_hashur['ehref']?>" target="_blank">Ô¤ÀÀ</a>]</div></td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF"> <div align="center">æœ€æ–°ä¿¡æ¯è°ƒç”¨</div></td>
+    <td height="25" bgcolor="#FFFFFF"> <div align="center">×îĞÂĞÅÏ¢µ÷ÓÃ</div></td>
     <td height="25" bgcolor="#FFFFFF"> <input name="textfield2" type="text" value="<?=$public_r[newsurl]?>d/js/js/newnews.js">
-      [<a href="ecmschtml.php?enews=ReHot_NewNews<?=$ecms_hashur['href']?>">åˆ·æ–°</a>][<a href="view/js.php?js=newnews&p=js<?=$ecms_hashur['ehref']?>" target="_blank">é¢„è§ˆ</a>]</td>
-    <td bgcolor="#FFFFFF"><div align="center">çºµå‘æœç´¢è¡¨å•</div></td>
+      [<a href="ecmschtml.php?enews=ReHot_NewNews<?=$ecms_hashur['href']?>">Ë¢ĞÂ</a>][<a href="view/js.php?js=newnews&p=js<?=$ecms_hashur['ehref']?>" target="_blank">Ô¤ÀÀ</a>]</td>
+    <td bgcolor="#FFFFFF"><div align="center">×İÏòËÑË÷±íµ¥</div></td>
     <td bgcolor="#FFFFFF"> <div align="left"> 
         <input name="textfield4" type="text" value="<?=$public_r[newsurl]?>d/js/js/search_news2.js">
-        [<a href="view/js.php?js=search_news2&p=js<?=$ecms_hashur['ehref']?>" target="_blank">é¢„è§ˆ</a>]</div></td>
+        [<a href="view/js.php?js=search_news2&p=js<?=$ecms_hashur['ehref']?>" target="_blank">Ô¤ÀÀ</a>]</div></td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF"><div align="center">æ¨èä¿¡æ¯è°ƒç”¨</div></td>
+    <td height="25" bgcolor="#FFFFFF"><div align="center">ÍÆ¼öĞÅÏ¢µ÷ÓÃ</div></td>
     <td height="25" bgcolor="#FFFFFF"><input name="textfield22" type="text" value="<?=$public_r[newsurl]?>d/js/js/goodnews.js">
-      [<a href="ecmschtml.php?enews=ReHot_NewNews<?=$ecms_hashur['href']?>">åˆ·æ–°</a>][<a href="view/js.php?js=goodnews&p=js<?=$ecms_hashur['ehref']?>" target="_blank">é¢„è§ˆ</a>]</td>
-    <td bgcolor="#FFFFFF"><div align="center">æœç´¢é¡µé¢åœ°å€</div></td>
+      [<a href="ecmschtml.php?enews=ReHot_NewNews<?=$ecms_hashur['href']?>">Ë¢ĞÂ</a>][<a href="view/js.php?js=goodnews&p=js<?=$ecms_hashur['ehref']?>" target="_blank">Ô¤ÀÀ</a>]</td>
+    <td bgcolor="#FFFFFF"><div align="center">ËÑË÷Ò³ÃæµØÖ·</div></td>
     <td bgcolor="#FFFFFF"> <div align="left"> 
         <input name="textfield5" type="text" value="<?=$public_r[newsurl]?>search">
-        [<a href="../../search" target="_blank">é¢„è§ˆ</a>]</div></td>
+        [<a href="../../search" target="_blank">Ô¤ÀÀ</a>]</div></td>
   </tr>
   <tr> 
     <td height="24" bgcolor="#FFFFFF"> 
-      <div align="center">æ§åˆ¶é¢æ¿åœ°å€</div></td>
+      <div align="center">¿ØÖÆÃæ°åµØÖ·</div></td>
     <td height="24" bgcolor="#FFFFFF">
 <input name="textfield52" type="text" value="<?=$public_r[newsurl]?>e/member/cp">
-      [<a href="../member/cp" target="_blank">é¢„è§ˆ</a>]</td>
+      [<a href="../member/cp" target="_blank">Ô¤ÀÀ</a>]</td>
     <td bgcolor="#FFFFFF"><div align="center"></div></td>
     <td bgcolor="#FFFFFF"><div align="center"></div></td>
   </tr>
   <tr class="header"> 
-    <td height="25" colspan="4">jsè°ƒç”¨æ–¹å¼ï¼š&lt;script src=jsåœ°å€&gt;&lt;/script&gt;</td>
+    <td height="25" colspan="4">jsµ÷ÓÃ·½Ê½£º&lt;script src=jsµØÖ·&gt;&lt;/script&gt;</td>
   </tr>
 </table>
 </body>

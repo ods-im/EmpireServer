@@ -8,7 +8,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -17,86 +17,86 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"file");
-//å‚æ•°
+//²ÎÊı
 $modtype=(int)$_GET['modtype'];
 $fstb=(int)$_GET['fstb'];
-//é™„ä»¶è¡¨
+//¸½¼ş±í
 $fstb=eReturnFileStb($fstb);
-//é™„ä»¶ç±»å‹
+//¸½¼şÀàĞÍ
 $isinfofile=0;
 $showfstb='';
-if($modtype==1)//æ ç›®
+if($modtype==1)//À¸Ä¿
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath,adduser,id,type,onclick from {$dbtbpre}enewsfile_other where modtype=1";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_other where modtype=1";
-	$tranname='æ ç›®';
+	$tranname='À¸Ä¿';
 }
-elseif($modtype==2)//ä¸“é¢˜
+elseif($modtype==2)//×¨Ìâ
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath,adduser,id,type,onclick from {$dbtbpre}enewsfile_other where modtype=2";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_other where modtype=2";
-	$tranname='ä¸“é¢˜';
+	$tranname='×¨Ìâ';
 }
-elseif($modtype==3)//å¹¿å‘Š
+elseif($modtype==3)//¹ã¸æ
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath,adduser,id,type,onclick from {$dbtbpre}enewsfile_other where modtype=3";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_other where modtype=3";
-	$tranname='å¹¿å‘Š';
+	$tranname='¹ã¸æ';
 }
-elseif($modtype==4)//åé¦ˆ
+elseif($modtype==4)//·´À¡
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath,adduser,id,type,onclick from {$dbtbpre}enewsfile_other where modtype=4";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_other where modtype=4";
-	$tranname='åé¦ˆ';
+	$tranname='·´À¡';
 }
-elseif($modtype==5)//å…¬å…±
+elseif($modtype==5)//¹«¹²
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath,adduser,id,type,onclick from {$dbtbpre}enewsfile_public where 1=1";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_public where 1=1";
-	$tranname='å…¬å…±';
+	$tranname='¹«¹²';
 }
-elseif($modtype==6)//ä¼šå‘˜
+elseif($modtype==6)//»áÔ±
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath,adduser,id,type,onclick from {$dbtbpre}enewsfile_member where 1=1";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_member where 1=1";
-	$tranname='ä¼šå‘˜';
+	$tranname='»áÔ±';
 }
-elseif($modtype==7)//ç¢ç‰‡
+elseif($modtype==7)//ËéÆ¬
 {
 	$query="select fileid,filename,filesize,path,filetime,no,fpath,adduser,id,type,onclick from {$dbtbpre}enewsfile_other where modtype=7";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_other where modtype=7";
-	$tranname='ç¢ç‰‡';
+	$tranname='ËéÆ¬';
 }
-else//ä¿¡æ¯
+else//ĞÅÏ¢
 {
 	$isinfofile=1;
-	$showfstb=' - åˆ†è¡¨'.$fstb.' ';
+	$showfstb=' - ·Ö±í'.$fstb.' ';
 	$query="select fileid,filename,filesize,path,filetime,classid,no,fpath,adduser,id,type,onclick from {$dbtbpre}enewsfile_{$fstb} where 1=1";
 	$totalquery="select count(*) as total from {$dbtbpre}enewsfile_{$fstb} where 1=1";
-	$tranname='ä¿¡æ¯';
+	$tranname='ĞÅÏ¢';
 }
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $add='';
-//é™„ä»¶ç±»å‹
+//¸½¼şÀàĞÍ
 $type=(int)$_GET['type'];
-if($type!=9)//å…¶ä»–é™„ä»¶
+if($type!=9)//ÆäËû¸½¼ş
 {
 	$add.=" and type='$type'";
 }
-//é€‰æ‹©æ ç›®
+//Ñ¡ÔñÀ¸Ä¿
 $classid=(int)$_GET['classid'];
 /*
 $fcjsfile='../../data/fc/cmsclass.js';
 $classoptions=GetFcfiletext($fcjsfile);
 */
-//æ ç›®
+//À¸Ä¿
 if($isinfofile==1)
 {
 	if($classid)
@@ -112,27 +112,27 @@ if($isinfofile==1)
 		//$classoptions=str_replace("<option value='$classid'","<option value='$classid' selected",$classoptions);
 	}
 }
-//å…³é”®å­—
+//¹Ø¼ü×Ö
 $keyboard=RepPostVar2($_GET['keyboard']);
 if(!empty($keyboard))
 {
 	$show=RepPostStr($_GET['show'],1);
-	//æœç´¢å…¨éƒ¨
+	//ËÑË÷È«²¿
 	if($show==0)
 	{
 		$add.=" and (filename like '%$keyboard%' or no like '%$keyboard%' or adduser like '%$keyboard%')";
 	}
-	//æœç´¢æ–‡ä»¶å
+	//ËÑË÷ÎÄ¼şÃû
 	elseif($show==1)
 	{
 		$add.=" and filename like '%$keyboard%'";
 	}
-	//æœç´¢ç¼–å·
+	//ËÑË÷±àºÅ
 	elseif($show==2)
 	{
 		$add.=" and no like '%$keyboard%'";
 	}
-	//æœç´¢ä¸Šä¼ è€…
+	//ËÑË÷ÉÏ´«Õß
 	else
 	{
 		$add.=" and adduser like '%$keyboard%'";
@@ -141,7 +141,7 @@ if(!empty($keyboard))
 $search="&classid=$classid&type=$type&modtype=$modtype&fstb=$fstb&show=$show&keyboard=$keyboard".$ecms_hashur['ehref'];
 $query.=$add;
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by fileid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
@@ -149,9 +149,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†é™„ä»¶</title>
+<title>¹ÜÀí¸½¼ş</title>
 <script>
 function CheckAll(form)
   {
@@ -168,7 +168,7 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
   <tr> 
-    <td width="36%">ä½ç½®ï¼šç®¡ç†<?=$tranname?>é™„ä»¶<?=$showfstb?> (æ•°æ®åº“å¼)&nbsp;</td>
+    <td width="36%">Î»ÖÃ£º¹ÜÀí<?=$tranname?>¸½¼ş<?=$showfstb?> (Êı¾İ¿âÊ½)&nbsp;</td>
     <td width="64%"><div align="right" class="emenubutton">
       </div></td>
   </tr>
@@ -182,35 +182,35 @@ function CheckAll(form)
 	<input type=hidden name=modtype value="<?=$modtype?>">
     <input type=hidden name=fstb value="<?=$fstb?>">
     <tr> 
-      <td width="82%">æœç´¢: <select name="type" id="select">
-          <option value="9">æ‰€æœ‰é™„ä»¶ç±»å‹</option>
-          <option value="1"<?=$type==1?' selected':''?>>å›¾ç‰‡</option>
-          <option value="2"<?=$type==2?' selected':''?>>Flashæ–‡ä»¶</option>
-          <option value="3"<?=$type==3?' selected':''?>>å¤šåª’ä½“æ–‡ä»¶</option>
-          <option value="0"<?=$type==0?' selected':''?>>å…¶ä»–é™„ä»¶</option>
+      <td width="82%">ËÑË÷: <select name="type" id="select">
+          <option value="9">ËùÓĞ¸½¼şÀàĞÍ</option>
+          <option value="1"<?=$type==1?' selected':''?>>Í¼Æ¬</option>
+          <option value="2"<?=$type==2?' selected':''?>>FlashÎÄ¼ş</option>
+          <option value="3"<?=$type==3?' selected':''?>>¶àÃ½ÌåÎÄ¼ş</option>
+          <option value="0"<?=$type==0?' selected':''?>>ÆäËû¸½¼ş</option>
         </select> <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
         <select name="show" id="show">
-          <option value="0"<?=$show==0?' checked':''?>>ä¸é™</option>
-          <option value="1"<?=$show==1?' checked':''?>>æ–‡ä»¶å</option>
-          <option value="2"<?=$show==2?' checked':''?>>ç¼–å·</option>
-          <option value="3"<?=$show==3?' checked':''?>>ä¸Šä¼ è€…</option>
+          <option value="0"<?=$show==0?' checked':''?>>²»ÏŞ</option>
+          <option value="1"<?=$show==1?' checked':''?>>ÎÄ¼şÃû</option>
+          <option value="2"<?=$show==2?' checked':''?>>±àºÅ</option>
+          <option value="3"<?=$show==3?' checked':''?>>ÉÏ´«Õß</option>
         </select>
 		<span id="listfileclassnav"></span>
-        <input type="submit" name="Submit2" value="æœç´¢"> </td>
-      <td width="18%"><div align="center">[<a href="../ecmsfile.php?enews=DelFreeFile<?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦æ“ä½œ?');">æ¸…ç†å¤±æ•ˆé™„ä»¶</a>]</div></td>
+        <input type="submit" name="Submit2" value="ËÑË÷"> </td>
+      <td width="18%"><div align="center">[<a href="../ecmsfile.php?enews=DelFreeFile<?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒª²Ù×÷?');">ÇåÀíÊ§Ğ§¸½¼ş</a>]</div></td>
     </tr>
   </form>
 </table>
-<form name="form1" method="post" action="../ecmsfile.php" onsubmit="return confirm('ç¡®è®¤è¦åˆ é™¤?');">
+<form name="form1" method="post" action="../ecmsfile.php" onsubmit="return confirm('È·ÈÏÒªÉ¾³ı?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
       <td width="5%" height="25"><div align="center">ID</div></td>
-      <td width="29%" height="25"><div align="center">æ–‡ä»¶å</div></td>
-      <td width="10%" height="25"><div align="center">å¢åŠ è€…</div></td>
-      <td width="9%"><div align="center">æ–‡ä»¶å¤§å°</div></td>
-      <td width="17%" height="25"><div align="center">å¢åŠ æ—¶é—´</div></td>
-      <td width="11%" height="25"><div align="center">æ“ä½œ</div></td>
+      <td width="29%" height="25"><div align="center">ÎÄ¼şÃû</div></td>
+      <td width="10%" height="25"><div align="center">Ôö¼ÓÕß</div></td>
+      <td width="9%"><div align="center">ÎÄ¼ş´óĞ¡</div></td>
+      <td width="17%" height="25"><div align="center">Ôö¼ÓÊ±¼ä</div></td>
+      <td width="11%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
     <?php
 	while($r=$empire->fetch($sql))
@@ -219,7 +219,7 @@ function CheckAll(form)
 		$fspath=ReturnFileSavePath($r[classid],$r[fpath]);
 		$filepath=$r[path]?$r[path].'/':$r[path];
 		$path1=$fspath['fileurl'].$filepath.$r[filename];
-		//å¼•ç”¨
+		//ÒıÓÃ
 		$thisfileid=$r['fileid'];
 		if($isinfofile==1&&$r['id'])
 		{
@@ -245,7 +245,7 @@ function CheckAll(form)
       <td height="25"><div align="center"> 
           <?=date('Y-m-d H:i:s',$r[filetime])?>
         </div></td>
-      <td height="25"><div align="center">[<a href="../ecmsfile.php?enews=DelFile&fileid=<?=$r[fileid]?>&modtype=<?=$modtype?>&fstb=<?=$fstb?><?=$ecms_hashur['href']?>" onclick="return confirm('æ‚¨æ˜¯å¦è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a> 
+      <td height="25"><div align="center">[<a href="../ecmsfile.php?enews=DelFile&fileid=<?=$r[fileid]?>&modtype=<?=$modtype?>&fstb=<?=$fstb?><?=$ecms_hashur['href']?>" onclick="return confirm('ÄúÊÇ·ñÒªÉ¾³ı£¿');">É¾³ı</a> 
           <input name="fileid[]" type="checkbox" id="fileid[]" value="<?=$r[fileid]?>" onclick="if(this.checked){file<?=$r[fileid]?>.style.backgroundColor='#DBEAF5';}else{file<?=$r[fileid]?>.style.backgroundColor='#ffffff';}">
           ]</div></td>
     </tr>
@@ -255,17 +255,17 @@ function CheckAll(form)
     <tr bgcolor="#FFFFFF"> 
       <td height="25" colspan="6"> 
         <?=$returnpage?>
-        &nbsp;&nbsp; <input type="submit" name="Submit" value="æ‰¹é‡åˆ é™¤"> <input name="enews" type="hidden" id="enews" value="DelFile_all"> 
+        &nbsp;&nbsp; <input type="submit" name="Submit" value="ÅúÁ¿É¾³ı"> <input name="enews" type="hidden" id="enews" value="DelFile_all"> 
         &nbsp;
         <input type=checkbox name=chkall value=on onClick=CheckAll(this.form)>
-        é€‰ä¸­å…¨éƒ¨
+        Ñ¡ÖĞÈ«²¿
 		<input type=hidden name=classid value="<?=$classid?>">
 		<input type=hidden name=modtype value="<?=$modtype?>">
 		<input type=hidden name=fstb value="<?=$fstb?>">
 		</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25" colspan="6"><font color="#666666">å¦‚æœIDæ˜¯ç²—ä½“ï¼Œè¡¨ç¤ºæœ‰ä¿¡æ¯å¼•ç”¨ï¼Œç‚¹å‡»IDå³å¯æŸ¥çœ‹ä¿¡æ¯é¡µé¢</font></td>
+      <td height="25" colspan="6"><font color="#666666">Èç¹ûIDÊÇ´ÖÌå£¬±íÊ¾ÓĞĞÅÏ¢ÒıÓÃ£¬µã»÷ID¼´¿É²é¿´ĞÅÏ¢Ò³Ãæ</font></td>
     </tr>
   </table>
 </form>

@@ -5,7 +5,7 @@ require("../class/db_sql.php");
 require("../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -14,11 +14,11 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"movenews");
 $enews=ehtmlspecialchars($_GET['enews']);
-$url="<a href=MoveClassNews.php".$ecms_hashur['whehref'].">æ‰¹é‡è½¬ç§»ä¿¡æ¯</a>";
-//--------------------æ“ä½œçš„æ ç›®
+$url="<a href=MoveClassNews.php".$ecms_hashur['whehref'].">ÅúÁ¿×ªÒÆĞÅÏ¢</a>";
+//--------------------²Ù×÷µÄÀ¸Ä¿
 $fcfile="../data/fc/ListEnews.php";
 $do_class="<script src=../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
@@ -29,35 +29,35 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>è½¬ç§»ä¿¡æ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>×ªÒÆĞÅÏ¢</title>
 <link href="adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 
-<form name="form1" method="post" action="ecmsinfo.php" onsubmit="return confirm('ç¡®è®¤è¦æ‰§è¡Œæ­¤æ“ä½œï¼Ÿ');">
+<form name="form1" method="post" action="ecmsinfo.php" onsubmit="return confirm('È·ÈÏÒªÖ´ĞĞ´Ë²Ù×÷£¿');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25"><div align="center">æ‰¹é‡è½¬ç§»æ ç›®ä¿¡æ¯</div></td>
+      <td height="25"><div align="center">ÅúÁ¿×ªÒÆÀ¸Ä¿ĞÅÏ¢</div></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"><div align="center">å°† 
+      <td height="25" bgcolor="#FFFFFF"><div align="center">½« 
           <select name="add[classid]" id="add[classid]">
-            <option value=0>è¯·é€‰æ‹©åŸä¿¡æ¯æ ç›®</option><?=$do_class?>
+            <option value=0>ÇëÑ¡ÔñÔ­ĞÅÏ¢À¸Ä¿</option><?=$do_class?>
           </select>
-          çš„ä¿¡æ¯è½¬ç§»åˆ° 
+          µÄĞÅÏ¢×ªÒÆµ½ 
           <select name="add[toclassid]" id="add[toclassid]">
-            <option value=0>è¯·é€‰æ‹©ç›®æ ‡ä¿¡æ¯æ ç›®</option><?=$do_class?>
+            <option value=0>ÇëÑ¡ÔñÄ¿±êĞÅÏ¢À¸Ä¿</option><?=$do_class?>
           </select>
-          æ ç›® 
-          <input type="submit" name="Submit" value="è½¬ç§»">
+          À¸Ä¿ 
+          <input type="submit" name="Submit" value="×ªÒÆ">
           <input name="enews" type="hidden" id="enews" value="MoveClassNews">
         </div></td>
     </tr>

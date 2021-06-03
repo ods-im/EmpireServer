@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"searchall");
 
-//æ¸…ç†å¤šä½™æ•°æ®
+//ÇåÀí¶àÓàÊı¾İ
 function ClearSearchAll($start,$line,$userid,$username){
 	global $empire,$dbtbpre,$class_r,$fun_r;
 	$line=(int)$line;
@@ -46,7 +46,7 @@ function ClearSearchAll($start,$line,$userid,$username){
 	}
 	if(empty($b))
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("");
 		printerror('ClearSearchAllSuccess','ClearSearchAll.php'.hReturnEcmsHashStrHref2(1));
 	}
@@ -71,35 +71,35 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>æ¸…ç†æœç´¢å¤šä½™æ•°æ®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÇåÀíËÑË÷¶àÓàÊı¾İ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<a href="ListSearchLoadTb.php<?=$ecms_hashur['whehref']?>">ç®¡ç†å…¨ç«™æœç´¢æ•°æ®æº</a>&nbsp;->&nbsp;æ¸…ç†æœç´¢å¤šä½™æ•°æ®</td>
+    <td>Î»ÖÃ£º<a href="ListSearchLoadTb.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÈ«Õ¾ËÑË÷Êı¾İÔ´</a>&nbsp;->&nbsp;ÇåÀíËÑË÷¶àÓàÊı¾İ</td>
   </tr>
 </table>
-<form name="searchclear" method="get" action="ClearSearchAll.php" onsubmit="return confirm('ç¡®è®¤è¦æ“ä½œ?');">
+<form name="searchclear" method="get" action="ClearSearchAll.php" onsubmit="return confirm('È·ÈÏÒª²Ù×÷?');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">æ¸…ç†æœç´¢å¤šä½™æ•°æ® <input name=enews type=hidden value=ClearSearchAll></td>
+      <td height="25" colspan="2">ÇåÀíËÑË÷¶àÓàÊı¾İ <input name=enews type=hidden value=ClearSearchAll></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">æœç´¢è¡¨æ€»ä¿¡æ¯æ•°ï¼š</td>
+      <td width="19%" height="25">ËÑË÷±í×ÜĞÅÏ¢Êı£º</td>
       <td width="81%" height="25"><?=$total?></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ¯ç»„æ•´ç†æ•°ï¼š</td>
+      <td height="25">Ã¿×éÕûÀíÊı£º</td>
       <td height="25"><input name="line" type="text" id="line" value="500">
       </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="å¼€å§‹æ¸…ç†"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="¿ªÊ¼ÇåÀí"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

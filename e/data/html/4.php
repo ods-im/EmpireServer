@@ -5,87 +5,87 @@ if(!defined('InEmpireCMS'))
 }
 ?><table width=100% align=center cellpadding=3 cellspacing=1 class=tableborder>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>ä½œå“å(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>×÷Æ·Ãû(*)</td>
     <td bgcolor=ffffff><table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#DBEAF5">
 <tr> 
   <td height="25" bgcolor="#FFFFFF">
-	<?=$tts?"<select name='ttid'><option value='0'>æ ‡é¢˜åˆ†ç±»</option>$tts</select>":""?>
+	<?=$tts?"<select name='ttid'><option value='0'>±êÌâ·ÖÀà</option>$tts</select>":""?>
 	<input type=text name=title value="<?=ehtmlspecialchars(stripSlashes($r[title]))?>" size="60"> 
-	<input type="button" name="button" value="å›¾æ–‡" onclick="document.add.title.value=document.add.title.value+'(å›¾æ–‡)';"> 
+	<input type="button" name="button" value="Í¼ÎÄ" onclick="document.add.title.value=document.add.title.value+'(Í¼ÎÄ)';"> 
   </td>
 </tr>
 <tr> 
-  <td height="25" bgcolor="#FFFFFF">å±æ€§: 
-	<input name="titlefont[b]" type="checkbox" value="b"<?=$titlefontb?>>ç²—ä½“
-	<input name="titlefont[i]" type="checkbox" value="i"<?=$titlefonti?>>æ–œä½“
-	<input name="titlefont[s]" type="checkbox" value="s"<?=$titlefonts?>>åˆ é™¤çº¿
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;é¢œè‰²: <input name="titlecolor" type="text" value="<?=stripSlashes($r[titlecolor])?>" size="10" class="color">
+  <td height="25" bgcolor="#FFFFFF">ÊôĞÔ: 
+	<input name="titlefont[b]" type="checkbox" value="b"<?=$titlefontb?>>´ÖÌå
+	<input name="titlefont[i]" type="checkbox" value="i"<?=$titlefonti?>>Ğ±Ìå
+	<input name="titlefont[s]" type="checkbox" value="s"<?=$titlefonts?>>É¾³ıÏß
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÑÕÉ«: <input name="titlecolor" type="text" value="<?=stripSlashes($r[titlecolor])?>" size="10" class="color">
   </td>
 </tr>
 </table>
 </td>
   </tr>
   <tr>
-    <td width='16%' height=25 bgcolor='ffffff'>ç‰¹æ®Šå±æ€§</td>
+    <td width='16%' height=25 bgcolor='ffffff'>ÌØÊâÊôĞÔ</td>
     <td bgcolor='ffffff'>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#DBEAF5">
   <tr>
-    <td height="25" bgcolor="#FFFFFF">ä¿¡æ¯å±æ€§: 
+    <td height="25" bgcolor="#FFFFFF">ĞÅÏ¢ÊôĞÔ: 
       <input name="checked" type="checkbox" value="1"<?=$r[checked]?' checked':''?>>
-      å®¡æ ¸ &nbsp;&nbsp; æ¨è 
+      ÉóºË &nbsp;&nbsp; ÍÆ¼ö 
       <select name="isgood" id="isgood">
-        <option value="0">ä¸æ¨è</option>
+        <option value="0">²»ÍÆ¼ö</option>
 	<?=$ftnr['igname']?>
       </select>
-      &nbsp;&nbsp; å¤´æ¡ 
+      &nbsp;&nbsp; Í·Ìõ 
       <select name="firsttitle" id="firsttitle">
-        <option value="0">éå¤´æ¡</option>
+        <option value="0">·ÇÍ·Ìõ</option>
 	<?=$ftnr['ftname']?>
       </select></td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF">å…³é”®å­—&nbsp;&nbsp;&nbsp;: 
+    <td height="25" bgcolor="#FFFFFF">¹Ø¼ü×Ö&nbsp;&nbsp;&nbsp;: 
       <input name="keyboard" type="text" size="52" value="<?=stripSlashes($r[keyboard])?>">
-      <font color="#666666">(å¤šä¸ªè¯·ç”¨&quot;,&quot;éš”å¼€)</font></td>
+      <font color="#666666">(¶à¸öÇëÓÃ&quot;,&quot;¸ô¿ª)</font></td>
   </tr>
   <tr> 
-    <td height="25" bgcolor="#FFFFFF">å¤–éƒ¨é“¾æ¥: 
+    <td height="25" bgcolor="#FFFFFF">Íâ²¿Á´½Ó: 
       <input name="titleurl" type="text" value="<?=stripSlashes($r[titleurl])?>" size="52">
-      <font color="#666666">(å¡«å†™åä¿¡æ¯è¿æ¥åœ°å€å°†ä¸ºæ­¤é“¾æ¥)</font></td>
+      <font color="#666666">(ÌîĞ´ºóĞÅÏ¢Á¬½ÓµØÖ·½«Îª´ËÁ´½Ó)</font></td>
   </tr>
 </table>
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>å‘å¸ƒæ—¶é—´</td>
-    <td bgcolor=ffffff><input name="newstime" type="text" value="<?=$r[newstime]?>" size="28" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd HH:mm:ss'})"><input type=button name=button value="è®¾ä¸ºå½“å‰æ—¶é—´" onclick="document.add.newstime.value='<?=$todaytime?>'">
+    <td width=16% height=25 bgcolor=ffffff>·¢²¼Ê±¼ä</td>
+    <td bgcolor=ffffff><input name="newstime" type="text" value="<?=$r[newstime]?>" size="28" class="Wdate" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd HH:mm:ss'})"><input type=button name=button value="ÉèÎªµ±Ç°Ê±¼ä" onclick="document.add.newstime.value='<?=$todaytime?>'">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>ä½œå“é¢„è§ˆå›¾</td>
+    <td width=16% height=25 bgcolor=ffffff>×÷Æ·Ô¤ÀÀÍ¼</td>
     <td bgcolor=ffffff><input name="titlepic" type="text" id="titlepic" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[titlepic]))?>" size="45">
-<a onclick="window.open('ecmseditor/FileMain.php?type=1&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=titlepic<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„å›¾ç‰‡"><img src="../data/images/changeimg.gif" border="0" align="absbottom"></a> 
+<a onclick="window.open('ecmseditor/FileMain.php?type=1&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=titlepic<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄÍ¼Æ¬"><img src="../data/images/changeimg.gif" border="0" align="absbottom"></a> 
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>ä½œè€…</td>
+    <td width=16% height=25 bgcolor=ffffff>×÷Õß</td>
     <td bgcolor=ffffff><input name="flashwriter" type="text" id="flashwriter" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[flashwriter]))?>" size="60">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>ä½œè€…é‚®ç®±</td>
+    <td width=16% height=25 bgcolor=ffffff>×÷ÕßÓÊÏä</td>
     <td bgcolor=ffffff><input name="email" type="text" id="email" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[email]))?>" size="60">
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>ä½œå“è¯„ä»·</td>
-    <td bgcolor=ffffff><select name="star" id="star"><option value="1"<?=$r[star]=="1"?' selected':''?>>1æ˜Ÿ</option><option value="2"<?=$r[star]=="2"||$ecmsfirstpost==1?' selected':''?>>2æ˜Ÿ</option><option value="3"<?=$r[star]=="3"?' selected':''?>>3æ˜Ÿ</option><option value="4"<?=$r[star]=="4"?' selected':''?>>4æ˜Ÿ</option><option value="5"<?=$r[star]=="5"?' selected':''?>>5æ˜Ÿ</option></select></td>
+    <td width=16% height=25 bgcolor=ffffff>×÷Æ·ÆÀ¼Û</td>
+    <td bgcolor=ffffff><select name="star" id="star"><option value="1"<?=$r[star]=="1"?' selected':''?>>1ĞÇ</option><option value="2"<?=$r[star]=="2"||$ecmsfirstpost==1?' selected':''?>>2ĞÇ</option><option value="3"<?=$r[star]=="3"?' selected':''?>>3ĞÇ</option><option value="4"<?=$r[star]=="4"?' selected':''?>>4ĞÇ</option><option value="5"<?=$r[star]=="5"?' selected':''?>>5ĞÇ</option></select></td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>æ–‡ä»¶å¤§å°</td>
+    <td width=16% height=25 bgcolor=ffffff>ÎÄ¼ş´óĞ¡</td>
     <td bgcolor=ffffff><input name="filesize" type="text" id="filesize" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[filesize]))?>" size="60">
 <select name="select" onchange="document.add.filesize.value+=this.value">
-        <option value="">å•ä½</option>
+        <option value="">µ¥Î»</option>
         <option value=" MB">MB</option>
         <option value=" KB">KB</option>
         <option value=" GB">GB</option>
@@ -93,19 +93,19 @@ if(!defined('InEmpireCMS'))
       </select></td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>Flashåœ°å€(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>FlashµØÖ·(*)</td>
     <td bgcolor=ffffff><input name="flashurl" type="text" id="flashurl" value="<?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[flashurl]))?>" size="45">
-<a onclick="window.open('ecmseditor/FileMain.php?type=2&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=flashurl<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="é€‰æ‹©å·²ä¸Šä¼ çš„FLASH"><img src="../data/images/changeflash.gif" border="0" align="absbottom"></a> 
+<a onclick="window.open('ecmseditor/FileMain.php?type=2&classid=<?=$classid?>&infoid=<?=$id?>&filepass=<?=$filepass?>&sinfo=1&doing=1&field=flashurl<?=$ecms_hashur[ehref]?>','','width=700,height=550,scrollbars=yes');" title="Ñ¡ÔñÒÑÉÏ´«µÄFLASH"><img src="../data/images/changeflash.gif" border="0" align="absbottom"></a> 
 </td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>Flashè§„æ ¼</td>
+    <td width=16% height=25 bgcolor=ffffff>Flash¹æ¸ñ</td>
     <td bgcolor=ffffff><input name="width" type="text" id="width" value="<?=$ecmsfirstpost==1?"600":ehtmlspecialchars(stripSlashes($r[width]))?>" size="6">
 *<input name="height" type="text" id="height" value="<?=$ecmsfirstpost==1?"450":ehtmlspecialchars(stripSlashes($r[height]))?>" size="6">
-<font color="#666666">(å®½åº¦*é«˜åº¦)</font></td>
+<font color="#666666">(¿í¶È*¸ß¶È)</font></td>
   </tr>
   <tr> 
-    <td width=16% height=25 bgcolor=ffffff>ä½œå“ç®€ä»‹(*)</td>
+    <td width=16% height=25 bgcolor=ffffff>×÷Æ·¼ò½é(*)</td>
     <td bgcolor=ffffff><textarea name="flashsay" cols="80" rows="10" id="flashsay"><?=$ecmsfirstpost==1?"":ehtmlspecialchars(stripSlashes($r[flashsay]))?></textarea>
 </td>
   </tr>

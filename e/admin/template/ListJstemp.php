@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,17 +16,17 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"template");
 
-//å¢åŠ jsæ¨¡æ¿
+//Ôö¼ÓjsÄ£°å
 function AddJstemp($add,$userid,$username){
 	global $empire,$dbtbpre;
 	if(!$add[tempname]||!$add[temptext])
 	{
 		printerror("EmptyJstempname","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$add[tempname]=hRepPostStr($add[tempname],1);
 	$modid=(int)$add['modid'];
@@ -37,11 +37,11 @@ function AddJstemp($add,$userid,$username){
 	$gid=(int)$add['gid'];
 	$sql=$empire->query("insert into ".GetDoTemptb("enewsjstemp",$gid)."(tempname,temptext,classid,showdate,modid,subnews,subtitle) values('$add[tempname]','".eaddslashes2($add[temptext])."',$classid,'".eaddslashes($add[showdate])."','$modid','$subnews','$subtitle');");
 	$tempid=$empire->lastid();
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('jstemp',$gid,$tempid,$add[tempname],$add[temptext],$subnews,0,'',0,$modid,$add[showdate],$subtitle,$classid,0,$userid,$username);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=$tempid&tempname=$add[tempname]&gid=$gid");
 		printerror("AddJstempSuccess","AddJstemp.php?enews=AddJstemp&gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -51,7 +51,7 @@ function AddJstemp($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹jsæ¨¡æ¿
+//ĞŞ¸ÄjsÄ£°å
 function EditJstemp($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tempid=(int)$add['tempid'];
@@ -59,7 +59,7 @@ function EditJstemp($add,$userid,$username){
 	{
 		printerror("EmptyJstempname","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$add[tempname]=hRepPostStr($add[tempname],1);
 	$modid=(int)$add['modid'];
@@ -69,11 +69,11 @@ function EditJstemp($add,$userid,$username){
 	$add[temptext]=str_replace("\r\n","",$add[temptext]);
 	$gid=(int)$add['gid'];
 	$sql=$empire->query("update ".GetDoTemptb("enewsjstemp",$gid)." set tempname='$add[tempname]',temptext='".eaddslashes2($add[temptext])."',classid=$classid,showdate='".eaddslashes($add[showdate])."',modid='$modid',subnews='$subnews',subtitle='$subtitle' where tempid=$tempid");
-	//å¤‡ä»½æ¨¡æ¿
+	//±¸·İÄ£°å
 	AddEBakTemp('jstemp',$gid,$tempid,$add[tempname],$add[temptext],$subnews,0,'',0,$modid,$add[showdate],$subtitle,$classid,0,$userid,$username);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=$tempid&tempname=$add[tempname]&gid=$gid");
 		printerror("EditJstempSuccess","ListJstemp.php?classid=$add[cid]&gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -83,7 +83,7 @@ function EditJstemp($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤jsæ¨¡æ¿
+//É¾³ıjsÄ£°å
 function DelJstemp($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tempid=(int)$add['tempid'];
@@ -91,16 +91,16 @@ function DelJstemp($add,$userid,$username){
 	{
 		printerror("EmptyJstempid","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$gid=(int)$add['gid'];
 	$r=$empire->fetch1("select tempname from ".GetDoTemptb("enewsjstemp",$gid)." where tempid=$tempid");
 	$sql=$empire->query("delete from ".GetDoTemptb("enewsjstemp",$gid)." where tempid=$tempid");
-	//åˆ é™¤å¤‡ä»½è®°å½•
+	//É¾³ı±¸·İ¼ÇÂ¼
 	DelEbakTempAll('jstemp',$gid,$tempid);
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=$tempid&tempname=$r[tempname]&gid=$gid");
 		printerror("DelJstempSuccess","ListJstemp.php?classid=$add[cid]&gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -110,7 +110,7 @@ function DelJstemp($add,$userid,$username){
 	}
 }
 
-//è®¾ä¸ºé»˜è®¤jsæ¨¡æ¿
+//ÉèÎªÄ¬ÈÏjsÄ£°å
 function DefaultJstemp($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$tempid=(int)$add['tempid'];
@@ -118,7 +118,7 @@ function DefaultJstemp($add,$userid,$username){
 	{
 		printerror("EmptyJstempid","history.go(-1)");
     }
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"template");
 	$gid=(int)$add['gid'];
 	$r=$empire->fetch1("select tempname from ".GetDoTemptb("enewsjstemp",$gid)." where tempid=$tempid");
@@ -127,7 +127,7 @@ function DefaultJstemp($add,$userid,$username){
 	$psql=$empire->query("update {$dbtbpre}enewspublic set jstempid=$tempid");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("tempid=$tempid&tempname=$r[tempname]&gid=$gid");
 		printerror("DefaultJstempSuccess","ListJstemp.php?classid=$add[cid]&gid=$gid".hReturnEcmsHashStrHref2(0));
 	}
@@ -137,7 +137,7 @@ function DefaultJstemp($add,$userid,$username){
 	}
 }
 
-//æ“ä½œ
+//²Ù×÷
 $enews=$_POST['enews'];
 if(empty($enews))
 {$enews=$_GET['enews'];}
@@ -146,22 +146,22 @@ if($enews)
 	hCheckEcmsRHash();
 	include("../../class/tempfun.php");
 }
-//å¢åŠ JSæ¨¡æ¿
+//Ôö¼ÓJSÄ£°å
 if($enews=="AddJstemp")
 {
 	AddJstemp($_POST,$logininid,$loginin);
 }
-//ä¿®æ”¹JSæ¨¡æ¿
+//ĞŞ¸ÄJSÄ£°å
 elseif($enews=="EditJstemp")
 {
 	EditJstemp($_POST,$logininid,$loginin);
 }
-//åˆ é™¤JSæ¨¡æ¿
+//É¾³ıJSÄ£°å
 elseif($enews=="DelJstemp")
 {
 	DelJstemp($_GET,$logininid,$loginin);
 }
-//é»˜è®¤JSæ¨¡æ¿
+//Ä¬ÈÏJSÄ£°å
 elseif($enews=="DefaultJstemp")
 {
 	DefaultJstemp($_GET,$logininid,$loginin);
@@ -169,17 +169,17 @@ elseif($enews=="DefaultJstemp")
 $gid=(int)$_GET['gid'];
 $gname=CheckTempGroup($gid);
 $urlgname=$gname."&nbsp;>&nbsp;";
-$url=$urlgname."<a href=ListJstemp.php?gid=$gid".$ecms_hashur['ehref'].">ç®¡ç†JSæ¨¡æ¿</a>";
+$url=$urlgname."<a href=ListJstemp.php?gid=$gid".$ecms_hashur['ehref'].">¹ÜÀíJSÄ£°å</a>";
 $search="&gid=$gid".$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $query="select tempid,tempname,isdefault from ".GetDoTemptb("enewsjstemp",$gid);
 $totalquery="select count(*) as total from ".GetDoTemptb("enewsjstemp",$gid);
-//ç±»åˆ«
+//Àà±ğ
 $add="";
 $classid=(int)$_GET['classid'];
 if($classid)
@@ -189,11 +189,11 @@ if($classid)
 }
 $query.=$add;
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by tempid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewsjstempclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -209,21 +209,21 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†JSæ¨¡æ¿</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀíJSÄ£°å</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%">ä½ç½®ï¼š 
+    <td width="50%">Î»ÖÃ£º 
       <?=$url?>
     </td>
     <td><div align="right" class="emenubutton"> 
-        <input type="button" name="Submit5" value="å¢åŠ JSæ¨¡æ¿" onclick="self.location.href='AddJstemp.php?enews=AddJstemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="Ôö¼ÓJSÄ£°å" onclick="self.location.href='AddJstemp.php?enews=AddJstemp&gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
         &nbsp;&nbsp; 
-        <input type="button" name="Submit5" value="ç®¡ç†JSæ¨¡æ¿åˆ†ç±»" onclick="self.location.href='JsTempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀíJSÄ£°å·ÖÀà" onclick="self.location.href='JsTempClass.php?gid=<?=$gid?><?=$ecms_hashur['ehref']?>';">
       </div></td>
   </tr>
 </table>
@@ -232,9 +232,9 @@ while($cr=$empire->fetch($csql))
   <?=$ecms_hashur['eform']?>
   <input type=hidden name=gid value="<?=$gid?>">
     <tr> 
-      <td height="25">é™åˆ¶æ˜¾ç¤ºï¼š 
+      <td height="25">ÏŞÖÆÏÔÊ¾£º 
         <select name="classid" id="classid" onchange="document.form1.submit()">
-          <option value="0">æ˜¾ç¤ºæ‰€æœ‰åˆ†ç±»</option>
+          <option value="0">ÏÔÊ¾ËùÓĞ·ÖÀà</option>
 		  <?=$cstr?>
         </select>
       </td>
@@ -245,8 +245,8 @@ while($cr=$empire->fetch($csql))
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="10%" height="25"><div align="center">ID</div></td>
-    <td width="61%" height="25"><div align="center">æ¨¡æ¿å</div></td>
-    <td width="29%" height="25"><div align="center">æ“ä½œ</div></td>
+    <td width="61%" height="25"><div align="center">Ä£°åÃû</div></td>
+    <td width="29%" height="25"><div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -261,15 +261,15 @@ while($cr=$empire->fetch($csql))
   ?>
   <tr bgcolor="<?=$color?>"<?=$movejs?>> 
     <td height="25"><div align="center"> 
-        <a href="EditTempid.php?tempno=2&tempid=<?=$r['tempid']?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="_blank" title="ä¿®æ”¹æ¨¡æ¿ID"><?=$r[tempid]?></a>
+        <a href="EditTempid.php?tempno=2&tempid=<?=$r['tempid']?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>" target="_blank" title="ĞŞ¸ÄÄ£°åID"><?=$r[tempid]?></a>
       </div></td>
     <td height="25"><div align="center"> 
         <?=$r[tempname]?>
       </div></td>
-    <td height="25"><div align="center"> [<a href="AddJstemp.php?enews=EditJstemp&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>] 
-        [<a href="AddJstemp.php?enews=AddJstemp&docopy=1&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>] 
-        [<a href="ListJstemp.php?enews=DefaultJstemp&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è®¾ä¸ºé»˜è®¤ï¼Ÿ');">è®¾ä¸ºé»˜è®¤</a>] 
-        [<a href="ListJstemp.php?enews=DelJstemp&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td height="25"><div align="center"> [<a href="AddJstemp.php?enews=EditJstemp&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>] 
+        [<a href="AddJstemp.php?enews=AddJstemp&docopy=1&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>] 
+        [<a href="ListJstemp.php?enews=DefaultJstemp&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÉèÎªÄ¬ÈÏ£¿');">ÉèÎªÄ¬ÈÏ</a>] 
+        [<a href="ListJstemp.php?enews=DelJstemp&tempid=<?=$r[tempid]?>&cid=<?=$classid?>&gid=<?=$gid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }

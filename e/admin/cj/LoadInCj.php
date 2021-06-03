@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"loadcj");
 $from=(int)$_GET['from'];
 if($from)
@@ -26,8 +26,8 @@ else
 {
 	$listclasslink="ListInfoClass.php";
 }
-$url="<a href=../".$listclasslink.$ecms_hashur['whehref'].">ç®¡ç†é‡‡é›†</a>&nbsp;>&nbsp;å¯¼å…¥é‡‡é›†è§„åˆ™";
-//--------------------æ“ä½œçš„æ ç›®
+$url="<a href=../".$listclasslink.$ecms_hashur['whehref'].">¹ÜÀí²É¼¯</a>&nbsp;>&nbsp;µ¼Èë²É¼¯¹æÔò";
+//--------------------²Ù×÷µÄÀ¸Ä¿
 $fcfile="../../data/fc/ListEnews.php";
 $do_class="<script src=../../data/fc/cmsclass.js></script>";
 if(!file_exists($fcfile))
@@ -38,21 +38,21 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>å¯¼å…¥é‡‡é›†è§„åˆ™</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>µ¼Èë²É¼¯¹æÔò</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<?=$url?></td>
+    <td height="25">Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
-<form action="../ecmscj.php" method="post" enctype="multipart/form-data" name="form1" onsubmit="return confirm('ç¡®è®¤è¦å¯¼å…¥ï¼Ÿ');">
+<form action="../ecmscj.php" method="post" enctype="multipart/form-data" name="form1" onsubmit="return confirm('È·ÈÏÒªµ¼Èë£¿');">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
     <tr class="header"> 
-      <td height="25"><div align="center">å¯¼å…¥é‡‡é›†è§„åˆ™ 
+      <td height="25"><div align="center">µ¼Èë²É¼¯¹æÔò 
           <input name="enews" type="hidden" id="enews" value="LoadInCj">
 		  <?=$ecms_hashur['form']?>
         </div></td>
@@ -60,15 +60,15 @@ $empire=null;
     <tr bgcolor="#FFFFFF"> 
       <td height="25"><table width="650" border="0" align="center" cellpadding="3" cellspacing="1">
           <tr> 
-            <td width="29%"><div align="right">é€‰æ‹©é‡‡é›†å…¥åº“çš„æ ç›®ï¼š</div></td>
+            <td width="29%"><div align="right">Ñ¡Ôñ²É¼¯Èë¿âµÄÀ¸Ä¿£º</div></td>
             <td width="71%" height="27"><select name="classid" id="classid">
-            <option value='0'>é€‰æ‹©æ ç›®</option>
+            <option value='0'>Ñ¡ÔñÀ¸Ä¿</option>
             <?=$do_class?>
           </select> 
-              <font color="#666666">(è¦é€‰æ‹©ç»ˆææ ç›®)</font></td>
+              <font color="#666666">(ÒªÑ¡ÔñÖÕ¼«À¸Ä¿)</font></td>
           </tr>
           <tr> 
-            <td height="27"> <div align="right">å¯¼å…¥é‡‡é›†è§„åˆ™æ–‡ä»¶ï¼š</div></td>
+            <td height="27"> <div align="right">µ¼Èë²É¼¯¹æÔòÎÄ¼ş£º</div></td>
             <td height="27"><input type="file" name="file">
               <font color="#666666">(*.cj)</font> </td>
           </tr>
@@ -76,9 +76,9 @@ $empire=null;
     </tr>
     <tr bgcolor="#FFFFFF">
       <td height="25"><div align="center">
-          <input type="submit" name="Submit" value="é©¬ä¸Šå¯¼å…¥">
+          <input type="submit" name="Submit" value="ÂíÉÏµ¼Èë">
           &nbsp;&nbsp;
-          <input type="reset" name="Submit2" value="é‡ç½®">
+          <input type="reset" name="Submit2" value="ÖØÖÃ">
 		  <input type="hidden" name="from" value="<?=$from?>">
         </div></td>
     </tr>

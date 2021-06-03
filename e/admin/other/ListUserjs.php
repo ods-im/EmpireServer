@@ -7,7 +7,7 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -16,10 +16,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"userjs");
 
-//å¢åŠ ç”¨æˆ·è‡ªå®šä¹‰js
+//Ôö¼ÓÓÃ»§×Ô¶¨Òåjs
 function AddUserjs($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$cid=(int)$add['cid'];
@@ -33,7 +33,7 @@ function AddUserjs($add,$userid,$username){
 	{
 		printerror("JsSqlError","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"userjs");
 	$add[jssql]=ClearAddsData($add[jssql]);
 	$add[jsname]=hRepPostStr($add[jsname],1);
@@ -41,12 +41,12 @@ function AddUserjs($add,$userid,$username){
 	$add['jsfilename']=hRepPostStr($add['jsfilename'],1);
 	$sql=$empire->query("insert into {$dbtbpre}enewsuserjs(jsname,jssql,jstempid,jsfilename,classid) values('$add[jsname]','".addslashes($add[jssql])."',$jstempid,'$add[jsfilename]','$add[classid]');");
 	$jsid=$empire->lastid();
-	//åˆ·æ–°js
+	//Ë¢ĞÂjs
 	$add['jsid']=$jsid;
 	ReUserjs($add,"../");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("jsid=$jsid&jsname=$add[jsname]");
 		printerror("AddUserjsSuccess","AddUserjs.php?enews=AddUserjs&classid=$cid".hReturnEcmsHashStrHref2(0));
 	}
@@ -56,7 +56,7 @@ function AddUserjs($add,$userid,$username){
 	}
 }
 
-//ä¿®æ”¹ç”¨æˆ·è‡ªå®šä¹‰js
+//ĞŞ¸ÄÓÃ»§×Ô¶¨Òåjs
 function EditUserjs($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$cid=(int)$add['cid'];
@@ -71,9 +71,9 @@ function EditUserjs($add,$userid,$username){
 	{
 		printerror("JsSqlError","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"userjs");
-	//åˆ é™¤æ—§jsæ–‡ä»¶
+	//É¾³ı¾ÉjsÎÄ¼ş
 	if($add['oldjsfilename']<>$add['jsfilename'])
 	{
 		DelFiletext($add['oldjsfilename']);
@@ -83,12 +83,12 @@ function EditUserjs($add,$userid,$username){
 	$add['classid']=(int)$add['classid'];
 	$add['jsfilename']=hRepPostStr($add['jsfilename'],1);
 	$sql=$empire->query("update {$dbtbpre}enewsuserjs set jsname='$add[jsname]',jssql='".addslashes($add[jssql])."',jstempid=$jstempid,jsfilename='$add[jsfilename]',classid='$add[classid]' where jsid='$jsid'");
-	//åˆ·æ–°js
+	//Ë¢ĞÂjs
 	$add['jsid']=$jsid;
 	ReUserjs($add,"../");
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 	    insert_dolog("jsid=$jsid&jsname=$add[jsname]");
 		printerror("EditUserjsSuccess","ListUserjs.php?classid=$cid".hReturnEcmsHashStrHref2(0));
 	}
@@ -98,7 +98,7 @@ function EditUserjs($add,$userid,$username){
 	}
 }
 
-//åˆ é™¤ç”¨æˆ·è‡ªå®šä¹‰js
+//É¾³ıÓÃ»§×Ô¶¨Òåjs
 function DelUserjs($jsid,$userid,$username){
 	global $empire,$dbtbpre;
 	$cid=(int)$add['cid'];
@@ -107,11 +107,11 @@ function DelUserjs($jsid,$userid,$username){
 	{
 		printerror("NotChangeUserjsid","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"userjs");
 	$r=$empire->fetch1("select jsname,jsfilename from {$dbtbpre}enewsuserjs where jsid=$jsid");
 	$sql=$empire->query("delete from {$dbtbpre}enewsuserjs where jsid=$jsid");
-	//åˆ é™¤æ–‡ä»¶
+	//É¾³ıÎÄ¼ş
 	DelFiletext("../".$r['jsfilename']);
 	//moreportdo
 	$eautodofile=str_replace('../../','',$r['jsfilename']);
@@ -122,7 +122,7 @@ function DelUserjs($jsid,$userid,$username){
 	}
 	if($sql)
 	{
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("jsid=$jsid&jsname=$r[jsname]");
 		printerror("DelUserjsSuccess","ListUserjs.php?classid=$cid".hReturnEcmsHashStrHref2(0));
 	}
@@ -132,10 +132,10 @@ function DelUserjs($jsid,$userid,$username){
 	}
 }
 
-//åˆ·æ–°è‡ªå®šä¹‰JS
+//Ë¢ĞÂ×Ô¶¨ÒåJS
 function DoReUserjs($add,$userid,$username){
 	global $empire,$dbtbpre;
-	//æ“ä½œæƒé™
+	//²Ù×÷È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"userjs");
 	$jsid=$add['jsid'];
 	$count=count($jsid);
@@ -153,7 +153,7 @@ function DoReUserjs($add,$userid,$username){
 		$ur=$empire->fetch1("select jsid,jsname,jssql,jstempid,jsfilename from {$dbtbpre}enewsuserjs where jsid='".$jsid[$i]."'");
 		ReUserjs($ur,'../');
 	}
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("");
 	printerror("DoReUserjsSuccess",EcmsGetReturnUrl());
 }
@@ -188,14 +188,14 @@ else
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=20;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=20;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=20;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=20;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $search='';
 $search.=$ecms_hashur['ehref'];
 $query="select jsid,jsname,jsfilename from {$dbtbpre}enewsuserjs";
 $totalquery="select count(*) as total from {$dbtbpre}enewsuserjs";
-//ç±»åˆ«
+//Àà±ğ
 $add="";
 $classid=(int)$_GET['classid'];
 if($classid)
@@ -205,11 +205,11 @@ if($classid)
 }
 $query.=$add;
 $totalquery.=$add;
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query=$query." order by jsid desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page2($num,$line,$page_line,$start,$page,$search);
-//åˆ†ç±»
+//·ÖÀà
 $cstr="";
 $csql=$empire->query("select classid,classname from {$dbtbpre}enewsuserjsclass order by classid");
 while($cr=$empire->fetch($csql))
@@ -225,9 +225,9 @@ while($cr=$empire->fetch($csql))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†ç”¨æˆ·è‡ªå®šä¹‰JS</title>
+<title>¹ÜÀíÓÃ»§×Ô¶¨ÒåJS</title>
 <script>
 function CheckAll(form)
   {
@@ -244,20 +244,20 @@ function CheckAll(form)
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td width="50%" height="25">ä½ç½®ï¼š<a href=ListUserjs.php<?=$ecms_hashur['whehref']?>>ç®¡ç†ç”¨æˆ·è‡ªå®šä¹‰JS</a></td>
+    <td width="50%" height="25">Î»ÖÃ£º<a href=ListUserjs.php<?=$ecms_hashur['whehref']?>>¹ÜÀíÓÃ»§×Ô¶¨ÒåJS</a></td>
     <td><div align="right" class="emenubutton">
-        <input type="button" name="Submit" value="å¢åŠ è‡ªå®šä¹‰JS" onclick="self.location.href='AddUserjs.php?enews=AddUserjs<?=$ecms_hashur['ehref']?>';">
+        <input type="button" name="Submit" value="Ôö¼Ó×Ô¶¨ÒåJS" onclick="self.location.href='AddUserjs.php?enews=AddUserjs<?=$ecms_hashur['ehref']?>';">
 		&nbsp;&nbsp;
-        <input type="button" name="Submit5" value="ç®¡ç†è‡ªå®šä¹‰JSåˆ†ç±»" onclick="self.location.href='UserjsClass.php<?=$ecms_hashur['whehref']?>';">
+        <input type="button" name="Submit5" value="¹ÜÀí×Ô¶¨ÒåJS·ÖÀà" onclick="self.location.href='UserjsClass.php<?=$ecms_hashur['whehref']?>';">
       </div></td>
   </tr>
 </table>
 
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td> é€‰æ‹©ç±»åˆ«ï¼š
+    <td> Ñ¡ÔñÀà±ğ£º
       <select name="classid" id="classid" onchange=window.location='ListUserjs.php?<?=$ecms_hashur['ehref']?>&classid='+this.options[this.selectedIndex].value>
-          <option value="0">æ˜¾ç¤ºæ‰€æœ‰ç±»åˆ«</option>
+          <option value="0">ÏÔÊ¾ËùÓĞÀà±ğ</option>
           <?=$cstr?>
         </select>
     </td>
@@ -272,10 +272,10 @@ function CheckAll(form)
         <input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
       </div></td>
     <td width="9%" height="25"> <div align="center">ID</div></td>
-    <td width="32%" height="25"> <div align="center">JSåç§°</div></td>
-    <td width="26%" height="25"> <div align="center">JSåœ°å€</div></td>
-    <td width="10%"><div align="center">é¢„è§ˆ</div></td>
-    <td width="18%" height="25"> <div align="center">æ“ä½œ</div></td>
+    <td width="32%" height="25"> <div align="center">JSÃû³Æ</div></td>
+    <td width="26%" height="25"> <div align="center">JSµØÖ·</div></td>
+    <td width="10%"><div align="center">Ô¤ÀÀ</div></td>
+    <td width="18%" height="25"> <div align="center">²Ù×÷</div></td>
   </tr>
   <?
   while($r=$empire->fetch($sql))
@@ -295,8 +295,8 @@ function CheckAll(form)
     <td height="25"> <div align="center"> 
         <input name="jspath" type="text" id="jspath" value="<?=$jspath?>">
       </div></td>
-    <td><div align="center">[<a href="../view/js.php?js=<?=$jspath?>&classid=1<?=$ecms_hashur['ehref']?>" target="_blank">é¢„è§ˆ</a>]</div></td>
-    <td height="25"> <div align="center">[<a href="AddUserjs.php?enews=EditUserjs&jsid=<?=$r[jsid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">ä¿®æ”¹</a>]&nbsp;[<a href="AddUserjs.php?enews=AddUserjs&docopy=1&jsid=<?=$r[jsid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">å¤åˆ¶</a>]&nbsp;[<a href="ListUserjs.php?enews=DelUserjs&jsid=<?=$r[jsid]?>&cid=<?=$classid?><?=$ecms_hashur['href']?>" onclick="return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');">åˆ é™¤</a>]</div></td>
+    <td><div align="center">[<a href="../view/js.php?js=<?=$jspath?>&classid=1<?=$ecms_hashur['ehref']?>" target="_blank">Ô¤ÀÀ</a>]</div></td>
+    <td height="25"> <div align="center">[<a href="AddUserjs.php?enews=EditUserjs&jsid=<?=$r[jsid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">ĞŞ¸Ä</a>]&nbsp;[<a href="AddUserjs.php?enews=AddUserjs&docopy=1&jsid=<?=$r[jsid]?>&cid=<?=$classid?><?=$ecms_hashur['ehref']?>">¸´ÖÆ</a>]&nbsp;[<a href="ListUserjs.php?enews=DelUserjs&jsid=<?=$r[jsid]?>&cid=<?=$classid?><?=$ecms_hashur['href']?>" onclick="return confirm('È·ÈÏÒªÉ¾³ı£¿');">É¾³ı</a>]</div></td>
   </tr>
   <?
   }
@@ -304,12 +304,12 @@ function CheckAll(form)
   <tr bgcolor="#FFFFFF"> 
     <td height="25" colspan="6"> 
       <?=$returnpage?>
-      &nbsp;&nbsp;&nbsp; <input type="submit" name="Submit3" value="åˆ·æ–°"> <input name="enews" type="hidden" id="enews" value="DoReUserjs"> 
+      &nbsp;&nbsp;&nbsp; <input type="submit" name="Submit3" value="Ë¢ĞÂ"> <input name="enews" type="hidden" id="enews" value="DoReUserjs"> 
     </td>
   </tr>
   <tr bgcolor="#FFFFFF"> 
-    <td height="25" colspan="6">JSè°ƒç”¨æ–¹æ³•ï¼š 
-      <input name="textfield" type="text" size="60" value="&lt;script src=&quot;JSåœ°å€&quot;&gt;&lt;/script&gt;"></td>
+    <td height="25" colspan="6">JSµ÷ÓÃ·½·¨£º 
+      <input name="textfield" type="text" size="60" value="&lt;script src=&quot;JSµØÖ·&quot;&gt;&lt;/script&gt;"></td>
   </tr>
   </form>
 </table>

@@ -3,7 +3,7 @@ if(!defined('empirecms'))
 {
 	exit();
 }
-//æ‰£ç‚¹
+//¿Ûµã
 require_once($check_path."e/class/connect.php");
 if(!defined('InEmpireCMS'))
 {
@@ -11,16 +11,16 @@ if(!defined('InEmpireCMS'))
 }
 require_once(ECMS_PATH."e/class/db_sql.php");
 $check_classid=(int)$check_classid;
-$toreturnurl=eReturnSelfPage(0);	//è¿”å›žé¡µé¢åœ°å€
-$gotourl=$ecms_config['member']['loginurl']?$ecms_config['member']['loginurl']:$public_r['newsurl']."e/member/login/";	//ç™»é™†åœ°å€
+$toreturnurl=eReturnSelfPage(0);	//·µ»ØÒ³ÃæµØÖ·
+$gotourl=$ecms_config['member']['loginurl']?$ecms_config['member']['loginurl']:$public_r['newsurl']."e/member/login/";	//µÇÂ½µØÖ·
 $loginuserid=(int)getcvar('mluserid');
 $logingroupid=(int)getcvar('mlgroupid');
 if(!$loginuserid)
 {
-	printerror2('æœ¬æ ç›®éœ€è¦ä¼šå‘˜çº§åˆ«ä»¥ä¸Šæ‰èƒ½æŸ¥çœ‹','');
+	printerror2('±¾À¸Ä¿ÐèÒª»áÔ±¼¶±ðÒÔÉÏ²ÅÄÜ²é¿´','');
 }
 if(!strstr($check_groupid,','.$logingroupid.','))
 {
-	printerror2('æ‚¨æ²¡æœ‰è¶³å¤Ÿæƒé™æŸ¥çœ‹æ­¤æ ç›®','');
+	printerror2('ÄúÃ»ÓÐ×ã¹»È¨ÏÞ²é¿´´ËÀ¸Ä¿','');
 }
 ?>

@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,10 +15,10 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏÞ
 CheckLevel($logininid,$loginin,$classid,"public");
 $r=$empire->fetch1("select * from {$dbtbpre}enewspl_set limit 1");
-//è¯„è®ºæƒé™
+//ÆÀÂÛÈ¨ÏÞ
 $plgroup='';
 $mgsql=$empire->query("select groupid,groupname from {$dbtbpre}enewsmembergroup order by level");
 while($mgr=$empire->fetch($mgsql))
@@ -39,15 +39,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>è¯„è®ºå‚æ•°è®¾ç½®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÆÀÂÛ²ÎÊýÉèÖÃ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td><p>ä½ç½®ï¼šè¯„è®ºå‚æ•°è®¾ç½®</p>
+    <td><p>Î»ÖÃ£ºÆÀÂÛ²ÎÊýÉèÖÃ</p>
       </td>
   </tr>
 </table>
@@ -55,70 +55,70 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td height="25" colspan="2">è¯„è®ºå‚æ•°è®¾ç½® 
+      <td height="25" colspan="2">ÆÀÂÛ²ÎÊýÉèÖÃ 
         <input name=enews type=hidden value=SetPl></td>
     </tr>
 	<tr>
-      <td height="25" bgcolor="#FFFFFF">è¯„è®ºåœ°å€</td>
+      <td height="25" bgcolor="#FFFFFF">ÆÀÂÛµØÖ·</td>
       <td height="25" bgcolor="#FFFFFF"><input name="plurl" type="text" id="plurl" value="<?=$r[plurl]?>" size="38">
-        <font color="#666666">(ç»‘å®šåŸŸåæ—¶è®¾ç½®ï¼Œç»“å°¾éœ€åŠ â€œ/â€ï¼Œå¦‚ï¼š/e/pl/)</font></td>
+        <font color="#666666">(°ó¶¨ÓòÃûÊ±ÉèÖÃ£¬½áÎ²Ðè¼Ó¡°/¡±£¬Èç£º/e/pl/)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">è¯„è®ºæƒé™é™åˆ¶</td>
+      <td height="25">ÆÀÂÛÈ¨ÏÞÏÞÖÆ</td>
       <td height="25"><select name="plgroupid" id="plgroupid">
-          <option value=0>æ¸¸å®¢</option>
+          <option value=0>ÓÎ¿Í</option>
           <?=$plgroup?>
         </select></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="19%" height="25">è¯„è®ºå†…å®¹é™åˆ¶</td>
+      <td width="19%" height="25">ÆÀÂÛÄÚÈÝÏÞÖÆ</td>
       <td width="81%" height="25"><input name="plsize" type="text" id="plsize" value="<?=$r[plsize]?>" size="38">
-        ä¸ªå­—èŠ‚<font color="#666666"> (ä¸¤ä¸ªå­—èŠ‚ä¸ºä¸€ä¸ªæ±‰å­—)</font> </td>
+        ¸ö×Ö½Ú<font color="#666666"> (Á½¸ö×Ö½ÚÎªÒ»¸öºº×Ö)</font> </td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">è¯„è®ºæ—¶é—´é—´éš”</td>
+      <td height="25">ÆÀÂÛÊ±¼ä¼ä¸ô</td>
       <td height="25"><input name="pltime" type="text" id="pltime" value="<?=$r[pltime]?>" size="38">
-        ç§’</td>
+        Ãë</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">è¯„è®ºéªŒè¯ç </td>
+      <td height="25">ÆÀÂÛÑéÖ¤Âë</td>
       <td height="25"><input type="radio" name="plkey_ok" value="1"<?=$r[plkey_ok]==1?' checked':''?>>
-        å¼€å¯ 
+        ¿ªÆô 
         <input type="radio" name="plkey_ok" value="0"<?=$r[plkey_ok]==0?' checked':''?>>
-        å…³é—­</td>
+        ¹Ø±Õ</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">è¯„è®ºæ¯é¡µæ˜¾ç¤º</td>
+      <td height="25">ÆÀÂÛÃ¿Ò³ÏÔÊ¾</td>
       <td height="25"><input name="pl_num" type="text" id="pl_num" value="<?=$r[pl_num]?>" size="38">
-        ä¸ªè¯„è®º</td>
+        ¸öÆÀÂÛ</td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">è¯„è®ºè¡¨æƒ…æ¯è¡Œæ˜¾ç¤º</td>
+      <td height="25">ÆÀÂÛ±íÇéÃ¿ÐÐÏÔÊ¾</td>
       <td height="25"><input name="plfacenum" type="text" id="plfacenum" value="<?=$r[plfacenum]?>" size="38">
-        ä¸ªè¡¨æƒ…</td>
+        ¸ö±íÇé</td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">è¯„è®ºå±è”½å­—ç¬¦<br> <font color="#666666">(1)ã€å¤šä¸ªç”¨â€œ|â€éš”å¼€ï¼Œå¦‚â€œå­—ç¬¦1|å­—ç¬¦2â€ã€‚<br>
-        (2)ã€åŒæ—¶åŒ…å«å¤šå­—æ—¶å±è”½å¯ç”¨åŒâ€œ#â€éš”å¼€ï¼Œå¦‚â€œç ´##è§£|å­—ç¬¦2â€ ã€‚è¿™æ ·åªè¦å†…å®¹åŒæ—¶åŒ…å«â€œç ´â€å’Œâ€œè§£â€å­—éƒ½ä¼šè¢«å±è”½ã€‚</font></td>
+      <td height="25">ÆÀÂÛÆÁ±Î×Ö·û<br> <font color="#666666">(1)¡¢¶à¸öÓÃ¡°|¡±¸ô¿ª£¬Èç¡°×Ö·û1|×Ö·û2¡±¡£<br>
+        (2)¡¢Í¬Ê±°üº¬¶à×ÖÊ±ÆÁ±Î¿ÉÓÃË«¡°#¡±¸ô¿ª£¬Èç¡°ÆÆ##½â|×Ö·û2¡± ¡£ÕâÑùÖ»ÒªÄÚÈÝÍ¬Ê±°üº¬¡°ÆÆ¡±ºÍ¡°½â¡±×Ö¶¼»á±»ÆÁ±Î¡£</font></td>
       <td height="25"><textarea name="plclosewords" cols="80" rows="8" id="plclosewords"><?=ehtmlspecialchars($r[plclosewords])?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">è¯„è®ºç›–æ¥¼æœ€é«˜æ¥¼å±‚</td>
+      <td height="25">ÆÀÂÛ¸ÇÂ¥×î¸ßÂ¥²ã</td>
       <td height="25"><input name="plmaxfloor" type="text" id="plmaxfloor" value="<?=$r[plmaxfloor]?>" size="38">
-        æ¥¼ <font color="#666666">(0ä¸ºä¸é™)</font></td>
+        Â¥ <font color="#666666">(0Îª²»ÏÞ)</font></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25" valign="top">è¯„è®ºå¼•ç”¨å†…å®¹æ ¼å¼ï¼š<br>
+      <td height="25" valign="top">ÆÀÂÛÒýÓÃÄÚÈÝ¸ñÊ½£º<br>
       <br>
-      è¯„è®ºIDï¼š[!--plid--]<br>
-      å‘è¡¨è€…ï¼š[!--username--]<br>
-      è¯„è®ºå†…å®¹ï¼š[!--pltext--]<br>
-      å‘è¡¨æ—¶é—´ï¼š[!--pltime--]</td>
+      ÆÀÂÛID£º[!--plid--]<br>
+      ·¢±íÕß£º[!--username--]<br>
+      ÆÀÂÛÄÚÈÝ£º[!--pltext--]<br>
+      ·¢±íÊ±¼ä£º[!--pltime--]</td>
       <td height="25"><textarea name="plquotetemp" cols="80" rows="8" id="plquotetemp"><?=ehtmlspecialchars(stripSlashes($r[plquotetemp]))?></textarea></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"><input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"><input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

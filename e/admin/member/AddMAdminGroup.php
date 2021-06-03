@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,17 +15,17 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"madmingroup");
 $enews=ehtmlspecialchars($_GET['enews']);
-$postword='å¢åŠ ';
-$url="<a href=ListMAdminGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼šå‘˜ç®¡ç†ç»„</a>&nbsp;>&nbsp;å¢åŠ ä¼šå‘˜ç®¡ç†ç»„";
+$postword='Ôö¼Ó';
+$url="<a href=ListMAdminGroup.php".$ecms_hashur['whehref'].">¹ÜÀí»áÔ±¹ÜÀí×é</a>&nbsp;>&nbsp;Ôö¼Ó»áÔ±¹ÜÀí×é";
 if($enews=="EditMAdminGroup")
 {
 	$agid=(int)$_GET['agid'];
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsag where agid='$agid'");
-	$url="<a href=ListMAdminGroup.php".$ecms_hashur['whehref'].">ç®¡ç†ä¼šå‘˜ç®¡ç†ç»„</a>&nbsp;>&nbsp;ä¿®æ”¹ä¼šå‘˜ç®¡ç†ç»„ï¼š<b>".$r['agname']."</b>";
-	$postword='ä¿®æ”¹';
+	$url="<a href=ListMAdminGroup.php".$ecms_hashur['whehref'].">¹ÜÀí»áÔ±¹ÜÀí×é</a>&nbsp;>&nbsp;ĞŞ¸Ä»áÔ±¹ÜÀí×é£º<b>".$r['agname']."</b>";
+	$postword='ĞŞ¸Ä';
 }
 db_close();
 $empire=null;
@@ -33,15 +33,15 @@ $empire=null;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ä¼šå‘˜ç®¡ç†ç»„</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>»áÔ±¹ÜÀí×é</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
   <tr> 
-    <td height="25">ä½ç½®ï¼š 
+    <td height="25">Î»ÖÃ£º 
       <?=$url?>
     </td>
   </tr>
@@ -50,26 +50,26 @@ $empire=null;
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="22%" height="25"><?=$postword?>ä¼šå‘˜ç®¡ç†ç»„</td>
+      <td width="22%" height="25"><?=$postword?>»áÔ±¹ÜÀí×é</td>
       <td width="78%" height="25"><input name="enews" type="hidden" id="enews" value="<?=$enews?>"> 
         <input name="agid" type="hidden" id="agid" value="<?=$agid?>"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç»„åç§°</td>
+      <td height="25">×éÃû³Æ</td>
       <td height="25"> <input name="agname" type="text" id="agname" value="<?=$r['agname']?>" size="38"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">ç®¡ç†çº§åˆ«</td>
+      <td height="25">¹ÜÀí¼¶±ğ</td>
       <td height="25"><select name="isadmin" id="isadmin">
-        <option value="1"<?=$r['isadmin']==1?' selected':''?>>å®ä¹ ç‰ˆä¸»</option>
-        <option value="5"<?=$r['isadmin']==5?' selected':''?>>ç‰ˆä¸»</option>
-        <option value="9"<?=$r['isadmin']==9?' selected':''?>>ç®¡ç†å‘˜</option>
+        <option value="1"<?=$r['isadmin']==1?' selected':''?>>ÊµÏ°°æÖ÷</option>
+        <option value="5"<?=$r['isadmin']==5?' selected':''?>>°æÖ÷</option>
+        <option value="9"<?=$r['isadmin']==9?' selected':''?>>¹ÜÀíÔ±</option>
       </select>
         <?php
 		if($agid==1||$agid==2)
 		{
 		?>
-		<font color="#FF0000">(å†…ç½®ç®¡ç†ç»„çš„çº§åˆ«ä¸èƒ½ä¿®æ”¹)</font>
+		<font color="#FF0000">(ÄÚÖÃ¹ÜÀí×éµÄ¼¶±ğ²»ÄÜĞŞ¸Ä)</font>
 		<?php
 		}
 		?>
@@ -77,7 +77,7 @@ $empire=null;
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp;</td>
-      <td height="25"> <input type="submit" name="Submit" value="æäº¤"> <input type="reset" name="Submit2" value="é‡ç½®"></td>
+      <td height="25"> <input type="submit" name="Submit" value="Ìá½»"> <input type="reset" name="Submit2" value="ÖØÖÃ"></td>
     </tr>
   </table>
 </form>

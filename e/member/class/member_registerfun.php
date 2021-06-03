@@ -1,7 +1,7 @@
 <?php
-//--------------- æ³¨å†Œå‡½æ•° ---------------
+//--------------- ×¢²áº¯Êı ---------------
 
-//éªŒè¯ä¼šå‘˜ç»„æ˜¯å¦å¯æ³¨å†Œ
+//ÑéÖ¤»áÔ±×éÊÇ·ñ¿É×¢²á
 function CheckMemberGroupCanReg($groupid){
 	global $empire,$dbtbpre;
 	$groupid=(int)$groupid;
@@ -12,7 +12,7 @@ function CheckMemberGroupCanReg($groupid){
 	}
 }
 
-//éªŒè¯æ³¨å†Œæ—¶é—´
+//ÑéÖ¤×¢²áÊ±¼ä
 function eCheckIpRegTime($ip,$time){
 	global $empire,$dbtbpre;
 	if(empty($time))
@@ -36,29 +36,29 @@ function eCheckIpRegTime($ip,$time){
 	}
 }
 
-//ç”¨æˆ·æ³¨å†Œ
+//ÓÃ»§×¢²á
 function register($add){
 	global $empire,$dbtbpre,$public_r,$ecms_config;
-	//å…³é—­æ³¨å†Œ
+	//¹Ø±Õ×¢²á
 	if($public_r['register_ok'])
 	{
 		printerror('CloseRegister','',1);
 	}
-	//éªŒè¯æ—¶é—´æ®µå…è®¸æ“ä½œ
+	//ÑéÖ¤Ê±¼ä¶ÎÔÊĞí²Ù×÷
 	eCheckTimeCloseDo('reg');
-	//éªŒè¯IP
+	//ÑéÖ¤IP
 	eCheckAccessDoIp('register');
 	if(!empty($ecms_config['member']['registerurl']))
 	{
 		Header("Location:".$ecms_config['member']['registerurl']);
 		exit();
     }
-	//å·²ç»ç™»é™†ä¸èƒ½æ³¨å†Œ
+	//ÒÑ¾­µÇÂ½²»ÄÜ×¢²á
 	if(getcvar('mluserid'))
 	{
 		printerror('LoginToRegister','',1);
 	}
-	CheckCanPostUrl();//éªŒè¯æ¥æº
+	CheckCanPostUrl();//ÑéÖ¤À´Ô´
 	$username=trim($add['username']);
 	$password=trim($add['password']);
 	$username=RepPostVar($username);
@@ -70,7 +70,7 @@ function register($add){
 		printerror("EmptyMember","history.go(-1)",1);
 	}
 	$tobind=(int)$add['tobind'];
-	//éªŒè¯ç 
+	//ÑéÖ¤Âë
 	$keyvname='checkregkey';
 	if($public_r['regkey_ok'])
 	{
@@ -83,14 +83,14 @@ function register($add){
 	//IP
 	$regip=egetip();
 	$regipport=egetipport();
-	//ç”¨æˆ·å­—æ•°
+	//ÓÃ»§×ÖÊı
 	$pr=$empire->fetch1("select min_userlen,max_userlen,min_passlen,max_passlen,regretime,regclosewords,regemailonly from {$dbtbpre}enewspublic limit 1");
 	$userlen=strlen($username);
 	if($userlen<$pr[min_userlen]||$userlen>$pr[max_userlen])
 	{
 		printerror('FaiUserlen','',1);
 	}
-	//å¯†ç å­—æ•°
+	//ÃÜÂë×ÖÊı
 	$passlen=strlen($password);
 	if($passlen<$pr[min_passlen]||$passlen>$pr[max_passlen])
 	{
@@ -108,18 +108,18 @@ function register($add){
 	{
 		printerror('NotSpeWord','',1);
 	}
-	//åŒä¸€IPæ³¨å†Œ
+	//Í¬Ò»IP×¢²á
 	eCheckIpRegTime($regip,$pr['regretime']);
-	//ä¿ç•™ç”¨æˆ·
+	//±£ÁôÓÃ»§
 	toCheckCloseWord($username,$pr['regclosewords'],'RegHaveCloseword');
 	$username=RepPostStr($username);
-	//é‡å¤ç”¨æˆ·
+	//ÖØ¸´ÓÃ»§
 	$num=$empire->gettotal("select count(*) as total from ".eReturnMemberTable()." where ".egetmf('username')."='$username' limit 1");
 	if($num)
 	{
 		printerror('ReUsername','',1);
 	}
-	//é‡å¤é‚®ç®±
+	//ÖØ¸´ÓÊÏä
 	if($pr['regemailonly'])
 	{
 		$num=$empire->gettotal("select count(*) as total from ".eReturnMemberTable()." where ".egetmf('email')."='$email' limit 1");
@@ -128,54 +128,54 @@ function register($add){
 			printerror('ReEmailFail','',1);
 		}
 	}
-	//æ³¨å†Œæ—¶é—´
+	//×¢²áÊ±¼ä
 	$lasttime=time();
 	$registertime=eReturnAddMemberRegtime();
-	$rnd=make_password(20);//äº§ç”Ÿéšæœºå¯†ç 
+	$rnd=make_password(20);//²úÉúËæ»úÃÜÂë
 	$userkey=eReturnMemberUserKey();
-	//å¯†ç 
+	//ÃÜÂë
 	$truepassword=$password;
 	$salt=eReturnMemberSalt();
 	$password=eDoMemberPw($password,$salt);
-	//å®¡æ ¸
+	//ÉóºË
 	$checked=ReturnGroupChecked($groupid);
 	if($checked&&$public_r['regacttype'])
 	{
 		$checked=0;
 	}
 	$checked=(int)$checked;
-	//éªŒè¯é™„åŠ è¡¨å¿…å¡«é¡¹
+	//ÑéÖ¤¸½¼Ó±í±ØÌîÏî
 	$mr['add_filepass']=ReturnTranFilepass();
 	$fid=GetMemberFormId($groupid);
 	$member_r=ReturnDoMemberF($fid,$add,$mr,0,$username);
 
 	$sql=$empire->query("insert into ".eReturnMemberTable()."(".eReturnInsertMemberF('username,password,rnd,email,registertime,groupid,userfen,userdate,money,zgroupid,havemsg,checked,salt,userkey').") values('$username','$password','$rnd','$email','$registertime','$groupid','$public_r[reggetfen]','0','0','0','0','$checked','$salt','$userkey');");
-	//å–å¾—userid
+	//È¡µÃuserid
 	$userid=$empire->lastid();
-	//é™„åŠ è¡¨
+	//¸½¼Ó±í
 	$addr=$empire->fetch1("select * from {$dbtbpre}enewsmemberadd where userid='$userid'");
 	if(!$addr[userid])
 	{
 		$spacestyleid=ReturnGroupSpaceStyleid($groupid);
 		$sql1=$empire->query("insert into {$dbtbpre}enewsmemberadd(userid,spacestyleid,regip,lasttime,lastip,loginnum,regipport,lastipport".$member_r[0].") values('$userid','$spacestyleid','$regip','$lasttime','$regip','1','$regipport','$regipport'".$member_r[1].");");
 	}
-	//æ›´æ–°é™„ä»¶
+	//¸üĞÂ¸½¼ş
 	UpdateTheFileOther(6,$userid,$mr['add_filepass'],'member');
-	ecmsEmptyShowKey($keyvname);//æ¸…ç©ºéªŒè¯ç 
-	//ç»‘å®šå¸å·
+	ecmsEmptyShowKey($keyvname);//Çå¿ÕÑéÖ¤Âë
+	//°ó¶¨ÕÊºÅ
 	if($tobind)
 	{
 		MemberConnect_BindUser($userid);
 	}
 	if($sql)
 	{
-		//é‚®ç®±æ¿€æ´»
+		//ÓÊÏä¼¤»î
 		if($checked==0&&$public_r['regacttype']==1)
 		{
 			include('class/member_actfun.php');
 			SendActUserEmail($userid,$username,$email);
 		}
-		//å®¡æ ¸
+		//ÉóºË
 		if($checked==0)
 		{
 			$location=DoingReturnUrl("../../",$_POST['ecmsfrom']);
@@ -191,9 +191,9 @@ function register($add){
 		$set2=esetcookie("mluserid",$userid,$logincookie);
 		$set3=esetcookie("mlgroupid",$groupid,$logincookie);
 		$set4=esetcookie("mlrnd",$rnd,$logincookie);
-		//éªŒè¯ç¬¦
+		//ÑéÖ¤·û
 		qGetLoginAuthstr($userid,$username,$rnd,$groupid,$logincookie);
-		//ç™»å½•é™„åŠ cookie
+		//µÇÂ¼¸½¼Ócookie
 		AddLoginCookie($r);
 		$location="../member/cp/";
 		$returnurl=getcvar('returnurl');
@@ -202,7 +202,7 @@ function register($add){
 			$location=$returnurl;
 		}
 		$set5=esetcookie("returnurl","");
-		//æ˜“é€šè¡Œç³»ç»Ÿ
+		//Ò×Í¨ĞĞÏµÍ³
 		DoEpassport('reg',$userid,$username,$truepassword,$salt,$email,$groupid,$registertime);
 		$location=DoingReturnUrl($location,$_POST['ecmsfrom']);
 		printerror("RegisterSuccess",$location,1);

@@ -7,7 +7,7 @@ require("../../data/dbcache/class.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//楠岃瘉鐢ㄦ埛
+//验证用户
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -26,8 +26,8 @@ else
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>鑿滃崟</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>菜单</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <SCRIPT lanuage="JScript">
 function DisplayImg(ss,imgname,phome)
@@ -66,32 +66,32 @@ function turnit(ss,img)
 <br>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="doztid">
   <tr> 
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="ztimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dozt,"ztimg"); style="CURSOR: hand">褰撳墠涓撻绠＄悊</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="ztimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dozt,"ztimg"); style="CURSOR: hand">当前专题管理</a></td>
   </tr>
   <tbody id="dozt">
     <tr> 
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AddZt.php?enews=EditZt&ztid=<?=$ztid?>&from=1<?=$ecms_hashur['ehref']?>" target="apmain">淇敼涓撻</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AddZt.php?enews=EditZt&ztid=<?=$ztid?>&from=1<?=$ecms_hashur['ehref']?>" target="apmain">修改专题</a></td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ZtType.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>" target="apmain">绠＄悊涓撻瀛愮被</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ZtType.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>" target="apmain">管理专题子类</a></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListZtInfo.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>" target="apmain">绠＄悊淇℃伅</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListZtInfo.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>" target="apmain">管理信息</a></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../pl/ListZtPl.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>" target="apmain">绠＄悊璇勮</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../pl/ListZtPl.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>" target="apmain">管理评论</a></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TogZt.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>" target="apmain">缁勫悎涓撻</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TogZt.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>" target="apmain">组合专题</a></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SpecialPathfile.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>" target="apmain">绠＄悊涓撻闄勪欢</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SpecialPathfile.php?ztid=<?=$ztid?><?=$ecms_hashur['ehref']?>" target="apmain">管理专题附件</a></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../ecmschtml.php?enews=ReZtHtml&ztid=<?=$ztid?>&ecms=1<?=$ecms_hashur['href']?>" target="apmain">鍒锋柊涓撻椤甸潰</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../ecmschtml.php?enews=ReZtHtml&ztid=<?=$ztid?>&ecms=1<?=$ecms_hashur['href']?>" target="apmain">刷新专题页面</a></td>
     </tr>
     <tr>
-      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?=$zturl?>" target="_blank">棰勮涓撻</a></td>
+      <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?=$zturl?>" target="_blank">预览专题</a></td>
     </tr>
   </tbody>
 </table>

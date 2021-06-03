@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,13 +15,13 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"menu");
 
-//æ˜¾ç¤ºå¯¼èˆª
+//ÏÔÊ¾µ¼º½
 function MenuClassToShow(){
 	global $empire,$dbtbpre;
-	//å¸¸ç”¨èœå•
+	//³£ÓÃ²Ëµ¥
 	$showfastmenu=$empire->gettotal("select count(*) as total from {$dbtbpre}enewsmenuclass where classtype=1 limit 1");
 	if($showfastmenu)
 	{
@@ -34,7 +34,7 @@ function MenuClassToShow(){
 	}
 }
 
-//å¢åŠ èœå•åˆ†ç±»
+//Ôö¼Ó²Ëµ¥·ÖÀà
 function AddMenuClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$classtype=(int)$add['classtype'];
@@ -42,7 +42,7 @@ function AddMenuClass($add,$userid,$username){
 	{
 		printerror("EmptyMenuClass","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"menu");
 	$myorder=(int)$add['myorder'];
 	$add['classname']=hRepPostStr($add['classname'],1);
@@ -51,7 +51,7 @@ function AddMenuClass($add,$userid,$username){
 	if($sql)
 	{
 		MenuClassToShow();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$lastid."<br>classname=".$add[classname]);
 		printerror("AddMenuClassSuccess","MenuClass.php".hReturnEcmsHashStrHref2(1));
 	}
@@ -59,7 +59,7 @@ function AddMenuClass($add,$userid,$username){
 	{printerror("DbError","history.go(-1)");}
 }
 
-//ä¿®æ”¹èœå•åˆ†ç±»
+//ĞŞ¸Ä²Ëµ¥·ÖÀà
 function EditMenuClass($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=$add['classid'];
@@ -72,9 +72,9 @@ function EditMenuClass($add,$userid,$username){
 	{
 		printerror("EmptyMenuClass","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"menu");
-	//åˆ é™¤
+	//É¾³ı
 	$del=0;
 	$ids='';
 	$delcount=count($delclassid);
@@ -90,7 +90,7 @@ function EditMenuClass($add,$userid,$username){
 		$empire->query("delete from {$dbtbpre}enewsmenu where classid in (".$ids.")");
 		$del=1;
 	}
-	//ä¿®æ”¹
+	//ĞŞ¸Ä
 	for($i=0;$i<$count;$i++)
 	{
 		$classid[$i]=(int)$classid[$i];
@@ -104,12 +104,12 @@ function EditMenuClass($add,$userid,$username){
 		$empire->query("update {$dbtbpre}enewsmenuclass set classname='".$classname[$i]."',myorder='".$myorder[$i]."',classtype='".$classtype[$i]."' where classid='".$classid[$i]."'");
 	}
 	MenuClassToShow();
-	//æ“ä½œæ—¥å¿—
+	//²Ù×÷ÈÕÖ¾
 	insert_dolog("del=$del");
 	printerror("EditMenuClassSuccess","MenuClass.php".hReturnEcmsHashStrHref2(1));
 }
 
-//ä¿®æ”¹èœå•åˆ†ç±»ç”¨æˆ·æƒé™
+//ĞŞ¸Ä²Ëµ¥·ÖÀàÓÃ»§È¨ÏŞ
 function EditMenuClassGroup($add,$userid,$username){
 	global $empire,$dbtbpre;
 	$classid=(int)$add['classid'];
@@ -117,7 +117,7 @@ function EditMenuClassGroup($add,$userid,$username){
 	{
 		printerror("EmptyMenuClass","history.go(-1)");
 	}
-	//éªŒè¯æƒé™
+	//ÑéÖ¤È¨ÏŞ
 	CheckLevel($userid,$username,$classid,"menu");
 	$cr=$empire->fetch1("select classid,classname from {$dbtbpre}enewsmenuclass where classid='$classid'");
 	if(!$cr['classid'])
@@ -147,7 +147,7 @@ function EditMenuClassGroup($add,$userid,$username){
 	if($sql)
 	{
 		MenuClassToShow();
-		//æ“ä½œæ—¥å¿—
+		//²Ù×÷ÈÕÖ¾
 		insert_dolog("classid=".$classid."<br>classname=".$cr[classname]);
 		printerror("EditMenuClassSuccess","ListMenu.php?classid=$classid".hReturnEcmsHashStrHref2(0));
 	}
@@ -163,15 +163,15 @@ if($enews)
 {
 	hCheckEcmsRHash();
 }
-if($enews=="AddMenuClass")//å¢åŠ èœå•åˆ†ç±»
+if($enews=="AddMenuClass")//Ôö¼Ó²Ëµ¥·ÖÀà
 {
 	AddMenuClass($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditMenuClass")//ä¿®æ”¹èœå•åˆ†ç±»
+elseif($enews=="EditMenuClass")//ĞŞ¸Ä²Ëµ¥·ÖÀà
 {
 	EditMenuClass($_POST,$logininid,$loginin);
 }
-elseif($enews=="EditMenuClassGroup")//ä¿®æ”¹èœå•åˆ†ç±»ç”¨æˆ·æƒé™
+elseif($enews=="EditMenuClassGroup")//ĞŞ¸Ä²Ëµ¥·ÖÀàÓÃ»§È¨ÏŞ
 {
 	EditMenuClassGroup($_POST,$logininid,$loginin);
 }
@@ -183,8 +183,8 @@ $sql=$empire->query("select classid,classname,issys,myorder,classtype from {$dbt
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†èœå•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí²Ëµ¥</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <script>
 function CheckAll(form)
@@ -203,7 +203,7 @@ function CheckAll(form)
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
     <td width="38%">
-<p>ä½ç½®ï¼š<a href="MenuClass.php<?=$ecms_hashur['whehref']?>">ç®¡ç†èœå•</a></p></td>
+<p>Î»ÖÃ£º<a href="MenuClass.php<?=$ecms_hashur['whehref']?>">¹ÜÀí²Ëµ¥</a></p></td>
     <td><div align="right"> </div></td>
   </tr>
 </table>
@@ -211,14 +211,14 @@ function CheckAll(form)
   
 <br>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" class="tableborder">
-  <form name="form2" method="post" action="MenuClass.php" onsubmit="return confirm('ç¡®è®¤è¦æäº¤?');">
+  <form name="form2" method="post" action="MenuClass.php" onsubmit="return confirm('È·ÈÏÒªÌá½»?');">
   <?=$ecms_hashur['form']?>
     <tr class="header"> 
-      <td width="6%"><div align="center">åˆ é™¤</div></td>
-      <td width="8%">æ˜¾ç¤ºé¡ºåº</td>
-      <td width="40%" height="25">åˆ†ç±»åç§°</td>
-      <td width="14%">èœå•ç±»å‹</td>
-      <td width="32%" height="25"><div align="center">ç®¡ç†èœå•</div></td>
+      <td width="6%"><div align="center">É¾³ı</div></td>
+      <td width="8%">ÏÔÊ¾Ë³Ğò</td>
+      <td width="40%" height="25">·ÖÀàÃû³Æ</td>
+      <td width="14%">²Ëµ¥ÀàĞÍ</td>
+      <td width="32%" height="25"><div align="center">¹ÜÀí²Ëµ¥</div></td>
     </tr>
     <?php
   while($r=$empire->fetch($sql))
@@ -242,11 +242,11 @@ function CheckAll(form)
         <input name="classid[]" type="hidden" id="classid[]" value="<?=$r[classid]?>"> 
       </td>
       <td><select name="classtype[]" id="classtype[]">
-          <option value="1"<?=$r[classtype]==1?' selected':''?>>å¸¸ç”¨æ“ä½œ</option>
-          <option value="2"<?=$r[classtype]==2?' selected':''?>>æ’ä»¶èœå•</option>
-          <option value="3"<?=$r[classtype]==3?' selected':''?>>æ‰©å±•èœå•</option>
+          <option value="1"<?=$r[classtype]==1?' selected':''?>>³£ÓÃ²Ù×÷</option>
+          <option value="2"<?=$r[classtype]==2?' selected':''?>>²å¼ş²Ëµ¥</option>
+          <option value="3"<?=$r[classtype]==3?' selected':''?>>À©Õ¹²Ëµ¥</option>
         </select></td>
-      <td height="25"><div align="center">[<a href="ListMenu.php?classid=<?=$r[classid]?><?=$ecms_hashur['ehref']?>">ç®¡ç†èœå•</a>]</div></td>
+      <td height="25"><div align="center">[<a href="ListMenu.php?classid=<?=$r[classid]?><?=$ecms_hashur['ehref']?>">¹ÜÀí²Ëµ¥</a>]</div></td>
     </tr>
     <?php
   }
@@ -255,9 +255,9 @@ function CheckAll(form)
       <td><div align="center"> 
           <input type=checkbox name=chkall value=on onclick=CheckAll(this.form)>
         </div></td>
-      <td height="25" colspan="4"><input type="submit" name="Submit2" value="æäº¤"> 
+      <td height="25" colspan="4"><input type="submit" name="Submit2" value="Ìá½»"> 
         <input name="enews" type="hidden" id="enews" value="EditMenuClass"> &nbsp; 
-        &nbsp; <font color="#666666">(è¯´æ˜ï¼šé¡ºåºå€¼è¶Šå°æ˜¾ç¤ºè¶Šå‰é¢) </font></td>
+        &nbsp; <font color="#666666">(ËµÃ÷£ºË³ĞòÖµÔ½Ğ¡ÏÔÊ¾Ô½Ç°Ãæ) </font></td>
     </tr>
   </form>
 </table>
@@ -266,22 +266,22 @@ function CheckAll(form)
   <form name="form1" method="post" action="MenuClass.php">
   <?=$ecms_hashur['form']?>
     <tr class="header">
-      <td height="25">å¢åŠ èœå•åˆ†ç±»: 
+      <td height="25">Ôö¼Ó²Ëµ¥·ÖÀà: 
         <input name=enews type=hidden id="enews" value=AddMenuClass>
         </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> åˆ†ç±»åç§°: 
+      <td height="25" bgcolor="#FFFFFF"> ·ÖÀàÃû³Æ: 
         <input name="classname" type="text" id="classname">
-        ç±»å‹:
+        ÀàĞÍ:
         <select name="classtype" id="classtype">
-          <option value="1">å¸¸ç”¨æ“ä½œ</option>
-          <option value="2">æ’ä»¶èœå•</option>
-          <option value="3" selected>æ‰©å±•èœå•</option>
+          <option value="1">³£ÓÃ²Ù×÷</option>
+          <option value="2">²å¼ş²Ëµ¥</option>
+          <option value="3" selected>À©Õ¹²Ëµ¥</option>
         </select>
-        æ˜¾ç¤ºé¡ºåº: 
+        ÏÔÊ¾Ë³Ğò: 
         <input name="myorder" type="text" id="myorder" value="0" size="4"> 
-        <input type="submit" name="Submit" value="å¢åŠ ">
+        <input type="submit" name="Submit" value="Ôö¼Ó">
       </td>
     </tr>
 	</form>

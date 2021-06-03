@@ -6,12 +6,12 @@ require("../class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 if($public_r['regacttype']!=1)
 {
 	printerror('CloseRegAct','',1);
 }
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/regsend.php');
 db_close();
 $empire=null;

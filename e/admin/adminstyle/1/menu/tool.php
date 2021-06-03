@@ -7,8 +7,8 @@ if(!defined('InEmpireCMS'))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>èœå•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²Ëµ¥</title>
 <link href="../../../data/menu/menu.css" rel="stylesheet" type="text/css">
 <script src="../../../data/menu/menu.js" type="text/javascript"></script>
 <SCRIPT lanuage="JScript">
@@ -21,7 +21,7 @@ function tourl(url){
 <table border='0' cellspacing='0' cellpadding='0'>
 	<tr height=20>
 			<td id="home"><img src="../../../data/images/homepage.gif" border=0></td>
-			<td><b>æ’ä»¶ç®¡ç†</b></td>
+			<td><b>²å¼þ¹ÜÀí</b></td>
 	</tr>
 </table>
 
@@ -32,7 +32,7 @@ if($r[doad])
 ?>
   <tr> 
     <td id="prad" class="menu1" onclick="chengstate('ad')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å¹¿å‘Šç³»ç»Ÿ</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ã¸æÏµÍ³</a>
 	</td>
   </tr>
   <tr id="itemad" style="display:none"> 
@@ -40,12 +40,12 @@ if($r[doad])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../tool/AdClass.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†å¹¿å‘Šåˆ†ç±»</a>
+			<a href="../../tool/AdClass.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí¹ã¸æ·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../tool/ListAd.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†å¹¿å‘Š</a>
+			<a href="../../tool/ListAd.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí¹ã¸æ</a>
           </td>
         </tr>
       </table>
@@ -61,7 +61,7 @@ if($r[dovote])
 ?>
   <tr> 
     <td id="prvote" class="menu1" onclick="chengstate('vote')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æŠ•ç¥¨ç³»ç»Ÿ</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Í¶Æ±ÏµÍ³</a>
 	</td>
   </tr>
   <tr id="itemvote" style="display:none"> 
@@ -69,12 +69,12 @@ if($r[dovote])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../tool/AddVote.php?enews=AddVote<?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å¢žåŠ æŠ•ç¥¨</a>
+			<a href="../../tool/AddVote.php?enews=AddVote<?=$ecms_hashur['ehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">Ôö¼ÓÍ¶Æ±</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../tool/ListVote.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†æŠ•ç¥¨</a>
+			<a href="../../tool/ListVote.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÍ¶Æ±</a>
           </td>
         </tr>
       </table>
@@ -90,7 +90,7 @@ if($r[dolink])
 ?>
   <tr> 
     <td id="prlink" class="menu1" onclick="chengstate('link')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">å‹æƒ…é“¾æŽ¥ç®¡ç†</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÓÑÇéÁ´½Ó¹ÜÀí</a>
 	</td>
   </tr>
   <tr id="itemlink" style="display:none"> 
@@ -98,12 +98,12 @@ if($r[dolink])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../tool/LinkClass.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†å‹æƒ…é“¾æŽ¥åˆ†ç±»</a>
+			<a href="../../tool/LinkClass.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÓÑÇéÁ´½Ó·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../tool/ListLink.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†å‹æƒ…é“¾æŽ¥</a>
+			<a href="../../tool/ListLink.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÓÑÇéÁ´½Ó</a>
           </td>
         </tr>
       </table>
@@ -119,7 +119,7 @@ if($r[dogbook])
 ?>
   <tr> 
     <td id="prgbook" class="menu1" onclick="chengstate('gbook')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç•™è¨€æ¿ç®¡ç†</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÁôÑÔ°å¹ÜÀí</a>
 	</td>
   </tr>
   <tr id="itemgbook" style="display:none"> 
@@ -127,17 +127,17 @@ if($r[dogbook])
 		<table border='0' cellspacing='0' cellpadding='0'>
         <tr> 
           <td class="file">
-			<a href="../../tool/GbookClass.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†ç•™è¨€åˆ†ç±»</a>
+			<a href="../../tool/GbookClass.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÁôÑÔ·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../tool/gbook.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†ç•™è¨€</a>
+			<a href="../../tool/gbook.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÁôÑÔ</a>
           </td>
         </tr>
 		<tr> 
           <td class="file1">
-			<a href="../../tool/DelMoreGbook.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">æ‰¹é‡åˆ é™¤ç•™è¨€</a>
+			<a href="../../tool/DelMoreGbook.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÅúÁ¿É¾³ýÁôÑÔ</a>
           </td>
         </tr>
       </table>
@@ -153,7 +153,7 @@ if($r[dofeedback]||$r[dofeedbackf])
 ?>
   <tr> 
     <td id="prfeedback" class="menu1" onclick="chengstate('feedback')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ä¿¡æ¯åé¦ˆç®¡ç†</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ÐÅÏ¢·´À¡¹ÜÀí</a>
 	</td>
   </tr>
   <tr id="itemfeedback" style="display:none"> 
@@ -165,12 +165,12 @@ if($r[dofeedback]||$r[dofeedbackf])
 		?>
         <tr> 
           <td class="file">
-			<a href="../../tool/FeedbackClass.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†åé¦ˆåˆ†ç±»</a>
+			<a href="../../tool/FeedbackClass.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí·´À¡·ÖÀà</a>
           </td>
         </tr>
 		<tr> 
           <td class="file">
-			<a href="../../tool/ListFeedbackF.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†åé¦ˆå­—æ®µ</a>
+			<a href="../../tool/ListFeedbackF.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí·´À¡×Ö¶Î</a>
           </td>
         </tr>
 		<?
@@ -180,7 +180,7 @@ if($r[dofeedback]||$r[dofeedbackf])
 		?>
 		<tr> 
           <td class="file1">
-			<a href="../../tool/feedback.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†ä¿¡æ¯åé¦ˆ</a>
+			<a href="../../tool/feedback.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀíÐÅÏ¢·´À¡</a>
           </td>
         </tr>
 		<?
@@ -199,7 +199,7 @@ if($r[donotcj])
 ?>
   <tr> 
     <td id="prnotcj" class="menu3" onclick="chengstate('notcj')">
-		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">é˜²é‡‡é›†æ’ä»¶</a>
+		<a onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">·À²É¼¯²å¼þ</a>
 	</td>
   </tr>
   <tr id="itemnotcj" style="display:none"> 
@@ -207,7 +207,7 @@ if($r[donotcj])
 		<table border='0' cellspacing='0' cellpadding='0'>
 		<tr> 
           <td class="file1">
-			<a href="../../template/NotCj.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">ç®¡ç†é˜²é‡‡é›†éšæœºå­—ç¬¦</a>
+			<a href="../../template/NotCj.php<?=$ecms_hashur['whehref']?>" target="main" onmouseout="this.style.fontWeight=''" onmouseover="this.style.fontWeight='bold'">¹ÜÀí·À²É¼¯Ëæ»ú×Ö·û</a>
           </td>
         </tr>
       </table>
@@ -219,7 +219,7 @@ if($r[donotcj])
 
 <?php
 $b=0;
-//è‡ªå®šä¹‰æ’ä»¶èœå•
+//×Ô¶¨Òå²å¼þ²Ëµ¥
 $menucsql=$empire->query("select classid,classname from {$dbtbpre}enewsmenuclass where classtype=2 and (groupids='' or groupids like '%,".intval($lur[groupid]).",%') order by myorder,classid");
 while($menucr=$empire->fetch($menucsql))
 {

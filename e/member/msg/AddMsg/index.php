@@ -6,7 +6,7 @@ require("../../class/user.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=2;
-eCheckCloseMods('member');//鍏抽棴妯″潡
+eCheckCloseMods('member');//关闭模块
 $user=islogin();
 $mid=(int)$_GET['mid'];
 $username=RepPostStr($_GET['username']);
@@ -22,14 +22,14 @@ if($mid)
 	}
 	$title=$r['title'];
 	$msgtext=$r['msgtext'];
-	//鍥炲
+	//回复
 	if($re==1)
 	{
 		$title="Re:".$title;
-		$msgtext="\r\n"."------鍘熸枃鍐呭------\r\n".$msgtext;
+		$msgtext="\r\n"."------原文内容------\r\n".$msgtext;
 	}
 }
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/member/AddMsg.php');
 db_close();
 $empire=null;

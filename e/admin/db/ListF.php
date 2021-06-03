@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,7 +15,7 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"f");
 $tid=(int)$_GET['tid'];
 $tbname=RepPostVar($_GET['tbname']);
@@ -23,39 +23,39 @@ if(!$tid||!$tbname)
 {
 	printerror("ErrorUrl","history.go(-1)");
 }
-$url="æ•°æ®è¡¨:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListF.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">å­—æ®µç®¡ç†</a>";
+$url="Êı¾İ±í:[".$dbtbpre."ecms_".$tbname."]&nbsp;>&nbsp;<a href=ListF.php?tid=$tid&tbname=$tbname".$ecms_hashur['ehref'].">×Ö¶Î¹ÜÀí</a>";
 $sql=$empire->query("select * from {$dbtbpre}enewsf where tid='$tid' order by myorder,fid");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç®¡ç†å­—æ®µ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>¹ÜÀí×Ö¶Î</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td>ä½ç½®ï¼š<?=$url?></td>
+    <td>Î»ÖÃ£º<?=$url?></td>
   </tr>
 </table>
 <form name="form1" method="post" action="../ecmsmod.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <?=$ecms_hashur['form']?>
     <tr> 
-      <td class="emenubutton"><input type="button" name="Submit2" value="å¢åŠ å­—æ®µ" onclick="self.location.href='AddF.php?enews=AddF&tid=<?=$tid?>&tbname=<?=$tbname?><?=$ecms_hashur['ehref']?>';"></td>
+      <td class="emenubutton"><input type="button" name="Submit2" value="Ôö¼Ó×Ö¶Î" onclick="self.location.href='AddF.php?enews=AddF&tid=<?=$tid?>&tbname=<?=$tbname?><?=$ecms_hashur['ehref']?>';"></td>
     </tr>
   </table>
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
     <tr class="header"> 
-      <td width="6%" height="25"><div align="center">é¡ºåº</div></td>
-      <td width="8%"><div align="center">è¡¨</div></td>
-      <td width="29%" height="25"><div align="center">å­—æ®µå</div></td>
-      <td width="20%"><div align="center">å­—æ®µæ ‡è¯†</div></td>
-      <td width="15%"> <div align="center">å­—æ®µç±»å‹</div></td>
-      <td width="8%"><div align="center">é‡‡é›†é¡¹</div></td>
-      <td width="14%" height="25"><div align="center">æ“ä½œ</div></td>
+      <td width="6%" height="25"><div align="center">Ë³Ğò</div></td>
+      <td width="8%"><div align="center">±í</div></td>
+      <td width="29%" height="25"><div align="center">×Ö¶ÎÃû</div></td>
+      <td width="20%"><div align="center">×Ö¶Î±êÊ¶</div></td>
+      <td width="15%"> <div align="center">×Ö¶ÎÀàĞÍ</div></td>
+      <td width="8%"><div align="center">²É¼¯Ïî</div></td>
+      <td width="14%" height="25"><div align="center">²Ù×÷</div></td>
     </tr>
     <?php
   	while($r=$empire->fetch($sql))
@@ -69,26 +69,26 @@ $sql=$empire->query("select * from {$dbtbpre}enewsf where tid='$tid' order by my
 			}
   		}
   		if($r[iscj])
-  		{$iscj="æ˜¯";}
+  		{$iscj="ÊÇ";}
   		else
-  		{$iscj="å¦";}
+  		{$iscj="·ñ";}
   		if($r[isadd])
   		{
-  			$do="[<a href='AddF.php?tid=$tid&tbname=$tbname&enews=EditF&fid=".$r[fid].$ecms_hashur['ehref']."'>ä¿®æ”¹</a>]&nbsp;&nbsp;[<a href='../ecmsmod.php?tid=$tid&tbname=$tbname&enews=DelF&fid=".$r[fid].$ecms_hashur['href']."' onclick=\"return confirm('ç¡®è®¤è¦åˆ é™¤ï¼Ÿ');\">åˆ é™¤</a>]";
+  			$do="[<a href='AddF.php?tid=$tid&tbname=$tbname&enews=EditF&fid=".$r[fid].$ecms_hashur['ehref']."'>ĞŞ¸Ä</a>]&nbsp;&nbsp;[<a href='../ecmsmod.php?tid=$tid&tbname=$tbname&enews=DelF&fid=".$r[fid].$ecms_hashur['href']."' onclick=\"return confirm('È·ÈÏÒªÉ¾³ı£¿');\">É¾³ı</a>]";
  		 }
   		else
   		{
-  			$ftype="ç³»ç»Ÿå­—æ®µ";
-  			$r[f]="<a title='ç³»ç»Ÿå­—æ®µ'><font color=red>".$r[f]."</font></a>";
-  			$do="<a href='EditSysF.php?tid=$tid&tbname=$tbname&fid=".$r[fid].$ecms_hashur['ehref']."'><font color=red>[ä¿®æ”¹ç³»ç»Ÿå­—æ®µ]</font></a>";
+  			$ftype="ÏµÍ³×Ö¶Î";
+  			$r[f]="<a title='ÏµÍ³×Ö¶Î'><font color=red>".$r[f]."</font></a>";
+  			$do="<a href='EditSysF.php?tid=$tid&tbname=$tbname&fid=".$r[fid].$ecms_hashur['ehref']."'><font color=red>[ĞŞ¸ÄÏµÍ³×Ö¶Î]</font></a>";
   		}
   		if($r[tbdataf]==1)
   		{
-  			$tbdataf=$r[isadd]?"<a href='ChangeDataTableF.php?tid=$tid&tbname=$tbname&fid=".$r[fid].$ecms_hashur['ehref']."' title='ç‚¹å‡»å°†å­—æ®µè½¬ç§»åˆ°ä¸»è¡¨'>å‰¯è¡¨</a>":"å‰¯è¡¨";
+  			$tbdataf=$r[isadd]?"<a href='ChangeDataTableF.php?tid=$tid&tbname=$tbname&fid=".$r[fid].$ecms_hashur['ehref']."' title='µã»÷½«×Ö¶Î×ªÒÆµ½Ö÷±í'>¸±±í</a>":"¸±±í";
   		}
   		else
   		{
-			$tbdataf=$r[isadd]?"<a href='ChangeDataTableF.php?tid=$tid&tbname=$tbname&fid=".$r[fid].$ecms_hashur['ehref']."' title='ç‚¹å‡»å°†å­—æ®µè½¬ç§»åˆ°å‰¯è¡¨'>ä¸»è¡¨</a>":"ä¸»è¡¨";
+			$tbdataf=$r[isadd]?"<a href='ChangeDataTableF.php?tid=$tid&tbname=$tbname&fid=".$r[fid].$ecms_hashur['ehref']."' title='µã»÷½«×Ö¶Î×ªÒÆµ½¸±±í'>Ö÷±í</a>":"Ö÷±í";
   		}
   ?>
     <tr bgcolor="#ffffff" onmouseout="this.style.backgroundColor='#ffffff'" onmouseover="this.style.backgroundColor='#C3EFFF'"> 
@@ -120,19 +120,19 @@ $sql=$empire->query("select * from {$dbtbpre}enewsf where tid='$tid' order by my
 	?>
     <tr bgcolor="ffffff"> 
       <td height="25">&nbsp;</td>
-      <td height="25" colspan="6"><input type="submit" name="Submit" value="ä¿®æ”¹å­—æ®µé¡ºåº">
+      <td height="25" colspan="6"><input type="submit" name="Submit" value="ĞŞ¸Ä×Ö¶ÎË³Ğò">
         <input name="enews" type="hidden" id="enews" value="EditFOrder"> <input name="tid" type="hidden" id="tid" value="<?=$tid?>"> 
         <input name="tbname" type="hidden" id="tbname" value="<?=$tbname?>"></td>
     </tr>
     <tr bgcolor="ffffff">
       <td height="25">&nbsp;</td>
-      <td height="25" colspan="6"><font color="#666666">è¯´æ˜ï¼šé¡ºåºå€¼è¶Šå°è¶Šæ˜¾ç¤ºå‰é¢ï¼Œçº¢è‰²å­—æ®µåä¸ºç³»ç»Ÿå­—æ®µï¼Œç‚¹å‡»â€œä¸»è¡¨â€/â€œå‰¯è¡¨â€å¯ä»¥è¿›è¡Œå­—æ®µè½¬ç§».</font></td>
+      <td height="25" colspan="6"><font color="#666666">ËµÃ÷£ºË³ĞòÖµÔ½Ğ¡Ô½ÏÔÊ¾Ç°Ãæ£¬ºìÉ«×Ö¶ÎÃûÎªÏµÍ³×Ö¶Î£¬µã»÷¡°Ö÷±í¡±/¡°¸±±í¡±¿ÉÒÔ½øĞĞ×Ö¶Î×ªÒÆ.</font></td>
     </tr>
   </table>
 </form>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-      <td><div align="center"> [<a href="javascript:window.close();">å…³é—­</a>] </div></td>
+      <td><div align="center"> [<a href="javascript:window.close();">¹Ø±Õ</a>] </div></td>
     </tr>
   </table>
 </body>

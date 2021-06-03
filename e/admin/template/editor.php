@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -28,9 +28,9 @@ $loadeditorjs=ECMS_TempShowEditorJS('../ecmseditor/tempeditor/');
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<title>åœ¨çº¿ç¼–è¾‘æ¨¡æ¿</title>
+<title>ÔÚÏß±à¼­Ä£°å</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <?=$loadeditorjs?>
 <script>
@@ -46,7 +46,7 @@ function eGetPageText(){
 }
 
 function SaveTemp(){
-var isok=confirm('ç¡®è®¤è¦ä¿å­˜?');
+var isok=confirm('È·ÈÏÒª±£´æ?');
 if(isok)
 {
 <?=$returnvar?>=eGetPageText();
@@ -62,18 +62,18 @@ return false;
   <form name="edittemp" method="post" action="../enews.php" onsubmit="return SaveTemp()">
   <?=$ecms_hashur['eform']?>
     <tr class="header"> 
-      <td width="82%">åœ¨çº¿ç¼–è¾‘æ¨¡æ¿<font color="#FF0000">(æœ¬åœ°å¦‚æœæœ‰è£…dreamweaverï¼Œæ¨èç”¨dreamweaverç¼–è¾‘)</font></td>
+      <td width="82%">ÔÚÏß±à¼­Ä£°å<font color="#FF0000">(±¾µØÈç¹ûÓĞ×°dreamweaver£¬ÍÆ¼öÓÃdreamweaver±à¼­)</font></td>
       <td width="18%"> 
         <div align="right"> 
           <select name="notfullpage" onchange="self.location.href='editor.php?<?=$ecms_hashur['ehref']?>&getvar=<?=$getvar?>&returnvar=<?=$returnvar?>&fun=<?=$fun?>&notfullpage='+this.options[this.selectedIndex].value;">
-            <option value='0'<?=$notfullpage==0?' selected':''?>>ç¼–è¾‘æ•´ä½“é¡µé¢(å¸¦body)</option>
-            <option value='1'<?=$notfullpage==1?' selected':''?>>ç¼–è¾‘å±€éƒ¨å†…å®¹(ä¸å¸¦body)</option>
+            <option value='0'<?=$notfullpage==0?' selected':''?>>±à¼­ÕûÌåÒ³Ãæ(´øbody)</option>
+            <option value='1'<?=$notfullpage==1?' selected':''?>>±à¼­¾Ö²¿ÄÚÈİ(²»´øbody)</option>
           </select>
         </div></td>
     </tr>
     <tr> 
       <td colspan="2" bgcolor="#FFFFFF"> <div align="center"> 
-          <input type="button" name="Submit" value=" ä¿å­˜å†…å®¹ " onclick="return SaveTemp()">
+          <input type="button" name="Submit" value=" ±£´æÄÚÈİ " onclick="return SaveTemp()">
         </div></td>
     </tr>
     <tr> 
@@ -83,14 +83,14 @@ return false;
     </tr>
     <tr> 
       <td colspan="2" bgcolor="#FFFFFF"> <div align="center"> 
-          <input type="button" name="Submit2" value=" ä¿å­˜å†…å®¹ " onclick="return SaveTemp()">
+          <input type="button" name="Submit2" value=" ±£´æÄÚÈİ " onclick="return SaveTemp()">
         </div></td>
     </tr>
     <tr> 
-      <td colspan="2" bgcolor="#FFFFFF"> &nbsp;[<a href="#ecms" onclick="window.open('EnewsBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=500,scrollbars=yes,resizable=yes');">æŸ¥çœ‹æ¨¡æ¿æ ‡ç­¾è¯­æ³•</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹JSè°ƒç”¨åœ°å€</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListTempvar.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹å…¬å…±æ¨¡æ¿å˜é‡</a>] 
-        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListBqtemp.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">æŸ¥çœ‹æ ‡ç­¾æ¨¡æ¿</a>]</td>
+      <td colspan="2" bgcolor="#FFFFFF"> &nbsp;[<a href="#ecms" onclick="window.open('EnewsBq.php<?=$ecms_hashur['whehref']?>','','width=600,height=500,scrollbars=yes,resizable=yes');">²é¿´Ä£°å±êÇ©Óï·¨</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('../ListClass.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´JSµ÷ÓÃµØÖ·</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListTempvar.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´¹«¹²Ä£°å±äÁ¿</a>] 
+        &nbsp;&nbsp;[<a href="#ecms" onclick="window.open('ListBqtemp.php<?=$ecms_hashur['whehref']?>','','width=800,height=600,scrollbars=yes,resizable=yes');">²é¿´±êÇ©Ä£°å</a>]</td>
     </tr>
   </form>
 </table>

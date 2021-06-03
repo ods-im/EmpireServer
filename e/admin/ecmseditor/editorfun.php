@@ -1,5 +1,5 @@
 <?php
-//æç¤ºä¿¡æ¯
+//ÌáÊ¾ĞÅÏ¢
 function ECMS_EditorPrintError($errorNumber,$fileUrl,$fileName,$customMsg,$fileno,$filesize){
 	global $public_r;
 	if(empty($errorNumber))
@@ -15,7 +15,7 @@ function ECMS_EditorPrintError($errorNumber,$fileUrl,$fileName,$customMsg,$filen
 	$errorNumber=(int)$errorNumber;
 	$typer=ECMS_EditorReturnType('');
 	$type=$typer['ftype'];
-	//é™„ä»¶
+	//¸½¼ş
 	if($type==0)
 	{
 		$fileUrl=$fileUrl.'##'.$fileno.'##'.$filesize;
@@ -25,7 +25,7 @@ function ECMS_EditorPrintError($errorNumber,$fileUrl,$fileName,$customMsg,$filen
 	exit();
 }
 
-//è¿”å›è¡¨æ ¼æ ¼å¼
+//·µ»Ø±í¸ñ¸ñÊ½
 function eTranMoreTbGs($r){
 	if($r['tbcolor'])
 	{
@@ -51,10 +51,10 @@ function eTranMoreTbGs($r){
 	return $table;
 }
 
-//ç¼–è¾‘å™¨ä¸Šä¼ å¤šå›¾ç‰‡
+//±à¼­Æ÷ÉÏ´«¶àÍ¼Æ¬
 function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$username){
 	global $empire,$public_r,$dbtbpre,$fun_r;
-	//å¯¼å…¥gdå¤„ç†æ–‡ä»¶
+	//µ¼Èëgd´¦ÀíÎÄ¼ş
 	if($add['getsmall']||$add['getmark'])
 	{
 		@include(ECMS_PATH."e/class/gd.php");
@@ -74,7 +74,7 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 	{
 		$fstb=GetInfoTranFstb($add['classid'],$infoid,0);
 	}
-	//è¿œç¨‹ä¿å­˜
+	//Ô¶³Ì±£´æ
 	if($add['saveurl'])
 	{
 		$url_r=explode("\r\n",$add['saveurl']);
@@ -83,11 +83,11 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 		{
 			if(empty($url_r[$i]))
 			{continue;}
-			//éªŒè¯å›¾ç‰‡
+			//ÑéÖ¤Í¼Æ¬
 			$check=eTranMorePicCheck($url_r[$i],0);
 			if($check==0)
 			{continue;}
-			//å¼€å§‹ä¸Šä¼ 
+			//¿ªÊ¼ÉÏ´«
 			$r=DoTranUrl($url_r[$i],$add['classid']);
 			if(empty($r[tran]))
 		    {
@@ -95,26 +95,26 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 			}
 			$imgurl=$r['url'];
 			$bimgurl=$r['url'];
-			//å†™å…¥æ•°æ®åº“
+			//Ğ´ÈëÊı¾İ¿â
 			$r[filesize]=(int)$r[filesize];
 			$add[classid]=(int)$add[classid];
 			$add[type]=(int)$add[type];
 			$add[filepass]=(int)$add[filepass];
 			eInsertFileTable($r[filename],$r[filesize],$r[filepath],$username,$add[classid],$r[filename],$add[type],$add[filepass],$add[filepass],$public_r[fpath],0,$modtype,$fstb);
-			//ç¼©ç•¥å›¾
+			//ËõÂÔÍ¼
 			if($add['getsmall'])
 			{
 				$sfiler=GetMySmallImg($add['classid'],$r[filename],$r[insertfile],$r[filepath],$r[yname],$add[swidth],$add[sheight],$r[name],$add['filepass'],$add['filepass'],$userid,$username,$modtype,$fstb);
 				$imgurl=str_replace("/".$r[filename],"/small".$r[insertfile].$sfiler['filetype'],$r[url]);
 			}
-			//æ°´å°
+			//Ë®Ó¡
 			if($add['getmark'])
 			{
 				GetMyMarkImg($r['yname']);
 			}
-			//å¼€å§‹è¾“å‡ºå­—ç¬¦
+			//¿ªÊ¼Êä³ö×Ö·û
 			$j++;
-			//åˆ†é¡µ
+			//·ÖÒ³
 			if($add['exptype']==1)
 			{
 				$classtext.="<p align='".$add['align']."'>".eTranMorePicGs($bimgurl,$imgurl,$add)."</p>";
@@ -123,7 +123,7 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 					$classtext.="[!--empirenews.page--]";
 				}
 			}
-			//è¡¨æ ¼
+			//±í¸ñ
 			else
 			{
 				if(($j-1)%$line==0||$j==1)
@@ -133,7 +133,7 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 				{$classtext.="</tr>";}
 			}
 		}
-		//è¡¨æ ¼
+		//±í¸ñ
 		if($add['exptype']==0)
 		{
 			if($j<>0)
@@ -154,7 +154,7 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 			}
 			$classtext=$table.$classtext.$table1;
 		}
-		//åˆ†é¡µ
+		//·ÖÒ³
 		else
 		{
 			if($j%$line==0)
@@ -163,7 +163,7 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 			}
 		}
 	}
-	//æœ¬åœ°ä¸Šä¼ 
+	//±¾µØÉÏ´«
 	else
 	{
 		$count=count($file_name);
@@ -178,13 +178,13 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 			{
 				continue;
 			}
-			//éªŒè¯å›¾ç‰‡
+			//ÑéÖ¤Í¼Æ¬
 			$check=eTranMorePicCheck($file_name[$i],$file_size[$i]);
 			if($check==0)
 			{
 				continue;
 			}
-			//ä¸Šä¼ 
+			//ÉÏ´«
 			$r=DoTranFile($file[$i],$file_name[$i],$file_type[$i],$file_size[$i],$add['classid']);
 			if(empty($r[tran]))
 		    {
@@ -192,26 +192,26 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 			}
 			$imgurl=$r['url'];
 			$bimgurl=$r['url'];
-			//å†™å…¥æ•°æ®åº“
+			//Ğ´ÈëÊı¾İ¿â
 			$r[filesize]=(int)$r[filesize];
 			$add[classid]=(int)$add[classid];
 			$add[type]=(int)$add[type];
 			$add[filepass]=(int)$add[filepass];
 			eInsertFileTable($r[filename],$r[filesize],$r[filepath],$username,$add[classid],$file_name[$i],$add[type],$add[filepass],$add[filepass],$public_r[fpath],0,$modtype,$fstb);
-			//ç¼©ç•¥å›¾
+			//ËõÂÔÍ¼
 			if($add['getsmall'])
 			{
 				$sfiler=GetMySmallImg($add['classid'],$r[filename],$r[insertfile],$r[filepath],$r[yname],$add[swidth],$add[sheight],$r[name],$add['filepass'],$add['filepass'],$userid,$username,$modtype,$fstb);
 				$imgurl=str_replace("/".$r[filename],"/small".$r[insertfile].$sfiler['filetype'],$r[url]);
 			}
-			//æ°´å°
+			//Ë®Ó¡
 			if($add['getmark'])
 			{
 				GetMyMarkImg($r['yname']);
 			}
-			//å¼€å§‹è¾“å‡ºå­—ç¬¦
+			//¿ªÊ¼Êä³ö×Ö·û
 			$j++;
-			//åˆ†é¡µ
+			//·ÖÒ³
 			if($add['exptype']==1)
 			{
 				$classtext.="<p align=".$add['align'].">".eTranMorePicGs($bimgurl,$imgurl,$add)."</p>";
@@ -220,7 +220,7 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 					$classtext.="[!--empirenews.page--]";
 				}
 			}
-			//è¡¨æ ¼
+			//±í¸ñ
 			else
 			{
 				if(($j-1)%$line==0||$j==1)
@@ -230,7 +230,7 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 				{$classtext.="</tr>";}
 			}
 		}
-		//è¡¨æ ¼
+		//±í¸ñ
 		if($add['exptype']==0)
 		{
 			if($j<>0)
@@ -251,7 +251,7 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 			}
 			$classtext=$table.$classtext.$table1;
 		}
-		//åˆ†é¡µ
+		//·ÖÒ³
 		else
 		{
 			if($j%$line==0)
@@ -267,7 +267,7 @@ function eTranMorePic($file,$file_name,$file_type,$file_size,$add,$userid,$usern
 	exit();
 }
 
-//è¿”å›å›¾ç‰‡æ ¼å¼
+//·µ»ØÍ¼Æ¬¸ñÊ½
 function eTranMorePicGs($bimgurl,$imgurl,$r){
 	if($r['width'])
 	{
@@ -281,11 +281,11 @@ function eTranMorePicGs($bimgurl,$imgurl,$r){
 	return $pic;
 }
 
-//éªŒè¯å›¾ç‰‡æ˜¯å¦åˆæ³•
+//ÑéÖ¤Í¼Æ¬ÊÇ·ñºÏ·¨
 function eTranMorePicCheck($url,$filesize){
 	global $public_r,$ecms_config;
-	$filetype=GetFiletype($url);//æ‰©å±•å
-	//å¦‚æœæ˜¯.phpæ–‡ä»¶
+	$filetype=GetFiletype($url);//À©Õ¹Ãû
+	//Èç¹ûÊÇ.phpÎÄ¼ş
 	if(CheckSaveTranFiletype($filetype))
 	{
 		return 0;
@@ -298,7 +298,7 @@ function eTranMorePicCheck($url,$filesize){
 	{
 		return 0;
 	}
-	//æ‰©å±•åæ˜¯å¦åˆæ³•
+	//À©Õ¹ÃûÊÇ·ñºÏ·¨
 	if(!strstr($ecms_config['sets']['tranpicturetype'],','.$filetype.','))
 	{
 		return 0;
@@ -306,7 +306,7 @@ function eTranMorePicCheck($url,$filesize){
 	return 1;
 }
 
-//ä¸Šä¼ æ–‡ä»¶
+//ÉÏ´«ÎÄ¼ş
 function TranFile($file,$file_name,$file_type,$file_size,$tranurl,$no,$classid,$type,$post,$userid,$username){
 	global $empire,$public_r,$loginrnd,$dbtbpre,$ecms_config;
 	if(!$no)
@@ -322,21 +322,21 @@ function TranFile($file,$file_name,$file_type,$file_size,$tranurl,$no,$classid,$
 	{
 		$fstb=GetInfoTranFstb($classid,$infoid,0);
 	}
-	//æ˜¯å¦ä¸ºç©º
+	//ÊÇ·ñÎª¿Õ
 	if(!$file_name)
 	{
 		if(empty($tranurl)||$tranurl=="http://")
 		{
 			$tranfrom==0?printerror("EmptyHttp","history.go(-1)",8):ECMS_EditorPrintError(1,'','','EmptyHttp','','');
 		}
-		$filetype=GetFiletype($tranurl);//å–å¾—æ–‡ä»¶ç±»å‹
+		$filetype=GetFiletype($tranurl);//È¡µÃÎÄ¼şÀàĞÍ
 		$file_size=0;
     }
 	else
 	{
-		$filetype=GetFiletype($file_name);//å–å¾—æ–‡ä»¶ç±»å‹
+		$filetype=GetFiletype($file_name);//È¡µÃÎÄ¼şÀàĞÍ
 	}
-	//å¦‚æœæ˜¯.phpæ–‡ä»¶
+	//Èç¹ûÊÇ.phpÎÄ¼ş
 	if(CheckSaveTranFiletype($filetype))
 	{
 		$tranfrom==0?printerror("TranPHP","history.go(-1)",8):ECMS_EditorPrintError(1,'','','TranPHP','','');
@@ -350,25 +350,25 @@ function TranFile($file,$file_name,$file_type,$file_size,$tranurl,$no,$classid,$
 	{
 		$tranfrom==0?printerror("TranFilesizeFail","history.go(-1)",8):ECMS_EditorPrintError(1,'','','TranFilesizeFail','','');
 	}
-	if($type==1)//ä¸Šä¼ å›¾ç‰‡
+	if($type==1)//ÉÏ´«Í¼Æ¬
 	{
 		if(!strstr($ecms_config['sets']['tranpicturetype'],','.$filetype.','))
 		{
 			$tranfrom==0?printerror("NotTranImg","history.go(-1)",8):ECMS_EditorPrintError(1,'','','NotTranImg','','');
 		}
 	}
-	elseif($type==2)//ä¸Šä¼ flash
+	elseif($type==2)//ÉÏ´«flash
 	{
 		if(!strstr($ecms_config['sets']['tranflashtype'],','.$filetype.','))
 		{
 			$tranfrom==0?printerror("NotTranFlash","history.go(-1)",8):ECMS_EditorPrintError(1,'','','NotTranFlash','','');
 		}
 	}
-	elseif($type==3)//ä¸Šä¼ å¤šåª’ä½“
+	elseif($type==3)//ÉÏ´«¶àÃ½Ìå
 	{}
-	else//ä¸Šä¼ é™„ä»¶
+	else//ÉÏ´«¸½¼ş
 	{}
-	//è¿œç¨‹ä¿å­˜
+	//Ô¶³Ì±£´æ
 	if(empty($file_name))
 	{
 		$r=DoTranUrl($tranurl,$classid);
@@ -377,7 +377,7 @@ function TranFile($file,$file_name,$file_type,$file_size,$tranurl,$no,$classid,$
 			$tranfrom==0?printerror("TranHttpFail","history.go(-1)",8):ECMS_EditorPrintError(1,'','','TranHttpFail','','');
 		}
 	}
-	//æœ¬åœ°ä¸Šä¼ 
+	//±¾µØÉÏ´«
 	else
 	{
 		$r=DoTranFile($file,$file_name,$file_type,$file_size,$classid);
@@ -390,31 +390,31 @@ function TranFile($file,$file_name,$file_type,$file_size,$tranurl,$no,$classid,$
 	{
 		$no=$r[filename];
 	}
-	//å†™å…¥æ•°æ®åº“
+	//Ğ´ÈëÊı¾İ¿â
 	$r[filesize]=(int)$r[filesize];
 	$classid=(int)$classid;
 	$post[filepass]=(int)$post[filepass];
 	$type=(int)$type;
 	$sql=eInsertFileTable($r[filename],$r[filesize],$r[filepath],$username,$classid,$no,$type,$post[filepass],$post[filepass],$public_r[fpath],0,$modtype,$fstb);
 	$fileid=$empire->lastid();
-	//å¯¼å…¥gd.phpæ–‡ä»¶
+	//µ¼Èëgd.phpÎÄ¼ş
 	if($type==1&&($post['getsmall']||$post['getmark']))
 	{
 		@include(ECMS_PATH."e/class/gd.php");
 	}
-	//ç¼©ç•¥å›¾
+	//ËõÂÔÍ¼
 	if($type==1&&$post['getsmall'])
 	{
 		GetMySmallImg($classid,$no,$r[insertfile],$r[filepath],$r[yname],$post[width],$post[height],$r[name],$post['filepass'],$post['filepass'],$userid,$username,$modtype,$fstb);
 	}
-	//æ°´å°
+	//Ë®Ó¡
 	if($type==1&&$post['getmark'])
 	{
 		GetMyMarkImg($r['yname']);
 	}
 	if($sql)
 	{
-		if($tranfrom==1)//ç¼–è¾‘å™¨ä¸Šä¼ 
+		if($tranfrom==1)//±à¼­Æ÷ÉÏ´«
 		{
 			//$imgstr=EditorSetTranPic($r[url],$r[url],$post);
 			ECMS_EditorPrintError(0,$r[url],$r[filename],'',$no,$r[filesize]);
@@ -431,7 +431,7 @@ function TranFile($file,$file_name,$file_type,$file_size,$tranurl,$no,$classid,$
 	}
 }
 
-//æ’å…¥å›¾ç‰‡
+//²åÈëÍ¼Æ¬
 function EditorSetTranPic($picurl,$smallpic,$add){
 	$imgstr="<img src='$picurl'";
 	if($add[pic_autosize])

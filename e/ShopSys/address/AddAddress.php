@@ -7,7 +7,7 @@ require("../class/ShopSysFun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('shop');//鍏抽棴妯″潡
+eCheckCloseMods('shop');//关闭模块
 $user=islogin();
 $enews=RepPostStr($_GET['enews'],1);
 if(empty($enews))
@@ -20,7 +20,7 @@ if($enews=='EditAddress')
 {
 	$r=$empire->fetch1("select * from {$dbtbpre}enewsshop_address where addressid='$addressid' and userid='$user[userid]' limit 1");
 }
-//瀵煎叆妯℃澘
+//导入模板
 require(ECMS_PATH.'e/template/ShopSys/AddAddress.php');
 db_close();
 $empire=null;

@@ -13,7 +13,7 @@ if(empty($enews))
 {
 	$enews=$_GET['enews'];
 }
-//楠岃瘉鐢ㄦ埛
+//验证用户
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -30,7 +30,7 @@ if($public_r['phpmode'])
 require("editorfun.php");
 include('eshoweditor.php');
 $doetran=1;
-if($enews=="TranFile")//涓婁紶鏂囦欢
+if($enews=="TranFile")//上传文件
 {
 	$file=$_FILES['file']['tmp_name'];
 	$file_name=$_FILES['file']['name'];
@@ -42,7 +42,7 @@ if($enews=="TranFile")//涓婁紶鏂囦欢
 	$type=$_POST['type'];
 	TranFile($file,$file_name,$file_type,$file_size,$tranurl,$no,$classid,$type,$_POST,$logininid,$loginin);
 }
-elseif($enews=="SaveMoreImg")//鎵归噺涓婁紶鍥剧墖
+elseif($enews=="SaveMoreImg")//批量上传图片
 {
 	$file=$_FILES['file']['tmp_name'];
     $file_name=$_FILES['file']['name'];

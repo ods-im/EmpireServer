@@ -5,31 +5,31 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='å–å›å¯†ç ';
-$url="<a href=../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;å–å›å¯†ç ";
+$public_diyr['pagetitle']='È¡»ØÃÜÂë';
+$url="<a href=../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;È¡»ØÃÜÂë";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <br>
 <table width="500" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <form name="GetPassForm" method="POST" action="../doaction.php">
     <tr class="header"> 
-      <td height="25" colspan="2"><div align="center">é‡è®¾å¯†ç </div></td>
+      <td height="25" colspan="2"><div align="center">ÖØÉèÃÜÂë</div></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td width="23%" height="25">ç”¨æˆ·å</td>
+      <td width="23%" height="25">ÓÃ»§Ãû</td>
       <td width="77%"><?=$username?></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
-      <td height="25">æ–°å¯†ç </td>
+      <td height="25">ĞÂÃÜÂë</td>
       <td><input name="newpassword" type="password" id="newpassword" size="38"></td>
     </tr>
     <tr bgcolor="#FFFFFF">
-      <td height="25">é‡å¤æ–°å¯†ç </td>
+      <td height="25">ÖØ¸´ĞÂÃÜÂë</td>
       <td><input name="renewpassword" type="password" id="renewpassword" size="38"></td>
     </tr>
     <tr bgcolor="#FFFFFF"> 
       <td height="25">&nbsp; </td>
-      <td> <input type="submit" name="button" value="ä¿®æ”¹"> 
+      <td> <input type="submit" name="button" value="ĞŞ¸Ä"> 
         <input name="enews" type="hidden" id="enews" value="DoGetPassword">
         <input name="id" type="hidden" id="id" value="<?=$r[id]?>">
         <input name="tt" type="hidden" id="tt" value="<?=$r[tt]?>">

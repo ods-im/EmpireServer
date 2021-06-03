@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,14 +15,14 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 CheckLevel($logininid,$loginin,$classid,"totaldata");
 $tbname=RepPostVar($_GET['tbname']);
 if(empty($tbname))
 {
 	$tbname=$public_r['tbname'];
 }
-//æ•°æ®è¡¨
+//Êı¾İ±í
 $b=0;
 $htb=0;
 $tbsql=$empire->query("select tbname,tname from {$dbtbpre}enewstable order by tid");
@@ -45,24 +45,24 @@ if($htb==0)
 {
 	printerror('ErrorUrl','');
 }
-//ç”¨æˆ·
+//ÓÃ»§
 $sql=$empire->query("select userid,username from {$dbtbpre}enewsuser order by userid");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>ç”¨æˆ·å‘å¸ƒç»Ÿè®¡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÓÃ»§·¢²¼Í³¼Æ</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr> 
-    <td height="25">ä½ç½®ï¼š<a href="UserTotal.php<?=$ecms_hashur['whehref']?>">ç”¨æˆ·å‘å¸ƒç»Ÿè®¡</a></td>
+    <td height="25">Î»ÖÃ£º<a href="UserTotal.php<?=$ecms_hashur['whehref']?>">ÓÃ»§·¢²¼Í³¼Æ</a></td>
   </tr>
   <tr>
-    <td height="30"> é€‰æ‹©ç»Ÿè®¡æ•°æ®è¡¨ï¼š 
+    <td height="30"> Ñ¡ÔñÍ³¼ÆÊı¾İ±í£º 
       <select name="tbname" id="tbname" onchange="window.location='UserTotal.php?<?=$ecms_hashur['ehref']?>&tbname='+this.options[this.selectedIndex].value">
 	  <?=$tbstr?>
       </select>
@@ -73,18 +73,18 @@ $sql=$empire->query("select userid,username from {$dbtbpre}enewsuser order by us
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
   <tr class="header"> 
     <td width="19%" height="25"> 
-      <div align="center">ç”¨æˆ·</div></td>
-    <td width="8%" height="25"> <div align="center">ä»Šå¤©å‘å¸ƒæ•°</div></td>
-    <td width="8%" height="25"> <div align="center">æ˜¨å¤©å‘å¸ƒæ•°</div></td>
-    <td width="8%" height="25"> <div align="center">æœ¬æœˆå‘å¸ƒæ•°</div></td>
-    <td width="8%"> <div align="center">æ€»å‘å¸ƒæ•°</div></td>
+      <div align="center">ÓÃ»§</div></td>
+    <td width="8%" height="25"> <div align="center">½ñÌì·¢²¼Êı</div></td>
+    <td width="8%" height="25"> <div align="center">×òÌì·¢²¼Êı</div></td>
+    <td width="8%" height="25"> <div align="center">±¾ÔÂ·¢²¼Êı</div></td>
+    <td width="8%"> <div align="center">×Ü·¢²¼Êı</div></td>
     <td width="7%"> 
-      <div align="center">æœªå®¡æ ¸æ•°</div></td>
-    <td width="7%"><div align="center">å®¡å‘æ•°</div></td>
-    <td width="7%"><div align="center">å®¡æŠ•æ•°</div></td>
-    <td width="8%"><div align="center">ç‚¹å‡»æ•°</div></td>
-    <td width="7%"><div align="center">è¯„è®ºæ•°</div></td>
-    <td width="7%"><div align="center">ä¸‹è½½æ•°</div></td>
+      <div align="center">Î´ÉóºËÊı</div></td>
+    <td width="7%"><div align="center">Éó·¢Êı</div></td>
+    <td width="7%"><div align="center">ÉóÍ¶Êı</div></td>
+    <td width="8%"><div align="center">µã»÷Êı</div></td>
+    <td width="7%"><div align="center">ÆÀÂÛÊı</div></td>
+    <td width="7%"><div align="center">ÏÂÔØÊı</div></td>
     <td width="6%"><div align="center"></div></td>
   </tr>
   <?php
@@ -92,34 +92,34 @@ $sql=$empire->query("select userid,username from {$dbtbpre}enewsuser order by us
   $today=date("Y-m-d");
   $yesterday=date("Y-m-d",$totime-24*3600);
   $month=date("Y-m");
-  //æœ¬æœˆæœ€å¤§å¤©æ•°
+  //±¾ÔÂ×î´óÌìÊı
   $maxday=date("t",mktime(0,0,0,date("m"),date("d"),date("Y")));
   while($r=$empire->fetch($sql))
   {
   	$tquery="select count(*) as total from {$dbtbpre}ecms_".$tbname." where userid='$r[userid]' and ismember=0";
 	$checktquery="select count(*) as total from {$dbtbpre}ecms_".$tbname."_check where userid='$r[userid]' and ismember=0";
-  	//ä»Šå¤©å‘å¸ƒæ•°
+  	//½ñÌì·¢²¼Êı
   	$todaynum=$empire->gettotal($tquery." and truetime>=".to_time($today." 00:00:00")." and truetime<=".to_time($today." 23:59:59"));
 	$todaychecknum=$empire->gettotal($checktquery." and truetime>=".to_time($today." 00:00:00")." and truetime<=".to_time($today." 23:59:59"));
-	//æ˜¨å¤©å‘å¸ƒæ•°
+	//×òÌì·¢²¼Êı
 	$yesterdaynum=$empire->gettotal($tquery." and truetime>=".to_time($yesterday." 00:00:00")." and truetime<=".to_time($yesterday." 23:59:59"));
 	$yesterdaychecknum=$empire->gettotal($checktquery." and truetime>=".to_time($yesterday." 00:00:00")." and truetime<=".to_time($yesterday." 23:59:59"));
-	//æœ¬æœˆå‘å¸ƒæ•°
+	//±¾ÔÂ·¢²¼Êı
 	$monthnum=$empire->gettotal($tquery." and truetime>=".to_time($month."-01 00:00:00")." and truetime<=".to_time($month."-".$maxday." 23:59:59"));
 	$monthchecknum=$empire->gettotal($checktquery." and truetime>=".to_time($month."-01 00:00:00")." and truetime<=".to_time($month."-".$maxday." 23:59:59"));
-	//æ‰€æœ‰
+	//ËùÓĞ
 	$totalnum=$empire->gettotal($tquery);
 	$checktotalnum=$empire->gettotal($checktquery);
-	//æ€»ç‚¹å‡»é‡
+	//×Üµã»÷Á¿
 	$tonclickquery="select sum(onclick) as total from {$dbtbpre}ecms_".$tbname." where userid='$r[userid]' and ismember=0";
 	$totalonclick=$empire->gettotal($tonclickquery);
-	//æ€»è¯„è®ºæ•°
+	//×ÜÆÀÂÛÊı
 	$tplquery="select sum(plnum) as total from {$dbtbpre}ecms_".$tbname." where userid='$r[userid]' and ismember=0";
 	$totalplnum=$empire->gettotal($tplquery);
-	//æ€»ä¸‹è½½æ•°
+	//×ÜÏÂÔØÊı
 	$tdownquery="select sum(totaldown) as total from {$dbtbpre}ecms_".$tbname." where userid='$r[userid]' and ismember=0";
 	$totaldown=$empire->gettotal($tdownquery);
-	//å®¡ç¨¿
+	//Éó¸å
 	$checkhinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$tbname." where eckuid='$r[userid]' and ismember=0");
 	$checkqinfonum=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_".$tbname." where eckuid='$r[userid]' and ismember=1");
   ?>
@@ -147,7 +147,7 @@ $sql=$empire->query("select userid,username from {$dbtbpre}enewsuser order by us
     <td><div align="center"><?=$totalonclick?></div></td>
     <td><div align="center"><?=$totalplnum?></div></td>
     <td><div align="center"><?=$totaldown?></div></td>
-    <td><div align="center"><a href="#ecms" onclick="window.open('MoreUserTotal.php?tbname=<?=$tbname?>&userid=<?=$r[userid]?>&username=<?=$r[username]?><?=$ecms_hashur['ehref']?>','ViewUserTotal','width=650,height=500,scrollbars=yes,left=300,top=150,resizable=yes');">[è¯¦ç»†]</a></div></td>
+    <td><div align="center"><a href="#ecms" onclick="window.open('MoreUserTotal.php?tbname=<?=$tbname?>&userid=<?=$r[userid]?>&username=<?=$r[username]?><?=$ecms_hashur['ehref']?>','ViewUserTotal','width=650,height=500,scrollbars=yes,left=300,top=150,resizable=yes');">[ÏêÏ¸]</a></div></td>
   </tr>
   <?php
   }

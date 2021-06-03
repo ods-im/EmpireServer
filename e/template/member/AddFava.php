@@ -5,8 +5,8 @@ if(!defined('InEmpireCMS'))
 }
 ?>
 <?php
-$public_diyr['pagetitle']='å¢åŠ æ”¶è—å¤¹';
-$url="<a href=../../../../>é¦–é¡µ</a>&nbsp;>&nbsp;<a href=../../cp/>ä¼šå‘˜ä¸­å¿ƒ</a>&nbsp;>&nbsp;<a href=../../fava/>æ”¶è—å¤¹</a>&nbsp;>&nbsp;å¢åŠ æ”¶è—å¤¹";
+$public_diyr['pagetitle']='Ôö¼ÓÊÕ²Ø¼Ğ';
+$url="<a href=../../../../>Ê×Ò³</a>&nbsp;>&nbsp;<a href=../../cp/>»áÔ±ÖĞĞÄ</a>&nbsp;>&nbsp;<a href=../../fava/>ÊÕ²Ø¼Ğ</a>&nbsp;>&nbsp;Ôö¼ÓÊÕ²Ø¼Ğ";
 require(ECMS_PATH.'e/template/incfile/header.php');
 ?>
 <br>
@@ -15,28 +15,28 @@ require(ECMS_PATH.'e/template/incfile/header.php');
             <tr class="header"> 
               <td height="25"><div align="center"> 
                   <input name="enews" type="hidden" id="enews" value="AddFava">
-                  å¢åŠ æ”¶è—å¤¹ 
+                  Ôö¼ÓÊÕ²Ø¼Ğ 
                   <input name="from" type="hidden" id="from2" value="<?=$from?>">
                   <input name="classid" type="hidden" id="classid2" value="<?=$classid?>">
                   <input name="id" type="hidden" id="id2" value="<?=$id?>">
-                  [<a href="../FavaClass/" target="_blank">å¢åŠ æ”¶è—åˆ†ç±»</a>] </div></td>
+                  [<a href="../FavaClass/" target="_blank">Ôö¼ÓÊÕ²Ø·ÖÀà</a>] </div></td>
             </tr>
             <tr> 
-              <td height="25" bgcolor="#FFFFFF"><div align="center">æ”¶è—é¡µé¢ï¼š<a href='<?=$titleurl?>' target=_blank><?=stripSlashes($r[title])?></a></div></td>
+              <td height="25" bgcolor="#FFFFFF"><div align="center">ÊÕ²ØÒ³Ãæ£º<a href='<?=$titleurl?>' target=_blank><?=stripSlashes($r[title])?></a></div></td>
             </tr>
             <tr> 
-              <td height="25" bgcolor="#FFFFFF"><div align="center">é€‰æ‹©æ”¶è—åˆ†ç±»: 
+              <td height="25" bgcolor="#FFFFFF"><div align="center">Ñ¡ÔñÊÕ²Ø·ÖÀà: 
                   <select name="cid" id="select">
-                    <option value="0">ä¸è®¾ç½®</option>
+                    <option value="0">²»ÉèÖÃ</option>
                     <?=$select?>
                   </select>
                 </div></td>
             </tr>
             <tr> 
               <td height="25" bgcolor="#FFFFFF"><div align="center"> 
-                  <input type="submit" name="Submit" value="æ”¶è—">
+                  <input type="submit" name="Submit" value="ÊÕ²Ø">
                   &nbsp;&nbsp; 
-                  <input type="button" name="Submit2" value="è¿”å›" onclick="javascript:history.go(-1)">
+                  <input type="button" name="Submit2" value="·µ»Ø" onclick="javascript:history.go(-1)">
                 </div></td>
             </tr>
           </form>

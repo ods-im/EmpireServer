@@ -6,7 +6,7 @@ require("../../class/functions.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -15,19 +15,19 @@ $loginlevel=$lur['groupid'];
 $loginadminstyleid=$lur['adminstyleid'];
 //ehash
 $ecms_hashur=hReturnEcmsHashStrAll();
-//éªŒè¯æƒé™
+//ÑéÖ¤È¨ÏŞ
 //CheckLevel($logininid,$loginin,$classid,"file");
 $gr=ReturnLeftLevel($loginlevel);
 
-$url="<a href=ListFile.php?type=9".$ecms_hashur['ehref'].">ç®¡ç†é™„ä»¶</a>";
+$url="<a href=ListFile.php?type=9".$ecms_hashur['ehref'].">¹ÜÀí¸½¼ş</a>";
 $filer=$empire->fetch1("select filedatatbs,filedeftb from {$dbtbpre}enewspublic limit 1");
 $tr=explode(',',$filer['filedatatbs']);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>èœå•</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>²Ëµ¥</title>
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
 <SCRIPT lanuage="JScript">
 function DisplayImg(ss,imgname,phome)
@@ -80,7 +80,7 @@ if($gr['dofile'])
 ?>
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="doinfofileid">
   <tr> 
-    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="infofileimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(doinfofile,"infofileimg"); style="CURSOR: hand">ç®¡ç†ä¿¡æ¯é™„ä»¶</a></td>
+    <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="infofileimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(doinfofile,"infofileimg"); style="CURSOR: hand">¹ÜÀíĞÅÏ¢¸½¼ş</a></td>
   </tr>
   <tbody id="doinfofile">
 	  <?php
@@ -88,7 +88,7 @@ if($gr['dofile'])
 	  for($i=1;$i<$count;$i++)
 	  {
 		$thistb=$tr[$i];
-		$fstbname="ä¿¡æ¯é™„ä»¶è¡¨".$thistb;
+		$fstbname="ĞÅÏ¢¸½¼ş±í".$thistb;
 		$filetbname=$dbtbpre.'enewsfile_'.$thistb;
 		if($thistb==$filer['filedeftb'])
 		{
@@ -107,29 +107,29 @@ if($gr['dofile'])
   <br>
   <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="dootherfileid">
     <tr>
-      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="otherfileimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dootherfile,"otherfileimg"); style="CURSOR: hand">ç®¡ç†å…¶ä»–é™„ä»¶</a></td>
+      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="otherfileimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dootherfile,"otherfileimg"); style="CURSOR: hand">¹ÜÀíÆäËû¸½¼ş</a></td>
     </tr>
     <tbody id="dootherfile">
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=5<?=$ecms_hashur['ehref']?>" target="apmain">å…¬å…±é™„ä»¶</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=5<?=$ecms_hashur['ehref']?>" target="apmain">¹«¹²¸½¼ş</a></td>
       </tr>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=1<?=$ecms_hashur['ehref']?>" target="apmain">æ ç›®é™„ä»¶</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=1<?=$ecms_hashur['ehref']?>" target="apmain">À¸Ä¿¸½¼ş</a></td>
       </tr>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=2<?=$ecms_hashur['ehref']?>" target="apmain">ä¸“é¢˜é™„ä»¶</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=2<?=$ecms_hashur['ehref']?>" target="apmain">×¨Ìâ¸½¼ş</a></td>
       </tr>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=6<?=$ecms_hashur['ehref']?>" target="apmain">ä¼šå‘˜é™„ä»¶</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=6<?=$ecms_hashur['ehref']?>" target="apmain">»áÔ±¸½¼ş</a></td>
       </tr>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=7<?=$ecms_hashur['ehref']?>" target="apmain">ç¢ç‰‡é™„ä»¶</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=7<?=$ecms_hashur['ehref']?>" target="apmain">ËéÆ¬¸½¼ş</a></td>
       </tr>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=4<?=$ecms_hashur['ehref']?>" target="apmain">åé¦ˆé™„ä»¶</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=4<?=$ecms_hashur['ehref']?>" target="apmain">·´À¡¸½¼ş</a></td>
       </tr>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=3<?=$ecms_hashur['ehref']?>" target="apmain">å¹¿å‘Šé™„ä»¶</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ListFile.php?type=9&modtype=3<?=$ecms_hashur['ehref']?>" target="apmain">¹ã¸æ¸½¼ş</a></td>
       </tr>
     </tbody>
   </table>
@@ -144,7 +144,7 @@ if($gr['dofile']||$gr['dofiletable'])
 ?>
   <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" class="tableborder" id="dofotherid">
     <tr>
-      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="fotherimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dofother,"fotherimg"); style="CURSOR: hand">å…¶ä»–ç®¡ç†</a></td>
+      <td height="25" class="header"><img src="../openpage/images/noadd.gif" name="fotherimg" width="20" height="9" border="0"><a href="#ecms" onMouseUp=turnit(dofother,"fotherimg"); style="CURSOR: hand">ÆäËû¹ÜÀí</a></td>
     </tr>
     <tbody id="dofother">
 	<?php
@@ -152,10 +152,10 @@ if($gr['dofile']||$gr['dofiletable'])
 	{
 	?>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="FilePath.php<?=$ecms_hashur['whehref']?>" target="apmain">ç›®å½•å¼ç®¡ç†é™„ä»¶</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="FilePath.php<?=$ecms_hashur['whehref']?>" target="apmain">Ä¿Â¼Ê½¹ÜÀí¸½¼ş</a></td>
       </tr>
       <tr>
-        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TranMoreFile.php<?=$ecms_hashur['whehref']?>" target="apmain">ä¸Šä¼ å¤šé™„ä»¶</a></td>
+        <td height="25" bgcolor="#FFFFFF" onMouseOver="this.style.backgroundColor='#EFEFEF'" onMouseOut="this.style.backgroundColor='#FFFFFF'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TranMoreFile.php<?=$ecms_hashur['whehref']?>" target="apmain">ÉÏ´«¶à¸½¼ş</a></td>
       </tr>
 	<?php
 	}

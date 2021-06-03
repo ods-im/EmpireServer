@@ -8,7 +8,7 @@ require('../../data/dbcache/class.php');
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-//éªŒè¯ç”¨æˆ·
+//ÑéÖ¤ÓÃ»§
 $lur=is_login();
 $logininid=$lur['userid'];
 $loginin=$lur['username'];
@@ -22,9 +22,9 @@ $search=$ecms_hashur['ehref'];
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=intval($public_r['hlistinfonum']);//æ¯é¡µæ˜¾ç¤º
-$page_line=12;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=intval($public_r['hlistinfonum']);//Ã¿Ò³ÏÔÊ¾
+$page_line=12;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $add=" and (groupid like '%,".$lur[groupid].",%' or userclass like '%,".$lur[classid].",%' or username like '%,".$lur[username].",%')";
 $totalquery="select count(*) as total from {$dbtbpre}enewswfinfo where checktno=0".$add;
 $num=$empire->gettotal($totalquery);
@@ -36,15 +36,15 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../adminstyle/<?=$loginadminstyleid?>/adminstyle.css" rel="stylesheet" type="text/css">
-<title>ç®¡ç†ç­¾å‘ä¿¡æ¯</title>
+<title>¹ÜÀíÇ©·¢ĞÅÏ¢</title>
 </head>
 
 <body>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
   <tr>
-    <td height="25">ä½ç½®ï¼š<a href="../ListAllInfo.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ä¿¡æ¯</a> &gt; <a href="ListWfInfo.php<?=$ecms_hashur['whehref']?>">ç®¡ç†ç­¾å‘ä¿¡æ¯</a></td>
+    <td height="25">Î»ÖÃ£º<a href="../ListAllInfo.php<?=$ecms_hashur['whehref']?>">¹ÜÀíĞÅÏ¢</a> &gt; <a href="ListWfInfo.php<?=$ecms_hashur['whehref']?>">¹ÜÀíÇ©·¢ĞÅÏ¢</a></td>
   </tr>
 </table>
 <br>
@@ -52,11 +52,11 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
   <form name="form1" method="post" action="">
     <tr class="header"> 
       <td width="6%" height="25"> <div align="center">ID</div></td>
-      <td width="46%" height="25"> <div align="center">æ ‡é¢˜</div></td>
-      <td width="9%"><div align="center">çŠ¶æ€</div></td>
-      <td width="13%"><div align="center">å‘å¸ƒè€…</div></td>
-      <td width="16%"><div align="center">æäº¤æ—¶é—´</div></td>
-      <td width="10%" height="25"> <div align="center">æ“ä½œ</div></td>
+      <td width="46%" height="25"> <div align="center">±êÌâ</div></td>
+      <td width="9%"><div align="center">×´Ì¬</div></td>
+      <td width="13%"><div align="center">·¢²¼Õß</div></td>
+      <td width="16%"><div align="center">Ìá½»Ê±¼ä</div></td>
+      <td width="10%" height="25"> <div align="center">²Ù×÷</div></td>
     </tr>
     <?php
 	while($r=$empire->fetch($sql))
@@ -64,7 +64,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 		if($class_r[$r[classid]][tbname])
 		{
 			$index_r=$empire->fetch1("select checked from {$dbtbpre}ecms_".$class_r[$r[classid]][tbname]."_index where id='$r[id]' limit 1");
-			//è¿”å›è¡¨
+			//·µ»Ø±í
 			$infotb=ReturnInfoMainTbname($class_r[$r[classid]][tbname],$index_r['checked']);
 			$nr=$empire->fetch1("select title,newstime,userid,username,ismember from ".$infotb." where id='$r[id]' limit 1");
 		}
@@ -75,28 +75,28 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
 		{
 			$addecmscheck='&ecmscheck='.$ecmscheck;
 		}
-		//çŠ¶æ€
+		//×´Ì¬
 		$st='';
 		if($r[checktno]=='100')
 		{
-			$st='å®¡æ ¸é€šè¿‡';
+			$st='ÉóºËÍ¨¹ı';
 		}
 		elseif($r[checktno]=='101')
 		{
-			$st='è¿”å·¥';
+			$st='·µ¹¤';
 		}
 		elseif($r[checktno]=='102')
 		{
-			$st='å·²å¦å†³';
+			$st='ÒÑ·ñ¾ö';
 		}
 		else
 		{
 			$st=$r[tstatus];
 		}
-		//å‘å¸ƒè€…
+		//·¢²¼Õß
 		if($nr[ismember])
 		{
-			$username=empty($nr[userid])?'æ¸¸å®¢':"ä¼šå‘˜ï¼š<a href='../member/AddMember.php?enews=EditMember&userid=".$nr[userid].$ecms_hashur['ehref']."' target='_blank'>".$nr[username]."</a>";
+			$username=empty($nr[userid])?'ÓÎ¿Í':"»áÔ±£º<a href='../member/AddMember.php?enews=EditMember&userid=".$nr[userid].$ecms_hashur['ehref']."' target='_blank'>".$nr[username]."</a>";
 		}
 		else
 		{
@@ -108,9 +108,9 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
           <?=$r[id]?>
         </div></td>
       <td height="25"> 
-        <a href="ShowWfInfo.php?classid=<?=$r[classid]?>&id=<?=$r[id]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>" title="æŸ¥çœ‹å†…å®¹" target="_blank"><?=$nr[title]?></a>
+        <a href="ShowWfInfo.php?classid=<?=$r[classid]?>&id=<?=$r[id]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>" title="²é¿´ÄÚÈİ" target="_blank"><?=$nr[title]?></a>
         <br>
-        <font color="#574D5C">æ ç›®:<a href='../ListNews.php?bclassid=<?=$class_r[$r[classid]][bclassid]?>&classid=<?=$r[classid]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>'> 
+        <font color="#574D5C">À¸Ä¿:<a href='../ListNews.php?bclassid=<?=$class_r[$r[classid]][bclassid]?>&classid=<?=$r[classid]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>'> 
         <font color="#574D5C"><?=$class_r[$dob][classname]?></font>
         </a> > <a href='../ListNews.php?bclassid=<?=$class_r[$r[classid]][bclassid]?>&classid=<?=$r[classid]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>'> 
         <font color="#574D5C"><?=$class_r[$r[classid]][classname]?></font>
@@ -120,7 +120,7 @@ $returnpage=page2($num,$line,$page_line,$start,$page,$search);
       <td><div align="center"> 
           <?=date("Y-m-d H:i:s",$nr[newstime])?>
         </div></td>
-      <td height="25"> <div align="center">[<a href="#ecms" onclick="window.open('DoWfInfo.php?classid=<?=$r[classid]?>&id=<?=$r[id]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>','','width=600,height=520,scrollbars=yes');">ç­¾å‘</a>]</div></td>
+      <td height="25"> <div align="center">[<a href="#ecms" onclick="window.open('DoWfInfo.php?classid=<?=$r[classid]?>&id=<?=$r[id]?><?=$addecmscheck?><?=$ecms_hashur['ehref']?>','','width=600,height=520,scrollbars=yes');">Ç©·¢</a>]</div></td>
     </tr>
     <?
 	}

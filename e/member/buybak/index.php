@@ -7,22 +7,22 @@ require "../".LoadLang("pub/fun.php");
 $link=db_connect();
 $empire=new mysqlquery();
 $editor=1;
-eCheckCloseMods('member');//å…³é—­æ¨¡å—
-//æ˜¯å¦ç™»é™†
+eCheckCloseMods('member');//¹Ø±ÕÄ£¿é
+//ÊÇ·ñµÇÂ½
 $user=islogin();
 $page=(int)$_GET['page'];
 $page=RepPIntvar($page);
 $start=0;
-$line=25;//æ¯é¡µæ˜¾ç¤ºæ¡æ•°
-$page_line=10;//æ¯é¡µæ˜¾ç¤ºé“¾æ¥æ•°
-$offset=$page*$line;//æ€»åç§»é‡
+$line=25;//Ã¿Ò³ÏÔÊ¾ÌõÊı
+$page_line=10;//Ã¿Ò³ÏÔÊ¾Á´½ÓÊı
+$offset=$page*$line;//×ÜÆ«ÒÆÁ¿
 $totalquery="select count(*) as total from {$dbtbpre}enewsbuybak where userid='$user[userid]'";
-$num=$empire->gettotal($totalquery);//å–å¾—æ€»æ¡æ•°
+$num=$empire->gettotal($totalquery);//È¡µÃ×ÜÌõÊı
 $query="select * from {$dbtbpre}enewsbuybak where userid='$user[userid]'";
 $query=$query." order by buytime desc limit $offset,$line";
 $sql=$empire->query($query);
 $returnpage=page1($num,$line,$page_line,$start,$page,$search);
-//å¯¼å…¥æ¨¡æ¿
+//µ¼ÈëÄ£°å
 require(ECMS_PATH.'e/template/member/buybak.php');
 db_close();
 $empire=null;
